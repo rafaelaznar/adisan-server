@@ -51,7 +51,7 @@ moduloSistema.controller('LoginController',
                     sessionServerCallService.login($scope.user.username, $scope.user.password).then(function (response) {
                         if (response.status == 200) {
                             sessionService.setSessionActive();
-                            sessionService.setSessionInfo(response.data.json);
+                            sessionService.setSessionInfo(response.data.json.data);
                             $scope.session_info = sessionService.getSessionInfo();
                             $scope.isSessionActive = sessionService.isSessionActive();
                             $location.path('home');

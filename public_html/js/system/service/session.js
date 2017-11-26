@@ -38,7 +38,7 @@ moduloServicios.factory('sessionService', function ($q, sessionServerCallService
             sessionServerCallService.checkSession().then(function (response) {
                 if (response['status'] == 200) {
                     isSessionActiveTF = true;
-                    sessionInfo = response.data.json;
+                    sessionInfo = response.data.json.data;
                     deferred.resolve();
                 } else {
                     isSessionActiveTF = false;
@@ -61,9 +61,9 @@ moduloServicios.factory('sessionService', function ($q, sessionServerCallService
             var deferred = $q.defer();
             sessionServerCallService.checkSession().then(function (response) {
                 if (response['status'] == 200) {
-                    if (response.data.json.obj_tipousuario.id <= id_tipousuario) {
+                    if (response.data.json.data.obj_tipousuario.data.id <= id_tipousuario) {
                         isSessionActiveTF = true;
-                        sessionInfo = response.data.json;
+                        sessionInfo = response.data.json.data;
                         deferred.resolve();
                     } else {
                         deferred.resolve();

@@ -12,9 +12,9 @@
             class="form-control"
             name="filterField"
             style="width: 160px"
-            ng-model="filterbynumber.field">
+            ng-model="filterbyinteger.field">
             <option style="display:none">selecciona un campo</option>
-            <option ng-repeat="field in filterbynumber.fields"  value="{{field.name}}">{{field.longname}}</option>
+            <option ng-repeat="field in filterbyinteger.fields |filter:{Type:'Integer',Type:'Id'}" value="{{field.Name}}">{{field.LongName}}</option>            
         </select>
         <span class="help-block" ng-if="!filterForm.filterField.$pristine && filterForm.filterField.$error.required">El campo es obligatorio</span>
     </div>
@@ -28,7 +28,7 @@
             name="filterOperator" 
             width="50" 
             style="width: 200px" 
-            ng-model="filterbynumber.operator">
+            ng-model="filterbyinteger.operator">
             <option style="display:none">selecciona una operacion</option>
             <option value="nequa"  ng-selected="true">es igual a</option>
             <option value="nnequ">es distinto de</option>
@@ -55,7 +55,7 @@
             width="100" 
             style="width: 140px" 
             placeholder="Valor" 
-            ng-model="filterbynumber.value">
+            ng-model="filterbyinteger.value">
         <span class="help-block" ng-if="!filterForm.filterValue.$pristine && filterForm.filterValue.$error.required">El campo es obligatorio</span>        
         <span class="help-block" ng-if="!filterForm.filterValue.$pristine && filterForm.filterValue.$error.pattern">El campo no tiene formato adecuado: debe ser un número entero o decimal (la coma es un punto).</span>
     </div>
@@ -66,5 +66,5 @@
         id="btnFiltrar" 
         name="btnFiltrar" 
         value="Filtrar" 
-        ng-click="filterbynumber.dofilter()" />
+        ng-click="filterbyinteger.dofilter()" />
 </form>

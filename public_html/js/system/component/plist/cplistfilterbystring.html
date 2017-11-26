@@ -14,7 +14,7 @@
             style="width: 160px"
             ng-model="filterbystring.field">
             <option style="display:none">selecciona un campo</option>
-            <option ng-repeat="field in filterbystring.fields"  value="{{field.name}}">{{field.longname}}</option>
+            <option ng-repeat="field in filterbystring.fields |filter:{Type:'String'}"  value="{{field.Name}}">{{field.LongName}}</option>
         </select>
         <span class="help-block" ng-if="!filterForm.filterField.$pristine && filterForm.filterField.$error.required">El campo es obligatorio</span>
     </div>

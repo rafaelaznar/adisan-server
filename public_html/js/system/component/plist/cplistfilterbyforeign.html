@@ -28,10 +28,9 @@
                 class=""
                 bean="filterbyforeign.obj_foreign"
                 form="filterForm"
-                name="filterbyforeign.field.name"
-                reference="filterbyforeign.field.reference"
-                profile="filterbyforeign.profile"
-                description="filterbyforeign.field.description"
+                name="filterbyforeign.field.Name"
+                reference="filterbyforeign.field.References"
+                profile="filterbyforeign.profile"                
                 required="true">
             </foreign-key>
             <span class="help-block" ng-if="!filterForm[filterbyforeign.field.name].$pristine && filterForm[filterbyforeign.field.name].$error.required">El campo es obligatorio</span>        

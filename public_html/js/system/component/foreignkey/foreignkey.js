@@ -7,7 +7,6 @@ moduloDirectivas.component('foreignKey', {
         "form": "=",
         "name": "<",
         "reference": "<",
-        "description": "<",
         "profile": "<",
         "required": "<"
     }
@@ -31,18 +30,17 @@ function foreignkeyController1(toolService, serverCallService, $uibModal) {
         old_id = parseInt(self.bean.id);
         if (old_id) {
             serverCallService.getOne(self.reference, old_id).then(function (response) {
-                self.bean = response.data.json;
-                if (response.data.json) {
-                    if (response.data.json.id > 0) {
+                self.bean = response.data.json.data;
+                if (self.bean) {
+                    if (response.data.json.data.id > 0) {
                         validity(true);
-                        if (Array.isArray(self.description)) {
-                            self.desc = "";
-                            for (var d in self.description) {
-                                self.desc += self.bean[self.description[d]] + " ";
+                        self.desc = "";
+                        response.data.json.metaProperties.forEach(function (arrayItem) {
+                            if (arrayItem.IsForeignKeyDescriptor) {
+                                self.desc += self.bean[arrayItem.Name] + " ";
                             }
-                        } else {
-                            self.desc = self.bean[self.description];
-                        }
+                        })
+                        self.desc = self.desc.trim();
                     } else {
                         validity(false);
                         self.desc = "";

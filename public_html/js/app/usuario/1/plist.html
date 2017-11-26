@@ -93,22 +93,34 @@
                                             <div class="row">
                                                 <div class="col-md-5">
                                                     <form class="navbar-form navbar-left" role="form" id="typeFilterForm">
-                                                        <label class="control-label col-sm-3" for="filterSelection">
-                                                            Selecciona filtro:
-                                                        </label>
                                                         <select class="navbar-form navbar-left" ng-model="filterType" convert-to-number id="filterSelection">
-                                                            <option value="0">Filtrar por dni, nombre, primer apellido, segundo apellido o login</option>
-                                                            <option value="1">Filtrar por id</option>
-                                                            <option value="2">Filtrar por fecha de nacimiento</option>
-                                                            <option value="3">Filtrar por tipo de usuario</option>                                                            
+                                                            <option value="0" ng-repeat="f in metap|filter:{Type:'Id'}">Filtrar por {{f.LongName}}</option>
+                                                            <option value="1" ng-repeat="f in metap|filter:{Type:'String'}">Filtrar por {{f.LongName}}</option>
+                                                            <option value="2" ng-repeat="f in metap|filter:{Type:'Integer'}">Filtrar por {{f.LongName}}</option>
+                                                            <option value="3" ng-repeat="f in metap|filter:{Type:'Decimal'}">Filtrar por {{f.LongName}}</option>
+                                                            <option value="4" ng-repeat="f in metap|filter:{Type:'Date'}">Filtrar por {{f.LongName}}</option>
+                                                            <option value="5" ng-repeat="f in metap|filter:{Type:'Datetime'}">Filtrar por {{f.LongName}}</option>
+                                                            <option value="6" ng-repeat="f in metap|filter:{Type:'Boolean'}">Filtrar por {{f.LongName}}</option>
+                                                            <option value="7" ng-repeat="f in metap|filter:{Type:'ForeignObject'}">Filtrar por {{f.LongName}}</option>
                                                         </select>
                                                     </form>
                                                 </div>
                                                 <div class="col-md-7">
                                                     <div ng-show="filterType == 0">
+                                                        <cplistfilterbyinteger 
+                                                            url="url"
+fields="metap"
+rpp="rpp"
+                                                            numpage="numpage"
+                                                            orderparams="orderParams"
+                                                            filterparams="filterParams">
+                                                        </cplistfilterbyinteger>
+                                                    </div>
+                                                    <p></p>
+                                                    <div ng-show="filterType == 1">
                                                         <cplistfilterbystring
                                                             url="url"
-                                                            fields="filterString"
+                                                            fields="metap"
                                                             rpp="rpp"
                                                             numpage="numpage"
                                                             orderparams="orderParams"
@@ -116,21 +128,21 @@
                                                         </cplistfilterbystring>
                                                     </div>
                                                     <p></p>
-                                                    <div ng-show="filterType == 1">
-                                                        <cplistfilterbynumber
+                                                    <div ng-show="filterType == 2">
+                                                          <cplistfilterbyinteger 
                                                             url="url"
-                                                            fields="filterNumber"
+                                                            fields="metap"
                                                             rpp="rpp"
                                                             numpage="numpage"
                                                             orderparams="orderParams"
                                                             filterparams="filterParams">
-                                                        </cplistfilterbynumber>
+                                                        </cplistfilterbyinteger>
                                                     </div>
                                                     <p></p>
-                                                    <div ng-show="filterType == 2">
+                                                    <div ng-show="filterType == 4">
                                                         <cplistfilterbydate
                                                             url="url"
-                                                            fields="filterDate"
+                                                            fields="metap"
                                                             rpp="rpp"
                                                             numpage="numpage"
                                                             orderparams="orderParams"
@@ -138,16 +150,18 @@
                                                         </cplistfilterbydate>
                                                     </div>
                                                     <p></p>
-                                                    <div ng-show="filterType == 3">
-                                                        <cplistfilterbyforeign
-                                                            url="url"
-                                                            field="filterTipousuario"
-                                                            rpp="rpp"
-                                                            numpage="numpage"
-                                                            orderparams="orderParams"
-                                                            filterparams="filterParams"
-                                                            profile="profile">
-                                                        </cplistfilterbyforeign>
+                                                    <div ng-repeat="f in metap|filter:{Type:'ForeignObject'}">
+                                                        <div ng-show="filterType == 7">
+                                                            <cplistfilterbyforeign
+                                                                url="url"
+                                                                field="f"
+                                                                rpp="rpp"
+                                                                numpage="numpage"
+                                                                orderparams="orderParams"
+                                                                filterparams="filterParams"
+                                                                profile="profile">
+                                                            </cplistfilterbyforeign>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -178,88 +192,32 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
                                             <div class="text-center">
-                                                <ul class="list-inline">
-                                                    <li><input type="checkbox" ng-model="visibles.id" ng-checked="visibles.id">Ident.</li>
-                                                    <li><input type="checkbox" ng-model="visibles.dni" ng-checked="visibles.dni">DNI</li>
-                                                    <li><input type="checkbox" ng-model="visibles.nombre" ng-checked="visibles.nombre" >Nombre</li>
-                                                    <li><input type="checkbox" ng-model="visibles.primer_apellido" ng-checked="visibles.primer_apellido" >Primer_apellido</li>
-                                                    <li><input type="checkbox" ng-model="visibles.segundo_apellido" ng-checked="visibles.segundo_apellido" >Segundo_apellido</li>
-                                                    <li><input type="checkbox" ng-model="visibles.login" ng-checked="visibles.login" >Login</li>
-                                                    <li><input type="checkbox" ng-model="visibles.email" ng-checked="visibles.email">Email</li>
-                                                    <li><input type="checkbox" ng-model="visibles.fecha_nacimiento" ng-checked="visibles.fecha_nacimiento">Fecha de nacimiento</li>
-                                                    <li><input type="checkbox" ng-model="visibles.id_tipousuario" ng-checked="visibles.id_tipousuario">Tipo de usuario</li>
-                                                </ul>
+                                                <cplistvisiblefields fields="metap"></cplistvisiblefields>
                                             </div>
                                         </div>
                                         <table class="table table-responsive table-bordered table-hover table-striped table-condensed dataTable no-footer">
-                                            <tr>
-                                                <th ng-show="visibles.id" class="text-center">
-                                                    <label>ID.</label><br/>
-                                                    <a ng-click="doorder('id', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                                    <a ng-click="doorder('id', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                                                </th>
-                                                <th ng-show="visibles.dni" class="text-center">
-                                                    <label>DNI</label><br/>
-                                                    <a ng-click="doorder('dni', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                                    <a ng-click="doorder('dni', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                                                </th>
-                                                <th ng-show="visibles.nombre" class="text-center">
-                                                    <label>Nombre</label><br/>
-                                                    <a ng-click="doorder('nombre', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                                    <a ng-click="doorder('nombre', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                                                </th>
-                                                <th ng-show="visibles.primer_apellido" class="text-center">
-                                                    <label>Primer apellido</label><br/>
-                                                    <a ng-click="doorder('primer_apellido', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                                    <a ng-click="doorder('primer_apellido', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                                                </th>
-                                                <th ng-show="visibles.segundo_apellido" class="text-center">
-                                                    <label>Segundo apellido</label><br/>
-                                                    <a ng-click="doorder('segundo_apellido', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                                    <a ng-click="doorder('segundo_apellido', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                                                </th>
-                                                <th ng-show="visibles.login" class="text-center">
-                                                    <label>Login</label><br/>
-                                                    <a ng-click="doorder('login', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                                    <a ng-click="doorder('login', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                                                </th>
-                                                <th ng-show="visibles.email" class="text-center">
-                                                    <label>Email</label><br/>
-                                                    <a ng-click="doorder('email', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                                    <a ng-click="doorder('email', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                                                </th>
-                                                <th ng-show="visibles.fecha_nacimiento" class="text-center">
-                                                    <label>Fecha de nacimiento</label><br/>
-                                                    <a ng-click="doorder('fecha_nacimiento', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                                    <a ng-click="doorder('fecha_nacimiento', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                                                </th>
-                                                <th ng-show="visibles.id_tipousuario" class="text-center">
-                                                    <label>Tipo</label><br/>
-                                                    <a ng-click="doorder('id_tipousuario', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                                    <a ng-click="doorder('id_tipousuario', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                                                </th>
-                                                <th  class="text-center">Acciones</th>
-                                            </tr>
+                                            <thead plistheader></thead>
                                             <tbody>
                                                 <tr ng-repeat="obj in page| filter:searchText">
-                                                    <td ng-show="visibles.id"><b>{{obj.id}}</b></td>
-                                                    <td ng-show="visibles.dni"><b>{{obj.dni}}</b></td>
-                                                    <td ng-show="visibles.nombre">{{obj.nombre}}</td>
-                                                    <td ng-show="visibles.primer_apellido">{{obj.primer_apellido}}</td>
-                                                    <td ng-show="visibles.segundo_apellido">{{obj.segundo_apellido}}</td>
-                                                    <td ng-show="visibles.login">{{obj.login}}</td>
-                                                    <td ng-show="visibles.email">{{obj.email}}</td>
-                                                    <td ng-show="visibles.fecha_nacimiento">{{obj.fecha_nacimiento}}</td>
-                                                    <td ng-show="visibles.id_tipousuario" class="text-center">
-                                                        <a href="tipousuario/{{profile}}/view/{{obj.obj_tipousuario.id}}">{{obj.obj_tipousuario.descripcion}}</a>
+                                                    <td ng-repeat="f in metap" ng-if="f.IsVisible && f.Type == 'Id'"  class="text-right">
+                                                        <div ng-if="f.IsVisible && f.Type == 'Id'"><b>{{obj[f.Name]}}</b></div>
+                                                    </td>
+                                                    <td ng-repeat="f in metap" ng-if="f.IsVisible && f.Type != 'Id'"  class="text-right">
+                                                        <div ng-if="f.IsVisible && f.Type == 'Date'" class="text-center"><span class="fa fa-calendar">&nbsp;</span>{{obj[f.Name]}}</div>
+                                                        <div ng-if="f.IsVisible && f.Type == 'Integer'" class="text-center">{{obj[f.Name]}}</div>
+                                                        <div ng-if="f.IsVisible && f.Type == 'Decimal'" class="text-center">{{obj[f.Name]}}</div>
+                                                        <div ng-if="f.IsVisible && f.Type == 'String'" class="text-left">{{obj[f.Name]|clipString}}</div>
+                                                        <div ng-if="f.IsVisible && f.Type == 'Boolean'" class="text-center" ng-bind-html="obj[f.Name] | booleanizate"></div>
+                                                        <div ng-if="f.IsVisible && f.Name.startsWith('obj_')" class="text-left">
+                                                            <span class="{{obj[f.Name].metaObject.Icon}}"></span>
+                                                            <a href="{{f.References}}/{{profile}}/view/{{obj[f.Name].data.id}}">{{obj[f.Name]|getForeignDescription}}</a>
+                                                        </div>
                                                     </td>
                                                     <td>
                                                         <div class="btn-toolbar" role="toolbar">
                                                             <div class="btn-group">
                                                                 <actions id="obj.id" name="ob"></actions>
-                                                                <a class="btn btn-default btn-xs" title="Pedidos" href="pedido/{{profile}}/plistXusuario/{{obj.id}}/1/10">
-                                                                    <span ng-class="objectService.getIcon('pedido')"></span>
-                                                                </a>
+
                                                             </div>
                                                         </div>
                                                     </td>

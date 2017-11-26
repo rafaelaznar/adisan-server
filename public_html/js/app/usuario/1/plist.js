@@ -53,17 +53,6 @@ moduloUsuario.controller('UsuarioPList1Controller',
                 $scope.filterTipousuario = {'name':'id_tipousuario','longname':'Tipo de usuario','reference':'tipousuario','description':['descripcion']};
                 
                 //---
-                $scope.visibles = {};
-                $scope.visibles.id = true;
-                $scope.visibles.dni = true;
-                $scope.visibles.nombre = true;
-                $scope.visibles.primer_apellido = true;
-                $scope.visibles.segundo_apellido = true;
-                $scope.visibles.login = true;
-                $scope.visibles.email = true;
-                $scope.visibles.fecha_nacimiento = false;
-                $scope.visibles.id_tipousuario = true;
-                //---
                 function getDataFromServer() {
                     serverCallService.getCount($scope.ob, $scope.filterParams).then(function (response) {
                         if (response.status == 200) {
@@ -78,7 +67,9 @@ moduloUsuario.controller('UsuarioPList1Controller',
                         }
                     }).then(function (response) {
                         if (response.status == 200) {
-                            $scope.page = response.data.json;
+                            $scope.page = response.data.json.data;
+                            $scope.metao = response.data.json.metaObject;
+                            $scope.metap = response.data.json.metaProperties;
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }

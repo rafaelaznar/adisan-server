@@ -46,7 +46,7 @@
                 <li ng-class="{ 'active': mn.isActive('/home')}"><a href="home">Home</a></li>
 
                 <!-- Administración ------------------------------------------- -->
-                <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.id == 1" ng-class="{ 'active': mn.isActive('/usuario') || mn.isActive('/pedido') || mn.isActive('/tipousuario') }" >
+                <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 1" ng-class="{ 'active': mn.isActive('/usuario') || mn.isActive('/pedido') || mn.isActive('/tipousuario') }" >
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Administrador<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li class="dropdown-header">Usuarios</li>
@@ -56,7 +56,7 @@
                     </ul>
                 </li>
                 <!-- Coordinación ------------------------------------------- -->
-                <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.id == 2">
+                <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 2">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Coordinador<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li class="dropdown-header">Medico</li>
@@ -78,7 +78,7 @@
 
 
                 <!-- Profesor ------------------------------------------- -->
-                <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.id == 3">
+                <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 3">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Profesor<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li class="dropdown-header">Gestión académica</li>                    
@@ -93,7 +93,7 @@
 
 
                 <!-- Alumno ------------------------------------------- -->
-                <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.id == 4">
+                <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 4">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Alumno<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li class="dropdown-header">Gestión sanitaria</li>
@@ -104,7 +104,7 @@
 
 
                 <!-- Invitado ------------------------------------------- -->
-                <li class="dropdown"  ng-if="mn.session_info.obj_tipousuario.id == 5">
+                <li class="dropdown"  ng-if="mn.session_info.obj_tipousuario.data.id == 5">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Visitante<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li class="dropdown-header">Gestión sanitaria</li>
@@ -124,7 +124,7 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-user"></i>
-                        <span id="username_id" ng-if="mn.isSessionActive"> {{mn.session_info.nombre + ' ' + mn.session_info.primer_apellido + ' ' + mn.session_info.segundo_apellido}} ({{mn.session_info.obj_tipousuario.descripcion}})</span>
+                        <span id="username_id" ng-if="mn.isSessionActive"> {{mn.session_info.nombre + ' ' + mn.session_info.primer_apellido + ' ' + mn.session_info.segundo_apellido}} ({{mn.session_info.obj_tipousuario.data.descripcion}})</span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu dropdown">

@@ -51,11 +51,11 @@ moduloFiltros
                 return function (foreignObject)
                 {
                     if (!toolService.isEmpty(foreignObject.data)) {
-                        var arrayLength = foreignObject.metaprops.length;
+                        var arrayLength = foreignObject.metaProperties.length;
                         var description = "";
                         for (var i = 0; i < arrayLength; i++) {
-                            if (foreignObject.metaprops[i].foreigndescription) {
-                                description += foreignObject.data[foreignObject.metaprops[i].name] + " ";
+                            if (foreignObject.metaProperties[i].IsForeignKeyDescriptor) {
+                                description += foreignObject.data[foreignObject.metaProperties[i].Name] + " ";
                             }
                         }
                         return description.trim();
