@@ -29,8 +29,8 @@
 'use strict';
 
 moduloUsuario.controller('UsuarioRemove1Controller',
-        ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService','objectService',
-            function ($scope, $routeParams, serverCallService, $location, sessionService, constantService,objectService) {
+        ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService', 'objectService',
+            function ($scope, $routeParams, serverCallService, $location, sessionService, constantService, objectService) {
                 $scope.ob = "usuario";
                 $scope.op = "remove";
                 $scope.profile = 1;
@@ -47,7 +47,9 @@ moduloUsuario.controller('UsuarioRemove1Controller',
                     if (response.status == 200) {
                         if (response.data.status == 200) {
                             $scope.status = null;
-                            $scope.bean = response.data.json;
+                            $scope.bean = response.data.json.data;
+                            $scope.metao = response.data.json.metaObject;
+                            $scope.metap = response.data.json.metaProperties;
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
