@@ -13,4 +13,4 @@ Simulate the creation of a complex project in a working environment.
 Participate in the creation of a complex AJAX web application.
 
 # Run
-Use with trolleyes-server and its database
+Use with trolleyes-server3 and its database
