@@ -56,16 +56,20 @@
                                             <th>valor</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr class="text-left"><td>id</td><td>{{bean.id}}</td></tr>
-                                        <tr><td>DNI</td><td>{{bean.dni}}</td></tr>
-                                        <tr><td>Nombre</td><td>{{bean.nombre}}</td></tr>
-                                        <tr><td>Primer Apellido</td><td>{{bean.primer_apellido}}</td></tr>
-                                        <tr><td>Segundo Apellido</td><td>{{bean.segundo_apellido}}</td></tr>
-                                        <tr><td>Login</td><td>{{bean.login}}</td></tr>
-                                        <tr><td>Email</td><td>{{bean.email}}</td></tr>
-                                        <tr><td>Fecha de nacimiento</td><td>{{bean.fecha_nacimiento|fechaConHoraFormateadaSinHora}}</td></tr>
-                                        <tr><td>Tipo de usuario</td><td><a href="tipousuario/{{profile}}/view/{{bean.obj_tipousuario.id}}">{{bean.obj_tipousuario.descripcion}}</td></tr>
+                                    <tbody>                                     
+                                        <tr ng-repeat="f in metap" class="text-left">
+                                            <td>{{f.LongName}}</td>                                      
+                                            <td ng-if="f.Type == 'Id'"><b>{{bean[f.Name]}}</b></td>
+                                            <td ng-if="f.Type == 'Date'">{{bean[f.Name]}}</td>
+                                            <td ng-if="f.Type == 'Integer'">{{bean[f.Name]}}</td>
+                                            <td ng-if="f.Type == 'Decimal'"">{{bean[f.Name]}}</td>
+                                            <td ng-if="f.Type == 'String'">{{bean[f.Name]}}</td>
+                                            <td ng-if="f.Type == 'Boolean'" ng-bind-html="bean[f.Name] | booleanizate"></td>                                                                                 
+                                            <td ng-if="f.Name.startsWith('obj_')">
+                                                <span class="{{bean[f.Name].metaObject.Icon}}"></span>
+                                                <a href="{{f.References}}/{{profile}}/view/{{bean[f.Name].data.id}}">{{bean[f.Name]|getForeignDescription}}</a>
+                                            </td>    
+                                        </tr>
                                     </tbody>
                                 </table>
                                 <div class="control-group text-right">
