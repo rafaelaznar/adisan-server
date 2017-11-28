@@ -207,10 +207,13 @@
                                                         <div ng-if="f.IsVisible && f.Type == 'Integer'" class="text-center">{{obj[f.Name]}}</div>
                                                         <div ng-if="f.IsVisible && f.Type == 'Decimal'" class="text-center">{{obj[f.Name]}}</div>
                                                         <div ng-if="f.IsVisible && f.Type == 'String'" class="text-left">{{obj[f.Name]|clipString}}</div>
-                                                        <div ng-if="f.IsVisible && f.Type == 'Boolean'" class="text-center" ng-bind-html="obj[f.Name] | booleanizate"></div>
-                                                        <div ng-if="f.IsVisible && f.Name.startsWith('obj_')" class="text-left">
+                                                        <div ng-if="f.IsVisible && f.Type == 'Boolean'" class="text-center" ng-bind-html="obj[f.Name] | booleanizate"></div>                                                        
+                                                        <div ng-if="f.IsVisible && f.Type == 'ForeignObject'" class="text-left">
                                                             <span class="{{obj[f.Name].metaObject.Icon}}"></span>
                                                             <a href="{{f.References}}/{{profile}}/view/{{obj[f.Name].data.id}}">{{obj[f.Name]|getForeignDescription}}</a>
+                                                        </div>
+                                                        <div ng-if="f.IsVisible && f.Type == 'Link'" class="text-center">                                     
+                                                            <a href="{{f.References}}/{{profile}}/plistX{{ob}}/{{obj[f.Name].data.id}}">{{obj[f.Name]}}</a>
                                                         </div>
                                                     </td>
                                                     <td>
