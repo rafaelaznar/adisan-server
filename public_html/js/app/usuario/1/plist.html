@@ -213,7 +213,7 @@
                                                             <a href="{{f.References}}/{{profile}}/view/{{obj[f.Name].data.id}}">{{obj[f.Name]|getForeignDescription}}</a>
                                                         </div>
                                                         <div ng-if="f.IsVisible && f.Type == 'Link'" class="text-center">                                     
-                                                            <a href="{{f.References}}/{{profile}}/plistX{{ob}}/{{obj[f.Name].data.id}}">{{obj[f.Name]}}</a>
+                                                            <a class="btn btn-default btn-xs" href="{{f.References}}/{{profile}}/plistX{{ob}}/{{obj['id']}}">{{obj[f.Name]}}</a>
                                                         </div>
                                                     </td>
                                                     <td>
