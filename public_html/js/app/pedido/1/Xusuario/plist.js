@@ -46,37 +46,24 @@ moduloPedido.controller('PedidoXusuarioPList1Controller',
                 //---
                 $scope.orderParams = toolService.checkEmptyString($routeParams.order);
                 $scope.filterParams = toolService.checkEmptyString($routeParams.filter);
-                //---
-                $scope.visibles = {};
-                $scope.visibles.id = true;
-                $scope.visibles.fecha = true;
-                $scope.visibles.id_usuario = false;
-                $scope.visibles.tiene_iva = true;
-                $scope.visibles.iva = true;
                 //--
-                $scope.filterString = null;
-                $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'}];
-                $scope.filterDate = [{'name': 'fecha', 'longname': 'Fecha de pedido'}];
-                $scope.filterBoolean = [{'name': 'tiene_iva', 'longname': '¿Lleva IVA el pedido?'}];
-                $scope.filterUsuario = {'name': 'id_usuario', 'longname': 'Usuario cliente', 'reference': 'usuario', 'description': ['nombre', 'primer_apellido', 'segundo_apellido']};
-                //---
                 $scope.objectService = objectService;
                 //---
                 function getDataFromServer() {
-                    serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
-                        if (response.status == 200) {
-                            if (response.data.status == 200) {
-                                $scope.status = null;
-                                $scope.usuariobean = response.data.json;
-                            } else {
-                                $scope.status = "Error en la recepción de datos del servidor";
-                            }
-                        } else {
-                            $scope.status = "Error en la recepción de datos del servidor";
-                        }
-                    }).catch(function (data) {
-                        $scope.status = "Error en la recepción de datos del servidor";
-                    });
+//                    serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
+//                        if (response.status == 200) {
+//                            if (response.data.status == 200) {
+//                                $scope.status = null;
+//                                $scope.linkedbean = response.data.json;
+//                            } else {
+//                                $scope.status = "Error en la recepción de datos del servidor";
+//                            }
+//                        } else {
+//                            $scope.status = "Error en la recepción de datos del servidor";
+//                        }
+//                    }).catch(function (data) {
+//                        $scope.status = "Error en la recepción de datos del servidor";
+//                    });
                     serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
                         if (response.status == 200) {
                             $scope.registers = response.data.json;
@@ -90,7 +77,9 @@ moduloPedido.controller('PedidoXusuarioPList1Controller',
                         }
                     }).then(function (response) {
                         if (response.status == 200) {
-                            $scope.page = response.data.json;
+                            $scope.page = response.data.json.data;
+                            $scope.metao = response.data.json.metaObject;
+                            $scope.metap = response.data.json.metaProperties;
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }

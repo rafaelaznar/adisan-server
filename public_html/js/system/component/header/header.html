@@ -29,7 +29,8 @@
 -->
 <div class="row">
     <div class="col-xs-9 text-left">
-        <h1 id="broth_title" style="font-family:Oswald , serif;">{{hd.title}}</h1>
+        <h1 ng-if="hd.linkedbean != null" id="broth_title" style="font-family:Oswald , serif;">Listado de {{hd.objectName}} para {{hd.linkedbean|getForeignDescription}}</h1>
+        <h1 ng-if="hd.linkedbean == null" id="broth_title" style="font-family:Oswald , serif;">Listado de {{hd.objectName}}</h1>
     </div>
     <div class="col-xs-3 text-right" id="broth_operationicon"><i class="{{hd.icon}} fa-5x"></i></div>
 </div>

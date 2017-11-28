@@ -64,7 +64,23 @@ moduloFiltros
                     }
                 };
             }])
-
+        .filter('getForeignDescription2', ['toolService', function (toolService) {
+                return function (data, metaProperties)
+                {
+                    if (!toolService.isEmpty(data)) {
+                        var arrayLength = metaProperties.length;
+                        var description = "";
+                        for (var i = 0; i < arrayLength; i++) {
+                            if (metaProperties[i].IsForeignKeyDescriptor) {
+                                description += data[metaProperties[i].Name] + " ";
+                            }
+                        }
+                        return description.trim();
+                    } else {
+                        return "";
+                    }
+                };
+            }])
         .filter('clipString', function ($filter)
         {
             return function (input)
