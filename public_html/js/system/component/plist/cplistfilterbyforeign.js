@@ -27,7 +27,7 @@ moduloDirectivas.component('cplistfilterbyforeign', {
 
                     self.dofilter = function () {
                         if (self.operator != "" && self.value != "") {
-                            var newFilter = self.filterparams + "+and," + self.field.name + "," + self.operator + "," + self.obj_foreign.id;
+                            var newFilter = self.filterparams + "+and,id_" +  self.field.References + "," + self.operator + "," + self.obj_foreign.id;
                             if (self.orderparams) {
                                 $location.path(self.url + '/' + self.numpage + '/' + self.rpp).search('filter', newFilter).search('order', self.orderparams);
                             } else {
