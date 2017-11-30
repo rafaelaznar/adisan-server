@@ -30,15 +30,16 @@ moduloPedido.controller('PedidoXusuarioPList1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService', 'objectService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService, objectService) {
                 $scope.ob = "pedido";
-                $scope.op = "plistXusuario";
+                $scope.op = "plistX";
                 $scope.profile = 1;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
-                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op + '/' + $routeParams.id_usuario;
                 //----
                 $scope.xob = "usuario";
                 $scope.xid = $routeParams.id_usuario;
+                //----
+                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op + $scope.xob + '/' + $routeParams.id_usuario;
                 //----
                 $scope.numpage = toolService.checkDefault(1, $routeParams.page);
                 $scope.rpp = toolService.checkDefault(10, $routeParams.rpp);

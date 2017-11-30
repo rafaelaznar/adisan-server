@@ -5,6 +5,7 @@ moduloDirectivas.component('header', {
     bindings:
             {
                 ob: '<',
+                op: '<',
                 xob: '<',
                 xid: '<'
             }
