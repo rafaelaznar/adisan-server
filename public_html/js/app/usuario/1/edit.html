@@ -42,7 +42,7 @@
                             {{bean|json}}
                         </div>
                         <form name="outerForm" class="form-horizontal text-left"  ng-if="!status">
-                            <div ng-repeat="f in metaprops">
+                            <div ng-repeat="f in metap">
                                 <!--- id ---------------------------------------------->
                                 <div ng-if="f.Type == 'Id'" class="form-group" id="{{f.Name}}-group">
                                     <label class="control-label col-sm-2" for="{{f.Name}}">
@@ -54,7 +54,7 @@
                                                class="form-control"
                                                id="{{f.Name}}"
                                                name="{{f.Name}}"
-                                               ng-model="bean[f.name]"
+                                               ng-model="bean[f.Name]"
                                                placeholder="{{f.Description}}"
                                                size="15"
                                                disabled />
@@ -73,7 +73,7 @@
                                                class="form-control"
                                                id="{{f.Name}}"
                                                name="{{f.Name}}"
-                                               ng-model="bean[f.name]"
+                                               ng-model="bean[f.Name]"
                                                ng-pattern="{{f.RegexPattern}}"
                                                placeholder="{{f.Description}}"
                                                maxlength="9"
@@ -94,7 +94,7 @@
                                         <date-time-picker
                                             name="f.Name"
                                             required="f.Required"
-                                            model="bean[f.name]"
+                                            model="bean[f.Name]"
                                             form="outerForm">
                                         </date-time-picker>
                                         <span class="help-block" ng-if="!outerForm[f.Name].$pristine && outerForm[f.Name].$error.required">El campo es obligatorio</span>

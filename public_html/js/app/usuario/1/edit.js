@@ -49,7 +49,9 @@ moduloUsuario.controller('UsuarioEdit1Controller',
                     if (response.status == 200) {
                         if (response.data.status == 200) {
                             $scope.status = null;
-                            $scope.bean = response.data.json;
+                            $scope.bean = response.data.json.data;
+                            $scope.metao = response.data.json.metaObject;
+                            $scope.metap = response.data.json.metaProperties;
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
