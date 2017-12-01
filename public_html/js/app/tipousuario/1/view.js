@@ -26,46 +26,39 @@
  * THE SOFTWARE.
  */
 'use strict';
-
-moduloUsuario.controller('UsuarioNew1Controller',
-        ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService', 'objectService',
-            function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService, objectService) {
-                $scope.ob = "usuario";
-                $scope.op = "new";
+moduloTipousuario.controller('TipousuarioView1Controller',
+        ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService', 'objectService',
+            function ($scope, $routeParams, serverCallService, $location, sessionService, constantService, objectService) {
+                $scope.ob = "tipousuario";
+                $scope.op = "view";
                 $scope.profile = 1;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
-                $scope.bean = {};
-                $scope.bean.obj_tipousuario = {"id": 0};
+                $scope.id = $routeParams.id;
                 //---
                 $scope.objectService = objectService;
                 //---
-                
-                
-                
-                
-                $scope.save = function () {
-                    var jsonToSend = {json: JSON.stringify(toolService.array_identificarArray($scope.bean))};
-                    serverCallService.set($scope.ob, jsonToSend).then(function (response) {
-                        if (response.status == 200) {
-                            if (response.data.status == 200) {
-                                $scope.response = response;
-                                $scope.status = "El registro se ha creado con id=" + response.data.json;
-                                $scope.bean.id = response.data.json;
-                            } else {
-                                $scope.status = "Error en la recepción de datos del servidor";
-                            }
+                serverCallService.getOne($scope.ob, $scope.id).then(function (response) {
+                    if (response.status == 200) {
+                        if (response.data.status == 200) {
+                            $scope.status = null;
+                            $scope.bean = response.data.json.data;
+                            $scope.metao = response.data.json.metaObject;
+                            $scope.metap = response.data.json.metaProperties;
+
+
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
-                    }).catch(function (data) {
+                    } else {
                         $scope.status = "Error en la recepción de datos del servidor";
-                    });
-                    ;
-                };
+                    }
+                }).catch(function (data) {
+                    $scope.status = "Error en la recepción de datos del servidor";
+                });
                 $scope.back = function () {
                     window.history.back();
                 };
@@ -74,4 +67,3 @@ moduloUsuario.controller('UsuarioNew1Controller',
                 };
             }
         ]);
-
