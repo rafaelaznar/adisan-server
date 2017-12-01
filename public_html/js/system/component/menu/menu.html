@@ -50,9 +50,9 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Administrador<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li class="dropdown-header">Usuarios</li>
-                        <li ng-class="{ 'active': mn.isActive('/usuario/1/plist')}"><a href="usuario/1/plist"> <i ng-class="mn.object_info.getIcon('usuario')"></i> {{mn.object_info.getName("usuario")}}</a></li>
-                        <li ng-class="{ 'active': mn.isActive('/tipousuario/1/plist/')}"><a href="tipousuario/1/plist"> <i ng-class="mn.object_info.getIcon('tipousuario')"></i> {{mn.object_info.getName("tipousuario")}}</a></li>
-                        <li ng-class="{ 'active': mn.isActive('/pedido/1/view/')}"><a href="pedido/1/view/1"> <i ng-class="mn.object_info.getIcon('pedido')"></i> {{mn.object_info.getName("pedido")}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/usuario/1/plist')}"><a href="usuario/1/plist"> <i ng-class="mn.meta.usuario.Icon"></i> {{mn.meta.usuario.Description}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/tipousuario/1/plist/')}"><a href="tipousuario/1/plist"> <i ng-class="mn.meta.tipousuario.Icon"></i> {{mn.meta.tipousuario.Description}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/pedido/1/view/')}"><a href="pedido/1/view/1"> <i ng-class="mn.meta.pedido.Icon"></i> {{mn.meta.pedido.Description}}</a></li>
                     </ul>
                 </li>
                 <!-- Coordinación ------------------------------------------- -->
