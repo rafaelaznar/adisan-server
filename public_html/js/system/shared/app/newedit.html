@@ -49,7 +49,7 @@
                                         <span ng-if="f.Required">*</span>
                                         {{f.LongName}}
                                     </label>
-                                    <div class="control col-sm-2">
+                                    <div class="control col-sm-4">
                                         <input type="text"
                                                class="form-control"
                                                id="{{f.Name}}"
@@ -68,19 +68,19 @@
                                         <span ng-if="f.Required">*</span>
                                         {{f.LongName}}
                                     </label>
-                                    <div class="control col-sm-2">
+                                    <div class="control col-sm-4">
                                         <input type="text"
                                                class="form-control"
                                                id="{{f.Name}}"
                                                name="{{f.Name}}"
                                                ng-model="bean[f.Name]"
-                                               ng-pattern="{{f.RegexPattern}}"
+                                               ng-pattern="f.RegexPattern"
                                                placeholder="{{f.Description}}"
                                                maxlength="9"
-                                               ng-required="f.Required"
+                                               ng-required="f.IsRequired"
                                                />
                                         <span class="help-block" ng-if="!outerForm[f.Name].$pristine && outerForm[f.Name].$error.required">El campo es obligatorio</span>
-                                        <span class="help-block" ng-if="!outerForm[f.Name].$pristine && outerForm[f.Name].$error.pattern">El campo no tiene formato adecuado: Introduzca un DNI de 8 digitos y una letra mayúscula.</span>
+                                        <span class="help-block" ng-if="!outerForm[f.Name].$pristine && outerForm[f.Name].$error.pattern">El campo no tiene formato adecuado: Introduzca {{f.RegexHelp}}</span>
                                     </div>
                                 </div>
                                 <!-- date ------------------------------------------------>
@@ -98,16 +98,16 @@
                                             form="outerForm">
                                         </date-time-picker>
                                         <span class="help-block" ng-if="!outerForm[f.Name].$pristine && outerForm[f.Name].$error.required">El campo es obligatorio</span>
-                                        <span class="help-block" ng-if="!outerForm[f.Name].$pristine && outerForm[f.Name].$error.valid">El campo no tiene formato adecuado: Debe ser una fecha y hora válidas</span>
+                                        <span class="help-block" ng-if="!outerForm[f.Name].$pristine && outerForm[f.Name].$error.valid">El campo no tiene formato adecuado: Introduzca {{f.RegexHelp}}</span>
                                     </div>
                                 </div>
                                 <!-- boolean ------------------------------------------------>
                                 <div ng-if="f.type.startsWith('tinyint')" class="form-group">
                                     <clabel wide="2" name="f.name" longname="f.longname" required="f.required"></clabel>
-                                    <input  
-                                        ng-model="bean[f.name]" 
-                                        type="checkbox" 
-                                        id="{{f.Name}}" 
+                                    <input
+                                        ng-model="bean[f.name]"
+                                        type="checkbox"
+                                        id="{{f.Name}}"
                                         name="{{f.Name}}">
                                 </div>
                                 <!-- foreign ----------------------------------------------->
@@ -123,13 +123,13 @@
                                             form="outerForm"
                                             name="f.Name"
                                             reference="f.References"
-                                            profile="profile"                                            
+                                            profile="profile"
                                             required="f.Required">
                                         </foreign-key>
                                         <span class="help-block" ng-if="!outerForm[f.Name].$pristine && outerForm[f.Name].$error.required">El campo es obligatorio</span>
-                                        <span class="help-block" ng-if="!outerForm[f.Name].$pristine && outerForm[f.Name].$error.exists">El tipo de usuario no existe</span>
+                                        <span class="help-block" ng-if="!outerForm[f.Name].$pristine && outerForm[f.Name].$error.exists">La clave elegida no existe</span>
                                     </div>
-                                </div>                                
+                                </div>
                                 <!------------------------------------------------->
                             </div>
                             <div class="control-group text-right">

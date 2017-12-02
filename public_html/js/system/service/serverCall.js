@@ -105,6 +105,9 @@ moduloServicios.factory('serverCallService',
                     getAllObjectsMetaData: function () {
                         return $http.get(constantService.getAppUrl() + '?ob=usuario&op=getallobjectsmetadata', 'GET', '');
                     },
+                    getMeta: function (strClass) {
+                        return $http.get(constantService.getAppUrl() + '?ob=' + strClass + '&op=getmetadata', 'GET', '');
+                    }
                 }
             }
         ]);
