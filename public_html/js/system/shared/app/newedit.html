@@ -42,105 +42,104 @@
                             {{bean|json}}
                         </div>
                         <form name="outerForm" class="form-horizontal text-left"  ng-if="!status">
-                            <div ng-repeat="f in metap">
+                            <div ng-repeat="oMetap in metap">
                                 <!--- id ---------------------------------------------->
-                                <div ng-if="f.Type == 'Id'" class="form-group" id="{{f.Name}}-group">
-                                    <label class="control-label col-sm-2" for="{{f.Name}}">
-                                        <span ng-if="f.Required">*</span>
-                                        {{f.LongName}}
+                                <div ng-if="oMetap.Type == 'Id'" class="form-group" id="{{oMetap.Name}}-group">
+                                    <label class="control-label col-sm-2" for="{{oMetap.Name}}">
+                                        <span ng-if="oMetap.Required">*</span>
+                                        {{oMetap.LongName}}
                                     </label>
-                                    <div class="control col-md-{{f.Wide}}">
+                                    <div class="control col-md-{{oMetap.Wide}}">
                                         <input type="text"
                                                class="form-control"
-                                               id="{{f.Name}}"
-                                               name="{{f.Name}}"
-                                               ng-model="bean[f.Name]"
-                                               placeholder="{{f.Description}}"
+                                               id="{{oMetap.Name}}"
+                                               name="{{oMetap.Name}}"
+                                               ng-model="bean[oMetap.Name]"
+                                               placeholder="{{oMetap.Description}}"
                                                size="15"
                                                disabled />
                                     </div>
                                 </div>
                                 <!-- string ------------------------------------------------>
-                                <div ng-if="f.Type == 'String'" class="form-group" id="{{f.Name}}-group"
-                                     ng-class="{'has-error':(outerForm[f.Name].$error.pattern && !outerForm[f.Name].$pristine) ||
-                                                             (outerForm[f.Name].$error.required && !outerForm[f.Name].$pristine)}">
-                                    <label class="control-label col-sm-2" for="{{f.Name}}">
-                                        <span ng-if="f.Required">*</span>
-                                        {{f.LongName}}
+                                <div ng-if="oMetap.Type == 'String'" class="form-group" id="{{oMetap.Name}}-group"
+                                     ng-class="{'has-error':(outerForm[oMetap.Name].$error.pattern && !outerForm[oMetap.Name].$pristine) ||
+                                                             (outerForm[oMetap.Name].$error.required && !outerForm[oMetap.Name].$pristine)}">
+                                    <label class="control-label col-sm-2" for="{{oMetap.Name}}">
+                                        <span ng-if="oMetap.Required">*</span>
+                                        {{oMetap.LongName}}
                                     </label>
-                                    <div class="control col-md-{{f.Wide}}">
+                                    <div class="control col-md-{{oMetap.Wide}}">
                                         <input type="text"
                                                class="form-control"
-                                               id="{{f.Name}}"
-                                               name="{{f.Name}}"
-                                               ng-model="bean[f.Name]"
-                                               ng-pattern="f.RegexPattern"
-                                               placeholder="{{f.Description}}"
-                                               maxlength="9"
-                                               ng-required="f.IsRequired"
+                                               id="{{oMetap.Name}}"
+                                               name="{{oMetap.Name}}"
+                                               ng-model="bean[oMetap.Name]"
+                                               ng-pattern="oMetap.RegexPattern"
+                                               placeholder="{{oMetap.Description}}"
+                                               maxlength="{{oMetap.MaxLength}}"
+                                               ng-required="oMetap.IsRequired"
                                                />
-                                        <span class="help-block" ng-if="!outerForm[f.Name].$pristine && outerForm[f.Name].$error.required">El campo es obligatorio</span>
-                                        <span class="help-block" ng-if="!outerForm[f.Name].$pristine && outerForm[f.Name].$error.pattern">El campo no tiene formato adecuado: Introduzca {{f.RegexHelp}}</span>
+                                        <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.required">El campo es obligatorio</span>
+                                        <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.pattern">El campo no tiene formato adecuado: Introduzca {{oMetap.RegexHelp}}</span>
                                     </div>
                                 </div>
                                 <!-- date ------------------------------------------------>
-                                <div ng-if="f.Type == 'Date'" class="form-group" id="{{f.Name}}-group"
-                                     ng-class="{'has-error': (outerForm[f.Name].$error.required || outerForm[f.Name].$error.valid) && !outerForm[f.Name].$pristine}">
-                                    <label class="control-label col-sm-2" for="{{f.Name}}">
-                                        <span ng-if="f.Required">*</span>
-                                        {{f.LongName}}
+                                <div ng-if="oMetap.Type == 'Date'" class="form-group" id="{{oMetap.Name}}-group"
+                                     ng-class="{'has-error': (outerForm[oMetap.Name].$error.required || outerForm[oMetap.Name].$error.valid) && !outerForm[oMetap.Name].$pristine}">
+                                    <label class="control-label col-sm-2" for="{{oMetap.Name}}">
+                                        <span ng-if="oMetap.Required">*</span>
+                                        {{oMetap.LongName}}
                                     </label>
-                                    <div class="control col-md-{{f.Wide}}">
+                                    <div class="control col-md-{{oMetap.Wide}}">
                                         <date-time-picker
-                                            name="f.Name"
-                                            required="f.Required"
-                                            model="bean[f.Name]"
+                                            name="oMetap.Name"
+                                            required="oMetap.Required"
+                                            model="bean[oMetap.Name]"
                                             form="outerForm">
                                         </date-time-picker>
-                                        <span class="help-block" ng-if="!outerForm[f.Name].$pristine && outerForm[f.Name].$error.required">El campo es obligatorio</span>
-                                        <span class="help-block" ng-if="!outerForm[f.Name].$pristine && outerForm[f.Name].$error.valid">El campo no tiene formato adecuado: Introduzca {{f.RegexHelp}}</span>
+                                        <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.required">El campo es obligatorio</span>
+                                        <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.valid">El campo no tiene formato adecuado: Introduzca {{oMetap.RegexHelp}}</span>
                                     </div>
                                 </div>
                                 <!-- boolean ------------------------------------------------>
-                                <div ng-if="f.Type == 'Boolean'" class="form-group" id="{{f.Name}}-group"
-                                     ng-class="{'has-error': (outerForm[f.Name].$error.required || outerForm[f.Name].$error.valid) && !outerForm[f.Name].$pristine}">
-                                    <label class="control-label col-sm-2" for="{{f.Name}}">
-                                        <span ng-if="f.Required">*</span>
-                                        {{f.LongName}}
+                                <div ng-if="oMetap.Type == 'Boolean'" class="form-group" id="{{oMetap.Name}}-group"
+                                     ng-class="{'has-error': (outerForm[oMetap.Name].$error.required || outerForm[oMetap.Name].$error.valid) && !outerForm[oMetap.Name].$pristine}">
+                                    <label class="control-label col-sm-2" for="{{oMetap.Name}}">
+                                        <span ng-if="oMetap.Required">*</span>
+                                        {{oMetap.LongName}}
                                     </label>
-                                    <div class="control col-md-{{f.Wide}}">
+                                    <div class="control col-md-{{oMetap.Wide}}">
                                         <input
-                                               ng-model="bean[f.name]"
-                                               type="checkbox"
-                                               id="{{f.Name}}"
-                                               name="{{f.Name}}">
+                                            ng-model="bean[oMetap.name]"
+                                            type="checkbox"
+                                            id="{{oMetap.Name}}"
+                                            name="{{oMetap.Name}}">
                                     </div>
                                 </div>
                                 <!-- foreign ----------------------------------------------->
-                                <div ng-if="f.Type == 'ForeignObject'" class="form-group" id="{{f.Name}}-group"
-                                     ng-class="{'has-error': outerForm[f.Name].$error.exists}">
-                                    <label class="control-label col-sm-2" for="{{f.Name}}">
-                                        <span ng-if="f.Required">*</span>
-                                        {{f.LongName}}
+                                <div ng-if="oMetap.Type == 'ForeignObject'" class="form-group" id="{{oMetap.Name}}-group"
+                                     ng-class="{'has-error': (outerForm[oMetap.Name].$error.exists || outerForm[oMetap.Name].$error.required) && !outerForm[oMetap.Name].$pristine}">
+                                    <label class="control-label col-sm-2" for="{{oMetap.Name}}">
+                                        <span ng-if="oMetap.Required">*</span>
+                                        {{oMetap.LongName}}
                                     </label>
-                                    <div class="control col-md-{{f.Wide}}">
+                                    <div class="control col-md-{{oMetap.Wide}}">
                                         <foreign-key
-                                            bean="bean[f.Name]"
+                                            bean="bean[oMetap.Name].data"
                                             form="outerForm"
-                                            name="f.Name"
-                                            reference="f.References"
+                                            name="oMetap.Name"
+                                            reference="oMetap.References"
                                             profile="profile"
-                                            required="f.Required">
+                                            required="oMetap.Required">
                                         </foreign-key>
-                                        <span class="help-block" ng-if="!outerForm[f.Name].$pristine && outerForm[f.Name].$error.required">El campo es obligatorio</span>
-                                        <span class="help-block" ng-if="!outerForm[f.Name].$pristine && outerForm[f.Name].$error.exists">La clave elegida no existe</span>
+                                        <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.required">El campo es obligatorio</span>
+                                        <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.exists">La clave elegida no existe</span>
                                     </div>
                                 </div>
-                                <!------------------------------------------------->
                             </div>
                             <div class="control-group text-right">
                                 <div class="controls">
-                                    <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$valid">Guardar</a>
+                                    <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$dirty || !outerForm.$valid">Guardar</a>
                                     <a class="btn btn-info" ng-href="{{ob}}/{{profile}}/plist">Ir al listado de {{ob}}</a>
                                     <a class="btn btn-default" ng-click="back()">Volver</a>
                                     <a class="btn btn-default" ng-click="close()">Cerrar</a>

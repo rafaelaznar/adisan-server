@@ -57,21 +57,21 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="oMeta in metap" class="text-left">
-                                            <td>{{oMeta.Description}}</td>
-                                            <td ng-if="oMeta.Type == 'Id'"><b>{{bean[oMeta.Name]}}</b></td>
-                                            <td ng-if="oMeta.Type == 'Date'">{{bean[oMeta.Name]}}</td>
-                                            <td ng-if="oMeta.Type == 'Integer'">{{bean[oMeta.Name]}}</td>
-                                            <td ng-if="oMeta.Type == 'Decimal'"">{{bean[oMeta.Name]}}</td>
-                                            <td ng-if="oMeta.Type == 'String'">{{bean[oMeta.Name]}}</td>
-                                            <td ng-if="oMeta.Type == 'Boolean'" ng-bind-html="bean[oMeta.Name] | booleanizate"></td>
-                                            <td ng-if="oMeta.Type == 'ForeignObject'">
-                                                <span class="{{bean[oMeta.Name].metaObject.Icon}}"></span>
-                                                <a href="{{oMeta.References}}/{{profile}}/view/{{bean[oMeta.Name].data.id}}">{{bean[oMeta.Name]|getForeignDescription}}</a>
+                                        <tr ng-repeat="oMetap in metap" class="text-left">
+                                            <td>{{oMetap.Description}}</td>
+                                            <td ng-if="oMetap.Type == 'Id'"><b>{{bean[oMetap.Name]}}</b></td>
+                                            <td ng-if="oMetap.Type == 'Date'">{{bean[oMetap.Name]}}</td>
+                                            <td ng-if="oMetap.Type == 'Integer'">{{bean[oMetap.Name]}}</td>
+                                            <td ng-if="oMetap.Type == 'Decimal'"">{{bean[oMetap.Name]}}</td>
+                                            <td ng-if="oMetap.Type == 'String'">{{bean[oMetap.Name]}}</td>
+                                            <td ng-if="oMetap.Type == 'Boolean'" ng-bind-html="bean[oMetap.Name] | booleanizate"></td>
+                                            <td ng-if="oMetap.Type == 'ForeignObject'">
+                                                <span class="{{bean[oMetap.Name].metaObject.Icon}}"></span>
+                                                <a href="{{oMetap.References}}/{{profile}}/view/{{bean[oMetap.Name].data.id}}">{{bean[oMetap.Name]|getForeignDescription}}</a>
                                             </td>
-                                            <td ng-if="oMeta.Type == 'Link'">
-                                                <a ng-if="bean[oMeta.Name] > 0" class="btn btn-default btn-xs" href="{{oMeta.References}}/{{profile}}/plistX{{ob}}/{{bean['id']}}">{{bean[oMeta.Name]}}</a>
-                                                <div ng-if="bean[oMeta.Name] == 0" >{{bean[oMeta.Name]}}</div>
+                                            <td ng-if="oMetap.Type == 'Link'">
+                                                <a ng-if="bean[oMetap.Name] > 0" class="btn btn-default btn-xs" href="{{oMetap.References}}/{{profile}}/plistX{{ob}}/{{bean['id']}}">{{bean[oMetap.Name]}}</a>
+                                                <div ng-if="bean[oMetap.Name] == 0" >{{bean[oMetap.Name]}}</div>
                                             </td>
                                         </tr>
                                     </tbody>

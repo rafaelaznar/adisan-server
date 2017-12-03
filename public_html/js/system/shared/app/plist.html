@@ -198,29 +198,29 @@
                                         <table class="table table-responsive table-bordered table-hover table-striped table-condensed dataTable no-footer">
                                             <thead plistheader></thead>
                                             <tbody>
-                                                <tr ng-repeat="bean in page| filter:searchText">
-                                                    <td ng-repeat="f in metap" ng-if="f.IsVisible && f.Type == 'Id'"  class="text-right">
-                                                        <div ng-if="f.IsVisible && f.Type == 'Id'"><b>{{bean[f.Name]}}</b></div>
+                                                <tr ng-repeat="oBean in page| filter:searchText">
+                                                    <td ng-repeat="oMetap in metap" ng-if="oMetap.IsVisible && oMetap.Type == 'Id'"  class="text-right">
+                                                        <div ng-if="oMetap.IsVisible && oMetap.Type == 'Id'"><b>{{oBean[oMetap.Name]}}</b></div>
                                                     </td>
-                                                    <td ng-repeat="oMeta in metap" ng-if="oMeta.IsVisible && oMeta.Type != 'Id'"  class="text-right">
-                                                        <div ng-if="oMeta.IsVisible && oMeta.Type == 'Date'" class="text-center"><span class="fa fa-calendar">&nbsp;</span>{{bean[oMeta.Name]}}</div>
-                                                        <div ng-if="oMeta.IsVisible && oMeta.Type == 'Integer'" class="text-center">{{bean[oMeta.Name]}}</div>
-                                                        <div ng-if="oMeta.IsVisible && oMeta.Type == 'Decimal'" class="text-center">{{bean[oMeta.Name]}}</div>
-                                                        <div ng-if="oMeta.IsVisible && oMeta.Type == 'String'" class="text-left">{{bean[oMeta.Name]|clipString}}</div>
-                                                        <div ng-if="oMeta.IsVisible && oMeta.Type == 'Boolean'" class="text-center" ng-bind-html="bean[oMeta.Name] | booleanizate"></div>                                                        
-                                                        <div ng-if="oMeta.IsVisible && oMeta.Type == 'ForeignObject'" class="text-left">
-                                                            <span class="{{bean[oMeta.Name].metaObject.Icon}}"></span>
-                                                            <a href="{{oMeta.References}}/{{profile}}/view/{{bean[oMeta.Name].data.id}}">{{bean[oMeta.Name]|getForeignDescription}}</a>
+                                                    <td ng-repeat="oMetap in metap" ng-if="oMetap.IsVisible && oMetap.Type != 'Id'"  class="text-right">
+                                                        <div ng-if="oMetap.IsVisible && oMetap.Type == 'Date'" class="text-center"><span class="fa fa-calendar">&nbsp;</span>{{oBean[oMetap.Name]}}</div>
+                                                        <div ng-if="oMetap.IsVisible && oMetap.Type == 'Integer'" class="text-center">{{oBean[oMetap.Name]}}</div>
+                                                        <div ng-if="oMetap.IsVisible && oMetap.Type == 'Decimal'" class="text-center">{{oBean[oMetap.Name]}}</div>
+                                                        <div ng-if="oMetap.IsVisible && oMetap.Type == 'String'" class="text-left">{{oBean[oMetap.Name]|clipString}}</div>
+                                                        <div ng-if="oMetap.IsVisible && oMetap.Type == 'Boolean'" class="text-center" ng-bind-html="oBean[oMetap.Name] | booleanizate"></div>                                                        
+                                                        <div ng-if="oMetap.IsVisible && oMetap.Type == 'ForeignObject'" class="text-left">
+                                                            <span class="{{oBean[oMetap.Name].metaObject.Icon}}"></span>
+                                                            <a href="{{oMetap.References}}/{{profile}}/view/{{oBean[oMetap.Name].data.id}}">{{oBean[oMetap.Name]|getForeignDescription}}</a>
                                                         </div>
-                                                        <div ng-if="oMeta.IsVisible && oMeta.Type == 'Link'" class="text-center">                                     
-                                                            <a ng-if="bean[oMeta.Name] > 0" class="btn btn-default btn-xs" href="{{oMeta.References}}/{{profile}}/plistX{{ob}}/{{bean['id']}}">{{bean[oMeta.Name]}}</a>
-                                                            <div ng-if="bean[oMeta.Name] == 0" >{{bean[oMeta.Name]}}</div>
+                                                        <div ng-if="oMetap.IsVisible && oMetap.Type == 'Link'" class="text-center">                                     
+                                                            <a ng-if="oBean[oMetap.Name] > 0" class="btn btn-default btn-xs" href="{{oMetap.References}}/{{profile}}/plistX{{ob}}/{{oBean['id']}}">{{oBean[oMetap.Name]}}</a>
+                                                            <div ng-if="oBean[oMetap.Name] == 0" >{{oBean[oMetap.Name]}}</div>
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <div class="btn-toolbar" role="toolbar">
                                                             <div class="btn-group">
-                                                                <actions id="bean.id" name="ob"></actions>
+                                                                <actions id="oBean.id" name="ob"></actions>
 
                                                             </div>
                                                         </div>
