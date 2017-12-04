@@ -26,42 +26,57 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloUsuario.controller('UsuarioView1Controller',
-        ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService',
-            function ($scope, $routeParams, serverCallService, $location, sessionService, constantService) {
-                $scope.ob = "usuario";
-                $scope.op = "view";
+moduloPedido.controller('PedidoPList1Controller',
+        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
+            function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
+                $scope.ob = "pedido";
+                $scope.op = "plist";
                 $scope.profile = 1;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
+                //----
+                $scope.numpage = toolService.checkDefault(1, $routeParams.page);
+                $scope.rpp = toolService.checkDefault(10, $routeParams.rpp);
+                $scope.neighbourhood = constantService.getGlobalNeighbourhood();
                 //---
-                $scope.id = $routeParams.id;
+                $scope.orderParams = toolService.checkEmptyString($routeParams.order);
+                $scope.filterParams = toolService.checkEmptyString($routeParams.filter);
                 //---
-                serverCallService.getOne($scope.ob, $scope.id).then(function (response) {
-                    if (response.status == 200) {
-                        if (response.data.status == 200) {
-                            $scope.status = null;
-                            $scope.bean = response.data.json.data;
-                            $scope.metao = response.data.json.metaObject;
-                            $scope.metap = response.data.json.metaProperties;
-
-
+                function getDataFromServer() {
+                    serverCallService.getCount($scope.ob, $scope.filterParams).then(function (response) {
+                        if (response.status == 200) {
+                            $scope.registers = response.data.json;
+                            $scope.pages = toolService.calculatePages($scope.rpp, $scope.registers);
+                            if ($scope.numpage > $scope.pages) {
+                                $scope.numpage = $scope.pages;
+                            }
+                            return serverCallService.getPage($scope.ob, $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order);
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
-                    } else {
+                    }).then(function (response) {
+                        if (response.status == 200) {
+                            $scope.page = response.data.json.data;
+                            $scope.metao = response.data.json.metaObject;
+                            $scope.metap = response.data.json.metaProperties;
+                        } else {
+                            $scope.status = "Error en la recepción de datos del servidor";
+                        }
+                    }).catch(function (data) {
                         $scope.status = "Error en la recepción de datos del servidor";
-                    }
-                }).catch(function (data) {
-                    $scope.status = "Error en la recepción de datos del servidor";
-                });
-                $scope.back = function () {
-                    window.history.back();
+                    });
+                }
+                $scope.doorder = function (orderField, ascDesc) {
+                    $location.url($scope.url + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', $scope.filterParams).search('order', orderField + ',' + ascDesc);
+                    return false;
                 };
                 $scope.close = function () {
                     $location.path('/home');
                 };
+                getDataFromServer();
             }
         ]);
+
+
