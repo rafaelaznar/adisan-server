@@ -28,8 +28,8 @@
 'use strict';
 
 moduloUsuario.controller('UsuarioNew1Controller',
-        ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService', 'objectService',
-            function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService, objectService) {
+        ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
+            function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
                 $scope.ob = "usuario";
                 $scope.op = "new";
                 $scope.profile = 1;
@@ -40,8 +40,6 @@ moduloUsuario.controller('UsuarioNew1Controller',
                 //---
                 $scope.bean = {};
                 $scope.bean.obj_tipousuario = {"id": 0};
-                //---
-                $scope.objectService = objectService;
                 //---
 
                 serverCallService.getMeta($scope.ob).then(function (response) {

@@ -4,11 +4,10 @@ moduloDirectivas.component('menu', {
     controller: menuCtrl
 });
 
-function menuCtrl(sessionService, objectService, $location, serverCallService) {
+function menuCtrl(sessionService, $location, serverCallService) {
     var self = this;
     self.session_info = sessionService.getSessionInfo();
     self.isSessionActive = sessionService.isSessionActive();
-    self.object_info = objectService;
 
     serverCallService.getAllObjectsMetaData().then(function (response) {
         if (response.status == 200) {

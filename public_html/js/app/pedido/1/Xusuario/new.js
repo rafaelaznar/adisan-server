@@ -28,8 +28,8 @@
 'use strict';
 
 moduloPedido.controller('PedidoXusuarioNew1Controller',
-        ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService', 'objectService',
-            function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService, objectService) {
+        ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
+            function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
                 $scope.ob = "pedido";
                 $scope.op = "newXusuario";
                 $scope.profile = 1;
@@ -43,8 +43,6 @@ moduloPedido.controller('PedidoXusuarioNew1Controller',
                 //--
                 $scope.bean = {};
                 $scope.bean.obj_usuario = {"id": $scope.xid};
-                //---
-                $scope.objectService = objectService;
                 //---
                 serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
                     if (response.status == 200) {

@@ -27,8 +27,8 @@
  */
 'use strict';
 moduloPedido.controller('PedidoXusuarioPList1Controller',
-        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService', 'objectService',
-            function ($scope, $routeParams, $location, serverCallService, toolService, constantService, objectService) {
+        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
+            function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
                 $scope.ob = "pedido";
                 $scope.op = "plistX";
                 $scope.profile = 1;
@@ -47,8 +47,6 @@ moduloPedido.controller('PedidoXusuarioPList1Controller',
                 //---
                 $scope.orderParams = toolService.checkEmptyString($routeParams.order);
                 $scope.filterParams = toolService.checkEmptyString($routeParams.filter);
-                //--
-                $scope.objectService = objectService;
                 //---
                 function getDataFromServer() {
 //                    serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {

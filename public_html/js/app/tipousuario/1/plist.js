@@ -27,8 +27,8 @@
  */
 'use strict';
 moduloTipousuario.controller('TipousuarioPList1Controller',
-        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService', 'objectService',
-            function ($scope, $routeParams, $location, serverCallService, toolService, constantService, objectService) {
+        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
+            function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
                 $scope.ob = "tipousuario";
                 $scope.op = "plist";
                 $scope.profile = 1;
@@ -42,9 +42,7 @@ moduloTipousuario.controller('TipousuarioPList1Controller',
                 $scope.neighbourhood = constantService.getGlobalNeighbourhood();
                 //---
                 $scope.orderParams = toolService.checkEmptyString($routeParams.order);
-                $scope.filterParams = toolService.checkEmptyString($routeParams.filter);
-                //---
-                $scope.objectService = objectService;                              
+                $scope.filterParams = toolService.checkEmptyString($routeParams.filter);                         
                 //---
                 function getDataFromServer() {
                     serverCallService.getCount($scope.ob, $scope.filterParams).then(function (response) {

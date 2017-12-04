@@ -27,8 +27,8 @@
  */
 'use strict';
 moduloUsuario.controller('UsuarioView1Controller',
-        ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService', 'objectService',
-            function ($scope, $routeParams, serverCallService, $location, sessionService, constantService, objectService) {
+        ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService',
+            function ($scope, $routeParams, serverCallService, $location, sessionService, constantService) {
                 $scope.ob = "usuario";
                 $scope.op = "view";
                 $scope.profile = 1;
@@ -38,8 +38,6 @@ moduloUsuario.controller('UsuarioView1Controller',
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
                 $scope.id = $routeParams.id;
-                //---
-                $scope.objectService = objectService;
                 //---
                 serverCallService.getOne($scope.ob, $scope.id).then(function (response) {
                     if (response.status == 200) {

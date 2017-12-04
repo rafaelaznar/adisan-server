@@ -28,8 +28,8 @@
 'use strict';
 
 moduloProducto.controller('ProductoNew1Controller',
-        ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService', 'objectService',
-            function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService, objectService) {
+        ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
+            function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
                 $scope.ob = "producto";
                 $scope.op = "new";
                 $scope.profile = 1;
@@ -39,8 +39,6 @@ moduloProducto.controller('ProductoNew1Controller',
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
                 $scope.bean = {};                
-                //---
-                $scope.objectService = objectService;
                 //---
 
                 serverCallService.getMeta($scope.ob).then(function (response) {
