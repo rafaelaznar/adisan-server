@@ -26,22 +26,26 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloServicios.factory('objectService', function () {
+moduloServicios.factory('objectService', function (serverCallService) {
     return {
-        getIcon: function (reg) {
-            switch (reg) {
-                case "usuario":
-                    return 'fa fa-user';
-                    break;
-                case "tipousuario":
-                    return 'fa fa-user-o';
-                    break;              
-                case "pedido":
-                    return 'fa fa-sticky-note-o ';
-                    break;              
-                default:
-                    return null;
-            }
+        getIcon: function (reg) {            
+            var strIcon = "";
+            serverCallService.getAllObjectsMetaData().then(function (response) {
+                if (response.status == 200) {
+                    if (response.data.status == 200) {
+                        self.status = null;
+                        self.meta = response.data.json;
+                        strIcon = self.meta[reg].Icon;
+                    } else {
+                        self.status = "Error en la recepción de datos del servidor";
+                    }
+                } else {
+                    self.status = "Error en la recepción de datos del servidor";
+                }
+            }).catch(function (data) {
+                self.status = "Error en la recepción de datos del servidor";
+            });
+            return strIcon;
         },
         getName: function (reg) {
             switch (reg) {
@@ -50,10 +54,10 @@ moduloServicios.factory('objectService', function () {
                     break;
                 case "tipousuario":
                     return "Tipo de usuario";
-                    break;               
+                    break;
                 case "pedido":
                     return "Pedido";
-                    break;               
+                    break;
                 default:
                     return null;
             }
