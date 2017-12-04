@@ -34,7 +34,8 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">                        
-                        <header ob="ob" op="op"></header>
+                        <header ng-if="op != 'plistX'" ob="ob" op="op"></header>
+                        <header ng-if="op == 'plistX'" ob="ob" op="op" xob="xob" xid="xid"></header>
                     </div>
                     <div class="panel-body">
                         <div class="row">
