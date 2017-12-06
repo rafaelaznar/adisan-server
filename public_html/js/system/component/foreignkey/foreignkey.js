@@ -15,6 +15,12 @@ moduloDirectivas.component('foreignKey', {
 function foreignkeyController1(toolService, serverCallService, $uibModal) {
     var self = this;
     //-----
+    var validity = function (isValid) {
+        if (self.form[self.name]) {
+            self.form[self.name].$setValidity('exists', isValid);
+        }
+    };
+    //-----
     self.chooseOne = function () {
         var modalInstance = $uibModal.open({
             //templateUrl: 'js/app/' + self.reference + '/' + self.profile + '/selection.html',
@@ -61,12 +67,6 @@ function foreignkeyController1(toolService, serverCallService, $uibModal) {
         } else {
             validity(false);
             self.desc = "";
-        }
-    };
-    //-----
-    var validity = function (isValid) {
-        if (self.form[self.name]) {
-            self.form[self.name].$setValidity('exists', isValid);
         }
     };
     //-----

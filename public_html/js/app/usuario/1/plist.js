@@ -33,8 +33,6 @@ moduloUsuario.controller('UsuarioPList1Controller',
                 $scope.op = "plist";
                 $scope.profile = 1;
                 //---
-                $scope.status = null;
-                $scope.debugging = constantService.debugging();
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //----
                 $scope.numpage = toolService.checkDefault(1, $routeParams.page);
@@ -43,6 +41,9 @@ moduloUsuario.controller('UsuarioPList1Controller',
                 //---
                 $scope.orderParams = toolService.checkEmptyString($routeParams.order);
                 $scope.filterParams = toolService.checkEmptyString($routeParams.filter);
+                //---
+                $scope.status = null;
+                $scope.debugging = constantService.debugging();
                 //---
                 function getDataFromServer() {
                     serverCallService.getCount($scope.ob, $scope.filterParams).then(function (response) {

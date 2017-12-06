@@ -11,7 +11,12 @@ moduloDirectivas.component('dateTimePicker', {
 });
 function datetimepicker() {
     var self = this;
-    self.change = function () {
+    var validity = function (isValid) {
+        if (self.form) {
+            self.form[self.name].$setValidity('valid', isValid);
+        }
+    }
+    var checkValidity = function () {
         var fechaCompleta = moment(self.model, "DD/MM/YYYY hh:mm");
         var dayA = moment("01/01/1970 00:00", "DD/MM/YYYY hh:mm");
         var dayB = moment("31/12/2099 23:59", "DD/MM/YYYY hh:mm");
@@ -22,9 +27,10 @@ function datetimepicker() {
             validity(true);
         }
     }
-    var validity = function (isValid) {
-        if (self.form) {
-            self.form[self.name].$setValidity('valid', isValid);
-        }
+    self.change = function () {
+        checkValidity();
+    }
+    this.$postLink = function () {
+        checkValidity();
     }
 }

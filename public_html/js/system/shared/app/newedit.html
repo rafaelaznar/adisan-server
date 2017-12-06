@@ -39,16 +39,12 @@
                         <header ng-if="op == 'editX'" ob="ob" op="op" xob="xob" xid="xid"></header>
                     </div>
                     <div class="panel-body">
-                        <div class="alert alert-success" role="alert" ng-if="debugging">
-                            <h4>Debug:</h4>
-                            {{bean|json}}
-                        </div>
                         <form name="outerForm" class="form-horizontal text-left"  ng-if="!status">
                             <div ng-repeat="oMetap in metap">
                                 <!--- id ---------------------------------------------->
                                 <div ng-if="oMetap.Type == 'Id'" class="form-group" id="{{oMetap.Name}}-group">
                                     <label class="control-label col-sm-2" for="{{oMetap.Name}}">
-                                        <span ng-if="oMetap.Required">*</span>
+                                        <span ng-if="oMetap.IsRequired">*</span>
                                         {{oMetap.LongName}}
                                     </label>
                                     <div class="control col-md-{{oMetap.Wide}}">
@@ -61,13 +57,18 @@
                                                size="15"
                                                disabled />
                                     </div>
+                                    <div class="control col-md-1 alert alert-success" ng-if="debugging">
+                                        pristine:{{outerForm[oMetap.Name].$pristine}}<br>
+                                        required:{{outerForm[oMetap.Name].$error.required}}<br>
+                                        valid:{{outerForm[oMetap.Name].$valid}}<br>
+                                    </div>
                                 </div>
                                 <!-- string ------------------------------------------------>
-                                <div ng-if="oMetap.Type == 'String'" class="form-group" id="{{oMetap.Name}}-group"
+                                <div ng-if="oMetap.Type == 'String' || oMetap.Type == 'Integer' || oMetap.Type == 'Decimal'" class="form-group" id="{{oMetap.Name}}-group"
                                      ng-class="{'has-error':(outerForm[oMetap.Name].$error.pattern && !outerForm[oMetap.Name].$pristine) ||
                                                              (outerForm[oMetap.Name].$error.required && !outerForm[oMetap.Name].$pristine)}">
                                     <label class="control-label col-sm-2" for="{{oMetap.Name}}">
-                                        <span ng-if="oMetap.Required">*</span>
+                                        <span ng-if="oMetap.IsRequired">*</span>
                                         {{oMetap.LongName}}
                                     </label>
                                     <div class="control col-md-{{oMetap.Wide}}">
@@ -84,12 +85,17 @@
                                         <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.required">El campo es obligatorio</span>
                                         <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.pattern">El campo no tiene formato adecuado: Introduzca {{oMetap.RegexHelp}}</span>
                                     </div>
+                                    <div class="control col-md-1 alert alert-success" ng-if="debugging">
+                                        pristine:{{outerForm[oMetap.Name].$pristine}}<br>
+                                        required:{{outerForm[oMetap.Name].$error.required}}<br>
+                                        valid:{{outerForm[oMetap.Name].$valid}}<br>
+                                    </div>
                                 </div>
                                 <!-- date ------------------------------------------------>
                                 <div ng-if="oMetap.Type == 'Date'" class="form-group" id="{{oMetap.Name}}-group"
                                      ng-class="{'has-error': (outerForm[oMetap.Name].$error.required || outerForm[oMetap.Name].$error.valid) && !outerForm[oMetap.Name].$pristine}">
                                     <label class="control-label col-sm-2" for="{{oMetap.Name}}">
-                                        <span ng-if="oMetap.Required">*</span>
+                                        <span ng-if="oMetap.IsRequired">*</span>
                                         {{oMetap.LongName}}
                                     </label>
                                     <div class="control col-md-{{oMetap.Wide}}">
@@ -100,29 +106,43 @@
                                             form="outerForm">
                                         </date-time-picker>
                                         <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.required">El campo es obligatorio</span>
-                                        <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.valid">El campo no tiene formato adecuado: Introduzca {{oMetap.RegexHelp}}</span>
+                                        <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && !outerForm[oMetap.Name].$valid">El campo no tiene formato adecuado: Introduzca {{oMetap.RegexHelp}}</span>
+                                    </div>
+                                    <div class="control col-md-1 alert alert-success" ng-if="debugging">
+                                        pristine:{{outerForm[oMetap.Name].$pristine}}<br>
+                                        required:{{outerForm[oMetap.Name].$error.required}}<br>
+                                        valid:{{outerForm[oMetap.Name].$valid}}<br>
                                     </div>
                                 </div>
+
                                 <!-- boolean ------------------------------------------------>
                                 <div ng-if="oMetap.Type == 'Boolean'" class="form-group" id="{{oMetap.Name}}-group"
                                      ng-class="{'has-error': (outerForm[oMetap.Name].$error.required || outerForm[oMetap.Name].$error.valid) && !outerForm[oMetap.Name].$pristine}">
                                     <label class="control-label col-sm-2" for="{{oMetap.Name}}">
-                                        <span ng-if="oMetap.Required">*</span>
+                                        <span ng-if="oMetap.IsRequired">*</span>
                                         {{oMetap.LongName}}
                                     </label>
                                     <div class="control col-md-{{oMetap.Wide}}">
                                         <input
-                                            ng-model="bean[oMetap.name]"
+                                            ng-model="bean[oMetap.Name]"
                                             type="checkbox"
+                                            ng-true-value="1" 
+                                            ng-false-value="0"
                                             id="{{oMetap.Name}}"
                                             name="{{oMetap.Name}}">
                                     </div>
+                                    <div class="control col-md-1 alert alert-success" ng-if="debugging">
+                                        pristine:{{outerForm[oMetap.Name].$pristine}}<br>
+                                        required:{{outerForm[oMetap.Name].$error.required}}<br>
+                                        valid:{{outerForm[oMetap.Name].$valid}}<br>
+                                    </div>
                                 </div>
+
                                 <!-- foreign ----------------------------------------------->
                                 <div ng-if="oMetap.Type == 'ForeignObject'" class="form-group" id="{{oMetap.Name}}-group"
                                      ng-class="{'has-error': (outerForm[oMetap.Name].$error.exists || outerForm[oMetap.Name].$error.required) && !outerForm[oMetap.Name].$pristine}">
                                     <label class="control-label col-sm-2" for="{{oMetap.Name}}">
-                                        <span ng-if="oMetap.Required">*</span>
+                                        <span ng-if="oMetap.IsRequired">*</span>
                                         {{oMetap.LongName}}
                                     </label>
                                     <div class="control col-md-{{oMetap.Wide}}">
@@ -132,13 +152,21 @@
                                             name="oMetap.Name"
                                             reference="oMetap.References"
                                             profile="profile"
-                                            required="oMetap.Required">
+                                            required="oMetap.IsRequired">
                                         </foreign-key>
                                         <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.required">El campo es obligatorio</span>
-                                        <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.exists">La clave elegida no existe</span>
+                                        <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.exists && !outerForm[oMetap.Name].$error.required">La clave elegida no existe</span>
+                                    </div>
+                                    <div class="control col-md-1 alert alert-success" ng-if="debugging">
+                                        pristine:{{outerForm[oMetap.Name].$pristine}}<br>
+                                        required:{{outerForm[oMetap.Name].$error.required}}<br>
+                                        exists:{{outerForm[oMetap.Name].$error.exists}}<br>
+                                        valid:{{outerForm[oMetap.Name].$valid}}<br>
                                     </div>
                                 </div>
+
                             </div>
+
                             <div class="control-group text-right">
                                 <div class="controls">
                                     <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$dirty || !outerForm.$valid">Guardar</a>
@@ -146,6 +174,11 @@
                                     <a class="btn btn-default" ng-click="back()">Volver</a>
                                     <a class="btn btn-default" ng-click="close()">Cerrar</a>
                                 </div>
+                            </div>
+                            <div class="alert alert-success" role="alert" ng-if="debugging">
+                                <h4>Debug:</h4>
+                                FORM DIRTY:{{outerForm.$dirty}}<br>
+                                FORM VALID:{{outerForm.$valid}}<br>
                             </div>
                             <!------------------------------------------------->
                         </form>
@@ -172,6 +205,10 @@
                                     <a class="btn btn-default" href="home">Cerrar</a>
                                 </div>
                             </div>
+                        </div>
+                        <div class="alert alert-success" role="alert" ng-if="debugging">
+                            <h4>Debug:</h4>
+                            BEAN:{{bean|json}}<br>
                         </div>
                     </div>
                     <div class="panel-footer" style="font-family: Questrial, serif;" ng-include="'js/system/include/footer.html'"></div>

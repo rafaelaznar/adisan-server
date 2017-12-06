@@ -32,14 +32,11 @@ moduloPedido.controller('PedidoXusuarioPList1Controller',
                 $scope.ob = "pedido";
                 $scope.op = "plistX";
                 $scope.profile = 1;
-                //---
-                $scope.status = null;
-                $scope.debugging = constantService.debugging();
                 //----
                 $scope.xob = "usuario";
                 $scope.xid = $routeParams.id;
                 //----
-                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op + $scope.xob + '/' + $routeParams.id;
+                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op + $scope.xob + '/' + $scope.xid;
                 //----
                 $scope.numpage = toolService.checkDefault(1, $routeParams.page);
                 $scope.rpp = toolService.checkDefault(10, $routeParams.rpp);
@@ -48,21 +45,10 @@ moduloPedido.controller('PedidoXusuarioPList1Controller',
                 $scope.orderParams = toolService.checkEmptyString($routeParams.order);
                 $scope.filterParams = toolService.checkEmptyString($routeParams.filter);
                 //---
+                $scope.status = null;
+                $scope.debugging = constantService.debugging();                
+                //---
                 function getDataFromServer() {
-//                    serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
-//                        if (response.status == 200) {
-//                            if (response.data.status == 200) {
-//                                $scope.status = null;
-//                                $scope.linkedbean = response.data.json;
-//                            } else {
-//                                $scope.status = "Error en la recepción de datos del servidor";
-//                            }
-//                        } else {
-//                            $scope.status = "Error en la recepción de datos del servidor";
-//                        }
-//                    }).catch(function (data) {
-//                        $scope.status = "Error en la recepción de datos del servidor";
-//                    });
                     serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
                         if (response.status == 200) {
                             $scope.registers = response.data.json;

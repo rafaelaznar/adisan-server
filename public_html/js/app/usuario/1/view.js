@@ -33,11 +33,12 @@ moduloPedido.controller('PedidoView1Controller',
                 $scope.op = "view";
                 $scope.profile = 1;
                 //---
-                $scope.status = null;
-                $scope.debugging = constantService.debugging();
+                $scope.id = $routeParams.id;
+                //---
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
-                $scope.id = $routeParams.id;
+                $scope.status = null;
+                $scope.debugging = constantService.debugging();
                 //---
                 serverCallService.getOne($scope.ob, $scope.id).then(function (response) {
                     if (response.status == 200) {

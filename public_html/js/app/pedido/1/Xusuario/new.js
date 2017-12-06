@@ -34,15 +34,14 @@ moduloPedido.controller('PedidoXusuarioNew1Controller',
                 $scope.op = "newX";
                 $scope.profile = 1;
                 //---
-                $scope.status = null;
-                $scope.debugging = constantService.debugging();
-                //$scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
-                //---
                 $scope.xob = "usuario";
-                $scope.xid = $routeParams.id_usuario;
+                $scope.xid = $routeParams.id;
                 //--
                 $scope.bean = {};
-                $scope.bean.obj_usuario = {"id": $scope.xid};
+                //$scope.bean.obj_usuario = {"id": $scope.xid};
+                //---
+                $scope.status = null;
+                $scope.debugging = constantService.debugging();                
                 //---
                 serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
                     if (response.status == 200) {

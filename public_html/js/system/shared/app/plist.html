@@ -182,7 +182,8 @@
                                             <div class="row">
                                                 <div class="col-md-12 text-center">
                                                     <p><br>
-                                                        <a class="btn btn-primary" href="{{ob}}/{{profile}}/new">Crear un nuevo {{ob}}</a>
+                                                        <a class="btn btn-primary" ng-if="xob" href="{{ob}}/{{profile}}/newX{{xob}}/{{xid}}">Crear</a>
+                                                        <a class="btn btn-primary" ng-if="!xob" href="{{ob}}/{{profile}}/new">Crear</a>
                                                     </p>
                                                 </div>
                                             </div>
