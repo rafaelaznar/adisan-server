@@ -46,7 +46,7 @@ moduloPedido.controller('PedidoXusuarioPList1Controller',
                 $scope.filterParams = toolService.checkEmptyString($routeParams.filter);
                 //---
                 $scope.status = null;
-                $scope.debugging = constantService.debugging();                
+                $scope.debugging = constantService.debugging();
                 //---
                 function getDataFromServer() {
                     serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
@@ -72,7 +72,24 @@ moduloPedido.controller('PedidoXusuarioPList1Controller',
                         $scope.status = "Error en la recepción de datos del servidor";
                     });
                 }
-
+                //---
+                if ($scope.xob && $scope.xid) {
+                    serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
+                        if (response.status == 200) {
+                            if (response.data.status == 200) {
+                                $scope.linkedbean = response.data.json;
+                            } else {
+                                $scope.linkedbean = null;
+                            }
+                        } else {
+                            $scope.linkedbean = null;
+                        }
+                    }).catch(function (data) {
+                        $scope.linkedbean = null;
+                    });
+                } else {
+                    $scope.linkedbean = null;
+                }
                 $scope.doorder = function (orderField, ascDesc) {
                     $location.url($scope.url + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', $scope.filterParams).search('order', orderField + ',' + ascDesc);
                     return false;

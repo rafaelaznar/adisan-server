@@ -34,10 +34,16 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">                        
-                        <header ng-if="op != 'plistX'" ob="ob" op="op"></header>
-                        <header ng-if="op == 'plistX'" ob="ob" op="op" xob="xob" xid="xid"></header>
+                        <header ob="ob" op="op"></header>
                     </div>
                     <div class="panel-body">
+                        <div class="row" ng-if="linkedbean">
+                            <div class="col-xs-12">
+                                <div class="alert alert-info" role="alert">                                                                       
+                                    <h3 class="bg-info"><span class="{{linkedbean.metaObject.Icon}}"></span> {{linkedbean.metaObject.SingularDescription}}: {{linkedbean|getForeignDescription}}</h3>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-xs-12" ng-if="status">
                                 <div class="alert alert-danger" role="alert">
