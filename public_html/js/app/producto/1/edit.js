@@ -38,9 +38,6 @@ moduloProducto.controller('ProductoEdit1Controller',
                 $scope.debugging = constantService.debugging();
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
-                $scope.bean = {};
-                $scope.bean.obj_tipousuario = {"id": 0};
-                //---
                 $scope.id = $routeParams.id;
                 //---
                 serverCallService.getOne($scope.ob, $scope.id).then(function (response) {

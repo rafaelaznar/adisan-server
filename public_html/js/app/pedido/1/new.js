@@ -38,16 +38,23 @@ moduloPedido.controller('PedidoNew1Controller',
                 $scope.debugging = constantService.debugging();
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
-                $scope.bean = {};
-                $scope.bean.obj_tipousuario = {"id": 0};
-                //---
-
                 serverCallService.getMeta($scope.ob).then(function (response) {
                     if (response.status == 200) {
                         if (response.data.status == 200) {
                             $scope.status = null;
+                            //--For every foreign key create obj inside bean tobe filled...
+                            $scope.bean = {};
+                            response.data.json.metaProperties.forEach(function (property) {
+                                if (property.Type == 'ForeignObject') {
+                                    $scope.bean[property.Name] = {};
+                                    $scope.bean[property.Name].data = {};
+                                    $scope.bean[property.Name].data.id = 0;
+                                }
+                            });
+                            //--
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
+
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -57,8 +64,7 @@ moduloPedido.controller('PedidoNew1Controller',
                 }).catch(function (data) {
                     $scope.status = "Error en la recepción de datos del servidor";
                 });
-
-
+                //--
                 $scope.save = function () {
                     var jsonToSend = {json: JSON.stringify(toolService.array_identificarArray($scope.bean))};
                     serverCallService.set($scope.ob, jsonToSend).then(function (response) {
@@ -86,4 +92,3 @@ moduloPedido.controller('PedidoNew1Controller',
                 };
             }
         ]);
-
