@@ -49,21 +49,20 @@ moduloLinea_pedido.controller('Linea_pedidoXpedidoPList1Controller',
                 $scope.filterParams = toolService.checkEmptyString($routeParams.filter);
                 //---
                 function getDataFromServer() {
-//                    serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
-//                        if (response.status == 200) {
-//                            if (response.data.status == 200) {
-//                                $scope.status = null;
-//                                $scope.linkedbean = response.data.json;
-//                            } else {
-//                                $scope.status = "Error en la recepción de datos del servidor";
-//                            }
-//                        } else {
-//                            $scope.status = "Error en la recepción de datos del servidor";
-//                        }
-//                    }).catch(function (data) {
-//                        $scope.status = "Error en la recepción de datos del servidor";
-//                    });
+                    $scope.linkedbean = null;
+                    $scope.linkedbean2 = null;
                     serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
+                        if ($scope.xob && $scope.xid) {
+                            serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
+                                if (response.status == 200) {
+                                    if (response.data.status == 200) {
+                                        $scope.linkedbean = response.data.json;
+                                        $scope.linkedbean2 = response.data.json.data.obj_usuario;
+                                    }
+                                }
+                            }).catch(function (data) {
+                            });
+                        }
                         if (response.status == 200) {
                             $scope.registers = response.data.json;
                             $scope.pages = toolService.calculatePages($scope.rpp, $scope.registers);
@@ -85,23 +84,6 @@ moduloLinea_pedido.controller('Linea_pedidoXpedidoPList1Controller',
                     }).catch(function (data) {
                         $scope.status = "Error en la recepción de datos del servidor";
                     });
-                }
-                if ($scope.xob && $scope.xid) {
-                    serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
-                        if (response.status == 200) {
-                            if (response.data.status == 200) {
-                                $scope.linkedbean = response.data.json;
-                            } else {
-                                $scope.linkedbean = null;
-                            }
-                        } else {
-                            $scope.linkedbean = null;
-                        }
-                    }).catch(function (data) {
-                        $scope.linkedbean = null;
-                    });
-                } else {
-                    $scope.linkedbean = null;
                 }
                 $scope.doorder = function (orderField, ascDesc) {
                     $location.url($scope.url + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', $scope.filterParams).search('order', orderField + ',' + ascDesc);
