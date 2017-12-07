@@ -38,7 +38,7 @@ moduloServicios.factory('constantService', function () {
             //return location.protocol + '//' + location.hostname + ':' + location.port + '/' + this.getAppName() + '/index.php';
         },
         debugging: function () {
-            return false;
+            return 1;
         },
         getGlobalNeighbourhood: function () {
             return 2;

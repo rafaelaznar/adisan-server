@@ -57,7 +57,7 @@
                                                size="15"
                                                disabled />
                                     </div>
-                                    <div class="control col-md-1 alert alert-success" ng-if="debugging">
+                                    <div class="control col-md-1 alert alert-success" ng-if="debugging==2">
                                         pristine:{{outerForm[oMetap.Name].$pristine}}<br>
                                         required:{{outerForm[oMetap.Name].$error.required}}<br>
                                         valid:{{outerForm[oMetap.Name].$valid}}<br>
@@ -85,7 +85,7 @@
                                         <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.required">El campo es obligatorio</span>
                                         <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.pattern">El campo no tiene formato adecuado: Introduzca {{oMetap.RegexHelp}}</span>
                                     </div>
-                                    <div class="control col-md-1 alert alert-success" ng-if="debugging">
+                                    <div class="control col-md-1 alert alert-success" ng-if="debugging==2">
                                         pristine:{{outerForm[oMetap.Name].$pristine}}<br>
                                         required:{{outerForm[oMetap.Name].$error.required}}<br>
                                         valid:{{outerForm[oMetap.Name].$valid}}<br>
@@ -108,7 +108,7 @@
                                         <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.required">El campo es obligatorio</span>
                                         <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && !outerForm[oMetap.Name].$valid">El campo no tiene formato adecuado: Introduzca {{oMetap.RegexHelp}}</span>
                                     </div>
-                                    <div class="control col-md-1 alert alert-success" ng-if="debugging">
+                                    <div class="control col-md-1 alert alert-success" ng-if="debugging==2">
                                         pristine:{{outerForm[oMetap.Name].$pristine}}<br>
                                         required:{{outerForm[oMetap.Name].$error.required}}<br>
                                         valid:{{outerForm[oMetap.Name].$valid}}<br>
@@ -131,7 +131,7 @@
                                             id="{{oMetap.Name}}"
                                             name="{{oMetap.Name}}">
                                     </div>
-                                    <div class="control col-md-1 alert alert-success" ng-if="debugging">
+                                    <div class="control col-md-1 alert alert-success" ng-if="debugging==2">
                                         pristine:{{outerForm[oMetap.Name].$pristine}}<br>
                                         required:{{outerForm[oMetap.Name].$error.required}}<br>
                                         valid:{{outerForm[oMetap.Name].$valid}}<br>
@@ -157,7 +157,7 @@
                                         <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.required">El campo es obligatorio</span>
                                         <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.exists && !outerForm[oMetap.Name].$error.required">La clave elegida no existe</span>
                                     </div>
-                                    <div class="control col-md-1 alert alert-success" ng-if="debugging">
+                                    <div class="control col-md-1 alert alert-success" ng-if="debugging==2">
                                         pristine:{{outerForm[oMetap.Name].$pristine}}<br>
                                         required:{{outerForm[oMetap.Name].$error.required}}<br>
                                         exists:{{outerForm[oMetap.Name].$error.exists}}<br>
@@ -175,7 +175,7 @@
                                     <a class="btn btn-default" ng-click="close()">Cerrar</a>
                                 </div>
                             </div>
-                            <div class="alert alert-success" role="alert" ng-if="debugging">
+                            <div class="alert alert-success" role="alert" ng-if="debugging==2">
                                 <h4>Debug:</h4>
                                 FORM DIRTY:{{outerForm.$dirty}}<br>
                                 FORM VALID:{{outerForm.$valid}}<br>
@@ -206,7 +206,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="alert alert-success" role="alert" ng-if="debugging">
+                        <div class="alert alert-success" role="alert" ng-if="debugging==2">
                             <h4>Debug:</h4>
                             BEAN:{{bean|json}}<br>
                         </div>
