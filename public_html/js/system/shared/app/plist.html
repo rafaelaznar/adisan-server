@@ -39,10 +39,11 @@
                     <div class="panel-body">
                         <div class="row" ng-if="linkedbean || linkedbean2 || linkedbean3">
                             <div class="col-xs-12">
-                                <div class="alert alert-info" role="alert">                                                                       
-                                    <h3 ng-if="linkedbean" class="bg-info"><span class="{{linkedbean.metaObject.Icon}}"></span> {{linkedbean.metaObject.SingularDescription}}: {{linkedbean|getForeignDescription}}</h3>
-                                    <h3 ng-if="linkedbean2" class="bg-info"><span class="{{linkedbean2.metaObject.Icon}}"></span> {{linkedbean2.metaObject.SingularDescription}}: {{linkedbean2|getForeignDescription}}</h3>
-                                    <h3 ng-if="linkedbean3" class="bg-info"><span class="{{linkedbean3.metaObject.Icon}}"></span> {{linkedbean3.metaObject.SingularDescription}}: {{linkedbean3|getForeignDescription}}</h3>
+                                <div class="alert alert-info" role="alert">                                        
+                                    <h3 ng-if="linkedbean" class="bg-info"><a href="{{linkedbean.metaObject.TableName}}/{{profile}}/view/{{linkedbean.data.id}}"> <span class="{{linkedbean.metaObject.Icon}}"></span>  {{linkedbean.metaObject.SingularDescription}}: {{linkedbean|getForeignDescription}}</a></h3>
+                                    <h3 ng-if="linkedbean2" class="bg-info"><a href="{{linkedbean2.metaObject.TableName}}/{{profile}}/view/{{linkedbean2.data.id}}"> <span class="{{linkedbean2.metaObject.Icon}}"></span>  {{linkedbean2.metaObject.SingularDescription}}: {{linkedbean2|getForeignDescription}}</a></h3>
+                                    <h3 ng-if="linkedbean3" class="bg-info"><a href="{{linkedbean3.metaObject.TableName}}/{{profile}}/view/{{linkedbean3.data.id}}"> <span class="{{linkedbean3.metaObject.Icon}}"></span>  {{linkedbean3.metaObject.SingularDescription}}: {{linkedbean3|getForeignDescription}}</a></h3>
+                                    <h3 ng-if="linkedbean4" class="bg-info"><a href="{{linkedbean4.metaObject.TableName}}/{{profile}}/view/{{linkedbean4.data.id}}"> <span class="{{linkedbean4.metaObject.Icon}}"></span>  {{linkedbean4.metaObject.SingularDescription}}: {{linkedbean4|getForeignDescription}}</a></h3>
                                 </div>
                             </div>
                         </div>
@@ -224,7 +225,7 @@
                                                         </div>
                                                         <div ng-if="oMetap.IsVisible && oMetap.Type == 'Link'" class="text-center">                                     
                                                             <a ng-if="oBean[oMetap.Name] > 0" class="btn btn-default btn-xs" href="{{oMetap.References}}/{{profile}}/plistX{{ob}}/{{oBean['id']}}">{{oBean[oMetap.Name]}}</a>
-                                                            <div ng-if="oBean[oMetap.Name] == 0" >{{oBean[oMetap.Name]}}</div>
+                                                            <a ng-if="oBean[oMetap.Name] == 0" class="btn btn-default btn-xs" href="{{oMetap.References}}/{{profile}}/newX{{ob}}/{{oBean['id']}}">{{oBean[oMetap.Name]}}</a>
                                                         </div>
                                                     </td>
                                                     <td>
