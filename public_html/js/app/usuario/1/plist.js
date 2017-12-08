@@ -73,6 +73,9 @@ moduloUsuario.controller('UsuarioPList1Controller',
                     $location.url($scope.url + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', $scope.filterParams).search('order', orderField + ',' + ascDesc);
                     return false;
                 };
+                $scope.back = function () {
+                    window.history.back();
+                };
                 $scope.close = function () {
                     $location.path('/home');
                 };

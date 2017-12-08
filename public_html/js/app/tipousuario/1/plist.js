@@ -32,6 +32,8 @@ moduloTipousuario.controller('TipousuarioPList1Controller',
                 $scope.ob = "tipousuario";
                 $scope.op = "plist";
                 $scope.profile = 1;
+                //----
+                $scope.onlyview = true;
                 //---
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //----
@@ -72,6 +74,9 @@ moduloTipousuario.controller('TipousuarioPList1Controller',
                 $scope.doorder = function (orderField, ascDesc) {
                     $location.url($scope.url + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', $scope.filterParams).search('order', orderField + ',' + ascDesc);
                     return false;
+                };
+                $scope.back = function () {
+                    window.history.back();
                 };
                 $scope.close = function () {
                     $location.path('/home');

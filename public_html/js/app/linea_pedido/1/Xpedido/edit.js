@@ -26,22 +26,35 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloTipousuario.controller('TipousuarioView1Controller',
-        ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService',
-            function ($scope, $routeParams, serverCallService, $location, sessionService, constantService) {
-                $scope.ob = "tipousuario";
-                $scope.op = "view";
+
+moduloLinea_pedido.controller('Linea_pedidoXpedidoEdit1Controller',
+        ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
+            function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
+                $scope.ob = "linea_pedido";
+                $scope.op = "editX";
                 $scope.profile = 1;
                 //----
-                $scope.onlyview = true;
-                //---
                 $scope.id = $routeParams.id;
                 //---
-                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
+                $scope.xob = "pedido";
+                $scope.xid = $routeParams.xid;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
                 //---
+                if ($scope.xob && $scope.xid) {
+                    $scope.linkedbean = null;
+                    serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
+                        if (response.status == 200) {
+                            if (response.data.status == 200) {
+                                $scope.linkedbean = response.data.json;
+                            }
+                        }
+                    }).catch(function (data) {
+                    });
+                }
+
+
                 serverCallService.getOne($scope.ob, $scope.id).then(function (response) {
                     if (response.status == 200) {
                         if (response.data.status == 200) {
@@ -49,8 +62,6 @@ moduloTipousuario.controller('TipousuarioView1Controller',
                             $scope.bean = response.data.json.data;
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
-
-
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -60,6 +71,26 @@ moduloTipousuario.controller('TipousuarioView1Controller',
                 }).catch(function (data) {
                     $scope.status = "Error en la recepción de datos del servidor";
                 });
+                //--
+                $scope.save = function () {
+                    var jsonToSend = {json: JSON.stringify(toolService.array_identificarArray($scope.bean))};
+                    serverCallService.set($scope.ob, jsonToSend).then(function (response) {
+                        if (response.status == 200) {
+                            if (response.data.status == 200) {
+                                $scope.response = response;
+                                $scope.status = "El registro se ha creado con id=" + response.data.json;
+                                $scope.bean.id = response.data.json;
+                            } else {
+                                $scope.status = "Error en la recepción de datos del servidor";
+                            }
+                        } else {
+                            $scope.status = "Error en la recepción de datos del servidor";
+                        }
+                    }).catch(function (data) {
+                        $scope.status = "Error en la recepción de datos del servidor";
+                    });
+                    ;
+                };
                 $scope.back = function () {
                     window.history.back();
                 };
@@ -68,3 +99,4 @@ moduloTipousuario.controller('TipousuarioView1Controller',
                 };
             }
         ]);
+
