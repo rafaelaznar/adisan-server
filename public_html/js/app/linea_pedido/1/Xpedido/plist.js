@@ -95,6 +95,9 @@ moduloLinea_pedido.controller('Linea_pedidoXpedidoPList1Controller',
                 $scope.close = function () {
                     $location.path('/home');
                 };
+                $scope.setShowRemove = function (show) {
+                    $scope.showRemove = show;
+                };
                 getDataFromServer();
             }
         ]);

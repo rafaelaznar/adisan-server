@@ -81,6 +81,9 @@ moduloTipousuario.controller('TipousuarioPList1Controller',
                 $scope.close = function () {
                     $location.path('/home');
                 };
+                $scope.setShowRemove = function (show) {
+                    $scope.showRemove = show;
+                };
                 getDataFromServer();
             }
         ]);

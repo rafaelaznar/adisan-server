@@ -79,6 +79,9 @@ moduloUsuario.controller('UsuarioPList1Controller',
                 $scope.close = function () {
                     $location.path('/home');
                 };
+                $scope.setShowRemove = function (show) {
+                    $scope.showRemove = show;
+                };
                 getDataFromServer();
             }
         ]);

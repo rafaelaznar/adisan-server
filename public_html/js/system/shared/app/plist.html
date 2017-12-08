@@ -213,11 +213,11 @@
                                         <table class="table table-responsive table-bordered table-hover table-striped table-condensed dataTable no-footer">
                                             <thead plistheader></thead>
                                             <tbody>
-                                                <tr ng-repeat="oBean in page| filter:searchText">
+                                                <tr ng-repeat="oBean in page| filter:searchText" >
                                                     <td ng-repeat="oMetap in metap" ng-if="oMetap.IsVisible && oMetap.Type == 'Id'"  class="text-right">
                                                         <div ng-if="oMetap.IsVisible && oMetap.Type == 'Id'"><b>{{oBean[oMetap.Name]}}</b></div>
                                                     </td>
-                                                    <td ng-repeat="oMetap in metap" ng-if="oMetap.IsVisible && oMetap.Type != 'Id'"  class="text-right">
+                                                    <td ng-init="setShowRemove(true)" ng-repeat="oMetap in metap" ng-if="oMetap.IsVisible && oMetap.Type != 'Id'"  class="text-right">
                                                         <div ng-if="oMetap.IsVisible && oMetap.Type == 'Date'" class="text-center"><span class="fa fa-calendar">&nbsp;</span>{{oBean[oMetap.Name]}}</div>
                                                         <div ng-if="oMetap.IsVisible && oMetap.Type == 'Integer'" class="text-center">{{oBean[oMetap.Name]}}</div>
                                                         <div ng-if="oMetap.IsVisible && oMetap.Type == 'Decimal'" class="text-center">{{oBean[oMetap.Name]}}</div>
@@ -228,11 +228,11 @@
                                                             <a href="{{oMetap.References}}/{{profile}}/view/{{oBean[oMetap.Name].data.id}}">{{oBean[oMetap.Name]|getForeignDescription}}</a>
                                                         </div>
                                                         <div ng-if="oMetap.IsVisible && oMetap.Type == 'Link'" class="text-center">                                     
-                                                            <a ng-if="oBean[oMetap.Name] > 0" class="btn btn-default btn-xs" href="{{oMetap.References}}/{{profile}}/plistX{{ob}}/{{oBean['id']}}">{{oBean[oMetap.Name]}}</a>
-                                                            <a ng-if="oBean[oMetap.Name] == 0" class="btn btn-default btn-xs" href="{{oMetap.References}}/{{profile}}/newX{{ob}}/{{oBean['id']}}">{{oBean[oMetap.Name]}}</a>
-                                                        </div>
-                                                    </td>
-                                                    <td ng-if="!xob && !onlyview">
+                                                            <a ng-if="oBean[oMetap.Name] > 0" class="btn btn-default btn-xs" href="{{oMetap.References}}/{{profile}}/plistX{{ob}}/{{oBean['id']}}">{{setShowRemove(false);oBean[oMetap.Name]}}</a>
+                                                            <a ng-if="oBean[oMetap.Name] == 0" class="btn btn-default btn-xs" href="{{oMetap.References}}/{{profile}}/newX{{ob}}/{{oBean['id']}}">{{setShowRemove(true);oBean[oMetap.Name]}}</a>                                                        
+                                                        </div>                                                  
+                                                    </td>                                              
+                                                    <td ng-if="!xob && !onlyview">      
                                                         <div class="btn-toolbar" role="toolbar">
                                                             <div class="btn-group">
                                                                 <a class="btn btn-default btn-xs" title="View" href="{{ob}}/{{profile}}/view/{{oBean.id}}">
@@ -240,8 +240,8 @@
                                                                 </a>
                                                                 <a class="btn btn-default btn-xs" title="Edit" href="{{ob}}/{{profile}}/edit/{{oBean.id}}">
                                                                     <span class="glyphicon glyphicon-pencil"></span>
-                                                                </a>
-                                                                <a class="btn btn-default btn-xs" title="Remove" href="{{ob}}/{{profile}}/remove/{{oBean.id}}">
+                                                                </a>                                                               
+                                                                <a ng-if="showRemove" class="btn btn-default btn-xs" title="Remove" href="{{ob}}/{{profile}}/remove/{{oBean.id}}">
                                                                     <span class="glyphicon glyphicon-remove"></span>
                                                                 </a>
                                                             </div>
@@ -256,8 +256,8 @@
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td ng-if="xob">
-                                                        <div class="btn-toolbar" role="toolbar">
+                                                    <td ng-if="xob">                                                        
+                                                        <div class="btn-toolbar" role="toolbar">                                                            
                                                             <div class="btn-group">
                                                                 <a class="btn btn-default btn-xs" title="View" href="{{ob}}/{{profile}}/view/{{oBean.id}}">
                                                                     <span class="glyphicon glyphicon-eye-open"></span>
@@ -265,7 +265,8 @@
                                                                 <a class="btn btn-default btn-xs" title="Edit" href="{{ob}}/{{profile}}/editX{{xob}}/{{oBean.id}}/{{xid}}">
                                                                     <span class="glyphicon glyphicon-pencil"></span>
                                                                 </a>
-                                                                <a class="btn btn-default btn-xs" title="Remove" href="{{ob}}/{{profile}}/remove/{{oBean.id}}">
+
+                                                                <a ng-if="showRemove" class="btn btn-default btn-xs" title="Remove" href="{{ob}}/{{profile}}/remove/{{oBean.id}}">
                                                                     <span class="glyphicon glyphicon-remove"></span>
                                                                 </a>
                                                             </div>
@@ -276,7 +277,6 @@
                                         </table>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
