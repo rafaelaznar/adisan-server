@@ -6,4 +6,4 @@ Options FollowSymLinks
   RewriteRule ^ - [L]
 
   # If the requested resource doesn't exist, use index.html
-  RewriteRule ^ /trolleyes3/public_html/index.html
+  RewriteRule ^ /gesane/public_html/index.html

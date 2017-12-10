@@ -30,11 +30,11 @@
 moduloServicios.factory('constantService', function () {
     return {
         getAppUrl: function () {
-            return "http://127.0.0.1:8081/trolleyes-server3/json";
+            return "http://127.0.0.1:8081/gesane/json";
             //return location.protocol + '//' + location.hostname + ':' + location.port + '/' + this.getAppName() + '/index.php';
         },
         getCAppUrl: function () {
-            return "http://127.0.0.1:8080/trolleyes3/public_html";
+            return "http://127.0.0.1:8080/gesane/public_html";
             //return location.protocol + '//' + location.hostname + ':' + location.port + '/' + this.getAppName() + '/index.php';
         },
         debugging: function () {
