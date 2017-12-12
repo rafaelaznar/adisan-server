@@ -27,8 +27,8 @@
  */
 'use strict';
 moduloSistema.controller('LoginController',
-        ['$scope', '$location', 'constantService', 'sessionServerCallService', 'sessionService',
-            function ($scope, $location, constantService, sessionServerCallService, sessionService) {
+        ['$http', '$scope', '$location', 'constantService', 'sessionServerCallService', 'sessionService',
+            function ($http, $scope, $location, constantService, sessionServerCallService, sessionService) {
                 $scope.title = "Formulario de entrada al sistema";
                 $scope.icon = "fa-file-text-o";
                 $scope.user = {};
@@ -45,6 +45,24 @@ moduloSistema.controller('LoginController',
                 $scope.fillRegistro = function (cod) {
                     if (constantService.debugging()) {
                         $scope.user.key = cod;
+                    }
+                }
+                $scope.checkGrupo = function () {
+                    if ($scope.user.key) {
+                        $http.get(constantService.getAppUrl() + '?ob=grupo&op=check&codigo=' + $scope.user.key, 'GET', '').then(function (response) {
+                            if (response.status == 200) {
+                                if (response.data.json == "OK") {
+                                    $location.path('/newalumno/9/' + $scope.user.key);
+                                }
+                            } else {
+                                $scope.checkGrupoStatusMsg = "Error: el grupo no es correcto.";
+                                return false;
+                            }
+                        }, function errorCallback(response, status) {
+                            $scope.checkGrupoStatusMsg = "Error: el grupo no es correcto.";
+                            return false;
+                            return false;
+                        });
                     }
                 }
                 $scope.login = function () {
