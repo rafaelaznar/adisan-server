@@ -31,7 +31,7 @@ moduloPedido.controller('PedidoXusuarioNew1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
                 $scope.ob = "pedido";
-                $scope.op = "newX";
+                $scope.op = "newx";
                 $scope.profile = 1;
                 //---
                 $scope.xob = "usuario";

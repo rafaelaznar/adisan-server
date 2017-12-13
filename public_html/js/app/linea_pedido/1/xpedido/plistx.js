@@ -30,7 +30,7 @@ moduloLinea_pedido.controller('Linea_pedidoXpedidoPList1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
                 $scope.ob = "linea_pedido";
-                $scope.op = "plistX";
+                $scope.op = "plistx";
                 $scope.profile = 1;
                 //---
                 $scope.status = null;

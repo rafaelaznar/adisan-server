@@ -27,16 +27,16 @@
  */
 'use strict';
 
-moduloLinea_pedido.controller('Linea_pedidoXpedidoEdit1Controller',
+moduloPedido.controller('PedidoXusuarioEdit1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
-                $scope.ob = "linea_pedido";
-                $scope.op = "editX";
+                $scope.ob = "pedido";
+                $scope.op = "editx";
                 $scope.profile = 1;
                 //----
                 $scope.id = $routeParams.id;
                 //---
-                $scope.xob = "pedido";
+                $scope.xob = "usuario";
                 $scope.xid = $routeParams.xid;
                 //---
                 $scope.status = null;
