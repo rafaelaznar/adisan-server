@@ -92,5 +92,19 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/circunstanciasalta/1/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'CircunstanciasaltaRemove1Controller', resolve: {auth: authenticationAdministratorPromise}});
         
         //-----------
+        
+        
+        
+        
+        //----Usuario 3 profesor --
+        $routeProvider.when('/circunstanciasalta/3/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'CircunstanciasaltaPList3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/circunstanciasalta/3/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'CircunstanciasaltaView3Controller', resolve: {auth: authenticationProfesorPromise}});
+        
+        
+        
+        
+        
+        
+        //--
         $routeProvider.otherwise({redirectTo: '/'});
     }]);
