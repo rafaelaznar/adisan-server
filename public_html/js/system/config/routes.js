@@ -83,6 +83,10 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/linea_pedido/1/plistXpedido/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'Linea_pedidoXpedidoPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/linea_pedido/1/newXpedido/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'Linea_pedidoXpedidoNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/linea_pedido/1/editXpedido/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'Linea_pedidoXpedidoEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        
+        
+        $routeProvider.when('/circunstanciasalta/1/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'CircunstanciasaltaPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        
         //-----------
         $routeProvider.otherwise({redirectTo: '/'});
     }]);
