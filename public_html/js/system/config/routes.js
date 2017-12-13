@@ -84,5 +84,17 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/linea_pedido/1/newXpedido/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'Linea_pedidoXpedidoNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/linea_pedido/1/editXpedido/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'Linea_pedidoXpedidoEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
         //-----------
+        $routeProvider.when('/tipopago/1/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'TipopagoView1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/tipopago/1/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'TipopagoPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/tipopago/1/new/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'TipopagoNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/tipopago/1/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'TipopagoEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/tipopago/1/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'TipopagoRemove1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        //-----------
+        $routeProvider.when('/tipopago/3/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'TipopagoView3Controller', resolve: {auth: authenticationProfesorPromise}});
+        //-----------
+        $routeProvider.when('/tipopago/4/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'TipopagoView4Controller', resolve: {auth: authenticationAlumnoPromise}});
+        //-----------
+        $routeProvider.when('/tipopago/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'TipopagoView5Controller', resolve: {auth: authenticationVisitantePromise}});
+        
         $routeProvider.otherwise({redirectTo: '/'});
     }]);
