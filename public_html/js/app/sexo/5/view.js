@@ -31,7 +31,7 @@ moduloSexo.controller('SexoView5Controller',
             function ($scope, $routeParams, serverCallService, $location, sessionService, constantService) {
                 $scope.ob = "sexo";
                 $scope.op = "view";
-                $scope.profile = 1;
+                $scope.profile = 5;
                 //----
                 $scope.onlyview = true;
                 //---
