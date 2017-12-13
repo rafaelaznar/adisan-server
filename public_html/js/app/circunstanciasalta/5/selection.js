@@ -28,7 +28,7 @@
 
 'use strict';
 
-moduloCircunstanciasalta.controller('CircunstanciasaltaSelection3Controller',
+moduloCircunstanciasalta.controller('CircunstanciasaltaSelection5Controller',
         ['$scope', '$uibModalInstance', 'serverCallService', '$location', 'toolService',
             function ($scope, $modalInstance, serverCallService, $location, toolService) {
                 $scope.ob = 'circunstanciasalta';
