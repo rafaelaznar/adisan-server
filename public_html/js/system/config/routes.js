@@ -84,5 +84,12 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/linea_pedido/1/newXpedido/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'Linea_pedidoXpedidoNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/linea_pedido/1/editXpedido/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'Linea_pedidoXpedidoEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
         //-----------
+        $routeProvider.when('/especialidad/1/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'EspecialidadPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/especialidad/1/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'EspecialidadView1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/especialidad/1/new/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EspecialidadNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/especialidad/1/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EspecialidadEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/especialidad/1/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'EspecialidadRemove1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/especialidad/1/selection/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'EspecialidadPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
+
         $routeProvider.otherwise({redirectTo: '/'});
     }]);
