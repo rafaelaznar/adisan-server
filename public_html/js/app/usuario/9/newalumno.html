@@ -1,11 +1,47 @@
-<nav class="navbar navbar-default navbar-fixed-top" ng-include="'js/system/menu.html'"></nav>
-<div id="wrapper">
+<!--
+/*
+ * Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
+ *
+ * TROLLEYES helps you to learn how to develop easily AJAX web applications
+ *
+ * Sources at https://github.com/rafaelaznar/trolleyes
+ *
+ * TROLLEYES is distributed under the MIT License (MIT)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+-->
+<menu></menu>
+<div id="wrapper" ng-cloak>
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading" style="font-family:Oswald , serif;"  ng-include="'js/system/header.html'"></div>
-                    <div class="panel-body" ng-cloak>
+                    <div class="panel-heading">
+                        <div class="col-xs-9 text-left">
+                            <h1 id="broth_title" style="font-family:Oswald , serif;">Registro de alumnos</h1>
+                        </div>
+                        <div class="col-xs-3 text-right" id="broth_operationicon"><i class="fa-pencil fa-5x"></i></div>
+                    </div>
+
+
+                    <div class="panel-body">
                         <div class="row-fluid">
                             <div class="col-lg-12">
 
@@ -36,19 +72,22 @@
                                                  ng-class="{'has-error': (outerForm.login.$error.pattern && !outerForm.login.$pristine) ||
                                                                      (outerForm.login.$error.required && !outerForm.login.$pristine) ||
                                                                      (outerForm.login.$error.repetido && !outerForm.login.$pristine)}">
-                                                <clabel wide="2"
-                                                        name="'labellogin'"
-                                                        longname="'Nombre de usuario'"
-                                                        required="true">
-                                                </clabel>
+                                                <label class="control-label col-sm-2" for="labellogin">
+                                                    <span>*</span>
+                                                    Nombre de usuario
+                                                </label>
                                                 <div class="control col-sm-7">
-                                                    <texto model="bean.login"
-                                                           name="'login'"
-                                                           longname="'Nombre de usuario en el sistema (login nickname)'"
-                                                           pattern="'[A-ZÑÁÀÉÈÍÓÒÚa-zàáèéíòóúñç0-9]+'"
-                                                           length="255"
-                                                           required="true">
-                                                    </texto>
+
+                                                    <input type="text"
+                                                           class="form-control"
+                                                           id="{{oMetap.Name}}"
+                                                           name="login"
+                                                           ng-model="bean.login"
+                                                           placeholder="'Nombre de usuario en el sistema (login nickname)'"
+                                                           ng-pattern="'[A-ZÑÁÀÉÈÍÓÒÚa-zàáèéíòóúñç0-9]+'"
+                                                           size="15"
+                                                           />
+
                                                     <span class="help-block" ng-if="!outerForm.login.$pristine && outerForm.login.$error.required">El campo es obligatorio</span>
                                                     <span class="help-block" ng-if="!outerForm.login.$pristine && outerForm.login.$error.pattern">El campo no tiene formato adecuado</span>
                                                 </div>
@@ -70,11 +109,14 @@
                                                  class="form-group"
                                                  ng-class="{'has-error': (outerForm.password.$error.pattern && !outerForm.password.$pristine) ||
                                                                      (outerForm.password.$error.required && !outerForm.password.$pristine)}">
-                                                <clabel wide="2"
-                                                        name="'labelpassword'"
-                                                        longname="'Contraseña'"
-                                                        required="true">
-                                                </clabel>
+                                                
+                                                
+                                                 <label class="control-label col-sm-2" for="labelpassword">
+                                                    <span>*</span>
+                                                    Contraseña
+                                                </label>
+                                                
+                                                
                                                 <div class="control col-sm-8">
                                                     <input ng-model="bean.password"
                                                            type="password"
@@ -89,16 +131,21 @@
                                                     <span class="help-block" ng-if="!outerForm.password.$pristine && outerForm.password.$error.required">El campo es obligatorio</span>
                                                     <span class="help-block" ng-if="!outerForm.password.$pristine && outerForm.password.$error.pattern">El password de ha de tener de 6 a 20 caracteres con al menos una mayúscula, una minúscula y un dígito</span>
                                                 </div>
+                                                
+                                                
                                             </div>
                                             <div id="password2-group"
                                                  class="form-group"
                                                  ng-class="{'has-error': (outerForm.password2.$error.pattern && !outerForm.password2.$pristine) ||
                                                                      (outerForm.password2.$error.required && !outerForm.password2.$pristine)}">
-                                                <clabel wide="2"
-                                                        name="'labelpassword2'"
-                                                        longname="'Repita la Contraseña'"
-                                                        required="true">
-                                                </clabel>
+                                                
+                                                           <label class="control-label col-sm-2" for="labelpassword2">
+                                                    <span>*</span>
+                                                    Repita la Contraseña
+                                                </label>
+                                                
+                                                
+                                 
                                                 <div class="control col-sm-8">
                                                     <input ng-model="bean.password2"
                                                            type="password"
