@@ -195,7 +195,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 text-center">
                                                     <p><br>
-                                                        <a class="btn btn-primary" ng-if="xob" href="{{ob}}/{{profile}}/newX{{xob}}/{{xid}}">Crear</a>
+                                                        <a class="btn btn-primary" ng-if="xob" href="{{ob}}/{{profile}}/{{xob}}/newx/{{xid}}">Crear</a>
                                                         <a class="btn btn-primary" ng-if="!xob" href="{{ob}}/{{profile}}/new">Crear</a>
                                                     </p>
                                                 </div>
@@ -214,7 +214,7 @@
                                             <thead plistheader></thead>
                                             <tbody>
                                                 <tr ng-repeat="oBean in page| filter:searchText" >
-                                                    <td ng-repeat="oMetap in metap" ng-if="oMetap.IsVisible && oMetap.Type == 'Id'"  class="text-right">
+                                                    <td ng-repeat="oMetap in metap" ng-if="oMetap.IsVisible && oMetap.Type == 'Id'"  class="text-right col-md-1">
                                                         <div ng-if="oMetap.IsVisible && oMetap.Type == 'Id'"><b>{{oBean[oMetap.Name]}}</b></div>
                                                     </td>
                                                     <td ng-init="setShowRemove(true)" ng-repeat="oMetap in metap" ng-if="oMetap.IsVisible && oMetap.Type != 'Id'"  class="text-right">
@@ -222,14 +222,15 @@
                                                         <div ng-if="oMetap.IsVisible && oMetap.Type == 'Integer'" class="text-center">{{oBean[oMetap.Name]}}</div>
                                                         <div ng-if="oMetap.IsVisible && oMetap.Type == 'Decimal'" class="text-center">{{oBean[oMetap.Name]}}</div>
                                                         <div ng-if="oMetap.IsVisible && oMetap.Type == 'String'" class="text-left">{{oBean[oMetap.Name]|clipString}}</div>
+                                                        <div ng-if="oMetap.IsVisible && oMetap.Type == 'Calculated'" class="text-left">{{oBean[oMetap.Name]|clipString}}</div>
                                                         <div ng-if="oMetap.IsVisible && oMetap.Type == 'Boolean'" class="text-center" ng-bind-html="oBean[oMetap.Name] | booleanizate"></div>                                                        
                                                         <div ng-if="oMetap.IsVisible && oMetap.Type == 'ForeignObject' && oBean[oMetap.Name]" class="text-left">
                                                             <span class="{{oBean[oMetap.Name].metaObject.Icon}}"></span>
                                                             <a href="{{oMetap.References}}/{{profile}}/view/{{oBean[oMetap.Name].data.id}}">{{oBean[oMetap.Name]|getForeignDescription}}</a>
                                                         </div>
                                                         <div ng-if="oMetap.IsVisible && oMetap.Type == 'Link'" class="text-center">                                     
-                                                            <a ng-if="oBean[oMetap.Name] > 0" class="btn btn-default btn-xs" href="{{oMetap.References}}/{{profile}}/plistX{{ob}}/{{oBean['id']}}">{{setShowRemove(false);oBean[oMetap.Name]}}</a>
-                                                            <a ng-if="oBean[oMetap.Name] == 0" class="btn btn-default btn-xs" href="{{oMetap.References}}/{{profile}}/newX{{ob}}/{{oBean['id']}}">{{setShowRemove(true);oBean[oMetap.Name]}}</a>                                                        
+                                                            <a ng-if="oBean[oMetap.Name] > 0" class="btn btn-default btn-xs" href="{{oMetap.References}}/{{profile}}/{{ob}}/plistx/{{oBean['id']}}">{{setShowRemove(false);oBean[oMetap.Name]}}</a>
+                                                            <a ng-if="oBean[oMetap.Name] == 0" class="btn btn-default btn-xs" href="{{oMetap.References}}/{{profile}}/{{ob}}/newx/{{oBean['id']}}">{{setShowRemove(true);oBean[oMetap.Name]}}</a>                                                        
                                                         </div>                                                  
                                                     </td>                                              
                                                     <td ng-if="!xob && !onlyview" class="col-md-1">      
@@ -262,7 +263,7 @@
                                                                 <a class="btn btn-default btn-xs" title="View" href="{{ob}}/{{profile}}/view/{{oBean.id}}">
                                                                     <span class="glyphicon glyphicon-eye-open"></span>
                                                                 </a>
-                                                                <a class="btn btn-default btn-xs" title="Edit" href="{{ob}}/{{profile}}/editX{{xob}}/{{oBean.id}}/{{xid}}">
+                                                                <a class="btn btn-default btn-xs" title="Edit" href="{{ob}}/{{profile}}/{{xob}}/editx/{{oBean.id}}/{{xid}}">
                                                                     <span class="glyphicon glyphicon-pencil"></span>
                                                                 </a>
 
