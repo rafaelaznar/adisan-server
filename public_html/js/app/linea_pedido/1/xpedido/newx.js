@@ -31,7 +31,7 @@ moduloLinea_pedido.controller('Linea_pedidoXpedidoNew1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
                 $scope.ob = "linea_pedido";
-                $scope.op = "newX";
+                $scope.op = "newx";
                 $scope.profile = 1;
                 //---
                 $scope.xob = "pedido";
