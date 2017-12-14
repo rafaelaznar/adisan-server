@@ -26,30 +26,34 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloDestinoalta.controller('DestinoaltaView1Controller',
-        ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService',
-            function ($scope, $routeParams, serverCallService, $location, sessionService, constantService) {
+
+moduloDestinoalta.controller('DestinoaltaNew1Controller',
+        ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
+            function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
                 $scope.ob = "destinoalta";
-                $scope.op = "view";
+                $scope.op = "new";
                 $scope.profile = 1;
-                //----
-                $scope.onlyview = true;
-                //---
-                $scope.id = $routeParams.id;
-                //---
-                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
+                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
-                serverCallService.getOne($scope.ob, $scope.id).then(function (response) {
+                serverCallService.getMeta($scope.ob).then(function (response) {
                     if (response.status == 200) {
                         if (response.data.status == 200) {
                             $scope.status = null;
-                            $scope.bean = response.data.json.data;
+                            //--For every foreign key create obj inside bean tobe filled...
+                            $scope.bean = {};
+                            response.data.json.metaProperties.forEach(function (property) {
+                                if (property.Type == 'ForeignObject') {
+                                    $scope.bean[property.Name] = {};
+                                    $scope.bean[property.Name].data = {};
+                                    $scope.bean[property.Name].data.id = 0;
+                                }
+                            });
+                            //--
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
-
 
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
@@ -60,6 +64,26 @@ moduloDestinoalta.controller('DestinoaltaView1Controller',
                 }).catch(function (data) {
                     $scope.status = "Error en la recepción de datos del servidor";
                 });
+                //--
+                $scope.save = function () {
+                    var jsonToSend = {json: JSON.stringify(toolService.array_identificarArray($scope.bean))};
+                    serverCallService.set($scope.ob, jsonToSend).then(function (response) {
+                        if (response.status == 200) {
+                            if (response.data.status == 200) {
+                                $scope.response = response;
+                                $scope.status = "El registro se ha creado con id=" + response.data.json;
+                                $scope.bean.id = response.data.json;
+                            } else {
+                                $scope.status = "Error en la recepción de datos del servidor";
+                            }
+                        } else {
+                            $scope.status = "Error en la recepción de datos del servidor";
+                        }
+                    }).catch(function (data) {
+                        $scope.status = "Error en la recepción de datos del servidor";
+                    });
+                    ;
+                };
                 $scope.back = function () {
                     window.history.back();
                 };
@@ -68,3 +92,4 @@ moduloDestinoalta.controller('DestinoaltaView1Controller',
                 };
             }
         ]);
+
