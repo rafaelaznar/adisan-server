@@ -38,6 +38,7 @@ moduloCircunstanciasalta.controller('CircunstanciasaltaSelection5Controller',
                 $scope.rpp = 10;
                 $scope.neighbourhood = 1;
                 $scope.onlyview = true;
+                
                 //---
                 $scope.status = null;
                 $scope.debugging = true;
