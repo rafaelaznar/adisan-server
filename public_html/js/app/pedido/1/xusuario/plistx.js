@@ -30,7 +30,7 @@ moduloPedido.controller('PedidoXusuarioPList1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
                 $scope.ob = "pedido";
-                $scope.op = "plistX";
+                $scope.op = "plistx";
                 $scope.profile = 1;
                 //----
                 $scope.xob = "usuario";

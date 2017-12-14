@@ -53,7 +53,7 @@
 
                                 <div class="alert alert-success" role="alert">
                                     Curso: {{grupo.obj_curso.descripcion}}<br>
-                                    Profesor: {{grupo.obj_usuario.nombre}} {{grupo.obj_usuario.primer_apellido}} {{grupo.obj_usuario.segundo_apellido}}<br>                                    
+                                    Profesor: {{grupo.obj_usuario.nombre}} {{grupo.obj_usuario.primer_apellido}} {{grupo.obj_usuario.segundo_apellido}}<br>
                                     Centro: {{grupo.obj_usuario.obj_centro.nombre}}<br>
                                     Centro Sanitario: {{grupo.obj_usuario.obj_centrosanitario.descripcion}}<br>
                                 </div>
@@ -109,14 +109,14 @@
                                                  class="form-group"
                                                  ng-class="{'has-error': (outerForm.password.$error.pattern && !outerForm.password.$pristine) ||
                                                                      (outerForm.password.$error.required && !outerForm.password.$pristine)}">
-                                                
-                                                
-                                                 <label class="control-label col-sm-2" for="labelpassword">
+
+
+                                                <label class="control-label col-sm-2" for="labelpassword">
                                                     <span>*</span>
                                                     Contraseña
                                                 </label>
-                                                
-                                                
+
+
                                                 <div class="control col-sm-8">
                                                     <input ng-model="bean.password"
                                                            type="password"
@@ -131,21 +131,21 @@
                                                     <span class="help-block" ng-if="!outerForm.password.$pristine && outerForm.password.$error.required">El campo es obligatorio</span>
                                                     <span class="help-block" ng-if="!outerForm.password.$pristine && outerForm.password.$error.pattern">El password de ha de tener de 6 a 20 caracteres con al menos una mayúscula, una minúscula y un dígito</span>
                                                 </div>
-                                                
-                                                
+
+
                                             </div>
                                             <div id="password2-group"
                                                  class="form-group"
                                                  ng-class="{'has-error': (outerForm.password2.$error.pattern && !outerForm.password2.$pristine) ||
                                                                      (outerForm.password2.$error.required && !outerForm.password2.$pristine)}">
-                                                
-                                                           <label class="control-label col-sm-2" for="labelpassword2">
+
+                                                <label class="control-label col-sm-2" for="labelpassword2">
                                                     <span>*</span>
                                                     Repita la Contraseña
                                                 </label>
-                                                
-                                                
-                                 
+
+
+
                                                 <div class="control col-sm-8">
                                                     <input ng-model="bean.password2"
                                                            type="password"
@@ -185,22 +185,25 @@
                                                  class="form-group"
                                                  ng-class="{'has-error': (outerForm.nombre.$error.pattern && !outerForm.nombre.$pristine) ||
                                                                      (outerForm.nombre.$error.required && !outerForm.nombre.$pristine)}">
-                                                <clabel wide="2"
-                                                        name="'labelnombre'"
-                                                        longname="'Nombre'"
-                                                        required="true">
-                                                </clabel>
+
+                                                <label class="control-label col-sm-2" for="labelnombre">
+                                                    <span>*</span>
+                                                    Nombre
+                                                </label>
+
+
+
                                                 <div class="control col-sm-8">
-                                                    <input ng-model="bean.nombre" 
+                                                    <input ng-model="bean.nombre"
                                                            type="text"
-                                                           class="form-control" 
-                                                           id="nombre" 
-                                                           name="nombre" 
+                                                           class="form-control"
+                                                           id="nombre"
+                                                           name="nombre"
                                                            ng-pattern="/^([A-Z]{1}[a-zñáéíóúàèò]+[\s]*)+$/"
-                                                           placeholder="Nombre" 
-                                                           maxlength="255" 
-                                                           ng-required="required"                                                         
-                                                           />  
+                                                           placeholder="Nombre"
+                                                           maxlength="255"
+                                                           ng-required="required"
+                                                           />
                                                     <span class="help-block" ng-if="!outerForm.nombre.$pristine && outerForm.nombre.$error.required">El campo es obligatorio</span>
                                                     <span class="help-block" ng-if="!outerForm.nombre.$pristine && outerForm.nombre.$error.pattern">El campo no tiene formato adecuado</span>
                                                 </div>
@@ -210,22 +213,23 @@
                                                  class="form-group"
                                                  ng-class="{'has-error': (outerForm.primer_apellido.$error.pattern && !outerForm.primer_apellido.$pristine) ||
                                                                      (outerForm.primer_apellido.$error.required && !outerForm.primer_apellido.$pristine)}">
-                                                <clabel wide="2"
-                                                        name="'labelprimer_apellido'"
-                                                        longname="'Primer apellido'"
-                                                        required="true">
-                                                </clabel>
+
+                                                <label class="control-label col-sm-2" for="labelprimer_apellido">
+                                                    <span>*</span>
+                                                    Primer apellido
+                                                </label>
+
                                                 <div class="control col-sm-8">
-                                                    <input ng-model="bean.primer_apellido" 
+                                                    <input ng-model="bean.primer_apellido"
                                                            type="text"
-                                                           class="form-control" 
-                                                           id="primer_apellido" 
-                                                           name="primer_apellido" 
+                                                           class="form-control"
+                                                           id="primer_apellido"
+                                                           name="primer_apellido"
                                                            ng-pattern="/^([A-Z]{1}[a-zñáéíóúàèò]+[\s]*)+$/"
-                                                           placeholder="Primer apellido" 
-                                                           maxlength="255" 
-                                                           ng-required="required"                                                         
-                                                           />                                                                                                                                                            
+                                                           placeholder="Primer apellido"
+                                                           maxlength="255"
+                                                           ng-required="required"
+                                                           />
                                                     <span class="help-block" ng-if="!outerForm.primer_apellido.$pristine && outerForm.primer_apellido.$error.required">El campo es obligatorio</span>
                                                     <span class="help-block" ng-if="!outerForm.primer_apellido.$pristine && outerForm.primer_apellido.$error.pattern">El campo no tiene formato adecuado</span>
                                                 </div>
@@ -235,22 +239,21 @@
                                                  class="form-group"
                                                  ng-class="{'has-error': (outerForm.segundo_apellido.$error.pattern && !outerForm.segundo_apellido.$pristine) ||
                                                                      (outerForm.segundo_apellido.$error.required && !outerForm.segundo_apellido.$pristine)}">
-                                                <clabel wide="2"
-                                                        name="'labelsegundo_apellido'"
-                                                        longname="'Segundo apellido'"
-                                                        required="true">
-                                                </clabel>
+                                                <label class="control-label col-sm-2" for="labelsegundo_apellido">
+                                                    <span>*</span>
+                                                    Segundo apellido
+                                                </label>
                                                 <div class="control col-sm-8">
-                                                    <input ng-model="bean.segundo_apellido" 
+                                                    <input ng-model="bean.segundo_apellido"
                                                            type="text"
-                                                           class="form-control" 
-                                                           id="segundo_apellido" 
-                                                           name="segundo_apellido" 
+                                                           class="form-control"
+                                                           id="segundo_apellido"
+                                                           name="segundo_apellido"
                                                            ng-pattern="/^([A-Z]{1}[a-zñáéíóúàèò]+[\s]*)+$/"
-                                                           placeholder="Segundo apellido" 
-                                                           maxlength="255" 
-                                                           ng-required="required"                                                        
-                                                           />           
+                                                           placeholder="Segundo apellido"
+                                                           maxlength="255"
+                                                           ng-required="required"
+                                                           />
                                                     <span class="help-block" ng-if="!outerForm.segundo_apellido.$pristine && outerForm.segundo_apellido.$error.required">El campo es obligatorio</span>
                                                     <span class="help-block" ng-if="!outerForm.segundo_apellido.$pristine && outerForm.segundo_apellido.$error.pattern">El campo no tiene formato adecuado</span>
                                                 </div>
@@ -262,22 +265,23 @@
                                                  class="form-group"
                                                  ng-class="{'has-error': (outerForm.email.$error.pattern && !outerForm.email.$pristine) ||
                                                                      (outerForm.email.$error.required && !outerForm.email.$pristine)}">
-                                                <clabel wide="2"
-                                                        name="'labelemail'"
-                                                        longname="'Email'"
-                                                        required="true">
-                                                </clabel>
+
+                                                <label class="control-label col-sm-2" for="labelemail">
+                                                    <span>*</span>
+                                                    Email
+                                                </label>
+
                                                 <div class="control col-sm-8">
-                                                    <input ng-model="bean.email" 
+                                                    <input ng-model="bean.email"
                                                            type="text"
-                                                           class="form-control" 
-                                                           id="email" 
-                                                           name="email" 
+                                                           class="form-control"
+                                                           id="email"
+                                                           name="email"
                                                            ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/"
-                                                           placeholder="Correo electrónico" 
-                                                           maxlength="255" 
-                                                           ng-required="required"                                                         
-                                                           />  
+                                                           placeholder="Correo electrónico"
+                                                           maxlength="255"
+                                                           ng-required="required"
+                                                           />
                                                     <span class="help-block" ng-if="!outerForm.email.$pristine && outerForm.email.$error.required">El campo es obligatorio</span>
                                                     <span class="help-block" ng-if="!outerForm.email.$pristine && outerForm.email.$error.pattern">El campo no tiene formato adecuado</span>
                                                 </div>
@@ -324,10 +328,10 @@
                                                 Algo no ha ido bien, ponte en contacto con tu profesor/a
                                             </div>
                                         </div>
-                                    </div>                                    
+                                    </div>
                                 </div>
                                 <div class="control-group text-right">
-                                    <div class="controls">                                        
+                                    <div class="controls">
                                         <a class="btn btn-default" ng-click="back()">Volver</a>
                                         <a class="btn btn-default" ng-click="close()">Cerrar</a>
                                     </div>
@@ -335,7 +339,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel-footer" style="font-family: Questrial, serif;" ng-include="'js/system/footer.html'"></div>
+
+                    <div class="panel-footer" style="font-family: Questrial, serif;" ng-include="'js/system/include/footer.html'"></div>
                 </div>
             </div>
         </div>
