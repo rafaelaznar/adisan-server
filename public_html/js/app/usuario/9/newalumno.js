@@ -47,7 +47,7 @@ moduloUsuario.controller('UsuarioNewalumno9Controller',
                         if ($scope.bean.login) {
                             $http.get(constantService.getAppUrl() + '?ob=usuario&op=checklogin&login=' + $scope.bean.login, 'GET', '').then(function (response) {
                                 if (response.status == 200) {
-                                    if (response.data.message == "OK") {
+                                    if (response.data.json == "OK") {
                                         //$scope.outerForm.login.$setValidity('repetido', false);
                                         $scope.fase = 2;
                                     }
