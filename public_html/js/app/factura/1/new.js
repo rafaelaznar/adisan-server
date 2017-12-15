@@ -27,10 +27,10 @@
  */
 'use strict';
 
-moduloSexo.controller('SexoNew1Controller',
+moduloFactura.controller('FacturaNew1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
-                $scope.ob = "sexo";
+                $scope.ob = "factura";
                 $scope.op = "new";
                 $scope.profile = 1;
                 //---

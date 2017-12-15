@@ -28,10 +28,10 @@
 
 'use strict';
 
-moduloSexo.controller('SexoRemove1Controller',
+moduloFactura.controller('FacturaRemove1Controller',
         ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService',
             function ($scope, $routeParams, serverCallService, $location, sessionService, constantService) {
-                $scope.ob = "sexo";
+                $scope.ob = "factura";
                 $scope.op = "remove";
                 $scope.profile = 1;
                 //---

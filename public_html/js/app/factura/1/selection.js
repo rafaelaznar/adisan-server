@@ -28,10 +28,10 @@
 
 'use strict';
 
-moduloSexo.controller('SexoSelection1Controller',
+moduloFactura.controller('FacturaSelection1Controller',
         ['$scope', '$uibModalInstance', 'serverCallService', '$location', 'toolService',
             function ($scope, $modalInstance, serverCallService, $location, toolService) {
-                $scope.ob = 'sexo';
+                $scope.ob = 'factura';
                 $scope.op = "selection";
                 //---
                 $scope.numpage = 1;
@@ -50,7 +50,8 @@ moduloSexo.controller('SexoSelection1Controller',
 
                 $scope.filterString = [{'name': 'descripcion', 'longname': 'Descripción'}];
                 $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'}];
-
+                $scope.filterDate = [{'name': 'fecha', 'longname': 'Fecha'}];
+                
                 $scope.closeForm = function (id) {
                     $modalInstance.close(id);
                 };

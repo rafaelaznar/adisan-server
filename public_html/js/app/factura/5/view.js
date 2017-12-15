@@ -26,14 +26,14 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloSexo.controller('SexoView5Controller',
+moduloFactura.controller('FacturaView5Controller',
         ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService',
             function ($scope, $routeParams, serverCallService, $location, sessionService, constantService) {
-                $scope.ob = "sexo";
+                $scope.ob = "factura";
                 $scope.op = "view";
                 $scope.profile = 5;
                 //----
-                $scope.onlyview = true;
+              //  $scope.onlyview = true;
                 //---
                 $scope.id = $routeParams.id;
                 //---

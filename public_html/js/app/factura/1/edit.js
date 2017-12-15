@@ -27,10 +27,10 @@
  */
 
 'use strict';
-moduloSexo.controller('SexoEdit1Controller',
+moduloFactura.controller('FacturaEdit1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
-                $scope.ob = "sexo";
+                $scope.ob = "factura";
                 $scope.op = "edit";
                 $scope.profile = 1;
                 //---

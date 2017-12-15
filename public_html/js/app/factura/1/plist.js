@@ -1,8 +1,8 @@
 'use strict';
-moduloSexo.controller('SexoPList1Controller',
+moduloFactura.controller('FacturaPList1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
-                $scope.ob = "sexo";
+                $scope.ob = "factura";
                 $scope.op = "plist";
                 $scope.profile = 1;
                 //---
