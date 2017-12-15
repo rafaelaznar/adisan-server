@@ -95,7 +95,7 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/tipopago/4/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'TipopagoView4Controller', resolve: {auth: authenticationAlumnoPromise}});
         //-----------
         $routeProvider.when('/tipopago/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'TipopagoView5Controller', resolve: {auth: authenticationVisitantePromise}});
-        
+        // ------ Especialidad
         $routeProvider.when('/especialidad/1/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'EspecialidadPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/especialidad/1/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'EspecialidadView1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/especialidad/1/new/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EspecialidadNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
@@ -107,6 +107,21 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/especialidad/4/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'EspecialidadView4Controller', resolve: {auth: authenticationAlumnoPromise}});
         //-----------5
         $routeProvider.when('/especialidad/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'EspecialidadView5Controller', resolve: {auth: authenticationVisitantePromise}});
+        // ---------- Tipo Dependencia
+        $routeProvider.when('/tipodependencia/1/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'TipodependenciaPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/tipodependencia/1/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'TipodependenciaView1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/tipodependencia/1/new/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'TipodependenciaNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/tipodependencia/1/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'TipodependenciaEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/tipodependencia/1/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'TipodependenciaRemove1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        //-----------3
+        $routeProvider.when('/tipodependencia/3/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'TipodependenciaView3Controller', resolve: {auth: authenticationProfesorPromise}});
+        //-----------4
+        $routeProvider.when('/tipodependencia/4/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'TipodependenciaView4Controller', resolve: {auth: authenticationAlumnoPromise}});
+        //-----------5
+        $routeProvider.when('/tipodependencia/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'TipodependenciaView5Controller', resolve: {auth: authenticationVisitantePromise}});
+
+
+
 
         $routeProvider.when('/destinoalta/1/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'DestinoaltaView1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/destinoalta/1/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'DestinoaltaPlist1Controller', resolve: {auth: authenticationAdministratorPromise}});
