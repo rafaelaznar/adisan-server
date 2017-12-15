@@ -84,7 +84,10 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/linea_pedido/1/xpedido/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'Linea_pedidoXpedidoNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/linea_pedido/1/xpedido/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'Linea_pedidoXpedidoEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
         //-----------
-         $routeProvider.when('/tipoepisodio/1/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'TipoepisodioView1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/tipoepisodio/1/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'TipoepisodioView1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/tipoepisodio/1/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'TipoepisodioPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/tipoepisodio/1/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'TipoepisodioEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/tipoepisodio/1/new/:id?' , {templateUrl: 'js/system/shared/app/newedit.html', controller: 'TipoepisodioNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/tipoepisodio/1/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'TipoepisodioRemove1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.otherwise({redirectTo: '/'});
     }]);
