@@ -97,13 +97,10 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         
         
         //----Circunstanciasalta 3 profesor --
-        $routeProvider.when('/circunstanciasalta/3/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'CircunstanciasaltaPList3Controller', resolve: {auth: authenticationProfesorPromise}});
         $routeProvider.when('/circunstanciasalta/3/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'CircunstanciasaltaView3Controller', resolve: {auth: authenticationProfesorPromise}});
         //----Circunstanciasalta 4 alumno --
-        $routeProvider.when('/circunstanciasalta/4/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'CircunstanciasaltaPList4Controller', resolve: {auth: authenticationAlumnoPromise}});
         $routeProvider.when('/circunstanciasalta/4/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'CircunstanciasaltaView4Controller', resolve: {auth: authenticationAlumnoPromise}});
         //----Circunstanciasalta 5 visitante --
-        $routeProvider.when('/circunstanciasalta/5/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'CircunstanciasaltaPList5Controller', resolve: {auth: authenticationVisitantePromise}});
         $routeProvider.when('/circunstanciasalta/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'CircunstanciasaltaView5Controller', resolve: {auth: authenticationVisitantePromise}});
         //----Episodio 1 admin --
         $routeProvider.when('/episodio/1/xcircunstanciasalta/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioxcircunstanciasaltaNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
