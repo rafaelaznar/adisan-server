@@ -32,8 +32,7 @@ moduloTiposervicio.controller('TiposervicioPlist1Controller',
                 $scope.ob = "tiposervicio";
                 $scope.op = "plist";
                 $scope.profile = 1;
-                //----
-                $scope.onlyview = true;
+
                 //---
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //----
