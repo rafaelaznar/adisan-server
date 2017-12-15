@@ -26,10 +26,10 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloUsuario.controller('UsuarioView1Controller',
+moduloCircunstanciasalta.controller('CircunstanciasaltaView1Controller',
         ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService',
             function ($scope, $routeParams, serverCallService, $location, sessionService, constantService) {
-                $scope.ob = "usuario";
+                $scope.ob = "circunstanciasalta";
                 $scope.op = "view";
                 $scope.profile = 1;
                 //---

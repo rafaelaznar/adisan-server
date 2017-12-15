@@ -26,12 +26,14 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloUsuario.controller('UsuarioView1Controller',
+moduloSexo.controller('SexoView1Controller',
         ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService',
             function ($scope, $routeParams, serverCallService, $location, sessionService, constantService) {
-                $scope.ob = "usuario";
+                $scope.ob = "sexo";
                 $scope.op = "view";
                 $scope.profile = 1;
+                //----
+                $scope.onlyview = true;
                 //---
                 $scope.id = $routeParams.id;
                 //---
