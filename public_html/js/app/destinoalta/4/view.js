@@ -31,7 +31,7 @@ moduloDestinoalta.controller('DestinoaltaView4Controller',
             function ($scope, $routeParams, serverCallService, $location, sessionService, constantService) {
                 $scope.ob = "destinoalta";
                 $scope.op = "view";
-                $scope.profile = 1;
+                $scope.profile = 4;
                 //----
                 $scope.onlyview = true;
                 //---
