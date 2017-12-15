@@ -26,12 +26,14 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloUsuario.controller('UsuarioView1Controller',
+moduloModalidadepisodio.controller('ModalidadepisodioView5Controller',
         ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService',
             function ($scope, $routeParams, serverCallService, $location, sessionService, constantService) {
-                $scope.ob = "usuario";
+                $scope.ob = "modalidadepisodio";
                 $scope.op = "view";
-                $scope.profile = 1;
+                $scope.profile = 5;
+                //----
+                $scope.onlyview = true;
                 //---
                 $scope.id = $routeParams.id;
                 //---
