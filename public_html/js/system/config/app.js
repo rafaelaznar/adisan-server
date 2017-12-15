@@ -38,6 +38,7 @@ var trolleyes = angular.module('myApp', [
     'pedidoControllers',
     'productoControllers',
     'linea_pedidoControllers',
+    'tipopagoControllers',
     'especialidadControllers',
     'ui.bootstrap',
     'ngSanitize',
@@ -55,4 +56,5 @@ var moduloTipousuario = angular.module('tipousuarioControllers', []);
 var moduloPedido = angular.module('pedidoControllers', []);
 var moduloProducto = angular.module('productoControllers', []);
 var moduloLinea_pedido = angular.module('linea_pedidoControllers', []);
+var moduloTipopago = angular.module('tipopagoControllers', []);
 var moduloEspecialidad = angular.module('especialidadControllers', []);
