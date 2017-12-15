@@ -26,15 +26,13 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloDestinoalta.controller('DestinoaltaPlist1Controller',
+moduloTiposervicio.controller('TiposervicioPlist1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
-                $scope.ob = "destinoalta";
+                $scope.ob = "tiposervicio";
                 $scope.op = "plist";
                 $scope.profile = 1;
 
-                //----
-                
                 //---
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //----
