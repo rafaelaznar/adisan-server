@@ -205,6 +205,7 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/tipoepisodio/1/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'TipoepisodioEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/tipoepisodio/1/new/:id?' , {templateUrl: 'js/system/shared/app/newedit.html', controller: 'TipoepisodioNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/tipoepisodio/1/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'TipoepisodioRemove1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        
         $routeProvider.when('/sexo/1/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'SexoPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/sexo/1/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'SexoView1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/sexo/2/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'SexoView2Controller', resolve: {auth: authenticationProfesorPromise}});
@@ -214,6 +215,14 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/sexo/1/new/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'SexoNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/sexo/1/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'SexoEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/sexo/1/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'SexoRemove1Controller', resolve: {auth: authenticationAdministratorPromise}});
-
+        
+        $routeProvider.when('/factura/1/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'FacturaPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/factura/1/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'FacturaView1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/factura/3/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'FacturaView3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/factura/4/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'FacturaView4Controller', resolve: {auth: authenticationAlumnoPromise}});
+        $routeProvider.when('/factura/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'FacturaView5Controller', resolve: {auth: authenticationVisitantePromise}});
+        $routeProvider.when('/factura/1/new/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'FacturaNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/factura/1/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'FacturaEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/factura/1/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'FacturaRemove1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.otherwise({redirectTo: '/'});
     }]);

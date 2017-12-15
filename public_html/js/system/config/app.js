@@ -48,6 +48,7 @@ var trolleyes = angular.module('myApp', [
     'modalidadepisodioControllers',
     'tipodependeciaControllers',
     'tipoepisodioControllers',
+    'facturaControllers',
     'ui.bootstrap',
     'ngSanitize',
     'chart.js'
@@ -65,16 +66,18 @@ var moduloPedido = angular.module('pedidoControllers', []);
 var moduloDestinoalta = angular.module('destinoaltaControllers', []);
 var moduloProducto = angular.module('productoControllers', []);
 var moduloLinea_pedido = angular.module('linea_pedidoControllers', []);
-var moduloSexo = angular.module('sexoControllers', []);
-
 var moduloTipoepisodio = angular.module('tipoepisodioControllers', []);
-
+var moduloSexo = angular.module('sexoControllers', []);
 var moduloCircunstanciasalta = angular.module('circunstanciasaltaControllers', []);
 var moduloEpisodio = angular.module('episodioControllers', []);
 var moduloTipopago = angular.module('tipopagoControllers', []);
 var moduloEspecialidad = angular.module('especialidadControllers', []);
+
+var moduloFactura = angular.module('facturaControllers', []);
+
 var moduloTiposervicio = angular.module('tiposervicioControllers', []);
 //------------
 var moduloTipodependencia = angular.module('tipodependeciaControllers', []);
 var moduloModalidadepisodio = angular.module('modalidadepisodioControllers', []);
+
 
