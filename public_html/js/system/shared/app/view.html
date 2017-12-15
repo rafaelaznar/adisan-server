@@ -67,7 +67,7 @@
                                             <td ng-if="oMetap.Type == 'Calculated'">{{bean[oMetap.Name]}}</td>
                                             <td ng-if="oMetap.Type == 'Boolean'" ng-bind-html="bean[oMetap.Name] | booleanizate"></td>
                                             <td ng-if="oMetap.Type == 'ForeignObject'">
-                                                <span class="{{bean[oMetap.Name].metaObject.Icon}}"></span>
+                                                <span ng-if="bean[oMetap.Name].data.id > 0" class="{{bean[oMetap.Name].metaObject.Icon}}"></span>
                                                 <a href="{{oMetap.References}}/{{profile}}/view/{{bean[oMetap.Name].data.id}}">{{bean[oMetap.Name]|getForeignDescription}}</a>
                                             </td>
                                             <td ng-if="oMetap.Type == 'Link'">
