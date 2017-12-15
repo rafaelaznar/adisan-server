@@ -28,7 +28,7 @@
 
 'use strict';
 
-moduloTipodependencia.controller('TipodependenciaSelection4Controller',
+moduloTipodependencia.controller('TipodependenciaSelection5Controller',
         ['$scope', '$uibModalInstance', 'serverCallService', '$location', 'toolService',
             function ($scope, $modalInstance, serverCallService, $location, toolService) {
                 $scope.ob = 'tipodependencia';

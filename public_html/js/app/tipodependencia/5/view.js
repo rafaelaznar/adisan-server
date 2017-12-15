@@ -26,7 +26,7 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloTipodependencia.controller('TipodependenciaView4Controller',
+moduloTipodependencia.controller('TipodependenciaView5Controller',
         ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService',
             function ($scope, $routeParams, serverCallService, $location, sessionService, constantService) {
                 $scope.ob = "tipodependencia";
