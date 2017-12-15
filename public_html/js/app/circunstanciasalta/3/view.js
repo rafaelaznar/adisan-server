@@ -34,6 +34,7 @@ moduloCircunstanciasalta.controller('CircunstanciasaltaView3Controller',
                 $scope.profile = 3;
                 //---
                 $scope.id = $routeParams.id;
+                $scope.onlyview = true;
                 //---
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
