@@ -26,12 +26,14 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloUsuario.controller('UsuarioView1Controller',
+moduloFactura.controller('FacturaView5Controller',
         ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService',
             function ($scope, $routeParams, serverCallService, $location, sessionService, constantService) {
-                $scope.ob = "usuario";
+                $scope.ob = "factura";
                 $scope.op = "view";
-                $scope.profile = 1;
+                $scope.profile = 5;
+                //----
+              //  $scope.onlyview = true;
                 //---
                 $scope.id = $routeParams.id;
                 //---

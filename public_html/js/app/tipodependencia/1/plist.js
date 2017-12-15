@@ -26,14 +26,13 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloTipousuario.controller('TipousuarioPList1Controller',
+moduloTipodependencia.controller('TipodependenciaPList1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
-                $scope.ob = "tipousuario";
+                $scope.ob = "tipodependencia";
                 $scope.op = "plist";
                 $scope.profile = 1;
                 //----
-                //$scope.onlyview = true;
                 //---
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //----
