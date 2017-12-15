@@ -81,6 +81,6 @@ var moduloModalidadepisodio = angular.module('modalidadepisodioControllers', [])
 var moduloServicio = angular.module('servicioControllers', []);
 //------------
 var moduloTipodependencia = angular.module('tipodependeciaControllers', []);
-var moduloModalidadepisodio = angular.module('modalidadepisodioControllers', []);
+
 
 
