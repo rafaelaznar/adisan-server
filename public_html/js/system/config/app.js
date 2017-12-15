@@ -44,6 +44,7 @@ var trolleyes = angular.module('myApp', [
     'episodioControllers',
     'tipopagoControllers',
     'especialidadControllers',
+    'modalidadepisodioControllers',
     'tipodependeciaControllers',
     'tipoepisodioControllers',
     'ui.bootstrap',
@@ -72,5 +73,5 @@ var moduloEpisodio = angular.module('episodioControllers', []);
 var moduloTipopago = angular.module('tipopagoControllers', []);
 var moduloEspecialidad = angular.module('especialidadControllers', []);
 var moduloTipodependencia = angular.module('tipodependeciaControllers', []);
-//------------
+var moduloModalidadepisodio = angular.module('modalidadepisodioControllers', []);
 
