@@ -25,15 +25,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 'use strict';
-moduloTiposervicio.controller('TiposervicioView1Controller',
+
+moduloServicio.controller('ServicioRemove1Controller',
         ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService',
             function ($scope, $routeParams, serverCallService, $location, sessionService, constantService) {
-                $scope.ob = "tiposervicio";
-                $scope.op = "view";
+                $scope.ob = "servicio";
+                $scope.op = "remove";
                 $scope.profile = 1;
-                //----
-                //$scope.onlyview = true;
                 //---
                 $scope.id = $routeParams.id;
                 //---
@@ -49,8 +49,6 @@ moduloTiposervicio.controller('TiposervicioView1Controller',
                             $scope.bean = response.data.json.data;
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
-
-
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -60,11 +58,29 @@ moduloTiposervicio.controller('TiposervicioView1Controller',
                 }).catch(function (data) {
                     $scope.status = "Error en la recepción de datos del servidor";
                 });
+                $scope.remove = function () {
+                    serverCallService.remove($scope.ob, $scope.id).then(function (response) {
+                        if (response.status == 200) {
+                            if (response.data.status == 200) {
+                                if (response.data.json == 1) {
+                                    $scope.status = "El registro con id=" + $scope.id + " se ha eliminado.";
+                                } else {
+                                    $scope.status = "Error en el borrado de datos del servidor";
+                                }
+                            } else {
+                                $scope.status = "Error en la recepción de datos del servidor";
+                            }
+                        } else {
+                            $scope.status = "Error en la recepción de datos del servidor";
+                        }
+                    }).catch(function (data) {
+                        $scope.status = "Error en la recepción de datos del servidor";
+                    });
+                }
                 $scope.back = function () {
                     window.history.back();
                 };
                 $scope.close = function () {
                     $location.path('/home');
                 };
-            }
-        ]);
+            }]);

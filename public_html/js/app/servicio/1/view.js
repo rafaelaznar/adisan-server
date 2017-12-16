@@ -26,14 +26,12 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloTiposervicio.controller('TiposervicioView1Controller',
+moduloServicio.controller('ServicioView1Controller',
         ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService',
             function ($scope, $routeParams, serverCallService, $location, sessionService, constantService) {
-                $scope.ob = "tiposervicio";
+                $scope.ob = "servicio";
                 $scope.op = "view";
                 $scope.profile = 1;
-                //----
-                //$scope.onlyview = true;
                 //---
                 $scope.id = $routeParams.id;
                 //---
