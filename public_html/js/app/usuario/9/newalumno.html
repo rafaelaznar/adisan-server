@@ -44,17 +44,22 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="alert alert-success" role="alert" ng-if="debugging">
+                                <div class="alert alert-success" role="alert" ng-if="debugging == 2">
                                     <h4>Debug:</h4>
                                     {{bean|json}}<br>
                                     fase:{{fase}}
                                 </div>
-
                                 <div class="alert alert-success" role="alert">
-                                    Curso: {{grupo.obj_curso.descripcion}}<br>
-                                    Profesor: {{grupo.obj_usuario.nombre}} {{grupo.obj_usuario.primer_apellido}} {{grupo.obj_usuario.segundo_apellido}}<br>
-                                    Centro: {{grupo.obj_usuario.obj_centro.nombre}}<br>
-                                    Centro Sanitario: {{grupo.obj_usuario.obj_centrosanitario.descripcion}}<br>
+                                    <span class="{{grupo.metaObject.Icon}}"></span>
+                                    Curso: {{grupo.data.codigo}}<br>
+                                    <span class="{{grupo.data.obj_curso.metaObject.Icon}}"></span>
+                                    Curso: {{grupo.data.obj_curso.data.descripcion}}<br>
+                                    <span class="{{grupo.data.obj_usuario.metaObject.Icon}}"></span>
+                                    Profesor: {{grupo.data.obj_usuario.data.nombre}} {{grupo.data.obj_usuario.data.primer_apellido}} {{grupo.data.obj_usuario.data.segundo_apellido}}<br>
+                                    <span class="{{grupo.data.obj_usuario.data.obj_centro.metaObject.Icon}}"></span>
+                                    Centro: {{grupo.data.obj_usuario.data.obj_centro.data.nombre}}<br>
+                                    <span class="{{grupo.data.obj_usuario.data.obj_centrosanitario.metaObject.Icon}}"></span>
+                                    Centro Sanitario: {{grupo.data.obj_usuario.data.obj_centrosanitario.data.descripcion}}<br>
                                 </div>
 
 

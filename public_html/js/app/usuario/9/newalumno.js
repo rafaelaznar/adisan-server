@@ -27,7 +27,7 @@ moduloUsuario.controller('UsuarioNewalumno9Controller',
                         //if (response.data.message == "OK") {
                         //$scope.outerForm.login.$setValidity('repetido', false);
                         $scope.fase = 1;
-                        $scope.grupo = response.data.json.data;
+                        $scope.grupo = response.data.json;
                         //}
                     } else {
                         //$scope.outerForm.login.$setValidity('repetido', true);
@@ -100,9 +100,9 @@ moduloUsuario.controller('UsuarioNewalumno9Controller',
 //                $scope.bean.obj_medico.id = null;
 //            }
                     delete $scope.bean.password2;
-                    $scope.bean.id_grupo = $scope.grupo.obj_curso.data.id;
-                    $scope.bean.id_centro = $scope.grupo.obj_usuario.data.obj_centro.data.id;
-                    $scope.bean.id_centrosanitario = $scope.grupo.obj_usuario.data.obj_centrosanitario.id;
+                    $scope.bean.id_grupo = $scope.grupo.data.obj_curso.data.id;
+                    $scope.bean.id_centro = $scope.grupo.data.obj_usuario.data.obj_centro.data.id;
+                    $scope.bean.id_centrosanitario = $scope.grupo.data.obj_usuario.data.obj_centrosanitario.data.id;
                     $scope.bean.password = forge_sha256($scope.bean.password).toUpperCase();
                     var jsonToSend = {json: JSON.stringify(toolService.array_identificarArray($scope.bean))};
                     $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
