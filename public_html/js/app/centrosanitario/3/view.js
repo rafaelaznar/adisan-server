@@ -26,7 +26,7 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloCentrosanitariosanitario.controller('CentrosanitariosanitarioView3Controller',
+moduloCentrosanitario.controller('CentrosanitarioView3Controller',
         ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService',
             function ($scope, $routeParams, serverCallService, $location, sessionService, constantService) {
                 $scope.ob = "centrosanitario";
