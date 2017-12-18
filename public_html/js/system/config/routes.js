@@ -1,11 +1,16 @@
 /*
- * Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
+ * Copyright (c) 2017-2018 
  *
- * TROLLEYES helps you to learn how to develop easily AJAX web applications
+ * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
+ * 
+ * GESANE: Free Open Source Health Management System
  *
- * Sources at https://github.com/rafaelaznar/trolleyes
+ * Sources at:
+ *                            https://github.com/rafaelaznar/gesane-server
+ *                            https://github.com/rafaelaznar/gesane-client
+ *                            https://github.com/rafaelaznar/gesane-database
  *
- * TROLLEYES is distributed under the MIT License (MIT)
+ * GESANE is distributed under the MIT License (MIT)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -149,7 +154,6 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         //-----------
         $routeProvider.when('/tipopago/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'TipopagoView5Controller', resolve: {auth: authenticationVisitantePromise}});
         // ------ Especialidad
-
         $routeProvider.when('/especialidad/1/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'EspecialidadPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/especialidad/1/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'EspecialidadView1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/especialidad/1/new/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EspecialidadNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
@@ -273,5 +277,34 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         //-----------
         $routeProvider.when('/curso/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'CursoView5Controller', resolve: {auth: authenticationVisitantePromise}});
         
+         //-----------paciente 5
+        $routeProvider.when('/paciente/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'PacienteView5Controller', resolve: {auth: authenticationVisitantePromise}});
+
+        // ------ Centro
+        $routeProvider.when('/centro/1/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'CentroPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/centro/1/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'CentroView1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/centro/1/new/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'CentroNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/centro/1/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'CentroEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/centro/1/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'CentroRemove1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        //-----------3
+        $routeProvider.when('/centro/3/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'CentroView3Controller', resolve: {auth: authenticationProfesorPromise}});
+        //-----------4
+        $routeProvider.when('/centro/4/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'CentroView4Controller', resolve: {auth: authenticationAlumnoPromise}});
+        //-----------5
+        $routeProvider.when('/centro/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'CentroView5Controller', resolve: {auth: authenticationVisitantePromise}});
+        // ------ Centrosanitario
+        $routeProvider.when('/centrosanitario/1/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'CentrosanitarioPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/centrosanitario/1/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'CentrosanitarioView1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/centrosanitario/1/new/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'CentrosanitarioNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/centrosanitario/1/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'CentrosanitarioEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/centrosanitario/1/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'CentrosanitarioRemove1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        //-----------3
+        $routeProvider.when('/centrosanitario/3/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'CentrosanitarioView3Controller', resolve: {auth: authenticationProfesorPromise}});
+        //-----------4
+        $routeProvider.when('/centrosanitario/4/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'CentrosanitarioView4Controller', resolve: {auth: authenticationAlumnoPromise}});
+        //-----------5
+        $routeProvider.when('/centrosanitario/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'CentrosanitarioView5Controller', resolve: {auth: authenticationVisitantePromise}});
+      
+
         $routeProvider.otherwise({redirectTo: '/'});
     }]);
