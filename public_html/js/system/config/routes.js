@@ -241,7 +241,24 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/factura/1/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'FacturaEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/factura/1/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'FacturaRemove1Controller', resolve: {auth: authenticationAdministratorPromise}});
         
+        //----Grupo 1 admin --
+        $routeProvider.when('/grupo/1/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'GrupoPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/grupo/1/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'GrupoView1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/grupo/1/new/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'GrupoNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/grupo/1/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'GrupoEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/grupo/1/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'GrupoRemove1Controller', resolve: {auth: authenticationAdministratorPromise}});
         
+        $routeProvider.when('/grupo/1/xcurso/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'GrupoxusuarioNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/grupo/1/xcurso/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'GrupoxusuarioEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/grupo/1/xcurso/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'GrupoxusuarioPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        
+        $routeProvider.when('/grupo/1/xusuario/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'GrupoxusuarioNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/grupo/1/xusuario/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'GrupoxusuarioEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/grupo/1/xusuario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'GrupoxusuarioPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        
+        $routeProvider.when('/grupo/3/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'GrupoView3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/grupo/4/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'GrupoView4Controller', resolve: {auth: authenticationAlumnoPromise}});
+        $routeProvider.when('/grupo/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'GrupoView5Controller', resolve: {auth: authenticationVisitantePromise}});
         
         $routeProvider.otherwise({redirectTo: '/'});
     }]);
