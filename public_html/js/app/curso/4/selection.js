@@ -28,10 +28,10 @@
 
 'use strict';
 
-moduloCentro.controller('CentroSelection5Controller',
+moduloCurso.controller('CursoSelection4Controller',
         ['$scope', '$uibModalInstance', 'serverCallService', '$location', 'toolService',
             function ($scope, $modalInstance, serverCallService, $location, toolService) {
-                $scope.ob = 'centro';
+                $scope.ob = 'curso';
                 $scope.op = "selection";
                 //---
                 $scope.numpage = 1;

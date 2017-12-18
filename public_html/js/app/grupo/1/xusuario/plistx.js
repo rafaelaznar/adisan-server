@@ -26,18 +26,17 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloEpisodio.controller('EpisodioxcircunstanciasaltaPList3Controller',
+moduloUsuario.controller('GrupoxusuarioPList1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
-                $scope.ob = "episodio";
+                $scope.ob = "grupo";
                 $scope.op = "plistx";
-                $scope.profile = 3;
+                $scope.profile = 1;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
-                $scope.onlyview = true;
                 //----
-                $scope.xob = "circunstanciasalta";
+                $scope.xob = "usuario";
                 $scope.xid = $routeParams.id;
                 //----
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op + $scope.xob + '/' + $routeParams.id;
