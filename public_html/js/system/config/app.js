@@ -51,6 +51,7 @@ var trolleyes = angular.module('myApp', [
     'facturaControllers',
     'servicioControllers',
     'grupoControllers',
+    'cursoControllers',
     'ui.bootstrap',
     'ngSanitize',
     'chart.js'
@@ -83,6 +84,7 @@ var moduloServicio = angular.module('servicioControllers', []);
 //------------
 var moduloTipodependencia = angular.module('tipodependeciaControllers', []);
 var moduloGrupo= angular.module('grupoControllers', []);
+var moduloCurso= angular.module('cursoControllers', []);
 
 
 
