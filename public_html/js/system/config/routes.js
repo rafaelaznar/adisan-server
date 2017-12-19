@@ -305,6 +305,19 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         //-----------5
         $routeProvider.when('/centrosanitario/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'CentrosanitarioView5Controller', resolve: {auth: authenticationVisitantePromise}});
       
+       // ------ Categoriaprofesional
+        $routeProvider.when('/categoriaprofesional/1/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'CategoriaprofesionalPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/categoriaprofesional/1/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'CategoriaprofesionalView1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/categoriaprofesional/1/new/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'CategoriaprofesionalNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/categoriaprofesional/1/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'CategoriaprofesionalEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/categoriaprofesional/1/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'CategoriaprofesionalRemove1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        //-----------3
+        $routeProvider.when('/categoriaprofesional/3/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'CategoriaprofesionalView3Controller', resolve: {auth: authenticationProfesorPromise}});
+        //-----------4
+        $routeProvider.when('/categoriaprofesional/4/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'CategoriaprofesionalView4Controller', resolve: {auth: authenticationAlumnoPromise}});
+        //-----------5
+        $routeProvider.when('/categoriaprofesional/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'CategoriaprofesionalView5Controller', resolve: {auth: authenticationVisitantePromise}});
+       
 
         $routeProvider.otherwise({redirectTo: '/'});
     }]);
