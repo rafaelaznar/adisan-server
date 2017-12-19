@@ -26,10 +26,10 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloUsuario.controller('UsuarioPList1Controller',
+moduloMedico.controller('MedicoPList1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
-                $scope.ob = "usuario";
+                $scope.ob = "medico";
                 $scope.op = "plist";
                 $scope.profile = 1;
                 //---

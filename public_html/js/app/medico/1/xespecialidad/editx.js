@@ -27,16 +27,16 @@
  */
 'use strict';
 
-moduloUsuario.controller('UsuarioXtipousuarioEdit1Controller',
+moduloEspecialidad.controller('MedicoxespecialidadEdit1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
-                $scope.ob = "usuario";
+                $scope.ob = "medico";
                 $scope.op = "editx";
                 $scope.profile = 1;
                 //----
                 $scope.id = $routeParams.id;
                 //---
-                $scope.xob = "tipousuario";
+                $scope.xob = "especialidad";
                 $scope.xid = $routeParams.xid;
                 //---
                 $scope.status = null;

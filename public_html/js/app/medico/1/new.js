@@ -27,10 +27,10 @@
  */
 'use strict';
 
-moduloUsuario.controller('UsuarioNew1Controller',
+moduloMedico.controller('MedicoNew1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
-                $scope.ob = "usuario";
+                $scope.ob = "medico";
                 $scope.op = "new";
                 $scope.profile = 1;
                 //---
