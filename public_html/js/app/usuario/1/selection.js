@@ -48,9 +48,10 @@ moduloUsuario.controller('UsuarioSelection1Controller',
                 $scope.visibles.id = true;
                 $scope.visibles.descripcion = true;
 
-                $scope.filterString = [{'name': 'nombre', 'longname': 'Nombre'},{'name': 'primer_apellido', 'longname': 'Primer Apellido'},{'name': 'segundo_apellido', 'longname': 'Segundo Apellido'},{'name': 'email', 'longname': 'Email'},{'name': 'token', 'longname': 'Token'}];
-                $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'}];
-                $scope.filterDate[{'name': 'fecha_alta', 'longname': 'Fecha Alta'}];
+                $scope.filterString = [{'name': 'nombre', 'longname': 'Nombre'}, {'name': 'primer_apellido', 'longname': 'Primer Apellido'}, {'name': 'segundo_apellido', 'longname': 'Segundo Apellido'}, {'name': 'email', 'longname': 'Email'}, {'name': 'token', 'longname': 'Token'}];
+                $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'}, {'name': 'id_tipousuario', 'longname': 'Identificador Tipo Usuario'}, {'name': 'id_grupo', 'longname': 'Identificador de Grupo'}, {'name': 'id_centro', 'longname': 'Identificador Centro'}, {'name': 'id_centrosanitario', 'longname': 'Identificador Centro Sanitario'}];
+                $scope.filterDate = [{'name': 'fecha_alta', 'longname': 'Fecha Alta'}];
+
 
                 $scope.closeForm = function (id) {
                     $modalInstance.close(id);

@@ -47,6 +47,7 @@ moduloPaciente.controller('PacienteSelection1Controller',
                 $scope.visibles = {};
                 $scope.visibles.id = true;
                 $scope.visibles.descripcion = true;
+                
 
                 $scope.filterString = [{'name': 'descripcion', 'longname': 'Descripción'}];
                 $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'}];
