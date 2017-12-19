@@ -26,14 +26,12 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloCentrosanitario.controller('CentrosanitarioView3Controller',
+moduloEpisodio.controller('EpisodioView1Controller',
         ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService',
             function ($scope, $routeParams, serverCallService, $location, sessionService, constantService) {
-                $scope.ob = "centrosanitario";
+                $scope.ob = "episodio";
                 $scope.op = "view";
-                $scope.profile = 3;
-                //----
-                $scope.onlyview = true;
+                $scope.profile = 1;
                 //---
                 $scope.id = $routeParams.id;
                 //---
