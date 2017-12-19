@@ -312,7 +312,18 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/centrosanitario/4/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'CentrosanitarioView4Controller', resolve: {auth: authenticationAlumnoPromise}});
         //-----------5
         $routeProvider.when('/centrosanitario/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'CentrosanitarioView5Controller', resolve: {auth: authenticationVisitantePromise}});
-      
-
+       //--- medico
+        $routeProvider.when('/medico/1/xservicio/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'MedicoxservicioNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/medico/1/xservicio/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'MedicoxservicioEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/medico/1/xservicio/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'MedicoxservicioPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        
+        $routeProvider.when('/medico/1/xcentrosanitario/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'MedicoxcentrosanitarioNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/medico/1/xcentrosanitario/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'MedicoxcentrosanitarioEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/medico/1/xcentrosanitario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'MedicoxcentrosanitarioPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        
+        $routeProvider.when('/medico/1/xcategoriaprofesional/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'MedicoxcategoriaprofesionalNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/medico/1/xcategoriaprofesional/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'MedicoxcategoriaprofesionalEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/medico/1/xcategoriaprofesional/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'MedicoxcategoriaprofesionalPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        
         $routeProvider.otherwise({redirectTo: '/'});
     }]);
