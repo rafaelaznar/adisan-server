@@ -26,21 +26,14 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloEpisodio.controller('EpisodioxcircunstanciasaltaPList4Controller',
+moduloGrupo.controller('GrupoPList1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
-                $scope.ob = "episodio";
-                $scope.op = "plistx";
-                $scope.profile = 4;
+                $scope.ob = "grupo";
+                $scope.op = "plist";
+                $scope.profile = 1;
                 //---
-                $scope.status = null;
-                $scope.debugging = constantService.debugging();
-                $scope.onlyview = true;
-                //----
-                $scope.xob = "circunstanciasalta";
-                $scope.xid = $routeParams.id;
-                //----
-                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op + $scope.xob + '/' + $routeParams.id;
+                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //----
                 $scope.numpage = toolService.checkDefault(1, $routeParams.page);
                 $scope.rpp = toolService.checkDefault(10, $routeParams.rpp);
@@ -49,28 +42,18 @@ moduloEpisodio.controller('EpisodioxcircunstanciasaltaPList4Controller',
                 $scope.orderParams = toolService.checkEmptyString($routeParams.order);
                 $scope.filterParams = toolService.checkEmptyString($routeParams.filter);
                 //---
+                $scope.status = null;
+                $scope.debugging = constantService.debugging();
+                //---
                 function getDataFromServer() {
-                    $scope.linkedbean = null;
-                    $scope.linkedbean2 = null;
-                    serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
-                        if ($scope.xob && $scope.xid) {
-                            serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
-                                if (response.status == 200) {
-                                    if (response.data.status == 200) {
-                                        $scope.linkedbean = response.data.json;
-                                        $scope.linkedbean2 = response.data.json.data.obj_usuario;
-                                    }
-                                }
-                            }).catch(function (data) {
-                            });
-                        }
+                    serverCallService.getCount($scope.ob, $scope.filterParams).then(function (response) {
                         if (response.status == 200) {
                             $scope.registers = response.data.json;
                             $scope.pages = toolService.calculatePages($scope.rpp, $scope.registers);
                             if ($scope.numpage > $scope.pages) {
                                 $scope.numpage = $scope.pages;
                             }
-                            return serverCallService.getPageX($scope.ob, $scope.xob, $scope.xid, $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order);
+                            return serverCallService.getPage($scope.ob, $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order);
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
