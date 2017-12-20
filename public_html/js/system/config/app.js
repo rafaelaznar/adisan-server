@@ -99,7 +99,7 @@ var moduloPaciente= angular.module('pacienteControllers', []);
 var moduloCentro= angular.module('centroControllers', []);
 var moduloCentrosanitario= angular.module('centrosanitarioControllers', []);
 var moduloCategoriaprofesional= angular.module('categoriaprofesionalControllers', []);
-var moduloDependecia = angular.module('dependenciaControllers', []);
+var moduloDependencia = angular.module('dependenciaControllers', []);
 
 
 

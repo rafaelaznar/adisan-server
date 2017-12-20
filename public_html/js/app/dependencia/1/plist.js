@@ -26,7 +26,7 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloDependencia.controller('DependenciaPlist1Controller',
+moduloDependencia.controller('DependenciaPList1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
                 $scope.ob = "dependencia";
