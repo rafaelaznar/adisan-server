@@ -28,7 +28,7 @@
 
 'use strict';
 
-moduloDestinoalta.controller('destinoaltaSelection1Controller',
+moduloDestinoalta.controller('DestinoaltaSelection1Controller',
         ['$scope', '$uibModalInstance', 'serverCallService', '$location', 'toolService',
             function ($scope, $modalInstance, serverCallService, $location, toolService) {
                 $scope.ob = 'destinoalta';
