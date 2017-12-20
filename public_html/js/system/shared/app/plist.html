@@ -233,7 +233,7 @@
                                                             <a ng-if="oBean[oMetap.Name] == 0" class="btn btn-default btn-xs" href="{{oMetap.References}}/{{profile}}/{{ob}}/newx/{{oBean['id']}}">{{setShowRemove(true);oBean[oMetap.Name]}}</a>
                                                         </div>
                                                     </td>
-                                                    <td ng-if="!xob && !onlyview" class="col-md-1">
+                                                    <td ng-if="!xob && !onlyview && !veredit" class="col-md-1">
                                                         <div class="btn-toolbar" role="toolbar">
                                                             <div class="btn-group">
                                                                 <a class="btn btn-default btn-xs" title="View" href="{{ob}}/{{profile}}/view/{{oBean.id}}">
@@ -248,7 +248,7 @@
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td ng-if="!xob && !onlyview" class="col-md-1">
+                                                    <td ng-if="!xob && !onlyview && veredit" class="col-md-1">
                                                         <div class="btn-toolbar" role="toolbar">
                                                             <div class="btn-group">
                                                                 <a class="btn btn-default btn-xs" title="View" href="{{ob}}/{{profile}}/view/{{oBean.id}}">

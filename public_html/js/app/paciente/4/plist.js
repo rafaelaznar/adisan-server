@@ -52,7 +52,7 @@ moduloPaciente.controller('PacientePList4Controller',
                 //---
                 $scope.idseve = false;
                 $scope.iduser = 0;
-
+                $scope.veredit = true;
 
                 function getDataFromServer() {
                     serverCallService.getSession("usuario").then(function (response) {
@@ -100,6 +100,9 @@ moduloPaciente.controller('PacientePList4Controller',
                     $scope.iduserobean = oBean.obj_usuario.data.id;
                     if ($scope.iduserobean == $scope.iduser) {
                         $scope.idseve = true;
+                    }
+                    else{
+                        $scope.idseve = false;
                     }
                 };
                 getDataFromServer();
