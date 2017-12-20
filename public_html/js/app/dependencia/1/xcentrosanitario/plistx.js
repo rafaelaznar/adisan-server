@@ -31,17 +31,17 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloServicio.controller('ServicioxtiposervicioPList1Controller',
+moduloDependencia.controller('DependenciaxcentrosanitarioPList1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
-                $scope.ob = "servicio";
+                $scope.ob = "dependencia";
                 $scope.op = "plistx";
                 $scope.profile = 1;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
                 //----
-                $scope.xob = "tiposervicio";
+                $scope.xob = "centrosanitario";
                 $scope.xid = $routeParams.id;
                 //----
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op + $scope.xob + '/' + $routeParams.id;

@@ -32,14 +32,14 @@
  */
 'use strict';
 
-moduloServicio.controller('ServicioxtiposervicioNew1Controller',
+moduloDependencia.controller('DependenciaxtipodependenciaNew1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
-                $scope.ob = "servicio";
+                $scope.ob = "dependencia";
                 $scope.op = "newx";
                 $scope.profile = 1;
                 //---
-                $scope.xob = "tiposervicio";
+                $scope.xob = "tipodependencia";
                 $scope.xid = $routeParams.id;
                 //---
                 $scope.status = null;

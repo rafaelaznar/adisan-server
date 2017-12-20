@@ -1,16 +1,11 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
  *
- * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
- * GESANE: Free Open Source Health Management System
+ * TROLLEYES helps you to learn how to develop easily AJAX web applications
  *
- * Sources at:
- *                            https://github.com/rafaelaznar/gesane-server
- *                            https://github.com/rafaelaznar/gesane-client
- *                            https://github.com/rafaelaznar/gesane-database
+ * Sources at https://github.com/rafaelaznar/trolleyes
  *
- * GESANE is distributed under the MIT License (MIT)
+ * TROLLEYES is distributed under the MIT License (MIT)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,54 +25,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-'use strict';
 
-moduloServicio.controller('ServicioxtiposervicioNew1Controller',
-        ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
-            function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
-                $scope.ob = "servicio";
-                $scope.op = "newx";
+'use strict';
+moduloDependencia.controller('DependenciaEdit1Controller',
+        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
+            function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
+                $scope.ob = "dependencia";
+                $scope.op = "edit";
                 $scope.profile = 1;
-                //---
-                $scope.xob = "tiposervicio";
-                $scope.xid = $routeParams.id;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
+                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
-                if ($scope.xob && $scope.xid) {
-                    $scope.linkedbean = null;
-                    serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
-                        if (response.status == 200) {
-                            if (response.data.status == 200) {
-                                $scope.linkedbean = response.data.json;
-                            }
-                        }
-                    }).catch(function (data) {
-                    });
-                }
-                ;
-                serverCallService.getMeta($scope.ob).then(function (response) {
+                $scope.id = $routeParams.id;
+                //---
+                serverCallService.getOne($scope.ob, $scope.id).then(function (response) {
                     if (response.status == 200) {
                         if (response.data.status == 200) {
                             $scope.status = null;
-                            //--For every foreign key create obj inside bean tobe filled...
-                            $scope.bean = {};
-                            response.data.json.metaProperties.forEach(function (property) {
-                                if (property.Type == 'ForeignObject') {
-                                    $scope.bean[property.Name] = {};
-                                    $scope.bean[property.Name].data = {};
-                                    if (property.Name == 'obj_' + $scope.xob) {
-                                        $scope.bean[property.Name].data.id = $scope.xid;
-                                    } else {
-                                        $scope.bean[property.Name].data.id = 0;
-                                    }
-                                }
-                            });
-                            //--
+                            $scope.bean = response.data.json.data;
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
-
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -87,15 +56,13 @@ moduloServicio.controller('ServicioxtiposervicioNew1Controller',
                 }).catch(function (data) {
                     $scope.status = "Error en la recepción de datos del servidor";
                 });
-                //--
                 $scope.save = function () {
                     var jsonToSend = {json: JSON.stringify(toolService.array_identificarArray($scope.bean))};
                     serverCallService.set($scope.ob, jsonToSend).then(function (response) {
                         if (response.status == 200) {
                             if (response.data.status == 200) {
                                 $scope.response = response;
-                                $scope.status = "El registro se ha creado con id=" + response.data.json;
-                                $scope.bean.id = response.data.json;
+                                $scope.status = "El registro con id=" + $scope.id + " se ha modificado.";
                             } else {
                                 $scope.status = "Error en la recepción de datos del servidor";
                             }
@@ -115,4 +82,3 @@ moduloServicio.controller('ServicioxtiposervicioNew1Controller',
                 };
             }
         ]);
-
