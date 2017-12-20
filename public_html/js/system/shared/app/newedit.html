@@ -55,7 +55,7 @@
                                         <span ng-if="oMetap.IsRequired">*</span>
                                         {{oMetap.LongName}}
                                     </label>
-                                    <div class="control col-md-{{oMetap.Wide}}">
+                                    <div class="control col-md-{{oMetap.Width}}">
                                         <input type="text"
                                                class="form-control"
                                                id="{{oMetap.Name}}"
@@ -79,7 +79,7 @@
                                         <span ng-if="oMetap.IsRequired">*</span>
                                         {{oMetap.LongName}}
                                     </label>
-                                    <div class="control col-md-{{oMetap.Wide}}">
+                                    <div class="control col-md-{{oMetap.Width}}">
                                         <input type="text"
                                                class="form-control"
                                                id="{{oMetap.Name}}"
@@ -106,7 +106,7 @@
                                         <span ng-if="oMetap.IsRequired">*</span>
                                         {{oMetap.LongName}}
                                     </label>
-                                    <div class="control col-md-{{oMetap.Wide}}">
+                                    <div class="control col-md-{{oMetap.Width}}">
                                         <date-time-picker
                                             name="oMetap.Name"
                                             required="oMetap.Required"
@@ -130,7 +130,7 @@
                                         <span ng-if="oMetap.IsRequired">*</span>
                                         {{oMetap.LongName}}
                                     </label>
-                                    <div class="control col-md-{{oMetap.Wide}}">
+                                    <div class="control col-md-{{oMetap.Width}}">
                                         <input
                                             ng-model="bean[oMetap.Name]"
                                             type="checkbox"
@@ -155,7 +155,7 @@
                                         <span ng-if="oMetap.IsRequired">*</span>
                                         {{oMetap.LongName}}
                                     </label>
-                                    <div class="control col-md-{{oMetap.Wide}}">
+                                    <div class="control col-md-{{oMetap.Width}}">
                                         <foreign-key
                                             bean="bean[oMetap.Name].data"
                                             form="outerForm"
