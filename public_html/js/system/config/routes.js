@@ -299,6 +299,21 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/factura/1/new/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'FacturaNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/factura/1/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'FacturaEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/factura/1/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'FacturaRemove1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        
+        $routeProvider.when('/paciente/1/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'PacienteView1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/paciente/1/new/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacienteNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/paciente/1/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacienteEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/paciente/1/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'PacienteRemove1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/paciente/1/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'PacientePList1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/paciente/1/xtipopago/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'PacienteXtipopagoPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/paciente/1/xtipopago/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacienteXtipopagoNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/paciente/1/xtipopago/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacienteXtipopagoEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/paciente/1/xsexo/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'PacienteXsexoPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/paciente/1/xsexo/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacienteXsexoNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/paciente/1/xsexo/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacienteXsexoEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/paciente/1/xusuario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'PacienteXusuarioPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/paciente/1/xusuario/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacienteXusuarioNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        $routeProvider.when('/paciente/1/xusuario/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacienteXusuarioEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
 
         //----Grupo 1 admin --
         $routeProvider.when('/grupo/1/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'GrupoPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
