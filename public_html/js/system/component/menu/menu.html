@@ -89,6 +89,8 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button">
                         <i class="fa fa-icon-list-alt"></i>Pacientes<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
+                        <li ng-class="{ 'active': mn.isActive('/paciente/1/plist')}"><a href="paciente/1/plist"> <i ng-class="mn.meta.paciente.Icon"></i> {{mn.meta.paciente.PluralDescription}}</a></li>
+
                         <li class="dropdown-header">Datos Comunes</li>
                         <li ng-class="{ 'active': mn.isActive('/sexo/1/plist')}"><a href="sexo/1/plist"> <i ng-class="mn.meta.sexo.Icon"></i> {{mn.meta.sexo.PluralDescription}}</a></li>
                         <li ng-class="{ 'active': mn.isActive('/destinoalta/1/plist')}"><a href="destinoalta/1/plist"> <i ng-class="mn.meta.destinoalta.Icon"></i> {{mn.meta.destinoalta.PluralDescription}}</a></li>
@@ -156,6 +158,8 @@
                     <ul class="dropdown-menu" role="menu">
                         <li class="dropdown-header">Gestión sanitaria</li>
                         <li>Pacientes</li>
+                        <li ng-class="{ 'active': mn.isActive('/paciente/1/plist')}"><a href="paciente/1/plist"> <i ng-class="mn.meta.paciente.Icon"></i> {{mn.meta.paciente.PluralDescription}}</a></li>
+
                     </ul>
                 </li>
 
@@ -167,6 +171,7 @@
                     <ul class="dropdown-menu" role="menu">
                         <li class="dropdown-header">Gestión sanitaria</li>
                         <li>Pacientes</li>
+                        <li ng-class="{ 'active': mn.isActive('/paciente/1/plist')}"><a href="paciente/1/plist"> <i ng-class="mn.meta.paciente.Icon"></i> {{mn.meta.paciente.PluralDescription}}</a></li>
 
                     </ul>
                 </li>
