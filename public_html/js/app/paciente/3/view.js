@@ -31,7 +31,7 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloPaciente.controller('PacienteView5Controller',
+moduloPaciente.controller('PacienteView3Controller',
         ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService',
             function ($scope, $routeParams, serverCallService, $location, sessionService, constantService) {
                 $scope.ob = "paciente";

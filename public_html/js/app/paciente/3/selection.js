@@ -33,7 +33,7 @@
 
 'use strict';
 
-moduloPaciente.controller('PacienteSelection5Controller',
+moduloPaciente.controller('PacienteSelection3Controller',
         ['$scope', '$uibModalInstance', 'serverCallService', '$location', 'toolService',
             function ($scope, $modalInstance, serverCallService, $location, toolService) {
                 $scope.ob = 'paciente';
