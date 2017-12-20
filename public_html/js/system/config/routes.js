@@ -344,10 +344,18 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         // ------ Medico
 
         //-----------3
-        
+
         //-----------4
         //-----------5
         $routeProvider.when('/medico/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'MedicoView5Controller', resolve: {auth: authenticationVisitantePromise}});
+
+        // ------ Dependencia
+
+        //-----------3
+
+        //-----------4
+        //-----------5
+        $routeProvider.when('/dependencia/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'DependenciaView5Controller', resolve: {auth: authenticationVisitantePromise}});
 
 
         $routeProvider.otherwise({redirectTo: '/'});
