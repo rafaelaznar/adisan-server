@@ -25,30 +25,54 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 'use strict';
 
-moduloMedico.controller('MedicoRemove1Controller',
-        ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService',
-            function ($scope, $routeParams, serverCallService, $location, sessionService, constantService) {
+moduloMedico.controller('MedicoXcategoriaprofesionalNew1Controller',
+        ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
+            function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
                 $scope.ob = "medico";
-                $scope.op = "remove";
+                $scope.op = "newx";
                 $scope.profile = 1;
                 //---
-                $scope.id = $routeParams.id;
-                //---
-                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
+                $scope.xob = "categoriaprofesional";
+                $scope.xid = $routeParams.id;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
                 //---
-                serverCallService.getOne($scope.ob, $scope.id).then(function (response) {
+                if ($scope.xob && $scope.xid) {
+                    $scope.linkedbean = null;
+                    serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
+                        if (response.status == 200) {
+                            if (response.data.status == 200) {
+                                $scope.linkedbean = response.data.json;
+                            }
+                        }
+                    }).catch(function (data) {
+                    });
+                }
+                ;
+                serverCallService.getMeta($scope.ob).then(function (response) {
                     if (response.status == 200) {
                         if (response.data.status == 200) {
                             $scope.status = null;
-                            $scope.bean = response.data.json.data;
+                            //--For every foreign key create obj inside bean tobe filled...
+                            $scope.bean = {};
+                            response.data.json.metaProperties.forEach(function (property) {
+                                if (property.Type == 'ForeignObject') {
+                                    $scope.bean[property.Name] = {};
+                                    $scope.bean[property.Name].data = {};
+                                    if (property.Name == 'obj_' + $scope.xob) {
+                                        $scope.bean[property.Name].data.id = $scope.xid;
+                                    } else {
+                                        $scope.bean[property.Name].data.id = 0;
+                                    }
+                                }
+                            });
+                            //--
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
+
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -58,15 +82,15 @@ moduloMedico.controller('MedicoRemove1Controller',
                 }).catch(function (data) {
                     $scope.status = "Error en la recepción de datos del servidor";
                 });
-                $scope.remove = function () {
-                    serverCallService.remove($scope.ob, $scope.id).then(function (response) {
+                //--
+                $scope.save = function () {
+                    var jsonToSend = {json: JSON.stringify(toolService.array_identificarArray($scope.bean))};
+                    serverCallService.set($scope.ob, jsonToSend).then(function (response) {
                         if (response.status == 200) {
                             if (response.data.status == 200) {
-                                if (response.data.json == 1) {
-                                    $scope.status = "El registro con id=" + $scope.id + " se ha eliminado.";
-                                } else {
-                                    $scope.status = "Error en el borrado de datos del servidor";
-                                }
+                                $scope.response = response;
+                                $scope.status = "El registro se ha creado con id=" + response.data.json;
+                                $scope.bean.id = response.data.json;
                             } else {
                                 $scope.status = "Error en la recepción de datos del servidor";
                             }
@@ -76,11 +100,14 @@ moduloMedico.controller('MedicoRemove1Controller',
                     }).catch(function (data) {
                         $scope.status = "Error en la recepción de datos del servidor";
                     });
-                }
+                    ;
+                };
                 $scope.back = function () {
                     window.history.back();
                 };
                 $scope.close = function () {
                     $location.path('/home');
                 };
-            }]);
+            }
+        ]);
+

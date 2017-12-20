@@ -60,6 +60,7 @@ var trolleyes = angular.module('myApp', [
     'pacienteControllers',
     'centroControllers',
     'centrosanitarioControllers',
+    'medicoControllers',
     'ui.bootstrap',
     'ngSanitize',
     'chart.js'
@@ -100,5 +101,6 @@ var moduloCentro= angular.module('centroControllers', []);
 
 var moduloCentrosanitario= angular.module('centrosanitarioControllers', []);
 
+var moduloMedico= angular.module('medicoControllers', []);
 
 

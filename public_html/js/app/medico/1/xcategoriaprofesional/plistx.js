@@ -26,20 +26,17 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloMedico.controller('MedicoXespecialidadPList1Controller',
+moduloMedico.controller('MedicoXcategoriaprofesionalPList1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
                 $scope.ob = "medico";
                 $scope.op = "plistx";
                 $scope.profile = 1;
-                //---
-                $scope.status = null;
-                $scope.debugging = constantService.debugging();
                 //----
-                $scope.xob = "especialidad";
+                $scope.xob = "categoriaprofesional";
                 $scope.xid = $routeParams.id;
                 //----
-                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op + $scope.xob + '/' + $routeParams.id;
+                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op + $scope.xob + '/' + $scope.xid;
                 //----
                 $scope.numpage = toolService.checkDefault(1, $routeParams.page);
                 $scope.rpp = toolService.checkDefault(10, $routeParams.rpp);
@@ -48,21 +45,23 @@ moduloMedico.controller('MedicoXespecialidadPList1Controller',
                 $scope.orderParams = toolService.checkEmptyString($routeParams.order);
                 $scope.filterParams = toolService.checkEmptyString($routeParams.filter);
                 //---
+                $scope.status = null;
+                $scope.debugging = constantService.debugging();
+                //---
                 function getDataFromServer() {
-                    $scope.linkedbean = null;
-                    $scope.linkedbean2 = null;
-                    serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
-                        if ($scope.xob && $scope.xid) {
-                            serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
-                                if (response.status == 200) {
-                                    if (response.data.status == 200) {
-                                        $scope.linkedbean = response.data.json;
-                                        $scope.linkedbean2 = response.data.json.data.obj_usuario;
-                                    }
+                    if ($scope.xob && $scope.xid) {
+                        $scope.linkedbean = null;
+                        serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
+                            if (response.status == 200) {
+                                if (response.data.status == 200) {
+                                    $scope.linkedbean = response.data.json;
                                 }
-                            }).catch(function (data) {
-                            });
-                        }
+                            }
+                        }).catch(function (data) {
+                        });
+                    }
+                    ;
+                    serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
                         if (response.status == 200) {
                             $scope.registers = response.data.json;
                             $scope.pages = toolService.calculatePages($scope.rpp, $scope.registers);
@@ -85,6 +84,7 @@ moduloMedico.controller('MedicoXespecialidadPList1Controller',
                         $scope.status = "Error en la recepción de datos del servidor";
                     });
                 }
+                //---                
                 $scope.doorder = function (orderField, ascDesc) {
                     $location.url($scope.url + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', $scope.filterParams).search('order', orderField + ',' + ascDesc);
                     return false;
