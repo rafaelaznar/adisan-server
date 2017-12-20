@@ -59,6 +59,7 @@ var trolleyes = angular.module('myApp', [
     'grupoControllers',
     'cursoControllers',
     'pacienteControllers',
+    'medicoControllers',
     'centroControllers',
     'centrosanitarioControllers',
     'categoriaprofesionalControllers',
@@ -86,6 +87,7 @@ var moduloEpisodio = angular.module('episodioControllers', []);
 var moduloTipopago = angular.module('tipopagoControllers', []);
 var moduloEspecialidad = angular.module('especialidadControllers', []);
 var moduloPaciente = angular.module('pacienteControllers', []);
+var moduloMedico = angular.module('medicoControllers', []);
 
 var moduloFactura = angular.module('facturaControllers', []);
 
