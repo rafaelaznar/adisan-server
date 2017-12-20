@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017-2018
  *
  * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
+ *
  * GESANE: Free Open Source Health Management System
  *
  * Sources at:
@@ -32,8 +32,8 @@
  */
 'use strict';
 moduloPaciente.controller('PacientePList4Controller',
-        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
-            function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
+        ['$scope', '$routeParams', '$http', '$location', 'serverCallService', 'toolService', 'constantService',
+            function ($scope, $http, $routeParams, $location, serverCallService, toolService, constantService) {
                 $scope.ob = "paciente";
                 $scope.op = "plist";
                 $scope.profile = 4;
@@ -50,7 +50,16 @@ moduloPaciente.controller('PacientePList4Controller',
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
                 //---
+                $scope.idseve = false;
+                $scope.iduser = 0;
+
+
                 function getDataFromServer() {
+                    serverCallService.getSession("usuario").then(function (response) {
+                        if (response.status == 200) {
+                            $scope.iduser = response.data.json.data.id;
+                        }
+                    });
                     serverCallService.getCount($scope.ob, $scope.filterParams).then(function (response) {
                         if (response.status == 200) {
                             $scope.registers = response.data.json;
@@ -86,6 +95,12 @@ moduloPaciente.controller('PacientePList4Controller',
                 };
                 $scope.setShowRemove = function (show) {
                     $scope.showRemove = show;
+                };
+                $scope.showEdit = function (oBean) {
+                    $scope.iduserobean = oBean.obj_usuario.data.id;
+                    if ($scope.iduserobean == $scope.iduser) {
+                        $scope.idseve = true;
+                    }
                 };
                 getDataFromServer();
             }

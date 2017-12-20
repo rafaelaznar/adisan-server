@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017-2018
  *
  * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
+ *
  * GESANE: Free Open Source Health Management System
  *
  * Sources at:
@@ -37,6 +37,9 @@ moduloPaciente.controller('PacienteEdit4Controller',
                 $scope.ob = "paciente";
                 $scope.op = "edit";
                 $scope.profile = 4;
+                //---
+                $scope.xob = "usuario";
+                $scope.xid = $routeParams.id;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();

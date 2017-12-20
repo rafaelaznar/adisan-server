@@ -39,6 +39,9 @@ moduloPaciente.controller('PacienteNew4Controller',
                 $scope.op = "new";
                 $scope.profile = 4;
                 //---
+                $scope.xob = "usuario";
+                $scope.xid = $routeParams.id;
+                //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
