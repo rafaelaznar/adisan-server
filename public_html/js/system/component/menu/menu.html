@@ -164,12 +164,10 @@
 
 
 
-                <!-- Invitado ------------------------------------------- -->
+                <!-- Invitado visitante ------------------------------------------- -->
                 <li class="dropdown"  ng-if="mn.session_info.obj_tipousuario.data.id == 5">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Visitante<span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li class="dropdown-header">Gestión sanitaria</li>
-                        <li>Pacientes</li>
+                    <ul class="dropdown-menu" role="menu">                                               
                         <li ng-class="{ 'active': mn.isActive('/paciente/5/plist')}"><a href="paciente/5/plist"> <i ng-class="mn.meta.paciente.Icon"></i> {{mn.meta.paciente.PluralDescription}}</a></li>
 
                     </ul>

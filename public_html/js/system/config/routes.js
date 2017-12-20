@@ -303,6 +303,7 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
 
         //-----------paciente 5
         $routeProvider.when('/paciente/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'PacienteView5Controller', resolve: {auth: authenticationVisitantePromise}});
+        $routeProvider.when('/paciente/5/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'PacientePList5Controller', resolve: {auth: authenticationVisitantePromise}});
 
         // ------ Centro
         $routeProvider.when('/centro/1/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'CentroPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
