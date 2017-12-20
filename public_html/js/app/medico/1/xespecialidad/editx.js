@@ -27,7 +27,7 @@
  */
 'use strict';
 
-moduloMedico.controller('MedicoXespecialidadEdit1Controller',
+moduloEspecialidad.controller('MedicoxespecialidadEdit1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
                 $scope.ob = "medico";

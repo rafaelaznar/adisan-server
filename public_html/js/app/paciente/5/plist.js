@@ -26,17 +26,15 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloCategoriaprofesional.controller('MedicoXcategoriaprofesionalPList1Controller',
+moduloPaciente.controller('PacientePList5Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
-                $scope.ob = "medico";
-                $scope.op = "plistx";
-                $scope.profile = 1;
-                //----
-                $scope.xob = "categoriaprofesional";
-                $scope.xid = $routeParams.id;
-                //----
-                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op + $scope.xob + '/' + $scope.xid;
+                $scope.ob = "paciente";
+                $scope.op = "plist";
+                $scope.profile = 5;
+                $scope.onlyview = true;
+                //---
+                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //----
                 $scope.numpage = toolService.checkDefault(1, $routeParams.page);
                 $scope.rpp = toolService.checkDefault(10, $routeParams.rpp);
@@ -49,26 +47,14 @@ moduloCategoriaprofesional.controller('MedicoXcategoriaprofesionalPList1Controll
                 $scope.debugging = constantService.debugging();
                 //---
                 function getDataFromServer() {
-                    if ($scope.xob && $scope.xid) {
-                        $scope.linkedbean = null;
-                        serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
-                            if (response.status == 200) {
-                                if (response.data.status == 200) {
-                                    $scope.linkedbean = response.data.json;
-                                }
-                            }
-                        }).catch(function (data) {
-                        });
-                    }
-                    ;
-                    serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
+                    serverCallService.getCount($scope.ob, $scope.filterParams).then(function (response) {
                         if (response.status == 200) {
                             $scope.registers = response.data.json;
                             $scope.pages = toolService.calculatePages($scope.rpp, $scope.registers);
                             if ($scope.numpage > $scope.pages) {
                                 $scope.numpage = $scope.pages;
                             }
-                            return serverCallService.getPageX($scope.ob, $scope.xob, $scope.xid, $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order);
+                            return serverCallService.getPage($scope.ob, $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order);
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -84,7 +70,6 @@ moduloCategoriaprofesional.controller('MedicoXcategoriaprofesionalPList1Controll
                         $scope.status = "Error en la recepción de datos del servidor";
                     });
                 }
-                //---                
                 $scope.doorder = function (orderField, ascDesc) {
                     $location.url($scope.url + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', $scope.filterParams).search('order', orderField + ',' + ascDesc);
                     return false;

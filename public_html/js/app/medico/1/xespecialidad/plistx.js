@@ -26,7 +26,7 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloMedico.controller('MedicoXespecialidadPList1Controller',
+moduloEspecialidad.controller('MedicoxespecialidadPList1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
                 $scope.ob = "medico";
