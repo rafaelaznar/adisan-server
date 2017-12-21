@@ -301,7 +301,7 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/factura/1/new/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'FacturaNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/factura/1/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'FacturaEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/factura/1/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'FacturaRemove1Controller', resolve: {auth: authenticationAdministratorPromise}});
-        
+
         $routeProvider.when('/paciente/1/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'PacienteView1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/paciente/1/new/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacienteNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/paciente/1/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacienteEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
@@ -395,6 +395,15 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         //-----------5
         $routeProvider.when('/categoriaprofesional/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'CategoriaprofesionalView5Controller', resolve: {auth: authenticationVisitantePromise}});
 
+        
+        // ------ Dependencia
+
+        //-----------3
+
+        //-----------4
+        //-----------5
+        $routeProvider.when('/dependencia/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'DependenciaView5Controller', resolve: {auth: authenticationVisitantePromise}});
+
         // ------ Dependencia
         $routeProvider.when('/dependencia/1/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'DependenciaPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/dependencia/1/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'DependenciaView1Controller', resolve: {auth: authenticationAdministratorPromise}});
@@ -434,5 +443,8 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/medico/1/xcategoriaprofesional/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'MedicoxcategoriaprofesionalEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/medico/1/xcategoriaprofesional/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'MedicoxcategoriaprofesionalPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
         
+        //-----------5
+        $routeProvider.when('/medico/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'MedicoView5Controller', resolve: {auth: authenticationVisitantePromise}});
+
         $routeProvider.otherwise({redirectTo: '/'});
     }]);
