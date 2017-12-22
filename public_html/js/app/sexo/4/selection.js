@@ -28,7 +28,7 @@
 
 'use strict';
 
-moduloSexo.controller('SexoSelection1Controller',
+moduloSexo.controller('SexoSelection4Controller',
         ['$scope', '$uibModalInstance', 'serverCallService', '$location', 'toolService',
             function ($scope, $modalInstance, serverCallService, $location, toolService) {
                 $scope.ob = 'sexo';
