@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017-2018
  *
  * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
+ *
  * GESANE: Free Open Source Health Management System
  *
  * Sources at:
@@ -30,41 +30,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 'use strict';
-
-moduloPaciente.controller('PacienteSelection3Controller',
-        ['$scope', '$uibModalInstance', 'serverCallService', '$location', 'toolService',
-            function ($scope, $modalInstance, serverCallService, $location, toolService) {
-                $scope.ob = 'paciente';
-                $scope.op = "selection";
+moduloPaciente.controller('PacientePList3Controller',
+        ['$scope', '$routeParams', '$http', '$location', 'serverCallService', 'toolService', 'constantService',
+            function ($scope, $http, $routeParams, $location, serverCallService, toolService, constantService) {
+                $scope.ob = "paciente";
+                $scope.op = "plist";
+                $scope.profile = 3;
                 //---
-                $scope.numpage = 1;
-                $scope.rpp = 10;
-                $scope.neighbourhood = 1;
-                //$scope.onlyview = true;
-                
+                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
+                //----
+                $scope.numpage = toolService.checkDefault(1, $routeParams.page);
+                $scope.rpp = toolService.checkDefault(10, $routeParams.rpp);
+                $scope.neighbourhood = constantService.getGlobalNeighbourhood();
+                //---
+                $scope.orderParams = toolService.checkEmptyString($routeParams.order);
+                $scope.filterParams = toolService.checkEmptyString($routeParams.filter);
                 //---
                 $scope.status = null;
-                $scope.debugging = true;
+                $scope.debugging = constantService.debugging();
                 //---
-                $scope.orderParams = null;
-                $scope.filterParams = null;
+                $scope.idseve = false;
+                $scope.iduser = 0;
+                $scope.veredit = true;
 
-                $scope.visibles = {};
-                $scope.visibles.id = true;
-                $scope.visibles.descripcion = true;
-
-                $scope.filterString = [{'name': 'descripcion', 'longname': 'Descripción'}];
-                $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'}];
-
-                $scope.closeForm = function (id) {
-                    $modalInstance.close(id);
-                };
-                $scope.cancel = function () {
-                    $modalInstance.dismiss('cancel');
-                }
-                function getData() {
+                function getDataFromServer() {
+                    serverCallService.getSession("usuario").then(function (response) {
+                        if (response.status == 200) {
+                            $scope.iduser = response.data.json.data.id;
+                        }
+                    });
                     serverCallService.getCount($scope.ob, $scope.filterParams).then(function (response) {
                         if (response.status == 200) {
                             $scope.registers = response.data.json;
@@ -72,7 +67,7 @@ moduloPaciente.controller('PacienteSelection3Controller',
                             if ($scope.numpage > $scope.pages) {
                                 $scope.numpage = $scope.pages;
                             }
-                            return serverCallService.getPage($scope.ob, $scope.rpp, $scope.numpage, $scope.filterParams, $scope.orderParams);
+                            return serverCallService.getPage($scope.ob, $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order);
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -87,43 +82,31 @@ moduloPaciente.controller('PacienteSelection3Controller',
                     }).catch(function (data) {
                         $scope.status = "Error en la recepción de datos del servidor";
                     });
-
                 }
-                $scope.$on('filterSelectionEvent', function (event, data) {
-                    $scope.filterParams = data;
-                    getData();
-                });
-                $scope.$on('orderSelectionEvent', function (event, data) {
-                    $scope.orderParams = data;
-                    getData();
-                });
-                $scope.$on('pageSelectionEvent', function (event, data) {
-                    $scope.numpage = data;
-                    getData();
-                });
-                $scope.$on('rppSelectionEvent', function (event, data) {
-                    $scope.rpp = data;
-                    getData();
-                });
-                $scope.$on('resetOrderEvent', function (event) {
-                    $scope.orderParams = null;
-                    getData();
-                });
-                $scope.$on('resetFilterEvent', function (event) {
-                    $scope.filterParams = null;
-                    getData();
-                });
-                $scope.chooseOne = function (id) {
-                    $scope.closeForm(id);
-                    return false;
-                }
-
                 $scope.doorder = function (orderField, ascDesc) {
-                    $scope.orderParams = orderField + ',' + ascDesc;
-                    getData();
+                    $location.url($scope.url + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', $scope.filterParams).search('order', orderField + ',' + ascDesc);
                     return false;
                 };
-
-                getData();
+                $scope.back = function () {
+                    window.history.back();
+                };
+                $scope.close = function () {
+                    $location.path('/home');
+                };
+                $scope.setShowRemove = function (show) {
+                    $scope.showRemove = show;
+                };
+                $scope.showEdit = function (oBean) {
+                    $scope.iduserobean = oBean.obj_usuario.data.id;
+                    if ($scope.iduserobean == $scope.iduser) {
+                        $scope.idseve = true;
+                    }
+                    else{
+                        $scope.idseve = false;
+                    }
+                };
+                getDataFromServer();
             }
         ]);
+
+
