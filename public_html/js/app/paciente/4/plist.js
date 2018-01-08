@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017-2018
  *
  * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
+ *
  * GESANE: Free Open Source Health Management System
  *
  * Sources at:
@@ -31,20 +31,14 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloEpisodio.controller('EpisodioxepisodioPList1Controller',
-        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
-            function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
-                $scope.ob = "episodio";
-                $scope.op = "plistx";
-                $scope.profile = 1;
+moduloPaciente.controller('PacientePList4Controller',
+        ['$scope', '$routeParams', '$http', '$location', 'serverCallService', 'toolService', 'constantService',
+            function ($scope, $http, $routeParams, $location, serverCallService, toolService, constantService) {
+                $scope.ob = "paciente";
+                $scope.op = "plist";
+                $scope.profile = 4;
                 //---
-                $scope.status = null;
-                $scope.debugging = constantService.debugging();
-                //----
-                $scope.xob = "episodio";
-                $scope.xid = $routeParams.id;
-                //----
-                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op + $scope.xob + '/' + $routeParams.id;
+                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //----
                 $scope.numpage = toolService.checkDefault(1, $routeParams.page);
                 $scope.rpp = toolService.checkDefault(10, $routeParams.rpp);
@@ -53,29 +47,27 @@ moduloEpisodio.controller('EpisodioxepisodioPList1Controller',
                 $scope.orderParams = toolService.checkEmptyString($routeParams.order);
                 $scope.filterParams = toolService.checkEmptyString($routeParams.filter);
                 //---
+                $scope.status = null;
+                $scope.debugging = constantService.debugging();
+                //---
+                $scope.idseve = false;
+                $scope.iduser = 0;
+                $scope.veredit = true;
+
                 function getDataFromServer() {
-                    $scope.linkedbean = null;
-                    $scope.linkedbean2 = null;
-                    serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
-                        if ($scope.xob && $scope.xid) {
-                            serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
-                                if (response.status == 200) {
-                                    if (response.data.status == 200) {
-                                        $scope.linkedbean = response.data.json;
-                                        $scope.linkedbean2 = response.data.json.data.obj_paciente;
-                                        $scope.linkedbean3 = response.data.json.data.obj_usuario;
-                                    }
-                                }
-                            }).catch(function (data) {
-                            });
+                    serverCallService.getSession("usuario").then(function (response) {
+                        if (response.status == 200) {
+                            $scope.iduser = response.data.json.data.id;
                         }
+                    });
+                    serverCallService.getCount($scope.ob, $scope.filterParams).then(function (response) {
                         if (response.status == 200) {
                             $scope.registers = response.data.json;
                             $scope.pages = toolService.calculatePages($scope.rpp, $scope.registers);
                             if ($scope.numpage > $scope.pages) {
                                 $scope.numpage = $scope.pages;
                             }
-                            return serverCallService.getPageX($scope.ob, $scope.xob, $scope.xid, $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order);
+                            return serverCallService.getPage($scope.ob, $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order);
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -103,6 +95,15 @@ moduloEpisodio.controller('EpisodioxepisodioPList1Controller',
                 };
                 $scope.setShowRemove = function (show) {
                     $scope.showRemove = show;
+                };
+                $scope.showEdit = function (oBean) {
+                    $scope.iduserobean = oBean.obj_usuario.data.id;
+                    if ($scope.iduserobean == $scope.iduser) {
+                        $scope.idseve = true;
+                    }
+                    else{
+                        $scope.idseve = false;
+                    }
                 };
                 getDataFromServer();
             }
