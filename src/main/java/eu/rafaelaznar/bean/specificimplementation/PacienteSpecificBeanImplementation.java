@@ -69,6 +69,8 @@ public class PacienteSpecificBeanImplementation extends TableGenericBeanImplemen
             Description = "Documento Nacional de Identidad",
             Type = EnumHelper.FieldType.String,
             IsForeignKeyDescriptor = true,
+            RegexPattern = RegexConstants.dni,
+            RegexHelp = RegexConstants.dni_Help,
             Width = 3,
             MaxLength = 100
     )
