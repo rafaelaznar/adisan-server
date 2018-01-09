@@ -103,7 +103,7 @@ public class PacienteSpecificServiceImplementation extends TableGenericServiceIm
                                 TableGenericBeanImplementation oBean = (TableGenericBeanImplementation) BeanFactory.getBean(ob);
                                 Gson oGson = GsonHelper.getGson();
                                 oBean = oGson.fromJson(jason, oBean.getClass());
-                                oDao.checkUpdate(oBean.getId());
+                                oDao.checkUpdate(oBean.getId()); // necesita crear variable boolean y devolver el valor
                             } catch (Exception ex) {
                                 String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
                                 Log4jHelper.errorLog(msg, ex);
@@ -125,7 +125,7 @@ public class PacienteSpecificServiceImplementation extends TableGenericServiceIm
                                     }
                                 }
                             }
-                            return true;
+                            return true; // el valor a devolver va aqui
                         case "remove":
                             return true;
                         case "getpage":
