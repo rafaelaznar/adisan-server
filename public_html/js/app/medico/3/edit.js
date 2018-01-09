@@ -27,12 +27,12 @@
  */
 
 'use strict';
-moduloMedico.controller('MedicoEdit1Controller',
+moduloMedico.controller('MedicoEdit3Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
                 $scope.ob = "medico";
                 $scope.op = "edit";
-                $scope.profile = 1;
+                $scope.profile = 3;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
