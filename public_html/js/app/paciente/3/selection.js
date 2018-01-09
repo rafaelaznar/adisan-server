@@ -42,7 +42,7 @@ moduloPaciente.controller('PacienteSelection3Controller',
                 $scope.numpage = 1;
                 $scope.rpp = 10;
                 $scope.neighbourhood = 1;
-                //$scope.onlyview = true;
+                $scope.onlyview = true;
                 
                 //---
                 $scope.status = null;
