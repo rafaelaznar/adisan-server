@@ -42,6 +42,7 @@ import eu.rafaelaznar.dao.specificimplementation.CentrosanitarioSpecificDaoImple
 import eu.rafaelaznar.dao.specificimplementation.TipoepisodioSpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.CircunstanciasaltaSpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.CursoSpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.DependenciaSpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.EspecialidadSpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.DestinoaltaSpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.EpisodioSpecificDaoImplementation;
@@ -118,23 +119,27 @@ public class DaoFactory {
                 oDao = (MetaDaoInterface) new ServicioSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
                 break;
             case "paciente":
-                UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
-                MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_tipousuario();
-                TipousuarioSpecificBeanImplementation oTipoUsuario = (TipousuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
-                Integer idTipousuario = oTipoUsuario.getId();
-                switch (idTipousuario) {
-                    case 1:
-                        oDao = (MetaDaoInterface) new PacienteSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
-                        break;
-                    case 3:
-                        oDao = (MetaDaoInterface) new PacienteProfesorSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
-                        break;
-                    case 4:
-                        oDao = (MetaDaoInterface) new PacienteAlumnoSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
-                        break;
-                    case 5:
-                        oDao = (MetaDaoInterface) new PacienteSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
-                        break;
+                if (oPuserBean_security != null) { //en el proceso de login puede ser nulo!!
+                    UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
+                    MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_tipousuario();
+                    TipousuarioSpecificBeanImplementation oTipoUsuario = (TipousuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
+                    Integer idTipousuario = oTipoUsuario.getId();
+                    switch (idTipousuario) {
+                        case 1:
+                            oDao = (MetaDaoInterface) new PacienteSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                            break;
+                        case 3:
+                            oDao = (MetaDaoInterface) new PacienteProfesorSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                            break;
+                        case 4:
+                            oDao = (MetaDaoInterface) new PacienteAlumnoSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                            break;
+                        case 5:
+                            oDao = (MetaDaoInterface) new PacienteSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                            break;
+                    }
+                } else {
+                    oDao = null;
                 }
                 break;
             case "categoriaprofesional":
@@ -145,6 +150,9 @@ public class DaoFactory {
                 break;
             case "medico":
                 oDao = (MetaDaoInterface) new MedicoSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                break;
+            case "dependencia":
+                oDao = (MetaDaoInterface) new DependenciaSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
                 break;
             default:
                 //oReplyBean = new ReplyBean(500, "Object not found : Please contact your administrator");
