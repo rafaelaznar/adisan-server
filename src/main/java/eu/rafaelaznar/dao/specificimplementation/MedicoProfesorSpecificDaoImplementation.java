@@ -98,12 +98,6 @@ public class MedicoProfesorSpecificDaoImplementation extends TableGenericDaoImpl
                 strSQL = "UPDATE " + ob;
                 strSQL += " SET ";
                 strSQL += oBean.toPairs();
-
-//                strSQL += "SELECT COUNT(*) FROM " + ob + ""
-//                (*) from usuario u
-//                ,paciente p, grupo g where g.id_usuario =  ? (IDPROFESORENSESION) and  u.id_grupo = g.id and u
-//                .id = p.id_usuario and p
-//                .id =  ? (IDPACIENTEAMODIFICAR);
                 oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
                 oPreparedStatement.setInt(1, oBean.getId());
                 iResult = oPreparedStatement.executeUpdate();
@@ -113,11 +107,6 @@ public class MedicoProfesorSpecificDaoImplementation extends TableGenericDaoImpl
                 Log4jHelper.errorLog(msg);
                 throw new Exception(msg);
             }
-//            if (insert) {
-//                oResultSet = oPreparedStatement.getGeneratedKeys();
-//                oResultSet.next();
-//                iResult = oResultSet.getInt(1);
-//            }
         } catch (Exception ex) {
             String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
             Log4jHelper.errorLog(msg, ex);
