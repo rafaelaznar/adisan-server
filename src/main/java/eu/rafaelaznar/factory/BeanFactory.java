@@ -57,7 +57,6 @@ import eu.rafaelaznar.bean.specificimplementation.TipopagoSpecificBeanImplementa
 import eu.rafaelaznar.bean.specificimplementation.SexoSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.TipodependenciaSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.TiposervicioSpecificBeanImplementation;
-import eu.rafaelaznar.dao.specificimplementation.UsuarioSpecificDaoImplementation;
 
 public class BeanFactory {
 
