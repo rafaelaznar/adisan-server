@@ -71,7 +71,7 @@
                                                 <a href="{{oMetap.References}}/{{profile}}/view/{{bean[oMetap.Name].data.id}}">{{bean[oMetap.Name]|getForeignDescription}}</a>
                                             </td>
                                             <td ng-if="oMetap.Type == 'Link'">
-                                                <a ng-if="bean[oMetap.Name] > 0" class="btn btn-default btn-xs" href="{{oMetap.References}}/{{profile}}/{{ob}}/plistx/{{bean['id']}}">{{bean[oMetap.Name]}}</a>
+                                                <a ng-if="bean[oMetap.Name] > 0" class="btn btn-default btn-xs" href="{{oMetap.References}}/{{profile}}/x{{ob}}/plistx/{{bean['id']}}">{{bean[oMetap.Name]}}</a>
                                                 <div ng-if="bean[oMetap.Name] == 0" >{{bean[oMetap.Name]}}</div>
                                             </td>
                                         </tr>

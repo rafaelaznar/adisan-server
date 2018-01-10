@@ -107,6 +107,9 @@ moduloServicios.factory('serverCallService',
                     },
                     getMeta: function (strClass) {
                         return $http.get(constantService.getAppUrl() + '?ob=' + strClass + '&op=getmetadata', 'GET', '');
+                    },
+                    getSession: function (strClass) {
+                        return $http.get(constantService.getAppUrl() + '?ob=' + strClass + '&op=getsessionstatus', 'GET', '');
                     }
                 }
             }
