@@ -94,7 +94,7 @@ public class PacienteSpecificServiceImplementation extends TableGenericServiceIm
                                     oConnection = oPooledConnection.newConnection();
                                     PacienteProfesorSpecificDaoImplementation oDao = new PacienteProfesorSpecificDaoImplementation(oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
                                     String jason = oRequest.getParameter("json");
-                                    TableGenericBeanImplementation oBean = (TableGenericBeanImplementation) BeanFactory.getBean(ob);
+                                    TableGenericBeanImplementation oBean = (TableGenericBeanImplementation) BeanFactory.getBean(ob, (MetaBeanHelper) oRequest.getSession().getAttribute("user"));
                                     Gson oGson = GsonHelper.getGson();
                                     oBean = oGson.fromJson(jason, oBean.getClass());
                                     oDao.checkUpdate(oBean.getId());

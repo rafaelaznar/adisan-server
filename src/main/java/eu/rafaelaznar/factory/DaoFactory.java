@@ -53,6 +53,7 @@ import eu.rafaelaznar.dao.specificimplementation.ModalidadepisodioSpecificDaoImp
 import eu.rafaelaznar.dao.specificimplementation.PacienteAlumnoSpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.PacienteProfesorSpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.PacienteSpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.PacienteVisitanteSpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.ServicioSpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.TipopagoSpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.SexoSpecificDaoImplementation;
