@@ -128,7 +128,7 @@ public class PacienteAlumnoSpecificDaoImplementation extends TableGenericDaoImpl
             oPreparedStatement = oConnection.prepareStatement(strSQL);
             oPreparedStatement.setInt(1, id);
             oResultSet = oPreparedStatement.executeQuery();
-            oBean = (TableGenericBeanImplementation) BeanFactory.getBean(ob);
+            oBean = (TableGenericBeanImplementation) BeanFactory.getBean(ob,oPuserSecurity);
             if (oResultSet.next()) {
                 oBean = (TableGenericBeanImplementation) oBean.fill(oResultSet, oConnection, oPuserSecurity, intExpand);
             } else {
