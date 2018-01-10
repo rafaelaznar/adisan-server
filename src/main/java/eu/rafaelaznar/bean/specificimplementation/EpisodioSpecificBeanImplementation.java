@@ -245,7 +245,7 @@ public class EpisodioSpecificBeanImplementation extends TableGenericBeanImplemen
             LongName = "Episodio",
             Description = "Episodio",
             Type = EnumHelper.FieldType.ForeignObject,
-            IsRequired = true,
+            IsRequired = false,
             References = "episodio",
             Width = 4,
             IsVisible = false
