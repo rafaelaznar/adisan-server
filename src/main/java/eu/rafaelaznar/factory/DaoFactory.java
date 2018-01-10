@@ -150,7 +150,7 @@ public class DaoFactory {
                 oDao = (MetaDaoInterface) new EpisodioSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
                 break;
             case "medico":
-                 if (oPuserBean_security != null) { //en el proceso de login puede ser nulo!!
+                if (oPuserBean_security != null) { //en el proceso de login puede ser nulo!!
                     UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
                     MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_tipousuario();
                     TipousuarioSpecificBeanImplementation oTipoUsuario = (TipousuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
@@ -162,12 +162,12 @@ public class DaoFactory {
                         case 3:
                             oDao = (MetaDaoInterface) new MedicoProfesorSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
                             break;
-//                        case 4:
-//                            oDao = (MetaDaoInterface) new PacienteAlumnoSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
-//                            break;
-//                        case 5:
-//                            oDao = (MetaDaoInterface) new PacienteSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
-//                            break;
+                        case 4:
+                            oDao = (MetaDaoInterface) new PacienteAlumnoSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                            break;
+                        case 5:
+                            oDao = (MetaDaoInterface) new PacienteSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                            break;
                     }
                 } else {
                     oDao = null;
