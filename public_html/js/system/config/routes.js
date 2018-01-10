@@ -67,7 +67,8 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/usuario/1/tipousuario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'UsuarioXtipousuarioPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/usuario/1/tipousuario/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'UsuarioXtipousuarioNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/usuario/1/tipousuario/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'UsuarioXtipousuarioEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
-        //------------5
+        //------------4-5
+        $routeProvider.when('/usuario/4/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'UsuarioView4Controller', resolve: {auth: authenticationAlumnoPromise}});
         $routeProvider.when('/usuario/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'UsuarioView5Controller', resolve: {auth: authenticationVisitantePromise}});
 
         //------------
@@ -359,6 +360,10 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/paciente/4/new/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacienteNew4Controller', resolve: {auth: authenticationAlumnoPromise}});
         $routeProvider.when('/paciente/4/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'PacienteView4Controller', resolve: {auth: authenticationAlumnoPromise}});
         $routeProvider.when('/paciente/4/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'PacientePList4Controller', resolve: {auth: authenticationAlumnoPromise}});
+        $routeProvider.when('/paciente/4/xusuario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'PacientexusuarioList4Controller', resolve: {auth: authenticationAlumnoPromise}});
+        $routeProvider.when('/paciente/4/xusuario/newx/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacienteNew4Controller', resolve: {auth: authenticationAlumnoPromise}});
+        $routeProvider.when('/paciente/4/xsexo/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'PacientexsexoPList4Controller', resolve: {auth: authenticationAlumnoPromise}});
+        $routeProvider.when('/paciente/4/xsexo/newx/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacientexsexoNew4Controller', resolve: {auth: authenticationAlumnoPromise}});
         //-----------paciente 5
         $routeProvider.when('/paciente/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'PacienteView5Controller', resolve: {auth: authenticationVisitantePromise}});
         $routeProvider.when('/paciente/5/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'PacientePList5Controller', resolve: {auth: authenticationVisitantePromise}});

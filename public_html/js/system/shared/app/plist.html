@@ -248,7 +248,7 @@
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td ng-if="!xob && !onlyview && veredit" class="col-md-1">
+                                                    <td ng-if="!onlyview && veredit" class="col-md-1">
                                                         <div class="btn-toolbar" role="toolbar">
                                                             <div class="btn-group">
                                                                 <a class="btn btn-default btn-xs" title="View" href="{{ob}}/{{profile}}/view/{{oBean.id}}">
@@ -269,7 +269,7 @@
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td ng-if="xob"  class="col-md-1">
+                                                    <td ng-if="xob && !veredit"  class="col-md-1">
                                                         <div class="btn-toolbar" role="toolbar">
                                                             <div class="btn-group">
                                                                 <a class="btn btn-default btn-xs" title="View" href="{{ob}}/{{profile}}/view/{{oBean.id}}">
