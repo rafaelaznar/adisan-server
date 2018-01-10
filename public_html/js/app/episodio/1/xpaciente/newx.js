@@ -51,6 +51,7 @@ moduloEpisodio.controller('EpisodioxpacienteNew1Controller',
                         if (response.status == 200) {
                             if (response.data.status == 200) {
                                 $scope.linkedbean = response.data.json;
+                                $scope.linkedbean2 = response.data.json.data.obj_usuario;
                             }
                         }
                     }).catch(function (data) {
