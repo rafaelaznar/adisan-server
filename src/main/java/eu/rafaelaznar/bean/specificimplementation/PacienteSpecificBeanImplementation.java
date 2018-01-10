@@ -328,7 +328,7 @@ public class PacienteSpecificBeanImplementation extends TableGenericBeanImplemen
             LongName = "Sip aseguradora",
             Description = "Sip del paciente",
             Type = EnumHelper.FieldType.Integer,
-            RegexPattern = "[0-9]{10,10}",
+            RegexPattern = "[0-9]{9,9}",
             RegexHelp = "10 dígitos",
             IsRequired = true,
             IsForeignKeyDescriptor = false,
