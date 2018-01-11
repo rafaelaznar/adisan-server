@@ -342,6 +342,7 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/grupo/1/xusuario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'GrupoxusuarioPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
 
         $routeProvider.when('/grupo/3/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'GrupoView3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/grupo/3/plist/:id', {templateUrl: 'js/system/shared/app/plist.html', controller: 'GrupoPlist3Controller', resolve: {auth: authenticationProfesorPromise}});
         $routeProvider.when('/grupo/4/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'GrupoView4Controller', resolve: {auth: authenticationAlumnoPromise}});
         $routeProvider.when('/grupo/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'GrupoView5Controller', resolve: {auth: authenticationVisitantePromise}});
 
