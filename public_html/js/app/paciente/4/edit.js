@@ -38,9 +38,6 @@ moduloPaciente.controller('PacienteEdit4Controller',
                 $scope.op = "edit";
                 $scope.profile = 4;
                 //---
-                $scope.xob = "usuario";
-                $scope.xid = $routeParams.id;
-                //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
@@ -54,6 +51,8 @@ moduloPaciente.controller('PacienteEdit4Controller',
                             $scope.bean = response.data.json.data;
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
+                            //eliminar clave ajena
+                            $scope.metap = toolService.deleteForeignKey($scope.metap,"obj_usuario");
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }

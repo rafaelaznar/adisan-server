@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017-2018
  *
  * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
+ *
  * GESANE: Free Open Source Health Management System
  *
  * Sources at:
@@ -41,12 +41,30 @@ moduloPaciente.controller('PacientexsexoNew4Controller',
                 //---
                 $scope.xob = "sexo";
                 $scope.xid = $routeParams.id;
+
+                //---
+                //$scope.xob2 = "usuario";
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
-                serverCallService.getMeta($scope.ob).then(function (response) {
+                if ($scope.xob && $scope.xid) {
+                    $scope.linkedbean = null;
+                    serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
+                        if (response.status == 200) {
+                            if (response.data.status == 200) {
+                                $scope.linkedbean = response.data.json;
+
+                            }
+                        }
+                    }).catch(function (data) {
+                    });
+                }
+                ;
+
+                
+                        serverCallService.getMeta($scope.ob).then(function (response) {
                     if (response.status == 200) {
                         if (response.data.status == 200) {
                             $scope.status = null;
@@ -63,6 +81,11 @@ moduloPaciente.controller('PacientexsexoNew4Controller',
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
 
+                            for( var j = 0 ; j < $scope.metap.length; j++){
+                                if($scope.metap[j].Name == "obj_usuario"){
+                                    $scope.metap.splice(j,1);
+                                }
+                            }
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }

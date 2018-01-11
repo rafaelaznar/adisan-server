@@ -66,7 +66,8 @@ moduloEpisodio.controller('EpisodioxpacienteEdit4Controller',
                             $scope.status = null;
                             $scope.bean = response.data.json.data;
                             $scope.metao = response.data.json.metaObject;
-                            $scope.metap = response.data.json.metaProperties;
+                            $scope.metap = response.data.json.metaProperties;                            
+                            $scope.metap = toolService.deleteForeignKey($scope.metap,"obj_usuario");
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
