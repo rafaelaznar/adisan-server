@@ -37,6 +37,7 @@ moduloPaciente.controller('PacientePList3Controller',
                 $scope.ob = "paciente";
                 $scope.op = "plist";
                 $scope.profile = 3;
+                /**/
                 //---
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //----
