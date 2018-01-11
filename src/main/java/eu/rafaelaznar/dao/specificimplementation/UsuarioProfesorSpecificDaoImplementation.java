@@ -62,7 +62,7 @@ public class UsuarioProfesorSpecificDaoImplementation extends TableGenericDaoImp
 
         //MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_tipousuario();
         //CentrosanitarioSpecificBeanImplementation oCentrosanitario = (CentrosanitarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
-        strSQL = "SELECT * FROM usuario u WHERE u.id_centrosanitario = " + idCentrosanitario;
+        strSQL = "SELECT * FROM usuario u, tipousuario tp WHERE u.id_tipousuario = tp.id AND u.id_centrosanitario = " + idCentrosanitario;
 
     }
         
