@@ -117,7 +117,6 @@ public class UsuarioProfesorSpecificDaoImplementation extends TableGenericDaoImp
         Integer idResult = 0;
         Integer iResult = 0;
         Boolean insert = true;
-        PacienteSpecificBeanImplementation oPaciente = (PacienteSpecificBeanImplementation) oBean;
         try {
             if (oBean.getId() == null || oBean.getId() == 0) {
                 strSQL = "INSERT INTO " + ob;
