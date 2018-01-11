@@ -88,7 +88,7 @@ public class MedicoProfesorSpecificDaoImplementation extends TableGenericDaoImpl
                 oResultSet = oPreparedStatement.getGeneratedKeys();
                 oResultSet.next();
                 idResult = oResultSet.getInt(1);
-                strSQL = "UPDATE " + ob + " SET id_usuario=" + idUsuario + " WHERE id=" + idResult;
+                strSQL = "UPDATE " + ob + " SET id_centrosanitario=" + idCentrosanitario + " WHERE id=" + idResult;
                 oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
                 oPreparedStatement.executeUpdate();
 
@@ -98,6 +98,7 @@ public class MedicoProfesorSpecificDaoImplementation extends TableGenericDaoImpl
                 strSQL = "UPDATE " + ob;
                 strSQL += " SET ";
                 strSQL += oBean.toPairs();
+                strSQL += " WHERE id=? ";
                 oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
                 oPreparedStatement.setInt(1, oBean.getId());
                 iResult = oPreparedStatement.executeUpdate();
