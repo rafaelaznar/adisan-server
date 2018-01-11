@@ -126,19 +126,13 @@ public abstract class TableGenericServiceImplementation extends ViewGenericServi
     public ReplyBeanHelper set() throws Exception {
         if (this.checkPermission("set")) {
             String jason = oRequest.getParameter("json");
-            TableGenericBeanImplementation oBean = (TableGenericBeanImplementation) BeanFactory.getBean(ob);
+            TableGenericBeanImplementation oBean = (TableGenericBeanImplementation) BeanFactory.getBean(ob, (MetaBeanHelper) oRequest.getSession().getAttribute("user"));
             Gson oGson = GsonHelper.getGson();
             oBean = oGson.fromJson(jason, oBean.getClass());
             ReplyBeanHelper oReplyBean = null;
             if (oBean == null) {
                 throw new Exception("Bean null en service set");
-            } else if (oBean.getId() != null) {
-                if (oBean.getId() != 0) {
-                    if (this.checkPermission("setedit")) {
-                        oReplyBean = setoBean(oBean);
-                    }
-                }
-            } else if (this.checkPermission("setnew")) {
+            } else {
                 oReplyBean = setoBean(oBean);
             }
             return oReplyBean;
