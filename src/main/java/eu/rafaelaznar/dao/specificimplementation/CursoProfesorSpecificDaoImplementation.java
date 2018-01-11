@@ -46,30 +46,26 @@ import eu.rafaelaznar.helper.SqlHelper;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class UsuarioProfesorSpecificDaoImplementation extends TableGenericDaoImplementation {
+public class CursoProfesorSpecificDaoImplementation extends TableGenericDaoImplementation {
 
-     
-    private Integer idCentrosanitario = 0;
-    private Integer idUsuario = 0;
+    private Integer idUsuario;
+    private Integer idCentrosanitario = null;
 
-    public UsuarioProfesorSpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("usuario", oPooledConnection, oPuserBean_security, strWhere);
-           UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
-        idUsuario = oUsuario.getId();
+    public CursoProfesorSpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
+        super("curso", oPooledConnection, oPuserBean_security, strWhere);
+
+        UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
         idCentrosanitario = oUsuario.getId_centrosanitario();
+        idUsuario = oUsuario.getId();
 
-        //MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_tipousuario();
-        //CentrosanitarioSpecificBeanImplementation oCentrosanitario = (CentrosanitarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
-        strSQL = "SELECT * FROM usuario u, tipousuario tp WHERE u.id_tipousuario = tp.id AND u.id_centrosanitario = " + idCentrosanitario;
-
+        strSQL = "SELECT * FROM curso c, grupo g WHERE g.id_curso = c.id AND g.id_usuario = " + idUsuario;
     }
-       @Override
+     @Override
     public Long getCount(ArrayList<FilterBeanHelper> alFilter) throws Exception {
-        strSQL = "SELECT COUNT(*) FROM usuario u, tipousuario tp WHERE u.id_tipousuario = tp.id AND u.id_centrosanitario = " + idCentrosanitario;
+        strSQL = "SELECT COUNT(*) FROM curso c, grupo g WHERE g.id_curso = c.id AND g.id_usuario = " + idUsuario;
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
         strSQL += SqlHelper.buildSqlFilter(alFilter);
@@ -98,11 +94,11 @@ public class UsuarioProfesorSpecificDaoImplementation extends TableGenericDaoImp
         }
         return iResult;
     }
-@Override
+    @Override
     public MetaBeanHelper get(int id, int intExpand) throws Exception {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
-        strSQL += " AND u.id=? ";
+        strSQL += " AND c.id=? ";
         TableGenericBeanImplementation oBean = null;
         MetaBeanHelper oMetaBeanHelper = null;
         try {
@@ -149,6 +145,7 @@ public class UsuarioProfesorSpecificDaoImplementation extends TableGenericDaoImp
         Integer idResult = 0;
         Integer iResult = 0;
         Boolean insert = true;
+        PacienteSpecificBeanImplementation oPaciente = (PacienteSpecificBeanImplementation) oBean;
         try {
             if (oBean.getId() == null || oBean.getId() == 0) {
                 strSQL = "INSERT INTO " + ob;
@@ -172,9 +169,9 @@ public class UsuarioProfesorSpecificDaoImplementation extends TableGenericDaoImp
                 strSQL = "UPDATE " + ob;
                 strSQL += " SET ";
                 strSQL += oBean.toPairs();
-                strSQL += "SELECT COUNT(*) FROM " + ob + " p, usuario u, grupo g "
+                strSQL += "SELECT COUNT(*) FROM " + ob + " c, usuario u, grupo g "
                         + "WHERE g.id_usuario = ? AND u.id_grupo = g.id AND "
-                        + "u.id = p.id_usuario AND p.id = ?";
+                        + "u.id = c.id_usuario AND c.id = ?";
 //                () from usuario u,paciente p, grupo g where g.id_usuario =  ? (IDPROFESORENSESION) and  u.id_grupo = g.id and u.id = p.id_usuario and p.id =  ? (IDPACIENTEAMODIFICAR);
                 oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
                 oPreparedStatement.setInt(1, idUsuario);
@@ -203,5 +200,4 @@ public class UsuarioProfesorSpecificDaoImplementation extends TableGenericDaoImp
         return idResult;
     }
 
-    
 }
