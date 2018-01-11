@@ -407,6 +407,9 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         //-----------3
 
         //-----------4
+        $routeProvider.when('/dependencia/4/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'DependenciaPList4Controller', resolve: {auth: authenticationAlumnoPromise}});
+        $routeProvider.when('/dependencia/4/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'DependenciaView4Controller', resolve: {auth: authenticationAlumnoPromise}});
+        
         //-----------5
         $routeProvider.when('/dependencia/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'DependenciaView5Controller', resolve: {auth: authenticationVisitantePromise}});
 
