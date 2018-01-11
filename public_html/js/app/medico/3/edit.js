@@ -47,6 +47,12 @@ moduloMedico.controller('MedicoEdit3Controller',
                             $scope.bean = response.data.json.data;
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
+                            
+                             for (var j = 0; j < $scope.metap.length; j++) {
+                                if ($scope.metap[j].Name == "obj_centrosanitario") {
+                                    $scope.metap.splice(j, 1);
+                                }
+                            }
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
