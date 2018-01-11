@@ -71,7 +71,11 @@ public class DaoFactory {
         MetaDaoInterface oDao = null;
         switch (ob) {
             case "usuario":
-                if (oPuserBean_security != null) { //en el proceso de login puede ser nulo!!
+               if (oPuserBean_security == null) {
+                    oDao = (MetaDaoInterface) new UsuarioSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                    break;
+                } else {
+                    oDao = (MetaDaoInterface) new UsuarioSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
                     UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
                     MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_tipousuario();
                     TipousuarioSpecificBeanImplementation oTipoUsuario = (TipousuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
@@ -90,8 +94,6 @@ public class DaoFactory {
                             oDao = (MetaDaoInterface) new UsuarioSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
                             break;
                     }
-                } else {
-                    oDao = null;
                 }
                 break;
             case "tipousuario":

@@ -36,6 +36,7 @@ import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.meta.helper.MetaObjectGenericBeanHelper;
 import eu.rafaelaznar.bean.meta.helper.MetaPropertyGenericBeanHelper;
+import eu.rafaelaznar.bean.specificimplementation.PacienteSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import eu.rafaelaznar.factory.BeanFactory;
@@ -61,25 +62,30 @@ public class UsuarioProfesorSpecificDaoImplementation extends TableGenericDaoImp
 
         //MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_tipousuario();
         //CentrosanitarioSpecificBeanImplementation oCentrosanitario = (CentrosanitarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
-        strSQL = "SELECT * FROM paciente p, usuario u WHERE p.id_usuario = u.id AND u.id_centrosanitario = " + idCentrosanitario;
+        strSQL = "SELECT * FROM usuario u WHERE u.id_centrosanitario = " + idCentrosanitario;
 
     }
         
-public MetaBeanHelper getFromLoginAndPass(UsuarioSpecificBeanImplementation oUsuarioBean) throws Exception {
+@Override
+    public MetaBeanHelper get(int id, int intExpand) throws Exception {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
+        strSQL += " AND u.id=? ";
+        TableGenericBeanImplementation oBean = null;
         MetaBeanHelper oMetaBeanHelper = null;
-        strSQL += " AND login='" + oUsuarioBean.getLogin() + "'";
-        strSQL += " AND password='" + oUsuarioBean.getPassword() + "'";
         try {
             oPreparedStatement = oConnection.prepareStatement(strSQL);
+            oPreparedStatement.setInt(1, id);
             oResultSet = oPreparedStatement.executeQuery();
+            oBean = (TableGenericBeanImplementation) BeanFactory.getBean(ob,oPuserSecurity);
             if (oResultSet.next()) {
-                oUsuarioBean.setId(oResultSet.getInt("id"));
-                oMetaBeanHelper = this.get(oUsuarioBean.getId(), 3);
+                oBean = (TableGenericBeanImplementation) oBean.fill(oResultSet, oConnection, oPuserSecurity, intExpand);
             } else {
-                throw new Exception("UsuarioDao getFromLoginAndPass error");
+                oBean.setId(0);
             }
+            ArrayList<MetaPropertyGenericBeanHelper> alMetaProperties = this.getPropertiesMetaData();
+            MetaObjectGenericBeanHelper oMetaObject = this.getObjectMetaData();
+            oMetaBeanHelper = new MetaBeanHelper(oMetaObject, alMetaProperties, oBean);
         } catch (Exception ex) {
             String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
             Log4jHelper.errorLog(msg, ex);
@@ -91,64 +97,79 @@ public MetaBeanHelper getFromLoginAndPass(UsuarioSpecificBeanImplementation oUsu
             if (oPreparedStatement != null) {
                 oPreparedStatement.close();
             }
+
         }
         return oMetaBeanHelper;
     }
-    
-    public Integer getIDfromUser(String strLogin) throws Exception {
-        Integer intResult = null;
-        Statement oStatement = null;
-        ResultSet oResultSet = null;
-        try {
-            oStatement = (Statement) oConnection.createStatement();
-            String strSQL = "SELECT id FROM usuario WHERE login ='" + strLogin + "'";
-            oResultSet = oStatement.executeQuery(strSQL);
-            if (oResultSet.next()) {
-                intResult = oResultSet.getInt("id");
-            } else {
-                return 0;
-            }
-        } catch (SQLException ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
-        } finally {
-            if (oResultSet != null) {
-                oResultSet.close();
-            }
-            if (oStatement != null) {
-                oStatement.close();
-            }
+
+    public Boolean checkUpdate(int id) {
+        if (id != 0) {
+            return true;
+        } else {
+            return false;
         }
-        return intResult;
     }
-        
-    public Integer getIDfromCodigoGrupo(String strCode) throws Exception {
-        Integer intResult = null;
-        Statement oStatement = null;
+
+    @Override
+    public Integer set(TableGenericBeanImplementation oBean) throws Exception {
+        PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
+        Integer idResult = 0;
+        Integer iResult = 0;
+        Boolean insert = true;
+        PacienteSpecificBeanImplementation oPaciente = (PacienteSpecificBeanImplementation) oBean;
         try {
-            oStatement = (Statement) oConnection.createStatement();
-            String strSQL = "SELECT id FROM grupo WHERE codigo ='" + strCode + "'";
-            oResultSet = oStatement.executeQuery(strSQL);
-            if (oResultSet.next()) {
-                intResult = oResultSet.getInt("id");
+            if (oBean.getId() == null || oBean.getId() == 0) {
+                strSQL = "INSERT INTO " + ob;
+                strSQL += "(" + oBean.getColumns() + ")";
+                strSQL += " VALUES ";
+                strSQL += "(" + oBean.getValues() + ")";
+
+                oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
+                iResult = oPreparedStatement.executeUpdate();
+                if (insert) {
+                    oResultSet = oPreparedStatement.getGeneratedKeys();
+                    oResultSet.next();
+                    idResult = oResultSet.getInt(1);
+                }
+                strSQL = "UPDATE " + ob + " SET id_usuario=" + idUsuario + " WHERE id=" + idResult;
+                oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
+                oPreparedStatement.executeUpdate();
             } else {
-                return 0;
+                // check permission if ok edit else unauthorized
+                insert = false;
+                strSQL = "UPDATE " + ob;
+                strSQL += " SET ";
+                strSQL += oBean.toPairs();
+                strSQL += "SELECT COUNT(*) FROM " + ob + " p, usuario u, grupo g "
+                        + "WHERE g.id_usuario = ? AND u.id_grupo = g.id AND "
+                        + "u.id = p.id_usuario AND p.id = ?";
+//                () from usuario u,paciente p, grupo g where g.id_usuario =  ? (IDPROFESORENSESION) and  u.id_grupo = g.id and u.id = p.id_usuario and p.id =  ? (IDPACIENTEAMODIFICAR);
+                oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
+                oPreparedStatement.setInt(1, idUsuario);
+                oPreparedStatement.setInt(2, oBean.getId());
+                iResult = oPreparedStatement.executeUpdate();
             }
-        } catch (SQLException ex) {
+            if (iResult < 1) {
+                String msg = this.getClass().getName() + ": set";
+                Log4jHelper.errorLog(msg);
+                throw new Exception(msg);
+            }
+        } catch (Exception ex) {
             String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
             Log4jHelper.errorLog(msg, ex);
             throw new Exception(msg, ex);
         } finally {
-            if (oResultSet != null) {
-                oResultSet.close();
+            if (insert) {
+                if (oResultSet != null) {
+                    oResultSet.close();
+                }
             }
-            if (oStatement != null) {
-                oStatement.close();
+            if (oPreparedStatement != null) {
+                oPreparedStatement.close();
             }
         }
-        return intResult;
+        return idResult;
     }
 
     
