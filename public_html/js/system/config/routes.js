@@ -342,7 +342,7 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/grupo/1/xusuario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'GrupoxusuarioPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
 
         $routeProvider.when('/grupo/3/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'GrupoView3Controller', resolve: {auth: authenticationProfesorPromise}});
-        $routeProvider.when('/grupo/3/plist/:id', {templateUrl: 'js/system/shared/app/plist.html', controller: 'GrupoPlist3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/grupo/3/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'GrupoPList3Controller', resolve: {auth: authenticationProfesorPromise}});
         $routeProvider.when('/grupo/4/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'GrupoView4Controller', resolve: {auth: authenticationAlumnoPromise}});
         $routeProvider.when('/grupo/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'GrupoView5Controller', resolve: {auth: authenticationVisitantePromise}});
 
@@ -354,6 +354,7 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/curso/1/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'CursoRemove1Controller', resolve: {auth: authenticationAdministratorPromise}});
         //-----------
         $routeProvider.when('/curso/3/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'CursoView3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/curso/3/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'CursoPList3Controller', resolve: {auth: authenticationProfesorPromise}});
         //-----------
         $routeProvider.when('/curso/4/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'CursoView4Controller', resolve: {auth: authenticationAlumnoPromise}});
         //-----------
@@ -375,6 +376,7 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/centro/1/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'CentroRemove1Controller', resolve: {auth: authenticationAdministratorPromise}});
         //-----------3
         $routeProvider.when('/centro/3/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'CentroView3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/centro/3/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'CentroPList3Controller', resolve: {auth: authenticationProfesorPromise}});
         //-----------4
         $routeProvider.when('/centro/4/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'CentroView4Controller', resolve: {auth: authenticationAlumnoPromise}});
         //-----------5
