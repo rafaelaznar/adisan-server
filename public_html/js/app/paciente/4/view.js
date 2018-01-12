@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017-2018
  *
  * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
+ *
  * GESANE: Free Open Source Health Management System
  *
  * Sources at:
@@ -54,7 +54,6 @@ moduloPaciente.controller('PacienteView4Controller',
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
 
-
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -69,6 +68,16 @@ moduloPaciente.controller('PacienteView4Controller',
                 };
                 $scope.close = function () {
                     $location.path('/home');
+                };
+                $scope.showEdit = function (bean) {
+                    $scope.sesiondata = sessionService.getSessionInfo();
+                    $scope.idUserSesion = $scope.sesiondata.id;
+                    $scope.idUserPaciente = $scope.bean.obj_usuario.data.id;
+                    if ($scope.idUserSesion == $scope.idUserPaciente) {
+                        return true;
+                    } else {
+                        return false;
+                    }
                 };
             }
         ]);

@@ -34,6 +34,7 @@ moduloUsuario.controller('UsuarioView4Controller',
                 $scope.profile = 4;
                 //---
                 $scope.id = $routeParams.id;
+                $scope.onlyview = true;
                 //---
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
