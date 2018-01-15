@@ -47,6 +47,7 @@ moduloDependencia.controller('DependenciaSelection3Controller',
                 $scope.visibles = {};
                 $scope.visibles.id = true;
                 $scope.visibles.descripcion = true;
+                $scope.
 
                 $scope.filterString = [{'name': 'descripcion', 'longname': 'Descripción'}];
                 $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'}];
@@ -74,6 +75,7 @@ moduloDependencia.controller('DependenciaSelection3Controller',
                             $scope.page = response.data.json.data;
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
+
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -116,7 +118,11 @@ moduloDependencia.controller('DependenciaSelection3Controller',
                     getData();
                     return false;
                 };
+                
+                
+                
 
                 getData();
             }
+            
         ]);
