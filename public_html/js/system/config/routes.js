@@ -403,23 +403,12 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
 
         
         // ------ Dependencia
-
-        //-----------3
-
-        //-----------4
-        $routeProvider.when('/dependencia/4/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'DependenciaPList4Controller', resolve: {auth: authenticationAlumnoPromise}});
-        $routeProvider.when('/dependencia/4/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'DependenciaView4Controller', resolve: {auth: authenticationAlumnoPromise}});
-        
-        //-----------5
-        $routeProvider.when('/dependencia/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'DependenciaView5Controller', resolve: {auth: authenticationVisitantePromise}});
-
-        // ------ Dependencia
         $routeProvider.when('/dependencia/1/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'DependenciaPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/dependencia/1/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'DependenciaView1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/dependencia/1/new/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'DependenciaNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/dependencia/1/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'DependenciaEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/dependencia/1/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'DependenciaRemove1Controller', resolve: {auth: authenticationAdministratorPromise}});
-        //-- foreign key xtipodependencia
+       //-- foreign key xtipodependencia
         $routeProvider.when('/dependencia/1/xtipodependencia/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'DependenciaxtipodependenciaNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/dependencia/1/xtipodependencia/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'DependenciaxtipodependenciaEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/dependencia/1/xtipodependencia/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'DependenciaxtipodependenciaPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
@@ -427,7 +416,28 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/dependencia/1/xcentrosanitario/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'DependenciaxcentrosanitarioNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/dependencia/1/xcentrosanitario/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'DependenciaxcentrosanitarioEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/dependencia/1/xcentrosanitario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'DependenciaxcentrosanitarioPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
-       
+        //-----------3
+        $routeProvider.when('/dependencia/3/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'DependenciaPList3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/dependencia/3/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'DependenciaView3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/dependencia/3/new/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'DependenciaNew3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/dependencia/3/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'DependenciaEdit3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/dependencia/3/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'DependenciaRemove3Controller', resolve: {auth: authenticationProfesorPromise}});
+       //-- foreign key xtipodependencia
+        $routeProvider.when('/dependencia/3/xtipodependencia/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'DependenciaxtipodependenciaNew3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/dependencia/3/xtipodependencia/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'DependenciaxtipodependenciaEdit3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/dependencia/3/xtipodependencia/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'DependenciaxtipodependenciaPList3Controller', resolve: {auth: authenticationProfesorPromise}});
+        //-- foreign key xcentrosanitario
+        $routeProvider.when('/dependencia/3/xcentrosanitario/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'DependenciaxcentrosanitarioNew3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/dependencia/3/xcentrosanitario/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'DependenciaxcentrosanitarioEdit3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/dependencia/3/xcentrosanitario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'DependenciaxcentrosanitarioPList3Controller', resolve: {auth: authenticationProfesorPromise}});
+
+        //-----------4
+        $routeProvider.when('/dependencia/4/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'DependenciaPList4Controller', resolve: {auth: authenticationAlumnoPromise}});
+        $routeProvider.when('/dependencia/4/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'DependenciaView4Controller', resolve: {auth: authenticationAlumnoPromise}});
+        
+        //-----------5
+        $routeProvider.when('/dependencia/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'DependenciaView5Controller', resolve: {auth: authenticationVisitantePromise}});
+      
 
        //--- medico
         $routeProvider.when('/medico/1/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'MedicoPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
