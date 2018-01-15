@@ -99,7 +99,7 @@ public class DependenciaProfesorSpecificDaoImplementation extends TableGenericDa
         return oMetaBeanHelper;
     }
     
-    @Override
+     @Override
     public Integer set(TableGenericBeanImplementation oBean) throws Exception {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
@@ -117,16 +117,17 @@ public class DependenciaProfesorSpecificDaoImplementation extends TableGenericDa
                 oResultSet = oPreparedStatement.getGeneratedKeys();
                 oResultSet.next();
                 idResult = oResultSet.getInt(1);
-                strSQL = "UPDATE " + ob + " SET id_usuario=" + idUsuario + " WHERE id=" + idResult;
+                strSQL = "UPDATE " + ob + " SET id_centrosanitario=" + idCentrosanitario + " WHERE id=" + idResult;
                 oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
                 oPreparedStatement.executeUpdate();
 
             } else {
+
                 insert = false;
-                strSQL = "UPDATE " + ob + " p";
+                strSQL = "UPDATE " + ob;
                 strSQL += " SET ";
                 strSQL += oBean.toPairs();
-                strSQL += " WHERE g.id_usuario = " + idUsuario + " AND u.id_grupo = g.id AND u.id = p.id_usuario AND p.id = ?";
+                strSQL += " WHERE id=? ";
                 oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
                 oPreparedStatement.setInt(1, oBean.getId());
                 iResult = oPreparedStatement.executeUpdate();
