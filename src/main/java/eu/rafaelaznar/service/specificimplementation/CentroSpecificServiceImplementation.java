@@ -38,6 +38,7 @@ import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.connection.publicinterface.ConnectionInterface;
+import eu.rafaelaznar.dao.specificimplementation.CentroProfesorSpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.PacienteProfesorSpecificDaoImplementation;
 import eu.rafaelaznar.factory.BeanFactory;
 import eu.rafaelaznar.factory.ConnectionFactory;
@@ -89,7 +90,7 @@ public class CentroSpecificServiceImplementation extends TableGenericServiceImpl
                                 try {
                                     oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
                                     oConnection = oPooledConnection.newConnection();
-                                    PacienteProfesorSpecificDaoImplementation oDao = new PacienteProfesorSpecificDaoImplementation(oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+                                    CentroProfesorSpecificDaoImplementation oDao = new CentroProfesorSpecificDaoImplementation(oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
                                     String jason = oRequest.getParameter("json");
                                     TableGenericBeanImplementation oBean = (TableGenericBeanImplementation) BeanFactory.getBean(ob, (MetaBeanHelper) oRequest.getSession().getAttribute("user"));
                                     Gson oGson = GsonHelper.getGson();

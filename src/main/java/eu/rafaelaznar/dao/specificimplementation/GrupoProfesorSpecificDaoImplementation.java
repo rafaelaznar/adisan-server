@@ -98,7 +98,7 @@ public class GrupoProfesorSpecificDaoImplementation extends TableGenericDaoImple
     public MetaBeanHelper get(int id, int intExpand) throws Exception {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
-        strSQL += " AND c.id=? ";
+        strSQL += " AND g.id=? ";
         TableGenericBeanImplementation oBean = null;
         MetaBeanHelper oMetaBeanHelper = null;
         try {
