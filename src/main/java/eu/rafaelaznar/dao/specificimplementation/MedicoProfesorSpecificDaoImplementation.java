@@ -49,7 +49,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -71,7 +74,9 @@ public class MedicoProfesorSpecificDaoImplementation extends TableGenericDaoImpl
 
         //MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_tipousuario();
         //CentrosanitarioSpecificBeanImplementation oCentrosanitario = (CentrosanitarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
-        strSQL = "SELECT * FROM medico m, centrosanitario cs WHERE m.id_centrosanitario = cs.id AND cs.id = " + idCentrosanitario;
+        strSQL = "SELECT * FROM medico WHERE id_centrosanitario = " + idCentrosanitario + " ";
+        strCountSQL = "SELECT COUNT(*) FROM " + ob + " WHERE id_centrosanitario = " + idCentrosanitario + " ";
+
     }
 
     @Override
@@ -133,7 +138,7 @@ public class MedicoProfesorSpecificDaoImplementation extends TableGenericDaoImpl
     public MetaBeanHelper get(int id, int intExpand) throws Exception {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
-        strSQL += " AND m.id=? ";
+        strSQL += " AND id=? ";
         TableGenericBeanImplementation oBean = null;
         MetaBeanHelper oMetaBeanHelper = null;
         try {
@@ -164,92 +169,7 @@ public class MedicoProfesorSpecificDaoImplementation extends TableGenericDaoImpl
         }
         return oMetaBeanHelper;
     }
-
-    @Override
-    public Long getCount(ArrayList<FilterBeanHelper> alFilter) throws Exception {
-        strSQL = "SELECT count(*) FROM medico m, centrosanitario cs WHERE m.id_centrosanitario = cs.id AND cs.id = " + idCentrosanitario;
-        PreparedStatement oPreparedStatement = null;
-        ResultSet oResultSet = null;
-        strSQL += SqlHelper.buildSqlFilter(alFilter);
-        Long iResult = 0L;
-        try {
-            oPreparedStatement = oConnection.prepareStatement(strSQL);
-            oResultSet = oPreparedStatement.executeQuery();
-            if (oResultSet.next()) {
-                iResult = oResultSet.getLong("COUNT(*)");
-            } else {
-                String msg = this.getClass().getName() + ": getcount";
-                Log4jHelper.errorLog(msg);
-                throw new Exception(msg);
-            }
-        } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
-        } finally {
-            if (oResultSet != null) {
-                oResultSet.close();
-            }
-            if (oPreparedStatement != null) {
-                oPreparedStatement.close();
-            }
-        }
-        return iResult;
-    }
-
-    @Override
-    public MetaBeanHelper getPage(int intRegsPerPag, int intPage, LinkedHashMap<String, String> hmOrder, ArrayList<FilterBeanHelper> alFilter, int expand) throws Exception {
-        String strSQL1 = strSQL;
-        strSQL1 += SqlHelper.buildSqlFilter(alFilter);
-        strSQL1 += SqlHelper.buildSqlOrder(hmOrder);
-        strSQL1 += SqlHelper.buildSqlLimit(this.getCount(alFilter), intRegsPerPag, intPage);
-        ArrayList<ViewGenericBeanImplementation> aloBean = new ArrayList<>();
-        PreparedStatement oPreparedStatement = null;
-        ResultSet oResultSet = null;
-        MetaBeanHelper oMetaBeanHelper = null;
-        try {
-            oPreparedStatement = oConnection.prepareStatement(strSQL1);
-            oResultSet = oPreparedStatement.executeQuery(strSQL1);
-            while (oResultSet.next()) {
-                GenericBeanInterface oBean = BeanFactory.getBean(ob, oPuserSecurity);
-                oBean = (ViewGenericBeanImplementation) oBean.fill(oResultSet, oConnection, oPuserSecurity, expand);
-                aloBean.add((ViewGenericBeanImplementation) oBean);
-            }
-
-            ArrayList<MetaPropertyGenericBeanHelper> alMetaProperties = this.getPropertiesMetaData();
-            MetaObjectGenericBeanHelper oMetaObject = this.getObjectMetaData();
-            oMetaBeanHelper = new MetaBeanHelper(oMetaObject, alMetaProperties, aloBean);
-
-        } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
-        } finally {
-            if (oResultSet != null) {
-                oResultSet.close();
-            }
-            if (oPreparedStatement != null) {
-                oPreparedStatement.close();
-            }
-        }
-        return oMetaBeanHelper;
-    }
-    
-     //Para arreglar el ordenar 12-1-18
-     public String buildSqlOrder(LinkedHashMap<String, String> hmOrder) {
-        String strSQLOrder = "";
-        if (hmOrder != null) {
-            for (Map.Entry<String, String> entry : hmOrder.entrySet()) {
-                strSQLOrder += "m."+entry.getKey();                
-                strSQLOrder += " ";
-                strSQLOrder += entry.getValue();
-                strSQLOrder += ",";
-            }
-            strSQLOrder = " ORDER BY " + strSQLOrder.substring(0, strSQLOrder.length() - 1);
-        }
-        return strSQLOrder;
-    }
-
+  
     public Boolean checkUpdate(int id) {
         if (id != 0) {
             return true;
@@ -257,7 +177,5 @@ public class MedicoProfesorSpecificDaoImplementation extends TableGenericDaoImpl
             return false;
         }
     }
-    
-    
 
 }
