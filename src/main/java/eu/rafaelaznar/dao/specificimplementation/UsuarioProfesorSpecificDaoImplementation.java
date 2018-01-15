@@ -68,6 +68,7 @@ public class UsuarioProfesorSpecificDaoImplementation extends TableGenericDaoImp
         //CentrosanitarioSpecificBeanImplementation oCentrosanitario = (CentrosanitarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
         strSQL = "SELECT u.id, u.nombre, u.primer_apellido, u.segundo_apellido, u.login, u.password, u.email, u.token, u.activo, u.fecha_alta, u.validado, u.id_tipousuario, u.id_grupo, u.id_centro, u.id_centrosanitario \n" +
         "FROM usuario u WHERE u.id_centrosanitario = "+ idCentrosanitario+" UNION SELECT u.id, u.nombre, u.primer_apellido, u.segundo_apellido, u.login, u.password, u.email, u.token, u.activo, u.fecha_alta, u.validado, u.id_tipousuario, u.id_grupo, u.id_centro, u.id_centrosanitario FROM paciente p, usuario u, grupo g, usuario u2 WHERE p.id_usuario = u.id AND u.id_tipousuario=4 and u.id_grupo=g.id and g.id_usuario=u2.id and u2.id_centrosanitario= " + idCentrosanitario;
+    
     }
 @Override
     public MetaBeanHelper get(int id, int intExpand) throws Exception {
