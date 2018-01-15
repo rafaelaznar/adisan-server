@@ -33,7 +33,6 @@
 package eu.rafaelaznar.dao.specificimplementation;
 
 import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
-import eu.rafaelaznar.bean.helper.FilterBeanHelper;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.meta.helper.MetaObjectGenericBeanHelper;
 import eu.rafaelaznar.bean.meta.helper.MetaPropertyGenericBeanHelper;
@@ -41,13 +40,12 @@ import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementat
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import eu.rafaelaznar.factory.BeanFactory;
 import eu.rafaelaznar.helper.Log4jHelper;
-import eu.rafaelaznar.helper.SqlHelper;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
 
 /**
  *
@@ -63,11 +61,10 @@ public class MedicoProfesorSpecificDaoImplementation extends TableGenericDaoImpl
 
         UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
         idUsuario = oUsuario.getId();
-        idCentrosanitario = oUsuario.getId_centrosanitario();
+        idCentrosanitario = oUsuario.getId_centrosanitario();     
+        strSQL = "SELECT * FROM medico WHERE id_centrosanitario = " + idCentrosanitario + " ";
+        strCountSQL = "SELECT COUNT(*) FROM " + ob + " WHERE id_centrosanitario = " + idCentrosanitario + " ";
 
-        //MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_tipousuario();
-        //CentrosanitarioSpecificBeanImplementation oCentrosanitario = (CentrosanitarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
-        strSQL = "SELECT * FROM medico m, centrosanitario cs WHERE m.id_centrosanitario = cs.id AND cs.id = " + idCentrosanitario;
     }
 
     @Override
@@ -129,14 +126,14 @@ public class MedicoProfesorSpecificDaoImplementation extends TableGenericDaoImpl
     public MetaBeanHelper get(int id, int intExpand) throws Exception {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
-        strSQL += " AND m.id=? ";
+        strSQL += " AND id=? ";
         TableGenericBeanImplementation oBean = null;
         MetaBeanHelper oMetaBeanHelper = null;
         try {
             oPreparedStatement = oConnection.prepareStatement(strSQL);
             oPreparedStatement.setInt(1, id);
             oResultSet = oPreparedStatement.executeQuery();
-            oBean = (TableGenericBeanImplementation) BeanFactory.getBean(ob,oPuserSecurity);;
+            oBean = (TableGenericBeanImplementation) BeanFactory.getBean(ob, oPuserSecurity);;
             if (oResultSet.next()) {
                 oBean = (TableGenericBeanImplementation) oBean.fill(oResultSet, oConnection, oPuserSecurity, intExpand);
             } else {
@@ -160,41 +157,7 @@ public class MedicoProfesorSpecificDaoImplementation extends TableGenericDaoImpl
         }
         return oMetaBeanHelper;
     }
-
-    
-    @Override
-    public Long getCount(ArrayList<FilterBeanHelper> alFilter) throws Exception {
-        strSQL = "SELECT count(*) FROM medico m, centrosanitario cs WHERE m.id_centrosanitario = cs.id AND cs.id = " + idCentrosanitario;
-        PreparedStatement oPreparedStatement = null;
-        ResultSet oResultSet = null;
-        strSQL += SqlHelper.buildSqlFilter(alFilter);
-        Long iResult = 0L;
-        try {
-            oPreparedStatement = oConnection.prepareStatement(strSQL);
-            oResultSet = oPreparedStatement.executeQuery();
-            if (oResultSet.next()) {
-                iResult = oResultSet.getLong("COUNT(*)");
-            } else {
-                String msg = this.getClass().getName() + ": getcount";
-                Log4jHelper.errorLog(msg);
-                throw new Exception(msg);
-            }
-        } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
-        } finally {
-            if (oResultSet != null) {
-                oResultSet.close();
-            }
-            if (oPreparedStatement != null) {
-                oPreparedStatement.close();
-            }
-        }
-        return iResult;
-    }
-    
-    
+  
     public Boolean checkUpdate(int id) {
         if (id != 0) {
             return true;
@@ -203,8 +166,4 @@ public class MedicoProfesorSpecificDaoImplementation extends TableGenericDaoImpl
         }
     }
 
-    
-    
-    
-    
 }
