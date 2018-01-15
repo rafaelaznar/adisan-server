@@ -155,7 +155,7 @@ public class PacienteProfesorSpecificDaoImplementation extends TableGenericDaoIm
     
  @Override
     public Long getCount(ArrayList<FilterBeanHelper> alFilter) throws Exception {
-        strCountSQL = "SELECT COUNT(*) FROM paciente p, usuario u WHERE p.id_usuario = u.id AND u.id_centrosanitario = " + idCentrosanitario;
+        strCountSQL = "SELECT COUNT(*) FROM paciente p, usuario u WHERE p.id_usuario = u.id AND u.id_centrosanitario = 1 UNION SELECT COUNT(*) FROM paciente p, usuario u, grupo g, usuario u2 WHERE p.id_usuario = u.id AND u.id_tipousuario=4 and u.id_grupo=g.id and g.id_usuario=u2.id and u2.id_centrosanitario= " + idCentrosanitario;
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
         strCountSQL += SqlHelper.buildSqlFilter(alFilter);
