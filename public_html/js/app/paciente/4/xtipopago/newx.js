@@ -32,14 +32,14 @@
  */
 'use strict';
 
-moduloPaciente.controller('PacientexsexoNew4Controller',
+moduloPaciente.controller('PacientextipopagoNew4Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
                 $scope.ob = "paciente";
                 $scope.op = "new";
                 $scope.profile = 4;
                 //---
-                $scope.xob = "sexo";
+                $scope.xob = "tipopago";
                 $scope.xid = $routeParams.id;
 
                 //---
@@ -80,12 +80,12 @@ moduloPaciente.controller('PacientexsexoNew4Controller',
                             //--
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
-                            $scope.metap = toolService.deleteForeignKey($scope.metap,"obj_usuario");
-                            $scope.metap = toolService.deleteForeignKey($scope.metap,"obj_sexo");
-                            $scope.bean = toolService.deleteForeignKeyObject($scope.bean,"obj_usuario");
-                            $scope.bean = toolService.deleteForeignKeyObject($scope.bean,"obj_sexo");
 
-                            
+                            for( var j = 0 ; j < $scope.metap.length; j++){
+                                if($scope.metap[j].Name == "obj_usuario"){
+                                    $scope.metap.splice(j,1);
+                                }
+                            }
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }

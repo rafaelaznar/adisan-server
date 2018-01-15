@@ -165,12 +165,16 @@ moduloServicios.factory('toolService', ['$filter', function ($filter) {
                 return ruta;
             },
             deleteForeignKey: function (metap, obj) {
-                for(var j = 0; j < metap.length; j++){
+                for (var j = 0; j < metap.length; j++) {
                     if (metap[j].Name == obj) {
                         metap.splice(j, 1);
                         return metap;
                     }
                 }
+            },
+            deleteForeignKeyObject: function (metap, obj) {
+                delete metap[obj];
+                return metap;
             }
         }
     }]);
