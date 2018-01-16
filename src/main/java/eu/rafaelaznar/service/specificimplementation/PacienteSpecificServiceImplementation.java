@@ -33,14 +33,19 @@
 package eu.rafaelaznar.service.specificimplementation;
 
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
+import eu.rafaelaznar.bean.helper.ReplyBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.PacienteSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
+import eu.rafaelaznar.connection.publicinterface.ConnectionInterface;
 import eu.rafaelaznar.dao.specificimplementation.PacienteSpecificDaoImplementation;
+import eu.rafaelaznar.factory.ConnectionFactory;
 import eu.rafaelaznar.helper.EncodingHelper;
 import eu.rafaelaznar.helper.Log4jHelper;
 import eu.rafaelaznar.helper.RandomHelper;
+import eu.rafaelaznar.helper.constant.ConnectionConstants;
 import eu.rafaelaznar.service.genericimplementation.TableGenericServiceImplementation;
+import java.sql.Connection;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 
@@ -49,6 +54,9 @@ public class PacienteSpecificServiceImplementation extends TableGenericServiceIm
     public PacienteSpecificServiceImplementation(HttpServletRequest request) {
         super(request);
     }
+
+    Connection oConnection = null;
+    ConnectionInterface oPooledConnection = null;
 
     @Override
     protected Boolean checkPermission(String strMethodName) {
@@ -133,19 +141,19 @@ public class PacienteSpecificServiceImplementation extends TableGenericServiceIm
         return false;
     }
     // En principio esto va aqui + crear beans de tablas nuevas(?)
-    /*
-     public ReplyBean rellena() throws Exception {
+/*
+    public ReplyBeanHelper rellena() throws Exception {
         if (this.checkPermission("rellena")) {
             ob = "paciente";
-            Connection oConnection = null;
-            ConnectionInterface oPooledConnection = null;
-            ReplyBean oReplyBean = null;
+            oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
+            oConnection = oPooledConnection.newConnection();
+            ReplyBeanHelper oReplyBean = null;
             Integer num = Integer.parseInt(oRequest.getParameter("num"));
             int result = 0;
             try {
-                oPooledConnection = RandomHelper.getSourceConnection();
+                oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
                 oConnection = oPooledConnection.newConnection();
-                PacienteSpecificDaoImplementation oPacienteDao = new PacienteSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user"), null);
+                PacienteSpecificDaoImplementation oPacienteDao = new PacienteSpecificDaoImplementation(oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
 
                 PacienteSpecificBeanImplementation oPacienteBean = new PacienteSpecificBeanImplementation();
 
@@ -185,7 +193,7 @@ public class PacienteSpecificServiceImplementation extends TableGenericServiceIm
                     String Direccion = "";
                     ViaSpecificBeanImplementation oViaBean = new ViaSpecificBeanImplementation();
                     ViaSpecificDaoImplementation oDaoVia = new ViaSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user"), null);
-                    oViaBean = (ViaSpecificBeanImplementation) oDaoVia.get((int) AppConfigurationHelper.getRandomInt(1, oDaoVia.getCount(null).intValue()), 0);
+                    oViaBean = (ViaSpecificBeanImplementation) oDaoVia.get((int) RandomHelper.getRandomInt(1, oDaoVia.getCount(null).intValue()), 0);
                     //--
                     sexo = (int) RandomHelper.getRandomInt(0, 1);
                     //--
@@ -281,7 +289,7 @@ public class PacienteSpecificServiceImplementation extends TableGenericServiceIm
                     result += oPacienteDao.set(oPacienteBean);
                 }
 
-                oReplyBean = new ReplyBean(200, Integer.toString(result));
+                oReplyBean = new ReplyBeanHelper(200, Integer.toString(result));
             } catch (Exception ex) {
                 String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
                 Log4jHelper.errorLog(msg, ex);
@@ -297,8 +305,9 @@ public class PacienteSpecificServiceImplementation extends TableGenericServiceIm
 
             return oReplyBean;
         } else {
-            return new ReplyBean(401, EncodingHelper.quotate("Unauthorized"));
+            return new ReplyBeanHelper(401, EncodingHelper.quotate("Unauthorized"));
         }
     }
-    */
+
+*/
 }
