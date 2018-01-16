@@ -144,18 +144,13 @@
 
 
                 <!-- Profesor ------------------------------------------- -->
+
                 <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 3">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Profesor<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li class="dropdown-header">Gestión académica</li>
-                        <li>Grupos</li>
-                        <li>Alumnos</li>
-                        <li class="dropdown-header">Centro sanitario</li>
-                        <li>Dependencias</li>
                         <li class="dropdown-header">Gestión sanitaria</li>
-                        <li>Mis Médicos</li>
-                        <li>Pacientes</li>
                         <li ng-class="{ 'active': mn.isActive('/paciente/3/plist')}"><a href="paciente/3/plist"> <i ng-class="mn.meta.paciente.Icon"></i> {{mn.meta.paciente.PluralDescription}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/episodio/3/plist')}"><a href="episodio/3/plist"> <i ng-class="mn.meta.episodio.Icon"></i> {{mn.meta.episodio.PluralDescription}}</a></li>
                     </ul>
                 </li>
 
