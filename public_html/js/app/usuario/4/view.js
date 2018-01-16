@@ -1,16 +1,11 @@
 /*
- * Copyright (c) 2017-2018
+ * Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
  *
- * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
+ * TROLLEYES helps you to learn how to develop easily AJAX web applications
  *
- * GESANE: Free Open Source Health Management System
+ * Sources at https://github.com/rafaelaznar/trolleyes
  *
- * Sources at:
- *                            https://github.com/rafaelaznar/gesane-server
- *                            https://github.com/rafaelaznar/gesane-client
- *                            https://github.com/rafaelaznar/gesane-database
- *
- * GESANE is distributed under the MIT License (MIT)
+ * TROLLEYES is distributed under the MIT License (MIT)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,18 +26,20 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloPaciente.controller('PacienteEdit4Controller',
-        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
-            function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
-                $scope.ob = "paciente";
-                $scope.op = "edit";
+moduloUsuario.controller('UsuarioView4Controller',
+        ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService',
+            function ($scope, $routeParams, serverCallService, $location, sessionService, constantService) {
+                $scope.ob = "usuario";
+                $scope.op = "view";
                 $scope.profile = 4;
+                //---
+                $scope.id = $routeParams.id;
+                $scope.onlyview = true;
+                //---
+                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
-                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
-                //---
-                $scope.id = $routeParams.id;
                 //---
                 serverCallService.getOne($scope.ob, $scope.id).then(function (response) {
                     if (response.status == 200) {
@@ -51,8 +48,8 @@ moduloPaciente.controller('PacienteEdit4Controller',
                             $scope.bean = response.data.json.data;
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
-                            //eliminar clave ajena
-                            $scope.metap = toolService.deleteForeignKey($scope.metap,"obj_usuario");
+
+
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -62,24 +59,6 @@ moduloPaciente.controller('PacienteEdit4Controller',
                 }).catch(function (data) {
                     $scope.status = "Error en la recepción de datos del servidor";
                 });
-                $scope.save = function () {
-                    var jsonToSend = {json: JSON.stringify(toolService.array_identificarArray($scope.bean))};
-                    serverCallService.set($scope.ob, jsonToSend).then(function (response) {
-                        if (response.status == 200) {
-                            if (response.data.status == 200) {
-                                $scope.response = response;
-                                $scope.status = "El registro con id=" + $scope.id + " se ha modificado.";
-                            } else {
-                                $scope.status = "Error en la recepción de datos del servidor";
-                            }
-                        } else {
-                            $scope.status = "Error en la recepción de datos del servidor";
-                        }
-                    }).catch(function (data) {
-                        $scope.status = "Error en la recepción de datos del servidor";
-                    });
-                    ;
-                };
                 $scope.back = function () {
                     window.history.back();
                 };

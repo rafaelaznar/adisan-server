@@ -80,6 +80,7 @@
                                 <div class="control-group text-right">
                                     <div class="controls">
                                         <a ng-if="!onlyview" class="btn btn-primary" href="{{ob}}/{{profile}}/edit/{{bean.id}}">Editar</a>
+                                        <a ng-if="showEdit(bean)" class="btn btn-primary" href="{{ob}}/{{profile}}/edit/{{bean.id}}">Editar</a>
                                         <a ng-if="!onlyview" class="btn btn-danger" href="{{ob}}/{{profile}}/remove/{{bean.id}}">Borrar</a>
                                         <a class="btn btn-info" href="{{ob}}/{{profile}}/plist">Ir al listado de {{obtitle}}</a>
                                         <a class="btn btn-default" ng-click="back()">Volver</a>

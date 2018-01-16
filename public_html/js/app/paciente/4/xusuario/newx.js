@@ -32,42 +32,37 @@
  */
 'use strict';
 
-moduloEpisodio.controller('EpisodioxpacienteEdit4Controller',
+moduloPaciente.controller('PacienteNew4Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
-                $scope.ob = "episodio";
-                $scope.op = "editx";
+                $scope.ob = "paciente";
+                $scope.op = "new";
                 $scope.profile = 4;
-                //----
-                $scope.id = $routeParams.id;
                 //---
-                $scope.xob = "paciente";
-                $scope.xid = $routeParams.xid;
+                $scope.xob = "usuario";
+                $scope.xid = $routeParams.id;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
+                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
-                if ($scope.xob && $scope.xid) {
-                    $scope.linkedbean = null;
-                    serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
-                        if (response.status == 200) {
-                            if (response.data.status == 200) {
-                                $scope.linkedbean = response.data.json;
-                            }
-                        }
-                    }).catch(function (data) {
-                    });
-                }
-
-
-                serverCallService.getOne($scope.ob, $scope.id).then(function (response) {
+                serverCallService.getMeta($scope.ob).then(function (response) {
                     if (response.status == 200) {
                         if (response.data.status == 200) {
                             $scope.status = null;
-                            $scope.bean = response.data.json.data;
+                            //--For every foreign key create obj inside bean tobe filled...
+                            $scope.bean = {};
+                            response.data.json.metaProperties.forEach(function (property) {
+                                if (property.Type == 'ForeignObject') {
+                                    $scope.bean[property.Name] = {};
+                                    $scope.bean[property.Name].data = {};
+                                    $scope.bean[property.Name].data.id = 0;
+                                }
+                            });
+                            //--
                             $scope.metao = response.data.json.metaObject;
-                            $scope.metap = response.data.json.metaProperties;                            
-                            $scope.metap = toolService.deleteForeignKey($scope.metap,"obj_usuario");
+                            $scope.metap = response.data.json.metaProperties;
+
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }

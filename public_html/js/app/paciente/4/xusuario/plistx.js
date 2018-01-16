@@ -31,17 +31,17 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloEpisodio.controller('EpisodioxepisodioPList4Controller',
+moduloPaciente.controller('PacientexusuarioList4Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
-                $scope.ob = "episodio";
+                $scope.ob = "paciente";
                 $scope.op = "plistx";
                 $scope.profile = 4;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
                 //----
-                $scope.xob = "episodio";
+                $scope.xob = "usuario";
                 $scope.xid = $routeParams.id;
                 //----
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op + $scope.xob + '/' + $routeParams.id;
@@ -53,18 +53,25 @@ moduloEpisodio.controller('EpisodioxepisodioPList4Controller',
                 $scope.orderParams = toolService.checkEmptyString($routeParams.order);
                 $scope.filterParams = toolService.checkEmptyString($routeParams.filter);
                 //---
+                $scope.idseve = false;
+                $scope.iduser = 0;
+                $scope.veredit = true;
+                //---
                 function getDataFromServer() {
                     $scope.linkedbean = null;
                     $scope.linkedbean2 = null;
-                    $scope.linkedbean3 = null;
+                    serverCallService.getSession("usuario").then(function (response) {
+                        if (response.status == 200) {
+                            $scope.iduser = response.data.json.data.id;
+                        }
+                    }).then(
                     serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
                         if ($scope.xob && $scope.xid) {
                             serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
                                 if (response.status == 200) {
                                     if (response.data.status == 200) {
                                         $scope.linkedbean = response.data.json;
-                                        $scope.linkedbean2 = response.data.json.data.obj_paciente;
-                                        $scope.linkedbean3 = response.data.json.data.obj_usuario;
+                                        $scope.linkedbean2 = response.data.json.data.obj_usuario;
                                     }
                                 }
                             }).catch(function (data) {
@@ -85,12 +92,13 @@ moduloEpisodio.controller('EpisodioxepisodioPList4Controller',
                             $scope.page = response.data.json.data;
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
+                            //$scope.xob = false;
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
                     }).catch(function (data) {
                         $scope.status = "Error en la recepción de datos del servidor";
-                    });
+                    }));
                 }
                 $scope.doorder = function (orderField, ascDesc) {
                     $location.url($scope.url + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', $scope.filterParams).search('order', orderField + ',' + ascDesc);
@@ -104,6 +112,14 @@ moduloEpisodio.controller('EpisodioxepisodioPList4Controller',
                 };
                 $scope.setShowRemove = function (show) {
                     $scope.showRemove = show;
+                };
+                $scope.showEdit = function (oBean) {
+                    $scope.iduserobean = oBean.obj_usuario.data.id;
+                    if ($scope.iduserobean == $scope.iduser) {
+                        $scope.idseve = true;
+                    } else {
+                        $scope.idseve = false;
+                    }
                 };
                 getDataFromServer();
             }
