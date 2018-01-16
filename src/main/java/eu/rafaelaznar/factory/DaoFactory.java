@@ -45,6 +45,7 @@ import eu.rafaelaznar.dao.specificimplementation.CircunstanciasaltaSpecificDaoIm
 import eu.rafaelaznar.dao.specificimplementation.CursoProfesorSpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.CursoSpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.DependenciaAlumnoSpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.DependenciaProfesorSpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.DependenciaSpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.EspecialidadSpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.DestinoaltaSpecificDaoImplementation;
@@ -281,7 +282,7 @@ public class DaoFactory {
                             oDao = (MetaDaoInterface) new DependenciaSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
                             break;
                         case 3:
-                            oDao = (MetaDaoInterface) new DependenciaSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                            oDao = (MetaDaoInterface) new DependenciaProfesorSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
                             break;
                         case 4:
                             oDao = (MetaDaoInterface) new DependenciaAlumnoSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);

@@ -62,6 +62,7 @@ public class GrupoProfesorSpecificDaoImplementation extends TableGenericDaoImple
         idUsuario = oUsuario.getId();
 
         strSQL = "SELECT * FROM grupo g WHERE g.id_usuario = " + idUsuario;
+    
     }
      @Override
     public Long getCount(ArrayList<FilterBeanHelper> alFilter) throws Exception {
