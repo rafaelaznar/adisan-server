@@ -61,7 +61,8 @@ public class GrupoProfesorSpecificDaoImplementation extends TableGenericDaoImple
         idUsuario = oUsuario.getId();
         idCentrosanitario = oUsuario.getId_centrosanitario();
 
-        strSQL = "SELECT * FROM grupo g WHERE g.id_usuario = " + idUsuario;
+                strSQL = "SELECT * FROM grupo g, usuario u WHERE g.id_usuario = u.id AND u.id_centrosanitario = " + idCentrosanitario;
+
 
     }
 
