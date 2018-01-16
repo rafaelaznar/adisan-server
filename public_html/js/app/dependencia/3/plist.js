@@ -26,12 +26,15 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloPaciente.controller('PacientePList4Controller',
+moduloDependencia.controller('DependenciaPList3Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
-                $scope.ob = "paciente";
+                $scope.ob = "dependencia";
                 $scope.op = "plist";
-                $scope.profile = 4;
+                $scope.profile = 3;
+
+                //----
+                
                 //---
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //----
@@ -45,17 +48,8 @@ moduloPaciente.controller('PacientePList4Controller',
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
                 //---
-                $scope.idseve = false;
-                $scope.iduser = 0;
-                $scope.veredit = true;
-                //---
                 function getDataFromServer() {
-                    serverCallService.getSession("usuario").then(function (response) {
-                        if (response.status == 200) {
-                            $scope.iduser = response.data.json.data.id;
-                        }
-                    }).then(
-                            serverCallService.getCount($scope.ob, $scope.filterParams).then(function (response) {
+                    serverCallService.getCount($scope.ob, $scope.filterParams).then(function (response) {
                         if (response.status == 200) {
                             $scope.registers = response.data.json;
                             $scope.pages = toolService.calculatePages($scope.rpp, $scope.registers);
@@ -76,7 +70,7 @@ moduloPaciente.controller('PacientePList4Controller',
                         }
                     }).catch(function (data) {
                         $scope.status = "Error en la recepción de datos del servidor";
-                    }));
+                    });
                 }
                 $scope.doorder = function (orderField, ascDesc) {
                     $location.url($scope.url + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', $scope.filterParams).search('order', orderField + ',' + ascDesc);
@@ -90,17 +84,6 @@ moduloPaciente.controller('PacientePList4Controller',
                 };
                 $scope.setShowRemove = function (show) {
                     $scope.showRemove = show;
-                };
-                ;
-
-
-                $scope.showEdit = function (oBean) {
-                    $scope.iduserobean = oBean.obj_usuario.data.id;
-                    if ($scope.iduserobean == $scope.iduser) {
-                        $scope.idseve = true;
-                    } else {
-                        $scope.idseve = false;
-                    }
                 };
                 getDataFromServer();
             }

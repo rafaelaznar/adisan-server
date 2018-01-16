@@ -32,14 +32,14 @@
  */
 'use strict';
 
-moduloEpisodio.controller('EpisodioxpacienteNew1Controller',
+moduloEpisodio.controller('EpisodioxepisodioNew4Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
                 $scope.ob = "episodio";
                 $scope.op = "newx";
-                $scope.profile = 1;
+                $scope.profile = 4;
                 //---
-                $scope.xob = "paciente";
+                $scope.xob = "episodio";
                 $scope.xid = $routeParams.id;
                 //---
                 $scope.status = null;
@@ -51,7 +51,6 @@ moduloEpisodio.controller('EpisodioxpacienteNew1Controller',
                         if (response.status == 200) {
                             if (response.data.status == 200) {
                                 $scope.linkedbean = response.data.json;
-                                $scope.linkedbean2 = response.data.json.data.obj_usuario;
                             }
                         }
                     }).catch(function (data) {

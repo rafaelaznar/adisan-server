@@ -1,11 +1,16 @@
 /*
- * Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
+ * Copyright (c) 2017-2018 
  *
- * TROLLEYES helps you to learn how to develop easily AJAX web applications
+ * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
+ * 
+ * GESANE: Free Open Source Health Management System
  *
- * Sources at https://github.com/rafaelaznar/trolleyes
+ * Sources at:
+ *                            https://github.com/rafaelaznar/gesane-server
+ *                            https://github.com/rafaelaznar/gesane-client
+ *                            https://github.com/rafaelaznar/gesane-database
  *
- * TROLLEYES is distributed under the MIT License (MIT)
+ * GESANE is distributed under the MIT License (MIT)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,14 +31,20 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloPaciente.controller('PacientePList4Controller',
+moduloDependencia.controller('DependenciaxcentrosanitarioPList3Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
-                $scope.ob = "paciente";
-                $scope.op = "plist";
-                $scope.profile = 4;
+                $scope.ob = "dependencia";
+                $scope.op = "plistx";
+                $scope.profile = 3;
                 //---
-                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
+                $scope.status = null;
+                $scope.debugging = constantService.debugging();
+                //----
+                $scope.xob = "centrosanitario";
+                $scope.xid = $routeParams.id;
+                //----
+                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op + $scope.xob + '/' + $routeParams.id;
                 //----
                 $scope.numpage = toolService.checkDefault(1, $routeParams.page);
                 $scope.rpp = toolService.checkDefault(10, $routeParams.rpp);
@@ -42,27 +53,28 @@ moduloPaciente.controller('PacientePList4Controller',
                 $scope.orderParams = toolService.checkEmptyString($routeParams.order);
                 $scope.filterParams = toolService.checkEmptyString($routeParams.filter);
                 //---
-                $scope.status = null;
-                $scope.debugging = constantService.debugging();
-                //---
-                $scope.idseve = false;
-                $scope.iduser = 0;
-                $scope.veredit = true;
-                //---
                 function getDataFromServer() {
-                    serverCallService.getSession("usuario").then(function (response) {
-                        if (response.status == 200) {
-                            $scope.iduser = response.data.json.data.id;
+                    $scope.linkedbean = null;
+                    $scope.linkedbean2 = null;
+                    serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
+                        if ($scope.xob && $scope.xid) {
+                            serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
+                                if (response.status == 200) {
+                                    if (response.data.status == 200) {
+                                        $scope.linkedbean = response.data.json;
+                                        $scope.linkedbean2 = response.data.json.data.obj_usuario;
+                                    }
+                                }
+                            }).catch(function (data) {
+                            });
                         }
-                    }).then(
-                            serverCallService.getCount($scope.ob, $scope.filterParams).then(function (response) {
                         if (response.status == 200) {
                             $scope.registers = response.data.json;
                             $scope.pages = toolService.calculatePages($scope.rpp, $scope.registers);
                             if ($scope.numpage > $scope.pages) {
                                 $scope.numpage = $scope.pages;
                             }
-                            return serverCallService.getPage($scope.ob, $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order);
+                            return serverCallService.getPageX($scope.ob, $scope.xob, $scope.xid, $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order);
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -76,7 +88,7 @@ moduloPaciente.controller('PacientePList4Controller',
                         }
                     }).catch(function (data) {
                         $scope.status = "Error en la recepción de datos del servidor";
-                    }));
+                    });
                 }
                 $scope.doorder = function (orderField, ascDesc) {
                     $location.url($scope.url + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', $scope.filterParams).search('order', orderField + ',' + ascDesc);
@@ -90,17 +102,6 @@ moduloPaciente.controller('PacientePList4Controller',
                 };
                 $scope.setShowRemove = function (show) {
                     $scope.showRemove = show;
-                };
-                ;
-
-
-                $scope.showEdit = function (oBean) {
-                    $scope.iduserobean = oBean.obj_usuario.data.id;
-                    if ($scope.iduserobean == $scope.iduser) {
-                        $scope.idseve = true;
-                    } else {
-                        $scope.idseve = false;
-                    }
                 };
                 getDataFromServer();
             }
