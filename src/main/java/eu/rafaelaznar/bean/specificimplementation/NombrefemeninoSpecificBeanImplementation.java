@@ -33,21 +33,21 @@ public class NombrefemeninoSpecificBeanImplementation {
             MaxLength = 100,
             IsVisible = false
     )
-    private String nombreFemenino;
+    private String nombre;
 
     public NombrefemeninoSpecificBeanImplementation() {
     }
 
-    public NombrefemeninoSpecificBeanImplementation(String nombreFemenino) {
-        this.nombreFemenino = nombreFemenino;
+    public NombrefemeninoSpecificBeanImplementation(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getNombreFemenino() {
-        return nombreFemenino;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombreFemenino(String nombreFemenino) {
-        this.nombreFemenino = nombreFemenino;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
 }

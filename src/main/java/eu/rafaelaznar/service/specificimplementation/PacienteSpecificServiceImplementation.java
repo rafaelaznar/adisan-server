@@ -34,6 +34,7 @@ package eu.rafaelaznar.service.specificimplementation;
 
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.helper.ReplyBeanHelper;
+import eu.rafaelaznar.bean.specificimplementation.NombremasculinoSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.PacienteSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
