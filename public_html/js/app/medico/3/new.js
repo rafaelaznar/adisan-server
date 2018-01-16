@@ -1,16 +1,11 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
  *
- * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
- * GESANE: Free Open Source Health Management System
+ * TROLLEYES helps you to learn how to develop easily AJAX web applications
  *
- * Sources at:
- *                            https://github.com/rafaelaznar/gesane-server
- *                            https://github.com/rafaelaznar/gesane-client
- *                            https://github.com/rafaelaznar/gesane-database
+ * Sources at https://github.com/rafaelaznar/trolleyes
  *
- * GESANE is distributed under the MIT License (MIT)
+ * TROLLEYES is distributed under the MIT License (MIT)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,32 +27,17 @@
  */
 'use strict';
 
-moduloEpisodio.controller('EpisodioxpacienteNew1Controller',
+moduloMedico.controller('MedicoNew3Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
-                $scope.ob = "episodio";
-                $scope.op = "newx";
-                $scope.profile = 1;
-                //---
-                $scope.xob = "paciente";
-                $scope.xid = $routeParams.id;
+                $scope.ob = "medico";
+                $scope.op = "new";
+                $scope.profile = 3;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
+                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
-                if ($scope.xob && $scope.xid) {
-                    $scope.linkedbean = null;
-                    serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
-                        if (response.status == 200) {
-                            if (response.data.status == 200) {
-                                $scope.linkedbean = response.data.json;
-                                $scope.linkedbean2 = response.data.json.data.obj_usuario;
-                            }
-                        }
-                    }).catch(function (data) {
-                    });
-                }
-                ;
                 serverCallService.getMeta($scope.ob).then(function (response) {
                     if (response.status == 200) {
                         if (response.data.status == 200) {
@@ -68,16 +48,14 @@ moduloEpisodio.controller('EpisodioxpacienteNew1Controller',
                                 if (property.Type == 'ForeignObject') {
                                     $scope.bean[property.Name] = {};
                                     $scope.bean[property.Name].data = {};
-                                    if (property.Name == 'obj_' + $scope.xob) {
-                                        $scope.bean[property.Name].data.id = $scope.xid;
-                                    } else {
-                                        $scope.bean[property.Name].data.id = 0;
-                                    }
+                                    $scope.bean[property.Name].data.id = 0;
                                 }
                             });
                             //--
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
+
+                           $scope.metap = toolService.deleteForeignKey($scope.metap,"obj_centrosanitario");
 
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";

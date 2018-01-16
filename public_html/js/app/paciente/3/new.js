@@ -32,32 +32,20 @@
  */
 'use strict';
 
-moduloEpisodio.controller('EpisodioxpacienteNew1Controller',
+moduloPaciente.controller('PacienteNew3Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
-                $scope.ob = "episodio";
-                $scope.op = "newx";
-                $scope.profile = 1;
+                $scope.ob = "paciente";
+                $scope.op = "new";
+                $scope.profile = 3;
                 //---
-                $scope.xob = "paciente";
+                $scope.xob = "usuario";
                 $scope.xid = $routeParams.id;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
+                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
-                if ($scope.xob && $scope.xid) {
-                    $scope.linkedbean = null;
-                    serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
-                        if (response.status == 200) {
-                            if (response.data.status == 200) {
-                                $scope.linkedbean = response.data.json;
-                                $scope.linkedbean2 = response.data.json.data.obj_usuario;
-                            }
-                        }
-                    }).catch(function (data) {
-                    });
-                }
-                ;
                 serverCallService.getMeta($scope.ob).then(function (response) {
                     if (response.status == 200) {
                         if (response.data.status == 200) {
@@ -68,11 +56,7 @@ moduloEpisodio.controller('EpisodioxpacienteNew1Controller',
                                 if (property.Type == 'ForeignObject') {
                                     $scope.bean[property.Name] = {};
                                     $scope.bean[property.Name].data = {};
-                                    if (property.Name == 'obj_' + $scope.xob) {
-                                        $scope.bean[property.Name].data.id = $scope.xid;
-                                    } else {
-                                        $scope.bean[property.Name].data.id = 0;
-                                    }
+                                    $scope.bean[property.Name].data.id = 0;
                                 }
                             });
                             //--

@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017-2018
  *
  * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
+ *
  * GESANE: Free Open Source Health Management System
  *
  * Sources at:
@@ -31,54 +31,29 @@
  * THE SOFTWARE.
  */
 'use strict';
-
-moduloEpisodio.controller('EpisodioxpacienteNew1Controller',
-        ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
-            function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
-                $scope.ob = "episodio";
-                $scope.op = "newx";
-                $scope.profile = 1;
+moduloPaciente.controller('PacienteEdit3Controller',
+        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
+            function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
+                $scope.ob = "paciente";
+                $scope.op = "edit";
+                $scope.profile = 3;
                 //---
-                $scope.xob = "paciente";
+                $scope.xob = "usuario";
                 $scope.xid = $routeParams.id;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
+                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
-                if ($scope.xob && $scope.xid) {
-                    $scope.linkedbean = null;
-                    serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
-                        if (response.status == 200) {
-                            if (response.data.status == 200) {
-                                $scope.linkedbean = response.data.json;
-                                $scope.linkedbean2 = response.data.json.data.obj_usuario;
-                            }
-                        }
-                    }).catch(function (data) {
-                    });
-                }
-                ;
-                serverCallService.getMeta($scope.ob).then(function (response) {
+                $scope.id = $routeParams.id;
+                //---
+                serverCallService.getOne($scope.ob, $scope.id).then(function (response) {
                     if (response.status == 200) {
                         if (response.data.status == 200) {
                             $scope.status = null;
-                            //--For every foreign key create obj inside bean tobe filled...
-                            $scope.bean = {};
-                            response.data.json.metaProperties.forEach(function (property) {
-                                if (property.Type == 'ForeignObject') {
-                                    $scope.bean[property.Name] = {};
-                                    $scope.bean[property.Name].data = {};
-                                    if (property.Name == 'obj_' + $scope.xob) {
-                                        $scope.bean[property.Name].data.id = $scope.xid;
-                                    } else {
-                                        $scope.bean[property.Name].data.id = 0;
-                                    }
-                                }
-                            });
-                            //--
+                            $scope.bean = response.data.json.data;
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
-
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -88,15 +63,13 @@ moduloEpisodio.controller('EpisodioxpacienteNew1Controller',
                 }).catch(function (data) {
                     $scope.status = "Error en la recepción de datos del servidor";
                 });
-                //--
                 $scope.save = function () {
                     var jsonToSend = {json: JSON.stringify(toolService.array_identificarArray($scope.bean))};
                     serverCallService.set($scope.ob, jsonToSend).then(function (response) {
                         if (response.status == 200) {
                             if (response.data.status == 200) {
                                 $scope.response = response;
-                                $scope.status = "El registro se ha creado con id=" + response.data.json;
-                                $scope.bean.id = response.data.json;
+                                $scope.status = "El registro con id=" + $scope.id + " se ha modificado.";
                             } else {
                                 $scope.status = "Error en la recepción de datos del servidor";
                             }
@@ -116,4 +89,3 @@ moduloEpisodio.controller('EpisodioxpacienteNew1Controller',
                 };
             }
         ]);
-
