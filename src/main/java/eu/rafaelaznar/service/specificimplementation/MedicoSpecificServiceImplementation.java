@@ -33,22 +33,11 @@
 package eu.rafaelaznar.service.specificimplementation;
 
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
-import eu.rafaelaznar.bean.helper.ReplyBeanHelper;
-import eu.rafaelaznar.bean.specificimplementation.MedicoSpecificBeanImplementation;
-import eu.rafaelaznar.bean.specificimplementation.PacienteSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.connection.publicinterface.ConnectionInterface;
-import eu.rafaelaznar.dao.specificimplementation.MedicoSpecificDaoImplementation;
-import eu.rafaelaznar.dao.specificimplementation.PacienteSpecificDaoImplementation;
-import eu.rafaelaznar.factory.ConnectionFactory;
-import eu.rafaelaznar.helper.EncodingHelper;
-import eu.rafaelaznar.helper.Log4jHelper;
-import eu.rafaelaznar.helper.RandomHelper;
-import eu.rafaelaznar.helper.constant.ConnectionConstants;
 import eu.rafaelaznar.service.genericimplementation.TableGenericServiceImplementation;
 import java.sql.Connection;
-import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 
 public class MedicoSpecificServiceImplementation extends TableGenericServiceImplementation {
