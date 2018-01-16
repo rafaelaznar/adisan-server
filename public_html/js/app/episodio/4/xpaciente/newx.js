@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017-2018
  *
  * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
+ *
  * GESANE: Free Open Source Health Management System
  *
  * Sources at:
@@ -77,17 +77,17 @@ moduloEpisodio.controller('EpisodioxpacienteNew4Controller',
                             //--
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
-                            $scope.metap = toolService.deleteForeignKey($scope.metap,"obj_episodio");
-                            $scope.metap = toolService.deleteForeignKey($scope.metap,"obj_factura");
-                            $scope.metap = toolService.deleteForeignKey($scope.metap,"obj_circunstanciasalta");
-                            $scope.metap = toolService.deleteForeignKey($scope.metap,"obj_destinoalta");
-                            $scope.metap = toolService.deleteForeignKey($scope.metap,"obj_usuario");
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_episodio");
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_factura");
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_circunstanciasalta");
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_destinoalta");
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_usuario");
                             /////////
-                            $scope.bean = toolService.deleteForeignKeyObject($scope.bean,"obj_episodio");
-                            $scope.bean = toolService.deleteForeignKeyObject($scope.bean,"obj_factura");
-                            $scope.bean = toolService.deleteForeignKeyObject($scope.bean,"obj_circunstanciasalta");
-                            $scope.bean = toolService.deleteForeignKeyObject($scope.bean,"obj_destinoalta");
-                            $scope.bean = toolService.deleteForeignKeyObject($scope.bean,"obj_usuario");
+                            $scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_episodio");
+                            $scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_factura");
+                            $scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_circunstanciasalta");
+                            $scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_destinoalta");
+                            $scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_usuario");
 
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
@@ -101,11 +101,6 @@ moduloEpisodio.controller('EpisodioxpacienteNew4Controller',
                 //--
                 $scope.save = function () {
                     var jsonToSend = {json: JSON.stringify(toolService.array_identificarArray($scope.bean))};
-//                    $scope.jsonToSend = toolService.deleteForeignKey2(jsonToSend,"id_episodio");
-//                    var jsonToSend = toolService.deleteForeignKey2($scope.jsonToSend,"id_factura");
-//                    var jsonToSend = toolService.deleteForeignKey2(jsonToSend,"id_circunstanciasalta");
-//                    var jsonToSend = toolService.deleteForeignKey2(jsonToSend,"id_destinoalta");
-//                    var jsonToSend = toolService.deleteForeignKey2(jsonToSend,"id_usuario");
                     serverCallService.set($scope.ob, jsonToSend).then(function (response) {
                         if (response.status == 200) {
                             if (response.data.status == 200) {

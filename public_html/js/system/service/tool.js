@@ -172,9 +172,9 @@ moduloServicios.factory('toolService', ['$filter', function ($filter) {
                     }
                 }
             },
-            deleteForeignKeyObject: function (metap, obj) {
-                delete metap[obj];
-                return metap;
+            deleteForeignKeyObject: function (bean, obj) {
+                delete bean[obj];
+                return bean;
             }
         }
     }]);

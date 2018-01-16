@@ -56,6 +56,13 @@ moduloPaciente.controller('PacientextipopagoNew4Controller',
                             if (response.data.status == 200) {
                                 $scope.linkedbean = response.data.json;
 
+                                ///////////////////////////////////////////////////////////
+                                ///////////////////////////////////////////////////////////
+                                ///////////IMPORTANTE PARA CLAVES QUE SE HEREDAN///////////
+                                ///////////////////////////////////////////////////////////
+                                ///////////////////////////////////////////////////////////
+                                
+                                $scope.bean.obj_tipopago.data.id = $scope.linkedbean.data.id;
                             }
                         }
                     }).catch(function (data) {
@@ -63,8 +70,8 @@ moduloPaciente.controller('PacientextipopagoNew4Controller',
                 }
                 ;
 
-                
-                        serverCallService.getMeta($scope.ob).then(function (response) {
+
+                serverCallService.getMeta($scope.ob).then(function (response) {
                     if (response.status == 200) {
                         if (response.data.status == 200) {
                             $scope.status = null;
@@ -80,12 +87,10 @@ moduloPaciente.controller('PacientextipopagoNew4Controller',
                             //--
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
-
-                            for( var j = 0 ; j < $scope.metap.length; j++){
-                                if($scope.metap[j].Name == "obj_usuario"){
-                                    $scope.metap.splice(j,1);
-                                }
-                            }
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_usuario");
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_tipopago");                            
+                            //OJO, NO HACEMOS EL DELETEFOREIGNKEYOBJETCT PORQUE NOSOTROS MACHACAMOS EN SERVIDOR LA SESION
+                            //SERIA $scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_usuario");
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }

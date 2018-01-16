@@ -49,13 +49,20 @@ moduloPaciente.controller('PacientexsexoNew4Controller',
                 $scope.debugging = constantService.debugging();
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
+                $scope.linkedbean = null;
                 if ($scope.xob && $scope.xid) {
-                    $scope.linkedbean = null;
                     serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
                         if (response.status == 200) {
                             if (response.data.status == 200) {
                                 $scope.linkedbean = response.data.json;
-
+                                
+                                ///////////////////////////////////////////////////////////
+                                ///////////////////////////////////////////////////////////
+                                ///////////IMPORTANTE PARA CLAVES QUE SE HEREDAN///////////
+                                ///////////////////////////////////////////////////////////
+                                ///////////////////////////////////////////////////////////
+                                
+                                $scope.bean.obj_sexo.data.id = $scope.linkedbean.data.id;
                             }
                         }
                     }).catch(function (data) {
@@ -63,8 +70,8 @@ moduloPaciente.controller('PacientexsexoNew4Controller',
                 }
                 ;
 
-                
-                        serverCallService.getMeta($scope.ob).then(function (response) {
+
+                serverCallService.getMeta($scope.ob).then(function (response) {
                     if (response.status == 200) {
                         if (response.data.status == 200) {
                             $scope.status = null;
@@ -75,17 +82,17 @@ moduloPaciente.controller('PacientexsexoNew4Controller',
                                     $scope.bean[property.Name] = {};
                                     $scope.bean[property.Name].data = {};
                                     $scope.bean[property.Name].data.id = 0;
+
                                 }
                             });
                             //--
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
-                            $scope.metap = toolService.deleteForeignKey($scope.metap,"obj_usuario");
-                            $scope.metap = toolService.deleteForeignKey($scope.metap,"obj_sexo");
-                            $scope.bean = toolService.deleteForeignKeyObject($scope.bean,"obj_usuario");
-                            $scope.bean = toolService.deleteForeignKeyObject($scope.bean,"obj_sexo");
-
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_usuario");
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_sexo");
                             
+
+
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
