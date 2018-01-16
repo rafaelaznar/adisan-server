@@ -143,9 +143,9 @@ public class MedicoSpecificServiceImplementation extends TableGenericServiceImpl
     }
     // Aquí va el rellena médico + crear beans nuevos
 /*
-    public ReplyBeanHelper rellena() throws Exception {
+    public ReplyBeanHelper rellenaMedico() throws Exception {
         if (this.checkPermission("rellena")) {
-            ob = "paciente";
+            ob = "medico"; 
             oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
             oConnection = oPooledConnection.newConnection();
 

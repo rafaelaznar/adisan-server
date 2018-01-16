@@ -148,7 +148,7 @@ public class PacienteSpecificServiceImplementation extends TableGenericServiceIm
     }
     // En principio esto va aqui + crear beans de tablas nuevas(?)
 /*
-    public ReplyBeanHelper rellena() throws Exception {
+    public ReplyBeanHelper rellenaPaciente() throws Exception {
         if (this.checkPermission("rellena")) {
             ob = "paciente";
             oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
