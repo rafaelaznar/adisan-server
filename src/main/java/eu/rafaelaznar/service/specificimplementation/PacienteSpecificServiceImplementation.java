@@ -157,8 +157,6 @@ public class PacienteSpecificServiceImplementation extends TableGenericServiceIm
     public ReplyBeanHelper rellenaPaciente() throws Exception {
         if (this.checkPermission("rellena")) {
             ob = "paciente";
-            oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
-            oConnection = oPooledConnection.newConnection();
             ReplyBeanHelper oReplyBean = null;
             Integer num = Integer.parseInt(oRequest.getParameter("num"));
             int result = 0;

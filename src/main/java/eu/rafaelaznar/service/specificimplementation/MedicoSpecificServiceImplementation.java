@@ -151,9 +151,6 @@ public class MedicoSpecificServiceImplementation extends TableGenericServiceImpl
     public ReplyBeanHelper rellenaMedico() throws Exception {
         if (this.checkPermission("rellena")) {
             ob = "medico"; 
-            oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
-            oConnection = oPooledConnection.newConnection();
-
             ReplyBeanHelper oReplyBean = null;
             Integer num = Integer.parseInt(oRequest.getParameter("num"));
             int result = 0;
