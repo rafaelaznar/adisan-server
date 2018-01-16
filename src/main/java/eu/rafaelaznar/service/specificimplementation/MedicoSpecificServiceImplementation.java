@@ -33,11 +33,21 @@
 package eu.rafaelaznar.service.specificimplementation;
 
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
+import eu.rafaelaznar.bean.helper.ReplyBeanHelper;
+import eu.rafaelaznar.bean.specificimplementation.ApellidoSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.MedicoSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.NombrefemeninoSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.NombremasculinoSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.connection.publicinterface.ConnectionInterface;
+import eu.rafaelaznar.factory.ConnectionFactory;
+import eu.rafaelaznar.helper.Log4jHelper;
+import eu.rafaelaznar.helper.RandomHelper;
+import eu.rafaelaznar.helper.constant.ConnectionConstants;
 import eu.rafaelaznar.service.genericimplementation.TableGenericServiceImplementation;
 import java.sql.Connection;
+import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 
 public class MedicoSpecificServiceImplementation extends TableGenericServiceImplementation {
@@ -174,12 +184,12 @@ public class MedicoSpecificServiceImplementation extends TableGenericServiceImpl
                     ApellidoSpecificBeanImplementation oApellidoBean = new ApellidoSpecificBeanImplementation();
                     ApellidoSpecificDaoImplementation oDaoApellido = new ApellidoSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user"), null);
                     oApellidoBean = (ApellidoSpecificBeanImplementation) oDaoApellido.get((int) RandomHelper.getRandomInt(1, oDaoApellido.getCount(null).intValue()), 0);
-                    oMedicoBean.setPrimerApellido(oApellidoBean.getApellido());
+                    oMedicoBean.setPrimer_apellido(oApellidoBean.getApellido());
                     //--- Apellido 2
                     oApellidoBean = new ApellidoSpecificBeanImplementation();
                     oDaoApellido = new ApellidoSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user"), null);
                     oApellidoBean = (ApellidoSpecificBeanImplementation) oDaoApellido.get((int) RandomHelper.getRandomInt(1, oDaoApellido.getCount(null).intValue()), 0);
-                    oMedicoBean.setSegundoApellido(oApellidoBean.getApellido());
+                    oMedicoBean.setSegundo_apellido(oApellidoBean.getApellido());
                     //--- email
                     String nombrep = oMedicoBean.getNombre();
                     String primerp = oMedicoBean.getPrimer_apellido();

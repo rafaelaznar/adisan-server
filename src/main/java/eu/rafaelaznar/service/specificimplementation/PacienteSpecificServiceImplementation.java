@@ -34,10 +34,15 @@ package eu.rafaelaznar.service.specificimplementation;
 
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.helper.ReplyBeanHelper;
+import eu.rafaelaznar.bean.specificimplementation.ApellidoSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.MunicipioSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.NombrefemeninoSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.NombremasculinoSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.PacienteSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.ProvinciaSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.ViaSpecificBeanImplementation;
 import eu.rafaelaznar.connection.publicinterface.ConnectionInterface;
 import eu.rafaelaznar.dao.specificimplementation.PacienteSpecificDaoImplementation;
 import eu.rafaelaznar.factory.ConnectionFactory;
@@ -184,12 +189,12 @@ public class PacienteSpecificServiceImplementation extends TableGenericServiceIm
                     ApellidoSpecificBeanImplementation oApellidoBean = new ApellidoSpecificBeanImplementation();
                     ApellidoSpecificDaoImplementation oDaoApellido = new ApellidoSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user"), null);
                     oApellidoBean = (ApellidoSpecificBeanImplementation) oDaoApellido.get((int) RandomHelper.getRandomInt(1, oDaoApellido.getCount(null).intValue()), 0);
-                    oPacienteBean.setPrimerApellido(oApellidoBean.getApellido());
+                    oPacienteBean.setPrimer_apellido(oApellidoBean.getApellido());
                     //--- Apellido 2
                     oApellidoBean = new ApellidoSpecificBeanImplementation();
                     oDaoApellido = new ApellidoSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user"), null);
                     oApellidoBean = (ApellidoSpecificBeanImplementation) oDaoApellido.get((int) RandomHelper.getRandomInt(1, oDaoApellido.getCount(null).intValue()), 0);
-                    oPacienteBean.setSegundoApellido(oApellidoBean.getApellido());
+                    oPacienteBean.setSegundo_apellido(oApellidoBean.getApellido());
                     //--- Dirección
                     String Direccion = "";
                     ViaSpecificBeanImplementation oViaBean = new ViaSpecificBeanImplementation();
@@ -228,7 +233,7 @@ public class PacienteSpecificServiceImplementation extends TableGenericServiceIm
                     //--- provincia
                     ProvinciaSpecificDaoImplementation oDaoProvincia = new ProvinciaSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user"), null);
                     ProvinciaSpecificBeanImplementation oProvinciaBean = new ProvinciaSpecificBeanImplementation();
-                    oProvinciaBean = (ProvinciaSpecificBeanImplementation) oDaoProvincia.get(oMunicipioBean.getIdProvincia(), 0);
+                    oProvinciaBean = (ProvinciaSpecificBeanImplementation) oDaoProvincia.get(oMunicipioBean.getId_provincia(), 0);
                     oPacienteBean.setProvincia(oProvinciaBean.getProvincia());
                     //--- país
                     oPacienteBean.setPais("España");
@@ -272,7 +277,7 @@ public class PacienteSpecificServiceImplementation extends TableGenericServiceIm
                     oMunicipioBean = new MunicipioSpecificBeanImplementation();
                     oDaoMunicipio = new MunicipioSpecificDaoImplementation(oConnection, (UsuarioSpecificBeanImplementation) oRequest.getSession().getAttribute("user"), null);
                     oMunicipioBean = (MunicipioSpecificBeanImplementation) oDaoMunicipio.get((int) RandomHelper.getRandomInt(1, oDaoMunicipio.getCount(null).intValue()), 0);
-                    oPacienteBean.setCiudadNacimiento(oMunicipioBean.getNombre());
+                    oPacienteBean.setCiudad_nacimiento(oMunicipioBean.getNombre());
                     //---
                     //--- país
                     oPacienteBean.setPais_nacimiento("España");

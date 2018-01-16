@@ -69,13 +69,13 @@ public class MunicipioSpecificBeanImplementation {
             MaxLength = 100,
             IsVisible = false
     )
-    private String Municipio;
+    private String nombre;
 
     public MunicipioSpecificBeanImplementation() {
     }
 
-    public MunicipioSpecificBeanImplementation(String Municipio) {
-        this.Municipio = Municipio;
+    public MunicipioSpecificBeanImplementation(String nombre) {
+        this.nombre = nombre;
     }
 
     public Integer getId_comunidad() {
@@ -110,12 +110,12 @@ public class MunicipioSpecificBeanImplementation {
         this.obj_provincia = obj_provincia;
     }
 
-    public String getMunicipio() {
-        return Municipio;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setMunicipio(String Municipio) {
-        this.Municipio = Municipio;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     
