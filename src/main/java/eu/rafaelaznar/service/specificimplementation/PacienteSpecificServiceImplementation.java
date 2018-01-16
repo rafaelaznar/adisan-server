@@ -77,6 +77,10 @@ public class PacienteSpecificServiceImplementation extends TableGenericServiceIm
                             return true;
                         case "getcount":
                             return true;
+                        case "getpagex":
+                            return true;
+                        case "getcountx":
+                            return true;
                     }
                     break;
                 case 4:
@@ -97,6 +101,10 @@ public class PacienteSpecificServiceImplementation extends TableGenericServiceIm
                             return true;
                         case "getcount":
                             return true;
+                        case "getcountx":
+                            return true;
+                        case "getpagex":
+                            return true;
                     }
                     break;
                 case 5:
@@ -116,6 +124,10 @@ public class PacienteSpecificServiceImplementation extends TableGenericServiceIm
                         case "getpage":
                             return true;
                         case "getcount":
+                            return true;
+                        case "getpagex":
+                            return true;
+                        case "getcountx":
                             return true;
                     }
                     break;
