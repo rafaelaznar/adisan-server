@@ -728,7 +728,7 @@ public class ServiceFactory {
                     case "getpagex":
                         oReplyBean = oPacienteService.getPageX();
                         break;
-                    case "rellenaPaciente":
+                    case "rellenapaciente":
                         oReplyBean = oPacienteService.rellenaPaciente();
                         break;
                     default:
@@ -841,7 +841,7 @@ public class ServiceFactory {
                     case "getpagex":
                         oReplyBean = oMedicoService.getPageX();
                         break;
-                    case "rellenaMedico":
+                    case "rellenamedico":
                         oReplyBean = oMedicoService.rellenaMedico();
                         break;
                     default:
