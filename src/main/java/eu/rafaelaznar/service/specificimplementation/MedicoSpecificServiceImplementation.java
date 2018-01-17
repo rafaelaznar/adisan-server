@@ -147,86 +147,80 @@ public class MedicoSpecificServiceImplementation extends TableGenericServiceImpl
         return false;
     }
     // Aquí va el rellena médico 
-/*
+
     public ReplyBeanHelper rellenaMedico() throws Exception {
-        if (this.checkPermission("rellena")) {
-            ob = "medico"; 
-            ReplyBeanHelper oReplyBean = null;
-            Integer num = Integer.parseInt(oRequest.getParameter("num"));
-            int result = 0;
-            try {
-                oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
-                oConnection = oPooledConnection.newConnection();
-                MedicoSpecificDaoImplementation oMedicoDao = new MedicoSpecificDaoImplementation(oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
-                MedicoSpecificBeanImplementation oMedicoBean = new MedicoSpecificBeanImplementation();
+        ob = "medico";
+        ReplyBeanHelper oReplyBean = null;
+        MetaBeanHelper oMetaBean = new MetaBeanHelper();
+        Integer num = Integer.parseInt(oRequest.getParameter("num"));
+        int result = 0;
+        try {
+            oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
+            oConnection = oPooledConnection.newConnection();
+            MedicoSpecificDaoImplementation oMedicoDao = new MedicoSpecificDaoImplementation(oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            MedicoSpecificBeanImplementation oMedicoBean = new MedicoSpecificBeanImplementation();
 
-                for (int j = 1; j <= num; j++) {
+            for (int j = 1; j <= num; j++) {
 
-                    String dni = "0";
-                    for (int i = 1; i <= 10; i++) {
-                        dni += RandomHelper.getRandomInt(0, 8);
-                    }
-                    dni += RandomHelper.getRadomChar();
-                    oMedicoBean.setDni(dni);
-
-                    int sexo = (int) RandomHelper.getRandomInt(0, 1);
-                    //-- Nombre
-                    if (sexo == 0) {
-                        NombremasculinoSpecificBeanImplementation oNombremasculinoBean = new NombremasculinoSpecificBeanImplementation();
-                        NombremasculinoSpecificDaoImplementation oDaoMasculino = new NombremasculinoSpecificDaoImplementation(oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
-                        oNombremasculinoBean = (NombremasculinoSpecificBeanImplementation) oDaoMasculino.get((int) RandomHelper.getRandomInt(1, oDaoMasculino.getCount(null).intValue()), 0);
-                        oMedicoBean.setNombre(oNombremasculinoBean.getNombre());
-                    } else {
-                        NombrefemeninoSpecificBeanImplementation oNombrefemeninoBean = new NombrefemeninoSpecificBeanImplementation();
-                        NombrefemeninoSpecificDaoImplementation oDaoFemenino = new NombrefemeninoSpecificDaoImplementation(oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
-                        oNombrefemeninoBean = (NombrefemeninoSpecificBeanImplementation) oDaoFemenino.get((int) RandomHelper.getRandomInt(1, oDaoFemenino.getCount(null).intValue()), 0);
-                        oMedicoBean.setNombre(oNombrefemeninoBean.getNombre());
-                    }
-                    //--- Apellido 1
-                    ApellidoSpecificBeanImplementation oApellidoBean = new ApellidoSpecificBeanImplementation();
-                    ApellidoSpecificDaoImplementation oDaoApellido = new ApellidoSpecificDaoImplementation(oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
-                    oApellidoBean = (ApellidoSpecificBeanImplementation) oDaoApellido.get((int) RandomHelper.getRandomInt(1, oDaoApellido.getCount(null).intValue()), 0);
-                    oMedicoBean.setPrimer_apellido(oApellidoBean.getApellido());
-                    //--- Apellido 2
-                    oApellidoBean = new ApellidoSpecificBeanImplementation();
-                    oDaoApellido = new ApellidoSpecificDaoImplementation(oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
-                    oApellidoBean = (ApellidoSpecificBeanImplementation) oDaoApellido.get((int) RandomHelper.getRandomInt(1, oDaoApellido.getCount(null).intValue()), 0);
-                    oMedicoBean.setSegundo_apellido(oApellidoBean.getApellido());
-                    //--- email
-                    String nombrep = oMedicoBean.getNombre();
-                    String primerp = oMedicoBean.getPrimer_apellido();
-                    String segundop = oMedicoBean.getSegundo_apellido();
-                    String nombrep2c = nombrep.substring(0, Math.min(nombrep.length(), 2));
-                    String primerp2c = primerp.substring(0, Math.min(primerp.length(), 2));
-                    String segundop2c = segundop.substring(0, Math.min(segundop.length(), 2));
-                    String mail = nombrep2c + primerp2c + segundop2c + "@" + oMedicoBean.getPrimer_apellido() + ".es";
-                    oMedicoBean.setEmail(mail);
-                    //---- fecha_nacimiento
-                    Date fnac = RandomHelper.getRadomDate();
-                    oMedicoBean.setFecha_nacimiento(fnac);
-                    //---
-
-                    result += oMedicoDao.set(oMedicoBean);
+                String dni = "0";
+                for (int i = 1; i <= 10; i++) {
+                    dni += RandomHelper.getRandomInt(0, 8);
                 }
+                dni += RandomHelper.getRadomChar();
+                oMedicoBean.setDni(dni);
 
-                oReplyBean = new ReplyBeanHelper(200, Integer.toString(result));
-            } catch (Exception ex) {
-                String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
-                Log4jHelper.errorLog(msg, ex);
-                throw new Exception(msg, ex);
-            } finally {
-                if (oConnection != null) {
-                    oConnection.close();
+                int sexo = (int) RandomHelper.getRandomInt(0, 1);
+                //-- Nombre
+                if (sexo == 0) {
+                    NombremasculinoSpecificDaoImplementation oDaoMasculino = new NombremasculinoSpecificDaoImplementation(oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+                    oMetaBean = oDaoMasculino.get((int) RandomHelper.getRandomInt(1, oDaoMasculino.getCount(null).intValue()), 0);
+                    NombremasculinoSpecificBeanImplementation oNombremasculinoBean = (NombremasculinoSpecificBeanImplementation) oMetaBean.getBean();
+                    oMedicoBean.setNombre(oNombremasculinoBean.getNombre());
+                } else {
+                    NombrefemeninoSpecificDaoImplementation oDaoFemenino = new NombrefemeninoSpecificDaoImplementation(oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+                    oMetaBean = oDaoFemenino.get((int) RandomHelper.getRandomInt(1, oDaoFemenino.getCount(null).intValue()), 0);
+                    NombrefemeninoSpecificBeanImplementation oNombrefemeninoBean = (NombrefemeninoSpecificBeanImplementation) oMetaBean.getBean();
+                    oMedicoBean.setNombre(oNombrefemeninoBean.getNombre());
                 }
-                if (oPooledConnection != null) {
-                    oPooledConnection.disposeConnection();
-                }
+                ApellidoSpecificDaoImplementation oDaoApellido = new ApellidoSpecificDaoImplementation(oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+                oMetaBean = oDaoApellido.get((int) RandomHelper.getRandomInt(1, oDaoApellido.getCount(null).intValue()), 0);
+                ApellidoSpecificBeanImplementation oApellidoBean = (ApellidoSpecificBeanImplementation) oMetaBean.getBean();
+                oMedicoBean.setPrimer_apellido(oApellidoBean.getApellido());
+                // Apellido 2
+                oMetaBean = oDaoApellido.get((int) RandomHelper.getRandomInt(1, oDaoApellido.getCount(null).intValue()), 0);
+                oApellidoBean = (ApellidoSpecificBeanImplementation) oMetaBean.getBean();
+                oMedicoBean.setSegundo_apellido(oApellidoBean.getApellido());
+                //--- email
+                String nombrep = oMedicoBean.getNombre();
+                String primerp = oMedicoBean.getPrimer_apellido();
+                String segundop = oMedicoBean.getSegundo_apellido();
+                String nombrep2c = nombrep.substring(0, Math.min(nombrep.length(), 2));
+                String primerp2c = primerp.substring(0, Math.min(primerp.length(), 2));
+                String segundop2c = segundop.substring(0, Math.min(segundop.length(), 2));
+                String mail = nombrep2c + primerp2c + segundop2c + "@" + oMedicoBean.getPrimer_apellido() + ".es";
+                oMedicoBean.setEmail(mail);
+                //---- fecha_nacimiento
+                Date fnac = RandomHelper.getRadomDate();
+                oMedicoBean.setFecha_nacimiento(fnac);
+                //---
+
+                result += oMedicoDao.set(oMedicoBean);
             }
 
-            return oReplyBean;
-        } else {
-            return new ReplyBeanHelper(401, EncodingHelper.quotate("Unauthorized"));
+            oReplyBean = new ReplyBeanHelper(200, Integer.toString(result));
+        } catch (Exception ex) {
+            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
+            Log4jHelper.errorLog(msg, ex);
+            throw new Exception(msg, ex);
+        } finally {
+            if (oConnection != null) {
+                oConnection.close();
+            }
+            if (oPooledConnection != null) {
+                oPooledConnection.disposeConnection();
+            }
         }
+
+        return oReplyBean;
     }
-*/
 }
