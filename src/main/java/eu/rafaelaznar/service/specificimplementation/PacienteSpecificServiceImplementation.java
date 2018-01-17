@@ -152,7 +152,6 @@ public class PacienteSpecificServiceImplementation extends TableGenericServiceIm
         }
         return false;
     }
-    // En principio esto va aqui
 
     public ReplyBeanHelper rellenaPaciente() throws Exception {
         ob = "paciente";

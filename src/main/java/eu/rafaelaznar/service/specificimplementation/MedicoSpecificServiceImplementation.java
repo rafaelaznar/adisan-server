@@ -146,7 +146,6 @@ public class MedicoSpecificServiceImplementation extends TableGenericServiceImpl
         }
         return false;
     }
-    // Aquí va el rellena médico 
 
     public ReplyBeanHelper rellenaMedico() throws Exception {
         ob = "medico";
