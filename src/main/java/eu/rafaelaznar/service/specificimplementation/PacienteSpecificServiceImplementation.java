@@ -157,7 +157,7 @@ public class PacienteSpecificServiceImplementation extends TableGenericServiceIm
         ob = "paciente";
         ReplyBeanHelper oReplyBean = null;
         MetaBeanHelper oMetaBean = new MetaBeanHelper();
-        Integer num = Integer.parseInt(oRequest.getParameter("num"));
+        Integer num = 1; //Integer.parseInt(oRequest.getParameter("num"));
         int result = 0;
         try {
             oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
