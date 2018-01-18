@@ -80,6 +80,7 @@ public class MedicoProfesorSpecificDaoImplementation extends TableGenericDaoImpl
                 strSQL += "(" + oBean.getColumns() + ")";
                 strSQL += " VALUES ";
                 strSQL += "(" + oBean.getValues() + ")";
+                strSQL = strSQL.replace(",0)", ","+idCentrosanitario+")");
                 oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
                 iResult = oPreparedStatement.executeUpdate();
                 oResultSet = oPreparedStatement.getGeneratedKeys();
