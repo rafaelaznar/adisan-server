@@ -194,7 +194,7 @@ public class MedicoSpecificServiceImplementation extends TableGenericServiceImpl
                 oMetaBean = oDaoApellido2.get((int) RandomHelper.getRandomInt(1, oDaoApellido.getCount(null).intValue()), 0);
                 oApellidoBean = (ApellidoSpecificBeanImplementation) oMetaBean.getBean();
                 oMedicoBean.setSegundo_apellido(oApellidoBean.getApellido());
-                
+
                 //--- email
                 String nombrep = oMedicoBean.getNombre();
                 String primerp = oMedicoBean.getPrimer_apellido();
