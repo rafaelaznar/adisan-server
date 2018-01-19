@@ -325,6 +325,6 @@ public class UsuarioProfesorSpecificDaoImplementation extends TableGenericDaoImp
         }
         return intResult;
     }
-
+    
 
 }
