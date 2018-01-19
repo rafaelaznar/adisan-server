@@ -37,6 +37,7 @@ import eu.rafaelaznar.bean.helper.FilterBeanHelper;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.meta.helper.MetaObjectGenericBeanHelper;
 import eu.rafaelaznar.bean.meta.helper.MetaPropertyGenericBeanHelper;
+import eu.rafaelaznar.bean.specificimplementation.PacienteSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import eu.rafaelaznar.factory.BeanFactory;
@@ -65,59 +66,71 @@ public class PacienteAlumnoSpecificDaoImplementation extends TableGenericDaoImpl
         strSQL = "SELECT * FROM paciente p, usuario u WHERE p.id_usuario = u.id AND u.id_centrosanitario = " + idCentrosanitario;
     }
 
+    
     @Override
-    public Integer set(TableGenericBeanImplementation oBean) throws Exception {
-        PreparedStatement oPreparedStatement = null;
-        ResultSet oResultSet = null;
-        Integer iResult = 0;
-        Integer idResult = 0;
-        Boolean insert = true;
-        try {
-            if (oBean.getId() == null || oBean.getId() == 0) {
-                strSQL = "INSERT INTO " + ob;
-                strSQL += "(" + oBean.getColumns() + ")";
-                strSQL += " VALUES ";
-                strSQL += "(" + oBean.getValues() + ")";
-                oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
-                iResult = oPreparedStatement.executeUpdate();
-                oResultSet = oPreparedStatement.getGeneratedKeys();
-                oResultSet.next();
-                idResult = oResultSet.getInt(1);
-                strSQL = "UPDATE " + ob + " SET id_usuario=" + idUsuario + " WHERE id=" + idResult;
-                oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
-                oPreparedStatement.executeUpdate();
-
-            } else {
-                insert = false;
-                strSQL = "UPDATE " + ob + " p";
-                strSQL += " SET ";
-                strSQL += oBean.toPairs();
-                strSQL += " WHERE p.id = ? AND p.id_usuario = " + idUsuario;
-                oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
-                oPreparedStatement.setInt(1, oBean.getId());
-                iResult = oPreparedStatement.executeUpdate();
-            }
-            if (iResult < 1) {
-                String msg = this.getClass().getName() + ": set";
-                Log4jHelper.errorLog(msg);
-                throw new Exception(msg);
-            }
-        } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
-        } finally {
-            if (insert) {
-                if (oResultSet != null) {
-                    oResultSet.close();
-                }
-            }
-            if (oPreparedStatement != null) {
-                oPreparedStatement.close();
-            }
-        }
-        return idResult;
+    public Integer set(TableGenericBeanImplementation oBean) throws Exception {                
+        PacienteSpecificBeanImplementation oPacienteBean=(PacienteSpecificBeanImplementation) oBean;
+        oPacienteBean.setId_usuario(idUsuario);
+        return super.set(oPacienteBean);
     }
+    
+    
+    
+    
+    
+//    @Override
+//    public Integer set(TableGenericBeanImplementation oBean) throws Exception {
+//        PreparedStatement oPreparedStatement = null;
+//        ResultSet oResultSet = null;
+//        Integer iResult = 0;
+//        Integer idResult = 0;
+//        Boolean insert = true;
+//        try {
+//            if (oBean.getId() == null || oBean.getId() == 0) {
+//                strSQL = "INSERT INTO " + ob;
+//                strSQL += "(" + oBean.getColumns() + ")";
+//                strSQL += " VALUES ";
+//                strSQL += "(" + oBean.getValues() + ")";
+//                oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
+//                iResult = oPreparedStatement.executeUpdate();
+//                oResultSet = oPreparedStatement.getGeneratedKeys();
+//                oResultSet.next();
+//                idResult = oResultSet.getInt(1);
+//                strSQL = "UPDATE " + ob + " SET id_usuario=" + idUsuario + " WHERE id=" + idResult;
+//                oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
+//                oPreparedStatement.executeUpdate();
+//
+//            } else {
+//                insert = false;
+//                strSQL = "UPDATE " + ob + " p";
+//                strSQL += " SET ";
+//                strSQL += oBean.toPairs();
+//                strSQL += " WHERE p.id = ? AND p.id_usuario = " + idUsuario;
+//                oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
+//                oPreparedStatement.setInt(1, oBean.getId());
+//                iResult = oPreparedStatement.executeUpdate();
+//            }
+//            if (iResult < 1) {
+//                String msg = this.getClass().getName() + ": set";
+//                Log4jHelper.errorLog(msg);
+//                throw new Exception(msg);
+//            }
+//        } catch (Exception ex) {
+//            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
+//            Log4jHelper.errorLog(msg, ex);
+//            throw new Exception(msg, ex);
+//        } finally {
+//            if (insert) {
+//                if (oResultSet != null) {
+//                    oResultSet.close();
+//                }
+//            }
+//            if (oPreparedStatement != null) {
+//                oPreparedStatement.close();
+//            }
+//        }
+//        return idResult;
+//    }
 
     @Override
     public MetaBeanHelper get(int id, int intExpand) throws Exception {
