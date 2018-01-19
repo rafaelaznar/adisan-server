@@ -33,10 +33,12 @@
 package eu.rafaelaznar.dao.specificimplementation;
 
 import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
+import eu.rafaelaznar.bean.genericimplementation.ViewGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.FilterBeanHelper;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.meta.helper.MetaObjectGenericBeanHelper;
 import eu.rafaelaznar.bean.meta.helper.MetaPropertyGenericBeanHelper;
+import eu.rafaelaznar.bean.publicinterface.GenericBeanInterface;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import eu.rafaelaznar.factory.BeanFactory;
@@ -47,6 +49,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 public class PacienteProfesorSpecificDaoImplementation extends TableGenericDaoImplementation {
 
@@ -183,5 +186,44 @@ public class PacienteProfesorSpecificDaoImplementation extends TableGenericDaoIm
             }
         }
         return iResult;
+    }
+    
+    @Override
+    public MetaBeanHelper getPageX(int id_foreign, String ob_foreign, int intRegsPerPag, int intPage, LinkedHashMap<String, String> hmOrder, ArrayList<FilterBeanHelper> alFilter, int expand) throws Exception {
+        String strSQL1 = strSQL;
+        strSQL1 += " and p.id_" + ob_foreign + "=" + id_foreign + " ";
+        strSQL1 += SqlHelper.buildSqlFilter(alFilter);
+        strSQL1 += SqlHelper.buildSqlOrder(hmOrder);
+        strSQL1 += SqlHelper.buildSqlLimit(getCount(alFilter), intRegsPerPag, intPage);
+        ArrayList<ViewGenericBeanImplementation> aloBean = new ArrayList<>();
+        PreparedStatement oPreparedStatement = null;
+        ResultSet oResultSet = null;
+        MetaBeanHelper oMetaBeanHelper = null;
+        try {
+            oPreparedStatement = oConnection.prepareStatement(strSQL1);
+            oResultSet = oPreparedStatement.executeQuery(strSQL1);
+            while (oResultSet.next()) {
+                GenericBeanInterface oBean = BeanFactory.getBean(ob, oPuserSecurity);
+                oBean = (ViewGenericBeanImplementation) oBean.fill(oResultSet, oConnection, oPuserSecurity, expand);
+                aloBean.add((ViewGenericBeanImplementation) oBean);
+            }
+
+            ArrayList<MetaPropertyGenericBeanHelper> alMetaProperties = this.getPropertiesMetaData();
+            MetaObjectGenericBeanHelper oMetaObject = this.getObjectMetaData();
+            oMetaBeanHelper = new MetaBeanHelper(oMetaObject, alMetaProperties, aloBean);
+
+        } catch (Exception ex) {
+            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
+            Log4jHelper.errorLog(msg, ex);
+            throw new Exception(msg, ex);
+        } finally {
+            if (oResultSet != null) {
+                oResultSet.close();
+            }
+            if (oPreparedStatement != null) {
+                oPreparedStatement.close();
+            }
+        }
+        return oMetaBeanHelper;
     }
 }

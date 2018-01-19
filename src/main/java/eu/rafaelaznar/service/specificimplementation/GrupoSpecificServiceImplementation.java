@@ -138,7 +138,7 @@ public class GrupoSpecificServiceImplementation extends TableGenericServiceImple
                                     TableGenericBeanImplementation oBean = (TableGenericBeanImplementation) BeanFactory.getBean(ob, (MetaBeanHelper) oRequest.getSession().getAttribute("user"));
                                     Gson oGson = GsonHelper.getGson();
                                     oBean = oGson.fromJson(jason, oBean.getClass());
-                                    oResult = oDao.checkUpdate(oBean.getId());
+                                   // oResult = oDao.checkUpdate(oBean.getId());
                                 } catch (Exception ex) {
                                     String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
                                     Log4jHelper.errorLog(msg, ex);
@@ -167,6 +167,10 @@ public class GrupoSpecificServiceImplementation extends TableGenericServiceImple
                         case "getpage":
                             return true;
                         case "getcount":
+                            return true;
+                        case "getpagex":
+                            return true;
+                        case "getcountx":
                             return true;
                     }
                     break;
