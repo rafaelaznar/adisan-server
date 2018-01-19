@@ -6,6 +6,7 @@
 package eu.rafaelaznar.bean.specificimplementation;
 
 import com.google.gson.annotations.Expose;
+import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.meta.publicinterface.MetaObjectBeanInterface;
 import eu.rafaelaznar.bean.meta.publicinterface.MetaPropertyBeanInterface;
 import eu.rafaelaznar.helper.EnumHelper;
@@ -17,7 +18,7 @@ import eu.rafaelaznar.helper.constant.RegexConstants;
         PluralDescription = "Nombres Masculinos",
         Type = EnumHelper.SourceType.Table
 )
-public class NombremasculinoSpecificBeanImplementation {
+public class NombremasculinoSpecificBeanImplementation extends TableGenericBeanImplementation {
 
     @Expose
     @MetaPropertyBeanInterface(

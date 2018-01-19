@@ -6,6 +6,7 @@
 package eu.rafaelaznar.bean.specificimplementation;
 
 import com.google.gson.annotations.Expose;
+import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.meta.publicinterface.MetaObjectBeanInterface;
 import eu.rafaelaznar.bean.meta.publicinterface.MetaPropertyBeanInterface;
@@ -19,7 +20,7 @@ import eu.rafaelaznar.helper.constant.RegexConstants;
         Type = EnumHelper.SourceType.Table
 )
 
-public class MunicipioSpecificBeanImplementation {
+public class MunicipioSpecificBeanImplementation extends TableGenericBeanImplementation {
 
     @Expose(serialize = false)
     @MetaPropertyBeanInterface(
@@ -69,13 +70,13 @@ public class MunicipioSpecificBeanImplementation {
             MaxLength = 100,
             IsVisible = false
     )
-    private String nombre;
+    private String municipio;
 
     public MunicipioSpecificBeanImplementation() {
     }
 
-    public MunicipioSpecificBeanImplementation(String nombre) {
-        this.nombre = nombre;
+    public MunicipioSpecificBeanImplementation(String municipio) {
+        this.municipio = municipio;
     }
 
     public Integer getId_comunidad() {
@@ -110,12 +111,12 @@ public class MunicipioSpecificBeanImplementation {
         this.obj_provincia = obj_provincia;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getMunicipio() {
+        return municipio;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setMunicipio(String municipio) {
+        this.municipio = municipio;
     }
 
     
