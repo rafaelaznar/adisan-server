@@ -35,6 +35,7 @@ package eu.rafaelaznar.service.specificimplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.helper.ReplyBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.ApellidoSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.MedicoSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.NombrefemeninoSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.NombremasculinoSpecificBeanImplementation;
@@ -159,6 +160,12 @@ public class MedicoSpecificServiceImplementation extends TableGenericServiceImpl
             MedicoSpecificDaoImplementation oMedicoDao = new MedicoSpecificDaoImplementation(oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
             MedicoSpecificBeanImplementation oMedicoBean = new MedicoSpecificBeanImplementation();
 
+            MetaBeanHelper oUsuarioBean = (MetaBeanHelper) oRequest.getSession().getAttribute("user");
+            UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oUsuarioBean.getBean();
+            MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_centrosanitario();
+            CentrosanitarioSpecificBeanImplementation oCentrosanitario = (CentrosanitarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
+            Integer idCentrosanitario = oCentrosanitario.getId();
+
             for (int j = 1; j <= num; j++) {
 
                 String dni = "0";
@@ -207,7 +214,8 @@ public class MedicoSpecificServiceImplementation extends TableGenericServiceImpl
                 //---- fecha_nacimiento
                 Date fnac = RandomHelper.getRadomDate();
                 oMedicoBean.setFecha_nacimiento(fnac);
-                //---
+                //--- 
+                oMedicoBean.setId_centrosanitario(idCentrosanitario);
 
                 result += oMedicoDao.set(oMedicoBean);
             }

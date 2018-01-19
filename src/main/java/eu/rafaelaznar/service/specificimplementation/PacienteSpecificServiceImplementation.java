@@ -164,8 +164,13 @@ public class PacienteSpecificServiceImplementation extends TableGenericServiceIm
             oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
             oConnection = oPooledConnection.newConnection();
             PacienteSpecificDaoImplementation oPacienteDao = new PacienteSpecificDaoImplementation(oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
-
             PacienteSpecificBeanImplementation oPacienteBean = new PacienteSpecificBeanImplementation();
+
+            MetaBeanHelper oUsuarioBean = (MetaBeanHelper) oRequest.getSession().getAttribute("user");
+            UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oUsuarioBean.getBean();
+            MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_tipousuario();
+            TipousuarioSpecificBeanImplementation oTipousuario = (TipousuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
+            Integer idTipousuario = oTipousuario.getId();
 
             for (int j = 1; j <= num; j++) {
 
@@ -212,9 +217,9 @@ public class PacienteSpecificServiceImplementation extends TableGenericServiceIm
                 oMetaBean = oDaoVia.get((int) RandomHelper.getRandomInt(1, oDaoVia.getCount(null).intValue()), 0);
                 oViaBean = (ViaSpecificBeanImplementation) oMetaBean.getBean();
                 via = oViaBean.getVia();
-                sexo = (int) RandomHelper.getRandomInt(1, 2);
+                Integer sexop = (int) RandomHelper.getRandomInt(1, 2);
                 //--
-                if (sexo == 1) {
+                if (sexop == 1) {
                     NombremasculinoSpecificDaoImplementation oDaoMasculino = new NombremasculinoSpecificDaoImplementation(oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
                     oMetaBean = oDaoMasculino.get((int) RandomHelper.getRandomInt(1, oDaoMasculino.getCount(null).intValue()), 0);
                     NombremasculinoSpecificBeanImplementation oNombremasculinoBean = (NombremasculinoSpecificBeanImplementation) oMetaBean.getBean();
@@ -311,7 +316,7 @@ public class PacienteSpecificServiceImplementation extends TableGenericServiceIm
                 //--
                 oPacienteBean.setId_tipopago(RandomHelper.getRandomInt(1, 3));
                 oPacienteBean.setId_sexo(sexo);
-                oPacienteBean.setId_usuario(1);
+                oPacienteBean.setId_usuario(idTipousuario);
 
                 result += oPacienteDao.set(oPacienteBean);
             }
