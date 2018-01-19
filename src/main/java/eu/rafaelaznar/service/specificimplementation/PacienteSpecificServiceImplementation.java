@@ -298,10 +298,10 @@ public class PacienteSpecificServiceImplementation extends TableGenericServiceIm
                 oMetaBean = oDaoMunicipioNacimiento.get((int) RandomHelper.getRandomInt(1, oDaoMunicipio.getCount(null).intValue()), 0);
                 oMunicipioBean = (MunicipioSpecificBeanImplementation) oMetaBean.getBean();
                 oPacienteBean.setCiudad_nacimiento(oMunicipioBean.getMunicipio());
-                
+
                 //--- país
                 oPacienteBean.setPais_nacimiento("España");
-                
+
                 //--sip
                 String sip = "0";
                 for (int i = 1; i <= 10; i++) {
