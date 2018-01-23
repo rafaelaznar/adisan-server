@@ -49,10 +49,12 @@ moduloEpisodio.controller('EpisodioxepisodioEdit4Controller',
                 //---
                 if ($scope.xob && $scope.xid) {
                     $scope.linkedbean = null;
+                    $scope.linkedbean2 = null;
                     serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
                         if (response.status == 200) {
                             if (response.data.status == 200) {
                                 $scope.linkedbean = response.data.json;
+                                $scope.linkedbean2 = response.data.json.data.obj_paciente;
                             }
                         }
                     }).catch(function (data) {
@@ -67,6 +69,8 @@ moduloEpisodio.controller('EpisodioxepisodioEdit4Controller',
                             $scope.bean = response.data.json.data;
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
+                            $scope.metap = toolService.deleteForeignKey($scope.metap,"obj_paciente");
+                            $scope.metap = toolService.deleteForeignKey($scope.metap,"obj_usuario");
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }

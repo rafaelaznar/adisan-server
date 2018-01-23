@@ -175,6 +175,18 @@ moduloServicios.factory('toolService', ['$filter', function ($filter) {
                 ruta += "/" + this.getParamString(ufilter);
                 ruta += "/" + this.getParamString(uorder);
                 return ruta;
+            },
+            deleteForeignKey: function (metap, obj) {
+                for (var j = 0; j < metap.length; j++) {
+                    if (metap[j].Name == obj) {
+                        metap.splice(j, 1);
+                        return metap;
+                    }
+                }
+            },
+            deleteForeignKeyObject: function (bean, obj) {
+                delete bean[obj];
+                return bean;
             }
         }
     }]);
