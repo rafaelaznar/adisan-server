@@ -145,6 +145,12 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/episodio/1/new/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/episodio/1/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/episodio/1/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'EpisodioRemove1Controller', resolve: {auth: authenticationAdministratorPromise}});
+        //----Episodio 3 profesor --  
+        $routeProvider.when('/episodio/3/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'EpisodioPList3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/episodio/3/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'EpisodioView3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/episodio/3/new/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioNew3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/episodio/3/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioEdit3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/episodio/3/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'EpisodioRemove3Controller', resolve: {auth: authenticationProfesorPromise}});   
         //-- foreign key xcircunstanciasalta
         $routeProvider.when('/episodio/1/xcircunstanciasalta/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioxcircunstanciasaltaNew1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/episodio/1/xcircunstanciasalta/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioxcircunstanciasaltaEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
