@@ -125,45 +125,6 @@ public class GrupoSpecificServiceImplementation extends TableGenericServiceImple
                             return true;
                         case "setnew":
                             return true;
-                        case "setedit":
-                            Connection oConnection = null;
-                            ConnectionInterface oPooledConnection = null;
-                            Boolean oResult = true;
-                             {
-                                try {
-                                    oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
-                                    oConnection = oPooledConnection.newConnection();
-                                    GrupoProfesorSpecificDaoImplementation oDao = new GrupoProfesorSpecificDaoImplementation(oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
-                                    String jason = oRequest.getParameter("json");
-                                    TableGenericBeanImplementation oBean = (TableGenericBeanImplementation) BeanFactory.getBean(ob, (MetaBeanHelper) oRequest.getSession().getAttribute("user"));
-                                    Gson oGson = GsonHelper.getGson();
-                                    oBean = oGson.fromJson(jason, oBean.getClass());
-                                   // oResult = oDao.checkUpdate(oBean.getId());
-                                } catch (Exception ex) {
-                                    String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-                                    Log4jHelper.errorLog(msg, ex);
-                                } finally {
-                                    if (oConnection != null) {
-                                        try {
-                                            oConnection.close();
-                                        } catch (SQLException ex) {
-                                            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-                                            Log4jHelper.errorLog(msg, ex);
-                                        }
-                                    }
-                                    if (oPooledConnection != null) {
-                                        try {
-                                            oPooledConnection.disposeConnection();
-                                        } catch (Exception ex) {
-                                            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-                                            Log4jHelper.errorLog(msg, ex);
-                                        }
-                                    }
-                                }
-                            }
-                            return oResult;
-                        case "remove":
-                            return true;
                         case "getpage":
                             return true;
                         case "getcount":
