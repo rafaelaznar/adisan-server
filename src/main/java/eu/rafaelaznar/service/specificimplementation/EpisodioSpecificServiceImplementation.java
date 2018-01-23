@@ -54,13 +54,12 @@ public class EpisodioSpecificServiceImplementation extends TableGenericServiceIm
             Integer idTipousuario = oTipousuario.getId();
 
             String strMethod = strMethodName.toLowerCase();
-            if (idTipousuario == 1) {
-                return true;
-            } else {
-                if (idTipousuario == 3
-                        || idTipousuario == 4
-                        || idTipousuario == 5) {
-
+            switch (idTipousuario) {
+                case 1:
+                    return true;
+                case 2:
+                    return false;
+                case 3:
                     switch (strMethod) {
                         case "getmetadata":
                             return true;
@@ -71,24 +70,59 @@ public class EpisodioSpecificServiceImplementation extends TableGenericServiceIm
                         case "get":
                             return true;
                         case "set":
-                            return false;
+                            return true;
+                        case "remove":
+                            return true;
+                        case "getpage":
+                            return true;
+                        case "getcount":
+                            return true;
+                    }
+                    break;
+                case 4:
+                    switch (strMethod) {
+                        case "getmetadata":
+                            return true;
+                        case "getobjectmetadata":
+                            return true;
+                        case "getpropertiesmetadata":
+                            return true;
+                        case "get":
+                            return true;
+                        case "set":
+                            return true;
                         case "remove":
                             return false;
                         case "getpage":
                             return true;
-                        case "getpagex":
+                        case "getcount":
+                            return true;
+                    }
+                    break;
+                case 5:
+                    switch (strMethod) {
+                        case "getmetadata":
+                            return true;
+                        case "getobjectmetadata":
+                            return true;
+                        case "getpropertiesmetadata":
+                            return true;
+                        case "get":
+                            return true;
+                        case "set":
+                            return true;
+                        case "remove":
+                            return false;
+                        case "getpage":
                             return true;
                         case "getcount":
                             return true;
-                        case "getcountx":
-                            return true;
                     }
-                } else {
+                    break;
+                default:
                     return false;
-                }
             }
-        } else {
-            return false;
+
         }
         return false;
     }
