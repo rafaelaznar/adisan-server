@@ -728,6 +728,9 @@ public class ServiceFactory {
                     case "getpagex":
                         oReplyBean = oPacienteService.getPageX();
                         break;
+                    case "rellenapaciente":
+                        oReplyBean = oPacienteService.rellenaPaciente();
+                        break;
                     default:
                         oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Operation not found : Please contact your administrator"));
                         break;
@@ -837,6 +840,9 @@ public class ServiceFactory {
                         break;
                     case "getpagex":
                         oReplyBean = oMedicoService.getPageX();
+                        break;
+                    case "rellenamedico":
+                        oReplyBean = oMedicoService.rellenaMedico();
                         break;
                     default:
                         oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Operation not found : Please contact your administrator"));
