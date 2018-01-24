@@ -34,7 +34,6 @@ package eu.rafaelaznar.bean.specificimplementation;
 
 import com.google.gson.annotations.Expose;
 import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
-import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.meta.publicinterface.MetaObjectBeanInterface;
 import eu.rafaelaznar.bean.meta.publicinterface.MetaPropertyBeanInterface;
 import eu.rafaelaznar.helper.EnumHelper;
@@ -64,16 +63,15 @@ public class SexoSpecificBeanImplementation extends TableGenericBeanImplementati
     )
     private String descripcion;
 
-    @Expose(deserialize = false)
-    @MetaPropertyBeanInterface(
-            ShortName = "Pacientes",
-            LongName = "Pacientes por sexo",
-            Description = "Pacientes por sexo",
-            Type = EnumHelper.FieldType.Link,
-            References = "paciente"
-    )
-    private Integer link_paciente = null;
-    
+//    @Expose(deserialize = false)
+//    @MetaPropertyBeanInterface(
+//            ShortName = "Sexo",
+//            LongName = "Sexo del paciente",
+//            Description = "Sexo del paciente",
+//            Type = EnumHelper.FieldType.Link,
+//            References = "paciente"
+//    )
+//    private Integer link_paciente = null;
     public String getDescripcion() {
         return descripcion;
     }
