@@ -36,6 +36,7 @@ import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.publicinterface.GenericBeanInterface;
+import eu.rafaelaznar.bean.specificimplementation.ApellidoSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.CategoriaprofesionalSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.CentroSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
@@ -50,13 +51,18 @@ import eu.rafaelaznar.bean.specificimplementation.FacturaSpecificBeanImplementat
 import eu.rafaelaznar.bean.specificimplementation.GrupoSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.MedicoSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.ModalidadepisodioSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.MunicipioSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.NombrefemeninoSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.NombremasculinoSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.PacienteSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.PacienteVisitanteSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.ProvinciaSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.ServicioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.TipopagoSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.SexoSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.TipodependenciaSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.TiposervicioSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.ViaSpecificBeanImplementation;
 
 public class BeanFactory {
 
@@ -134,6 +140,24 @@ public class BeanFactory {
                 break;
             case "dependencia":
                 oBean = new DependenciaSpecificBeanImplementation();
+                break;
+            case "nombremasculino":
+                oBean = new NombremasculinoSpecificBeanImplementation();
+                break;
+            case "nombrefemenino":
+                oBean = new NombrefemeninoSpecificBeanImplementation();
+                break;
+            case "apellido":
+                oBean = new ApellidoSpecificBeanImplementation();
+                break;
+            case "municipio":
+                oBean = new MunicipioSpecificBeanImplementation();
+                break;
+            case "provincia":
+                oBean = new ProvinciaSpecificBeanImplementation();
+                break;
+            case "via":
+                oBean = new ViaSpecificBeanImplementation();
                 break;
             default:
 
