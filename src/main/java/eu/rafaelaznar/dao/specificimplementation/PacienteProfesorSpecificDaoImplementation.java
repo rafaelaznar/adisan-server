@@ -154,7 +154,7 @@ public class PacienteProfesorSpecificDaoImplementation extends TableGenericDaoIm
                 strSQL += EncodingHelper.quotate(oPaciente.getTelefono2()) + ",";
                 strSQL += EncodingHelper.quotate(oPaciente.getNombre_padre()) + ",";
                 strSQL += EncodingHelper.quotate(oPaciente.getNombre_madre()) + ",";
-                strSQL += EncodingHelper.stringifyDate(oPaciente.getFecha_nacimiento()) + ",";
+                strSQL += EncodingHelper.stringifyAndQuotate(oPaciente.getFecha_nacimiento()) + ",";
                 strSQL += EncodingHelper.quotate(oPaciente.getCiudad_nacimiento()) + ",";
                 strSQL += EncodingHelper.quotate(oPaciente.getPais_nacimiento()) + ",";
                 strSQL += oPaciente.getSip_aseguradora() + ",";
