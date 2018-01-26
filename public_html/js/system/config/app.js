@@ -104,7 +104,7 @@ var moduloCentro= angular.module('centroControllers', []);
 var moduloCentrosanitario= angular.module('centrosanitarioControllers', []);
 var moduloCategoriaprofesional= angular.module('categoriaprofesionalControllers', []);
 var moduloDependencia = angular.module('dependenciaControllers', []);
-
+var moduloUsuario = angular.module('usuarioControllers', []);
 
 
 

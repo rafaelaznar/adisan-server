@@ -69,6 +69,16 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/usuario/1/tipousuario/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'UsuarioXtipousuarioEdit1Controller', resolve: {auth: authenticationAdministratorPromise}});
         //------------4-5
         $routeProvider.when('/usuario/4/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'UsuarioView4Controller', resolve: {auth: authenticationAlumnoPromise}});
+      
+        //------------3
+        $routeProvider.when('/usuario/3/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'UsuarioView3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/usuario/3/new/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'UsuarioNew3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/usuario/3/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'UsuarioEdit3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/usuario/3/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'UsuarioRemove3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/usuario/3/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'UsuarioPList3Controller', resolve: {auth: authenticationProfesorPromise}});       
+       
+    
+        //------------5
         $routeProvider.when('/usuario/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'UsuarioView5Controller', resolve: {auth: authenticationVisitantePromise}});
 
         //------------
@@ -348,9 +358,13 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/grupo/1/xusuario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'GrupoxusuarioPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
 
         $routeProvider.when('/grupo/3/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'GrupoView3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/grupo/3/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'GrupoPList3Controller', resolve: {auth: authenticationProfesorPromise}});
         $routeProvider.when('/grupo/4/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'GrupoView4Controller', resolve: {auth: authenticationAlumnoPromise}});
         $routeProvider.when('/grupo/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'GrupoView5Controller', resolve: {auth: authenticationVisitantePromise}});
-
+        
+        $routeProvider.when('/grupo/3/xusuario/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'GrupoxusuarioNew3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/grupo/3/xusuario/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'GrupoxusuarioEdit3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/grupo/3/xusuario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'GrupoxusuarioPList3Controller', resolve: {auth: authenticationProfesorPromise}});
         //--
         $routeProvider.when('/curso/1/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'CursoView1Controller', resolve: {auth: authenticationAdministratorPromise}});
         $routeProvider.when('/curso/1/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'CursoPList1Controller', resolve: {auth: authenticationAdministratorPromise}});
@@ -359,6 +373,7 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/curso/1/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'CursoRemove1Controller', resolve: {auth: authenticationAdministratorPromise}});
         //-----------
         $routeProvider.when('/curso/3/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'CursoView3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/curso/3/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'CursoPList3Controller', resolve: {auth: authenticationProfesorPromise}});
         //-----------
         $routeProvider.when('/curso/4/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'CursoView4Controller', resolve: {auth: authenticationAlumnoPromise}});
         //-----------
@@ -368,6 +383,10 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/paciente/3/new/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacienteNew3Controller', resolve: {auth: authenticationProfesorPromise}});
         $routeProvider.when('/paciente/3/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'PacientePList3Controller', resolve: {auth: authenticationProfesorPromise}});
         $routeProvider.when('/paciente/3/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'PacienteView3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/paciente/3/xusuario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'PacienteXusuarioPList3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/paciente/3/xusuario/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacienteXusuarioNew3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/paciente/3/xusuario/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacienteXusuarioEdit3Controller', resolve: {auth: authenticationProfesorPromise}});
+
         //-----------paciente 4
         $routeProvider.when('/paciente/4/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacienteEdit4Controller', resolve: {auth: authenticationAlumnoPromise}});
         $routeProvider.when('/paciente/4/new/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacienteNew4Controller', resolve: {auth: authenticationAlumnoPromise}});
@@ -391,6 +410,7 @@ trolleyes.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/centro/1/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'CentroRemove1Controller', resolve: {auth: authenticationAdministratorPromise}});
         //-----------3
         $routeProvider.when('/centro/3/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'CentroView3Controller', resolve: {auth: authenticationProfesorPromise}});
+        $routeProvider.when('/centro/3/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'CentroPList3Controller', resolve: {auth: authenticationProfesorPromise}});
         //-----------4
         $routeProvider.when('/centro/4/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'CentroView4Controller', resolve: {auth: authenticationAlumnoPromise}});
         //-----------5
