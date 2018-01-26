@@ -32,6 +32,8 @@
  */
 package eu.rafaelaznar.service.specificimplementation;
 
+import com.google.gson.Gson;
+import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.helper.ReplyBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.ApellidoSpecificBeanImplementation;
@@ -42,6 +44,13 @@ import eu.rafaelaznar.bean.specificimplementation.PacienteSpecificBeanImplementa
 import eu.rafaelaznar.bean.specificimplementation.ProvinciaSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
+import eu.rafaelaznar.connection.publicinterface.ConnectionInterface;
+import eu.rafaelaznar.dao.specificimplementation.GrupoProfesorSpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.PacienteProfesorSpecificDaoImplementation;
+import eu.rafaelaznar.factory.BeanFactory;
+import eu.rafaelaznar.factory.ConnectionFactory;
+import eu.rafaelaznar.helper.GsonHelper;
+import eu.rafaelaznar.helper.Log4jHelper;
 import eu.rafaelaznar.bean.specificimplementation.ViaSpecificBeanImplementation;
 import eu.rafaelaznar.connection.publicinterface.ConnectionInterface;
 import eu.rafaelaznar.dao.specificimplementation.ApellidoSpecificDaoImplementation;
@@ -58,6 +67,7 @@ import eu.rafaelaznar.helper.RandomHelper;
 import eu.rafaelaznar.helper.constant.ConnectionConstants;
 import eu.rafaelaznar.service.genericimplementation.TableGenericServiceImplementation;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 
@@ -96,9 +106,7 @@ public class PacienteSpecificServiceImplementation extends TableGenericServiceIm
                             return true;
                         case "get":
                             return true;
-                        case "set":
-                            return true;
-                        case "remove":
+                        case "setnew":
                             return true;
                         case "getpage":
                             return true;
