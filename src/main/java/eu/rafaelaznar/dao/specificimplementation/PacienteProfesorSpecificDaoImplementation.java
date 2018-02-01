@@ -75,6 +75,9 @@ public class PacienteProfesorSpecificDaoImplementation extends TableGenericDaoIm
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
         
+      
+        
+        
         strSQL = "SELECT p.id, p.dni, p.nombre, p.primer_apellido, "
                 + "p.segundo_apellido, p.direccion, p.ciudad, p.codigo_postal, "
                 + "p.provincia, p.pais, p.email, p.telefono1, p.telefono2, "

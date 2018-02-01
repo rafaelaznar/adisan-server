@@ -68,6 +68,7 @@ import eu.rafaelaznar.dao.specificimplementation.TiposervicioSpecificDaoImplemen
 import eu.rafaelaznar.dao.specificimplementation.TipousuarioSpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.UsuarioProfesorSpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.UsuarioSpecificDaoImplementation;
+import eu.rafaelaznar.helper.SessionHelper;
 import java.sql.Connection;
 
 public class DaoFactory {
@@ -76,7 +77,7 @@ public class DaoFactory {
         MetaDaoInterface oDao = null;
         switch (ob) {
             case "usuario":
-                oDao = (MetaDaoInterface) new UsuarioSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);                
+                oDao = (MetaDaoInterface) new UsuarioSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
 //               if (oPuserBean_security == null) {
 //                    oDao = (MetaDaoInterface) new UsuarioSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
 //                    break;
@@ -223,35 +224,54 @@ public class DaoFactory {
                 oDao = (MetaDaoInterface) new ServicioSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
                 break;
             case "paciente":
-                oDao = (MetaDaoInterface) new PacienteSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
-//                if (oPuserBean_security != null) { //en el proceso de login puede ser nulo!!
-//                    UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
-//                    MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_tipousuario();
-//                    TipousuarioSpecificBeanImplementation oTipoUsuario = (TipousuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
-//                    Integer idTipousuario = oTipoUsuario.getId();
-//                    switch (idTipousuario) {
-//                        case 1:
-//                            oDao = (MetaDaoInterface) new PacienteSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
-//                            break;
-////                        case 3:
-////                            oDao = (MetaDaoInterface) new PacienteProfesorSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
-////                            break;
-//                        case 4:
-//                            oDao = (MetaDaoInterface) new PacienteAlumnoSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
-//                            break;
+                if (oPuserBean_security != null) { //en el proceso de login puede ser nulo!!               
+                    switch (SessionHelper.getIdTipoUsuario(oPuserBean_security)) {
+                        case 1:
+                            oDao = (MetaDaoInterface) new PacienteSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                            break;
+                        case 3:
+                            oDao = (MetaDaoInterface) new PacienteProfesorSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                            break;
+                        case 4:
+                            oDao = (MetaDaoInterface) new PacienteAlumnoSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                            break;
 //                        case 5:
 //                            oDao = (MetaDaoInterface) new PacienteSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
 //                            break;
-//                    }
-//                } else {
-//                    oDao = null;
-//                }
+                        default:
+                            oDao = (MetaDaoInterface) new PacienteSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                            break;
+                    }
+                } else {
+                    oDao = null;
+                }
                 break;
             case "categoriaprofesional":
                 oDao = (MetaDaoInterface) new CategoriaprofesionalSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
                 break;
             case "episodio":
-                oDao = (MetaDaoInterface) new EpisodioSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                if (oPuserBean_security != null) {
+                    switch (SessionHelper.getIdTipoUsuario(oPuserBean_security)) {
+                         case 1:
+                            oDao = (MetaDaoInterface) new EpisodioSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                            break;
+                        case 3:
+                            oDao = (MetaDaoInterface) new EpisodioProfesorSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                            break;
+                        case 4:
+                            oDao = (MetaDaoInterface) new PacienteAlumnoSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                            break;
+//                        case 5:
+//                            oDao = (MetaDaoInterface) new PacienteSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+//                            break;
+                        default:
+                            oDao = (MetaDaoInterface) new EpisodioSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                            break;
+                    }
+                }else{
+                    oDao = null;
+                }
+                
 //                if (oPuserBean_security != null) { //en el proceso de login puede ser nulo!!
 //                    UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
 //                    MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_tipousuario();
