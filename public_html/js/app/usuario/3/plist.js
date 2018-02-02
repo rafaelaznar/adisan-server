@@ -32,8 +32,8 @@
  */
 'use strict';
 moduloUsuario.controller('UsuarioPList3Controller',
-        ['$scope', '$routeParams', '$http', '$location', 'serverCallService', 'toolService', 'constantService',
-            function ($scope, $http, $routeParams, $location, serverCallService, toolService, constantService) {
+        ['$scope', '$routeParams', '$http', '$location', 'serverCallService', 'toolService', 'constantService', 'sessionService',
+            function ($scope, $http, $routeParams, $location, serverCallService, toolService, constantService, sessionService) {
                 $scope.ob = "usuario";
                 $scope.op = "plist";
                 $scope.profile = 3;
@@ -55,11 +55,12 @@ moduloUsuario.controller('UsuarioPList3Controller',
                 $scope.veredit = true;
 
                 function getDataFromServer() {
-                    serverCallService.getSession("usuario").then(function (response) {
-                        if (response.status == 200) {
-                            $scope.iduser = response.data.json.data.id;
-                        }
-                    });
+                    //error gordo: esta llamada jamas se debe hacer ya que está prgramada en sessionService
+//                    serverCallService.getSession("usuario").then(function (response) {
+//                        if (response.status == 200) {
+//                            $scope.iduser = response.data.json.data.id;
+//                        }
+//                    });
                     serverCallService.getCount($scope.ob, $scope.filterParams).then(function (response) {
                         if (response.status == 200) {
                             $scope.registers = response.data.json;
@@ -97,11 +98,13 @@ moduloUsuario.controller('UsuarioPList3Controller',
                     $scope.showRemove = show;
                 };
                 $scope.showEdit = function (oBean) {
-                    $scope.iduserobean = oBean.obj_usuario.data.id;
+                    //se ha de hacer así
+                    $scope.sesiondata = sessionService.getSessionInfo();
+                    $scope.iduserobean = $scope.sesiondata.id;
+
                     if ($scope.iduserobean == $scope.iduser) {
                         $scope.idseve = true;
-                    }
-                    else{
+                    } else {
                         $scope.idseve = false;
                     }
                 };
