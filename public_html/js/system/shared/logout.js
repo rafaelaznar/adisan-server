@@ -26,8 +26,8 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloSistema.controller('LogoutController', ['$scope', '$routeParams', '$location', 'sessionServerCallService', 'sessionService',
-    function ($scope, $routeParams, $location, sessionServerCallService, sessionService) {
+moduloSistema.controller('LogoutController', ['$scope', '$routeParams', '$location', 'sessionServerCallService', 'sessionService', '$route',
+    function ($scope, $routeParams, $location, sessionServerCallService, sessionService, $route) {
         $scope.title = "Bye";
         $scope.icon = "fa-sign-out";
         $scope.session_info = sessionService.getSessionInfo();
@@ -39,6 +39,7 @@ moduloSistema.controller('LogoutController', ['$scope', '$routeParams', '$locati
                     $scope.session_info = sessionService.getSessionInfo();
                     $scope.isSessionActive = sessionService.isSessionActive();
                     $scope.status = "Has salido del sistema";
+                    $route.reload();
                     //$location.path('home');
                 } else {
                     $scope.status = "Error en la recepción de datos del servidor";
