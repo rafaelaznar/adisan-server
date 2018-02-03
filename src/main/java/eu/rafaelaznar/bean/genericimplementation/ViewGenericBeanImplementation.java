@@ -90,9 +90,12 @@ public abstract class ViewGenericBeanImplementation implements GenericBeanInterf
 
     @Override
     public GenericBeanInterface fill(ResultSet oResultSet, Connection oConnection, MetaBeanHelper oPuserBean_security, Integer expand) throws Exception {
+
         try {
             ViewGenericBeanImplementation oBean = (ViewGenericBeanImplementation) Class.forName(this.getClass().getName()).newInstance();
+            System.out.println("Comienza el método fill de " + oBean.getClass().getName());
             if (this.getClass().getSuperclass() == TableGenericBeanImplementation.class) {
+                System.out.println("Rellenando el campo id con el valor " + oResultSet.getInt("id"));
                 Field x = this.getClass().getSuperclass().getDeclaredField("id");
                 x.setAccessible(true);
                 x.set(this, oResultSet.getInt("id"));
@@ -100,20 +103,28 @@ public abstract class ViewGenericBeanImplementation implements GenericBeanInterf
             }
             Field[] oFields = oBean.getClass().getDeclaredFields();
             for (Field x : oFields) {
+
                 x.setAccessible(true);
                 if (getTypeFromPropertyMetaData(x) != null) {
                     if (getTypeFromPropertyMetaData(x) != FieldType.Calculated) {
                         if (getTypeFromPropertyMetaData(x) == FieldType.ForeignObject) {
+                            System.out.println("Rellenando el campo ... " + x.getName() + " de tipo ForeignObject");
                             if (expand > 0) {
                                 String ob = getReferencesFromPropertyMetaData(x);
                                 TableDaoInterface oObDao = (TableDaoInterface) DaoFactory.getDao(ob, oConnection, oPuserBean_security, null);
+                                System.out.println("Clave ajena: se expande " + ob + " id=" + oResultSet.getInt("id_" + ob));
                                 MetaBeanHelper oMetaBeanHelper = (MetaBeanHelper) oObDao.get(oResultSet.getInt("id_" + ob), expand - 1);
                                 x.set(this, oMetaBeanHelper);
+                            } else {
+                                String ob = getReferencesFromPropertyMetaData(x);
+                                System.out.println("Clave ajena: final de expansión: el objeto " + ob + " no se expande");
                             }
                         } else {
                             if (getTypeFromPropertyMetaData(x) == FieldType.Link) {
+                                System.out.println("Rellenando el campo ... " + x.getName() + " de tipo Link");
                                 String ob = getReferencesFromPropertyMetaData(x);
                                 TableDaoInterface oObDao = (TableDaoInterface) DaoFactory.getDao(ob, oConnection, oPuserBean_security, " and id_" + getOwnNameFromObjectMetaData() + "=" + oResultSet.getInt("id"));
+                                System.out.println("Link que hace referencia a ... " + ob);
                                 if (oObDao != null) { //en el proceso de login puede ser nulo!!
                                     x.set(this, oObDao.getCount(null).intValue());
                                 } else {
@@ -121,18 +132,23 @@ public abstract class ViewGenericBeanImplementation implements GenericBeanInterf
                                 }
                             } else {
                                 if (getTypeFromPropertyMetaData(x) == FieldType.ForeignId) {
+                                    System.out.println("Rellenando el campo ... " + x.getName() + " de tipo Foreign ID con el valor " + oResultSet.getInt(x.getName()));
                                     x.set(this, oResultSet.getInt(x.getName()));
                                 } else {
                                     if (x.getType() == String.class) {
+                                        System.out.println("Rellenando el campo ... " + x.getName() + " de tipo String con el valor " + oResultSet.getString(x.getName()));
                                         x.set(this, oResultSet.getString(x.getName()));
                                     } else {
                                         if (x.getType() == Date.class) {
+                                            System.out.println("Rellenando el campo ... " + x.getName() + " de tipo Date con el valor " + oResultSet.getDate(x.getName()));
                                             x.set(this, oResultSet.getDate(x.getName()));
                                         } else {
                                             if (x.getType() == Double.class || x.getType() == double.class) {
+                                                System.out.println("Rellenando el campo ... " + x.getName() + " de tipo Double con el valor " + oResultSet.getDouble(x.getName()));
                                                 x.set(this, oResultSet.getDouble(x.getName()));
                                             } else {
                                                 if (x.getType() == Integer.class || x.getType() == int.class) {
+                                                    System.out.println("Rellenando el campo Integer ... " + x.getName() + " de tipo Integer con el valor " + oResultSet.getInt(x.getName()));
                                                     x.set(this, oResultSet.getInt(x.getName()));
                                                 }
                                             }
@@ -145,9 +161,9 @@ public abstract class ViewGenericBeanImplementation implements GenericBeanInterf
                 }
                 x.setAccessible(false);
             }
-
+            System.out.println("Computando campos calculados");
             this.ComputeCalculatedFields();
-
+            System.out.println("Finaliza el método fill de " + oBean.getClass().getName());
         } catch (Exception ex) {
             String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
             Log4jHelper.errorLog(msg, ex);

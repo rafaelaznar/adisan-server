@@ -40,6 +40,7 @@ import eu.rafaelaznar.bean.meta.helper.MetaObjectGenericBeanHelper;
 import eu.rafaelaznar.bean.meta.helper.MetaPropertyGenericBeanHelper;
 import eu.rafaelaznar.bean.publicinterface.GenericBeanInterface;
 import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.GrupoSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import eu.rafaelaznar.factory.BeanFactory;
@@ -53,12 +54,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-public class UsuarioProfesorSpecificDaoImplementation extends TableGenericDaoImplementation {
+public class UsuarioAlumnoSpecificDaoImplementation extends TableGenericDaoImplementation {
 
     private Integer idCentrosanitario = null;
     private Integer idUsuario = 0;
 
-    public UsuarioProfesorSpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
+    public UsuarioAlumnoSpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("usuario", oPooledConnection, oPuserBean_security, strWhere);
         if (oPuserBean_security != null) {
             UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
@@ -66,7 +67,9 @@ public class UsuarioProfesorSpecificDaoImplementation extends TableGenericDaoImp
             if (oUsuario.getId() > 1) {
                 String strSQLini = "";
 
-                CentrosanitarioSpecificBeanImplementation oCentroSanitario = (CentrosanitarioSpecificBeanImplementation) oUsuario.getObj_centrosanitario().getBean();
+                GrupoSpecificBeanImplementation oGrupo = (GrupoSpecificBeanImplementation) oUsuario.getObj_grupo().getBean();
+                UsuarioSpecificBeanImplementation oProfesor = (UsuarioSpecificBeanImplementation) oGrupo.getObj_usuario().getBean();
+                CentrosanitarioSpecificBeanImplementation oCentroSanitario = (CentrosanitarioSpecificBeanImplementation) oProfesor.getObj_centrosanitario().getBean();
                 idCentrosanitario = oCentroSanitario.getId();
                 strSQLini = "FROM usuario where 1=1 "
                         + "AND (id IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=3 ) "
@@ -77,6 +80,7 @@ public class UsuarioProfesorSpecificDaoImplementation extends TableGenericDaoImp
                         + "                      AND g.id_usuario=u2.id "
                         + "                      AND u2.id_centrosanitario= " + idCentrosanitario + ")"
                         + ") ";
+
                 strSQL = "SELECT * " + strSQLini;
                 strCountSQL = "SELECT COUNT(*) " + strSQLini;
                 if (strWhere != null) {

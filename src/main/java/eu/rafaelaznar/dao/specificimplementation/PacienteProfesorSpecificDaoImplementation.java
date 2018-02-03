@@ -33,25 +33,17 @@
 package eu.rafaelaznar.dao.specificimplementation;
 
 import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
-import eu.rafaelaznar.bean.genericimplementation.ViewGenericBeanImplementation;
-import eu.rafaelaznar.bean.helper.FilterBeanHelper;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
-import eu.rafaelaznar.bean.meta.helper.MetaObjectGenericBeanHelper;
-import eu.rafaelaznar.bean.meta.helper.MetaPropertyGenericBeanHelper;
-import eu.rafaelaznar.bean.publicinterface.GenericBeanInterface;
+import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.PacienteSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
-import eu.rafaelaznar.factory.BeanFactory;
 import eu.rafaelaznar.helper.EncodingHelper;
 import eu.rafaelaznar.helper.Log4jHelper;
-import eu.rafaelaznar.helper.SqlHelper;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 
 public class PacienteProfesorSpecificDaoImplementation extends TableGenericDaoImplementation {
 
@@ -61,24 +53,30 @@ public class PacienteProfesorSpecificDaoImplementation extends TableGenericDaoIm
     public PacienteProfesorSpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("paciente", oPooledConnection, oPuserBean_security, strWhere);
 
-        UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
-        idCentrosanitario = oUsuario.getId_centrosanitario();
-        idUsuario = oUsuario.getId();
+        if (oPuserBean_security != null) {
+            UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
+            idUsuario = oUsuario.getId();
+            if (oUsuario.getId() > 1) {
+                String strSQLini = "";
 
-        String strSQLini = "FROM paciente where 1=1 "
-                + "AND (id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=3 ) "
-                + " OR  id_usuario IN (SELECT distinct u.id FROM usuario u, grupo g, usuario u2 "
-                + "                    WHERE u.id_tipousuario=4 "
-                + "                      AND u.id_grupo=g.id "
-                + "                      AND g.id_usuario=u2.id "
-                + "                      AND u2.id_centrosanitario= " + idCentrosanitario + ")"
-                + ") ";
-
-        strSQL = "SELECT * " + strSQLini;
-        strCountSQL = "SELECT COUNT(*) "+ strSQLini;
-        if (strWhere != null) {
-            strSQL += " " + strWhere + " ";
-            strCountSQL += " " + strWhere + " ";
+                CentrosanitarioSpecificBeanImplementation oCentroSanitario = (CentrosanitarioSpecificBeanImplementation) oUsuario.getObj_centrosanitario().getBean();
+                idCentrosanitario = oCentroSanitario.getId();
+                strSQLini = "FROM paciente where 1=1 "
+                        + "AND (id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=3 ) "
+                        + " OR  id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=5 ) "
+                        + " OR  id_usuario IN (SELECT distinct u.id FROM usuario u, grupo g, usuario u2 "
+                        + "                    WHERE u.id_tipousuario=4 "
+                        + "                      AND u.id_grupo=g.id "
+                        + "                      AND g.id_usuario=u2.id "
+                        + "                      AND u2.id_centrosanitario= " + idCentrosanitario + ")"
+                        + ") ";
+                strSQL = "SELECT * " + strSQLini;
+                strCountSQL = "SELECT COUNT(*) " + strSQLini;
+                if (strWhere != null) {
+                    strSQL += " " + strWhere + " ";
+                    strCountSQL += " " + strWhere + " ";
+                }
+            }
         }
 
 //        strSQL = "SELECT p.id, p.dni, p.nombre, p.primer_apellido, p.segundo_apellido, p.direccion, p.ciudad, p.codigo_postal, p.provincia, p.pais, p.email, p.telefono1, p.telefono2, p.nombre_padre, p.nombre_madre, p.fecha_nacimiento, p.ciudad_nacimiento, p.pais_nacimiento, p.sip_aseguradora, p.id_tipopago, p.id_sexo, p.id_usuario FROM paciente p, usuario u WHERE p.id_usuario = u.id AND u.id_centrosanitario = 1 UNION SELECT p.id, p.dni, p.nombre, p.primer_apellido, p.segundo_apellido, p.direccion, p.ciudad, p.codigo_postal, p.provincia, p.pais, p.email, p.telefono1, p.telefono2, p.nombre_padre, p.nombre_madre, p.fecha_nacimiento, p.ciudad_nacimiento, p.pais_nacimiento, p.sip_aseguradora, p.id_tipopago, p.id_sexo, p.id_usuario  FROM paciente p, usuario u, grupo g, usuario u2 WHERE p.id_usuario = u.id AND u.id_tipousuario=4 and u.id_grupo=g.id and g.id_usuario=u2.id and u2.id_centrosanitario= " + idCentrosanitario;        
@@ -141,7 +139,6 @@ public class PacienteProfesorSpecificDaoImplementation extends TableGenericDaoIm
 //        }
 //        return oMetaBeanHelper;
 //    }
-
     @Override
     public Integer set(TableGenericBeanImplementation oBean) throws Exception {
         PreparedStatement oPreparedStatement = null;
@@ -288,7 +285,6 @@ public class PacienteProfesorSpecificDaoImplementation extends TableGenericDaoIm
 //        }
 //        return oMetaBeanHelper;
 //    }
-
 //    @Override
 //    public Long getCount(ArrayList<FilterBeanHelper> alFilter) throws Exception {
 //        strCountSQL = "SELECT COUNT(*) FROM paciente p, usuario u WHERE p.id_usuario = u.id AND u.id_centrosanitario = " + idCentrosanitario;

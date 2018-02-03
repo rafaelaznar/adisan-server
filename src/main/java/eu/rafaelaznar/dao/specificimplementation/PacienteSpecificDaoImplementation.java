@@ -38,8 +38,31 @@ import java.sql.Connection;
 
 public class PacienteSpecificDaoImplementation extends TableGenericDaoImplementation {
 
-
     public PacienteSpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("paciente", oPooledConnection, oPuserBean_security, strWhere);
+//        if (oPuserBean_security != null) {
+//            UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
+//            if (oUsuario.getId() > 1) {
+//                //faltaba obtener el centro sanitario del alumno!!!! idUsuario = oUsuario.getId();
+//                GrupoSpecificBeanImplementation oGrupo = (GrupoSpecificBeanImplementation) oUsuario.getObj_grupo().getBean();
+//                UsuarioSpecificBeanImplementation oProfesor = (UsuarioSpecificBeanImplementation) oGrupo.getObj_usuario().getBean();
+//                CentrosanitarioSpecificBeanImplementation oCentroSanitario = (CentrosanitarioSpecificBeanImplementation) oProfesor.getObj_centrosanitario().getBean();
+//                Integer idCentrosanitario = oCentroSanitario.getId();
+//                String strSQLini = "FROM paciente where 1=1 "
+//                        + "AND (id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=3 ) "
+//                        + " OR  id_usuario IN (SELECT distinct u.id FROM usuario u, grupo g, usuario u2 "
+//                        + "                    WHERE u.id_tipousuario=4 "
+//                        + "                      AND u.id_grupo=g.id "
+//                        + "                      AND g.id_usuario=u2.id "
+//                        + "                      AND u2.id_centrosanitario= " + idCentrosanitario + ")"
+//                        + ") ";
+//                strSQL = "SELECT * " + strSQLini;
+//                strCountSQL = "SELECT COUNT(*) " + strSQLini;
+//                if (strWhere != null) {
+//                    strSQL += " " + strWhere + " ";
+//                    strCountSQL += " " + strWhere + " ";
+//                }
+//            }
+//        }
     }
 }
