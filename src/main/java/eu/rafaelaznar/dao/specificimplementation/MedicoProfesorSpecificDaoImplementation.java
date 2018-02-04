@@ -36,6 +36,8 @@ import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.meta.helper.MetaObjectGenericBeanHelper;
 import eu.rafaelaznar.bean.meta.helper.MetaPropertyGenericBeanHelper;
+import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.GrupoSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.MedicoSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
@@ -46,7 +48,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-
 
 /**
  *
@@ -60,22 +61,38 @@ public class MedicoProfesorSpecificDaoImplementation extends TableGenericDaoImpl
     public MedicoProfesorSpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("medico", oPooledConnection, oPuserBean_security, strWhere);
 
-        UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
-        idUsuario = oUsuario.getId();
-        idCentrosanitario = oUsuario.getId_centrosanitario();     
-        strSQL = "SELECT * FROM medico WHERE id_centrosanitario = " + idCentrosanitario + " ";
-        strCountSQL = "SELECT COUNT(*) FROM " + ob + " WHERE id_centrosanitario = " + idCentrosanitario + " ";
+        if (oPuserBean_security != null) {
+            UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
+            idUsuario = oUsuario.getId();
+            if (oUsuario.getId() > 1) {
+                String strSQLini = "";
+
+                CentrosanitarioSpecificBeanImplementation oCentroSanitario = (CentrosanitarioSpecificBeanImplementation) oUsuario.getObj_centrosanitario().getBean();
+                idCentrosanitario = oCentroSanitario.getId();
+                strSQLini = "FROM medico WHERE id_centrosanitario = " + idCentrosanitario + " ";
+                strSQL = "SELECT * " + strSQLini;
+                strCountSQL = "SELECT COUNT(*) " + strSQLini;
+                if (strWhere != null) {
+                    strSQL += " " + strWhere + " ";
+                    strCountSQL += " " + strWhere + " ";
+                }
+            }
+        }
+//MAL
+//        UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
+//        idUsuario = oUsuario.getId();
+//        idCentrosanitario = oUsuario.getId_centrosanitario();
+//        strSQL = "SELECT * FROM medico WHERE id_centrosanitario = " + idCentrosanitario + " ";
+//        strCountSQL = "SELECT COUNT(*) FROM " + ob + " WHERE id_centrosanitario = " + idCentrosanitario + " ";
 
     }
 
-    
     @Override
-    public Integer set(TableGenericBeanImplementation oBean) throws Exception {                
-        MedicoSpecificBeanImplementation oMedicoBean=(MedicoSpecificBeanImplementation) oBean;
+    public Integer set(TableGenericBeanImplementation oBean) throws Exception {
+        MedicoSpecificBeanImplementation oMedicoBean = (MedicoSpecificBeanImplementation) oBean;
         oMedicoBean.setId_centrosanitario(idCentrosanitario);
         return super.set(oMedicoBean);
     }
-
 
     @Override
     public MetaBeanHelper get(int id, int intExpand) throws Exception {
@@ -112,7 +129,7 @@ public class MedicoProfesorSpecificDaoImplementation extends TableGenericDaoImpl
         }
         return oMetaBeanHelper;
     }
-  
+
     public Boolean checkUpdate(int id) {
         if (id != 0) {
             return true;
