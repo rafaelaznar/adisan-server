@@ -49,6 +49,7 @@ public class Log4jHelper {
     public static void errorLog(String strMessage, Exception ex) {
         Logger log = Logger.getLogger("trolleyes-server3");
         log.error(strMessage, ex);
+        TraceHelper.trace(strMessage + " " + ex.getMessage());
     }
 
     public static void fatalLog(String strMessage) {

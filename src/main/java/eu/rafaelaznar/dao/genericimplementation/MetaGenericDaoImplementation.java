@@ -42,6 +42,7 @@ import eu.rafaelaznar.dao.publicinterface.MetaDaoInterface;
 import eu.rafaelaznar.helper.Log4jHelper;
 import eu.rafaelaznar.factory.BeanFactory;
 import eu.rafaelaznar.helper.EnumHelper;
+import eu.rafaelaznar.helper.TraceHelper;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 
@@ -75,6 +76,7 @@ public abstract class MetaGenericDaoImplementation implements MetaDaoInterface {
     }
 
     private ArrayList<MetaPropertyGenericBeanHelper> fillPropertiesMetaData(Class oClassBEAN, ArrayList<MetaPropertyGenericBeanHelper> alVector) {
+        TraceHelper.trace("fillPropertiesMetaData(start): object = " + ob);
         for (Field field : oClassBEAN.getDeclaredFields()) {
             Annotation[] fieldAnnotations = field.getDeclaredAnnotations();
             for (Integer i = 0; i < fieldAnnotations.length; i++) {
@@ -106,6 +108,7 @@ public abstract class MetaGenericDaoImplementation implements MetaDaoInterface {
                 }
             }
         }
+        TraceHelper.trace("fillPropertiesMetaData(end): object = " + ob);
         return alVector;
     }
 

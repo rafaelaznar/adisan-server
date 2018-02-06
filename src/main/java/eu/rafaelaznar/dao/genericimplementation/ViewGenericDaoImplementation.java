@@ -47,6 +47,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import eu.rafaelaznar.bean.publicinterface.GenericBeanInterface;
 import eu.rafaelaznar.dao.publicinterface.ViewDaoInterface;
+import eu.rafaelaznar.helper.TraceHelper;
 
 public abstract class ViewGenericDaoImplementation extends MetaGenericDaoImplementation implements ViewDaoInterface {
 
@@ -56,6 +57,7 @@ public abstract class ViewGenericDaoImplementation extends MetaGenericDaoImpleme
 
     @Override
     public Long getCount(ArrayList<FilterBeanHelper> alFilter) throws Exception {
+        TraceHelper.trace("getCount-ViewGenericDaoImplementation(begin):object=" + ob);
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
         strCountSQL += SqlHelper.buildSqlFilter(alFilter);
@@ -81,12 +83,14 @@ public abstract class ViewGenericDaoImplementation extends MetaGenericDaoImpleme
             if (oPreparedStatement != null) {
                 oPreparedStatement.close();
             }
-        }
+            TraceHelper.trace("getCount-ViewGenericDaoImplementation(end):object=" + ob);
+        }        
         return iResult;
     }
 
     @Override
     public MetaBeanHelper getPage(int intRegsPerPag, int intPage, LinkedHashMap<String, String> hmOrder, ArrayList<FilterBeanHelper> alFilter, int expand) throws Exception {
+        TraceHelper.trace("getPage-ViewGenericDaoImplementation(begin):object=" + ob);
         String strSQL1 = strSQL;
         strSQL1 += SqlHelper.buildSqlFilter(alFilter);
         strSQL1 += SqlHelper.buildSqlOrder(hmOrder);
@@ -119,12 +123,14 @@ public abstract class ViewGenericDaoImplementation extends MetaGenericDaoImpleme
             if (oPreparedStatement != null) {
                 oPreparedStatement.close();
             }
-        }
+            TraceHelper.trace("getPage-ViewGenericDaoImplementation(end):object=" + ob);
+        }        
         return oMetaBeanHelper;
     }
 
     @Override
     public MetaBeanHelper getPageX(int id_foreign, String ob_foreign, int intRegsPerPag, int intPage, LinkedHashMap<String, String> hmOrder, ArrayList<FilterBeanHelper> alFilter, int expand) throws Exception {
+        TraceHelper.trace("getPageX-ViewGenericDaoImplementation(begin):object=" + ob);
         String strSQL1 = strSQL;
         strSQL1 += " and id_" + ob_foreign + "=" + id_foreign + " ";
         strSQL1 += SqlHelper.buildSqlFilter(alFilter);
@@ -158,12 +164,14 @@ public abstract class ViewGenericDaoImplementation extends MetaGenericDaoImpleme
             if (oPreparedStatement != null) {
                 oPreparedStatement.close();
             }
-        }
+            TraceHelper.trace("getPageX-ViewGenericDaoImplementation(end):object=" + ob);
+        }        
         return oMetaBeanHelper;
     }
 
     @Override
     public Long getCountX(int id_foreign, String ob_foreign, ArrayList<FilterBeanHelper> alFilter) throws Exception {
+        TraceHelper.trace("getCountX-ViewGenericDaoImplementation(begin):object=" + ob);
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
         strSQL = "SELECT COUNT(*) FROM " + ob;
@@ -192,7 +200,8 @@ public abstract class ViewGenericDaoImplementation extends MetaGenericDaoImpleme
             if (oPreparedStatement != null) {
                 oPreparedStatement.close();
             }
-        }
+            TraceHelper.trace("getCountX-ViewGenericDaoImplementation(end):object=" + ob);
+        }        
         return iResult;
     }
 

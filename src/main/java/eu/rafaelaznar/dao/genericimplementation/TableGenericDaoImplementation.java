@@ -43,6 +43,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import eu.rafaelaznar.dao.publicinterface.TableDaoInterface;
+import eu.rafaelaznar.helper.TraceHelper;
 import java.util.ArrayList;
 
 public abstract class TableGenericDaoImplementation extends ViewGenericDaoImplementation implements TableDaoInterface {
@@ -53,6 +54,7 @@ public abstract class TableGenericDaoImplementation extends ViewGenericDaoImplem
 
     @Override
     public MetaBeanHelper get(int id, int intExpand) throws Exception {
+        TraceHelper.trace("get-TableGenericDaoImplementation(begin):object=" + ob);
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
         strSQL += " AND id=? ";
@@ -82,13 +84,14 @@ public abstract class TableGenericDaoImplementation extends ViewGenericDaoImplem
             if (oPreparedStatement != null) {
                 oPreparedStatement.close();
             }
-
+            TraceHelper.trace("get-TableGenericDaoImplementation(end):object=" + ob);
         }
         return oMetaBeanHelper;
     }
 
     @Override
     public Integer set(TableGenericBeanImplementation oBean) throws Exception {
+        TraceHelper.trace("set-TableGenericDaoImplementation(begin):object=" + ob);
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
         Integer iResult = 0;
@@ -134,12 +137,14 @@ public abstract class TableGenericDaoImplementation extends ViewGenericDaoImplem
             if (oPreparedStatement != null) {
                 oPreparedStatement.close();
             }
+            TraceHelper.trace("set-TableGenericDaoImplementation(end):object=" + ob);
         }
         return iResult;
     }
 
     @Override
     public int remove(Integer id) throws Exception {
+        TraceHelper.trace("remove-TableGenericDaoImplementation(begin):object=" + ob);
         int iResult = 0;
         strSQL = "DELETE FROM " + ob + " WHERE id=?";
         PreparedStatement oPreparedStatement = null;
@@ -155,6 +160,7 @@ public abstract class TableGenericDaoImplementation extends ViewGenericDaoImplem
             if (oPreparedStatement != null) {
                 oPreparedStatement.close();
             }
+            TraceHelper.trace("remove-TableGenericDaoImplementation(end):object=" + ob);
         }
         return iResult;
     }

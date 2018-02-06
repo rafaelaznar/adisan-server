@@ -30,26 +30,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.rafaelaznar.control;
+package eu.rafaelaznar.helper;
 
-import eu.rafaelaznar.helper.TraceHelper;
-import javax.servlet.http.HttpServlet;
-import org.apache.log4j.PropertyConfigurator;
+import eu.rafaelaznar.helper.constant.ConfigurationConstants;
 
-public class Log4jInit extends HttpServlet {
+public class TraceHelper {
 
-    @Override
-    public void init() {
-
-        String prefix = getServletContext().getRealPath("/");
-        String file = getInitParameter("log4j-trolleyes-server3");
-
-        if (file != null) {
-            PropertyConfigurator.configure(prefix + file);
-            TraceHelper.trace("Log4J Logging started: " + prefix + file);
-        } else {
-            TraceHelper.trace("Log4J Is not configured for your Application: " + prefix + file);
+    public static void trace(String s) {
+        if (ConfigurationConstants.environment == EnumHelper.Environment.Debug) {
+            System.out.println(s);
         }
     }
-
 }
