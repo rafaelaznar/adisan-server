@@ -53,7 +53,7 @@ public class GrupoProfesorSpecificDaoImplementation extends TableGenericDaoImple
         UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
         idUsuario = oUsuario.getId();
 
-        String strSQLini = "SELECT * FROM grupo g WHERE g.id_usuario = " + idUsuario;
+        String strSQLini = "FROM grupo WHERE id_usuario = " + idUsuario;
 
         //Faltaba:
         strSQL = "SELECT * " + strSQLini;
