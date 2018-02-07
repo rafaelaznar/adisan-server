@@ -32,20 +32,12 @@
  */
 package eu.rafaelaznar.dao.specificimplementation;
 
-import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
-import eu.rafaelaznar.bean.meta.helper.MetaObjectGenericBeanHelper;
-import eu.rafaelaznar.bean.meta.helper.MetaPropertyGenericBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.GrupoSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
-import eu.rafaelaznar.factory.BeanFactory;
-import eu.rafaelaznar.helper.Log4jHelper;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 
 /**
  *
@@ -68,7 +60,7 @@ public class DependenciaAlumnoSpecificDaoImplementation extends TableGenericDaoI
                 UsuarioSpecificBeanImplementation oProfesor = (UsuarioSpecificBeanImplementation) oGrupo.getObj_usuario().getBean();
                 CentrosanitarioSpecificBeanImplementation oCentroSanitario = (CentrosanitarioSpecificBeanImplementation) oProfesor.getObj_centrosanitario().getBean();
                 idCentrosanitario = oCentroSanitario.getId();
-                strSQLini = "SELECT * FROM dependencia d WHERE AND d.id_centrosanitario = " + idCentrosanitario;
+                strSQLini = "FROM dependencia WHERE id_centrosanitario = " + idCentrosanitario;
                 strSQL = "SELECT * " + strSQLini;
                 strCountSQL = "SELECT COUNT(*) " + strSQLini;
                 if (strWhere != null) {
