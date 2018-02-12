@@ -40,6 +40,7 @@ import eu.rafaelaznar.bean.meta.helper.MetaObjectGenericBeanHelper;
 import eu.rafaelaznar.bean.meta.helper.MetaPropertyGenericBeanHelper;
 import eu.rafaelaznar.bean.publicinterface.GenericBeanInterface;
 import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import eu.rafaelaznar.factory.BeanFactory;
@@ -63,7 +64,9 @@ public class UsuarioProfesorSpecificDaoImplementation extends UsuarioSpecificDao
         if (oPuserBean_security != null) {
             UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
             idUsuario = oUsuario.getId();
-            if (oUsuario.getId() > 1) {
+            MetaBeanHelper ombhTipousuario = (MetaBeanHelper) oUsuario.getObj_tipousuario();
+            TipousuarioSpecificBeanImplementation oTipousuario= (TipousuarioSpecificBeanImplementation) ombhTipousuario.getBean();
+            if (oTipousuario.getId() == 3) {
                 String strSQLini = "";
 
                 CentrosanitarioSpecificBeanImplementation oCentroSanitario = (CentrosanitarioSpecificBeanImplementation) oUsuario.getObj_centrosanitario().getBean();
@@ -77,7 +80,7 @@ public class UsuarioProfesorSpecificDaoImplementation extends UsuarioSpecificDao
                         + "                      AND g.id_usuario=u2.id "
                         + "                      AND u2.id_centrosanitario= " + idCentrosanitario + ")"
                         + ") ";
-                
+
                 strSQL = "SELECT * " + strSQLini;
                 strCountSQL = "SELECT COUNT(*) " + strSQLini;
                 if (strWhere != null) {
@@ -139,7 +142,6 @@ public class UsuarioProfesorSpecificDaoImplementation extends UsuarioSpecificDao
 //            return false;
 //        }
 //    }
-
     @Override
     public Integer set(TableGenericBeanImplementation oBean) throws Exception {
         PreparedStatement oPreparedStatement = null;
@@ -355,5 +357,4 @@ public class UsuarioProfesorSpecificDaoImplementation extends UsuarioSpecificDao
 //        }
 //        return intResult;
 //    }
-
 }
