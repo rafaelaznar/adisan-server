@@ -57,7 +57,7 @@ public abstract class TableGenericServiceImplementation extends ViewGenericServi
     }
 
     /*
-    * http://127.0.0.1:8081/trolleyes-server/json?ob=xxxxxx&op=get&id=n
+    * http://127.0.0.1:8081/gesane/json?ob=xxxxxx&op=get&id=n
      */
     @Override
     public ReplyBeanHelper get() throws Exception {

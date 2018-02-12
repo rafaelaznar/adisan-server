@@ -33,8 +33,6 @@
 package eu.rafaelaznar.dao.specificimplementation;
 
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
-import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
-import eu.rafaelaznar.bean.specificimplementation.GrupoSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import eu.rafaelaznar.helper.Log4jHelper;
@@ -91,7 +89,7 @@ public class UsuarioSpecificDaoImplementation extends TableGenericDaoImplementat
 //        }
     }
 
-    public MetaBeanHelper getFromLoginAndPass(UsuarioSpecificBeanImplementation oUsuarioBean) throws Exception {
+   public MetaBeanHelper getFromLoginAndPass(UsuarioSpecificBeanImplementation oUsuarioBean) throws Exception {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
         MetaBeanHelper oMetaBeanHelper = null;
@@ -176,5 +174,7 @@ public class UsuarioSpecificDaoImplementation extends TableGenericDaoImplementat
         }
         return intResult;
     }
+    
+    
 
 }

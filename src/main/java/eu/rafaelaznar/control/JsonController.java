@@ -123,7 +123,7 @@ public class JsonController extends HttpServlet {
                         out.println(ex);
                         ex.printStackTrace(out);
                     } else {
-                        oReplyBean = new ReplyBeanHelper(500, "trolleyes-server error. Please, contact your administrator.");
+                        oReplyBean = new ReplyBeanHelper(500, "gesane-server error. Please, contact your administrator.");
                     }
                     Log4jHelper.errorLog(this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName(), ex);
                     oReplyBean = new ReplyBeanHelper(500, "Object or Operation not found : Please contact your administrator");

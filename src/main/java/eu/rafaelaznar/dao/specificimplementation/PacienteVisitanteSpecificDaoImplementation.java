@@ -30,26 +30,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.rafaelaznar.control;
+package eu.rafaelaznar.dao.specificimplementation;
 
-import eu.rafaelaznar.helper.TraceHelper;
-import javax.servlet.http.HttpServlet;
-import org.apache.log4j.PropertyConfigurator;
+import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
+import eu.rafaelaznar.bean.helper.MetaBeanHelper;
+import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
+import java.sql.Connection;
 
-public class Log4jInit extends HttpServlet {
+public class PacienteVisitanteSpecificDaoImplementation extends TableGenericDaoImplementation {
+
+    public PacienteVisitanteSpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
+        super("paciente", oPooledConnection, oPuserBean_security, strWhere);
+    }
 
     @Override
-    public void init() {
+    public Integer set(TableGenericBeanImplementation oBean) throws Exception {
+        return 0;
+    }
 
-        String prefix = getServletContext().getRealPath("/");
-        String file = getInitParameter("log4j-gesane");
-
-        if (file != null) {
-            PropertyConfigurator.configure(prefix + file);
-            TraceHelper.trace("Log4J Logging started: " + prefix + file);
-        } else {
-            TraceHelper.trace("Log4J Is not configured for your Application: " + prefix + file);
-        }
+    @Override
+    public int remove(Integer id) throws Exception {
+        return 0;
     }
 
 }
