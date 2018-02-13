@@ -45,21 +45,21 @@ import eu.rafaelaznar.bean.specificimplementation.ProvinciaSpecificBeanImplement
 import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.connection.publicinterface.ConnectionInterface;
-import eu.rafaelaznar.dao.specificimplementation.GrupoProfesorSpecificDaoImplementation;
-import eu.rafaelaznar.dao.specificimplementation.PacienteProfesorSpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.usuario.grupo.Grupo3SpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.paciente.Paciente3SpecificDaoImplementation;
 import eu.rafaelaznar.factory.BeanFactory;
 import eu.rafaelaznar.factory.ConnectionFactory;
 import eu.rafaelaznar.helper.GsonHelper;
 import eu.rafaelaznar.helper.Log4jHelper;
 import eu.rafaelaznar.bean.specificimplementation.ViaSpecificBeanImplementation;
 import eu.rafaelaznar.connection.publicinterface.ConnectionInterface;
-import eu.rafaelaznar.dao.specificimplementation.ApellidoSpecificDaoImplementation;
-import eu.rafaelaznar.dao.specificimplementation.MunicipioSpecificDaoImplementation;
-import eu.rafaelaznar.dao.specificimplementation.NombrefemeninoSpecificDaoImplementation;
-import eu.rafaelaznar.dao.specificimplementation.NombremasculinoSpecificDaoImplementation;
-import eu.rafaelaznar.dao.specificimplementation.PacienteSpecificDaoImplementation;
-import eu.rafaelaznar.dao.specificimplementation.ProvinciaSpecificDaoImplementation;
-import eu.rafaelaznar.dao.specificimplementation.ViaSpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.factory.ApellidoSpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.factory.MunicipioSpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.factory.NombrefemeninoSpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.factory.NombremasculinoSpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.paciente.Paciente1SpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.factory.ProvinciaSpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.factory.ViaSpecificDaoImplementation;
 import eu.rafaelaznar.factory.ConnectionFactory;
 import eu.rafaelaznar.helper.EncodingHelper;
 import eu.rafaelaznar.helper.Log4jHelper;
@@ -183,7 +183,7 @@ public class PacienteSpecificServiceImplementation extends TableGenericServiceIm
         try {
             oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
             oConnection = oPooledConnection.newConnection();
-            PacienteSpecificDaoImplementation oPacienteDao = new PacienteSpecificDaoImplementation(oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            Paciente1SpecificDaoImplementation oPacienteDao = new Paciente1SpecificDaoImplementation(oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
             PacienteSpecificBeanImplementation oPacienteBean = new PacienteSpecificBeanImplementation();
 
             MetaBeanHelper oUsuarioBean = (MetaBeanHelper) oRequest.getSession().getAttribute("user");

@@ -42,10 +42,10 @@ import eu.rafaelaznar.bean.specificimplementation.NombremasculinoSpecificBeanImp
 import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.connection.publicinterface.ConnectionInterface;
-import eu.rafaelaznar.dao.specificimplementation.ApellidoSpecificDaoImplementation;
-import eu.rafaelaznar.dao.specificimplementation.MedicoSpecificDaoImplementation;
-import eu.rafaelaznar.dao.specificimplementation.NombrefemeninoSpecificDaoImplementation;
-import eu.rafaelaznar.dao.specificimplementation.NombremasculinoSpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.factory.ApellidoSpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.medico.Medico1SpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.factory.NombrefemeninoSpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.factory.NombremasculinoSpecificDaoImplementation;
 import eu.rafaelaznar.factory.ConnectionFactory;
 import eu.rafaelaznar.helper.EncodingHelper;
 import eu.rafaelaznar.helper.Log4jHelper;
@@ -157,7 +157,7 @@ public class MedicoSpecificServiceImplementation extends TableGenericServiceImpl
         try {
             oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
             oConnection = oPooledConnection.newConnection();
-            MedicoSpecificDaoImplementation oMedicoDao = new MedicoSpecificDaoImplementation(oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            Medico1SpecificDaoImplementation oMedicoDao = new Medico1SpecificDaoImplementation(oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
             MedicoSpecificBeanImplementation oMedicoBean = new MedicoSpecificBeanImplementation();
             
             MetaBeanHelper oUsuarioBean = (MetaBeanHelper) oRequest.getSession().getAttribute("user");

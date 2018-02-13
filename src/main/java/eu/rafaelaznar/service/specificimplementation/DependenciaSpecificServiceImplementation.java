@@ -38,7 +38,7 @@ import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.connection.publicinterface.ConnectionInterface;
-import eu.rafaelaznar.dao.specificimplementation.PacienteProfesorSpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.paciente.Paciente3SpecificDaoImplementation;
 import eu.rafaelaznar.factory.BeanFactory;
 import eu.rafaelaznar.factory.ConnectionFactory;
 import eu.rafaelaznar.helper.GsonHelper;

@@ -40,9 +40,9 @@ import eu.rafaelaznar.bean.specificimplementation.GrupoSpecificBeanImplementatio
 import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.connection.publicinterface.ConnectionInterface;
-import eu.rafaelaznar.dao.specificimplementation.CursoProfesorSpecificDaoImplementation;
-import eu.rafaelaznar.dao.specificimplementation.GrupoProfesorSpecificDaoImplementation;
-import eu.rafaelaznar.dao.specificimplementation.GrupoSpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.usuario.curso.Curso3SpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.usuario.grupo.Grupo3SpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.usuario.grupo.Grupo1SpecificDaoImplementation;
 import eu.rafaelaznar.factory.BeanFactory;
 import eu.rafaelaznar.factory.ConnectionFactory;
 import eu.rafaelaznar.helper.EncodingHelper;
@@ -69,7 +69,7 @@ public class GrupoSpecificServiceImplementation extends TableGenericServiceImple
             try {
                 oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
                 oConnection = oPooledConnection.newConnection();
-                GrupoSpecificDaoImplementation oGrupoDao = new GrupoSpecificDaoImplementation(oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+                Grupo1SpecificDaoImplementation oGrupoDao = new Grupo1SpecificDaoImplementation(oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
                 GrupoSpecificBeanImplementation oGrupo = new GrupoSpecificBeanImplementation();
                 oGrupo.setCodigo(codigo);
                 oGrupo = (GrupoSpecificBeanImplementation) oGrupoDao.getFromCodigo(oGrupo).getBean();
