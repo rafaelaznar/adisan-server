@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017-2018
  *
  * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
+ *
  * GESANE: Free Open Source Health Management System
  *
  * Sources at:
@@ -63,57 +63,60 @@ public class UsuarioSpecificServiceImplementation extends TableGenericServiceImp
     }
 
     public ReplyBeanHelper getallobjectsmetadata() throws Exception {
-        ReplyBeanHelper oReplyBean = null;
-        HashMap hmObjectsMetaData = new HashMap();
-        MetaDaoInterface oDao = null;
-
-        oDao = DaoFactory.getDao("usuario", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
-        hmObjectsMetaData.put("usuario", oDao.getObjectMetaData());
-        oDao = DaoFactory.getDao("tipousuario", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
-        hmObjectsMetaData.put("tipousuario", oDao.getObjectMetaData());
-        oDao = DaoFactory.getDao("centro", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
-        hmObjectsMetaData.put("centro", oDao.getObjectMetaData());
-        oDao = DaoFactory.getDao("centrosanitario", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
-        hmObjectsMetaData.put("centrosanitario", oDao.getObjectMetaData());
-        oDao = DaoFactory.getDao("curso", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
-        hmObjectsMetaData.put("curso", oDao.getObjectMetaData());
-        oDao = DaoFactory.getDao("grupo", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
-        hmObjectsMetaData.put("grupo", oDao.getObjectMetaData());
-        oDao = DaoFactory.getDao("tipoepisodio", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
-        hmObjectsMetaData.put("tipoepisodio", oDao.getObjectMetaData());
-        oDao = DaoFactory.getDao("especialidad", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
-        hmObjectsMetaData.put("especialidad", oDao.getObjectMetaData());
-        oDao = DaoFactory.getDao("destinoalta", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
-        hmObjectsMetaData.put("destinoalta", oDao.getObjectMetaData());
-        oDao = DaoFactory.getDao("tipopago", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
-        hmObjectsMetaData.put("tipopago", oDao.getObjectMetaData());
-        oDao = DaoFactory.getDao("sexo", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
-        hmObjectsMetaData.put("sexo", oDao.getObjectMetaData());
-        oDao = DaoFactory.getDao("circunstanciasalta", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
-        hmObjectsMetaData.put("circunstanciasalta", oDao.getObjectMetaData());
-        oDao = DaoFactory.getDao("modalidadepisodio", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
-        hmObjectsMetaData.put("modalidadepisodio", oDao.getObjectMetaData());
-        oDao = DaoFactory.getDao("tipodependencia", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
-        hmObjectsMetaData.put("tipodependencia", oDao.getObjectMetaData());
-        oDao = DaoFactory.getDao("tiposervicio", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
-        hmObjectsMetaData.put("tiposervicio", oDao.getObjectMetaData());
-        oDao = DaoFactory.getDao("factura", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
-        hmObjectsMetaData.put("factura", oDao.getObjectMetaData());
-        oDao = DaoFactory.getDao("servicio", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
-        hmObjectsMetaData.put("servicio", oDao.getObjectMetaData());
-        oDao = DaoFactory.getDao("paciente", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
-        hmObjectsMetaData.put("paciente", oDao.getObjectMetaData());
-        oDao = DaoFactory.getDao("categoriaprofesional", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
-        hmObjectsMetaData.put("categoriaprofesional", oDao.getObjectMetaData());
-        oDao = DaoFactory.getDao("episodio", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
-        hmObjectsMetaData.put("episodio", oDao.getObjectMetaData());
-        oDao = DaoFactory.getDao("dependencia", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
-        hmObjectsMetaData.put("dependencia", oDao.getObjectMetaData());
-        oDao = DaoFactory.getDao("medico", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
-        hmObjectsMetaData.put("medico", oDao.getObjectMetaData());
-        String strJson = GsonHelper.getGson().toJson(hmObjectsMetaData);
-        oReplyBean = new ReplyBeanHelper(200, strJson);
-        return oReplyBean;
+        if (this.checkPermission("getallobjectsmetadata")) {
+            ReplyBeanHelper oReplyBean = null;
+            HashMap hmObjectsMetaData = new HashMap();
+            MetaDaoInterface oDao = null;
+            oDao = DaoFactory.getDao("usuario", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            hmObjectsMetaData.put("usuario", oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("tipousuario", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            hmObjectsMetaData.put("tipousuario", oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("centro", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            hmObjectsMetaData.put("centro", oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("centrosanitario", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            hmObjectsMetaData.put("centrosanitario", oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("curso", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            hmObjectsMetaData.put("curso", oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("grupo", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            hmObjectsMetaData.put("grupo", oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("tipoepisodio", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            hmObjectsMetaData.put("tipoepisodio", oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("especialidad", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            hmObjectsMetaData.put("especialidad", oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("destinoalta", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            hmObjectsMetaData.put("destinoalta", oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("tipopago", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            hmObjectsMetaData.put("tipopago", oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("sexo", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            hmObjectsMetaData.put("sexo", oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("circunstanciasalta", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            hmObjectsMetaData.put("circunstanciasalta", oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("modalidadepisodio", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            hmObjectsMetaData.put("modalidadepisodio", oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("tipodependencia", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            hmObjectsMetaData.put("tipodependencia", oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("tiposervicio", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            hmObjectsMetaData.put("tiposervicio", oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("factura", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            hmObjectsMetaData.put("factura", oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("servicio", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            hmObjectsMetaData.put("servicio", oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("paciente", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            hmObjectsMetaData.put("paciente", oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("categoriaprofesional", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            hmObjectsMetaData.put("categoriaprofesional", oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("episodio", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            hmObjectsMetaData.put("episodio", oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("dependencia", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            hmObjectsMetaData.put("dependencia", oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("medico", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            hmObjectsMetaData.put("medico", oDao.getObjectMetaData());
+            String strJson = GsonHelper.getGson().toJson(hmObjectsMetaData);
+            oReplyBean = new ReplyBeanHelper(200, strJson);
+            return oReplyBean;
+        } else {
+            return new ReplyBeanHelper(401, EncodingHelper.quotate("Unauthorized"));
+        }
     }
 
     public ReplyBeanHelper login() throws Exception {
@@ -150,10 +153,14 @@ public class UsuarioSpecificServiceImplementation extends TableGenericServiceImp
     }
 
     public ReplyBeanHelper logout() throws Exception {
-        HttpSession oSession = oRequest.getSession();
-        oSession.invalidate();
-        ReplyBeanHelper oReplyBean = new ReplyBeanHelper(200, EncodingHelper.quotate("Session is closed"));
-        return oReplyBean;
+        if (this.checkPermission("logout")) {
+            HttpSession oSession = oRequest.getSession();
+            oSession.invalidate();
+            ReplyBeanHelper oReplyBean = new ReplyBeanHelper(200, EncodingHelper.quotate("Session is closed"));
+            return oReplyBean;
+        } else {
+            return new ReplyBeanHelper(401, EncodingHelper.quotate("Unauthorized"));
+        }
     }
 
     public ReplyBeanHelper getSessionStatus() throws Exception {
@@ -177,16 +184,20 @@ public class UsuarioSpecificServiceImplementation extends TableGenericServiceImp
     }
 
     public ReplyBeanHelper getSessionUserLevel() {
-        ReplyBeanHelper oReplyBean = null;
-        String strAnswer = null;
-        MetaBeanHelper oUserBean = (MetaBeanHelper) oRequest.getSession().getAttribute("user");
-        Map<Integer, String> map = new HashMap<>();
-        if (oUserBean == null) {
-            oReplyBean = new ReplyBeanHelper(401, EncodingHelper.quotate("Unauthorized"));
+        if (this.checkPermission("getSessionUserLevel")) {
+            ReplyBeanHelper oReplyBean = null;
+            String strAnswer = null;
+            MetaBeanHelper oUserBean = (MetaBeanHelper) oRequest.getSession().getAttribute("user");
+            Map<Integer, String> map = new HashMap<>();
+            if (oUserBean == null) {
+                oReplyBean = new ReplyBeanHelper(401, EncodingHelper.quotate("Unauthorized"));
+            } else {
+                oReplyBean = new ReplyBeanHelper(200, EncodingHelper.quotate(((UsuarioSpecificBeanImplementation) oUserBean.getBean()).getId_tipousuario().toString()));
+            }
+            return oReplyBean;
         } else {
-            oReplyBean = new ReplyBeanHelper(200, EncodingHelper.quotate(((UsuarioSpecificBeanImplementation) oUserBean.getBean()).getId_tipousuario().toString()));
+            return new ReplyBeanHelper(401, EncodingHelper.quotate("Unauthorized"));
         }
-        return oReplyBean;
     }
 
     public ReplyBeanHelper setPass() throws Exception {
@@ -237,6 +248,11 @@ public class UsuarioSpecificServiceImplementation extends TableGenericServiceImp
         }
     }
 
+    /**
+     * used in the auto-registration process of students,2nd phase
+     * @return OK if user name (login parameter) not exists in the database 
+     * @throws java.sql.SQLException
+     */
     public ReplyBeanHelper checklogin() throws SQLException, Exception {
         Connection oConnection = null;
         ConnectionInterface oPooledConnection = null;
@@ -280,6 +296,12 @@ public class UsuarioSpecificServiceImplementation extends TableGenericServiceImp
         return oReplyBean;
     }
 
+    /**
+     * used in the auto-registration process of students, 3th phase
+     * saves alumno data from 'json' parameter
+     * @return return id of new alumno
+     * @throws java.lang.Exception
+     */
     public ReplyBeanHelper setalumno() throws Exception {
         Connection oConnection = null;
         ConnectionInterface oPooledConnection = null;
@@ -319,6 +341,12 @@ public class UsuarioSpecificServiceImplementation extends TableGenericServiceImp
         return oReplyBean;
     }
 
+    /**
+     * Used in the auto-registration process of students,1st phase
+     * @return returns grupo json from a registration code
+     * @throws java.sql.SQLException
+     * @throws java.lang.Exception
+     */
     public ReplyBeanHelper getidcurso() throws SQLException, Exception {
         Connection oConnection = null;
         ConnectionInterface oPooledConnection = null;
