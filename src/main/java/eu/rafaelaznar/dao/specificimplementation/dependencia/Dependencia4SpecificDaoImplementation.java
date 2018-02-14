@@ -35,8 +35,10 @@ package eu.rafaelaznar.dao.specificimplementation.dependencia;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.GrupoSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
+import eu.rafaelaznar.helper.Log4jHelper;
 import java.sql.Connection;
 
 /**
@@ -54,7 +56,9 @@ public class Dependencia4SpecificDaoImplementation extends TableGenericDaoImplem
         if (oPuserBean_security != null) {
             UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
             idUsuario = oUsuario.getId();
-            if (oUsuario.getId() > 1) {
+            MetaBeanHelper ombhTipousuario = (MetaBeanHelper) oUsuario.getObj_tipousuario();
+            TipousuarioSpecificBeanImplementation oTipousuario = (TipousuarioSpecificBeanImplementation) ombhTipousuario.getBean();
+            if (oTipousuario.getId() == 4) {
                 String strSQLini = "";
                 GrupoSpecificBeanImplementation oGrupo = (GrupoSpecificBeanImplementation) oUsuario.getObj_grupo().getBean();
                 UsuarioSpecificBeanImplementation oProfesor = (UsuarioSpecificBeanImplementation) oGrupo.getObj_usuario().getBean();
@@ -67,7 +71,15 @@ public class Dependencia4SpecificDaoImplementation extends TableGenericDaoImplem
                     strSQL += " " + strWhere + " ";
                     strCountSQL += " " + strWhere + " ";
                 }
+           } else {
+                String msg = this.getClass().getName() + ": constuctor: Unauthorized access";
+                Log4jHelper.errorLog(msg);
+                throw new Exception(msg);
             }
+        } else {
+            String msg = this.getClass().getName() + ": constuctor: Unauthorized access";
+            Log4jHelper.errorLog(msg);
+            throw new Exception(msg);
         }
 
 //        UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
@@ -75,7 +87,6 @@ public class Dependencia4SpecificDaoImplementation extends TableGenericDaoImplem
 //        idCentrosanitario = oUsuario.getId_centrosanitario();
 //
 //        strSQL = "SELECT * FROM dependencia d, tipodependencia td WHERE d.id_tipodependencia = td.id AND d.id_centrosanitario = " + idCentrosanitario;
-
     }
 
 //    @Override

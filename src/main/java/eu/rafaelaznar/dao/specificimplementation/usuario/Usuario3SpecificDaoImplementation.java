@@ -65,7 +65,7 @@ public class Usuario3SpecificDaoImplementation extends Usuario1SpecificDaoImplem
             UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
             idUsuario = oUsuario.getId();
             MetaBeanHelper ombhTipousuario = (MetaBeanHelper) oUsuario.getObj_tipousuario();
-            TipousuarioSpecificBeanImplementation oTipousuario= (TipousuarioSpecificBeanImplementation) ombhTipousuario.getBean();
+            TipousuarioSpecificBeanImplementation oTipousuario = (TipousuarioSpecificBeanImplementation) ombhTipousuario.getBean();
             if (oTipousuario.getId() == 3) {
                 String strSQLini = "";
 
@@ -87,7 +87,15 @@ public class Usuario3SpecificDaoImplementation extends Usuario1SpecificDaoImplem
                     strSQL += " " + strWhere + " ";
                     strCountSQL += " " + strWhere + " ";
                 }
+            } else {
+                String msg = this.getClass().getName() + ": constuctor: Unauthorized access";
+                Log4jHelper.errorLog(msg);
+                throw new Exception(msg);
             }
+        } else {
+            String msg = this.getClass().getName() + ": constuctor: Unauthorized access";
+            Log4jHelper.errorLog(msg);
+            throw new Exception(msg);
         }
 //           UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
 //        idUsuario = oUsuario.getId();

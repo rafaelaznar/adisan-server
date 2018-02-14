@@ -35,6 +35,7 @@ package eu.rafaelaznar.dao.specificimplementation.dependencia;
 import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import eu.rafaelaznar.helper.Log4jHelper;
@@ -53,7 +54,9 @@ public class Dependencia3SpecificDaoImplementation extends TableGenericDaoImplem
         if (oPuserBean_security != null) {
             UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
             idUsuario = oUsuario.getId();
-            if (oUsuario.getId() > 1) {
+            MetaBeanHelper ombhTipousuario = (MetaBeanHelper) oUsuario.getObj_tipousuario();
+            TipousuarioSpecificBeanImplementation oTipousuario = (TipousuarioSpecificBeanImplementation) ombhTipousuario.getBean();
+            if (oTipousuario.getId() == 3) {
                 String strSQLini = "";
                 CentrosanitarioSpecificBeanImplementation oCentroSanitario = (CentrosanitarioSpecificBeanImplementation) oUsuario.getObj_centrosanitario().getBean();
                 idCentrosanitario = oCentroSanitario.getId();
@@ -64,7 +67,15 @@ public class Dependencia3SpecificDaoImplementation extends TableGenericDaoImplem
                     strSQL += " " + strWhere + " ";
                     strCountSQL += " " + strWhere + " ";
                 }
+            } else {
+                String msg = this.getClass().getName() + ": constuctor: Unauthorized access";
+                Log4jHelper.errorLog(msg);
+                throw new Exception(msg);
             }
+        } else {
+            String msg = this.getClass().getName() + ": constuctor: Unauthorized access";
+            Log4jHelper.errorLog(msg);
+            throw new Exception(msg);
         }
 
 //        if (oPuserBean_security != null) {
