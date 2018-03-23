@@ -30,16 +30,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.rafaelaznar.dao.specificimplementation.usuario;
+package eu.rafaelaznar.dao.specificimplementation.usuario.grupo;
 
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
 
-public class Usuario0SpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Grupo5SpecificDaoImplementation extends TableGenericDaoImplementation {
 
-    public Usuario0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("usuario", oPooledConnection, oPuserBean_security, strWhere);
+    public Grupo5SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
+        super("grupo", oPooledConnection, oPuserBean_security, strWhere);
     }
 
 }

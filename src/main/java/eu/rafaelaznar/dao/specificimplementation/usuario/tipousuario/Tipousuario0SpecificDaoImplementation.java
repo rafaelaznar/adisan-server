@@ -33,25 +33,19 @@
 package eu.rafaelaznar.dao.specificimplementation.usuario.tipousuario;
 
 import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
-import eu.rafaelaznar.bean.helper.FilterBeanHelper;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
-import eu.rafaelaznar.bean.meta.helper.MetaObjectGenericBeanHelper;
-import eu.rafaelaznar.bean.meta.helper.MetaPropertyGenericBeanHelper;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 
 public class Tipousuario0SpecificDaoImplementation extends TableGenericDaoImplementation {
 
+    // NOTA IMPORTANTE: los tipos de usuario 0 y 5 deberian implementar ViewGenericDaoImplementation y no TableGenericDaoImplementation 
+    // pero no es posible porque las expansiones necesitan hacer get, 
+    // así que a la espera de un rediseño global quedan restringidas las operaciones set y remove mediante sobreescritura
+    
     public Tipousuario0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("tipousuario", oPooledConnection, oPuserBean_security, strWhere);
     }
-
-//    @Override
-//    public MetaBeanHelper get(int id, int intExpand) throws Exception {
-//        return null;
-//    }
 
     @Override
     public Integer set(TableGenericBeanImplementation oBean) throws Exception {
@@ -62,34 +56,4 @@ public class Tipousuario0SpecificDaoImplementation extends TableGenericDaoImplem
     public int remove(Integer id) throws Exception {
         return 0;
     }
-
-//    @Override
-//    public Long getCount(ArrayList<FilterBeanHelper> alFilter) throws Exception {
-//        return null;
-//    }
-//
-//    @Override
-//    public MetaBeanHelper getPage(int intRegsPerPag, int intPage, LinkedHashMap<String, String> hmOrder, ArrayList<FilterBeanHelper> alFilter, int expand) throws Exception {
-//        return null;
-//    }
-//
-//    @Override
-//    public MetaBeanHelper getPageX(int id_foreign, String ob_foreign, int intRegsPerPag, int intPage, LinkedHashMap<String, String> hmOrder, ArrayList<FilterBeanHelper> alFilter, int expand) throws Exception {
-//        return null;
-//    }
-//
-//    @Override
-//    public Long getCountX(int id_foreign, String ob_foreign, ArrayList<FilterBeanHelper> alFilter) throws Exception {
-//        return null;
-//    }
-
-//    @Override
-//    public MetaObjectGenericBeanHelper getObjectMetaData() throws Exception {
-//        return null;
-//    }
-//
-//    @Override
-//    public ArrayList<MetaPropertyGenericBeanHelper> getPropertiesMetaData() throws Exception {
-//        return null;
-//    }
 }

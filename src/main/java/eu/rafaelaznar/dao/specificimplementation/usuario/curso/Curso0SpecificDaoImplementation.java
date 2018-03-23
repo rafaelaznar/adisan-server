@@ -33,25 +33,15 @@
 package eu.rafaelaznar.dao.specificimplementation.usuario.curso;
 
 import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
-import eu.rafaelaznar.bean.helper.FilterBeanHelper;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
-import eu.rafaelaznar.bean.meta.helper.MetaObjectGenericBeanHelper;
-import eu.rafaelaznar.bean.meta.helper.MetaPropertyGenericBeanHelper;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 
 public class Curso0SpecificDaoImplementation extends TableGenericDaoImplementation {
 
     public Curso0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("curso", oPooledConnection, oPuserBean_security, strWhere);
     }
-
-//    @Override
-//    public MetaBeanHelper get(int id, int intExpand) throws Exception {
-//        return null;
-//    }
 
     @Override
     public Integer set(TableGenericBeanImplementation oBean) throws Exception {
@@ -62,34 +52,4 @@ public class Curso0SpecificDaoImplementation extends TableGenericDaoImplementati
     public int remove(Integer id) throws Exception {
         return 0;
     }
-
-//    @Override
-//    public Long getCount(ArrayList<FilterBeanHelper> alFilter) throws Exception {
-//        return null;
-//    }
-//
-//    @Override
-//    public MetaBeanHelper getPage(int intRegsPerPag, int intPage, LinkedHashMap<String, String> hmOrder, ArrayList<FilterBeanHelper> alFilter, int expand) throws Exception {
-//        return null;
-//    }
-//
-//    @Override
-//    public MetaBeanHelper getPageX(int id_foreign, String ob_foreign, int intRegsPerPag, int intPage, LinkedHashMap<String, String> hmOrder, ArrayList<FilterBeanHelper> alFilter, int expand) throws Exception {
-//        return null;
-//    }
-//
-//    @Override
-//    public Long getCountX(int id_foreign, String ob_foreign, ArrayList<FilterBeanHelper> alFilter) throws Exception {
-//        return null;
-//    }
-
-//    @Override
-//    public MetaObjectGenericBeanHelper getObjectMetaData() throws Exception {
-//        return null;
-//    }
-//
-//    @Override
-//    public ArrayList<MetaPropertyGenericBeanHelper> getPropertiesMetaData() throws Exception {
-//        return null;
-//    }
 }

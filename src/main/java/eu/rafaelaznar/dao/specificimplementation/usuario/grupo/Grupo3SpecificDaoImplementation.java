@@ -55,7 +55,6 @@ public class Grupo3SpecificDaoImplementation extends TableGenericDaoImplementati
 
         String strSQLini = "FROM grupo WHERE id_usuario = " + idUsuario;
 
-        //Faltaba:
         strSQL = "SELECT * " + strSQLini;
         strCountSQL = "SELECT COUNT(*) " + strSQLini;
         if (strWhere != null) {

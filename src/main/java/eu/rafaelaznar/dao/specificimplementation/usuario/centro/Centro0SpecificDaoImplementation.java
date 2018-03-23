@@ -30,16 +30,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.rafaelaznar.dao.specificimplementation.usuario;
+package eu.rafaelaznar.dao.specificimplementation.usuario.centro;
 
+import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
 
-public class Usuario0SpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Centro0SpecificDaoImplementation extends TableGenericDaoImplementation {
 
-    public Usuario0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("usuario", oPooledConnection, oPuserBean_security, strWhere);
+    public Centro0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
+        super("centro", oPooledConnection, oPuserBean_security, strWhere);
     }
 
+    @Override
+    public Integer set(TableGenericBeanImplementation oBean) throws Exception {
+        return 0;
+    }
+
+    @Override
+    public int remove(Integer id) throws Exception {
+        return 0;
+    }
 }
