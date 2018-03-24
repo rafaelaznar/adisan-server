@@ -248,6 +248,7 @@ public class DaoFactory {
                     }
                 }
                 break;
+            //------------------------------------------------------------------                
             case "paciente":
                 if (oPuserBean_security == null) {
                     oDao = (MetaDaoInterface) new Paciente0SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
@@ -283,38 +284,46 @@ public class DaoFactory {
             case "tipopago":
                 oDao = (MetaDaoInterface) new Tipopago1SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
                 break;
+            //------------------------------------------------------------------                
+            case "medico":
+                oDao = (MetaDaoInterface) new Medico1SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+//                if (oPuserBean_security != null) { //en el proceso de login puede ser nulo!!
+//                    UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
+//                    MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_tipousuario();
+//                    TipousuarioSpecificBeanImplementation oTipoUsuario = (TipousuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
+//                    Integer idTipousuario = oTipoUsuario.getId();
+//                    switch (idTipousuario) {
+//                        case 1:
+//                            oDao = (MetaDaoInterface) new MedicoSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+//                            break;
+//                        case 3:
+//                            oDao = (MetaDaoInterface) new MedicoProfesorSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+//                            break;
+//                        case 4:
+//                            oDao = (MetaDaoInterface) new PacienteAlumnoSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+//                            break;
+//                        case 5:
+//                            oDao = (MetaDaoInterface) new PacienteSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+//                            break;
+//                    }
+//                } else {
+//                    oDao = null;
+//                }
+                break;
             case "especialidad":
                 oDao = (MetaDaoInterface) new EspecialidadSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
                 break;
-            case "destinoalta":
-                oDao = (MetaDaoInterface) new DestinoaltaSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+            case "categoriaprofesional":
+                oDao = (MetaDaoInterface) new CategoriaprofesionalSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
                 break;
-            case "circunstanciasalta":
-                oDao = (MetaDaoInterface) new CircunstanciasaltaSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
-                break;
-
-            case "tipoepisodio":
-                oDao = (MetaDaoInterface) new TipoepisodioSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+            //------------------------------------------------------------------
+            case "servicio":
+                oDao = (MetaDaoInterface) new Servicio0SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
                 break;
             case "tiposervicio":
                 oDao = (MetaDaoInterface) new Tiposervicio1SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
                 break;
-            case "modalidadepisodio":
-                oDao = (MetaDaoInterface) new ModalidadepisodioSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
-                break;
-            case "tipodependencia":
-                oDao = (MetaDaoInterface) new TipodependenciaSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
-                break;
-            case "factura":
-                oDao = (MetaDaoInterface) new FacturaSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
-                break;
-            case "servicio":
-                oDao = (MetaDaoInterface) new Servicio0SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
-                break;
-
-            case "categoriaprofesional":
-                oDao = (MetaDaoInterface) new CategoriaprofesionalSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
-                break;
+            //------------------------------------------------------------------
             case "episodio":
                 if (oPuserBean_security == null) {
                     oDao = (MetaDaoInterface) new Episodio1SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
@@ -344,31 +353,22 @@ public class DaoFactory {
 
                 }
                 break;
-            case "medico":
-                oDao = (MetaDaoInterface) new Medico1SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
-//                if (oPuserBean_security != null) { //en el proceso de login puede ser nulo!!
-//                    UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
-//                    MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_tipousuario();
-//                    TipousuarioSpecificBeanImplementation oTipoUsuario = (TipousuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
-//                    Integer idTipousuario = oTipoUsuario.getId();
-//                    switch (idTipousuario) {
-//                        case 1:
-//                            oDao = (MetaDaoInterface) new MedicoSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
-//                            break;
-//                        case 3:
-//                            oDao = (MetaDaoInterface) new MedicoProfesorSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
-//                            break;
-//                        case 4:
-//                            oDao = (MetaDaoInterface) new PacienteAlumnoSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
-//                            break;
-//                        case 5:
-//                            oDao = (MetaDaoInterface) new PacienteSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
-//                            break;
-//                    }
-//                } else {
-//                    oDao = null;
-//                }
+            case "tipoepisodio":
+                oDao = (MetaDaoInterface) new TipoepisodioSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
                 break;
+            case "modalidadepisodio":
+                oDao = (MetaDaoInterface) new ModalidadepisodioSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                break;
+            case "factura":
+                oDao = (MetaDaoInterface) new FacturaSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                break;
+            case "destinoalta":
+                oDao = (MetaDaoInterface) new DestinoaltaSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                break;
+            case "circunstanciasalta":
+                oDao = (MetaDaoInterface) new CircunstanciasaltaSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                break;
+            //------------------------------------------------------------------
             case "dependencia":
                 if (oPuserBean_security == null) {
                     oDao = (MetaDaoInterface) new Dependencia1SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
@@ -397,6 +397,10 @@ public class DaoFactory {
                     }
                 }
                 break;
+            case "tipodependencia":
+                oDao = (MetaDaoInterface) new TipodependenciaSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                break;
+            //------------------------------------------------------------------
             default:
                 //oReplyBean = new ReplyBean(500, "Object not found : Please contact your administrator");
                 break;
