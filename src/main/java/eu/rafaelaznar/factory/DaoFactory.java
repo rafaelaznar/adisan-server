@@ -73,17 +73,13 @@ import eu.rafaelaznar.dao.specificimplementation.paciente.tipopago.TipopagoSpeci
 import eu.rafaelaznar.dao.specificimplementation.paciente.sexo.SexoSpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.dependencia.tipodependencia.TipodependenciaSpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.servicio.tiposervicio.TiposervicioSpecificDaoImplementation;
-import eu.rafaelaznar.dao.specificimplementation.usuario.tipousuario.Tipousuario4SpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.usuario.tipousuario.Tipousuario0SpecificDaoImplementation;
-import eu.rafaelaznar.dao.specificimplementation.usuario.tipousuario.Tipousuario3SpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.usuario.tipousuario.Tipousuario1SpecificDaoImplementation;
-import eu.rafaelaznar.dao.specificimplementation.usuario.tipousuario.Tipousuario5SpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.usuario.Usuario4SpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.usuario.Usuario0SpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.usuario.Usuario3SpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.usuario.Usuario1SpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.usuario.Usuario5SpecificDaoImplementation;
-import eu.rafaelaznar.helper.SessionHelper;
 import java.sql.Connection;
 
 public class DaoFactory {
@@ -133,15 +129,6 @@ public class DaoFactory {
                     switch (idTipousuario) {
                         case 1:
                             oDao = (MetaDaoInterface) new Tipousuario1SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
-                            break;
-                        case 3:
-                            oDao = (MetaDaoInterface) new Tipousuario3SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
-                            break;
-                        case 4:
-                            oDao = (MetaDaoInterface) new Tipousuario4SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
-                            break;
-                        case 5:
-                            oDao = (MetaDaoInterface) new Tipousuario5SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
                             break;
                         default:
                             oDao = (MetaDaoInterface) new Tipousuario0SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
