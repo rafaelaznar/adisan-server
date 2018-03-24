@@ -59,85 +59,85 @@ public class DependenciaSpecificServiceImplementation extends TableGenericServic
         super(request);
     }
 
-    @Override
-    protected Boolean checkPermission(String strMethodName) {
-        MetaBeanHelper oUsuarioBean = (MetaBeanHelper) oRequest.getSession().getAttribute("user");
-        if (oUsuarioBean != null) {
-            UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oUsuarioBean.getBean();
-            MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_tipousuario();
-            TipousuarioSpecificBeanImplementation oTipousuario = (TipousuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
-            Integer idTipousuario = oTipousuario.getId();
-
-            String strMethod = strMethodName.toLowerCase();
-            switch (idTipousuario) {
-                case 1:
-                    return true;
-                case 2:
-                    return false;
-                case 3:
-                    switch (strMethod) {
-                        case "getmetadata":
-                            return true;
-                        case "getobjectmetadata":
-                            return true;
-                        case "getpropertiesmetadata":
-                            return true;
-                        case "get":
-                            return true;
-                        case "set":
-                            return true;
-                        case "remove":
-                            return true;
-                        case "getpage":
-                            return true;
-                        case "getcount":
-                            return true;
-                    }
-                    break;
-                case 4:
-                    switch (strMethod) {
-                        case "getmetadata":
-                            return true;
-                        case "getobjectmetadata":
-                            return true;
-                        case "getpropertiesmetadata":
-                            return true;
-                        case "get":
-                            return true;
-                        case "set":
-                           return true;
-                        case "remove":
-                            return false;
-                        case "getpage":
-                            return true;
-                        case "getcount":
-                            return true;
-                    }
-                    break;
-                case 5:
-                    switch (strMethod) {
-                        case "getmetadata":
-                            return true;
-                        case "getobjectmetadata":
-                            return true;
-                        case "getpropertiesmetadata":
-                            return true;
-                        case "get":
-                            return true;
-                        case "set":
-                            return false;
-                        case "remove":
-                            return false;
-                        case "getpage":
-                            return true;
-                        case "getcount":
-                            return true;
-                    }
-                    break;
-                default:
-                    return false;
-            }
-        }
-        return false;
-    }
+//    @Override
+//    protected Boolean checkPermission(String strMethodName) {
+//        MetaBeanHelper oUsuarioBean = (MetaBeanHelper) oRequest.getSession().getAttribute("user");
+//        if (oUsuarioBean != null) {
+//            UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oUsuarioBean.getBean();
+//            MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_tipousuario();
+//            TipousuarioSpecificBeanImplementation oTipousuario = (TipousuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
+//            Integer idTipousuario = oTipousuario.getId();
+//
+//            String strMethod = strMethodName.toLowerCase();
+//            switch (idTipousuario) {
+//                case 1:
+//                    return true;
+//                case 2:
+//                    return false;
+//                case 3:
+//                    switch (strMethod) {
+//                        case "getmetadata":
+//                            return true;
+//                        case "getobjectmetadata":
+//                            return true;
+//                        case "getpropertiesmetadata":
+//                            return true;
+//                        case "get":
+//                            return true;
+//                        case "set":
+//                            return true;
+//                        case "remove":
+//                            return true;
+//                        case "getpage":
+//                            return true;
+//                        case "getcount":
+//                            return true;
+//                    }
+//                    break;
+//                case 4:
+//                    switch (strMethod) {
+//                        case "getmetadata":
+//                            return true;
+//                        case "getobjectmetadata":
+//                            return true;
+//                        case "getpropertiesmetadata":
+//                            return true;
+//                        case "get":
+//                            return true;
+//                        case "set":
+//                           return true;
+//                        case "remove":
+//                            return false;
+//                        case "getpage":
+//                            return true;
+//                        case "getcount":
+//                            return true;
+//                    }
+//                    break;
+//                case 5:
+//                    switch (strMethod) {
+//                        case "getmetadata":
+//                            return true;
+//                        case "getobjectmetadata":
+//                            return true;
+//                        case "getpropertiesmetadata":
+//                            return true;
+//                        case "get":
+//                            return true;
+//                        case "set":
+//                            return false;
+//                        case "remove":
+//                            return false;
+//                        case "getpage":
+//                            return true;
+//                        case "getcount":
+//                            return true;
+//                    }
+//                    break;
+//                default:
+//                    return false;
+//            }
+//        }
+//        return false;
+//    }
 }

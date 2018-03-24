@@ -250,7 +250,8 @@ public class UsuarioSpecificServiceImplementation extends TableGenericServiceImp
 
     /**
      * used in the auto-registration process of students,2nd phase
-     * @return OK if user name (login parameter) not exists in the database 
+     *
+     * @return OK if user name (login parameter) not exists in the database
      * @throws java.sql.SQLException
      */
     public ReplyBeanHelper checklogin() throws SQLException, Exception {
@@ -297,8 +298,9 @@ public class UsuarioSpecificServiceImplementation extends TableGenericServiceImp
     }
 
     /**
-     * used in the auto-registration process of students, 3th phase
-     * saves alumno data from 'json' parameter
+     * used in the auto-registration process of students, 3th phase saves alumno
+     * data from 'json' parameter
+     *
      * @return return id of new alumno
      * @throws java.lang.Exception
      */
@@ -343,6 +345,7 @@ public class UsuarioSpecificServiceImplementation extends TableGenericServiceImp
 
     /**
      * Used in the auto-registration process of students,1st phase
+     *
      * @return returns grupo json from a registration code
      * @throws java.sql.SQLException
      * @throws java.lang.Exception

@@ -46,49 +46,49 @@ public class TipopagoSpecificServiceImplementation extends TableGenericServiceIm
         super(request);
     }
 
-    @Override
-    protected Boolean checkPermission(String strMethodName) {
-        MetaBeanHelper oUsuarioBean = (MetaBeanHelper) oRequest.getSession().getAttribute("user");
-        if (oUsuarioBean != null) {
-            UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oUsuarioBean.getBean();
-            MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_tipousuario();
-            TipousuarioSpecificBeanImplementation oTipousuario = (TipousuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
-            Integer idTipousuario = oTipousuario.getId();
-
-            String strMethod = strMethodName.toLowerCase();
-            if (idTipousuario == 1) {
-                return true;
-            } else {
-                if (idTipousuario == 3
-                        || idTipousuario == 4
-                        || idTipousuario == 5) {
-
-                    switch (strMethod) {
-                        case "getmetadata":
-                            return true;
-                        case "getobjectmetadata":
-                            return true;
-                        case "getpropertiesmetadata":
-                            return true;
-                        case "get":
-                            return true;
-                        case "set":
-                            return true;
-                        case "remove":
-                            return false;
-                        case "getpage":
-                            return true;
-                        case "getcount":
-                            return true;
-                    }
-                } else {
-                    return false;
-                }
-            }
-        } else {
-            return false;
-        }
-        return false;
-    }
+//    @Override
+//    protected Boolean checkPermission(String strMethodName) {
+//        MetaBeanHelper oUsuarioBean = (MetaBeanHelper) oRequest.getSession().getAttribute("user");
+//        if (oUsuarioBean != null) {
+//            UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oUsuarioBean.getBean();
+//            MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_tipousuario();
+//            TipousuarioSpecificBeanImplementation oTipousuario = (TipousuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
+//            Integer idTipousuario = oTipousuario.getId();
+//
+//            String strMethod = strMethodName.toLowerCase();
+//            if (idTipousuario == 1) {
+//                return true;
+//            } else {
+//                if (idTipousuario == 3
+//                        || idTipousuario == 4
+//                        || idTipousuario == 5) {
+//
+//                    switch (strMethod) {
+//                        case "getmetadata":
+//                            return true;
+//                        case "getobjectmetadata":
+//                            return true;
+//                        case "getpropertiesmetadata":
+//                            return true;
+//                        case "get":
+//                            return true;
+//                        case "set":
+//                            return true;
+//                        case "remove":
+//                            return false;
+//                        case "getpage":
+//                            return true;
+//                        case "getcount":
+//                            return true;
+//                    }
+//                } else {
+//                    return false;
+//                }
+//            }
+//        } else {
+//            return false;
+//        }
+//        return false;
+//    }
 
 }

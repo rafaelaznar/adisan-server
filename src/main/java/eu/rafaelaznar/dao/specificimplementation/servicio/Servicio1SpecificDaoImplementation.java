@@ -30,39 +30,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.rafaelaznar.dao.specificimplementation.centrosanitario;
+package eu.rafaelaznar.dao.specificimplementation.servicio;
 
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
-import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
-import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
-import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
 
-public class Centrosanitario3SpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Servicio1SpecificDaoImplementation extends TableGenericDaoImplementation {
 
-    private Integer idUsuario;
-    private Integer idCentrosanitario = null;
-
-    public Centrosanitario3SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("centrosanitario", oPooledConnection, oPuserBean_security, strWhere);
-
-        if (oPuserBean_security != null) {
-            UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
-            idUsuario = oUsuario.getId();
-            TipousuarioSpecificBeanImplementation oTipousuario = (TipousuarioSpecificBeanImplementation) oUsuario.getObj_tipousuario().getBean();
-            if (oTipousuario.getId() == 3) {            
-                String strSQLini = "FROM centrosanitario where 1=1 "
-                        + "AND id IN (SELECT id_centrosanitario FROM usuario where id = " + idUsuario + " and id_tipousuario = 3 ) ";
-                strSQL = "SELECT * " + strSQLini;
-                strCountSQL = "SELECT COUNT(*) " + strSQLini;
-                if (strWhere != null) {
-                    strSQL += " " + strWhere + " ";
-                    strCountSQL += " " + strWhere + " ";
-                }
-            }
-        }
-
+    public Servicio1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
+        super("servicio", oPooledConnection, oPuserBean_security, strWhere);
     }
-
 }

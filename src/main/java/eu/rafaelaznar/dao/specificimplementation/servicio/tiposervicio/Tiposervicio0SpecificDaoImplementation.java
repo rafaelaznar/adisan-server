@@ -30,50 +30,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.rafaelaznar.dao.specificimplementation.usuario.centro;
+package eu.rafaelaznar.dao.specificimplementation.servicio.tiposervicio;
 
 import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
-import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
-import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
-import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
 
-public class Centro4SpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Tiposervicio0SpecificDaoImplementation extends TableGenericDaoImplementation {
 
-    private Integer idUsuario;
-    private Integer idCentrosanitario = null;
 
-    public Centro4SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("centro", oPooledConnection, oPuserBean_security, strWhere);
-
-        if (oPuserBean_security != null) {
-            UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
-            idUsuario = oUsuario.getId();
-            TipousuarioSpecificBeanImplementation oTipousuario = (TipousuarioSpecificBeanImplementation) oUsuario.getObj_tipousuario().getBean();
-            CentrosanitarioSpecificBeanImplementation oCentroSanitario = (CentrosanitarioSpecificBeanImplementation) oUsuario.getObj_centrosanitario().getBean();
-            idCentrosanitario = oCentroSanitario.getId();
-            if (oTipousuario.getId() == 3) {
-                String strSQLini = "FROM centro where 1=1 "
-                        + "AND id IN (SELECT u.id_centro FROM usuario u where u.id_centrosanitario = " + idCentrosanitario + " and u.id_tipousuario = 3 ) ";
-
-                strSQL = "SELECT * " + strSQLini;
-                strCountSQL = "SELECT COUNT(*) " + strSQLini;
-                if (strWhere != null) {
-                    strSQL += " " + strWhere + " ";
-                    strCountSQL += " " + strWhere + " ";
-                }
-            }
-        }
-    }
-
-    public Boolean checkUpdate(int id) {
-        if (id != 0) {
-            return true;
-        } else {
-            return false;
-        }
+    
+    public Tiposervicio0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
+        super("tiposervicio", oPooledConnection, oPuserBean_security, strWhere);
     }
 
     @Override

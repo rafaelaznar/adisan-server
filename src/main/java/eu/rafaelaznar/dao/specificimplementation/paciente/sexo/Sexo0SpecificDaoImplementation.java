@@ -32,14 +32,24 @@
  */
 package eu.rafaelaznar.dao.specificimplementation.paciente.sexo;
 
+import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
 
-public class SexoSpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Sexo0SpecificDaoImplementation extends TableGenericDaoImplementation {
 
-    public SexoSpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
+    public Sexo0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("sexo", oPooledConnection, oPuserBean_security, strWhere);
     }
 
+    @Override
+    public Integer set(TableGenericBeanImplementation oBean) throws Exception {
+        return 0;
+    }
+
+    @Override
+    public int remove(Integer id) throws Exception {
+        return 0;
+    }
 }

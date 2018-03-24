@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017-2018
  *
  * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
+ *
  * GESANE: Free Open Source Health Management System
  *
  * Sources at:
@@ -32,14 +32,24 @@
  */
 package eu.rafaelaznar.dao.specificimplementation.paciente.tipopago;
 
+import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
 
-public class TipopagoSpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Tipopago0SpecificDaoImplementation extends TableGenericDaoImplementation {
 
-    public TipopagoSpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
+    public Tipopago0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("tipopago", oPooledConnection, oPuserBean_security, strWhere);
     }
 
+    @Override
+    public Integer set(TableGenericBeanImplementation oBean) throws Exception {
+        return 0;
+    }
+
+    @Override
+    public int remove(Integer id) throws Exception {
+        return 0;
+    }
 }
