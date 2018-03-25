@@ -91,6 +91,11 @@ public class Episodio4SpecificDaoImplementation extends TableGenericDaoImplement
         return super.set(oEpisodioBean);
     }
 
+    
+    //puede borrar un episodio suyo
+    
+    
+    
 //    @Override
 //    public MetaBeanHelper get(int id, int intExpand) throws Exception {
 //        PreparedStatement oPreparedStatement = null;

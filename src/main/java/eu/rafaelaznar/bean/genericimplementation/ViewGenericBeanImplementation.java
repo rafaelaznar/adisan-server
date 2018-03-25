@@ -97,58 +97,58 @@ public abstract class ViewGenericBeanImplementation implements GenericBeanInterf
             TraceHelper.trace("fill-ViewGenericBeanImplementation(begin):object=" + oBean.getClass().getName());
             if (this.getClass().getSuperclass() == TableGenericBeanImplementation.class) {
                 TraceHelper.trace("Filling ID field;value=" + oResultSet.getInt("id"));
-                Field x = this.getClass().getSuperclass().getDeclaredField("id");
-                x.setAccessible(true);
-                x.set(this, oResultSet.getInt("id"));
-                x.setAccessible(false);
+                Field oField = this.getClass().getSuperclass().getDeclaredField("id");
+                oField.setAccessible(true);
+                oField.set(this, oResultSet.getInt("id"));
+                oField.setAccessible(false);
             }
             Field[] oFields = oBean.getClass().getDeclaredFields();
-            for (Field x : oFields) {
-                x.setAccessible(true);
-                if (getTypeFromPropertyMetaData(x) != null) {
-                    if (getTypeFromPropertyMetaData(x) != FieldType.Calculated) {
-                        if (getTypeFromPropertyMetaData(x) == FieldType.ForeignObject) {
-                            TraceHelper.trace("Filling ForeignObject field=" + x.getName());
+            for (Field oField : oFields) {
+                oField.setAccessible(true);
+                if (getTypeFromPropertyMetaData(oField) != null) {
+                    if (getTypeFromPropertyMetaData(oField) != FieldType.Calculated) {
+                        if (getTypeFromPropertyMetaData(oField) == FieldType.ForeignObject) {
+                            TraceHelper.trace("Filling ForeignObject field=" + oField.getName());
                             if (expand > 0) {
-                                String ob = getReferencesFromPropertyMetaData(x);
+                                String ob = getReferencesFromPropertyMetaData(oField);
                                 TableDaoInterface oObDao = (TableDaoInterface) DaoFactory.getDao(ob, oConnection, oPuserBean_security, null);
                                 TraceHelper.trace("Filling ForeignObject object=" + ob + ";id=" + oResultSet.getInt("id_" + ob));
                                 MetaBeanHelper oMetaBeanHelper = (MetaBeanHelper) oObDao.get(oResultSet.getInt("id_" + ob), expand - 1);
-                                x.set(this, oMetaBeanHelper);
+                                oField.set(this, oMetaBeanHelper);
                             } else {
-                                String ob = getReferencesFromPropertyMetaData(x);
-                                TraceHelper.trace("Filling ForeignObject field=" + ob + "Expansion Limit Found!");
+                                String ob = getReferencesFromPropertyMetaData(oField);
+                                TraceHelper.trace("Filling ForeignObject field=" + ob + "EoFieldpansion Limit Found!");
                             }
                         } else {
-                            if (getTypeFromPropertyMetaData(x) == FieldType.Link) {
-                                String ob = getReferencesFromPropertyMetaData(x);
+                            if (getTypeFromPropertyMetaData(oField) == FieldType.Link) {
+                                String ob = getReferencesFromPropertyMetaData(oField);
                                 TableDaoInterface oObDao = (TableDaoInterface) DaoFactory.getDao(ob, oConnection, oPuserBean_security, " and id_" + getOwnNameFromObjectMetaData() + "=" + oResultSet.getInt("id"));
-                                TraceHelper.trace("Filling Link field=" + x.getName() + ";references=" + ob);
+                                TraceHelper.trace("Filling Link field=" + oField.getName() + ";references=" + ob);
                                 if (oObDao != null) { //en el proceso de login puede ser nulo!!
-                                    x.set(this, oObDao.getCount(null).intValue());
+                                    oField.set(this, oObDao.getCount(null).intValue());
                                 } else {
-                                    x.set(this, 0);
+                                    oField.set(this, 0);
                                 }
                             } else {
-                                if (getTypeFromPropertyMetaData(x) == FieldType.ForeignId) {
-                                    TraceHelper.trace("Filling ForeignID field=" + x.getName() + ";value=" + oResultSet.getInt(x.getName()));
-                                    x.set(this, oResultSet.getInt(x.getName()));
+                                if (getTypeFromPropertyMetaData(oField) == FieldType.ForeignId) {
+                                    TraceHelper.trace("Filling ForeignID field=" + oField.getName() + ";value=" + oResultSet.getInt(oField.getName()));
+                                    oField.set(this, oResultSet.getInt(oField.getName()));
                                 } else {
-                                    if (x.getType() == String.class) {
-                                        TraceHelper.trace("Filling String field=" + x.getName() + ";value=" + oResultSet.getString(x.getName()));
-                                        x.set(this, oResultSet.getString(x.getName()));
+                                    if (oField.getType() == String.class) {
+                                        TraceHelper.trace("Filling String field=" + oField.getName() + ";value=" + oResultSet.getString(oField.getName()));
+                                        oField.set(this, oResultSet.getString(oField.getName()));
                                     } else {
-                                        if (x.getType() == Date.class) {
-                                            TraceHelper.trace("Filling Date field=" + x.getName() + ";value=" + oResultSet.getDate(x.getName()));
-                                            x.set(this, oResultSet.getDate(x.getName()));
+                                        if (oField.getType() == Date.class) {
+                                            TraceHelper.trace("Filling Date field=" + oField.getName() + ";value=" + oResultSet.getDate(oField.getName()));
+                                            oField.set(this, oResultSet.getDate(oField.getName()));
                                         } else {
-                                            if (x.getType() == Double.class || x.getType() == double.class) {
-                                                TraceHelper.trace("Filling Double field=" + x.getName() + ";value=" + oResultSet.getDouble(x.getName()));
-                                                x.set(this, oResultSet.getDouble(x.getName()));
+                                            if (oField.getType() == Double.class || oField.getType() == double.class) {
+                                                TraceHelper.trace("Filling Double field=" + oField.getName() + ";value=" + oResultSet.getDouble(oField.getName()));
+                                                oField.set(this, oResultSet.getDouble(oField.getName()));
                                             } else {
-                                                if (x.getType() == Integer.class || x.getType() == int.class) {
-                                                    TraceHelper.trace("Filling Integer field=" + x.getName() + ";value=" + oResultSet.getInt(x.getName()));
-                                                    x.set(this, oResultSet.getInt(x.getName()));
+                                                if (oField.getType() == Integer.class || oField.getType() == int.class) {
+                                                    TraceHelper.trace("Filling Integer field=" + oField.getName() + ";value=" + oResultSet.getInt(oField.getName()));
+                                                    oField.set(this, oResultSet.getInt(oField.getName()));
                                                 }
                                             }
                                         }
@@ -158,7 +158,7 @@ public abstract class ViewGenericBeanImplementation implements GenericBeanInterf
                         }
                     }
                 }
-                x.setAccessible(false);
+                oField.setAccessible(false);
             }
             this.ComputeCalculatedFields();
         } catch (Exception ex) {

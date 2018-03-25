@@ -91,6 +91,13 @@ public class Episodio3SpecificDaoImplementation extends TableGenericDaoImplement
         oEpisodioBean.setId_usuario(idUsuario);
         return super.set(oEpisodioBean);
     }
+    
+    
+    
+    //puede borrar un episodio suyo o de sus alumnos
+    
+    
+    
 
 //    @Override
 //    public MetaBeanHelper get(int id, int intExpand) throws Exception {

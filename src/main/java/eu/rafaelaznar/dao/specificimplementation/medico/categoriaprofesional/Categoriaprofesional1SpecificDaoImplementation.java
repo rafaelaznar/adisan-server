@@ -9,13 +9,10 @@ import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
 
-/**
- *
- * @author a0y3770325h
- */
-public class CategoriaprofesionalSpecificDaoImplementation extends TableGenericDaoImplementation {
 
-    public CategoriaprofesionalSpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
+public class Categoriaprofesional1SpecificDaoImplementation extends TableGenericDaoImplementation {
+
+    public Categoriaprofesional1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("categoriaprofesional", oPooledConnection, oPuserBean_security, strWhere);
     }
 }
