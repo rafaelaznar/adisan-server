@@ -32,14 +32,23 @@
  */
 package eu.rafaelaznar.dao.specificimplementation.episodio.destinoalta;
 
+import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
 
-public class DestinoaltaSpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Destinoalta0SpecificDaoImplementation extends TableGenericDaoImplementation {
 
-    public DestinoaltaSpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
+    public Destinoalta0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("destinoalta", oPooledConnection, oPuserBean_security, strWhere);
     }
+    @Override
+    public Integer set(TableGenericBeanImplementation oBean) throws Exception {
+        return 0;
+    }
 
+    @Override
+    public int remove(Integer id) throws Exception {
+        return 0;
+    }
 }

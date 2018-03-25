@@ -36,9 +36,9 @@ import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
 
-public class CircunstanciasaltaSpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Circunstanciasalta1SpecificDaoImplementation extends TableGenericDaoImplementation {
 
-    public CircunstanciasaltaSpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
+    public Circunstanciasalta1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("circunstanciasalta", oPooledConnection, oPuserBean_security, strWhere);
     }
 }

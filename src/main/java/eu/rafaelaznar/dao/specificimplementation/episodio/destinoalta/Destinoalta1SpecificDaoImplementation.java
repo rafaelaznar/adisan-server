@@ -30,16 +30,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.rafaelaznar.dao.specificimplementation.episodio.tipoepisodio;
+package eu.rafaelaznar.dao.specificimplementation.episodio.destinoalta;
 
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
 
-public class TipoepisodioSpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Destinoalta1SpecificDaoImplementation extends TableGenericDaoImplementation {
 
-    public TipoepisodioSpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("tipoepisodio", oPooledConnection, oPuserBean_security, strWhere);
+    public Destinoalta1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
+        super("destinoalta", oPooledConnection, oPuserBean_security, strWhere);
     }
 
 }

@@ -30,16 +30,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.rafaelaznar.dao.specificimplementation.episodio.modalidadepisodio;
+package eu.rafaelaznar.dao.specificimplementation.episodio.factura;
 
+import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
 
-public class ModalidadepisodioSpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Factura0SpecificDaoImplementation extends TableGenericDaoImplementation {
 
-    public ModalidadepisodioSpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("modalidadepisodio", oPooledConnection, oPuserBean_security, strWhere);
+    public Factura0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
+        super("factura", oPooledConnection, oPuserBean_security, strWhere);
+    }
+    @Override
+    public Integer set(TableGenericBeanImplementation oBean) throws Exception {
+        return 0;
     }
 
+    @Override
+    public int remove(Integer id) throws Exception {
+        return 0;
+    }
 }
