@@ -43,11 +43,11 @@ import eu.rafaelaznar.dao.specificimplementation.centrosanitario.Centrosanitario
 import eu.rafaelaznar.dao.specificimplementation.dependencia.Dependencia0SpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.episodio.tipoepisodio.Tipoepisodio1SpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.episodio.circunstanciasalta.Circunstanciasalta1SpecificDaoImplementation;
-import eu.rafaelaznar.dao.specificimplementation.usuario.curso.Curso4SpecificDaoImplementation;
+
 import eu.rafaelaznar.dao.specificimplementation.usuario.curso.Curso0SpecificDaoImplementation;
-import eu.rafaelaznar.dao.specificimplementation.usuario.curso.Curso3SpecificDaoImplementation;
+
 import eu.rafaelaznar.dao.specificimplementation.usuario.curso.Curso1SpecificDaoImplementation;
-import eu.rafaelaznar.dao.specificimplementation.usuario.curso.Curso5SpecificDaoImplementation;
+
 import eu.rafaelaznar.dao.specificimplementation.dependencia.Dependencia4SpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.dependencia.Dependencia3SpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.dependencia.Dependencia1SpecificDaoImplementation;
@@ -197,15 +197,6 @@ public class DaoFactory {
                     switch (idTipousuario) {
                         case 1:
                             oDao = (MetaDaoInterface) new Curso1SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
-                            break;
-                        case 3:
-                            oDao = (MetaDaoInterface) new Curso3SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
-                            break;
-                        case 4:
-                            oDao = (MetaDaoInterface) new Curso4SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
-                            break;
-                        case 5:
-                            oDao = (MetaDaoInterface) new Curso5SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
                             break;
                         default:
                             oDao = (MetaDaoInterface) new Curso0SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);

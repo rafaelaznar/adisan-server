@@ -41,7 +41,6 @@ import eu.rafaelaznar.helper.Log4jHelper;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Objects;
 
 public class Usuario3SpecificDaoImplementation extends Usuario1SpecificDaoImplementation {
 
@@ -189,5 +188,14 @@ public class Usuario3SpecificDaoImplementation extends Usuario1SpecificDaoImplem
             }
         }
 
+    }
+
+    @Override
+    public int delete(Integer id) throws Exception {
+        if (alumnoIsMine(id)) {
+            return super.delete(id);
+        } else {
+            return 0;
+        }
     }
 }

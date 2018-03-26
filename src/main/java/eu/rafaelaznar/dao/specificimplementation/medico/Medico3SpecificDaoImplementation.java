@@ -34,23 +34,11 @@ package eu.rafaelaznar.dao.specificimplementation.medico;
 
 import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
-import eu.rafaelaznar.bean.meta.helper.MetaObjectGenericBeanHelper;
-import eu.rafaelaznar.bean.meta.helper.MetaPropertyGenericBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
-import eu.rafaelaznar.bean.specificimplementation.MedicoSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
-import eu.rafaelaznar.factory.BeanFactory;
-import eu.rafaelaznar.helper.Log4jHelper;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 
-/**
- *
- * @author a022583952e
- */
 public class Medico3SpecificDaoImplementation extends TableGenericDaoImplementation {
 
     private Integer idCentrosanitario = null;
@@ -77,71 +65,24 @@ public class Medico3SpecificDaoImplementation extends TableGenericDaoImplementat
                 }
             }
         }
-//MAL
-//        UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
-//        idUsuario = oUsuario.getId();
-//        idCentrosanitario = oUsuario.getId_centrosanitario();
-//        strSQL = "SELECT * FROM medico WHERE id_centrosanitario = " + idCentrosanitario + " ";
-//        strCountSQL = "SELECT COUNT(*) FROM " + ob + " WHERE id_centrosanitario = " + idCentrosanitario + " ";
-
     }
 
     @Override
     public Integer create(TableGenericBeanImplementation oBean) throws Exception {
+        //puedo crear un medico en mi centro sanitario
         return 0;
     }
 
     @Override
     public Integer update(TableGenericBeanImplementation oBean) throws Exception {
+        //puedo modificar un medico de mi centro sanitario
         return 0;
     }
 
     @Override
     public int delete(Integer id) throws Exception {
+        //puedo borrar un medico en mi centro sanitario si no tiene episodios
         return 0;
     }
-
-//    @Override
-//    public Integer set(TableGenericBeanImplementation oBean) throws Exception {
-//        MedicoSpecificBeanImplementation oMedicoBean = (MedicoSpecificBeanImplementation) oBean;
-//        oMedicoBean.setId_centrosanitario(idCentrosanitario);
-//        return super.set(oMedicoBean);
-//    }
-//    @Override
-//    public MetaBeanHelper get(int id, int intExpand) throws Exception {
-//        PreparedStatement oPreparedStatement = null;
-//        ResultSet oResultSet = null;
-//        strSQL += " AND id=? ";
-//        TableGenericBeanImplementation oBean = null;
-//        MetaBeanHelper oMetaBeanHelper = null;
-//        try {
-//            oPreparedStatement = oConnection.prepareStatement(strSQL);
-//            oPreparedStatement.setInt(1, id);
-//            oResultSet = oPreparedStatement.executeQuery();
-//            oBean = (TableGenericBeanImplementation) BeanFactory.getBean(ob, oPuserSecurity);;
-//            if (oResultSet.next()) {
-//                oBean = (TableGenericBeanImplementation) oBean.fill(oResultSet, oConnection, oPuserSecurity, intExpand);
-//            } else {
-//                oBean.setId(0);
-//            }
-//            ArrayList<MetaPropertyGenericBeanHelper> alMetaProperties = this.getPropertiesMetaData();
-//            MetaObjectGenericBeanHelper oMetaObject = this.getObjectMetaData();
-//            oMetaBeanHelper = new MetaBeanHelper(oMetaObject, alMetaProperties, oBean);
-//        } catch (Exception ex) {
-//            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-//            Log4jHelper.errorLog(msg, ex);
-//            throw new Exception(msg, ex);
-//        } finally {
-//            if (oResultSet != null) {
-//                oResultSet.close();
-//            }
-//            if (oPreparedStatement != null) {
-//                oPreparedStatement.close();
-//            }
-//
-//        }
-//        return oMetaBeanHelper;
-//    }
-
 
 }

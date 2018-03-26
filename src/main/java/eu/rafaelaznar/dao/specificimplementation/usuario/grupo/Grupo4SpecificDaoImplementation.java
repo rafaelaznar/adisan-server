@@ -40,7 +40,7 @@ import java.sql.Connection;
 
 public class Grupo4SpecificDaoImplementation extends TableGenericDaoImplementation {
 
-    private Integer idUsuario;
+    private final Integer idUsuario;
 
     public Grupo4SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("grupo", oPooledConnection, oPuserBean_security, strWhere);

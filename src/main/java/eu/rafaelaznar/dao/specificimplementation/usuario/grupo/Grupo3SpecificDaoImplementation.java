@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017-2018
  *
  * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
+ *
  * GESANE: Free Open Source Health Management System
  *
  * Sources at:
@@ -35,23 +35,19 @@ package eu.rafaelaznar.dao.specificimplementation.usuario.grupo;
 import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.GrupoSpecificBeanImplementation;
-import eu.rafaelaznar.bean.specificimplementation.PacienteSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
-import eu.rafaelaznar.helper.Log4jHelper;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 public class Grupo3SpecificDaoImplementation extends TableGenericDaoImplementation {
 
     private Integer idUsuario;
+    UsuarioSpecificBeanImplementation oUsuario;
 
     public Grupo3SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("grupo", oPooledConnection, oPuserBean_security, strWhere);
 
-        UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
+        oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
         idUsuario = oUsuario.getId();
 
         String strSQLini = "FROM grupo WHERE id_usuario = " + idUsuario;
@@ -62,7 +58,6 @@ public class Grupo3SpecificDaoImplementation extends TableGenericDaoImplementati
             strSQL += " " + strWhere + " ";
             strCountSQL += " " + strWhere + " ";
         }
-
     }
 
     @Override
@@ -82,4 +77,13 @@ public class Grupo3SpecificDaoImplementation extends TableGenericDaoImplementati
         return super.create(oBean);
     }
 
+    @Override
+    public int delete(Integer id) throws Exception {
+        GrupoSpecificBeanImplementation oGrupo = (GrupoSpecificBeanImplementation) this.get(id, 0).getBean();
+        if (oGrupo.getId().equals(idUsuario)) {
+            return super.delete(id);
+        } else {
+            return 0;
+        }
+    }
 }
