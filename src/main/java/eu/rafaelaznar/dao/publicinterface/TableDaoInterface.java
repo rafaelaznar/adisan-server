@@ -44,6 +44,6 @@ public interface TableDaoInterface extends ViewDaoInterface {
 
     public Integer update(TableGenericBeanImplementation oBean) throws Exception;
 
-    public int remove(Integer id) throws Exception;
+    public int delete(Integer id) throws Exception;
 
 }

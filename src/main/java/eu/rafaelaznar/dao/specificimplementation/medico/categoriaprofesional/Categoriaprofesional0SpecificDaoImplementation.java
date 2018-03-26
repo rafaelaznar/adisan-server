@@ -28,7 +28,7 @@ public class Categoriaprofesional0SpecificDaoImplementation extends TableGeneric
     }
 
     @Override
-    public int remove(Integer id) throws Exception {
+    public int delete(Integer id) throws Exception {
         return 0;
     }
 }

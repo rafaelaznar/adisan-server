@@ -161,7 +161,7 @@ public abstract class TableGenericDaoImplementation extends ViewGenericDaoImplem
     }
 
     @Override
-    public int remove(Integer id) throws Exception {
+    public int delete(Integer id) throws Exception {
         TraceHelper.trace("remove-TableGenericDaoImplementation(begin):object=" + ob);
         int iResult = 0;
         strSQL = "DELETE FROM " + ob + " WHERE id=?";

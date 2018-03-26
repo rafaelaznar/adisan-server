@@ -54,7 +54,7 @@ public class Dependencia5SpecificDaoImplementation extends TableGenericDaoImplem
     }
 
     @Override
-    public int remove(Integer id) throws Exception {
+    public int delete(Integer id) throws Exception {
         return 0;
     }
 }

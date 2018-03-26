@@ -39,9 +39,6 @@ import eu.rafaelaznar.bean.specificimplementation.GrupoSpecificBeanImplementatio
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.helper.Log4jHelper;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 public class Usuario4SpecificDaoImplementation extends Usuario1SpecificDaoImplementation {
 
@@ -98,7 +95,7 @@ public class Usuario4SpecificDaoImplementation extends Usuario1SpecificDaoImplem
         return 0;
     }
         @Override
-    public int remove(Integer id) throws Exception {
+    public int delete(Integer id) throws Exception {
         return 0;
     }
 }

@@ -54,7 +54,7 @@ public class Curso0SpecificDaoImplementation extends TableGenericDaoImplementati
     }
 
     @Override
-    public int remove(Integer id) throws Exception {
+    public int delete(Integer id) throws Exception {
         return 0;
     }
 }

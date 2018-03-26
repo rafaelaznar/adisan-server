@@ -54,7 +54,7 @@ public class Centrosanitario0SpecificDaoImplementation extends TableGenericDaoIm
     }
 
     @Override
-    public int remove(Integer id) throws Exception {
+    public int delete(Integer id) throws Exception {
         return 0;
     }
 }

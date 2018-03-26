@@ -53,7 +53,7 @@ public class Modalidadepisodio0SpecificDaoImplementation extends TableGenericDao
     }
 
     @Override
-    public int remove(Integer id) throws Exception {
+    public int delete(Integer id) throws Exception {
         return 0;
     }
 }

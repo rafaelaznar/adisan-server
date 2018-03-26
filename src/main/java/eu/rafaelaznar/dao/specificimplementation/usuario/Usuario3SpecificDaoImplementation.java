@@ -39,6 +39,9 @@ import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImpleme
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.helper.Log4jHelper;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Objects;
 
 public class Usuario3SpecificDaoImplementation extends Usuario1SpecificDaoImplementation {
 
@@ -85,32 +88,106 @@ public class Usuario3SpecificDaoImplementation extends Usuario1SpecificDaoImplem
         }
     }
 
+    private boolean alumnoIsMine(Integer idAlumno) throws Exception {
+        String strSQLini1 = "SELECT COUNT(*) FROM usuario u, grupo g where u.id_grupo=g.id and g.id_usuario=" + idUsuario + " and u.id=" + idAlumno;
+        PreparedStatement oPreparedStatement = null;
+        ResultSet oResultSet = null;
+        Long iResult = 0L;
+        try {
+            oPreparedStatement = oConnection.prepareStatement(strSQLini1);
+            oResultSet = oPreparedStatement.executeQuery();
+            if (oResultSet.next()) {
+                iResult = oResultSet.getLong("COUNT(*)");
+            } else {
+                String msg = this.getClass().getName() + ": getcount";
+                Log4jHelper.errorLog(msg);
+                throw new Exception(msg);
+            }
+        } catch (Exception ex) {
+            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
+            Log4jHelper.errorLog(msg, ex);
+            throw new Exception(msg, ex);
+        } finally {
+            if (oResultSet != null) {
+                oResultSet.close();
+            }
+            if (oPreparedStatement != null) {
+                oPreparedStatement.close();
+            }
+        }
+        return iResult > 0;
+    }
+
+    private boolean grupoIsMine(Integer idGrupo) throws Exception {
+        String strSQLini1 = "SELECT COUNT(*) FROM grupo where id=" + idGrupo + " and id_usuario=" + idUsuario;
+        PreparedStatement oPreparedStatement = null;
+        ResultSet oResultSet = null;
+        Long iResult = 0L;
+        try {
+            oPreparedStatement = oConnection.prepareStatement(strSQLini1);
+            oResultSet = oPreparedStatement.executeQuery();
+            if (oResultSet.next()) {
+                iResult = oResultSet.getLong("COUNT(*)");
+            } else {
+                String msg = this.getClass().getName() + ": getcount";
+                Log4jHelper.errorLog(msg);
+                throw new Exception(msg);
+            }
+        } catch (Exception ex) {
+            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
+            Log4jHelper.errorLog(msg, ex);
+            throw new Exception(msg, ex);
+        } finally {
+            if (oResultSet != null) {
+                oResultSet.close();
+            }
+            if (oPreparedStatement != null) {
+                oPreparedStatement.close();
+            }
+        }
+        return iResult > 0;
+    }
+
     @Override
     public Integer create(TableGenericBeanImplementation oBean) throws Exception {
         UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
         UsuarioSpecificBeanImplementation oNewUser = (UsuarioSpecificBeanImplementation) oBean;
-        //pte--> falta comprobar que al alumno lo metemos en uno de los grupos del profe en sesion
-        oNewUser.setId_centro(oSessionUser.getId_centro());
-        oNewUser.setId_tipousuario(4);
-        oNewUser.setId_centrosanitario(oSessionUser.getId_centro());
-        return super.create(oBean);
+        //comprobar que al alumno lo metemos en uno de los grupos del profe en sesion
+        if (grupoIsMine(oNewUser.getId_grupo())) {
+            oNewUser.setId_centro(oSessionUser.getId_centro());
+            oNewUser.setId_tipousuario(4);
+            oNewUser.setId_centrosanitario(oSessionUser.getId_centro());
+            return super.create(oBean);
+        } else {
+            return 0;
+        }
     }
 
     @Override
     public Integer update(TableGenericBeanImplementation oBean) throws Exception {
         UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
         UsuarioSpecificBeanImplementation oUpdateUser = (UsuarioSpecificBeanImplementation) oBean;
-        if (oSessionUser.getId() == oUpdateUser.getId()) {
+        if (oSessionUser.getId().equals(oUpdateUser.getId())) {
             oUpdateUser.setId_centro(oSessionUser.getId_centro());
             oUpdateUser.setId_tipousuario(3);
             oUpdateUser.setId_centrosanitario(oSessionUser.getId_centro());
+            return super.create(oBean);
         } else {
-            //--> falta comporbar que el usuario que editamos sea realmente un alumno del profesor en sesion
-            //pte--> falta comprobar que al alumno lo metemos en uno de los grupos del profe en sesion
-            oUpdateUser.setId_centro(oSessionUser.getId_centro());
-            oUpdateUser.setId_tipousuario(4);
-            oUpdateUser.setId_centrosanitario(oSessionUser.getId_centro());
+            if (alumnoIsMine(oUpdateUser.getId())) {
+                //el usuario que editamos es realmente un alumno del profesor en sesion                
+                if (grupoIsMine(oUpdateUser.getId_grupo())) {
+                    //al alumno lo metemos en uno de los grupos del profe en sesion
+                    oUpdateUser.setId_centro(oSessionUser.getId_centro());
+                    oUpdateUser.setId_tipousuario(4);
+                    oUpdateUser.setId_centrosanitario(oSessionUser.getId_centro());
+                    return super.create(oBean);
+                } else {
+                    return 0;
+                }
+            } else {
+                return 0;
+            }
         }
-        return super.create(oBean);
+
     }
 }
