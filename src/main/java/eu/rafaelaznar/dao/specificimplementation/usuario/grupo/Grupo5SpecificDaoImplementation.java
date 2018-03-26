@@ -32,6 +32,7 @@
  */
 package eu.rafaelaznar.dao.specificimplementation.usuario.grupo;
 
+import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
@@ -42,4 +43,18 @@ public class Grupo5SpecificDaoImplementation extends TableGenericDaoImplementati
         super("grupo", oPooledConnection, oPuserBean_security, strWhere);
     }
 
+    @Override
+    public Integer create(TableGenericBeanImplementation oBean) throws Exception {
+        return 0;
+    }
+
+    @Override
+    public Integer update(TableGenericBeanImplementation oBean) throws Exception {
+        return 0;
+    }
+
+    @Override
+    public int remove(Integer id) throws Exception {
+        return 0;
+    }
 }

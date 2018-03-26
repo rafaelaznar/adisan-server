@@ -225,7 +225,7 @@ public class MedicoSpecificServiceImplementation extends TableGenericServiceImpl
                 //id centro sanitario 
                 oMedicoBean.setId_centrosanitario(idCentrosanitario);
                 
-                result += oMedicoDao.set(oMedicoBean);
+                result += oMedicoDao.create(oMedicoBean);
             }
             
             oReplyBean = new ReplyBeanHelper(200, Integer.toString(result));

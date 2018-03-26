@@ -327,7 +327,7 @@ public class PacienteSpecificServiceImplementation extends TableGenericServiceIm
                 oPacienteBean.setId_sexo(sexo);
                 oPacienteBean.setId_usuario(idTipousuario);
 
-                result += oPacienteDao.set(oPacienteBean);
+                result += oPacienteDao.create(oPacienteBean);
             }
 
             oReplyBean = new ReplyBeanHelper(200, Integer.toString(result));

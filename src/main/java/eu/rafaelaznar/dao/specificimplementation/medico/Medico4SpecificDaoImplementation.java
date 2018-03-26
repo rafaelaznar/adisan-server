@@ -73,7 +73,12 @@ public class Medico4SpecificDaoImplementation extends TableGenericDaoImplementat
     }
 
     @Override
-    public Integer set(TableGenericBeanImplementation oBean) throws Exception {
+    public Integer create(TableGenericBeanImplementation oBean) throws Exception {
+        return 0;
+    }
+
+    @Override
+    public Integer update(TableGenericBeanImplementation oBean) throws Exception {
         return 0;
     }
 
@@ -82,12 +87,6 @@ public class Medico4SpecificDaoImplementation extends TableGenericDaoImplementat
         return 0;
     }
 
-    public Boolean checkUpdate(int id) {
-        if (id != 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+
 
 }

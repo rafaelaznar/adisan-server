@@ -39,7 +39,10 @@ public interface TableDaoInterface extends ViewDaoInterface {
 
     public MetaBeanHelper get(int id, int intExpand) throws Exception;
 
-    public Integer set(TableGenericBeanImplementation oBean) throws Exception;
+    //public Integer set(TableGenericBeanImplementation oBean) throws Exception;
+    public Integer create(TableGenericBeanImplementation oBean) throws Exception;
+
+    public Integer update(TableGenericBeanImplementation oBean) throws Exception;
 
     public int remove(Integer id) throws Exception;
 

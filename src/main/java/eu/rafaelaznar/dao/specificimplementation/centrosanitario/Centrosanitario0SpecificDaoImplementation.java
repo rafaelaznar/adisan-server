@@ -44,7 +44,12 @@ public class Centrosanitario0SpecificDaoImplementation extends TableGenericDaoIm
     }
 
     @Override
-    public Integer set(TableGenericBeanImplementation oBean) throws Exception {
+    public Integer create(TableGenericBeanImplementation oBean) throws Exception {
+        return 0;
+    }
+
+    @Override
+    public Integer update(TableGenericBeanImplementation oBean) throws Exception {
         return 0;
     }
 

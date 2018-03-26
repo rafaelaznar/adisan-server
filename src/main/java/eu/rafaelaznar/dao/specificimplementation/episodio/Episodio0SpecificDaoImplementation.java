@@ -44,8 +44,13 @@ public class Episodio0SpecificDaoImplementation extends TableGenericDaoImplement
     }
 
     @Override
-    public Integer set(TableGenericBeanImplementation oBean) throws Exception {
-         return 0;
+    public Integer create(TableGenericBeanImplementation oBean) throws Exception {
+        return 0;
+    }
+
+    @Override
+    public Integer update(TableGenericBeanImplementation oBean) throws Exception {
+        return 0;
     }
 
     @Override

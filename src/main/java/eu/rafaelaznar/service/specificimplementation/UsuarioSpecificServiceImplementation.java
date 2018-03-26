@@ -217,7 +217,7 @@ public class UsuarioSpecificServiceImplementation extends TableGenericServiceImp
                 UsuarioSpecificBeanImplementation oSessionUsuarioBean = (UsuarioSpecificBeanImplementation) oSessionUsuarioBeanMeta.getBean();
                 if (oSessionUsuarioBean.getPassword().equalsIgnoreCase(oldPass)) {
                     oSessionUsuarioBean.setPassword(newPass);
-                    iResult = oUserDao.set(oSessionUsuarioBean);
+                    iResult = oUserDao.update(oSessionUsuarioBean);
                     if (iResult >= 1) {
                         oReplyBean = new ReplyBeanHelper(200, EncodingHelper.quotate(iResult.toString()));
                     } else {
@@ -322,7 +322,7 @@ public class UsuarioSpecificServiceImplementation extends TableGenericServiceImp
             java.util.Date dt = new java.util.Date();
             oUser.setFecha_alta(dt);
             oUser.setToken(RandomHelper.getToken(ConfigurationConstants.tokenSize));
-            Integer iResult = oUserDao.set(oUser);
+            Integer iResult = oUserDao.create(oUser);
             if (iResult >= 1) {
                 oReplyBean = new ReplyBeanHelper(200, EncodingHelper.quotate(iResult.toString()));
             } else {

@@ -90,54 +90,72 @@ public abstract class TableGenericDaoImplementation extends ViewGenericDaoImplem
     }
 
     @Override
-    public Integer set(TableGenericBeanImplementation oBean) throws Exception {
-        TraceHelper.trace("set-TableGenericDaoImplementation(begin):object=" + ob);
+    public Integer create(TableGenericBeanImplementation oBean) throws Exception {
+        TraceHelper.trace("create-TableGenericDaoImplementation(begin):object=" + ob);
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
         Integer iResult = 0;
-        Boolean insert = true;
         try {
-            if (oBean.getId() == null || oBean.getId() == 0) {
-                strSQL = "INSERT INTO " + ob;
-                strSQL += "(" + oBean.getColumns() + ")";
-                strSQL += " VALUES ";
-                strSQL += "(" + oBean.getValues() + ")";
-                oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
-                iResult = oPreparedStatement.executeUpdate();
-            } else {
-                insert = false;
-                strSQL = "UPDATE " + ob;
-                strSQL += " SET ";
-                strSQL += oBean.toPairs();
-                strSQL += " WHERE id=? ";
-                oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
-                oPreparedStatement.setInt(1, oBean.getId());
-                iResult = oPreparedStatement.executeUpdate();
-            }
+            strSQL = "INSERT INTO " + ob;
+            strSQL += "(" + oBean.getColumns() + ")";
+            strSQL += " VALUES ";
+            strSQL += "(" + oBean.getValues() + ")";
+            oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
+            iResult = oPreparedStatement.executeUpdate();
             if (iResult < 1) {
                 String msg = this.getClass().getName() + ": set";
                 Log4jHelper.errorLog(msg);
                 throw new Exception(msg);
             }
-            if (insert) {
-                oResultSet = oPreparedStatement.getGeneratedKeys();
-                oResultSet.next();
-                iResult = oResultSet.getInt(1);
+            oResultSet = oPreparedStatement.getGeneratedKeys();
+            oResultSet.next();
+            iResult = oResultSet.getInt(1);
+
+        } catch (Exception ex) {
+            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
+            Log4jHelper.errorLog(msg, ex);
+            throw new Exception(msg, ex);
+        } finally {
+            if (oResultSet != null) {
+                oResultSet.close();
+            }
+            if (oPreparedStatement != null) {
+                oPreparedStatement.close();
+            }
+            TraceHelper.trace("create-TableGenericDaoImplementation(end):object=" + ob);
+        }
+        return iResult;
+    }
+
+    @Override
+    public Integer update(TableGenericBeanImplementation oBean) throws Exception {
+        TraceHelper.trace("update-TableGenericDaoImplementation(begin):object=" + ob);
+        PreparedStatement oPreparedStatement = null;
+        Integer iResult = 0;
+        try {
+            strSQL = "UPDATE " + ob;
+            strSQL += " SET ";
+            strSQL += oBean.toPairs();
+            strSQL += " WHERE id=? ";
+            oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
+            oPreparedStatement.setInt(1, oBean.getId());
+            iResult = oPreparedStatement.executeUpdate();
+
+            if (iResult < 1) {
+                String msg = this.getClass().getName() + ": set";
+                Log4jHelper.errorLog(msg);
+                throw new Exception(msg);
             }
         } catch (Exception ex) {
             String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
             Log4jHelper.errorLog(msg, ex);
             throw new Exception(msg, ex);
         } finally {
-            if (insert) {
-                if (oResultSet != null) {
-                    oResultSet.close();
-                }
-            }
+
             if (oPreparedStatement != null) {
                 oPreparedStatement.close();
             }
-            TraceHelper.trace("set-TableGenericDaoImplementation(end):object=" + ob);
+            TraceHelper.trace("update-TableGenericDaoImplementation(end):object=" + ob);
         }
         return iResult;
     }

@@ -135,12 +135,6 @@ public class Episodio3SpecificDaoImplementation extends TableGenericDaoImplement
 //        return oMetaBeanHelper;
 //    }
 
-    public Boolean checkUpdate(int id) {
-        if (id != 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+
 
 }

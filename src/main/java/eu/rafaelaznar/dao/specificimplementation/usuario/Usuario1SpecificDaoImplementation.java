@@ -46,50 +46,9 @@ public class Usuario1SpecificDaoImplementation extends TableGenericDaoImplementa
 
     public Usuario1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("usuario", oPooledConnection, oPuserBean_security, strWhere);
-//        if (oPuserBean_security != null) {
-//            UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
-//            if (oUsuario.getId() > 1) {
-//                String strSQLini = "";
-//                //faltaba obtener el centro sanitario del alumno!!!! idUsuario = oUsuario.getId();
-//                if (oUsuario.getId() == 3 || oUsuario.getId() == 5) {
-//                    CentrosanitarioSpecificBeanImplementation oCentroSanitario = (CentrosanitarioSpecificBeanImplementation) oUsuario.getObj_centrosanitario().getBean();
-//                    Integer idCentrosanitario = oCentroSanitario.getId();
-//                    strSQLini = "FROM usuario where 1=1 "
-//                            + "AND (id IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=3 ) "
-//                            + " OR  id IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=5 ) "
-//                            + " OR  id IN (SELECT distinct u.id FROM usuario u, grupo g, usuario u2 "
-//                            + "                    WHERE u.id_tipousuario=4 "
-//                            + "                      AND u.id_grupo=g.id "
-//                            + "                      AND g.id_usuario=u2.id "
-//                            + "                      AND u2.id_centrosanitario= " + idCentrosanitario + ")"
-//                            + ") ";
-//                }
-//                if (oUsuario.getId() == 4) {
-//                    GrupoSpecificBeanImplementation oGrupo = (GrupoSpecificBeanImplementation) oUsuario.getObj_grupo().getBean();
-//                    UsuarioSpecificBeanImplementation oProfesor = (UsuarioSpecificBeanImplementation) oGrupo.getObj_usuario().getBean();
-//                    CentrosanitarioSpecificBeanImplementation oCentroSanitario = (CentrosanitarioSpecificBeanImplementation) oProfesor.getObj_centrosanitario().getBean();
-//                    Integer idCentrosanitario = oCentroSanitario.getId();
-//                    strSQLini = "FROM usuario where 1=1 "
-//                            + "AND (id IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=3 ) "
-//                            + " OR  id IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=5 ) "
-//                            + " OR  id IN (SELECT distinct u.id FROM usuario u, grupo g, usuario u2 "
-//                            + "                    WHERE u.id_tipousuario=4 "
-//                            + "                      AND u.id_grupo=g.id "
-//                            + "                      AND g.id_usuario=u2.id "
-//                            + "                      AND u2.id_centrosanitario= " + idCentrosanitario + ")"
-//                            + ") ";
-//                }
-//                strSQL = "SELECT * " + strSQLini;
-//                strCountSQL = "SELECT COUNT(*) " + strSQLini;
-//                if (strWhere != null) {
-//                    strSQL += " " + strWhere + " ";
-//                    strCountSQL += " " + strWhere + " ";
-//                }
-//            }
-//        }
     }
 
-   public MetaBeanHelper getFromLoginAndPass(UsuarioSpecificBeanImplementation oUsuarioBean) throws Exception {
+    public MetaBeanHelper getFromLoginAndPass(UsuarioSpecificBeanImplementation oUsuarioBean) throws Exception {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
         MetaBeanHelper oMetaBeanHelper = null;
@@ -174,7 +133,5 @@ public class Usuario1SpecificDaoImplementation extends TableGenericDaoImplementa
         }
         return intResult;
     }
-    
-    
 
 }

@@ -42,8 +42,14 @@ public class Tipoepisodio0SpecificDaoImplementation extends TableGenericDaoImple
     public Tipoepisodio0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("tipoepisodio", oPooledConnection, oPuserBean_security, strWhere);
     }
+
     @Override
-    public Integer set(TableGenericBeanImplementation oBean) throws Exception {
+    public Integer create(TableGenericBeanImplementation oBean) throws Exception {
+        return 0;
+    }
+
+    @Override
+    public Integer update(TableGenericBeanImplementation oBean) throws Exception {
         return 0;
     }
 

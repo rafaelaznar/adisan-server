@@ -37,6 +37,7 @@ import eu.rafaelaznar.bean.helper.FilterBeanHelper;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.meta.helper.MetaObjectGenericBeanHelper;
 import eu.rafaelaznar.bean.meta.helper.MetaPropertyGenericBeanHelper;
+import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -50,11 +51,21 @@ public class Usuario5SpecificDaoImplementation extends TableGenericDaoImplementa
 
     @Override
     public MetaBeanHelper get(int id, int intExpand) throws Exception {
-        return null;
+        MetaBeanHelper oMetaBeanHelper = super.get(id, intExpand);
+        UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
+        oUsuario.setNombre("Oculto para proteger la identidad");
+        oUsuario.setPrimer_apellido("Oculto para proteger la identidad");
+        oUsuario.setSegundo_apellido("Oculto para proteger la identidad");
+        return oMetaBeanHelper;
     }
 
     @Override
-    public Integer set(TableGenericBeanImplementation oBean) throws Exception {
+    public Integer create(TableGenericBeanImplementation oBean) throws Exception {
+        return 0;
+    }
+
+    @Override
+    public Integer update(TableGenericBeanImplementation oBean) throws Exception {
         return 0;
     }
 

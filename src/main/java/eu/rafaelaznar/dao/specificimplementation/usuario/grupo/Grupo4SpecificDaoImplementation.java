@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017-2018
  *
  * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
+ *
  * GESANE: Free Open Source Health Management System
  *
  * Sources at:
@@ -34,14 +34,9 @@ package eu.rafaelaznar.dao.specificimplementation.usuario.grupo;
 
 import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
-import eu.rafaelaznar.bean.specificimplementation.PacienteSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
-import eu.rafaelaznar.helper.Log4jHelper;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 public class Grupo4SpecificDaoImplementation extends TableGenericDaoImplementation {
 
@@ -52,9 +47,9 @@ public class Grupo4SpecificDaoImplementation extends TableGenericDaoImplementati
 
         UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
         idUsuario = oUsuario.getId();
-                              
+
         String strSQLini = "FROM grupo where 1=1 AND id IN (SELECT id_grupo FROM usuario where id = " + idUsuario + ")";
-                
+
         strSQL = "SELECT * " + strSQLini;
         strCountSQL = "SELECT COUNT(*) " + strSQLini;
         if (strWhere != null) {
@@ -63,141 +58,20 @@ public class Grupo4SpecificDaoImplementation extends TableGenericDaoImplementati
         }
 
     }
-//     @Override
-//    public Long getCount(ArrayList<FilterBeanHelper> alFilter) throws Exception {
-//        strSQL = "SELECT COUNT(*) FROM grupo g WHERE g.id_usuario = " + idUsuario;
-//        PreparedStatement oPreparedStatement = null;
-//        ResultSet oResultSet = null;
-//        strSQL += SqlHelper.buildSqlFilter(alFilter);
-//        Long iResult = 0L;
-//        try {
-//            oPreparedStatement = oConnection.prepareStatement(strSQL);
-//            oResultSet = oPreparedStatement.executeQuery();
-//            if (oResultSet.next()) {
-//                iResult = oResultSet.getLong("COUNT(*)");
-//            } else {
-//                String msg = this.getClass().getName() + ": getcount";
-//                Log4jHelper.errorLog(msg);
-//                throw new Exception(msg);
-//            }
-//        } catch (Exception ex) {
-//            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-//            Log4jHelper.errorLog(msg, ex);
-//            throw new Exception(msg, ex);
-//        } finally {
-//            if (oResultSet != null) {
-//                oResultSet.close();
-//            }
-//            if (oPreparedStatement != null) {
-//                oPreparedStatement.close();
-//            }
-//        }
-//        return iResult;
-//    }
-//    @Override
-//    public MetaBeanHelper get(int id, int intExpand) throws Exception {
-//        PreparedStatement oPreparedStatement = null;
-//        ResultSet oResultSet = null;
-//        strSQL += " AND g.id=? ";
-//        TableGenericBeanImplementation oBean = null;
-//        MetaBeanHelper oMetaBeanHelper = null;
-//        try {
-//            oPreparedStatement = oConnection.prepareStatement(strSQL);
-//            oPreparedStatement.setInt(1, id);
-//            oResultSet = oPreparedStatement.executeQuery();
-//            oBean = (TableGenericBeanImplementation) BeanFactory.getBean(ob,oPuserSecurity);
-//            if (oResultSet.next()) {
-//                oBean = (TableGenericBeanImplementation) oBean.fill(oResultSet, oConnection, oPuserSecurity, intExpand);
-//            } else {
-//                oBean.setId(0);
-//            }
-//            ArrayList<MetaPropertyGenericBeanHelper> alMetaProperties = this.getPropertiesMetaData();
-//            MetaObjectGenericBeanHelper oMetaObject = this.getObjectMetaData();
-//            oMetaBeanHelper = new MetaBeanHelper(oMetaObject, alMetaProperties, oBean);
-//        } catch (Exception ex) {
-//            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-//            Log4jHelper.errorLog(msg, ex);
-//            throw new Exception(msg, ex);
-//        } finally {
-//            if (oResultSet != null) {
-//                oResultSet.close();
-//            }
-//            if (oPreparedStatement != null) {
-//                oPreparedStatement.close();
-//            }
-//
-//        }
-//        return oMetaBeanHelper;
-//    }
 
-    public Boolean checkUpdate(int id) {
-        if (id != 0) {
-            return true;
-        } else {
-            return false;
-        }
+    @Override
+    public Integer create(TableGenericBeanImplementation oBean) throws Exception {
+        return 0;
     }
 
     @Override
-    public Integer set(TableGenericBeanImplementation oBean) throws Exception {
-        PreparedStatement oPreparedStatement = null;
-        ResultSet oResultSet = null;
-        Integer idResult = 0;
-        Integer iResult = 0;
-        Boolean insert = true;
-        PacienteSpecificBeanImplementation oPaciente = (PacienteSpecificBeanImplementation) oBean;
-        try {
-            if (oBean.getId() == null || oBean.getId() == 0) {
-                strSQL = "INSERT INTO " + ob;
-                strSQL += "(" + oBean.getColumns() + ")";
-                strSQL += " VALUES ";
-                strSQL += "(" + oBean.getValues() + ")";
+    public Integer update(TableGenericBeanImplementation oBean) throws Exception {
+        return 0;
+    }
 
-                oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
-                iResult = oPreparedStatement.executeUpdate();
-                if (insert) {
-                    oResultSet = oPreparedStatement.getGeneratedKeys();
-                    oResultSet.next();
-                    idResult = oResultSet.getInt(1);
-                }
-                strSQL = "UPDATE " + ob + " SET id_usuario=" + idUsuario + " WHERE id=" + idResult;
-                oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
-                oPreparedStatement.executeUpdate();
-            } else {
-                // check permission if ok edit else unauthorized
-                insert = false;
-                strSQL = "UPDATE " + ob;
-                strSQL += " SET ";
-                strSQL += oBean.toPairs();
-                strSQL += "SELECT COUNT(*) FROM " + ob + " c, usuario u, grupo g "
-                        + "WHERE g.id_usuario = ? AND u.id_grupo = g.id AND "
-                        + "u.id = c.id_usuario AND c.id = ?";
-//                () from usuario u,paciente p, grupo g where g.id_usuario =  ? (IDPROFESORENSESION) and  u.id_grupo = g.id and u.id = p.id_usuario and p.id =  ? (IDPACIENTEAMODIFICAR);
-                oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
-                oPreparedStatement.setInt(1, idUsuario);
-                oPreparedStatement.setInt(2, oBean.getId());
-                iResult = oPreparedStatement.executeUpdate();
-            }
-            if (iResult < 1) {
-                String msg = this.getClass().getName() + ": set";
-                Log4jHelper.errorLog(msg);
-                throw new Exception(msg);
-            }
-        } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
-        } finally {
-            if (insert) {
-                if (oResultSet != null) {
-                    oResultSet.close();
-                }
-            }
-            if (oPreparedStatement != null) {
-                oPreparedStatement.close();
-            }
-        }
-        return idResult;
+    @Override
+    public int remove(Integer id) throws Exception {
+        return 0;
     }
 
 }
