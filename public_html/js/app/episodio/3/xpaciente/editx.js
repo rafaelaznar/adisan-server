@@ -1,11 +1,16 @@
 /*
- * Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
+ * Copyright (c) 2017-2018 
  *
- * TROLLEYES helps you to learn how to develop easily AJAX web applications
+ * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
+ * 
+ * GESANE: Free Open Source Health Management System
  *
- * Sources at https://github.com/rafaelaznar/gesane-client
+ * Sources at:
+ *                            https://github.com/rafaelaznar/gesane-server
+ *                            https://github.com/rafaelaznar/gesane-client
+ *                            https://github.com/rafaelaznar/gesane-database
  *
- * TROLLEYES is distributed under the MIT License (MIT)
+ * GESANE is distributed under the MIT License (MIT)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,30 +30,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 'use strict';
 
-moduloSexo.controller('SexoRemove1Controller',
-        ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService',
-            function ($scope, $routeParams, serverCallService, $location, sessionService, constantService) {
-                $scope.ob = "sexo";
-                $scope.op = "remove";
-                $scope.profile = 1;
-                //---
+moduloEpisodio.controller('EpisodioxpacienteEdit3Controller',
+        ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
+            function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
+                $scope.ob = "episodio";
+                $scope.op = "editx";
+                $scope.profile = 3;
+                //----
                 $scope.id = $routeParams.id;
                 //---
-                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
+                $scope.xob = "paciente";
+                $scope.xid = $routeParams.xid;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
                 //---
+                if ($scope.xob && $scope.xid) {
+                    $scope.linkedbean = null;
+                    serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
+                        if (response.status == 200) {
+                            if (response.data.status == 200) {
+                                $scope.linkedbean = response.data.json;
+                            }
+                        }
+                    }).catch(function (data) {
+                    });
+                }
+
+
                 serverCallService.getOne($scope.ob, $scope.id).then(function (response) {
                     if (response.status == 200) {
                         if (response.data.status == 200) {
                             $scope.status = null;
                             $scope.bean = response.data.json.data;
                             $scope.metao = response.data.json.metaObject;
-                            $scope.metap = response.data.json.metaProperties;
+                            $scope.metap = response.data.json.metaProperties;                            
+                            $scope.metap = toolService.deleteForeignKey($scope.metap,"obj_usuario");
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -58,15 +77,15 @@ moduloSexo.controller('SexoRemove1Controller',
                 }).catch(function (data) {
                     $scope.status = "Error en la recepción de datos del servidor";
                 });
-                $scope.remove = function () {
-                    serverCallService.remove($scope.ob, $scope.id).then(function (response) {
+                //--
+                $scope.save = function () {
+                    var jsonToSend = {json: JSON.stringify(toolService.array_identificarArray($scope.bean))};
+                    serverCallService.set($scope.ob, jsonToSend).then(function (response) {
                         if (response.status == 200) {
                             if (response.data.status == 200) {
-                                if (response.data.json == 1) {
-                                    $scope.status = "El registro con id=" + $scope.id + " se ha eliminado.";
-                                } else {
-                                    $scope.status = "Error en el borrado de datos del servidor";
-                                }
+                                $scope.response = response;
+                                $scope.status = "El registro se ha creado con id=" + response.data.json;
+                                $scope.bean.id = response.data.json;
                             } else {
                                 $scope.status = "Error en la recepción de datos del servidor";
                             }
@@ -76,11 +95,14 @@ moduloSexo.controller('SexoRemove1Controller',
                     }).catch(function (data) {
                         $scope.status = "Error en la recepción de datos del servidor";
                     });
-                }
+                    ;
+                };
                 $scope.back = function () {
                     window.history.back();
                 };
                 $scope.close = function () {
                     $location.path('/home');
                 };
-            }]);
+            }
+        ]);
+

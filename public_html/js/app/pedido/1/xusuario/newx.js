@@ -3,7 +3,7 @@
  *
  * TROLLEYES helps you to learn how to develop easily AJAX web applications
  *
- * Sources at https://github.com/rafaelaznar/trolleyes
+ * Sources at https://github.com/rafaelaznar/gesane-client
  *
  * TROLLEYES is distributed under the MIT License (MIT)
  *

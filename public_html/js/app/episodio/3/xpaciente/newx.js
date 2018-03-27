@@ -1,11 +1,16 @@
 /*
- * Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
+ * Copyright (c) 2017-2018
  *
- * TROLLEYES helps you to learn how to develop easily AJAX web applications
+ * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
  *
- * Sources at https://github.com/rafaelaznar/gesane-client
+ * GESANE: Free Open Source Health Management System
  *
- * TROLLEYES is distributed under the MIT License (MIT)
+ * Sources at:
+ *                            https://github.com/rafaelaznar/gesane-server
+ *                            https://github.com/rafaelaznar/gesane-client
+ *                            https://github.com/rafaelaznar/gesane-database
+ *
+ * GESANE is distributed under the MIT License (MIT)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,17 +32,15 @@
  */
 'use strict';
 
-moduloCurso.controller('GrupoxcursoEdit1Controller',
+moduloEpisodio.controller('EpisodioxpacienteNew3Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
-                $scope.ob = "grupo";
-                $scope.op = "editx";
-                $scope.profile = 1;
-                //----
-                $scope.id = $routeParams.id;
+                $scope.ob = "episodio";
+                $scope.op = "newx";
+                $scope.profile = 3;
                 //---
-                $scope.xob = "curso";
-                $scope.xid = $routeParams.xid;
+                $scope.xob = "paciente";
+                $scope.xid = $routeParams.id;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
@@ -53,15 +56,39 @@ moduloCurso.controller('GrupoxcursoEdit1Controller',
                     }).catch(function (data) {
                     });
                 }
-
-
-                serverCallService.getOne($scope.ob, $scope.id).then(function (response) {
+                ;
+                serverCallService.getMeta($scope.ob).then(function (response) {
                     if (response.status == 200) {
                         if (response.data.status == 200) {
                             $scope.status = null;
-                            $scope.bean = response.data.json.data;
+                            //--For every foreign key create obj inside bean tobe filled...
+                            $scope.bean = {};
+                            response.data.json.metaProperties.forEach(function (property) {
+                                if (property.Type == 'ForeignObject') {
+                                    $scope.bean[property.Name] = {};
+                                    $scope.bean[property.Name].data = {};
+                                    if (property.Name == 'obj_' + $scope.xob) {
+                                        $scope.bean[property.Name].data.id = $scope.xid;
+                                    } else {
+                                        $scope.bean[property.Name].data.id = 0;
+                                    }
+                                }
+                            });
+                            //--
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_episodio");
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_factura");
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_circunstanciasalta");
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_destinoalta");
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_usuario");
+                            /////////
+                            $scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_episodio");
+                            $scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_factura");
+                            $scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_circunstanciasalta");
+                            $scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_destinoalta");
+                            $scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_usuario");
+
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }

@@ -3,7 +3,7 @@
  *
  * TROLLEYES helps you to learn how to develop easily AJAX web applications
  *
- * Sources at https://github.com/rafaelaznar/trolleyes
+ * Sources at https://github.com/rafaelaznar/gesane-client
  *
  * TROLLEYES is distributed under the MIT License (MIT)
  *
@@ -25,13 +25,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-trolleyes.config(['$locationProvider', function ($locationProvider) {
+gesane.config(['$locationProvider', function ($locationProvider) {
         $locationProvider.html5Mode({
             //requireBase: false,
             enabled: true
         });
     }]);
 //-------------
-trolleyes.config(['$httpProvider', function ($httpProvider) {
+gesane.config(['$httpProvider', function ($httpProvider) {
         $httpProvider.defaults.withCredentials = true;
     }]);
