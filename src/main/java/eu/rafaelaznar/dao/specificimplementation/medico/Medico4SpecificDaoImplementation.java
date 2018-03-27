@@ -39,10 +39,7 @@ import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementat
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
 
-/**
- *
- * @author a022583952e
- */
+
 public class Medico4SpecificDaoImplementation extends TableGenericDaoImplementation {
 
     private Integer idCentrosanitario = null;
@@ -73,6 +70,21 @@ public class Medico4SpecificDaoImplementation extends TableGenericDaoImplementat
     }
 
     @Override
+    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
+        return false;
+    }
+
+    @Override
+    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
+        return false;
+    }
+
+    @Override
+    public boolean canDelete(Integer id) throws Exception {
+        return false;
+    }
+
+    @Override
     public Integer create(TableGenericBeanImplementation oBean) throws Exception {
         return 0;
     }
@@ -83,10 +95,8 @@ public class Medico4SpecificDaoImplementation extends TableGenericDaoImplementat
     }
 
     @Override
-    public int delete(Integer id) throws Exception {
+    public Integer delete(Integer id) throws Exception {
         return 0;
     }
-
-
 
 }

@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017-2018
  *
  * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
+ *
  * GESANE: Free Open Source Health Management System
  *
  * Sources at:
@@ -37,13 +37,20 @@ import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 
 public interface TableDaoInterface extends ViewDaoInterface {
 
+    public boolean canGet(Integer id) throws Exception;
+
+    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception;
+
+    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception;
+
+    public boolean canDelete(Integer id) throws Exception;
+
     public MetaBeanHelper get(int id, int intExpand) throws Exception;
 
-    //public Integer set(TableGenericBeanImplementation oBean) throws Exception;
     public Integer create(TableGenericBeanImplementation oBean) throws Exception;
 
     public Integer update(TableGenericBeanImplementation oBean) throws Exception;
 
-    public int delete(Integer id) throws Exception;
+    public Integer delete(Integer id) throws Exception;
 
 }

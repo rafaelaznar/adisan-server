@@ -113,8 +113,11 @@ public abstract class ViewGenericBeanImplementation implements GenericBeanInterf
                                 String ob = getReferencesFromPropertyMetaData(oField);
                                 TableDaoInterface oObDao = (TableDaoInterface) DaoFactory.getDao(ob, oConnection, oPuserBean_security, null);
                                 TraceHelper.trace("Filling ForeignObject object=" + ob + ";id=" + oResultSet.getInt("id_" + ob));
-                                MetaBeanHelper oMetaBeanHelper = (MetaBeanHelper) oObDao.get(oResultSet.getInt("id_" + ob), expand - 1);
-                                oField.set(this, oMetaBeanHelper);
+                                Integer id = oResultSet.getInt("id_" + ob);
+                                if (id != null && id > 0) {
+                                    MetaBeanHelper oMetaBeanHelper = (MetaBeanHelper) oObDao.get(id, expand - 1);
+                                    oField.set(this, oMetaBeanHelper);
+                                }
                             } else {
                                 String ob = getReferencesFromPropertyMetaData(oField);
                                 TraceHelper.trace("Filling ForeignObject field=" + ob + "EoFieldpansion Limit Found!");

@@ -33,20 +33,30 @@
 package eu.rafaelaznar.dao.specificimplementation.usuario;
 
 import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
-import eu.rafaelaznar.bean.helper.FilterBeanHelper;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
-import eu.rafaelaznar.bean.meta.helper.MetaObjectGenericBeanHelper;
-import eu.rafaelaznar.bean.meta.helper.MetaPropertyGenericBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 
 public class Usuario5SpecificDaoImplementation extends TableGenericDaoImplementation {
 
     public Usuario5SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("usuario", oPooledConnection, oPuserBean_security, strWhere);
+    }
+
+    @Override
+    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
+        return false;
+    }
+
+    @Override
+    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
+        return false;
+    }
+
+    @Override
+    public boolean canDelete(Integer id) throws Exception {
+        return false;
     }
 
     @Override
@@ -70,38 +80,38 @@ public class Usuario5SpecificDaoImplementation extends TableGenericDaoImplementa
     }
 
     @Override
-    public int delete(Integer id) throws Exception {
+    public Integer delete(Integer id) throws Exception {
         return 0;
     }
 
-    @Override
-    public Long getCount(ArrayList<FilterBeanHelper> alFilter) throws Exception {
-        return null;
-    }
-
-    @Override
-    public MetaBeanHelper getPage(int intRegsPerPag, int intPage, LinkedHashMap<String, String> hmOrder, ArrayList<FilterBeanHelper> alFilter, int expand) throws Exception {
-        return null;
-    }
-
-    @Override
-    public MetaBeanHelper getPageX(int id_foreign, String ob_foreign, int intRegsPerPag, int intPage, LinkedHashMap<String, String> hmOrder, ArrayList<FilterBeanHelper> alFilter, int expand) throws Exception {
-        return null;
-    }
-
-    @Override
-    public Long getCountX(int id_foreign, String ob_foreign, ArrayList<FilterBeanHelper> alFilter) throws Exception {
-        return null;
-    }
-
-    @Override
-    public MetaObjectGenericBeanHelper getObjectMetaData() throws Exception {
-        return null;
-    }
-
-    @Override
-    public ArrayList<MetaPropertyGenericBeanHelper> getPropertiesMetaData() throws Exception {
-        return null;
-    }
+//    @Override
+//    public Long getCount(ArrayList<FilterBeanHelper> alFilter) throws Exception {
+//        return null;
+//    }
+//
+//    @Override
+//    public MetaBeanHelper getPage(int intRegsPerPag, int intPage, LinkedHashMap<String, String> hmOrder, ArrayList<FilterBeanHelper> alFilter, int expand) throws Exception {
+//        return null;
+//    }
+//
+//    @Override
+//    public MetaBeanHelper getPageX(int id_foreign, String ob_foreign, int intRegsPerPag, int intPage, LinkedHashMap<String, String> hmOrder, ArrayList<FilterBeanHelper> alFilter, int expand) throws Exception {
+//        return null;
+//    }
+//
+//    @Override
+//    public Long getCountX(int id_foreign, String ob_foreign, ArrayList<FilterBeanHelper> alFilter) throws Exception {
+//        return null;
+//    }
+//
+//    @Override
+//    public MetaObjectGenericBeanHelper getObjectMetaData() throws Exception {
+//        return null;
+//    }
+//
+//    @Override
+//    public ArrayList<MetaPropertyGenericBeanHelper> getPropertiesMetaData() throws Exception {
+//        return null;
+//    }
 
 }

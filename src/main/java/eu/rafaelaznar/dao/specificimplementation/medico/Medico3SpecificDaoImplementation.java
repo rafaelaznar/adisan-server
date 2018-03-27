@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017-2018
  *
  * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
+ *
  * GESANE: Free Open Source Health Management System
  *
  * Sources at:
@@ -35,6 +35,7 @@ package eu.rafaelaznar.dao.specificimplementation.medico;
 import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.MedicoSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
@@ -68,20 +69,47 @@ public class Medico3SpecificDaoImplementation extends TableGenericDaoImplementat
     }
 
     @Override
+    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
+        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+        MedicoSpecificBeanImplementation oNewMedico = (MedicoSpecificBeanImplementation) oBean;
+        MedicoSpecificBeanImplementation oOldMedico = (MedicoSpecificBeanImplementation) this.get(oNewMedico.getId(), 0).getBean();
+        if (oOldMedico.getId_centrosanitario().equals(oSessionUser.getId_centrosanitario())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean canDelete(Integer id) throws Exception {
+        return false;
+    }
+
+    @Override
     public Integer create(TableGenericBeanImplementation oBean) throws Exception {
-        //puedo crear un medico en mi centro sanitario
-        return 0;
+        //se puede crear un medico en el centro sanitario del profesor
+        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+        MedicoSpecificBeanImplementation oNewMedico = (MedicoSpecificBeanImplementation) oBean;
+        oNewMedico.setId_centrosanitario(oSessionUser.getId_centrosanitario());
+        return super.create(oBean);
     }
 
     @Override
     public Integer update(TableGenericBeanImplementation oBean) throws Exception {
-        //puedo modificar un medico de mi centro sanitario
-        return 0;
+        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+        MedicoSpecificBeanImplementation oNewMedico = (MedicoSpecificBeanImplementation) oBean;
+        MedicoSpecificBeanImplementation oOldMedico = (MedicoSpecificBeanImplementation) this.get(oNewMedico.getId(), 0).getBean();
+        if (oOldMedico.getId_centrosanitario().equals(oSessionUser.getId_centrosanitario())) {
+            oNewMedico.setId_centrosanitario(oSessionUser.getId_centrosanitario());
+            return super.update(oBean);
+        } else {
+            return 0;
+        }
     }
 
     @Override
-    public int delete(Integer id) throws Exception {
-        //puedo borrar un medico en mi centro sanitario si no tiene episodios
+    public Integer delete(Integer id) throws Exception {
+        //para borrar un medico que contacten con el administrador
         return 0;
     }
 

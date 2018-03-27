@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017-2018
  *
  * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
+ *
  * GESANE: Free Open Source Health Management System
  *
  * Sources at:
@@ -44,6 +44,21 @@ public class Episodio0SpecificDaoImplementation extends TableGenericDaoImplement
     }
 
     @Override
+    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
+        return false;
+    }
+
+    @Override
+    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
+        return false;
+    }
+
+    @Override
+    public boolean canDelete(Integer id) throws Exception {
+        return false;
+    }
+
+    @Override
     public Integer create(TableGenericBeanImplementation oBean) throws Exception {
         return 0;
     }
@@ -54,7 +69,7 @@ public class Episodio0SpecificDaoImplementation extends TableGenericDaoImplement
     }
 
     @Override
-    public int delete(Integer id) throws Exception {
+    public Integer delete(Integer id) throws Exception {
         return 0;
     }
 }

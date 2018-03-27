@@ -39,10 +39,23 @@ import java.sql.Connection;
 
 public class Tiposervicio0SpecificDaoImplementation extends TableGenericDaoImplementation {
 
-
-    
     public Tiposervicio0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("tiposervicio", oPooledConnection, oPuserBean_security, strWhere);
+    }
+
+    @Override
+    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
+        return false;
+    }
+
+    @Override
+    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
+        return false;
+    }
+
+    @Override
+    public boolean canDelete(Integer id) throws Exception {
+        return false;
     }
 
     @Override
@@ -56,7 +69,7 @@ public class Tiposervicio0SpecificDaoImplementation extends TableGenericDaoImple
     }
 
     @Override
-    public int delete(Integer id) throws Exception {
+    public Integer delete(Integer id) throws Exception {
         return 0;
     }
 }

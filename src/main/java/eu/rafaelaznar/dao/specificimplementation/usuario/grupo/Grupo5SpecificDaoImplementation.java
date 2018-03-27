@@ -54,7 +54,7 @@ public class Grupo5SpecificDaoImplementation extends TableGenericDaoImplementati
     }
 
     @Override
-    public int delete(Integer id) throws Exception {
+    public Integer delete(Integer id) throws Exception {
         return 0;
     }
 }

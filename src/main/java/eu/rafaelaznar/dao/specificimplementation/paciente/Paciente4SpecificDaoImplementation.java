@@ -80,6 +80,16 @@ public class Paciente4SpecificDaoImplementation extends TableGenericDaoImplement
     }
 
     @Override
+    public boolean canDelete(Integer id) throws Exception {
+        PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) this.get(id, 0).getBean();
+        if (oPacienteBean.getId_usuario() == idUsuario) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
     public Integer create(TableGenericBeanImplementation oBean) throws Exception {
         PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oBean;
         oPacienteBean.setId_usuario(idUsuario);
@@ -89,11 +99,18 @@ public class Paciente4SpecificDaoImplementation extends TableGenericDaoImplement
     @Override
     public Integer update(TableGenericBeanImplementation oBean) throws Exception {
         PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oBean;
-        if (oPacienteBean.getId() == idUsuario) {
-            return super.create(oPacienteBean);
+        oPacienteBean.setId_usuario(idUsuario);
+        return super.create(oPacienteBean);
+
+    }
+
+    @Override
+    public Integer delete(Integer id) throws Exception {
+        PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) this.get(id, 0).getBean();
+        if (oPacienteBean.getId_usuario() == idUsuario) {
+            return super.delete(id);
         } else {
             return 0;
         }
     }
-
 }

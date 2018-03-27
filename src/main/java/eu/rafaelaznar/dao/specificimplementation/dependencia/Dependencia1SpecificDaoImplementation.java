@@ -36,13 +36,9 @@ import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
 
-/**
- *
- * @author a022583952e
- */
 public class Dependencia1SpecificDaoImplementation extends TableGenericDaoImplementation {
-    
-     public Dependencia1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
+
+    public Dependencia1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("dependencia", oPooledConnection, oPuserBean_security, strWhere);
     }
 }

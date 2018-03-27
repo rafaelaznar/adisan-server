@@ -61,6 +61,31 @@ public class Grupo3SpecificDaoImplementation extends TableGenericDaoImplementati
     }
 
     @Override
+    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
+        return true;
+    }
+
+    @Override
+    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
+        GrupoSpecificBeanImplementation oGrupo = (GrupoSpecificBeanImplementation) this.get(oBean.getId(), 0).getBean();
+        if (oGrupo.getId_usuario().equals(idUsuario)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean canDelete(Integer id) throws Exception {
+        GrupoSpecificBeanImplementation oGrupo = (GrupoSpecificBeanImplementation) this.get(id, 0).getBean();
+        if (oGrupo.getId().equals(idUsuario)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
     public Integer create(TableGenericBeanImplementation oBean) throws Exception {
         UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
         GrupoSpecificBeanImplementation oNewGrupo = (GrupoSpecificBeanImplementation) oBean;
@@ -73,12 +98,16 @@ public class Grupo3SpecificDaoImplementation extends TableGenericDaoImplementati
         UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
         GrupoSpecificBeanImplementation oUpdateGrupo = (GrupoSpecificBeanImplementation) oBean;
         //pte falta comprobar que el grupo sea efectivamente de ese profe
-        oUpdateGrupo.setId_usuario(oSessionUser.getId());
-        return super.create(oBean);
+        if (oUpdateGrupo.getId_usuario().equals(idUsuario)) {
+            oUpdateGrupo.setId_usuario(oSessionUser.getId());
+            return super.create(oBean);
+        } else {
+            return 0;
+        }
     }
 
     @Override
-    public int delete(Integer id) throws Exception {
+    public Integer delete(Integer id) throws Exception {
         GrupoSpecificBeanImplementation oGrupo = (GrupoSpecificBeanImplementation) this.get(id, 0).getBean();
         if (oGrupo.getId().equals(idUsuario)) {
             return super.delete(id);

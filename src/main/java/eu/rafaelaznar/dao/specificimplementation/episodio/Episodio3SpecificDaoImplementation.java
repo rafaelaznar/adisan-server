@@ -40,10 +40,6 @@ import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementat
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
 
-/**
- *
- * @author a022583952e
- */
 public class Episodio3SpecificDaoImplementation extends TableGenericDaoImplementation {
 
     private Integer idCentrosanitario = null;
@@ -54,7 +50,7 @@ public class Episodio3SpecificDaoImplementation extends TableGenericDaoImplement
 
         if (oPuserBean_security != null) {
             UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
-            idUsuario=oUsuario.getId();
+            idUsuario = oUsuario.getId();
             if (oUsuario.getId() > 1) {
                 String strSQLini = "";
 
@@ -78,63 +74,70 @@ public class Episodio3SpecificDaoImplementation extends TableGenericDaoImplement
             }
         }
 
-//        UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
-//        idUsuario = oUsuario.getId();
-//        idCentrosanitario = oUsuario.getId_centrosanitario();
-//        strSQL = "SELECT e.* FROM episodio e, usuario u WHERE e.id_usuario = u.id and u.id_centrosanitario = "+ idCentrosanitario + " ";
-//        strCountSQL = "SELECT count(*) FROM episodio e, usuario u WHERE e.id_usuario = u.id and u.id_centrosanitario = "+ idCentrosanitario + " ";
+    }
+
+    private boolean alumnoIsMine(Integer idAlumno) throws Exception {
+        String strSQLini = "SELECT COUNT(*) "
+                + "FROM usuario u, grupo g "
+                + "where u.id_grupo=g.id "
+                + "and g.id_usuario=" + idUsuario + " "
+                + "and u.id=" + idAlumno;
+        return countSQL(strSQLini);
     }
 
     @Override
-    public Integer set(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
+        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+        EpisodioSpecificBeanImplementation oNewEpisodio = (EpisodioSpecificBeanImplementation) oBean;
+        EpisodioSpecificBeanImplementation oOldEpisodio = (EpisodioSpecificBeanImplementation) this.get(oNewEpisodio.getId(), 0).getBean();
+        if (oOldEpisodio.getId_usuario().equals(oSessionUser.getId()) || alumnoIsMine(oOldEpisodio.getId_usuario())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean canDelete(Integer id) throws Exception {
+        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+        EpisodioSpecificBeanImplementation oOldEpisodio = (EpisodioSpecificBeanImplementation) this.get(id, 0).getBean();
+        if (oOldEpisodio.getId_usuario().equals(oSessionUser.getId()) || alumnoIsMine(oOldEpisodio.getId_usuario())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public Integer create(TableGenericBeanImplementation oBean) throws Exception {
         EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oBean;
         oEpisodioBean.setId_usuario(idUsuario);
-        return super.set(oEpisodioBean);
+        return super.create(oEpisodioBean);
     }
-    
-    
-    
+
+    @Override
+    public Integer update(TableGenericBeanImplementation oBean) throws Exception {
+        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+        EpisodioSpecificBeanImplementation oNewEpisodio = (EpisodioSpecificBeanImplementation) oBean;
+        EpisodioSpecificBeanImplementation oOldEpisodio = (EpisodioSpecificBeanImplementation) this.get(oNewEpisodio.getId(), 0).getBean();
+        if (oOldEpisodio.getId_usuario().equals(oSessionUser.getId()) || alumnoIsMine(oOldEpisodio.getId_usuario())) {
+            return super.create(oBean);
+        } else {
+            return 0;
+        }
+
+    }
+
     //puede borrar un episodio suyo o de sus alumnos
-    
-    
-    
+    @Override
+    public Integer delete(Integer id) throws Exception {
+        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+        EpisodioSpecificBeanImplementation oOldEpisodio = (EpisodioSpecificBeanImplementation) this.get(id, 0).getBean();
+        if (oOldEpisodio.getId_usuario().equals(oSessionUser.getId()) || alumnoIsMine(oOldEpisodio.getId_usuario())) {
+            return super.delete(id);
+        } else {
+            return 0;
+        }
 
-//    @Override
-//    public MetaBeanHelper get(int id, int intExpand) throws Exception {
-//        PreparedStatement oPreparedStatement = null;
-//        ResultSet oResultSet = null;
-//        strSQL += " AND e.id=? ";
-//        TableGenericBeanImplementation oBean = null;
-//        MetaBeanHelper oMetaBeanHelper = null;
-//        try {
-//            oPreparedStatement = oConnection.prepareStatement(strSQL);
-//            oPreparedStatement.setInt(1, id);
-//            oResultSet = oPreparedStatement.executeQuery();
-//            oBean = (TableGenericBeanImplementation) BeanFactory.getBean(ob, oPuserSecurity);;
-//            if (oResultSet.next()) {
-//                oBean = (TableGenericBeanImplementation) oBean.fill(oResultSet, oConnection, oPuserSecurity, intExpand);
-//            } else {
-//                oBean.setId(0);
-//            }
-//            ArrayList<MetaPropertyGenericBeanHelper> alMetaProperties = this.getPropertiesMetaData();
-//            MetaObjectGenericBeanHelper oMetaObject = this.getObjectMetaData();
-//            oMetaBeanHelper = new MetaBeanHelper(oMetaObject, alMetaProperties, oBean);
-//        } catch (Exception ex) {
-//            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-//            Log4jHelper.errorLog(msg, ex);
-//            throw new Exception(msg, ex);
-//        } finally {
-//            if (oResultSet != null) {
-//                oResultSet.close();
-//            }
-//            if (oPreparedStatement != null) {
-//                oPreparedStatement.close();
-//            }
-//
-//        }
-//        return oMetaBeanHelper;
-//    }
-
-
-
+    }
 }

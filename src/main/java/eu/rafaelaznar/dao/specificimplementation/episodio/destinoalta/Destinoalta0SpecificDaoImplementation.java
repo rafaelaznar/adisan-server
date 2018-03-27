@@ -42,6 +42,22 @@ public class Destinoalta0SpecificDaoImplementation extends TableGenericDaoImplem
     public Destinoalta0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("destinoalta", oPooledConnection, oPuserBean_security, strWhere);
     }
+
+    @Override
+    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
+        return false;
+    }
+
+    @Override
+    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
+        return false;
+    }
+
+    @Override
+    public boolean canDelete(Integer id) throws Exception {
+        return false;
+    }
+
     @Override
     public Integer create(TableGenericBeanImplementation oBean) throws Exception {
         return 0;
@@ -53,7 +69,7 @@ public class Destinoalta0SpecificDaoImplementation extends TableGenericDaoImplem
     }
 
     @Override
-    public int delete(Integer id) throws Exception {
+    public Integer delete(Integer id) throws Exception {
         return 0;
     }
 }

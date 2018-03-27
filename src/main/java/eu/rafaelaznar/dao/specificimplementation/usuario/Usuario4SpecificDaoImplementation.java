@@ -86,6 +86,21 @@ public class Usuario4SpecificDaoImplementation extends Usuario1SpecificDaoImplem
     }
 
     @Override
+    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
+        return false;
+    }
+
+    @Override
+    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
+        return false;
+    }
+
+    @Override
+    public boolean canDelete(Integer id) throws Exception {
+        return false;
+    }
+
+    @Override
     public Integer create(TableGenericBeanImplementation oBean) throws Exception {
         return 0;
     }
@@ -94,8 +109,9 @@ public class Usuario4SpecificDaoImplementation extends Usuario1SpecificDaoImplem
     public Integer update(TableGenericBeanImplementation oBean) throws Exception {
         return 0;
     }
-        @Override
-    public int delete(Integer id) throws Exception {
+
+    @Override
+    public Integer delete(Integer id) throws Exception {
         return 0;
     }
 }

@@ -32,6 +32,7 @@
  */
 package eu.rafaelaznar.dao.specificimplementation.dependencia;
 
+import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.GrupoSpecificBeanImplementation;
@@ -41,10 +42,6 @@ import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import eu.rafaelaznar.helper.Log4jHelper;
 import java.sql.Connection;
 
-/**
- *
- * @author a022583952e
- */
 public class Dependencia4SpecificDaoImplementation extends TableGenericDaoImplementation {
 
     private Integer idCentrosanitario = 0;
@@ -71,7 +68,7 @@ public class Dependencia4SpecificDaoImplementation extends TableGenericDaoImplem
                     strSQL += " " + strWhere + " ";
                     strCountSQL += " " + strWhere + " ";
                 }
-           } else {
+            } else {
                 String msg = this.getClass().getName() + ": constuctor: Unauthorized access";
                 Log4jHelper.errorLog(msg);
                 throw new Exception(msg);
@@ -82,46 +79,35 @@ public class Dependencia4SpecificDaoImplementation extends TableGenericDaoImplem
             throw new Exception(msg);
         }
 
-//        UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
-//        idUsuario = oUsuario.getId();
-//        idCentrosanitario = oUsuario.getId_centrosanitario();
-//
-//        strSQL = "SELECT * FROM dependencia d, tipodependencia td WHERE d.id_tipodependencia = td.id AND d.id_centrosanitario = " + idCentrosanitario;
     }
 
-//    @Override
-//    public MetaBeanHelper get(int id, int intExpand) throws Exception {
-//        PreparedStatement oPreparedStatement = null;
-//        ResultSet oResultSet = null;
-//        strSQL += " AND d.id=? ";
-//        TableGenericBeanImplementation oBean = null;
-//        MetaBeanHelper oMetaBeanHelper = null;
-//        try {
-//            oPreparedStatement = oConnection.prepareStatement(strSQL);
-//            oPreparedStatement.setInt(1, id);
-//            oResultSet = oPreparedStatement.executeQuery();
-//            oBean = (TableGenericBeanImplementation) BeanFactory.getBean(ob, oPuserSecurity);
-//            if (oResultSet.next()) {
-//                oBean = (TableGenericBeanImplementation) oBean.fill(oResultSet, oConnection, oPuserSecurity, intExpand);
-//            } else {
-//                oBean.setId(0);
-//            }
-//            ArrayList<MetaPropertyGenericBeanHelper> alMetaProperties = this.getPropertiesMetaData();
-//            MetaObjectGenericBeanHelper oMetaObject = this.getObjectMetaData();
-//            oMetaBeanHelper = new MetaBeanHelper(oMetaObject, alMetaProperties, oBean);
-//        } catch (Exception ex) {
-//            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-//            Log4jHelper.errorLog(msg, ex);
-//            throw new Exception(msg, ex);
-//        } finally {
-//            if (oResultSet != null) {
-//                oResultSet.close();
-//            }
-//            if (oPreparedStatement != null) {
-//                oPreparedStatement.close();
-//            }
-//
-//        }
-//        return oMetaBeanHelper;
-//    }
+    @Override
+    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
+        return false;
+    }
+
+    @Override
+    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
+        return false;
+    }
+
+    @Override
+    public boolean canDelete(Integer id) throws Exception {
+        return false;
+    }
+
+    @Override
+    public Integer create(TableGenericBeanImplementation oBean) throws Exception {
+        return 0;
+    }
+
+    @Override
+    public Integer update(TableGenericBeanImplementation oBean) throws Exception {
+        return 0;
+    }
+
+    @Override
+    public Integer delete(Integer id) throws Exception {
+        return 0;
+    }
 }

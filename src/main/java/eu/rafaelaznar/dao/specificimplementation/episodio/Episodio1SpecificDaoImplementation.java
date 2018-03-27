@@ -32,10 +32,7 @@
  */
 package eu.rafaelaznar.dao.specificimplementation.episodio;
 
-import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
-import eu.rafaelaznar.bean.specificimplementation.EpisodioSpecificBeanImplementation;
-import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
 
@@ -45,11 +42,4 @@ public class Episodio1SpecificDaoImplementation extends TableGenericDaoImplement
         super("episodio", oPooledConnection, oPuserBean_security, strWhere);
     }
     
-    @Override
-    public Integer set(TableGenericBeanImplementation oBean) throws Exception {
-        UsuarioSpecificBeanImplementation oUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
-        EpisodioSpecificBeanImplementation oEpisodio = (EpisodioSpecificBeanImplementation) oBean;
-        oEpisodio.setId_usuario(oUser.getId());
-        return super.set(oEpisodio);        
-    }
 }

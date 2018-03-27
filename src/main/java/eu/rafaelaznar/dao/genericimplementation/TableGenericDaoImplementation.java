@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017-2018
  *
  * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
+ *
  * GESANE: Free Open Source Health Management System
  *
  * Sources at:
@@ -50,6 +50,26 @@ public abstract class TableGenericDaoImplementation extends ViewGenericDaoImplem
 
     public TableGenericDaoImplementation(String ob, Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super(ob, oPooledConnection, oPuserBean_security, strWhere);
+    }
+
+    @Override
+    public boolean canGet(Integer id) throws Exception {
+        return true;
+    }
+
+    @Override
+    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
+        return true;
+    }
+
+    @Override
+    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
+        return true;
+    }
+
+    @Override
+    public boolean canDelete(Integer id) throws Exception {
+        return true;
     }
 
     @Override
@@ -161,7 +181,7 @@ public abstract class TableGenericDaoImplementation extends ViewGenericDaoImplem
     }
 
     @Override
-    public int delete(Integer id) throws Exception {
+    public Integer delete(Integer id) throws Exception {
         TraceHelper.trace("remove-TableGenericDaoImplementation(begin):object=" + ob);
         int iResult = 0;
         strSQL = "DELETE FROM " + ob + " WHERE id=?";

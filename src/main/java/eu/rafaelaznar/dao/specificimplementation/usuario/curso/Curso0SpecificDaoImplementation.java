@@ -44,17 +44,17 @@ public class Curso0SpecificDaoImplementation extends TableGenericDaoImplementati
     }
 
     @Override
-    public Integer create(TableGenericBeanImplementation oBean) throws Exception {
-        return 0;
+    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
+        return false;
     }
 
     @Override
-    public Integer update(TableGenericBeanImplementation oBean) throws Exception {
-        return 0;
+    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
+        return false;
     }
 
     @Override
-    public int delete(Integer id) throws Exception {
-        return 0;
+    public boolean canDelete(Integer id) throws Exception {
+        return false;
     }
 }

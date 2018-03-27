@@ -78,9 +78,6 @@ public class Paciente3SpecificDaoImplementation extends TableGenericDaoImplement
                 }
             }
         }
-
-//        strSQL = "SELECT p.id, p.dni, p.nombre, p.primer_apellido, p.segundo_apellido, p.direccion, p.ciudad, p.codigo_postal, p.provincia, p.pais, p.email, p.telefono1, p.telefono2, p.nombre_padre, p.nombre_madre, p.fecha_nacimiento, p.ciudad_nacimiento, p.pais_nacimiento, p.sip_aseguradora, p.id_tipopago, p.id_sexo, p.id_usuario FROM paciente p, usuario u WHERE p.id_usuario = u.id AND u.id_centrosanitario = 1 UNION SELECT p.id, p.dni, p.nombre, p.primer_apellido, p.segundo_apellido, p.direccion, p.ciudad, p.codigo_postal, p.provincia, p.pais, p.email, p.telefono1, p.telefono2, p.nombre_padre, p.nombre_madre, p.fecha_nacimiento, p.ciudad_nacimiento, p.pais_nacimiento, p.sip_aseguradora, p.id_tipopago, p.id_sexo, p.id_usuario  FROM paciente p, usuario u, grupo g, usuario u2 WHERE p.id_usuario = u.id AND u.id_tipousuario=4 and u.id_grupo=g.id and g.id_usuario=u2.id and u2.id_centrosanitario= " + idCentrosanitario;        
-//        strCountSQL = "SELECT COUNT(*) FROM paciente p, usuario u WHERE p.id_usuario = u.id AND u.id_centrosanitario = " + idCentrosanitario;
     }
 
     private boolean canModify(Integer id) throws Exception {
@@ -140,7 +137,7 @@ public class Paciente3SpecificDaoImplementation extends TableGenericDaoImplement
     }
 
     @Override
-    public int delete(Integer id) throws Exception {
+    public Integer delete(Integer id) throws Exception {
         if (this.canModify(id)) {
             return super.delete(id);
         } else {

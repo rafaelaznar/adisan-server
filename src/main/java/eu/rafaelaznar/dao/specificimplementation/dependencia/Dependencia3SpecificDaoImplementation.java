@@ -35,14 +35,12 @@ package eu.rafaelaznar.dao.specificimplementation.dependencia;
 import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.DependenciaSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import eu.rafaelaznar.helper.Log4jHelper;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 public class Dependencia3SpecificDaoImplementation extends TableGenericDaoImplementation {
 
@@ -77,113 +75,34 @@ public class Dependencia3SpecificDaoImplementation extends TableGenericDaoImplem
             Log4jHelper.errorLog(msg);
             throw new Exception(msg);
         }
-
-//        if (oPuserBean_security != null) {
-//            UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
-//            idUsuario = oUsuario.getId();
-//            if (oUsuario.getId() > 1) {
-//                String strSQLini = "";
-//                CentrosanitarioSpecificBeanImplementation oCentroSanitario = (CentrosanitarioSpecificBeanImplementation) oUsuario.getObj_centrosanitario().getBean();
-//                idCentrosanitario = oCentroSanitario.getId();
-//                strSQLini = "SELECT * FROM dependencia d WHERE AND d.id_centrosanitario = " + idCentrosanitario;
-//                strSQL = "SELECT * " + strSQLini;
-//                strCountSQL = "SELECT COUNT(*) " + strSQLini;
-//                if (strWhere != null) {
-//                    strSQL += " " + strWhere + " ";
-//                    strCountSQL += " " + strWhere + " ";
-//                }
-//            }
-//
-//        }
     }
 
-//    @Override
-//    public MetaBeanHelper get(int id, int intExpand) throws Exception {
-//        PreparedStatement oPreparedStatement = null;
-//        ResultSet oResultSet = null;
-//        strSQL += " AND d.id=? ";
-//        TableGenericBeanImplementation oBean = null;
-//        MetaBeanHelper oMetaBeanHelper = null;
-//        try {
-//            oPreparedStatement = oConnection.prepareStatement(strSQL);
-//            oPreparedStatement.setInt(1, id);
-//            oResultSet = oPreparedStatement.executeQuery();
-//            oBean = (TableGenericBeanImplementation) BeanFactory.getBean(ob,oPuserSecurity);
-//            if (oResultSet.next()) {
-//                oBean = (TableGenericBeanImplementation) oBean.fill(oResultSet, oConnection, oPuserSecurity, intExpand);
-//            } else {
-//                oBean.setId(0);
-//            }
-//            ArrayList<MetaPropertyGenericBeanHelper> alMetaProperties = this.getPropertiesMetaData();
-//            MetaObjectGenericBeanHelper oMetaObject = this.getObjectMetaData();
-//            oMetaBeanHelper = new MetaBeanHelper(oMetaObject, alMetaProperties, oBean);
-//        } catch (Exception ex) {
-//            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-//            Log4jHelper.errorLog(msg, ex);
-//            throw new Exception(msg, ex);
-//        } finally {
-//            if (oResultSet != null) {
-//                oResultSet.close();
-//            }
-//            if (oPreparedStatement != null) {
-//                oPreparedStatement.close();
-//            }
-//
-//        }
-//        return oMetaBeanHelper;
-//    }
     @Override
-    public Integer set(TableGenericBeanImplementation oBean) throws Exception {
-        PreparedStatement oPreparedStatement = null;
-        ResultSet oResultSet = null;
-        Integer iResult = 0;
-        Integer idResult = 0;
-        Boolean insert = true;
-        try {
-            if (oBean.getId() == null || oBean.getId() == 0) {
-                strSQL = "INSERT INTO " + ob;
-                strSQL += "(" + oBean.getColumns() + ")";
-                strSQL += " VALUES ";
-                strSQL += "(" + oBean.getValues() + ")";
-                oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
-                iResult = oPreparedStatement.executeUpdate();
-                oResultSet = oPreparedStatement.getGeneratedKeys();
-                oResultSet.next();
-                idResult = oResultSet.getInt(1);
-                strSQL = "UPDATE " + ob + " SET id_centrosanitario=" + idCentrosanitario + " WHERE id=" + idResult;
-                oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
-                oPreparedStatement.executeUpdate();
-
-            } else {
-
-                insert = false;
-                strSQL = "UPDATE " + ob;
-                strSQL += " SET ";
-                strSQL += oBean.toPairs();
-                strSQL += " WHERE id=? ";
-                oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
-                oPreparedStatement.setInt(1, oBean.getId());
-                iResult = oPreparedStatement.executeUpdate();
-            }
-            if (iResult < 1) {
-                String msg = this.getClass().getName() + ": set";
-                Log4jHelper.errorLog(msg);
-                throw new Exception(msg);
-            }
-        } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
-        } finally {
-            if (insert) {
-                if (oResultSet != null) {
-                    oResultSet.close();
-                }
-            }
-            if (oPreparedStatement != null) {
-                oPreparedStatement.close();
-            }
-        }
-        return idResult;
+    public boolean canDelete(Integer id) throws Exception {
+        return false;
     }
+
+    @Override
+    public Integer create(TableGenericBeanImplementation oBean) throws Exception {
+        //se puede crear una dependencia en el centro sanitario del porfesor
+        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+        DependenciaSpecificBeanImplementation oNewDependencia = (DependenciaSpecificBeanImplementation) oBean;
+        oNewDependencia.setId_centrosanitario(oSessionUser.getId_centrosanitario());
+        return super.create(oBean);
+    }
+
+    @Override
+    public Integer update(TableGenericBeanImplementation oBean) throws Exception {
+        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+        DependenciaSpecificBeanImplementation oNewDependencia = (DependenciaSpecificBeanImplementation) oBean;
+        oNewDependencia.setId_centrosanitario(oSessionUser.getId_centrosanitario());
+        return super.update(oBean);
+    }
+
+    @Override
+    public Integer delete(Integer id) throws Exception {
+        //para borrar una dependencia que contacten con el administrador
+        return 0;
+    }
+
 }

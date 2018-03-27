@@ -84,7 +84,7 @@ public abstract class ViewGenericDaoImplementation extends MetaGenericDaoImpleme
                 oPreparedStatement.close();
             }
             TraceHelper.trace("getCount-ViewGenericDaoImplementation(end):object=" + ob);
-        }        
+        }
         return iResult;
     }
 
@@ -124,7 +124,7 @@ public abstract class ViewGenericDaoImplementation extends MetaGenericDaoImpleme
                 oPreparedStatement.close();
             }
             TraceHelper.trace("getPage-ViewGenericDaoImplementation(end):object=" + ob);
-        }        
+        }
         return oMetaBeanHelper;
     }
 
@@ -165,7 +165,7 @@ public abstract class ViewGenericDaoImplementation extends MetaGenericDaoImpleme
                 oPreparedStatement.close();
             }
             TraceHelper.trace("getPageX-ViewGenericDaoImplementation(end):object=" + ob);
-        }        
+        }
         return oMetaBeanHelper;
     }
 
@@ -201,8 +201,37 @@ public abstract class ViewGenericDaoImplementation extends MetaGenericDaoImpleme
                 oPreparedStatement.close();
             }
             TraceHelper.trace("getCountX-ViewGenericDaoImplementation(end):object=" + ob);
-        }        
+        }
         return iResult;
+    }
+
+    protected boolean countSQL(String strSQLini) throws Exception {
+        PreparedStatement oPreparedStatement = null;
+        ResultSet oResultSet = null;
+        Long iResult = 0L;
+        try {
+            oPreparedStatement = oConnection.prepareStatement(strSQLini);
+            oResultSet = oPreparedStatement.executeQuery();
+            if (oResultSet.next()) {
+                iResult = oResultSet.getLong("COUNT(*)");
+            } else {
+                String msg = this.getClass().getName() + ": getcount";
+                Log4jHelper.errorLog(msg);
+                throw new Exception(msg);
+            }
+        } catch (Exception ex) {
+            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
+            Log4jHelper.errorLog(msg, ex);
+            throw new Exception(msg, ex);
+        } finally {
+            if (oResultSet != null) {
+                oResultSet.close();
+            }
+            if (oPreparedStatement != null) {
+                oPreparedStatement.close();
+            }
+        }
+        return iResult > 0;
     }
 
 }
