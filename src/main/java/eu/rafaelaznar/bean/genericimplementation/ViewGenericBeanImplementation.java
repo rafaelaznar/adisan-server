@@ -117,6 +117,8 @@ public abstract class ViewGenericBeanImplementation implements GenericBeanInterf
                                 if (id != null && id > 0) {
                                     MetaBeanHelper oMetaBeanHelper = (MetaBeanHelper) oObDao.get(id, expand - 1);
                                     oField.set(this, oMetaBeanHelper);
+                                } else {
+                                    oField.set(this, null);
                                 }
                             } else {
                                 String ob = getReferencesFromPropertyMetaData(oField);

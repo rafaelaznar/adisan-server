@@ -103,7 +103,7 @@ public abstract class TableGenericServiceImplementation extends ViewGenericServi
             oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
             oConnection = oPooledConnection.newConnection();
             TableDaoInterface oDao = (TableDaoInterface) DaoFactory.getDao(ob, oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
-            if (oBean.getId() == 0) {
+            if (oBean.getId() == null || oBean.getId() == 0) {
                 iResult = oDao.create(oBean);
             } else {
                 iResult = oDao.update(oBean);
