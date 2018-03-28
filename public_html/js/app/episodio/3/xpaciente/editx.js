@@ -32,12 +32,12 @@
  */
 'use strict';
 
-moduloEpisodio.controller('EpisodioxpacienteEdit1Controller',
+moduloEpisodio.controller('EpisodioxpacienteEdit3Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
                 $scope.ob = "episodio";
                 $scope.op = "editx";
-                $scope.profile = 1;
+                $scope.profile = 3;
                 //----
                 $scope.id = $routeParams.id;
                 //---
@@ -66,7 +66,8 @@ moduloEpisodio.controller('EpisodioxpacienteEdit1Controller',
                             $scope.status = null;
                             $scope.bean = response.data.json.data;
                             $scope.metao = response.data.json.metaObject;
-                            $scope.metap = response.data.json.metaProperties;
+                            $scope.metap = response.data.json.metaProperties;                            
+                            $scope.metap = toolService.deleteForeignKey($scope.metap,"obj_usuario");
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }

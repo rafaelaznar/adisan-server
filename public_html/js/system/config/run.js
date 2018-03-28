@@ -3,7 +3,7 @@
  *
  * TROLLEYES helps you to learn how to develop easily AJAX web applications
  *
- * Sources at https://github.com/rafaelaznar/trolleyes
+ * Sources at https://github.com/rafaelaznar/gesane-client
  *
  * TROLLEYES is distributed under the MIT License (MIT)
  *
@@ -25,7 +25,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-trolleyes.run(function ($rootScope, $location, sessionService) {
+gesane.run(function ($rootScope, $location, sessionService) {
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
         //here's where we notify the auth service with the
         //url where user wants to go

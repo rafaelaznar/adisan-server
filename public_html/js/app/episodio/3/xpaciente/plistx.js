@@ -31,12 +31,12 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloEpisodio.controller('EpisodioxpacientePList1Controller',
+moduloEpisodio.controller('EpisodioxpacientePList3Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
                 $scope.ob = "episodio";
                 $scope.op = "plistx";
-                $scope.profile = 1;
+                $scope.profile = 3;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();

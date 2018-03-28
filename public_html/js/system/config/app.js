@@ -32,7 +32,7 @@
  */
 'use strict';
 
-var trolleyes = angular.module('myApp', [
+var gesane = angular.module('myApp', [
     'ngRoute',
     'Filters',
     'Services',

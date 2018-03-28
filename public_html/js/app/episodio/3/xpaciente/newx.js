@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017-2018
  *
  * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
+ *
  * GESANE: Free Open Source Health Management System
  *
  * Sources at:
@@ -32,12 +32,12 @@
  */
 'use strict';
 
-moduloEpisodio.controller('EpisodioxpacienteNew1Controller',
+moduloEpisodio.controller('EpisodioxpacienteNew3Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
                 $scope.ob = "episodio";
                 $scope.op = "newx";
-                $scope.profile = 1;
+                $scope.profile = 3;
                 //---
                 $scope.xob = "paciente";
                 $scope.xid = $routeParams.id;
@@ -51,7 +51,6 @@ moduloEpisodio.controller('EpisodioxpacienteNew1Controller',
                         if (response.status == 200) {
                             if (response.data.status == 200) {
                                 $scope.linkedbean = response.data.json;
-                                $scope.linkedbean2 = response.data.json.data.obj_usuario;
                             }
                         }
                     }).catch(function (data) {
@@ -78,6 +77,18 @@ moduloEpisodio.controller('EpisodioxpacienteNew1Controller',
                             //--
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_episodio");
+                            //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_factura");
+                            //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_circunstanciasalta");
+                            //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_destinoalta");
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_usuario");
+                            /////////
+                            $scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_episodio");
+                            //$scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_factura");
+                            //$scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_circunstanciasalta");
+                            //$scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_destinoalta");
+                            $scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_usuario");
+                            
 
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
