@@ -69,5 +69,5 @@ public @interface MetaPropertyBeanInterface {
 
     public int MaxLength() default 255;
 
-
+    public boolean IsFormVisible() default true;
 }

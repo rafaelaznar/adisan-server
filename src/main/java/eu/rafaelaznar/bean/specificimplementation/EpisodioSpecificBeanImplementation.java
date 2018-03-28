@@ -43,7 +43,8 @@ import java.util.Date;
 
 /**
  *
- * @author a022583952e
+ * pendiente: falta el campo ingreso con subtabla periférica para la procedencia del ingreso
+ * 
  */
 @MetaObjectBeanInterface(
         TableName = "episodio",
@@ -248,7 +249,8 @@ public class EpisodioSpecificBeanImplementation extends TableGenericBeanImplemen
             IsRequired = false,
             References = "episodio",
             Width = 4,
-            IsVisible = false
+            IsVisible = false,
+            IsFormVisible = false
     )
     private MetaBeanHelper obj_episodio = null;
 
@@ -324,7 +326,8 @@ public class EpisodioSpecificBeanImplementation extends TableGenericBeanImplemen
             IsRequired = true,
             References = "usuario",
             Width = 4,
-            IsVisible = false
+            IsVisible = false,
+            IsFormVisible = false
     )
     private MetaBeanHelper obj_usuario = null;
 

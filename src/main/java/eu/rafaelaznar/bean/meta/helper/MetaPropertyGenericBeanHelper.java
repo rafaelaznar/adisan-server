@@ -71,6 +71,8 @@ public class MetaPropertyGenericBeanHelper {
     private Integer Width = 2;
     @Expose
     private Integer MaxLength = 255;
+    @Expose
+    private boolean IsFormVisible = true;    
 
     public String getName() {
         return Name;
@@ -206,6 +208,14 @@ public class MetaPropertyGenericBeanHelper {
 
     public void setMaxLength(Integer MaxLength) {
         this.MaxLength = MaxLength;
+    }
+
+    public boolean isIsFormVisible() {
+        return IsFormVisible;
+    }
+
+    public void setIsFormVisible(boolean IsFormVisible) {
+        this.IsFormVisible = IsFormVisible;
     }
 
 }

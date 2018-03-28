@@ -103,6 +103,7 @@ public abstract class MetaGenericDaoImplementation implements MetaDaoInterface {
                         oMeta.setIsVisible(fieldAnnotation.IsVisible());
                         oMeta.setWidth(fieldAnnotation.Width());
                         oMeta.setMaxLength(fieldAnnotation.MaxLength());
+                        oMeta.setIsFormVisible(fieldAnnotation.IsFormVisible());
                         alVector.add(oMeta);
                     }
                 }
