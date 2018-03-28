@@ -32,6 +32,8 @@
  */
 'use strict';
 
+//para crear un nuevo subepisodio a partir del clip del listado de episodios de un paciente
+
 moduloEpisodio.controller('EpisodioxpacienteNew3Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
@@ -77,17 +79,17 @@ moduloEpisodio.controller('EpisodioxpacienteNew3Controller',
                             //--
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
-                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_episodio"); //porque es un episodio principal
+                            //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_episodio");
                             //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_factura");
                             //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_circunstanciasalta");
                             //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_destinoalta");
-                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_usuario"); //el usuario se mete automaticamente en el servidor
+                            //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_usuario");
                             /////////
-                            $scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_episodio");
+                            //$scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_episodio");
                             //$scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_factura");
                             //$scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_circunstanciasalta");
                             //$scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_destinoalta");
-                            $scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_usuario");
+                            //$scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_usuario");
                             
 
                         } else {

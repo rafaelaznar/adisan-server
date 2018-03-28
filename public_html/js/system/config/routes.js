@@ -217,7 +217,7 @@ gesane.config(['$routeProvider', function ($routeProvider) {
         //-- foreign key xpaciente
         $routeProvider.when('/episodio/3/xpaciente/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioxpacienteNew3Controller', resolve: {auth: authentication3Promise}});
         $routeProvider.when('/episodio/3/xpaciente/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioxpacienteEdit3Controller', resolve: {auth: authentication3Promise}});
-        $routeProvider.when('/episodio/3/xpaciente/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'EpisodioxpacientePList3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/episodio/3/xpaciente/plistx/:id/:page?/:rpp?', {templateUrl: 'js/app/episodio/3/xpaciente/plist.html', controller: 'EpisodioxpacientePList3Controller', resolve: {auth: authentication3Promise}});
 
 
 
