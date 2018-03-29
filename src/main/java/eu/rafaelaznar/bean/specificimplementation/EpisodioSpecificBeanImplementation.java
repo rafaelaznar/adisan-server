@@ -537,9 +537,9 @@ public class EpisodioSpecificBeanImplementation extends TableGenericBeanImplemen
             LongName = "Subepisodios del episodio",
             Description = "Subepisodios del episodio",
             Type = EnumHelper.FieldType.Link,
-            References = "episodio"
+            References = "subepisodio"
     )
-    private Integer link_episodio = null;
+    private Integer link_subepisodio = null;
 
     //    @Expose(deserialize = false)
 //    @MetaPropertyBeanInterface(

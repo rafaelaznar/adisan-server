@@ -55,8 +55,8 @@ import eu.rafaelaznar.dao.specificimplementation.dependencia.Dependencia5Specifi
 import eu.rafaelaznar.dao.specificimplementation.dependencia.tipodependencia.Tipodependencia0SpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.medico.especialidad.Especialidad1SpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.episodio.destinoalta.Destinoalta1SpecificDaoImplementation;
-import eu.rafaelaznar.dao.specificimplementation.episodio.Episodio3SpecificDaoImplementation;
-import eu.rafaelaznar.dao.specificimplementation.episodio.Episodio1SpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.subepisodio.Subepisodio3SpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.subepisodio.Subepisodio1SpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.episodio.factura.Factura1SpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.usuario.grupo.Grupo4SpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.usuario.grupo.Grupo3SpecificDaoImplementation;
@@ -73,8 +73,13 @@ import eu.rafaelaznar.dao.specificimplementation.paciente.tipopago.Tipopago1Spec
 import eu.rafaelaznar.dao.specificimplementation.paciente.sexo.Sexo1SpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.dependencia.tipodependencia.Tipodependencia1SpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.episodio.Episodio0SpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.episodio.Episodio1SpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.episodio.Episodio3SpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.episodio.Episodio4SpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.episodio.Episodio5SpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.subepisodio.Subepisodio0SpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.subepisodio.Subepisodio4SpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.subepisodio.Subepisodio5SpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.episodio.circunstanciasalta.Circunstanciasalta0SpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.episodio.destinoalta.Destinoalta0SpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.episodio.factura.Factura0SpecificDaoImplementation;
@@ -441,6 +446,35 @@ public class DaoFactory {
 
                 }
                 break;
+            case "subepisodio":
+                if (oPuserBean_security == null) {
+                    oDao = (MetaDaoInterface) new Subepisodio0SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                    break;
+                } else {
+                    UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
+                    MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_tipousuario();
+                    TipousuarioSpecificBeanImplementation oTipoUsuario = (TipousuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
+                    Integer idTipousuario = oTipoUsuario.getId();
+                    switch (idTipousuario) {
+                        case 1:
+                            oDao = (MetaDaoInterface) new Subepisodio1SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                            break;
+                        case 3:
+                            oDao = (MetaDaoInterface) new Subepisodio3SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                            break;
+                        case 4:
+                            oDao = (MetaDaoInterface) new Subepisodio4SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                            break;
+                        case 5:
+                            oDao = (MetaDaoInterface) new Subepisodio5SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                            break;
+                        default:
+                            oDao = (MetaDaoInterface) new Subepisodio0SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                            break;
+                    }
+
+                }
+                break;                
             case "tipoepisodio":
                 if (oPuserBean_security == null) {
                     oDao = (MetaDaoInterface) new Tipoepisodio0SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);

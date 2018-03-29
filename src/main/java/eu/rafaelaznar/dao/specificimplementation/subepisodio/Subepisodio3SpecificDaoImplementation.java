@@ -30,7 +30,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.rafaelaznar.dao.specificimplementation.episodio;
+package eu.rafaelaznar.dao.specificimplementation.subepisodio;
 
 import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
@@ -40,12 +40,12 @@ import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementat
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
 
-public class Episodio3SpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Subepisodio3SpecificDaoImplementation extends TableGenericDaoImplementation {
 
     private Integer idCentrosanitario = null;
     private Integer idUsuario;
 
-    public Episodio3SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
+    public Subepisodio3SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("episodio", oPooledConnection, oPuserBean_security, strWhere);
 
         if (oPuserBean_security != null) {
@@ -56,7 +56,7 @@ public class Episodio3SpecificDaoImplementation extends TableGenericDaoImplement
 
                 CentrosanitarioSpecificBeanImplementation oCentroSanitario = (CentrosanitarioSpecificBeanImplementation) oUsuario.getObj_centrosanitario().getBean();
                 idCentrosanitario = oCentroSanitario.getId();
-                strSQLini = "FROM episodio where 1=1 and (id_episodio=NULL OR id_episodio=0) "
+                strSQLini = "FROM episodio where 1=1 "
                         + "AND (id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=3 ) "
                         + " OR  id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=5 ) "
                         + " OR  id_usuario IN (SELECT distinct u.id FROM usuario u, grupo g, usuario u2 "
