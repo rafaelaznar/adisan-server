@@ -82,14 +82,16 @@ moduloEpisodio.controller('SubepisodioxpacientexepisodioNew3Controller',
                                 if (property.Type == 'ForeignObject') {
                                     $scope.bean[property.Name] = {};
                                     $scope.bean[property.Name].data = {};
+                                    var propertyset = false;
                                     if (property.Name == 'obj_' + $scope.xob) {
                                         $scope.bean[property.Name].data.id = $scope.xid;
-                                    } else {
-                                        $scope.bean[property.Name].data.id = 0;
+                                        propertyset = true;
                                     }
                                     if (property.Name == 'obj_' + $scope.yob) {
                                         $scope.bean[property.Name].data.id = $scope.yid;
-                                    } else {
+                                        propertyset = true;
+                                    }
+                                    if (!propertyset) {
                                         $scope.bean[property.Name].data.id = 0;
                                     }
                                 }

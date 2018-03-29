@@ -31,17 +31,17 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloEpisodio.controller('EpisodioxpacientePList3Controller',
+moduloEpisodio.controller('SubepisodioxepisodioPList3Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
-                $scope.ob = "episodio";
+                $scope.ob = "subepisodio";
                 $scope.op = "plistx";
                 $scope.profile = 3;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
                 //----
-                $scope.xob = "paciente";
+                $scope.xob = "episodio";
                 $scope.xid = $routeParams.id;
                 //----
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op + $scope.xob + '/' + $routeParams.id;
@@ -53,18 +53,17 @@ moduloEpisodio.controller('EpisodioxpacientePList3Controller',
                 $scope.orderParams = toolService.checkEmptyString($routeParams.order);
                 $scope.filterParams = toolService.checkEmptyString($routeParams.filter);
                 //---
-
                 function getDataFromServer() {
                     $scope.linkedbean = null;
                     $scope.linkedbean2 = null;
-
                     serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
                         if ($scope.xob && $scope.xid) {
                             serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
                                 if (response.status == 200) {
                                     if (response.data.status == 200) {
                                         $scope.linkedbean = response.data.json;
-                                        $scope.linkedbean2 = response.data.json.data.obj_usuario;
+                                        $scope.linkedbean2 = response.data.json.data.obj_paciente;
+                                        $scope.linkedbean3 = response.data.json.data.obj_usuario;
                                     }
                                 }
                             }).catch(function (data) {
@@ -85,6 +84,13 @@ moduloEpisodio.controller('EpisodioxpacientePList3Controller',
                             $scope.page = response.data.json.data;
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
+                            
+                            
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "link_subepisodio");
+                            /////////
+                            //$scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_episodio");
+                            
+                            
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }

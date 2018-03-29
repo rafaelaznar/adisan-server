@@ -240,11 +240,12 @@ gesane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/episodio/4/xepisodio/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioxepisodioEdit4Controller', resolve: {auth: authentication4Promise}});
         $routeProvider.when('/episodio/4/xepisodio/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'EpisodioxepisodioPList4Controller', resolve: {auth: authentication4Promise}});
 
-
-
         //----Episodio 5 visitante --
         $routeProvider.when('/episodio/5/xcircunstanciasalta/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'EpisodioxcircunstanciasaltaPList5Controller', resolve: {auth: authentication5Promise}});
 
+        //--
+        $routeProvider.when('/subepisodio/3/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'SubepisodioView3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/subepisodio/3/xepisodio/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'SubepisodioxepisodioPList3Controller', resolve: {auth: authentication3Promise}});
 
 
         //--
