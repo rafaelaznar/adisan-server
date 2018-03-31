@@ -32,8 +32,8 @@
  */
 'use strict';
 moduloEpisodio.controller('EpisodioxpacientePList3Controller',
-        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
-            function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
+        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService', '$filter',
+            function ($scope, $routeParams, $location, serverCallService, toolService, constantService, $filter) {
                 $scope.ob = "episodio";
                 $scope.op = "plistx";
                 $scope.profile = 3;
@@ -102,9 +102,53 @@ moduloEpisodio.controller('EpisodioxpacientePList3Controller',
                 $scope.close = function () {
                     $location.path('/home');
                 };
-                $scope.setShowRemove = function (show) {
-                    $scope.showRemove = show;
-                };
+
+
+
+
+                //--------------------------------------------------------------
+                $scope.showViewButton = function (oBean) {
+                    return true;
+                }
+                $scope.showEditButton = function (oBean) {
+                    return true;
+                }
+                $scope.showRemoveButton = function (oBean) {
+                    if (oBean.link_subepisodio > 0) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
+                $scope.showOtherButton = function (oBean) {
+                    return true;
+                }
+                $scope.goViewURL = function (oBean) {
+                    $location.path($scope.ob + "/" + $scope.profile + "/view/" + oBean.id);
+                }
+                $scope.goEditURL = function (oBean) {
+                    $location.path($scope.ob + "/" + $scope.profile + "/edit/" + oBean.id);
+                }
+                $scope.goRemoveURL = function (oBean) {
+                    $location.path($scope.ob + "/" + $scope.profile + "/remove/" + oBean.id);
+                }
+                $scope.includeExtraButtons = function () {
+                    return "js/app/episodio/3/xpaciente/plistExtraButtons.html"
+                }
+                //--------------------------------------------------------------
+
+                function renderLinkHtml(linkedbean)
+                {
+                    //necesita inyección de $filter
+                    var icon = '<span class="' + linkedbean.metaObject.Icon + '"></span>';
+                    var link = '<a href="' + linkedbean.metaObject.TableName + '/' + $scope.profile + '/view/' + linkedbean.data.id + '"> ' + icon + ' ' + linkedbean.metaObject.SingularDescription + ': ' + $filter('getForeignDescription')(linkedbean) + '</a>';
+                    return '<h3 class="bg-info">' + link + '<h3>';
+                }
+                $scope.renderLinksHtml = function (html_code) {
+                    return renderLinkHtml($scope.linkedbean);
+                }
+
+
                 getDataFromServer();
             }
         ]);

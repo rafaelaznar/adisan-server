@@ -1,16 +1,11 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
  *
- * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
- * GESANE: Free Open Source Health Management System
+ * TROLLEYES helps you to learn how to develop easily AJAX web applications
  *
- * Sources at:
- *                            https://github.com/rafaelaznar/gesane-server
- *                            https://github.com/rafaelaznar/gesane-client
- *                            https://github.com/rafaelaznar/gesane-database
+ * Sources at https://github.com/rafaelaznar/gesane-client
  *
- * GESANE is distributed under the MIT License (MIT)
+ * TROLLEYES is distributed under the MIT License (MIT)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,15 +26,20 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloCentro.controller('CentroPList3Controller',
-        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
-            function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
-                $scope.ob = "centro";
-                $scope.op = "plist";
+moduloUsuario.controller('UsuarioxcentroPList3Controller',
+        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService', '$filter',
+            function ($scope, $routeParams, $location, serverCallService, toolService, constantService, $filter) {
+                $scope.ob = "usuario";
+                $scope.op = "plistx";
                 $scope.profile = 3;
-                //----
                 //---
-                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
+                $scope.status = null;
+                $scope.debugging = constantService.debugging();
+                //----
+                $scope.xob = "centro";
+                $scope.xid = $routeParams.id;
+                //----
+                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op + $scope.xob + '/' + $routeParams.id;
                 //----
                 $scope.numpage = toolService.checkDefault(1, $routeParams.page);
                 $scope.rpp = toolService.checkDefault(10, $routeParams.rpp);
@@ -48,18 +48,28 @@ moduloCentro.controller('CentroPList3Controller',
                 $scope.orderParams = toolService.checkEmptyString($routeParams.order);
                 $scope.filterParams = toolService.checkEmptyString($routeParams.filter);
                 //---
-                $scope.status = null;
-                $scope.debugging = constantService.debugging();
-                //---
                 function getDataFromServer() {
-                    serverCallService.getCount($scope.ob, $scope.filterParams).then(function (response) {
+                    $scope.linkedbean = null;
+                    $scope.linkedbean2 = null;
+                    serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
+                        if ($scope.xob && $scope.xid) {
+                            serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
+                                if (response.status == 200) {
+                                    if (response.data.status == 200) {
+                                        $scope.linkedbean = response.data.json;
+                                        $scope.linkedbean2 = response.data.json.data.obj_usuario;
+                                    }
+                                }
+                            }).catch(function (data) {
+                            });
+                        }
                         if (response.status == 200) {
                             $scope.registers = response.data.json;
                             $scope.pages = toolService.calculatePages($scope.rpp, $scope.registers);
                             if ($scope.numpage > $scope.pages) {
                                 $scope.numpage = $scope.pages;
                             }
-                            return serverCallService.getPage($scope.ob, $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order);
+                            return serverCallService.getPageX($scope.ob, $scope.xob, $scope.xid, $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order);
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -87,17 +97,21 @@ moduloCentro.controller('CentroPList3Controller',
                 };
 
 
+
+
                 //--------------------------------------------------------------
                 $scope.showViewButton = function (oBean) {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {
-                    return false;
+                    return true;
                 }
                 $scope.showRemoveButton = function (oBean) {
-
-                    return false;
-
+                    if (oBean.link_paciente > 0||oBean.obj_tipousuario.data.id==3) {
+                        return false;
+                    } else {
+                        return true;
+                    }
                 }
                 $scope.showOtherButton = function (oBean) {
                     return false;
@@ -111,6 +125,22 @@ moduloCentro.controller('CentroPList3Controller',
                 $scope.goRemoveURL = function (oBean) {
                     $location.path($scope.ob + "/" + $scope.profile + "/remove/" + oBean.id);
                 }
+//                $scope.includeExtraButtons = function () {
+//                    return "js/app/episodio/3/xpaciente/plistExtraButtons.html"
+//                }
+                //--------------------------------------------------------------
+
+                function renderLinkHtml(linkedbean)
+                {
+                    //necesita inyección de $filter
+                    var icon = '<span class="' + linkedbean.metaObject.Icon + '"></span>';
+                    var link = '<a href="' + linkedbean.metaObject.TableName + '/' + $scope.profile + '/view/' + linkedbean.data.id + '"> ' + icon + ' ' + linkedbean.metaObject.SingularDescription + ': ' + $filter('getForeignDescription')(linkedbean) + '</a>';
+                    return '<h3 class="bg-info">' + link + '<h3>';
+                }
+                $scope.renderLinksHtml = function (html_code) {
+                    return renderLinkHtml($scope.linkedbean);
+                }
+
 
 
 

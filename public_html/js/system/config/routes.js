@@ -76,7 +76,8 @@ gesane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/usuario/3/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'UsuarioEdit3Controller', resolve: {auth: authentication3Promise}});
         $routeProvider.when('/usuario/3/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'UsuarioRemove3Controller', resolve: {auth: authentication3Promise}});
         $routeProvider.when('/usuario/3/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'UsuarioPList3Controller', resolve: {auth: authentication3Promise}});
-
+        $routeProvider.when('/usuario/3/xgrupo/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'UsuarioxgrupoPList3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/usuario/3/xcentro/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'UsuarioxcentroPList3Controller', resolve: {auth: authentication3Promise}});
 
         //------------5
         $routeProvider.when('/usuario/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'UsuarioView5Controller', resolve: {auth: authentication5Promise}});
@@ -207,7 +208,7 @@ gesane.config(['$routeProvider', function ($routeProvider) {
         //-- foreign key xpaciente
         $routeProvider.when('/episodio/3/xpaciente/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioxpacienteNew3Controller', resolve: {auth: authentication3Promise}});
         $routeProvider.when('/episodio/3/xpaciente/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioxpacienteEdit3Controller', resolve: {auth: authentication3Promise}});
-        $routeProvider.when('/episodio/3/xpaciente/plistx/:id/:page?/:rpp?', {templateUrl: 'js/app/episodio/3/xpaciente/plistx.html', controller: 'EpisodioxpacientePList3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/episodio/3/xpaciente/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'EpisodioxpacientePList3Controller', resolve: {auth: authentication3Promise}});
         //-- foreign key xepisodio
         $routeProvider.when('/episodio/3/xepisodio/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioxepisodioNew3Controller', resolve: {auth: authentication3Promise}});
         $routeProvider.when('/episodio/3/xepisodio/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioxepisodioEdit3Controller', resolve: {auth: authentication3Promise}});
@@ -243,9 +244,16 @@ gesane.config(['$routeProvider', function ($routeProvider) {
         //----Episodio 5 visitante --
         $routeProvider.when('/episodio/5/xcircunstanciasalta/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'EpisodioxcircunstanciasaltaPList5Controller', resolve: {auth: authentication5Promise}});
 
-        //--
+        //-- Subepisodio 3
         $routeProvider.when('/subepisodio/3/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'SubepisodioView3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/subepisodio/3/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'SubepisodioRemove3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/subepisodio/3/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'SubepisodioEdit3Controller', resolve: {auth: authentication3Promise}});
         $routeProvider.when('/subepisodio/3/xepisodio/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'SubepisodioxepisodioPList3Controller', resolve: {auth: authentication3Promise}});
+
+
+
+
+
 
 
         //--
@@ -366,6 +374,30 @@ gesane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/paciente/1/xusuario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'PacienteXusuarioPList1Controller', resolve: {auth: authentication1Promise}});
         $routeProvider.when('/paciente/1/xusuario/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacienteXusuarioNew1Controller', resolve: {auth: authentication1Promise}});
         $routeProvider.when('/paciente/1/xusuario/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacienteXusuarioEdit1Controller', resolve: {auth: authentication1Promise}});
+        //-----------paciente 3
+        $routeProvider.when('/paciente/3/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacienteEdit3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/paciente/3/new/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacienteNew3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/paciente/3/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'PacientePList3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/paciente/3/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'PacienteView3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/paciente/3/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'PacienteRemove3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/paciente/3/xusuario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'PacienteXusuarioPList3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/paciente/3/xusuario/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacienteXusuarioNew3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/paciente/3/xusuario/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacienteXusuarioEdit3Controller', resolve: {auth: authentication3Promise}});
+
+        //-----------paciente 4
+        $routeProvider.when('/paciente/4/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacienteEdit4Controller', resolve: {auth: authentication4Promise}});
+        $routeProvider.when('/paciente/4/new/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacienteNew4Controller', resolve: {auth: authentication4Promise}});
+        $routeProvider.when('/paciente/4/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'PacienteView4Controller', resolve: {auth: authentication4Promise}});
+        $routeProvider.when('/paciente/4/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'PacientePList4Controller', resolve: {auth: authentication4Promise}});
+        $routeProvider.when('/paciente/4/xusuario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'PacientexusuarioList4Controller', resolve: {auth: authentication4Promise}});
+        $routeProvider.when('/paciente/4/xusuario/newx/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacienteNew4Controller', resolve: {auth: authentication4Promise}});
+        $routeProvider.when('/paciente/4/xsexo/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'PacientexsexoPList4Controller', resolve: {auth: authentication4Promise}});
+        $routeProvider.when('/paciente/4/xsexo/newx/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacientexsexoNew4Controller', resolve: {auth: authentication4Promise}});
+        $routeProvider.when('/paciente/4/xtipopago/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'PacientextipopagoPList4Controller', resolve: {auth: authentication4Promise}});
+        $routeProvider.when('/paciente/4/xtipopago/newx/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacientextipopagoNew4Controller', resolve: {auth: authentication4Promise}});
+        //-----------paciente 5
+        $routeProvider.when('/paciente/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'PacienteView5Controller', resolve: {auth: authentication5Promise}});
+        $routeProvider.when('/paciente/5/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'PacientePList5Controller', resolve: {auth: authentication5Promise}});
 
         //----Grupo 1 admin --
         $routeProvider.when('/grupo/1/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'GrupoPList1Controller', resolve: {auth: authentication1Promise}});
@@ -383,6 +415,9 @@ gesane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/grupo/1/xusuario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'GrupoxusuarioPList1Controller', resolve: {auth: authentication1Promise}});
 
         $routeProvider.when('/grupo/3/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'GrupoView3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/grupo/3/new/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'GrupoNew3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/grupo/3/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'GrupoEdit3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/grupo/3/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'GrupoRemove3Controller', resolve: {auth: authentication3Promise}});
         $routeProvider.when('/grupo/3/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'GrupoPList3Controller', resolve: {auth: authentication3Promise}});
         $routeProvider.when('/grupo/4/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'GrupoView4Controller', resolve: {auth: authentication4Promise}});
         $routeProvider.when('/grupo/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'GrupoView5Controller', resolve: {auth: authentication5Promise}});
@@ -403,29 +438,6 @@ gesane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/curso/4/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'CursoView4Controller', resolve: {auth: authentication4Promise}});
         //-----------
         $routeProvider.when('/curso/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'CursoView5Controller', resolve: {auth: authentication5Promise}});
-        //-----------paciente 3
-        $routeProvider.when('/paciente/3/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacienteEdit3Controller', resolve: {auth: authentication3Promise}});
-        $routeProvider.when('/paciente/3/new/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacienteNew3Controller', resolve: {auth: authentication3Promise}});
-        $routeProvider.when('/paciente/3/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'PacientePList3Controller', resolve: {auth: authentication3Promise}});
-        $routeProvider.when('/paciente/3/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'PacienteView3Controller', resolve: {auth: authentication3Promise}});
-        $routeProvider.when('/paciente/3/xusuario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'PacienteXusuarioPList3Controller', resolve: {auth: authentication3Promise}});
-        $routeProvider.when('/paciente/3/xusuario/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacienteXusuarioNew3Controller', resolve: {auth: authentication3Promise}});
-        $routeProvider.when('/paciente/3/xusuario/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacienteXusuarioEdit3Controller', resolve: {auth: authentication3Promise}});
-
-        //-----------paciente 4
-        $routeProvider.when('/paciente/4/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacienteEdit4Controller', resolve: {auth: authentication4Promise}});
-        $routeProvider.when('/paciente/4/new/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacienteNew4Controller', resolve: {auth: authentication4Promise}});
-        $routeProvider.when('/paciente/4/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'PacienteView4Controller', resolve: {auth: authentication4Promise}});
-        $routeProvider.when('/paciente/4/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'PacientePList4Controller', resolve: {auth: authentication4Promise}});
-        $routeProvider.when('/paciente/4/xusuario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'PacientexusuarioList4Controller', resolve: {auth: authentication4Promise}});
-        $routeProvider.when('/paciente/4/xusuario/newx/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacienteNew4Controller', resolve: {auth: authentication4Promise}});
-        $routeProvider.when('/paciente/4/xsexo/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'PacientexsexoPList4Controller', resolve: {auth: authentication4Promise}});
-        $routeProvider.when('/paciente/4/xsexo/newx/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacientexsexoNew4Controller', resolve: {auth: authentication4Promise}});
-        $routeProvider.when('/paciente/4/xtipopago/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'PacientextipopagoPList4Controller', resolve: {auth: authentication4Promise}});
-        $routeProvider.when('/paciente/4/xtipopago/newx/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'PacientextipopagoNew4Controller', resolve: {auth: authentication4Promise}});
-        //-----------paciente 5
-        $routeProvider.when('/paciente/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'PacienteView5Controller', resolve: {auth: authentication5Promise}});
-        $routeProvider.when('/paciente/5/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'PacientePList5Controller', resolve: {auth: authentication5Promise}});
 
         // ------ Centro
         $routeProvider.when('/centro/1/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'CentroPList1Controller', resolve: {auth: authentication1Promise}});

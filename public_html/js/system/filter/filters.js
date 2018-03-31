@@ -174,7 +174,14 @@ moduloFiltros
                 var formatedDate = $filter('date')(newDate, 'EEEE, dd \'de\' MMMM \'de\' yyyy');
                 return formatedDate;
             };
-        });
+        })
+        .filter('trusted',
+                function ($sce) {
+                    return function (ss) {
+                        return $sce.trustAsHtml(ss)
+                    };
+                }
+        );
 ;
 
 //angular.module('Filters').filter('uppercaseo', function ($filter)

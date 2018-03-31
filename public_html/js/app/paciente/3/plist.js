@@ -32,7 +32,7 @@
  */
 'use strict';
 moduloPaciente.controller('PacientePList3Controller',
-        ['$scope', '$routeParams', '$http', '$location', 'serverCallService', 'toolService', 'constantService', 'sessionService',
+        ['$scope', '$http', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService', 'sessionService',
             function ($scope, $http, $routeParams, $location, serverCallService, toolService, constantService, sessionService) {
                 $scope.ob = "paciente";
                 $scope.op = "plist";
@@ -51,17 +51,9 @@ moduloPaciente.controller('PacientePList3Controller',
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
                 //---
-                $scope.idseve = false;
-                $scope.iduser = 0;
-                $scope.veredit = true;
+
 
                 function getDataFromServer() {
-                    //error gordo: esta llamada jamas se debe hacer ya que está prgramada en sessionService
-//                    serverCallService.getSession("usuario").then(function (response) {
-//                        if (response.status == 200) {
-//                            $scope.iduser = response.data.json.data.id;
-//                        }
-//                    });
                     serverCallService.getCount($scope.ob, $scope.filterParams).then(function (response) {
                         if (response.status == 200) {
                             $scope.registers = response.data.json;
@@ -95,23 +87,38 @@ moduloPaciente.controller('PacientePList3Controller',
                 $scope.close = function () {
                     $location.path('/home');
                 };
-                $scope.setShowRemove = function (show) {
-                    $scope.showRemove = show;
-                };
-                $scope.showEdit = function (oBean) {
 
-                    //se ha de hacer así
-                    $scope.sesiondata = sessionService.getSessionInfo();
-                    $scope.iduserobean = $scope.sesiondata.id;
+                //--------------
 
-
-//                    $scope.iduserobean = oBean.obj_usuario.data.id;
-                    if ($scope.iduserobean == $scope.iduser) {
-                        $scope.idseve = true;
+                $scope.showViewButton = function (oBean) {
+                    return true;
+                }
+                $scope.showEditButton = function (oBean) {
+                    return true;
+                }
+                $scope.showRemoveButton = function (oBean) {
+                    if (oBean.link_episodio > 0) {
+                        return false;
                     } else {
-                        $scope.idseve = false;
+                        return true;
                     }
-                };
+                }
+                $scope.showOtherButton = function (oBean) {
+                    return false;
+                }
+                $scope.goViewURL = function (oBean) {
+                    $location.path($scope.ob + "/" + $scope.profile + "/view/" + oBean.id);
+                }
+                $scope.goEditURL = function (oBean) {
+                    $location.path($scope.ob + "/" + $scope.profile + "/edit/" + oBean.id);
+                }
+                $scope.goRemoveURL = function (oBean) {
+                    $location.path($scope.ob + "/" + $scope.profile + "/remove/" + oBean.id);
+                }
+//                $scope.includeExtraButtons = function (oBean) {
+//                    return "js/app/paciente/3/botones.html"
+//                }
+                //-------------
                 getDataFromServer();
             }
         ]);

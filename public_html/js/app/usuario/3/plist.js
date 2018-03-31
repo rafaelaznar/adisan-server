@@ -33,7 +33,7 @@
 'use strict';
 moduloUsuario.controller('UsuarioPList3Controller',
         ['$scope', '$routeParams', '$http', '$location', 'serverCallService', 'toolService', 'constantService', 'sessionService',
-            function ($scope, $http, $routeParams, $location, serverCallService, toolService, constantService, sessionService) {
+            function ($scope, $routeParams, $http, $location, serverCallService, toolService, constantService, sessionService) {
                 $scope.ob = "usuario";
                 $scope.op = "plist";
                 $scope.profile = 3;
@@ -94,20 +94,54 @@ moduloUsuario.controller('UsuarioPList3Controller',
                 $scope.close = function () {
                     $location.path('/home');
                 };
-                $scope.setShowRemove = function (show) {
-                    $scope.showRemove = show;
-                };
-                $scope.showEdit = function (oBean) {
-                    //se ha de hacer así
-                    $scope.sesiondata = sessionService.getSessionInfo();
-                    $scope.iduserobean = $scope.sesiondata.id;
 
-                    if ($scope.iduserobean == $scope.iduser) {
-                        $scope.idseve = true;
+
+
+                //--------------------------------------------------------------
+                $scope.showViewButton = function (oBean) {
+                    return true;
+                }
+                $scope.showEditButton = function (oBean) {
+                    return true;
+                }
+                $scope.showRemoveButton = function (oBean) {
+                    if (oBean.link_grupo > 0 || oBean.link_paciente > 0) {
+                        return false;
                     } else {
-                        $scope.idseve = false;
+                        return true;
                     }
-                };
+                }
+                $scope.showOtherButton = function (oBean) {
+                    return false;
+                }
+                $scope.goViewURL = function (oBean) {
+                    $location.path($scope.ob + "/" + $scope.profile + "/view/" + oBean.id);
+                }
+                $scope.goEditURL = function (oBean) {
+                    $location.path($scope.ob + "/" + $scope.profile + "/edit/" + oBean.id);
+                }
+                $scope.goRemoveURL = function (oBean) {
+                    $location.path($scope.ob + "/" + $scope.profile + "/remove/" + oBean.id);
+                }
+//                $scope.includeExtraButtons = function () {
+//                    return "js/app/paciente/3/plistExtraButtons.html"
+//                }
+                //--------------------------------------------------------------
+
+                function renderLinkHtml(linkedbean)
+                {
+                    //necesita inyección de $filter
+                    var icon = '<span class="' + linkedbean.metaObject.Icon + '"></span>';
+                    var link = '<a href="' + linkedbean.metaObject.TableName + '/' + $scope.profile + '/view/' + linkedbean.data.id + '"> ' + icon + ' ' + linkedbean.metaObject.SingularDescription + ': ' + $filter('getForeignDescription')(linkedbean) + '</a>';
+                    return '<h3 class="bg-info">' + link + '<h3>';
+                }
+                $scope.renderLinksHtml = function (html_code) {
+                    return "";
+                }
+
+
+
+
                 getDataFromServer();
             }
         ]);

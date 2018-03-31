@@ -43,7 +43,7 @@
 
         <div id="navbar" class="navbar-collapse collapse" >
             <ul class="nav navbar-nav" id="appMenu">
-                <li ng-class="{ 'active': mn.isActive('/home')}"><a href="home">Home</a></li>
+                <li ng-class="{ 'active': mn.isActive('/home')}"><a href="home"><i class="fa fa-home"></i> Home</a></li>
 
                 <!-- Administración ------------------------------------------- -->
                 <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 1"
@@ -144,26 +144,30 @@
 
 
                 <!-- Profesor ------------------------------------------- -->
-
+                <li ng-class="{ 'active': mn.isActive('/paciente/3/plist')}" ng-if="mn.session_info.obj_tipousuario.data.id == 3"><a href="paciente/3/plist"> <i ng-class="mn.meta.paciente.Icon"></i> {{mn.meta.paciente.PluralDescription}}</a></li>
+                 <!--
                 <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 3">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Profesor<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li class="dropdown-header">Gestión sanitaria</li>
                         <li ng-class="{ 'active': mn.isActive('/paciente/3/plist')}"><a href="paciente/3/plist"> <i ng-class="mn.meta.paciente.Icon"></i> {{mn.meta.paciente.PluralDescription}}</a></li>
+                       
                         <li ng-class="{ 'active': mn.isActive('/episodio/3/plist')}"><a href="episodio/3/plist"> <i ng-class="mn.meta.episodio.Icon"></i> {{mn.meta.episodio.PluralDescription}}</a></li>
+                        
                     </ul>
                 </li>
+                 -->
                 <li>
-                    <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 3"
+                <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 3"
                     ng-class="{'active': mn.isActive('/usuario') || mn.isActive('/tipousuario') || mn.isActive('/grupo') || mn.isActive('/curso') || mn.isActive('/centro/')}">
-                       <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Usuarios<span class="caret"></span></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-user-circle"></i> Usuarios<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li ng-class="{ 'active': mn.isActive('/usuario/3/plist')}"><a href="usuario/3/plist"> <i ng-class="mn.meta.usuario.Icon"></i> {{mn.meta.usuario.PluralDescription}}</a></li>
                         <li ng-class="{ 'active': mn.isActive('/grupo/3/plist')}"><a href="grupo/3/plist"> <i ng-class="mn.meta.grupo.Icon"></i> {{mn.meta.grupo.PluralDescription}}</a></li>
                         <li ng-class="{ 'active': mn.isActive('/curso/3/plist')}"><a href="curso/3/plist"> <i ng-class="mn.meta.curso.Icon"></i> {{mn.meta.curso.PluralDescription}}</a></li>
                         <li ng-class="{ 'active': mn.isActive('/centro/3/plist')}"><a href="centro/3/plist"> <i ng-class="mn.meta.centro.Icon"></i> {{mn.meta.centro.PluralDescription}}</a></li>
                     </ul>
-               
+
                 </li>
 
 
@@ -183,13 +187,13 @@
 
                 <!-- Invitado visitante ------------------------------------------- -->
                 <li class="dropdown"  ng-if="mn.session_info.obj_tipousuario.data.id == 5">
-                    <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Visitante<span class="caret"></span></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i> Visitante<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li ng-class="{'active': mn.isActive('/paciente/5/plist')}"><a href="paciente/5/plist"> <i ng-class="mn.meta.paciente.Icon"></i> {{mn.meta.paciente.PluralDescription}}</a></li>
 
                     </ul>
                 </li>
-                <li ng-class="{ active: mn.isActive('/license')}"><a href="license"><i class="fa fa-icon-smile"></i>Licencia y créditos</a></li>
+                <li ng-class="{ active: mn.isActive('/license')}"><a href="license"><i class="fa fa-paper-plane"></i> Licencia y créditos</a></li>
             </ul>
 
 
