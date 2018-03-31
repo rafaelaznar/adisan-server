@@ -38,6 +38,7 @@ import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.meta.publicinterface.MetaObjectBeanInterface;
 import eu.rafaelaznar.bean.meta.publicinterface.MetaPropertyBeanInterface;
 import eu.rafaelaznar.helper.EnumHelper;
+import eu.rafaelaznar.helper.constant.RegexConstants;
 
 @MetaObjectBeanInterface(
         TableName = "grupo",
@@ -55,8 +56,8 @@ public class GrupoSpecificBeanImplementation extends TableGenericBeanImplementat
             Description = "Código del grupo",
             Type = EnumHelper.FieldType.String,
             IsRequired = true,
-            RegexPattern = "[^a-z0-9-]",
-            RegexHelp = "letras mayúsculas y números",
+            RegexPattern = RegexConstants.code,
+            RegexHelp = RegexConstants.code_Help,
             IsForeignKeyDescriptor = true,
             MaxLength = 50
     )

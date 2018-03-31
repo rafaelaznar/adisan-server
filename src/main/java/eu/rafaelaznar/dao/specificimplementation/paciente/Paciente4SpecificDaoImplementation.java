@@ -100,7 +100,7 @@ public class Paciente4SpecificDaoImplementation extends TableGenericDaoImplement
     public Integer update(TableGenericBeanImplementation oBean) throws Exception {
         PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oBean;
         oPacienteBean.setId_usuario(idUsuario);
-        return super.create(oPacienteBean);
+        return super.update(oPacienteBean);
 
     }
 

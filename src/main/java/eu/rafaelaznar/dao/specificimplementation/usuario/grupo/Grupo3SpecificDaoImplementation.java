@@ -100,7 +100,7 @@ public class Grupo3SpecificDaoImplementation extends TableGenericDaoImplementati
         //pte falta comprobar que el grupo sea efectivamente de ese profe
         if (oUpdateGrupo.getId_usuario().equals(idUsuario)) {
             oUpdateGrupo.setId_usuario(oSessionUser.getId());
-            return super.create(oBean);
+            return super.update(oBean);
         } else {
             return 0;
         }

@@ -36,8 +36,10 @@ public class RegexConstants {
 
     public static final String dni = "[0-9]{8,8}[A-Z]";
     public static final String dni_Help = "ocho dígitos y una letra mayúscula";
+    public static final String code = "[A-Z]+[a-z0-9.\\-_çñáéíóúàèò]+";
+    public static final String code_Help = "Mayúscula y letras o dígitos separados por guión";
     public static final String capitalizedName = "([A-Z]{1}[a-zçñáéíóúàèò ]+[\\s]*)+";
-    public static final String capitalizedName_Help = "una o varias palabras que todas comienzan en mayúcula";
+    public static final String capitalizedName_Help = "una o varias palabras que todas comienzan en mayúscula";
     public static final String nameWithEndingNumbers = "[a-z][a-z0-9 ]+";
     public static final String nameWithEndingNumbers_Help = "un texto en minúsculas que puede acabar en dígitos";
     public static final String email = "[a-z]+[a-z0-9._]+@[a-z]+\\.[a-z.]{2,5}"; // see \\ is \    

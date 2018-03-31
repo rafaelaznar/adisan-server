@@ -110,7 +110,7 @@ public class Subepisodio4SpecificDaoImplementation extends TableGenericDaoImplem
         EpisodioSpecificBeanImplementation oNewEpisodio = (EpisodioSpecificBeanImplementation) oBean;
         EpisodioSpecificBeanImplementation oOldEpisodio = (EpisodioSpecificBeanImplementation) this.get(oNewEpisodio.getId(), 0).getBean();
         if (oOldEpisodio.getId_usuario().equals(oSessionUser.getId())) {
-            return super.create(oBean);
+            return super.update(oBean);
         } else {
             return 0;
         }
