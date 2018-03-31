@@ -42,6 +42,7 @@ public class Subepisodio5SpecificDaoImplementation extends TableGenericDaoImplem
     public Subepisodio5SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("episodio", oPooledConnection, oPuserBean_security, strWhere);
     }
+
     @Override
     public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
         return false;
@@ -56,6 +57,7 @@ public class Subepisodio5SpecificDaoImplementation extends TableGenericDaoImplem
     public boolean canDelete(Integer id) throws Exception {
         return false;
     }
+
     @Override
     public Integer create(TableGenericBeanImplementation oBean) throws Exception {
         return 0;

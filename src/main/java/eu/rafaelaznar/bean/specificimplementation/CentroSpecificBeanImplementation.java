@@ -153,6 +153,24 @@ public class CentroSpecificBeanImplementation extends TableGenericBeanImplementa
     )
     private Boolean publico;
 
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Usuarios",
+            LongName = "Usuarios en el centro",
+            Description = "Usuarios en el centro educativo",
+            Type = EnumHelper.FieldType.Link,
+            References = "usuario"
+    )
+    private Integer link_usuario = null;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public CentroSpecificBeanImplementation() {
     }
 
@@ -240,4 +258,11 @@ public class CentroSpecificBeanImplementation extends TableGenericBeanImplementa
         this.publico = publico;
     }
 
+    public Integer getLink_usuario() {
+        return link_usuario;
+    }
+
+    public void setLink_usuario(Integer link_usuario) {
+        this.link_usuario = link_usuario;
+    }
 }

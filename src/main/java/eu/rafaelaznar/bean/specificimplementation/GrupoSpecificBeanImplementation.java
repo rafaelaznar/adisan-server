@@ -96,6 +96,16 @@ public class GrupoSpecificBeanImplementation extends TableGenericBeanImplementat
     )
     private MetaBeanHelper obj_usuario = null;
 
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Alumnos",
+            LongName = "Alumnos del grupo",
+            Description = "Alumnos del grupo",
+            Type = EnumHelper.FieldType.Link,
+            References = "usuario"
+    )
+    private Integer link_usuario = null;
+
     public GrupoSpecificBeanImplementation() {
     }
 
@@ -149,6 +159,14 @@ public class GrupoSpecificBeanImplementation extends TableGenericBeanImplementat
 
     public void setObj_usuario(MetaBeanHelper obj_usuario) {
         this.obj_usuario = obj_usuario;
+    }
+
+    public Integer getLink_usuario() {
+        return link_usuario;
+    }
+
+    public void setLink_usuario(Integer link_usuario) {
+        this.link_usuario = link_usuario;
     }
 
 }

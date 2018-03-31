@@ -61,6 +61,32 @@ public class CursoSpecificBeanImplementation extends TableGenericBeanImplementat
     )
     private String descripcion;
 
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Grupos",
+            LongName = "Grupos en el curso",
+            Description = "Grupos en el curso",
+            Type = EnumHelper.FieldType.Link,
+            References = "grupo"
+    )
+    private Integer link_grupo = null;
+
+    public Integer getLink_grupo() {
+        return link_grupo;
+    }
+
+    public void setLink_grupo(Integer link_grupo) {
+        this.link_grupo = link_grupo;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public CursoSpecificBeanImplementation() {
     }
 
