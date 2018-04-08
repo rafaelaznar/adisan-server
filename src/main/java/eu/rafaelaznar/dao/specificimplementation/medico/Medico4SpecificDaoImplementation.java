@@ -35,10 +35,10 @@ package eu.rafaelaznar.dao.specificimplementation.medico;
 import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.GrupoSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
-
 
 public class Medico4SpecificDaoImplementation extends TableGenericDaoImplementation {
 
@@ -53,8 +53,10 @@ public class Medico4SpecificDaoImplementation extends TableGenericDaoImplementat
             idUsuario = oUsuario.getId();
             if (oUsuario.getId() > 1) {
                 String strSQLini = "";
-
-                CentrosanitarioSpecificBeanImplementation oCentroSanitario = (CentrosanitarioSpecificBeanImplementation) oUsuario.getObj_centrosanitario().getBean();
+                //como es un alumno, su centro sanitario es el de su profesor
+                GrupoSpecificBeanImplementation oGrupo = (GrupoSpecificBeanImplementation) oUsuario.getObj_grupo().getBean();
+                UsuarioSpecificBeanImplementation oProfesor = (UsuarioSpecificBeanImplementation) oGrupo.getObj_usuario().getBean();
+                CentrosanitarioSpecificBeanImplementation oCentroSanitario = (CentrosanitarioSpecificBeanImplementation) oProfesor.getObj_centrosanitario().getBean();
                 idCentrosanitario = oCentroSanitario.getId();
                 strSQLini = "FROM medico WHERE id_centrosanitario = " + idCentrosanitario + " ";
 
