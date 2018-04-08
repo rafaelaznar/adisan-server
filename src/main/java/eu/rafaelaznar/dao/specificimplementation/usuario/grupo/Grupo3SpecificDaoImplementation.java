@@ -78,7 +78,7 @@ public class Grupo3SpecificDaoImplementation extends TableGenericDaoImplementati
     @Override
     public boolean canDelete(Integer id) throws Exception {
         GrupoSpecificBeanImplementation oGrupo = (GrupoSpecificBeanImplementation) this.get(id, 0).getBean();
-        if (oGrupo.getId().equals(idUsuario)) {
+        if (oGrupo.getId_usuario().equals(idUsuario)) {
             return true;
         } else {
             return false;
@@ -109,7 +109,7 @@ public class Grupo3SpecificDaoImplementation extends TableGenericDaoImplementati
     @Override
     public Integer delete(Integer id) throws Exception {
         GrupoSpecificBeanImplementation oGrupo = (GrupoSpecificBeanImplementation) this.get(id, 0).getBean();
-        if (oGrupo.getId().equals(idUsuario)) {
+        if (oGrupo.getId_usuario().equals(idUsuario)) {
             return super.delete(id);
         } else {
             return 0;
