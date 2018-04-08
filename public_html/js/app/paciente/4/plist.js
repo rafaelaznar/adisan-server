@@ -27,8 +27,8 @@
  */
 'use strict';
 moduloPaciente.controller('PacientePList4Controller',
-        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
-            function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
+        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService', 'sessionService',
+            function ($scope, $routeParams, $location, serverCallService, toolService, constantService, sessionService) {
                 $scope.ob = "paciente";
                 $scope.op = "plist";
                 $scope.profile = 4;
@@ -88,20 +88,47 @@ moduloPaciente.controller('PacientePList4Controller',
                 $scope.close = function () {
                     $location.path('/home');
                 };
-                $scope.setShowRemove = function (show) {
-                    $scope.showRemove = show;
-                };
-                ;
 
 
-                $scope.showEdit = function (oBean) {
-                    $scope.iduserobean = oBean.obj_usuario.data.id;
-                    if ($scope.iduserobean == $scope.iduser) {
-                        $scope.idseve = true;
+
+
+                //--------------
+                $scope.showViewButton = function (oBean) {
+                    return true;
+                }
+                $scope.showEditButton = function (oBean) {
+                    return true;
+                }
+                $scope.showRemoveButton = function (oBean) {
+                    if (oBean.link_episodio > 0) {
+                        return false;
                     } else {
-                        $scope.idseve = false;
+                        if (oBean.obj_usuario.data.id == sessionService.getSessionInfo().id) {
+                            return true;
+                        } else {
+                            return false;
+                        }
                     }
-                };
+                }
+                $scope.showOtherButton = function (oBean) {
+                    return false;
+                }
+                $scope.goViewURL = function (oBean) {
+                    $location.path($scope.ob + "/" + $scope.profile + "/view/" + oBean.id);
+                }
+                $scope.goEditURL = function (oBean) {
+                    $location.path($scope.ob + "/" + $scope.profile + "/edit/" + oBean.id);
+                }
+                $scope.goRemoveURL = function (oBean) {
+                    $location.path($scope.ob + "/" + $scope.profile + "/remove/" + oBean.id);
+                }
+//                $scope.includeExtraButtons = function (oBean) {
+//                    return "js/app/paciente/3/botones.html"
+//                }
+                //-------------
+
+
+
                 getDataFromServer();
             }
         ]);

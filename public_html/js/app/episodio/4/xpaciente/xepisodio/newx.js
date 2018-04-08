@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017-2018
  *
  * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
+ *
  * GESANE: Free Open Source Health Management System
  *
  * Sources at:
@@ -32,17 +32,20 @@
  */
 'use strict';
 
-moduloEpisodio.controller('EpisodioxpacienteEdit4Controller',
+//para crear un nuevo subepisodio a partir del clip del listado de episodios de un paciente
+
+moduloEpisodio.controller('SubepisodioxpacientexepisodioNew4Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
                 $scope.ob = "episodio";
-                $scope.op = "editx";
+                $scope.op = "newx";
                 $scope.profile = 4;
-                //----
-                $scope.id = $routeParams.id;
                 //---
                 $scope.xob = "paciente";
-                $scope.xid = $routeParams.xid;
+                $scope.xid = $routeParams.idpaciente;
+                //---
+                $scope.yob = "episodio";
+                $scope.yid = $routeParams.idepisodiopadre;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
@@ -58,16 +61,55 @@ moduloEpisodio.controller('EpisodioxpacienteEdit4Controller',
                     }).catch(function (data) {
                     });
                 }
-
-
-                serverCallService.getOne($scope.ob, $scope.id).then(function (response) {
+                if ($scope.yob && $scope.yid) {
+                    $scope.linkedbean2 = null;
+                    serverCallService.getOne($scope.yob, $scope.yid).then(function (response) {
+                        if (response.status == 200) {
+                            if (response.data.status == 200) {
+                                $scope.linkedbean2 = response.data.json;
+                            }
+                        }
+                    }).catch(function (data) {
+                    });
+                }
+                serverCallService.getMeta($scope.ob).then(function (response) {
                     if (response.status == 200) {
                         if (response.data.status == 200) {
                             $scope.status = null;
-                            $scope.bean = response.data.json.data;
+                            //--For every foreign key create obj inside bean tobe filled...
+                            $scope.bean = {};
+                            response.data.json.metaProperties.forEach(function (property) {
+                                if (property.Type == 'ForeignObject') {
+                                    $scope.bean[property.Name] = {};
+                                    $scope.bean[property.Name].data = {};
+                                    var propertyset = false;
+                                    if (property.Name == 'obj_' + $scope.xob) {
+                                        $scope.bean[property.Name].data.id = $scope.xid;
+                                        propertyset = true;
+                                    }
+                                    if (property.Name == 'obj_' + $scope.yob) {
+                                        $scope.bean[property.Name].data.id = $scope.yid;
+                                        propertyset = true;
+                                    }
+                                    if (!propertyset) {
+                                        $scope.bean[property.Name].data.id = 0;
+                                    }
+                                }
+                            });
+                            //--
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
-                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_usuario");
+                            //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_episodio");
+                            //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_factura");
+                            //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_circunstanciasalta");
+                            //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_destinoalta");
+                            //$scope.metap = toolService.deleteForeignKey($scope.metap, "obj_usuario");
+                            /////////
+                            //$scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_episodio");
+                            //$scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_factura");
+                            //$scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_circunstanciasalta");
+                            //$scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_destinoalta");
+                            //$scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_usuario");
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
