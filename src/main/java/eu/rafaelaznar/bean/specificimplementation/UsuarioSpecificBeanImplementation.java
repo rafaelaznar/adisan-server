@@ -298,6 +298,10 @@ public class UsuarioSpecificBeanImplementation extends TableGenericBeanImplement
         return nombrecompleto;
     }
 
+    public void setNombrecompleto(String nombrecompleto) {
+        this.nombrecompleto = nombrecompleto;
+    }
+
     public String getNombre() {
         return nombre;
     }

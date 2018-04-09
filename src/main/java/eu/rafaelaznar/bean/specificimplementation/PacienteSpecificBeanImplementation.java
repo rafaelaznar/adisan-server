@@ -54,7 +54,7 @@ public class PacienteSpecificBeanImplementation extends TableGenericBeanImplemen
     @MetaPropertyBeanInterface(
             ShortName = "Nombre completo",
             LongName = "Nombre completo",
-            Description = "Nombre completo del usuario",
+            Description = "Nombre completo del paciente",
             Type = EnumHelper.FieldType.Calculated,
             IsForeignKeyDescriptor = true,
             Width = 3,
@@ -80,7 +80,7 @@ public class PacienteSpecificBeanImplementation extends TableGenericBeanImplemen
     @MetaPropertyBeanInterface(
             ShortName = "Nombre",
             LongName = "Nombre",
-            Description = "Nombre del usuario",
+            Description = "Nombre del paciente",
             Type = EnumHelper.FieldType.String,
             IsRequired = true,
             RegexPattern = RegexConstants.capitalizedName,
@@ -96,7 +96,7 @@ public class PacienteSpecificBeanImplementation extends TableGenericBeanImplemen
     @MetaPropertyBeanInterface(
             ShortName = "1er. Ap.",
             LongName = "Primer Apellido",
-            Description = "Primer Apellido del usuario",
+            Description = "Primer Apellido del paciente",
             Type = EnumHelper.FieldType.String,
             IsRequired = true,
             RegexPattern = RegexConstants.capitalizedName,
@@ -112,7 +112,7 @@ public class PacienteSpecificBeanImplementation extends TableGenericBeanImplemen
     @MetaPropertyBeanInterface(
             ShortName = "2º Ap.",
             LongName = "Segundo Apellido",
-            Description = "Segundo Apellido del usuario",
+            Description = "Segundo Apellido del paciente",
             Type = EnumHelper.FieldType.String,
             IsRequired = true,
             RegexPattern = RegexConstants.capitalizedName,

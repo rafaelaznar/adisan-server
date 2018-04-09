@@ -36,49 +36,56 @@ import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
+import static eu.rafaelaznar.helper.EnumHelper.FieldType.Date;
 import java.sql.Connection;
+import java.util.Date;
 
 public class Usuario5SpecificDaoImplementation extends TableGenericDaoImplementation {
-
+    
     public Usuario5SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("usuario", oPooledConnection, oPuserBean_security, strWhere);
     }
-
+    
     @Override
     public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
         return false;
     }
-
+    
     @Override
     public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
         return false;
     }
-
+    
     @Override
     public boolean canDelete(Integer id) throws Exception {
         return false;
     }
-
+    
     @Override
     public MetaBeanHelper get(int id, int intExpand) throws Exception {
         MetaBeanHelper oMetaBeanHelper = super.get(id, intExpand);
         UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
+        oUsuario.setNombrecompleto("Oculto para proteger la identidad");
         oUsuario.setNombre("Oculto para proteger la identidad");
         oUsuario.setPrimer_apellido("Oculto para proteger la identidad");
         oUsuario.setSegundo_apellido("Oculto para proteger la identidad");
+        oUsuario.setEmail("Oculto para proteger la identidad");
+        oUsuario.setLogin("No tienes permiso para acceder a esta información");
+        oUsuario.setActivo(0);
+        oUsuario.setFecha_alta(new Date(0));
         return oMetaBeanHelper;
     }
-
+    
     @Override
     public Integer create(TableGenericBeanImplementation oBean) throws Exception {
         return 0;
     }
-
+    
     @Override
     public Integer update(TableGenericBeanImplementation oBean) throws Exception {
         return 0;
     }
-
+    
     @Override
     public Integer delete(Integer id) throws Exception {
         return 0;
@@ -113,5 +120,4 @@ public class Usuario5SpecificDaoImplementation extends TableGenericDaoImplementa
 //    public ArrayList<MetaPropertyGenericBeanHelper> getPropertiesMetaData() throws Exception {
 //        return null;
 //    }
-
 }

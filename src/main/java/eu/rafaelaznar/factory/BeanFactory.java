@@ -55,7 +55,6 @@ import eu.rafaelaznar.bean.specificimplementation.MunicipioSpecificBeanImplement
 import eu.rafaelaznar.bean.specificimplementation.NombrefemeninoSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.NombremasculinoSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.PacienteSpecificBeanImplementation;
-import eu.rafaelaznar.bean.specificimplementation.PacienteVisitanteSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.ProvinciaSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.ServicioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.TipopagoSpecificBeanImplementation;
@@ -122,12 +121,7 @@ public class BeanFactory {
                 oBean = new ServicioSpecificBeanImplementation();
                 break;
             case "paciente":
-                UsuarioSpecificBeanImplementation oUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
-                if (oUser.getId_tipousuario() == 5) {
-                    oBean = new PacienteVisitanteSpecificBeanImplementation();
-                } else {
-                    oBean = new PacienteSpecificBeanImplementation();
-                }
+                oBean = new PacienteSpecificBeanImplementation();
                 break;
             case "categoriaprofesional":
                 oBean = new CategoriaprofesionalSpecificBeanImplementation();
