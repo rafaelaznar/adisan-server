@@ -137,16 +137,9 @@ moduloEpisodio.controller('SubepisodioxepisodioPList3Controller',
                     return html_code;
                 };
 
-                function renderLinkHtml(linkedbean)
-                {
-                    //necesita inyección de $filter
-                    var icon = '<span class="' + linkedbean.metaObject.Icon + '"></span>';
-                    var link = '<a href="' + linkedbean.metaObject.TableName + '/' + $scope.profile + '/view/' + linkedbean.data.id + '"> ' + icon + ' ' + linkedbean.metaObject.SingularDescription + ': ' + $filter('getForeignDescription')(linkedbean) + '</a>';
-                    return '<h3 class="bg-info">' + link + '<h3>';
-                }
 
                 $scope.renderLinksHtml = function (html_code) {
-                    return  renderLinkHtml($scope.linkedbean.data.obj_paciente) + renderLinkHtml($scope.linkedbean);
+                    return  toolService.renderLinkHtml($scope.linkedbean.data.obj_paciente,$scope.profile) + toolService.renderLinkHtml($scope.linkedbean,$scope.profile);
                 }
 
                 //--------------------------------------------------------------

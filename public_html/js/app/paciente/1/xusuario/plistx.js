@@ -95,9 +95,44 @@ moduloPaciente.controller('PacienteXusuarioPList1Controller',
                 $scope.close = function () {
                     $location.path('/home');
                 };
-                $scope.setShowRemove = function (show) {
-                    $scope.showRemove = show;
-                };
+
+
+                //--------------------------------------------------------------
+                $scope.renderLinksHtml = function (html_code) {
+                    return toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
+                }
+                //--------------------------------------------------------------
+                $scope.showViewButton = function (oBean) {
+                    return true;
+                }
+                $scope.showEditButton = function (oBean) {
+                    return true;
+                }
+                $scope.showRemoveButton = function (oBean) {
+                    if (oBean.link_episodio > 0) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
+                $scope.showOtherButton = function (oBean) {
+                    return false;
+                }
+                $scope.goViewURL = function (oBean) {
+                    $location.path($scope.ob + "/" + $scope.profile + "/view/" + oBean.id);
+                }
+                $scope.goEditURL = function (oBean) {
+                    $location.path($scope.ob + "/" + $scope.profile + "/edit/" + oBean.id);
+                }
+                $scope.goRemoveURL = function (oBean) {
+                    $location.path($scope.ob + "/" + $scope.profile + "/remove/" + oBean.id);
+                }
+                //--------------------------------------------------------------
+
+
+
+
+
                 getDataFromServer();
             }
         ]);

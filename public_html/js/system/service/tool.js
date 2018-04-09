@@ -158,18 +158,16 @@ moduloServicios.factory('toolService', ['$filter', function ($filter) {
                 }
                 return newParamStr;
             },
-            
-            deleteForeignKey: function (metap, obj){
-                for (var j = 0; j< metap.length; j++){
+
+            deleteForeignKey: function (metap, obj) {
+                for (var j = 0; j < metap.length; j++) {
                     if (metap[j].Name == obj) {
-                        metap.splice(j,1);
+                        metap.splice(j, 1);
                         return metap;
                     }
                 }
             },
-            
-            
-            
+
             getUrlFromParams: function (ob, op, numpage, rpp, ufilter, uorder) {
                 var ruta = ob + '/' + op + '/' + numpage + '/' + rpp;
                 ruta += "/" + this.getParamString(ufilter);
@@ -187,6 +185,14 @@ moduloServicios.factory('toolService', ['$filter', function ($filter) {
             deleteForeignKeyObject: function (bean, obj) {
                 delete bean[obj];
                 return bean;
+            },
+
+            renderLinkHtml: function (linkedbean, profile)
+            {
+                //necesita inyección de $filter
+                var icon = '<span class="' + linkedbean.metaObject.Icon + '"></span>';
+                var link = '<a href="' + linkedbean.metaObject.TableName + '/' + profile + '/view/' + linkedbean.data.id + '"> ' + icon + ' ' + linkedbean.metaObject.SingularDescription + ': ' + $filter('getForeignDescription')(linkedbean) + '</a>';
+                return '<h3 class="bg-info">' + link + '<h3>';
             }
         }
     }]);

@@ -133,15 +133,9 @@ moduloEpisodio.controller('EpisodioxpacientePList4Controller',
                     return "js/app/episodio/4/xpaciente/plistExtraButtons.html"
                 }
                 //--------------------------------------------------------------
-                function renderLinkHtml(linkedbean)
-                {
-                    //necesita inyección de $filter
-                    var icon = '<span class="' + linkedbean.metaObject.Icon + '"></span>';
-                    var link = '<a href="' + linkedbean.metaObject.TableName + '/' + $scope.profile + '/view/' + linkedbean.data.id + '"> ' + icon + ' ' + linkedbean.metaObject.SingularDescription + ': ' + $filter('getForeignDescription')(linkedbean) + '</a>';
-                    return '<h3 class="bg-info">' + link + '<h3>';
-                }
+
                 $scope.renderLinksHtml = function (html_code) {
-                    return renderLinkHtml($scope.linkedbean);
+                    return toolService.renderLinkHtml($scope.linkedbean);
                 }
                 //--------------------------------------------------------------
 
