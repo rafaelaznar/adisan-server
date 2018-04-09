@@ -61,6 +61,46 @@ public class CentrosanitarioSpecificBeanImplementation extends TableGenericBeanI
     )
     private String descripcion = "";
 
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Médicos",
+            LongName = "Médicos en el centro sanitario",
+            Description = "Médicos en el centro sanitario",
+            Type = EnumHelper.FieldType.Link,
+            References = "medico"
+    )
+    private Integer link_medico = null;
+
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Dependencias",
+            LongName = "Dependencias en el centro sanitario",
+            Description = "Dependencias en el centro sanitario",
+            Type = EnumHelper.FieldType.Link,
+            References = "dependencia"
+    )
+    private Integer link_dependencia = null;
+
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Usuarios",
+            LongName = "Usuarios en el centro sanitario",
+            Description = "Usuarios en el centro sanitario",
+            Type = EnumHelper.FieldType.Link,
+            References = "usuario"
+    )
+    private Integer link_usuario = null;
+
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Técnicos",
+            LongName = "Técnicos en el centro sanitario",
+            Description = "Técnicos en el centro sanitario",
+            Type = EnumHelper.FieldType.Link,
+            References = "tecnico"
+    )
+    private Integer link_tecnico = null;
+
     public CentrosanitarioSpecificBeanImplementation() {
     }
 
@@ -74,6 +114,38 @@ public class CentrosanitarioSpecificBeanImplementation extends TableGenericBeanI
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public Integer getLink_medico() {
+        return link_medico;
+    }
+
+    public void setLink_medico(Integer link_medico) {
+        this.link_medico = link_medico;
+    }
+
+    public Integer getLink_dependencia() {
+        return link_dependencia;
+    }
+
+    public void setLink_dependencia(Integer link_dependencia) {
+        this.link_dependencia = link_dependencia;
+    }
+
+    public Integer getLink_usuario() {
+        return link_usuario;
+    }
+
+    public void setLink_usuario(Integer link_usuario) {
+        this.link_usuario = link_usuario;
+    }
+
+    public Integer getLink_tecnico() {
+        return link_tecnico;
+    }
+
+    public void setLink_tecnico(Integer link_tecnico) {
+        this.link_tecnico = link_tecnico;
     }
 
 }
