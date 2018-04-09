@@ -50,16 +50,20 @@ moduloFiltros
         .filter('getForeignDescription', ['toolService', function (toolService) {
                 return function (foreignObject)
                 {
-                    if (!toolService.isEmpty(foreignObject.data)) {
-                        if (foreignObject.data.id > 0) {
-                            var arrayLength = foreignObject.metaProperties.length;
-                            var description = "";
-                            for (var i = 0; i < arrayLength; i++) {
-                                if (foreignObject.metaProperties[i].IsForeignKeyDescriptor) {
-                                    description += foreignObject.data[foreignObject.metaProperties[i].Name] + " ";
+                    if (foreignObject) {
+                        if (!toolService.isEmpty(foreignObject.data)) {
+                            if (foreignObject.data.id > 0) {
+                                var arrayLength = foreignObject.metaProperties.length;
+                                var description = "";
+                                for (var i = 0; i < arrayLength; i++) {
+                                    if (foreignObject.metaProperties[i].IsForeignKeyDescriptor) {
+                                        description += foreignObject.data[foreignObject.metaProperties[i].Name] + " ";
+                                    }
                                 }
+                                return description.trim();
+                            } else {
+                                return "";
                             }
-                            return description.trim();
                         } else {
                             return "";
                         }

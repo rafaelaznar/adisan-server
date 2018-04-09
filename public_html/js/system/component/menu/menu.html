@@ -189,6 +189,10 @@
                 -->
 
                 <!-- Invitado visitante ------------------------------------------- -->
+
+                <li ng-class="{ 'active': mn.isActive('/paciente/5/plist')}" ng-if="mn.session_info.obj_tipousuario.data.id == 5"><a href="paciente/5/plist"> <i ng-class="mn.meta.paciente.Icon"></i> {{mn.meta.paciente.PluralDescription}}</a></li>
+
+                <!--
                 <li class="dropdown"  ng-if="mn.session_info.obj_tipousuario.data.id == 5">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i> Visitante<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
@@ -196,8 +200,15 @@
 
                     </ul>
                 </li>
+                -->
+
+                <!-- Invitado visitante ------------------------------------------- -->
+
+
+
                 <li ng-class="{ active: mn.isActive('/license')}"><a href="license"><i class="fa fa-paper-plane"></i> Licencia y créditos</a></li>
             </ul>
+
 
 
             <!------------
