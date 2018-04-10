@@ -78,10 +78,12 @@ moduloUsuario.controller('UsuarioxgrupoPList3Controller',
                             $scope.page = response.data.json.data;
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
-                            toolService.makeNoVisible($scope.metap,"obj_grupo");
-                            toolService.makeNoVisible($scope.metap,"link_grupo");
-                            toolService.makeVisible($scope.metap,"activo");
-                            toolService.makeVisible($scope.metap,"validado");
+                            toolService.makeNoVisible($scope.metap, "obj_grupo");
+                            toolService.makeNoVisible($scope.metap, "obj_centro");
+                            toolService.makeNoVisible($scope.metap, "obj_centrosanitario");
+                            toolService.makeNoVisible($scope.metap, "link_grupo");
+                            toolService.makeVisible($scope.metap, "activo");
+                            toolService.makeVisible($scope.metap, "validado");
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -99,10 +101,6 @@ moduloUsuario.controller('UsuarioxgrupoPList3Controller',
                 $scope.close = function () {
                     $location.path('/home');
                 };
-
-
-
-
                 //--------------------------------------------------------------
                 $scope.showViewButton = function (oBean) {
                     return true;
@@ -117,9 +115,7 @@ moduloUsuario.controller('UsuarioxgrupoPList3Controller',
                         return true;
                     }
                 }
-                $scope.showOtherButton = function (oBean) {
-                    return false;
-                }
+                //--
                 $scope.goViewURL = function (oBean) {
                     $location.path($scope.ob + "/" + $scope.profile + "/view/" + oBean.id);
                 }
@@ -129,9 +125,6 @@ moduloUsuario.controller('UsuarioxgrupoPList3Controller',
                 $scope.goRemoveURL = function (oBean) {
                     $location.path($scope.ob + "/" + $scope.profile + "/remove/" + oBean.id);
                 }
-//                $scope.includeExtraButtons = function () {
-//                    return "js/app/episodio/3/xpaciente/plistExtraButtons.html"
-//                }
                 //--------------------------------------------------------------
                 $scope.showOtherButton = function (oBean) {
                     return true;
@@ -170,7 +163,7 @@ moduloUsuario.controller('UsuarioxgrupoPList3Controller',
                     });
                 }
                 $scope.deactivate = function (oBean) {
-                    serverCallService.activate(oBean.id).then(function (response) {
+                    serverCallService.deactivate(oBean.id).then(function (response) {
                         if (response.status == 200) {
                             if (response.data.status == 200) {
                                 getDataFromServer();
@@ -180,10 +173,7 @@ moduloUsuario.controller('UsuarioxgrupoPList3Controller',
                     });
 
                 }
-
-
-
-
+                //--------------------------------------------------------------
                 getDataFromServer();
             }
         ]);
