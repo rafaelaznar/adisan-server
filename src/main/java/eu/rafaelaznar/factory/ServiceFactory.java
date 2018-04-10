@@ -127,6 +127,12 @@ public class ServiceFactory {
                     case "getidcurso":
                         oReplyBean = oUsuarioService.getidcurso();
                         break;
+                    case "activate":
+                        oReplyBean = oUsuarioService.activate();
+                        break;
+                    case "deactivate":
+                        oReplyBean = oUsuarioService.deactivate();
+                        break;
                     default:
                         oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Operation not found : Please contact your administrator"));
                         break;

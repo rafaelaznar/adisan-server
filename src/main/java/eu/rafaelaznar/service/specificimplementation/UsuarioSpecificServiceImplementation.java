@@ -42,6 +42,7 @@ import eu.rafaelaznar.dao.specificimplementation.usuario.Usuario1SpecificDaoImpl
 import eu.rafaelaznar.factory.ConnectionFactory;
 import eu.rafaelaznar.helper.constant.ConnectionConstants;
 import eu.rafaelaznar.dao.publicinterface.MetaDaoInterface;
+import eu.rafaelaznar.dao.specificimplementation.usuario.Usuario3SpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.usuario.grupo.Grupo1SpecificDaoImplementation;
 import eu.rafaelaznar.factory.DaoFactory;
 import eu.rafaelaznar.helper.EncodingHelper;
@@ -371,6 +372,88 @@ public class UsuarioSpecificServiceImplementation extends TableGenericServiceImp
             if (oConnection != null) {
                 oConnection.rollback();
             }
+            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
+            Log4jHelper.errorLog(msg, ex);
+            throw new Exception(msg, ex);
+        } finally {
+            if (oConnection != null) {
+                oConnection.close();
+            }
+            if (oPooledConnection != null) {
+                oPooledConnection.disposeConnection();
+            }
+        }
+        return oReplyBean;
+    }
+
+    /**
+     * used in teachers activations of students
+     *
+     *
+     * @return return id of new alumno
+     * @throws java.lang.Exception
+     */
+    public ReplyBeanHelper activate() throws Exception {
+        Connection oConnection = null;
+        ConnectionInterface oPooledConnection = null;
+        ReplyBeanHelper oReplyBean = null;
+        UsuarioSpecificBeanImplementation oPuser = null;
+        try {
+            oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
+            oConnection = oPooledConnection.newConnection();
+            int id = Integer.parseInt(oRequest.getParameter("id"));
+            if (id > 0) {
+                MetaBeanHelper oUsuarioSessionBean = (MetaBeanHelper) oRequest.getSession().getAttribute("user");
+                Usuario3SpecificDaoImplementation oUsuario3Dao = (Usuario3SpecificDaoImplementation) DaoFactory.getDao(ob, oConnection, oUsuarioSessionBean, null);
+                Integer iResult = oUsuario3Dao.activate(id);
+                if (iResult >= 1) {
+                    oReplyBean = new ReplyBeanHelper(200, EncodingHelper.quotate(iResult.toString()));
+                } else {
+                    oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Server error during activate operation"));
+                }
+            }
+        } catch (Exception ex) {
+            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
+            Log4jHelper.errorLog(msg, ex);
+            throw new Exception(msg, ex);
+        } finally {
+            if (oConnection != null) {
+                oConnection.close();
+            }
+            if (oPooledConnection != null) {
+                oPooledConnection.disposeConnection();
+            }
+        }
+        return oReplyBean;
+    }
+
+    /**
+     * used in teachers deactivations of students
+     *
+     *
+     * @return return id of new alumno
+     * @throws java.lang.Exception
+     */
+    public ReplyBeanHelper deactivate() throws Exception {
+        Connection oConnection = null;
+        ConnectionInterface oPooledConnection = null;
+        ReplyBeanHelper oReplyBean = null;
+        UsuarioSpecificBeanImplementation oPuser = null;
+        try {
+            oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
+            oConnection = oPooledConnection.newConnection();
+            int id = Integer.parseInt(oRequest.getParameter("id"));
+            if (id > 0) {
+                MetaBeanHelper oUsuarioSessionBean = (MetaBeanHelper) oRequest.getSession().getAttribute("user");
+                Usuario3SpecificDaoImplementation oUsuario3Dao = (Usuario3SpecificDaoImplementation) DaoFactory.getDao(ob, oConnection, oUsuarioSessionBean, null);
+                Integer iResult = oUsuario3Dao.deactivate(id);
+                if (iResult >= 1) {
+                    oReplyBean = new ReplyBeanHelper(200, EncodingHelper.quotate(iResult.toString()));
+                } else {
+                    oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Server error during deactivate operation"));
+                }
+            }
+        } catch (Exception ex) {
             String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
             Log4jHelper.errorLog(msg, ex);
             throw new Exception(msg, ex);

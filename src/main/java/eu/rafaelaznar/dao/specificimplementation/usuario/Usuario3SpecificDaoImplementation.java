@@ -37,6 +37,7 @@ import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
+import eu.rafaelaznar.factory.BeanFactory;
 import eu.rafaelaznar.helper.Log4jHelper;
 import java.sql.Connection;
 
@@ -197,4 +198,27 @@ public class Usuario3SpecificDaoImplementation extends Usuario1SpecificDaoImplem
             return 0;
         }
     }
+
+    public Integer activate(Integer id) throws Exception {
+        if (alumnoIsMine(id)) {
+            MetaBeanHelper oUsuarioMBH = this.get(id, 0);
+            UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oUsuarioMBH.getBean();
+            oUsuario.setActivo(1);
+            return this.update(oUsuario);
+        } else {
+            return 0;
+        }
+    }
+
+    public Integer deactivate(Integer id) throws Exception {
+        if (alumnoIsMine(id)) {
+            MetaBeanHelper oUsuarioMBH = this.get(id, 0);
+            UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oUsuarioMBH.getBean();
+            oUsuario.setActivo(0);
+            return this.update(oUsuario);
+        } else {
+            return 0;
+        }
+    }
+
 }
