@@ -193,6 +193,24 @@ moduloServicios.factory('toolService', ['$filter', function ($filter) {
                 var icon = '<span class="' + linkedbean.metaObject.Icon + '"></span>';
                 var link = '<a href="' + linkedbean.metaObject.TableName + '/' + profile + '/view/' + linkedbean.data.id + '"> ' + icon + ' ' + linkedbean.metaObject.SingularDescription + ': ' + $filter('getForeignDescription')(linkedbean) + '</a>';
                 return '<h3 class="bg-info">' + link + '<h3>';
+            },
+
+            makeVisible: function (metap, field) {
+                for (var j = 0; j < metap.length; j++) {
+                    if (metap[j].Name == field) {
+                        metap[j].IsVisible = true;
+                        break;
+                    }
+                }
+            },
+            makeNoVisible: function (metap, field) {
+                for (var j = 0; j < metap.length; j++) {
+                    if (metap[j].Name == field) {
+                        metap[j].IsVisible = false;
+                        break;
+                    }
+                }
             }
+
         }
     }]);

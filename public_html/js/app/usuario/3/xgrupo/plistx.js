@@ -78,6 +78,10 @@ moduloUsuario.controller('UsuarioxgrupoPList3Controller',
                             $scope.page = response.data.json.data;
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
+                            toolService.makeNoVisible($scope.metap,"obj_grupo");
+                            toolService.makeNoVisible($scope.metap,"link_grupo");
+                            toolService.makeVisible($scope.metap,"activo");
+                            toolService.makeVisible($scope.metap,"validado");
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -135,14 +139,26 @@ moduloUsuario.controller('UsuarioxgrupoPList3Controller',
                 $scope.includeExtraButtons = function () {
                     return "js/app/usuario/3/xgrupo/plistExtraButtons.html"
                 }
-
                 //--------------------------------------------------------------
-
-
                 $scope.renderLinksHtml = function (html_code) {
                     return toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
                 }
                 //--------------------------------------------------------------
+                $scope.showActivateButton = function (oBean) {
+                    if (oBean.obj_tipousuario.data.id == 4) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+                $scope.showDeactivateButton = function (oBean) {
+                    if (oBean.obj_tipousuario.data.id == 4) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+                //----
                 $scope.activate = function (oBean) {
                     serverCallService.activate(oBean.id).then(function (response) {
                         if (response.status == 200) {
