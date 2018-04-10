@@ -110,6 +110,12 @@ moduloServicios.factory('serverCallService',
                     },
                     getSession: function (strClass) {
                         return $http.get(constantService.getAppUrl() + '?ob=' + strClass + '&op=getsessionstatus', 'GET', '');
+                    },
+                    activate: function (id) {
+                        return $http.get(constantService.getAppUrl() + '?ob=usuario&op=activate&id=' + id, 'GET', '');
+                    },
+                    deactivate: function (id) {
+                        return $http.get(constantService.getAppUrl() + '?ob=usuario&op=deactivate&id=' + id, 'GET', '');
                     }
                 }
             }

@@ -129,10 +129,40 @@ moduloUsuario.controller('UsuarioxgrupoPList3Controller',
 //                    return "js/app/episodio/3/xpaciente/plistExtraButtons.html"
 //                }
                 //--------------------------------------------------------------
+                $scope.showOtherButton = function (oBean) {
+                    return true;
+                }
+                $scope.includeExtraButtons = function () {
+                    return "js/app/usuario/3/xgrupo/plistExtraButtons.html"
+                }
+
+                //--------------------------------------------------------------
 
 
                 $scope.renderLinksHtml = function (html_code) {
-                    return toolService.renderLinkHtml($scope.linkedbean,$scope.profile);
+                    return toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
+                }
+                //--------------------------------------------------------------
+                $scope.activate = function (oBean) {
+                    serverCallService.activate(oBean.id).then(function (response) {
+                        if (response.status == 200) {
+                            if (response.data.status == 200) {
+                                getDataFromServer();
+                            }
+                        }
+                    }).catch(function (data) {
+                    });
+                }
+                $scope.deactivate = function (oBean) {
+                    serverCallService.activate(oBean.id).then(function (response) {
+                        if (response.status == 200) {
+                            if (response.data.status == 200) {
+                                getDataFromServer();
+                            }
+                        }
+                    }).catch(function (data) {
+                    });
+
                 }
 
 
