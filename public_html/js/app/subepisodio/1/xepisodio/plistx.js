@@ -1,11 +1,16 @@
 /*
- * Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
+ * Copyright (c) 2017-2018 
  *
- * TROLLEYES helps you to learn how to develop easily AJAX web applications
+ * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
+ * 
+ * GESANE: Free Open Source Health Management System
  *
- * Sources at https://github.com/rafaelaznar/gesane-client
+ * Sources at:
+ *                            https://github.com/rafaelaznar/gesane-server
+ *                            https://github.com/rafaelaznar/gesane-client
+ *                            https://github.com/rafaelaznar/gesane-database
  *
- * TROLLEYES is distributed under the MIT License (MIT)
+ * GESANE is distributed under the MIT License (MIT)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,17 +31,17 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloCurso.controller('GrupoxcursoPList1Controller',
-        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
-            function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
-                $scope.ob = "grupo";
+moduloEpisodio.controller('SubepisodioxepisodioPList1Controller',
+        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService', '$filter',
+            function ($scope, $routeParams, $location, serverCallService, toolService, constantService, $filter) {
+                $scope.ob = "subepisodio";
                 $scope.op = "plistx";
                 $scope.profile = 1;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
                 //----
-                $scope.xob = "curso";
+                $scope.xob = "episodio";
                 $scope.xid = $routeParams.id;
                 //----
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op + $scope.xob + '/' + $routeParams.id;
@@ -50,14 +55,12 @@ moduloCurso.controller('GrupoxcursoPList1Controller',
                 //---
                 function getDataFromServer() {
                     $scope.linkedbean = null;
-                    $scope.linkedbean2 = null;
                     serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
                         if ($scope.xob && $scope.xid) {
                             serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
                                 if (response.status == 200) {
                                     if (response.data.status == 200) {
                                         $scope.linkedbean = response.data.json;
-                                        //$scope.linkedbean2 = response.data.json.data.obj_usuario;
                                     }
                                 }
                             }).catch(function (data) {
@@ -78,6 +81,13 @@ moduloCurso.controller('GrupoxcursoPList1Controller',
                             $scope.page = response.data.json.data;
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
+
+
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "link_subepisodio");
+                            /////////
+                            //$scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_episodio");
+
+
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -95,6 +105,7 @@ moduloCurso.controller('GrupoxcursoPList1Controller',
                 $scope.close = function () {
                     $location.path('/home');
                 };
+
                 //--------------------------------------------------------------
                 $scope.showViewButton = function (oBean) {
                     return true;
@@ -103,7 +114,7 @@ moduloCurso.controller('GrupoxcursoPList1Controller',
                     return true;
                 }
                 $scope.showRemoveButton = function (oBean) {
-                    if (oBean.link_grupo > 0 ) {
+                    if (oBean.link_subepisodio > 0) {
                         return false;
                     } else {
                         return true;
@@ -113,19 +124,29 @@ moduloCurso.controller('GrupoxcursoPList1Controller',
                     return false;
                 }
                 $scope.goViewURL = function (oBean) {
-                    $location.path($scope.ob + "/" + $scope.profile + "/view/" + oBean.id);
+                    $location.path("episodio/" + $scope.profile + "/view/" + oBean.id);
                 }
                 $scope.goEditURL = function (oBean) {
-                    $location.path($scope.ob + "/" + $scope.profile + "/edit/" + oBean.id);
+                    $location.path("episodio/" + $scope.profile + "/edit/" + oBean.id);
                 }
                 $scope.goRemoveURL = function (oBean) {
-                    $location.path($scope.ob + "/" + $scope.profile + "/remove/" + oBean.id);
+                    $location.path("episodio/" + $scope.profile + "/remove/" + oBean.id);
                 }
-                //--------------------------------------------------------------
+                $scope.renderHtml = function (html_code)
+                {
+                    return html_code;
+                };
+
+
                 $scope.renderLinksHtml = function (html_code) {
-                    return toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
+                    return  toolService.renderLinkHtml($scope.linkedbean.data.obj_paciente,$scope.profile) + toolService.renderLinkHtml($scope.linkedbean,$scope.profile);
                 }
+
                 //--------------------------------------------------------------
+
+
+
+
                 getDataFromServer();
             }
         ]);

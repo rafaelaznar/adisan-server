@@ -26,20 +26,17 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloCurso.controller('GrupoxcursoPList1Controller',
+moduloUsuario.controller('UsuarioXgrupoPList1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
-                $scope.ob = "grupo";
+                $scope.ob = "usuario";
                 $scope.op = "plistx";
                 $scope.profile = 1;
-                //---
-                $scope.status = null;
-                $scope.debugging = constantService.debugging();
                 //----
-                $scope.xob = "curso";
+                $scope.xob = "grupo";
                 $scope.xid = $routeParams.id;
                 //----
-                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op + $scope.xob + '/' + $routeParams.id;
+                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op + $scope.xob + '/' + $scope.xid;
                 //----
                 $scope.numpage = toolService.checkDefault(1, $routeParams.page);
                 $scope.rpp = toolService.checkDefault(10, $routeParams.rpp);
@@ -48,21 +45,23 @@ moduloCurso.controller('GrupoxcursoPList1Controller',
                 $scope.orderParams = toolService.checkEmptyString($routeParams.order);
                 $scope.filterParams = toolService.checkEmptyString($routeParams.filter);
                 //---
+                $scope.status = null;
+                $scope.debugging = constantService.debugging();
+                //---
                 function getDataFromServer() {
-                    $scope.linkedbean = null;
-                    $scope.linkedbean2 = null;
-                    serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
-                        if ($scope.xob && $scope.xid) {
-                            serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
-                                if (response.status == 200) {
-                                    if (response.data.status == 200) {
-                                        $scope.linkedbean = response.data.json;
-                                        //$scope.linkedbean2 = response.data.json.data.obj_usuario;
-                                    }
+                    if ($scope.xob && $scope.xid) {
+                        $scope.linkedbean = null;
+                        serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
+                            if (response.status == 200) {
+                                if (response.data.status == 200) {
+                                    $scope.linkedbean = response.data.json;
                                 }
-                            }).catch(function (data) {
-                            });
-                        }
+                            }
+                        }).catch(function (data) {
+                        });
+                    }
+                    ;
+                    serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
                         if (response.status == 200) {
                             $scope.registers = response.data.json;
                             $scope.pages = toolService.calculatePages($scope.rpp, $scope.registers);
@@ -85,6 +84,7 @@ moduloCurso.controller('GrupoxcursoPList1Controller',
                         $scope.status = "Error en la recepción de datos del servidor";
                     });
                 }
+                //---                
                 $scope.doorder = function (orderField, ascDesc) {
                     $location.url($scope.url + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', $scope.filterParams).search('order', orderField + ',' + ascDesc);
                     return false;
@@ -95,6 +95,9 @@ moduloCurso.controller('GrupoxcursoPList1Controller',
                 $scope.close = function () {
                     $location.path('/home');
                 };
+
+
+
                 //--------------------------------------------------------------
                 $scope.showViewButton = function (oBean) {
                     return true;
@@ -103,7 +106,7 @@ moduloCurso.controller('GrupoxcursoPList1Controller',
                     return true;
                 }
                 $scope.showRemoveButton = function (oBean) {
-                    if (oBean.link_grupo > 0 ) {
+                    if (oBean.link_grupo > 0 || oBean.link_paciente > 0) {
                         return false;
                     } else {
                         return true;
@@ -113,19 +116,21 @@ moduloCurso.controller('GrupoxcursoPList1Controller',
                     return false;
                 }
                 $scope.goViewURL = function (oBean) {
-                    $location.path($scope.ob + "/" + $scope.profile + "/view/" + oBean.id);
+                    $location.path("usuario/" + $scope.profile + "/view/" + oBean.id);
                 }
                 $scope.goEditURL = function (oBean) {
-                    $location.path($scope.ob + "/" + $scope.profile + "/edit/" + oBean.id);
+                    $location.path("usuario/" + $scope.profile + "/edit/" + oBean.id);
                 }
                 $scope.goRemoveURL = function (oBean) {
-                    $location.path($scope.ob + "/" + $scope.profile + "/remove/" + oBean.id);
+                    $location.path("usuario/" + $scope.profile + "/remove/" + oBean.id);
                 }
                 //--------------------------------------------------------------
                 $scope.renderLinksHtml = function (html_code) {
                     return toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
                 }
                 //--------------------------------------------------------------
+
+
                 getDataFromServer();
             }
         ]);
