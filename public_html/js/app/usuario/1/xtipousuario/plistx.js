@@ -95,9 +95,15 @@ moduloUsuario.controller('UsuarioXtipousuarioPList1Controller',
                 $scope.close = function () {
                     $location.path('/home');
                 };
-                $scope.setShowRemove = function (show) {
-                    $scope.showRemove = show;
-                };
+
+
+
+                $scope.renderLinksHtml = function (html_code) {
+                    return toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
+                }
+
+
+
                 getDataFromServer();
             }
         ]);
