@@ -80,7 +80,8 @@ public class Paciente3SpecificDaoImplementation extends TableGenericDaoImplement
         }
     }
 
-    private boolean canModify(Integer id) throws Exception {
+    @Override
+    public boolean canGet(Integer id) throws Exception {
         String strSQLini1 = "SELECT COUNT(*) FROM paciente where 1=1 "
                 + "AND (id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=3 ) "
                 + " OR  id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=5 ) "
@@ -133,7 +134,7 @@ public class Paciente3SpecificDaoImplementation extends TableGenericDaoImplement
     @Override
     public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
         PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oBean;
-        if (this.canModify(oPacienteBean.getId())) {
+        if (this.canGet(oPacienteBean.getId())) {
             return true;
         } else {
             return false;
@@ -149,16 +150,11 @@ public class Paciente3SpecificDaoImplementation extends TableGenericDaoImplement
 
     @Override
     public boolean canDelete(Integer id) throws Exception {
-        if (this.canModify(id)) {
+        if (this.canGet(id)) {
             return true;
         } else {
             return false;
         }
-    }
-
-    @Override
-    public boolean canGet(Integer id) throws Exception {
-        return true;
     }
 
 }
