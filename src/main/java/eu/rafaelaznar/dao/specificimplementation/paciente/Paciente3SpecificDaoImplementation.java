@@ -119,6 +119,11 @@ public class Paciente3SpecificDaoImplementation extends TableGenericDaoImplement
     }
 
     @Override
+    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
+        return true;
+    }
+
+    @Override
     public Integer create(TableGenericBeanImplementation oBean) throws Exception {
         PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oBean;
         oPacienteBean.setId_usuario(idUsuario);
@@ -126,23 +131,34 @@ public class Paciente3SpecificDaoImplementation extends TableGenericDaoImplement
     }
 
     @Override
-    public Integer update(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
         PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oBean;
         if (this.canModify(oPacienteBean.getId())) {
-            oPacienteBean.setId_usuario(idUsuario);
-            return super.update(oPacienteBean);
+            return true;
         } else {
-            return 0;
+            return false;
         }
     }
 
     @Override
-    public Integer delete(Integer id) throws Exception {
+    public Integer update(TableGenericBeanImplementation oBean) throws Exception {
+        PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oBean;
+        oPacienteBean.setId_usuario(idUsuario);
+        return super.update(oPacienteBean);
+    }
+
+    @Override
+    public boolean canDelete(Integer id) throws Exception {
         if (this.canModify(id)) {
-            return super.delete(id);
+            return true;
         } else {
-            return 0;
+            return false;
         }
+    }
+
+    @Override
+    public boolean canGet(Integer id) throws Exception {
+        return true;
     }
 
 }

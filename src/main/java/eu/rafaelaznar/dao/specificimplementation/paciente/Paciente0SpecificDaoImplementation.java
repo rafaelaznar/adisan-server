@@ -32,7 +32,6 @@
  */
 package eu.rafaelaznar.dao.specificimplementation.paciente;
 
-import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
@@ -44,33 +43,8 @@ public class Paciente0SpecificDaoImplementation extends TableGenericDaoImplement
     }
 
     @Override
-    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
-        return false;
-    }
-
-    @Override
-    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
-        return false;
-    }
-
-    @Override
-    public boolean canDelete(Integer id) throws Exception {
-        return false;
-    }
-
-    @Override
-    public Integer create(TableGenericBeanImplementation oBean) throws Exception {
-        return 0;
-    }
-
-    @Override
-    public Integer update(TableGenericBeanImplementation oBean) throws Exception {
-        return 0;
-    }
-
-    @Override
-    public Integer delete(Integer id) throws Exception {
-        return 0;
+    public boolean canGet(Integer id) throws Exception {
+        return true;
     }
 
 }
