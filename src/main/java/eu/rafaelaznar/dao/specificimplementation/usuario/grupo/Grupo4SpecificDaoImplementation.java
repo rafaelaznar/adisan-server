@@ -35,7 +35,10 @@ package eu.rafaelaznar.dao.specificimplementation.usuario.grupo;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
+import eu.rafaelaznar.helper.Log4jHelper;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class Grupo4SpecificDaoImplementation extends TableGenericDaoImplementation {
 
@@ -60,7 +63,34 @@ public class Grupo4SpecificDaoImplementation extends TableGenericDaoImplementati
 
     @Override
     public boolean canGet(Integer id) throws Exception {
-        return true;
+        String strSQLini1 = "SELECT COUNT(*) FROM grupo where id IN (SELECT id_grupo FROM usuario where id = " + idUsuario + ")"
+                + " and id=" + id;
+        PreparedStatement oPreparedStatement = null;
+        ResultSet oResultSet = null;
+        Long iResult = 0L;
+        try {
+            oPreparedStatement = oConnection.prepareStatement(strSQLini1);
+            oResultSet = oPreparedStatement.executeQuery();
+            if (oResultSet.next()) {
+                iResult = oResultSet.getLong("COUNT(*)");
+            } else {
+                String msg = this.getClass().getName() + ": getcount";
+                Log4jHelper.errorLog(msg);
+                throw new Exception(msg);
+            }
+        } catch (Exception ex) {
+            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
+            Log4jHelper.errorLog(msg, ex);
+            throw new Exception(msg, ex);
+        } finally {
+            if (oResultSet != null) {
+                oResultSet.close();
+            }
+            if (oPreparedStatement != null) {
+                oPreparedStatement.close();
+            }
+        }
+        return iResult > 0;
     }
 
 }

@@ -32,6 +32,7 @@
  */
 package eu.rafaelaznar.dao.specificimplementation.usuario.centro;
 
+import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
@@ -41,5 +42,24 @@ public class Centro1SpecificDaoImplementation extends TableGenericDaoImplementat
     public Centro1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("centro", oPooledConnection, oPuserBean_security, strWhere);
     }
+    @Override
+    public boolean canGet(Integer id) throws Exception {
+        return true;
+    }
 
+    @Override
+    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
+        return true;
+    }
+
+    @Override
+    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
+        return true;
+    }
+
+    @Override
+    public boolean canDelete(Integer id) throws Exception {
+        //pte -> puedo borrar centros  que no tengan usuarios        
+        return true;
+    }
 }
