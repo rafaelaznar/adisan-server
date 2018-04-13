@@ -54,153 +54,179 @@ public abstract class TableGenericDaoImplementation extends ViewGenericDaoImplem
 
     @Override
     public boolean canGet(Integer id) throws Exception {
-        return true;
+        return false;
     }
 
     @Override
     public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
-        return true;
+        return false;
     }
 
     @Override
     public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
-        return true;
+        return false;
     }
 
     @Override
     public boolean canDelete(Integer id) throws Exception {
-        return true;
+        return false;
     }
 
     @Override
     public MetaBeanHelper get(int id, int intExpand) throws Exception {
-        TraceHelper.trace("get-TableGenericDaoImplementation(begin):object=" + ob);
-        PreparedStatement oPreparedStatement = null;
-        ResultSet oResultSet = null;
-        strSQL += " AND id=? ";
-        TableGenericBeanImplementation oBean = null;
-        MetaBeanHelper oMetaBeanHelper = null;
-        try {
-            oPreparedStatement = oConnection.prepareStatement(strSQL);
-            oPreparedStatement.setInt(1, id);
-            oResultSet = oPreparedStatement.executeQuery();
-            oBean = (TableGenericBeanImplementation) BeanFactory.getBean(ob, oPuserSecurity);
-            if (oResultSet.next()) {
-                oBean = (TableGenericBeanImplementation) oBean.fill(oResultSet, oConnection, oPuserSecurity, intExpand);
-            } else {
-                oBean.setId(0);
+        if (this.canGet(id)) {
+            TraceHelper.trace("get-TableGenericDaoImplementation(begin):object=" + ob);
+            PreparedStatement oPreparedStatement = null;
+            ResultSet oResultSet = null;
+            strSQL += " AND id=? ";
+            TableGenericBeanImplementation oBean = null;
+            MetaBeanHelper oMetaBeanHelper = null;
+            try {
+                oPreparedStatement = oConnection.prepareStatement(strSQL);
+                oPreparedStatement.setInt(1, id);
+                oResultSet = oPreparedStatement.executeQuery();
+                oBean = (TableGenericBeanImplementation) BeanFactory.getBean(ob, oPuserSecurity);
+     
+                if (oResultSet.next()) {
+                    oBean = (TableGenericBeanImplementation) oBean.fill(oResultSet, oConnection, oPuserSecurity, intExpand);
+                } else {
+                    oBean.setId(0);
+                }
+                ArrayList<MetaPropertyGenericBeanHelper> alMetaProperties = this.getPropertiesMetaData();
+                MetaObjectGenericBeanHelper oMetaObject = this.getObjectMetaData();
+                oMetaBeanHelper = new MetaBeanHelper(oMetaObject, alMetaProperties, oBean);
+            } catch (Exception ex) {
+                String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
+                Log4jHelper.errorLog(msg, ex);
+                throw new Exception(msg, ex);
+            } finally {
+                if (oResultSet != null) {
+                    oResultSet.close();
+                }
+                if (oPreparedStatement != null) {
+                    oPreparedStatement.close();
+                }
+                TraceHelper.trace("get-TableGenericDaoImplementation(end):object=" + ob);
             }
-            ArrayList<MetaPropertyGenericBeanHelper> alMetaProperties = this.getPropertiesMetaData();
-            MetaObjectGenericBeanHelper oMetaObject = this.getObjectMetaData();
-            oMetaBeanHelper = new MetaBeanHelper(oMetaObject, alMetaProperties, oBean);
-        } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
-        } finally {
-            if (oResultSet != null) {
-                oResultSet.close();
-            }
-            if (oPreparedStatement != null) {
-                oPreparedStatement.close();
-            }
-            TraceHelper.trace("get-TableGenericDaoImplementation(end):object=" + ob);
+            return oMetaBeanHelper;
+        } else {
+            String msg = this.getClass().getName() + ": You don't have enought oermissions to perform this operation" + " ob:" + ob + " op: get";
+            Log4jHelper.errorLog(msg);
+            throw new Exception(msg);
         }
-        return oMetaBeanHelper;
     }
 
     @Override
     public Integer create(TableGenericBeanImplementation oBean) throws Exception {
-        TraceHelper.trace("create-TableGenericDaoImplementation(begin):object=" + ob);
-        PreparedStatement oPreparedStatement = null;
-        ResultSet oResultSet = null;
-        Integer iResult = 0;
-        try {
-            strSQL = "INSERT INTO " + ob;
-            strSQL += "(" + oBean.getColumns() + ")";
-            strSQL += " VALUES ";
-            strSQL += "(" + oBean.getValues() + ")";
-            oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
-            iResult = oPreparedStatement.executeUpdate();
-            if (iResult < 1) {
-                String msg = this.getClass().getName() + ": set";
-                Log4jHelper.errorLog(msg);
-                throw new Exception(msg);
-            }
-            oResultSet = oPreparedStatement.getGeneratedKeys();
-            oResultSet.next();
-            iResult = oResultSet.getInt(1);
+        if (this.canCreate(oBean)) {
+            TraceHelper.trace("create-TableGenericDaoImplementation(begin):object=" + ob);
+            PreparedStatement oPreparedStatement = null;
+            ResultSet oResultSet = null;
+            Integer iResult = 0;
+            try {
+                strSQL = "INSERT INTO " + ob;
+                strSQL += "(" + oBean.getColumns() + ")";
+                strSQL += " VALUES ";
+                strSQL += "(" + oBean.getValues() + ")";
+                oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
+                iResult = oPreparedStatement.executeUpdate();
+                if (iResult < 1) {
+                    String msg = this.getClass().getName() + ": set";
+                    Log4jHelper.errorLog(msg);
+                    throw new Exception(msg);
+                }
+                oResultSet = oPreparedStatement.getGeneratedKeys();
+                oResultSet.next();
+                iResult = oResultSet.getInt(1);
 
-        } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
-        } finally {
-            if (oResultSet != null) {
-                oResultSet.close();
+            } catch (Exception ex) {
+                String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
+                Log4jHelper.errorLog(msg, ex);
+                throw new Exception(msg, ex);
+            } finally {
+                if (oResultSet != null) {
+                    oResultSet.close();
+                }
+                if (oPreparedStatement != null) {
+                    oPreparedStatement.close();
+                }
+                TraceHelper.trace("create-TableGenericDaoImplementation(end):object=" + ob);
             }
-            if (oPreparedStatement != null) {
-                oPreparedStatement.close();
-            }
-            TraceHelper.trace("create-TableGenericDaoImplementation(end):object=" + ob);
+            return iResult;
+        } else {
+            String msg = this.getClass().getName() + ": You don't have enought oermissions to perform this operation" + " ob:" + ob + " op: create";
+            Log4jHelper.errorLog(msg);
+            throw new Exception(msg);
         }
-        return iResult;
     }
 
     @Override
     public Integer update(TableGenericBeanImplementation oBean) throws Exception {
-        TraceHelper.trace("update-TableGenericDaoImplementation(begin):object=" + ob);
-        PreparedStatement oPreparedStatement = null;
-        Integer iResult = 0;
-        try {
-            strSQL = "UPDATE " + ob;
-            strSQL += " SET ";
-            strSQL += oBean.toPairs();
-            strSQL += " WHERE id=? ";
-            oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
-            oPreparedStatement.setInt(1, oBean.getId());
-            iResult = oPreparedStatement.executeUpdate();
+        if (this.canUpdate(oBean)) {
+            TraceHelper.trace("update-TableGenericDaoImplementation(begin):object=" + ob);
+            PreparedStatement oPreparedStatement = null;
+            Integer iResult = 0;
+            try {
+                strSQL = "UPDATE " + ob;
+                strSQL += " SET ";
+                strSQL += oBean.toPairs();
+                strSQL += " WHERE id=? ";
+                oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
+                oPreparedStatement.setInt(1, oBean.getId());
+                iResult = oPreparedStatement.executeUpdate();
 
-            if (iResult < 1) {
-                String msg = this.getClass().getName() + ": set";
-                Log4jHelper.errorLog(msg);
-                throw new Exception(msg);
-            }
-        } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
-        } finally {
+                if (iResult < 1) {
+                    String msg = this.getClass().getName() + ": set";
+                    Log4jHelper.errorLog(msg);
+                    throw new Exception(msg);
+                }
+            } catch (Exception ex) {
+                String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
+                Log4jHelper.errorLog(msg, ex);
+                throw new Exception(msg, ex);
+            } finally {
 
-            if (oPreparedStatement != null) {
-                oPreparedStatement.close();
+                if (oPreparedStatement != null) {
+                    oPreparedStatement.close();
+                }
+                TraceHelper.trace("update-TableGenericDaoImplementation(end):object=" + ob);
             }
-            TraceHelper.trace("update-TableGenericDaoImplementation(end):object=" + ob);
+            return iResult;
+        } else {
+            String msg = this.getClass().getName() + ": You don't have enought oermissions to perform this operation" + " ob:" + ob + " op: update";
+            Log4jHelper.errorLog(msg);
+            throw new Exception(msg);
         }
-        return iResult;
+
     }
 
     @Override
     public Integer delete(Integer id) throws Exception {
-        TraceHelper.trace("remove-TableGenericDaoImplementation(begin):object=" + ob);
-        int iResult = 0;
-        strSQL = "DELETE FROM " + ob + " WHERE id=?";
-        PreparedStatement oPreparedStatement = null;
-        try {
-            oPreparedStatement = oConnection.prepareStatement(strSQL);
-            oPreparedStatement.setInt(1, id);
-            iResult = oPreparedStatement.executeUpdate();
-        } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
-        } finally {
-            if (oPreparedStatement != null) {
-                oPreparedStatement.close();
+        if (this.canDelete(id)) {
+            TraceHelper.trace("remove-TableGenericDaoImplementation(begin):object=" + ob);
+            int iResult = 0;
+            strSQL = "DELETE FROM " + ob + " WHERE id=?";
+            PreparedStatement oPreparedStatement = null;
+            try {
+                oPreparedStatement = oConnection.prepareStatement(strSQL);
+                oPreparedStatement.setInt(1, id);
+                iResult = oPreparedStatement.executeUpdate();
+            } catch (Exception ex) {
+                String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
+                Log4jHelper.errorLog(msg, ex);
+                throw new Exception(msg, ex);
+            } finally {
+                if (oPreparedStatement != null) {
+                    oPreparedStatement.close();
+                }
+                TraceHelper.trace("remove-TableGenericDaoImplementation(end):object=" + ob);
             }
-            TraceHelper.trace("remove-TableGenericDaoImplementation(end):object=" + ob);
+            return iResult;
+        } else {
+            String msg = this.getClass().getName() + ": You don't have enought oermissions to perform this operation" + " ob:" + ob + " op: update";
+            Log4jHelper.errorLog(msg);
+            throw new Exception(msg);
         }
-        return iResult;
     }
 
 }

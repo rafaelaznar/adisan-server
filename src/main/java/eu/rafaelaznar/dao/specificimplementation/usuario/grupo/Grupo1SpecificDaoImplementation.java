@@ -32,6 +32,7 @@
  */
 package eu.rafaelaznar.dao.specificimplementation.usuario.grupo;
 
+import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.GrupoSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
@@ -44,6 +45,27 @@ public class Grupo1SpecificDaoImplementation extends TableGenericDaoImplementati
 
     public Grupo1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("grupo", oPooledConnection, oPuserBean_security, strWhere);
+    }
+
+    @Override
+    public boolean canGet(Integer id) throws Exception {
+        return true;
+    }
+
+    @Override
+    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
+        return true;
+    }
+
+    @Override
+    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
+        return true;
+    }
+
+    @Override
+    public boolean canDelete(Integer id) throws Exception {
+        //pte -> puedo borrar grupos que no tengan alumnos
+        return true;
     }
 
     public MetaBeanHelper getFromCodigo(GrupoSpecificBeanImplementation oCodigoBean) throws Exception {

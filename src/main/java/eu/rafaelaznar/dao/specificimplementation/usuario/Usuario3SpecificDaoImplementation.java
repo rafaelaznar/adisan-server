@@ -37,7 +37,6 @@ import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
-import eu.rafaelaznar.factory.BeanFactory;
 import eu.rafaelaznar.helper.Log4jHelper;
 import java.sql.Connection;
 
@@ -51,11 +50,11 @@ public class Usuario3SpecificDaoImplementation extends Usuario1SpecificDaoImplem
         if (oPuserBean_security != null) {
             UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
             idUsuario = oUsuario.getId();
+
             MetaBeanHelper ombhTipousuario = (MetaBeanHelper) oUsuario.getObj_tipousuario();
             TipousuarioSpecificBeanImplementation oTipousuario = (TipousuarioSpecificBeanImplementation) ombhTipousuario.getBean();
             if (oTipousuario.getId() == 3) {
                 String strSQLini = "";
-
                 CentrosanitarioSpecificBeanImplementation oCentroSanitario = (CentrosanitarioSpecificBeanImplementation) oUsuario.getObj_centrosanitario().getBean();
                 idCentrosanitario = oCentroSanitario.getId();
                 strSQLini = "FROM usuario where 1=1 "
@@ -105,7 +104,11 @@ public class Usuario3SpecificDaoImplementation extends Usuario1SpecificDaoImplem
 
     @Override
     public boolean canGet(Integer id) throws Exception {
-        return true;
+        if (alumnoIsMine(id)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
@@ -125,18 +128,16 @@ public class Usuario3SpecificDaoImplementation extends Usuario1SpecificDaoImplem
         UsuarioSpecificBeanImplementation oUpdateUser = (UsuarioSpecificBeanImplementation) oBean;
         if (oSessionUser.getId().equals(oUpdateUser.getId())) {
             return true;
-        } else {
-            if (alumnoIsMine(oUpdateUser.getId())) {
-                //el usuario que editamos es realmente un alumno del profesor en sesion
-                if (grupoIsMine(oUpdateUser.getId_grupo())) {
-                    //al alumno lo metemos en uno de los grupos del profe en sesion
-                    return true;
-                } else {
-                    return false;
-                }
+        } else if (alumnoIsMine(oUpdateUser.getId())) {
+            //el usuario que editamos es realmente un alumno del profesor en sesion
+            if (grupoIsMine(oUpdateUser.getId_grupo())) {
+                //al alumno lo metemos en uno de los grupos del profe en sesion
+                return true;
             } else {
                 return false;
             }
+        } else {
+            return false;
         }
     }
 
@@ -172,21 +173,19 @@ public class Usuario3SpecificDaoImplementation extends Usuario1SpecificDaoImplem
             oUpdateUser.setId_tipousuario(3);
             oUpdateUser.setId_centrosanitario(oSessionUser.getId_centrosanitario());
             return super.update(oBean);
-        } else {
-            if (alumnoIsMine(oUpdateUser.getId())) {
-                //el usuario que editamos es realmente un alumno del profesor en sesion
-                if (grupoIsMine(oUpdateUser.getId_grupo())) {
-                    //al alumno lo metemos en uno de los grupos del profe en sesion
-                    oUpdateUser.setId_centro(oSessionUser.getId_centro());
-                    oUpdateUser.setId_tipousuario(4);
-                    oUpdateUser.setId_centrosanitario(oSessionUser.getId_centrosanitario());
-                    return super.update(oBean);
-                } else {
-                    return 0;
-                }
+        } else if (alumnoIsMine(oUpdateUser.getId())) {
+            //el usuario que editamos es realmente un alumno del profesor en sesion
+            if (grupoIsMine(oUpdateUser.getId_grupo())) {
+                //al alumno lo metemos en uno de los grupos del profe en sesion
+                oUpdateUser.setId_centro(oSessionUser.getId_centro());
+                oUpdateUser.setId_tipousuario(4);
+                oUpdateUser.setId_centrosanitario(oSessionUser.getId_centrosanitario());
+                return super.update(oBean);
             } else {
                 return 0;
             }
+        } else {
+            return 0;
         }
     }
 

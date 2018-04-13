@@ -32,8 +32,8 @@
  */
 package eu.rafaelaznar.dao.specificimplementation.usuario;
 
-import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
+import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
 
@@ -44,31 +44,16 @@ public class Usuario0SpecificDaoImplementation extends TableGenericDaoImplementa
     }
 
     @Override
-    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
-        return false;
-    }
-
-    @Override
-    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
-        return false;
-    }
-
-    @Override
-    public boolean canDelete(Integer id) throws Exception {
-        return false;
-    }
-        @Override
-    public Integer create(TableGenericBeanImplementation oBean) throws Exception {
-        return 0;
-    }
-
-    @Override
-    public Integer update(TableGenericBeanImplementation oBean) throws Exception {
-        return 0;
-    }
-
-    @Override
-    public Integer delete(Integer id) throws Exception {
-        return 0;
+    public boolean canGet(Integer id) throws Exception {
+        if (oPuserSecurity != null) {
+            UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+            if (oUsuario.getId() == id) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return true;
+        }
     }
 }

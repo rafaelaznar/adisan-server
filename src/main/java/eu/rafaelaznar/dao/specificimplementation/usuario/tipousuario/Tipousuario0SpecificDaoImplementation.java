@@ -42,23 +42,12 @@ public class Tipousuario0SpecificDaoImplementation extends TableGenericDaoImplem
     // NOTA IMPORTANTE: los tipos de usuario 0 y 5 deberian implementar ViewGenericDaoImplementation y no TableGenericDaoImplementation 
     // pero no es posible porque las expansiones necesitan hacer get, 
     // así que a la espera de un rediseño global quedan restringidas las operaciones set y remove mediante sobreescritura
-    
     public Tipousuario0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("tipousuario", oPooledConnection, oPuserBean_security, strWhere);
     }
 
     @Override
-    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
-        return false;
-    }
-
-    @Override
-    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
-        return false;
-    }
-
-    @Override
-    public boolean canDelete(Integer id) throws Exception {
-        return false;
+    public boolean canGet(Integer id) throws Exception {
+        return true;
     }
 }

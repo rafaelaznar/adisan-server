@@ -53,7 +53,9 @@ public abstract class TableGenericBeanImplementation extends ViewGenericBeanImpl
             IsVisible = true,
             Type = EnumHelper.FieldType.Id
     )
+
     protected Integer id;
+
 
     public TableGenericBeanImplementation() {
 
@@ -70,7 +72,7 @@ public abstract class TableGenericBeanImplementation extends ViewGenericBeanImpl
     public void setId(Integer id) {
         this.id = id;
     }
-
+    
     @Override
     public String getColumns() throws Exception {
         String strColumns = "";
@@ -111,35 +113,20 @@ public abstract class TableGenericBeanImplementation extends ViewGenericBeanImpl
                             if (getTypeFromPropertyMetaData(x) != EnumHelper.FieldType.Link) {
                                 if (getTypeFromPropertyMetaData(x) == EnumHelper.FieldType.ForeignId) {
                                     strColumns += (Integer) x.get(this) + ",";
-                                } else {
-                                    if (getTypeFromPropertyMetaData(x) == EnumHelper.FieldType.Password) {
-                                        strColumns += EncodingHelper.quotate("da8ab09ab4889c6208116a675cad0b13e335943bd7fc418782d054b32fdfba04") + ", ";
-                                    } else {
-                                        if (getTypeFromPropertyMetaData(x) == EnumHelper.FieldType.Token) {
-                                            strColumns += EncodingHelper.quotate(RandomHelper.getToken(ConfigurationConstants.tokenSize)) + ", ";
-                                        } else {
-
-                                            if (x.getType() == String.class) {
-                                                strColumns += EncodingHelper.quotate((String) x.get(this)) + ",";
-                                            } else {
-                                                if (x.getType() == Date.class) {
-                                                    strColumns += EncodingHelper.stringifyAndQuotate((Date) x.get(this)) + ",";
-                                                } else {
-                                                    if (x.getType() == Integer.class) {
-                                                        strColumns += (Integer) x.get(this) + ",";
-                                                    } else {
-                                                        if (x.getType() == Double.class) {
-                                                            strColumns += (Double) x.get(this) + ",";
-                                                        } else {
-                                                            if (x.getType() == Boolean.class) {
-                                                                strColumns += (int) x.get(this) + ",";
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
+                                } else if (getTypeFromPropertyMetaData(x) == EnumHelper.FieldType.Password) {
+                                    strColumns += EncodingHelper.quotate("da8ab09ab4889c6208116a675cad0b13e335943bd7fc418782d054b32fdfba04") + ", ";
+                                } else if (getTypeFromPropertyMetaData(x) == EnumHelper.FieldType.Token) {
+                                    strColumns += EncodingHelper.quotate(RandomHelper.getToken(ConfigurationConstants.tokenSize)) + ", ";
+                                } else if (x.getType() == String.class) {
+                                    strColumns += EncodingHelper.quotate((String) x.get(this)) + ",";
+                                } else if (x.getType() == Date.class) {
+                                    strColumns += EncodingHelper.stringifyAndQuotate((Date) x.get(this)) + ",";
+                                } else if (x.getType() == Integer.class) {
+                                    strColumns += (Integer) x.get(this) + ",";
+                                } else if (x.getType() == Double.class) {
+                                    strColumns += (Double) x.get(this) + ",";
+                                } else if (x.getType() == Boolean.class) {
+                                    strColumns += (int) x.get(this) + ",";
                                 }
                             }
                         }
@@ -172,22 +159,14 @@ public abstract class TableGenericBeanImplementation extends ViewGenericBeanImpl
                                     strColumns += x.getName() + "=";
                                     if (x.getType() == String.class) {
                                         strColumns += EncodingHelper.quotate((String) x.get(this)) + ",";
-                                    } else {
-                                        if (x.getType() == Date.class) {
-                                            strColumns += EncodingHelper.stringifyAndQuotate((Date) x.get(this)) + ",";
-                                        } else {
-                                            if (x.getType() == Integer.class) {
-                                                strColumns += (Integer) x.get(this) + ",";
-                                            } else {
-                                                if (x.getType() == Double.class) {
-                                                    strColumns += (Double) x.get(this) + ",";
-                                                } else {
-                                                    if (x.getType() == Boolean.class) {
-                                                        strColumns += (int) x.get(this) + ",";
-                                                    }
-                                                }
-                                            }
-                                        }
+                                    } else if (x.getType() == Date.class) {
+                                        strColumns += EncodingHelper.stringifyAndQuotate((Date) x.get(this)) + ",";
+                                    } else if (x.getType() == Integer.class) {
+                                        strColumns += (Integer) x.get(this) + ",";
+                                    } else if (x.getType() == Double.class) {
+                                        strColumns += (Double) x.get(this) + ",";
+                                    } else if (x.getType() == Boolean.class) {
+                                        strColumns += (int) x.get(this) + ",";
                                     }
                                     x.setAccessible(false);
                                 }

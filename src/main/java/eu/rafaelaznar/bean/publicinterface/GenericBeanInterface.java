@@ -48,4 +48,6 @@ public interface GenericBeanInterface {
 
     public void ComputeCalculatedFields();
 
+
+
 }

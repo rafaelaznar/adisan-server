@@ -78,7 +78,9 @@ public class Grupo3SpecificDaoImplementation extends TableGenericDaoImplementati
     @Override
     public boolean canDelete(Integer id) throws Exception {
         GrupoSpecificBeanImplementation oGrupo = (GrupoSpecificBeanImplementation) this.get(id, 0).getBean();
+        //puedo borrar mis cursos
         if (oGrupo.getId_usuario().equals(idUsuario)) {
+            //pte -> puedo borrar mis cursos que no tengan alumnos
             return true;
         } else {
             return false;

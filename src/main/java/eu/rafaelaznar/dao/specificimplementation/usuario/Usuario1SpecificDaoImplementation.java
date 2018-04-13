@@ -32,6 +32,7 @@
  */
 package eu.rafaelaznar.dao.specificimplementation.usuario;
 
+import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
@@ -46,6 +47,26 @@ public class Usuario1SpecificDaoImplementation extends TableGenericDaoImplementa
 
     public Usuario1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("usuario", oPooledConnection, oPuserBean_security, strWhere);
+    }
+
+    @Override
+    public boolean canGet(Integer id) throws Exception {
+        return true;
+    }
+
+    @Override
+    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
+        return true;
+    }
+
+    @Override
+    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
+        return true;
+    }
+
+    @Override
+    public boolean canDelete(Integer id) throws Exception {
+        return true;
     }
 
     public MetaBeanHelper getFromLoginAndPass(UsuarioSpecificBeanImplementation oUsuarioBean) throws Exception {

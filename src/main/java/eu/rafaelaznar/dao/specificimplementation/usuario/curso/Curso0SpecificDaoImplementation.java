@@ -32,7 +32,6 @@
  */
 package eu.rafaelaznar.dao.specificimplementation.usuario.curso;
 
-import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
@@ -44,17 +43,8 @@ public class Curso0SpecificDaoImplementation extends TableGenericDaoImplementati
     }
 
     @Override
-    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
-        return false;
+    public boolean canGet(Integer id) throws Exception {
+        return true;
     }
 
-    @Override
-    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
-        return false;
-    }
-
-    @Override
-    public boolean canDelete(Integer id) throws Exception {
-        return false;
-    }
 }
