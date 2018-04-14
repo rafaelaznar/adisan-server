@@ -26,14 +26,14 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloPaciente.controller('PacienteXusuarioPList1Controller',
+moduloUsuario.controller('UsuarioXcentrosanitarioPList1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
-                $scope.ob = "paciente";
+                $scope.ob = "usuario";
                 $scope.op = "plistx";
                 $scope.profile = 1;
                 //----
-                $scope.xob = "usuario";
+                $scope.xob = "centrosanitario";
                 $scope.xid = $routeParams.id;
                 //----
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op + $scope.xob + '/' + $scope.xid;
@@ -105,7 +105,7 @@ moduloPaciente.controller('PacienteXusuarioPList1Controller',
                     return true;
                 }
                 $scope.showRemoveButton = function (oBean) {
-                    if (oBean.link_episodio > 0) {
+                    if (oBean.link_grupo > 0 || oBean.link_paciente > 0) {
                         return false;
                     } else {
                         return true;
@@ -115,13 +115,13 @@ moduloPaciente.controller('PacienteXusuarioPList1Controller',
                     return false;
                 }
                 $scope.goViewURL = function (oBean) {
-                    $location.path($scope.ob + "/" + $scope.profile + "/view/" + oBean.id);
+                    $location.path("usuario/" + $scope.profile + "/view/" + oBean.id);
                 }
                 $scope.goEditURL = function (oBean) {
-                    $location.path($scope.ob + "/" + $scope.profile + "/edit/" + oBean.id);
+                    $location.path("usuario/" + $scope.profile + "/edit/" + oBean.id);
                 }
                 $scope.goRemoveURL = function (oBean) {
-                    $location.path($scope.ob + "/" + $scope.profile + "/remove/" + oBean.id);
+                    $location.path("usuario/" + $scope.profile + "/remove/" + oBean.id);
                 }
                 //--------------------------------------------------------------
                 getDataFromServer();

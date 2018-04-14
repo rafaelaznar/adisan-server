@@ -37,17 +37,14 @@
                         <header ob="ob" op="op"></header>
                     </div>
                     <div class="panel-body">
-                        <div class="row" ng-if="linkedbean || linkedbean2 || linkedbean3 || linkedbean4">
+                        <div class="row">
                             <div class="col-xs-12">
-                                <div class="alert alert-info" role="alert">                                                                       
-                                    <h3 ng-if="linkedbean" class="bg-info"><a href="{{linkedbean.metaObject.TableName}}/{{profile}}/view/{{linkedbean.data.id}}"> <span class="{{linkedbean.metaObject.Icon}}"></span>  {{linkedbean.metaObject.SingularDescription}}: {{linkedbean|getForeignDescription}}</a></h3>
-                                    <h3 ng-if="linkedbean2" class="bg-info"><a href="{{linkedbean2.metaObject.TableName}}/{{profile}}/view/{{linkedbean2.data.id}}"> <span class="{{linkedbean2.metaObject.Icon}}"></span>  {{linkedbean2.metaObject.SingularDescription}}: {{linkedbean2|getForeignDescription}}</a></h3>
-                                    <h3 ng-if="linkedbean3" class="bg-info"><a href="{{linkedbean3.metaObject.TableName}}/{{profile}}/view/{{linkedbean3.data.id}}"> <span class="{{linkedbean3.metaObject.Icon}}"></span>  {{linkedbean3.metaObject.SingularDescription}}: {{linkedbean3|getForeignDescription}}</a></h3>
-                                    <h3 ng-if="linkedbean4" class="bg-info"><a href="{{linkedbean4.metaObject.TableName}}/{{profile}}/view/{{linkedbean4.data.id}}"> <span class="{{linkedbean4.metaObject.Icon}}"></span>  {{linkedbean4.metaObject.SingularDescription}}: {{linkedbean4|getForeignDescription}}</a></h3>
+                                <div class="alert alert-info" role="alert">
+                                    <p ng-bind-html="breadcrumbs|trusted"></p>                                    
                                 </div>
                             </div>
                         </div>
-                        
+
                         <form name="outerForm" class="form-horizontal text-left"  ng-if="!status">
                             <div ng-repeat="oMetap in metap">
                                 <!--- id ---------------------------------------------->

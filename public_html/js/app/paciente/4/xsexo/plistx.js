@@ -71,7 +71,8 @@ moduloPaciente.controller('PacientexsexoPList4Controller',
                                 if (response.status == 200) {
                                     if (response.data.status == 200) {
                                         $scope.linkedbean = response.data.json;
-                                        $scope.linkedbean2 = response.data.json.data.obj_usuario;
+                                        $scope.linkedbean2 = response.data.json.data.obj_usuario;                                        
+                                        $scope.breadcrumbs = toolService.renderLinkHtml($scope.linkedbean, $scope.profile) + toolService.renderLinkHtml($scope.linkedbean2, $scope.profile);
                                     }
                                 }
                             }).catch(function (data) {
@@ -92,7 +93,7 @@ moduloPaciente.controller('PacientexsexoPList4Controller',
                             $scope.page = response.data.json.data;
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
-                            
+                            toolService.hideField($scope.metap, "obj_" + $scope.xob);
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -110,17 +111,33 @@ moduloPaciente.controller('PacientexsexoPList4Controller',
                 $scope.close = function () {
                     $location.path('/home');
                 };
-                $scope.setShowRemove = function (show) {
-                    $scope.showRemove = show;
-                };
-                $scope.showEdit = function (oBean) {
-                    $scope.iduserobean = oBean.obj_usuario.data.id;
-                    if ($scope.iduserobean == $scope.iduser) {
-                        $scope.idseve = true;
+                //--------------------------------------------------------------
+                $scope.showViewButton = function (oBean) {
+                    return true;
+                }
+                $scope.showEditButton = function (oBean) {
+                    return true;
+                }
+                $scope.showRemoveButton = function (oBean) {
+                    if (oBean.link_episodio > 0) {
+                        return false;
                     } else {
-                        $scope.idseve = false;
+                        return true;
                     }
-                };
+                }
+                $scope.showOtherButton = function (oBean) {
+                    return false;
+                }
+                $scope.goViewURL = function (oBean) {
+                    $location.path($scope.ob + "/" + $scope.profile + "/view/" + oBean.id);
+                }
+                $scope.goEditURL = function (oBean) {
+                    $location.path($scope.ob + "/" + $scope.profile + "/edit/" + oBean.id);
+                }
+                $scope.goRemoveURL = function (oBean) {
+                    $location.path($scope.ob + "/" + $scope.profile + "/remove/" + oBean.id);
+                }
+                //--------------------------------------------------------------
                 getDataFromServer();
             }
         ]);

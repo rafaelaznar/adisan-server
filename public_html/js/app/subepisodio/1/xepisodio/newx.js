@@ -32,51 +32,64 @@
  */
 'use strict';
 
-moduloEpisodio.controller('EpisodioxpacienteEdit3Controller',
+moduloEpisodio.controller('SubepisodioxepisodioNew1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
-                $scope.ob = "episodio";
-                $scope.op = "editx";
-                $scope.profile = 3;
-                //----
-                $scope.id = $routeParams.id;
+                $scope.ob = "subepisodio";
+                $scope.op = "newx";
+                $scope.profile = 1;
                 //---
-                $scope.xob = "paciente";
-                $scope.xid = $routeParams.xid;
+                $scope.xob = "episodio";
+                $scope.xid = $routeParams.id;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
                 //---
-                if ($scope.xob && $scope.xid) {
-                    $scope.linkedbean = null;
-                    serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
+                function getDataFromServer() {
+                    if ($scope.xob && $scope.xid) {
+                        $scope.linkedbean = null;
+                        serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
+                            if (response.status == 200) {
+                                if (response.data.status == 200) {
+                                    $scope.linkedbean = response.data.json;
+                                    $scope.breadcrumbs = toolService.renderLinkHtml($scope.linkedbean.data.obj_paciente, $scope.profile) + toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
+                                }
+                            }
+                        }).catch(function (data) {
+                        });
+                    }
+                    ;
+                    serverCallService.getMeta($scope.ob).then(function (response) {
                         if (response.status == 200) {
                             if (response.data.status == 200) {
-                                $scope.linkedbean = response.data.json;
+                                $scope.status = null;
+                                //--For every foreign key create obj inside bean tobe filled...
+                                $scope.bean = {};
+                                response.data.json.metaProperties.forEach(function (property) {
+                                    if (property.Type == 'ForeignObject') {
+                                        $scope.bean[property.Name] = {};
+                                        $scope.bean[property.Name].data = {};
+                                        if (property.Name == 'obj_' + $scope.xob) {
+                                            $scope.bean[property.Name].data.id = $scope.xid;
+                                        } else {
+                                            $scope.bean[property.Name].data.id = 0;
+                                        }
+                                    }
+                                });
+                                //--
+                                $scope.metao = response.data.json.metaObject;
+                                $scope.metap = response.data.json.metaProperties;
+
+                            } else {
+                                $scope.status = "Error en la recepción de datos del servidor";
                             }
-                        }
-                    }).catch(function (data) {
-                    });
-                }
-
-
-                serverCallService.getOne($scope.ob, $scope.id).then(function (response) {
-                    if (response.status == 200) {
-                        if (response.data.status == 200) {
-                            $scope.status = null;
-                            $scope.bean = response.data.json.data;
-                            $scope.metao = response.data.json.metaObject;
-                            $scope.metap = response.data.json.metaProperties;
-                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_usuario");
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
-                    } else {
+                    }).catch(function (data) {
                         $scope.status = "Error en la recepción de datos del servidor";
-                    }
-                }).catch(function (data) {
-                    $scope.status = "Error en la recepción de datos del servidor";
-                });
+                    });
+                }
                 //--
                 $scope.save = function () {
                     var jsonToSend = {json: JSON.stringify(toolService.array_identificarArray($scope.bean))};
@@ -103,6 +116,11 @@ moduloEpisodio.controller('EpisodioxpacienteEdit3Controller',
                 $scope.close = function () {
                     $location.path('/home');
                 };
+                $scope.renderLinksHtml = function (html_code) {
+                    return  toolService.renderLinkHtml($scope.linkedbean.data.obj_paciente, $scope.profile) +
+                            toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
+                }
+                getDataFromServer();
             }
         ]);
 

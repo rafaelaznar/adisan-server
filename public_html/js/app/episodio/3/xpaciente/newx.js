@@ -88,7 +88,7 @@ moduloEpisodio.controller('EpisodioxpacienteNew3Controller',
                             //$scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_circunstanciasalta");
                             //$scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_destinoalta");
                             $scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_usuario");
-                            
+
 
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";

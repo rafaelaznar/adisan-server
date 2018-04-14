@@ -51,18 +51,21 @@ moduloUsuario.controller('UsuarioxgrupoPList3Controller',
                 function getDataFromServer() {
                     $scope.linkedbean = null;
                     $scope.linkedbean2 = null;
-                    serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
-                        if ($scope.xob && $scope.xid) {
-                            serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
-                                if (response.status == 200) {
-                                    if (response.data.status == 200) {
-                                        $scope.linkedbean = response.data.json;
-                                        $scope.linkedbean2 = response.data.json.data.obj_usuario;
-                                    }
+                    if ($scope.xob && $scope.xid) {
+                        serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
+                            if (response.status == 200) {
+                                if (response.data.status == 200) {
+                                    $scope.linkedbean = response.data.json;
+                                    $scope.linkedbean2 = response.data.json.data.obj_usuario;
+
+                                    $scope.breadcrumbs = toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
+
                                 }
-                            }).catch(function (data) {
-                            });
-                        }
+                            }
+                        }).catch(function (data) {
+                        });
+                    }
+                    serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
                         if (response.status == 200) {
                             $scope.registers = response.data.json;
                             $scope.pages = toolService.calculatePages($scope.rpp, $scope.registers);
@@ -78,10 +81,10 @@ moduloUsuario.controller('UsuarioxgrupoPList3Controller',
                             $scope.page = response.data.json.data;
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
-                            toolService.makeNoVisible($scope.metap, "obj_grupo");
-                            toolService.makeNoVisible($scope.metap, "obj_centro");
-                            toolService.makeNoVisible($scope.metap, "obj_centrosanitario");
-                            toolService.makeNoVisible($scope.metap, "link_grupo");
+                            toolService.hideField($scope.metap, "obj_grupo");
+                            toolService.hideField($scope.metap, "obj_centro");
+                            toolService.hideField($scope.metap, "obj_centrosanitario");
+                            toolService.hideField($scope.metap, "link_grupo");
                             toolService.makeVisible($scope.metap, "activo");
                             toolService.makeVisible($scope.metap, "validado");
                         } else {
@@ -131,10 +134,6 @@ moduloUsuario.controller('UsuarioxgrupoPList3Controller',
                 }
                 $scope.includeExtraButtons = function () {
                     return "js/app/usuario/3/xgrupo/plistExtraButtons.html"
-                }
-                //--------------------------------------------------------------
-                $scope.renderLinksHtml = function (html_code) {
-                    return toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
                 }
                 //--------------------------------------------------------------
                 $scope.showActivateButton = function (oBean) {

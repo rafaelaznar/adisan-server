@@ -55,12 +55,12 @@ moduloPaciente.controller('PacienteXusuarioPList3Controller',
                             if (response.status == 200) {
                                 if (response.data.status == 200) {
                                     $scope.linkedbean = response.data.json;
+                                    $scope.breadcrumbs = toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
                                 }
                             }
                         }).catch(function (data) {
                         });
                     }
-                    ;
                     serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
                         if (response.status == 200) {
                             $scope.registers = response.data.json;
@@ -77,6 +77,7 @@ moduloPaciente.controller('PacienteXusuarioPList3Controller',
                             $scope.page = response.data.json.data;
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
+                            toolService.hideField($scope.metap, "obj_" + $scope.xob);
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -95,7 +96,6 @@ moduloPaciente.controller('PacienteXusuarioPList3Controller',
                 $scope.close = function () {
                     $location.path('/home');
                 };
-
                 //--------------------------------------------------------------
                 $scope.showViewButton = function (oBean) {
                     return true;
@@ -122,17 +122,6 @@ moduloPaciente.controller('PacienteXusuarioPList3Controller',
                 $scope.goRemoveURL = function (oBean) {
                     $location.path($scope.ob + "/" + $scope.profile + "/remove/" + oBean.id);
                 }
-                $scope.renderHtml = function (html_code)
-                {
-                    return html_code;
-                };
-
-
-
-                $scope.renderLinksHtml = function (html_code) {
-                    return  toolService.renderLinkHtml($scope.linkedbean,$scope.profile);
-                }
-
                 //--------------------------------------------------------------
                 getDataFromServer();
             }

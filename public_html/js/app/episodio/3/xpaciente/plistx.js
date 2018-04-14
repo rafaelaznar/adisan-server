@@ -53,23 +53,22 @@ moduloEpisodio.controller('EpisodioxpacientePList3Controller',
                 $scope.orderParams = toolService.checkEmptyString($routeParams.order);
                 $scope.filterParams = toolService.checkEmptyString($routeParams.filter);
                 //---
-
                 function getDataFromServer() {
                     $scope.linkedbean = null;
                     $scope.linkedbean2 = null;
-
-                    serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
-                        if ($scope.xob && $scope.xid) {
-                            serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
-                                if (response.status == 200) {
-                                    if (response.data.status == 200) {
-                                        $scope.linkedbean = response.data.json;
-                                        $scope.linkedbean2 = response.data.json.data.obj_usuario;
-                                    }
+                    if ($scope.xob && $scope.xid) {
+                        serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
+                            if (response.status == 200) {
+                                if (response.data.status == 200) {
+                                    $scope.linkedbean = response.data.json;
+                                    $scope.linkedbean2 = response.data.json.data.obj_usuario;
+                                    $scope.breadcrumbs = toolService.renderLinkHtml($scope.linkedbean);
                                 }
-                            }).catch(function (data) {
-                            });
-                        }
+                            }
+                        }).catch(function (data) {
+                        });
+                    }
+                    serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
                         if (response.status == 200) {
                             $scope.registers = response.data.json;
                             $scope.pages = toolService.calculatePages($scope.rpp, $scope.registers);
@@ -85,6 +84,7 @@ moduloEpisodio.controller('EpisodioxpacientePList3Controller',
                             $scope.page = response.data.json.data;
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
+                            toolService.hideField($scope.metap, "obj_" + $scope.xob);
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -102,10 +102,6 @@ moduloEpisodio.controller('EpisodioxpacientePList3Controller',
                 $scope.close = function () {
                     $location.path('/home');
                 };
-
-
-
-
                 //--------------------------------------------------------------
                 $scope.showViewButton = function (oBean) {
                     return true;
@@ -136,13 +132,6 @@ moduloEpisodio.controller('EpisodioxpacientePList3Controller',
                     return "js/app/episodio/3/xpaciente/plistExtraButtons.html"
                 }
                 //--------------------------------------------------------------
-
-
-                $scope.renderLinksHtml = function (html_code) {
-                    return toolService.renderLinkHtml($scope.linkedbean);
-                }
-
-
                 getDataFromServer();
             }
         ]);

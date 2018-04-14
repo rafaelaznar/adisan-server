@@ -60,23 +60,19 @@ moduloPaciente.controller('PacientextipopagoPList4Controller',
                 function getDataFromServer() {
                     $scope.linkedbean = null;
                     $scope.linkedbean2 = null;
-                    serverCallService.getSession("usuario").then(function (response) {
-                        if (response.status == 200) {
-                            $scope.iduser = response.data.json.data.id;
-                        }
-                    }).then(
-                    serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
-                        if ($scope.xob && $scope.xid) {
-                            serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
-                                if (response.status == 200) {
-                                    if (response.data.status == 200) {
-                                        $scope.linkedbean = response.data.json;
-                                        $scope.linkedbean2 = response.data.json.data.obj_usuario;
-                                    }
+                    if ($scope.xob && $scope.xid) {
+                        serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
+                            if (response.status == 200) {
+                                if (response.data.status == 200) {
+                                    $scope.linkedbean = response.data.json;
+                                    $scope.linkedbean2 = response.data.json.data.obj_usuario;
+                                    $scope.breadcrumbs = toolService.renderLinkHtml($scope.linkedbean, $scope.profile) + toolService.renderLinkHtml($scope.linkedbean2, $scope.profile);
                                 }
-                            }).catch(function (data) {
-                            });
-                        }
+                            }
+                        }).catch(function (data) {
+                        });
+                    }
+                    serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
                         if (response.status == 200) {
                             $scope.registers = response.data.json;
                             $scope.pages = toolService.calculatePages($scope.rpp, $scope.registers);
@@ -92,13 +88,13 @@ moduloPaciente.controller('PacientextipopagoPList4Controller',
                             $scope.page = response.data.json.data;
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
-                            
+                            toolService.hideField($scope.metap, "obj_" + $scope.xob);
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
                     }).catch(function (data) {
                         $scope.status = "Error en la recepción de datos del servidor";
-                    }));
+                    });
                 }
                 $scope.doorder = function (orderField, ascDesc) {
                     $location.url($scope.url + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', $scope.filterParams).search('order', orderField + ',' + ascDesc);
@@ -110,17 +106,33 @@ moduloPaciente.controller('PacientextipopagoPList4Controller',
                 $scope.close = function () {
                     $location.path('/home');
                 };
-                $scope.setShowRemove = function (show) {
-                    $scope.showRemove = show;
-                };
-                $scope.showEdit = function (oBean) {
-                    $scope.iduserobean = oBean.obj_usuario.data.id;
-                    if ($scope.iduserobean == $scope.iduser) {
-                        $scope.idseve = true;
+                //--------------------------------------------------------------
+                $scope.showViewButton = function (oBean) {
+                    return true;
+                }
+                $scope.showEditButton = function (oBean) {
+                    return true;
+                }
+                $scope.showRemoveButton = function (oBean) {
+                    if (oBean.link_episodio > 0) {
+                        return false;
                     } else {
-                        $scope.idseve = false;
+                        return true;
                     }
-                };
+                }
+                $scope.showOtherButton = function (oBean) {
+                    return false;
+                }
+                $scope.goViewURL = function (oBean) {
+                    $location.path($scope.ob + "/" + $scope.profile + "/view/" + oBean.id);
+                }
+                $scope.goEditURL = function (oBean) {
+                    $location.path($scope.ob + "/" + $scope.profile + "/edit/" + oBean.id);
+                }
+                $scope.goRemoveURL = function (oBean) {
+                    $location.path($scope.ob + "/" + $scope.profile + "/remove/" + oBean.id);
+                }
+                //--------------------------------------------------------------                
                 getDataFromServer();
             }
         ]);

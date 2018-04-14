@@ -55,17 +55,18 @@ moduloEpisodio.controller('SubepisodioxepisodioPList5Controller',
                 //---
                 function getDataFromServer() {
                     $scope.linkedbean = null;
-                    serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
-                        if ($scope.xob && $scope.xid) {
-                            serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
-                                if (response.status == 200) {
-                                    if (response.data.status == 200) {
-                                        $scope.linkedbean = response.data.json;
-                                    }
+                    if ($scope.xob && $scope.xid) {
+                        serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
+                            if (response.status == 200) {
+                                if (response.data.status == 200) {
+                                    $scope.linkedbean = response.data.json;
+                                    $scope.breadcrumbs = toolService.renderLinkHtml($scope.linkedbean.data.obj_paciente, $scope.profile) + toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
                                 }
-                            }).catch(function (data) {
-                            });
-                        }
+                            }
+                        }).catch(function (data) {
+                        });
+                    }
+                    serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
                         if (response.status == 200) {
                             $scope.registers = response.data.json;
                             $scope.pages = toolService.calculatePages($scope.rpp, $scope.registers);
@@ -81,13 +82,11 @@ moduloEpisodio.controller('SubepisodioxepisodioPList5Controller',
                             $scope.page = response.data.json.data;
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
-
-
+                            
+                            //--
                             $scope.metap = toolService.deleteForeignKey($scope.metap, "link_subepisodio");
                             /////////
                             //$scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_episodio");
-
-
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -105,7 +104,6 @@ moduloEpisodio.controller('SubepisodioxepisodioPList5Controller',
                 $scope.close = function () {
                     $location.path('/home');
                 };
-
                 //--------------------------------------------------------------
                 $scope.showViewButton = function (oBean) {
                     return true;
@@ -128,22 +126,7 @@ moduloEpisodio.controller('SubepisodioxepisodioPList5Controller',
                 $scope.goRemoveURL = function (oBean) {
                     $location.path("episodio/" + $scope.profile + "/remove/" + oBean.id);
                 }
-                $scope.renderHtml = function (html_code)
-                {
-                    return html_code;
-                };
-
-
-
-                $scope.renderLinksHtml = function (html_code) {
-                    return  toolService.renderLinkHtml($scope.linkedbean.data.obj_paciente,$scope.profile) + toolService.renderLinkHtml($scope.linkedbean,$scope.profile);
-                }
-
                 //--------------------------------------------------------------
-
-
-
-
                 getDataFromServer();
             }
         ]);

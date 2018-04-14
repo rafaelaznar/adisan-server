@@ -203,7 +203,7 @@ moduloServicios.factory('toolService', ['$filter', function ($filter) {
                     }
                 }
             },
-            makeNoVisible: function (metap, field) {
+            hideField: function (metap, field) {
                 for (var j = 0; j < metap.length; j++) {
                     if (metap[j].Name == field) {
                         metap[j].IsVisible = false;

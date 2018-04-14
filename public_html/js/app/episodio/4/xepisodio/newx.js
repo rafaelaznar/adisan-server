@@ -85,8 +85,8 @@ moduloEpisodio.controller('EpisodioxepisodioNew4Controller',
                             $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_circunstanciasalta");
                             $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_destinoalta");
                             /////
-                            $scope.bean = toolService.deleteForeignKeyObject($scope.bean,"obj_circunstanciasalta");
-                            $scope.bean = toolService.deleteForeignKeyObject($scope.bean,"obj_destinoalta");
+                            $scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_circunstanciasalta");
+                            $scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_destinoalta");
 
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
