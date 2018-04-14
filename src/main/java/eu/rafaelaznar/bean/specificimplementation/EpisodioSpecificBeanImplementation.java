@@ -43,8 +43,9 @@ import java.util.Date;
 
 /**
  *
- * pendiente: falta el campo ingreso con subtabla periférica para la procedencia del ingreso
- * 
+ * pendiente: falta el campo ingreso con subtabla periférica para la procedencia
+ * del ingreso
+ *
  */
 @MetaObjectBeanInterface(
         TableName = "episodio",
@@ -107,8 +108,8 @@ public class EpisodioSpecificBeanImplementation extends TableGenericBeanImplemen
             LongName = "Finalizado",
             Description = "Episodio finalizado",
             Type = EnumHelper.FieldType.Boolean
-            //IsRequired = true
-            
+    //IsRequired = true
+
     )
     private Integer finalizado;
 
@@ -155,8 +156,7 @@ public class EpisodioSpecificBeanImplementation extends TableGenericBeanImplemen
             Type = EnumHelper.FieldType.ForeignObject,
             IsRequired = true,
             References = "paciente",
-            Width = 4,
-            IsVisible = false
+            Width = 4
     )
     private MetaBeanHelper obj_paciente = null;
 

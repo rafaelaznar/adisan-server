@@ -119,5 +119,4 @@ public class MunicipioSpecificBeanImplementation extends TableGenericBeanImpleme
         this.municipio = municipio;
     }
 
-    
 }

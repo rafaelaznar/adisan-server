@@ -39,7 +39,7 @@ public class ApellidoSpecificBeanImplementation extends TableGenericBeanImplemen
 
     public ApellidoSpecificBeanImplementation() {
     }
-   
+
     public ApellidoSpecificBeanImplementation(String Apellido) {
         this.Apellido = Apellido;
     }
@@ -51,5 +51,5 @@ public class ApellidoSpecificBeanImplementation extends TableGenericBeanImplemen
     public void setApellido(String Apellido) {
         this.Apellido = Apellido;
     }
-   
+
 }

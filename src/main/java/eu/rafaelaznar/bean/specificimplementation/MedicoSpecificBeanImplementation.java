@@ -171,7 +171,8 @@ public class MedicoSpecificBeanImplementation extends TableGenericBeanImplementa
             Description = "Fecha de nacimiento del medico",
             Type = EnumHelper.FieldType.Date,
             RegexHelp = "una fecha correcta",
-            IsRequired = true
+            IsRequired = true,
+            IsVisible = false
     )
     private Date fecha_nacimiento;
 
@@ -257,15 +258,15 @@ public class MedicoSpecificBeanImplementation extends TableGenericBeanImplementa
 //            References = "analitica"
 //    )
 //    private Integer link_analitica = null;
-//    @Expose(deserialize = false)
-//    @MetaPropertyBeanInterface(
-//            ShortName = "Episodio del médico",
-//            LongName = "Episodio del médico",
-//            Description = "Episodio del médico",
-//            Type = EnumHelper.FieldType.Link,
-//            References = "episodio"
-//    )
-//    private Integer link_episodio = null;
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Episodios del médico",
+            LongName = "Episodios del médico",
+            Description = "Episodios del médico",
+            Type = EnumHelper.FieldType.Link,
+            References = "episodio"
+    )
+    private Integer link_episodio = null;
 //    @Expose(deserialize = false)
 //    @MetaPropertyBeanInterface(
 //            ShortName = "Prueba informada del médico",
@@ -275,6 +276,7 @@ public class MedicoSpecificBeanImplementation extends TableGenericBeanImplementa
 //            References = "prueba_informada"
 //    )
 //    private Integer link_prueba_informada = null;
+
     public MedicoSpecificBeanImplementation() {
     }
 
@@ -410,9 +412,9 @@ public class MedicoSpecificBeanImplementation extends TableGenericBeanImplementa
         this.nombrecompleto = nombrecompleto;
     }
 
-     @Override
+    @Override
     public void ComputeCalculatedFields() {
         this.nombrecompleto = this.nombre + " " + this.primer_apellido + " " + this.segundo_apellido;
     }
-    
+
 }

@@ -50,6 +50,5 @@ public class ProvinciaSpecificBeanImplementation extends TableGenericBeanImpleme
     public void setProvincia(String provincia) {
         this.provincia = provincia;
     }
-    
-   
+
 }

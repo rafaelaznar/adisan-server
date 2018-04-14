@@ -62,15 +62,16 @@ public class TipodependenciaSpecificBeanImplementation extends TableGenericBeanI
     )
     private String descripcion = "";
 
-//    @Expose(deserialize = false)
-//    @MetaPropertyBeanInterface(
-//            ShortName = "Tipo dep.",
-//            LongName = "Tipo de Dependencia",
-//            Description = "Tipo de DEPENDENCIA",
-//            Type = EnumHelper.FieldType.Link,
-//            References = "dependencia"
-//    )
-//    private Integer link_dependencia = null;
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Dependencias",
+            LongName = "Dependencias de este tipo",
+            Description = "Dependencias de este tipo",
+            Type = EnumHelper.FieldType.Link,
+            References = "dependencia"
+    )
+    private Integer link_dependencia = null;
+
     public TipodependenciaSpecificBeanImplementation() {
     }
 

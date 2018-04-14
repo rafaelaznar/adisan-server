@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017-2018
  *
  * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
+ *
  * GESANE: Free Open Source Health Management System
  *
  * Sources at:
@@ -93,24 +93,26 @@ public class ServicioSpecificBeanImplementation extends TableGenericBeanImplemen
     )
     private MetaBeanHelper obj_tiposervicio = null;
 
-    //    @Expose(deserialize = false)
-//    @MetaPropertyBeanInterface(
-//            ShortName = "Es servicio de los episodios",
-//            LongName = "Es servicio de los episodios",
-//            Description = "Es servicio de los episodios",
-//            Type = EnumHelper.FieldType.Link,
-//            References = "episodio"
-//    )
-//    private Integer link_episodio = null;
-//    @Expose(deserialize = false)
-//    @MetaPropertyBeanInterface(
-//            ShortName = "Es servicio de los medicos",
-//            LongName = "Es servicio de los medicos",
-//            Description = "Es servicio de los medicos",
-//            Type = EnumHelper.FieldType.Link,
-//            References = "medico"
-//    )
-//    private Integer link_medico = null;
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Episodios del servicio",
+            LongName = "Episodios del servicio",
+            Description = "Episodios del servicio",
+            Type = EnumHelper.FieldType.Link,
+            References = "episodio"
+    )
+    private Integer link_episodio = null;
+
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Médicos del servicio",
+            LongName = "Médicos del servicio",
+            Description = "Médicos del servicio",
+            Type = EnumHelper.FieldType.Link,
+            References = "medico"
+    )
+    private Integer link_medico = null;
+
     public ServicioSpecificBeanImplementation() {
     }
 

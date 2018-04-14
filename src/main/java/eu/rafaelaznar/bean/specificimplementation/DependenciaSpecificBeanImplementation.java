@@ -143,15 +143,17 @@ public class DependenciaSpecificBeanImplementation extends TableGenericBeanImple
 //            References = "imagen"
 //    )
 //    private Integer link_imagen = null;  
-//    @Expose(deserialize = false)
-//    @MetaPropertyBeanInterface(
-//            ShortName = "Es dependencia del episodio",
-//            LongName = "Es dependencia del episodio",
-//            Description = "Es dependencia del episodio",
-//            Type = EnumHelper.FieldType.Link,
-//            References = "episodio"
-//    )
-//    private Integer link_episodio = null;
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Episodios en la dependencia",
+            LongName = "Episodios en la dependencia",
+            Description = "Episodios en la dependencia",
+            Type = EnumHelper.FieldType.Link,
+            References = "episodio"
+    )
+
+    private Integer link_episodio = null;
+
     public DependenciaSpecificBeanImplementation() {
     }
 

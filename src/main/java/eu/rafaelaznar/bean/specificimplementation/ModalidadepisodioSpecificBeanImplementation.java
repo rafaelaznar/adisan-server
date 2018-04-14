@@ -70,6 +70,16 @@ public class ModalidadepisodioSpecificBeanImplementation extends TableGenericBea
 //            References = "paciente"
 //    )
 //    private Integer link_paciente = null;
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Episodios de esta modalidad",
+            LongName = "Episodios de esta modalidad",
+            Description = "Episodios de esta modalidad",
+            Type = EnumHelper.FieldType.Link,
+            References = "episodio"
+    )
+    private Integer link_episodio = null;
+
     public ModalidadepisodioSpecificBeanImplementation() {
     }
 

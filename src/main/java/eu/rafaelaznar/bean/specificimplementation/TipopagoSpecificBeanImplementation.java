@@ -70,6 +70,7 @@ public class TipopagoSpecificBeanImplementation extends TableGenericBeanImplemen
             References = "paciente"
     )
     private Integer link_paciente = null;
+
     public TipopagoSpecificBeanImplementation() {
     }
 

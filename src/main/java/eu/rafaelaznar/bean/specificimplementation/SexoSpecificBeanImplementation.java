@@ -73,7 +73,7 @@ public class SexoSpecificBeanImplementation extends TableGenericBeanImplementati
             References = "paciente"
     )
     private Integer link_paciente = null;
-    
+
     public String getDescripcion() {
         return descripcion;
     }

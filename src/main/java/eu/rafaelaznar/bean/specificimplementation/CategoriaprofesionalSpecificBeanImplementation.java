@@ -12,10 +12,6 @@ import eu.rafaelaznar.bean.meta.publicinterface.MetaPropertyBeanInterface;
 import eu.rafaelaznar.helper.EnumHelper;
 import eu.rafaelaznar.helper.constant.RegexConstants;
 
-/**
- *
- * @author a0y3770325h
- */
 @MetaObjectBeanInterface(
         TableName = "categoriaprofesional",
         SingularDescription = "Categoría profesional",
@@ -37,6 +33,16 @@ public class CategoriaprofesionalSpecificBeanImplementation extends TableGeneric
             IsForeignKeyDescriptor = true
     )
     private String descripcion = "";
+
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Médicos de la categoría",
+            LongName = "Médicos de la categoría",
+            Description = "Médicos de la categoría",
+            Type = EnumHelper.FieldType.Link,
+            References = "medico"
+    )
+    private Integer link_medico = null;
 
     public CategoriaprofesionalSpecificBeanImplementation() {
     }

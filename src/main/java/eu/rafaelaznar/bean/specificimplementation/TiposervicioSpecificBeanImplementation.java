@@ -61,15 +61,16 @@ public class TiposervicioSpecificBeanImplementation extends TableGenericBeanImpl
     )
     private String descripcion = "";
 
-    //    @Expose(deserialize = false)
-//    @MetaPropertyBeanInterface(
-//            ShortName = "Tipo de servicio en función del servicio",
-//            LongName = "Tipo de servicio en función del servicio",
-//            Description = "Tipo de servicio en función del servicio",
-//            Type = EnumHelper.FieldType.Link,
-//            References = "servicio"
-//    )
-//    private Integer link_servicio = null;
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Servicios del tipo",
+            LongName = "Servicios del tipo",
+            Description = "Servicios del tipo",
+            Type = EnumHelper.FieldType.Link,
+            References = "servicio"
+    )
+    private Integer link_servicio = null;
+
     public TiposervicioSpecificBeanImplementation() {
     }
 

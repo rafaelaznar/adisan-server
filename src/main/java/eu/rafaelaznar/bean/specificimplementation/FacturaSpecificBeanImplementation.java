@@ -64,15 +64,6 @@ public class FacturaSpecificBeanImplementation extends TableGenericBeanImplement
     )
     private String descripcion;
 
-//    @Expose(deserialize = false)
-//    @MetaPropertyBeanInterface(
-//            ShortName = "Factura",
-//            LongName = "Factura del episodio",
-//            Description = "Factura del episodio",
-//            Type = EnumHelper.FieldType.Link,
-//            References = "episodio"
-//    )
-//    private Integer link_episodio = null;
     @Expose
     @MetaPropertyBeanInterface(
             ShortName = "Fecha",
@@ -87,6 +78,16 @@ public class FacturaSpecificBeanImplementation extends TableGenericBeanImplement
             MaxLength = 100
     )
     private Date fecha;
+
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Factura del episodio",
+            LongName = "Factura del episodio",
+            Description = "Factura del episodio",
+            Type = EnumHelper.FieldType.Link,
+            References = "episodio"
+    )
+    private Integer link_episodio = null;
 
     public Date getFecha() {
         return fecha;

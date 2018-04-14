@@ -658,6 +658,12 @@ public class ServiceFactory {
                     case "getcount":
                         oReplyBean = oServicioService.getCount();
                         break;
+                    case "getcountx":
+                        oReplyBean = oServicioService.getCountX();
+                        break;
+                    case "getpagex":
+                        oReplyBean = oServicioService.getPageX();
+                        break;
                     default:
                         oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Operation not found : Please contact your administrator"));
                         break;
@@ -932,7 +938,6 @@ public class ServiceFactory {
                         break;
                 }
                 break;
-                
 
             default:
                 oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Object not found : Please contact your administrator"));

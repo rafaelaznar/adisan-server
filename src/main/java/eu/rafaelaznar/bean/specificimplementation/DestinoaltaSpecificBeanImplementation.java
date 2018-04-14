@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017-2018
  *
  * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
+ *
  * GESANE: Free Open Source Health Management System
  *
  * Sources at:
@@ -61,15 +61,16 @@ public class DestinoaltaSpecificBeanImplementation extends TableGenericBeanImple
     )
     private String descripcion = "";
 
-//    @Expose(deserialize = false)
-//    @MetaPropertyBeanInterface(
-//            ShortName = "Destino de alta en funcion del episodio",
-//            LongName = "Destino de alta en funcion del episodio",
-//            Description = "Destino de alta en funcion del episodio",
-//            Type = EnumHelper.FieldType.Link,
-//            References = "episodio"
-//    )
-//    private Integer link_episodio = null;
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Episodios con este destino",
+            LongName = "Episodios con este destino",
+            Description = "Episodios con este destino",
+            Type = EnumHelper.FieldType.Link,
+            References = "episodio"
+    )
+    private Integer link_episodio = null;
+
     public DestinoaltaSpecificBeanImplementation() {
     }
 
