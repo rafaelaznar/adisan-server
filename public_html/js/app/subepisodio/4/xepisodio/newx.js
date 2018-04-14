@@ -32,12 +32,12 @@
  */
 'use strict';
 
-moduloEpisodio.controller('SubepisodioXepisodioNew3Controller',
+moduloEpisodio.controller('SubepisodioXepisodioNew4Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
                 $scope.ob = "subepisodio";
                 $scope.op = "newx";
-                $scope.profile = 3;
+                $scope.profile = 4;
                 //---
                 $scope.xob = "episodio";
                 $scope.xid = $routeParams.id;

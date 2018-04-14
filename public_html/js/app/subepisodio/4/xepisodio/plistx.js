@@ -31,12 +31,12 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloEpisodio.controller('SubepisodioXepisodioPList5Controller',
+moduloEpisodio.controller('SubepisodioXepisodioPList4Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService', '$filter',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService, $filter) {
                 $scope.ob = "subepisodio";
                 $scope.op = "plistx";
-                $scope.profile = 5;
+                $scope.profile = 4;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
@@ -82,11 +82,13 @@ moduloEpisodio.controller('SubepisodioXepisodioPList5Controller',
                             $scope.page = response.data.json.data;
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
-                            
-                            //--
+
+                            //---
                             $scope.metap = toolService.deleteForeignKey($scope.metap, "link_subepisodio");
                             /////////
                             //$scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_episodio");
+
+
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -104,15 +106,20 @@ moduloEpisodio.controller('SubepisodioXepisodioPList5Controller',
                 $scope.close = function () {
                     $location.path('/home');
                 };
+
                 //--------------------------------------------------------------
                 $scope.showViewButton = function (oBean) {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {
-                    return false;
+                    return true;
                 }
                 $scope.showRemoveButton = function (oBean) {
-                    return false;
+                    if (oBean.link_subepisodio > 0) {
+                        return false;
+                    } else {
+                        return true;
+                    }
                 }
                 $scope.showOtherButton = function (oBean) {
                     return false;
@@ -126,6 +133,10 @@ moduloEpisodio.controller('SubepisodioXepisodioPList5Controller',
                 $scope.goRemoveURL = function (oBean) {
                     $location.path("episodio/" + $scope.profile + "/remove/" + oBean.id);
                 }
+                $scope.renderHtml = function (html_code)
+                {
+                    return html_code;
+                };
                 //--------------------------------------------------------------
                 getDataFromServer();
             }

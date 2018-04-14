@@ -32,7 +32,7 @@
  */
 'use strict';
 
-moduloEpisodio.controller('SubepisodioxepisodioNew1Controller',
+moduloEpisodio.controller('SubepisodioXepisodioNew1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
                 $scope.ob = "subepisodio";

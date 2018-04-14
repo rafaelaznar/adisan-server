@@ -31,7 +31,7 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloEpisodio.controller('SubepisodioxepisodioPList3Controller',
+moduloEpisodio.controller('SubepisodioXepisodioPList3Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService', '$filter',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService, $filter) {
                 $scope.ob = "subepisodio";

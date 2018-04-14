@@ -262,13 +262,6 @@ gesane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/episodio/4/xepisodio/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'EpisodioxepisodioPList4Controller', resolve: {auth: authentication4Promise}});
 
 
-
-
-
-
-
-
-
         //----Episodio 5 visitante --
         $routeProvider.when('/episodio/5/xcircunstanciasalta/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'EpisodioxcircunstanciasaltaPList5Controller', resolve: {auth: authentication5Promise}});
 
@@ -277,14 +270,20 @@ gesane.config(['$routeProvider', function ($routeProvider) {
 
 
 
+
+
+
         //-- Subepisodio 1
-        $routeProvider.when('/subepisodio/1/xepisodio/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'SubepisodioxepisodioPList1Controller', resolve: {auth: authentication1Promise}});
-        $routeProvider.when('/subepisodio/1/xepisodio/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'SubepisodioxepisodioNew1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/subepisodio/1/xepisodio/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'SubepisodioXepisodioPList1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/subepisodio/1/xepisodio/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'SubepisodioXepisodioNew1Controller', resolve: {auth: authentication1Promise}});
         //-- Subepisodio 3
-        $routeProvider.when('/subepisodio/3/xepisodio/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'SubepisodioxepisodioPList3Controller', resolve: {auth: authentication3Promise}});
-        $routeProvider.when('/subepisodio/3/xepisodio/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'SubepisodioxepisodioNew3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/subepisodio/3/xepisodio/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'SubepisodioXepisodioPList3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/subepisodio/3/xepisodio/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'SubepisodioXepisodioNew3Controller', resolve: {auth: authentication3Promise}});
+         //-- Subepisodio 4
+        $routeProvider.when('/subepisodio/4/xepisodio/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'SubepisodioXepisodioPList4Controller', resolve: {auth: authentication4Promise}});
+        $routeProvider.when('/subepisodio/4/xepisodio/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'SubepisodioXepisodioNew4Controller', resolve: {auth: authentication4Promise}});        
         //-- Subepisodio 5
-        $routeProvider.when('/subepisodio/5/xepisodio/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'SubepisodioxepisodioPList5Controller', resolve: {auth: authentication5Promise}});
+        $routeProvider.when('/subepisodio/5/xepisodio/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'SubepisodioXepisodioPList5Controller', resolve: {auth: authentication5Promise}});
 
 
 
