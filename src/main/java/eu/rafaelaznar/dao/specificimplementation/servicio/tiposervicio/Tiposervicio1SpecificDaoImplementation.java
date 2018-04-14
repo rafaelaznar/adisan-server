@@ -32,6 +32,7 @@
  */
 package eu.rafaelaznar.dao.specificimplementation.servicio.tiposervicio;
 
+import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
@@ -40,6 +41,26 @@ public class Tiposervicio1SpecificDaoImplementation extends TableGenericDaoImple
 
     public Tiposervicio1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("tiposervicio", oPooledConnection, oPuserBean_security, strWhere);
+    }
+
+    @Override
+    public boolean canGet(Integer id) throws Exception {
+        return true;
+    }
+
+    @Override
+    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
+        return true;
+    }
+
+    @Override
+    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
+        return true;
+    }
+
+    @Override
+    public boolean canDelete(Integer id) throws Exception {
+        return true;
     }
 
 }

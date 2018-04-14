@@ -32,6 +32,7 @@
  */
 package eu.rafaelaznar.dao.specificimplementation.dependencia.tipodependencia;
 
+import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
@@ -42,4 +43,23 @@ public class Tipodependencia1SpecificDaoImplementation extends TableGenericDaoIm
         super("tipodependencia", oPooledConnection, oPuserBean_security, strWhere);
     }
 
+    @Override
+    public boolean canGet(Integer id) throws Exception {
+        return true;
+    }
+
+    @Override
+    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
+        return true;
+    }
+
+    @Override
+    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
+        return true;
+    }
+
+    @Override
+    public boolean canDelete(Integer id) throws Exception {
+        return true;
+    }
 }

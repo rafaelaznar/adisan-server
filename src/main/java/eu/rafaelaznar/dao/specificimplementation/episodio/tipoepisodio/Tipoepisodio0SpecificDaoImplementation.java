@@ -42,34 +42,8 @@ public class Tipoepisodio0SpecificDaoImplementation extends TableGenericDaoImple
     public Tipoepisodio0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("tipoepisodio", oPooledConnection, oPuserBean_security, strWhere);
     }
-
     @Override
-    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
-        return false;
-    }
-
-    @Override
-    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
-        return false;
-    }
-
-    @Override
-    public boolean canDelete(Integer id) throws Exception {
-        return false;
-    }
-
-    @Override
-    public Integer create(TableGenericBeanImplementation oBean) throws Exception {
-        return 0;
-    }
-
-    @Override
-    public Integer update(TableGenericBeanImplementation oBean) throws Exception {
-        return 0;
-    }
-
-    @Override
-    public Integer delete(Integer id) throws Exception {
-        return 0;
+    public boolean canGet(Integer id) throws Exception {
+        return true;
     }
 }
