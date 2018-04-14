@@ -59,7 +59,7 @@ public class Episodio3SpecificDaoImplementation extends TableGenericDaoImplement
 
                 CentrosanitarioSpecificBeanImplementation oCentroSanitario = (CentrosanitarioSpecificBeanImplementation) oUsuario.getObj_centrosanitario().getBean();
                 idCentrosanitario = oCentroSanitario.getId();
-                strSQLini = "FROM episodio where 1=1 and (id_episodio=NULL OR id_episodio=0) "
+                strSQLini = "FROM episodio where 1=1 " //and (id_episodio=NULL OR id_episodio=0) "
                         + "AND (id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=3 ) "
                         + " OR  id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=5 ) "
                         + " OR  id_usuario IN (SELECT distinct u.id FROM usuario u, grupo g, usuario u2 "

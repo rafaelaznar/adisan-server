@@ -86,7 +86,7 @@ public abstract class TableGenericDaoImplementation extends ViewGenericDaoImplem
                 oPreparedStatement.setInt(1, id);
                 oResultSet = oPreparedStatement.executeQuery();
                 oBean = (TableGenericBeanImplementation) BeanFactory.getBean(ob, oPuserSecurity);
-     
+
                 if (oResultSet.next()) {
                     oBean = (TableGenericBeanImplementation) oBean.fill(oResultSet, oConnection, oPuserSecurity, intExpand);
                 } else {
@@ -110,9 +110,10 @@ public abstract class TableGenericDaoImplementation extends ViewGenericDaoImplem
             }
             return oMetaBeanHelper;
         } else {
-            String msg = this.getClass().getName() + ": You don't have enought oermissions to perform this operation" + " ob:" + ob + " op: get";
-            Log4jHelper.errorLog(msg);
-            throw new Exception(msg);
+//            String msg = this.getClass().getName() + ": You don't have enought oermissions to perform this operation" + " ob:" + ob + " op: get";
+//            Log4jHelper.errorLog(msg);
+//            throw new Exception(msg);
+            return null;
         }
     }
 

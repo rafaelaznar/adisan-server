@@ -90,7 +90,7 @@ public class Subepisodio3SpecificDaoImplementation extends TableGenericDaoImplem
 
     @Override
     public boolean canGet(Integer id) throws Exception {
-        String strSQLini1 = "SELECT COUNT(*) FROM episodio where 1=1 and (id_episodio!=NULL OR id_episodio!=0) "
+        String strSQLini1 = "SELECT COUNT(*) FROM episodio where 1=1 " //and (id_episodio!=NULL OR id_episodio!=0) "
                 + "AND (id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=3 ) "
                 + " OR  id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=5 ) "
                 + " OR  id_usuario IN (SELECT distinct u.id FROM usuario u, grupo g, usuario u2 "
