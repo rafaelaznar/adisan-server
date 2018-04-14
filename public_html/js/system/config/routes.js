@@ -270,20 +270,17 @@ gesane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/episodio/5/xepisodio/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'EpisodioxepisodioPList5Controller', resolve: {auth: authentication5Promise}});
 
         
-
-
+        
+        
+        //-- Subepisodio 1        
+        $routeProvider.when('/subepisodio/1/xepisodio/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'SubepisodioxepisodioPList1Controller', resolve: {auth: authentication1Promise}});
         //-- Subepisodio 3
-        $routeProvider.when('/subepisodio/3/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'SubepisodioView3Controller', resolve: {auth: authentication3Promise}});
-        $routeProvider.when('/subepisodio/3/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'SubepisodioRemove3Controller', resolve: {auth: authentication3Promise}});
-        $routeProvider.when('/subepisodio/3/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'SubepisodioEdit3Controller', resolve: {auth: authentication3Promise}});
         $routeProvider.when('/subepisodio/3/xepisodio/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'SubepisodioxepisodioPList3Controller', resolve: {auth: authentication3Promise}});
-
         //-- Subepisodio 5
-        $routeProvider.when('/subepisodio/5/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'SubepisodioView5Controller', resolve: {auth: authentication5Promise}});
         $routeProvider.when('/subepisodio/5/xepisodio/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'SubepisodioxepisodioPList5Controller', resolve: {auth: authentication5Promise}});
 
 
-        $routeProvider.when('/subepisodio/5/xepisodio/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'SubepisodioxepisodioPList5Controller', resolve: {auth: authentication5Promise}});
+
 
 
         //--

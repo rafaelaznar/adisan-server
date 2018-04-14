@@ -120,13 +120,13 @@ moduloEpisodio.controller('SubepisodioxepisodioPList5Controller',
                     return false;
                 }
                 $scope.goViewURL = function (oBean) {
-                    $location.path("subepisodio/" + $scope.profile + "/view/" + oBean.id);
+                    $location.path("episodio/" + $scope.profile + "/view/" + oBean.id);
                 }
                 $scope.goEditURL = function (oBean) {
-                    $location.path("subepisodio/" + $scope.profile + "/edit/" + oBean.id);
+                    $location.path("episodio/" + $scope.profile + "/edit/" + oBean.id);
                 }
                 $scope.goRemoveURL = function (oBean) {
-                    $location.path("subepisodio/" + $scope.profile + "/remove/" + oBean.id);
+                    $location.path("episodio/" + $scope.profile + "/remove/" + oBean.id);
                 }
                 $scope.renderHtml = function (html_code)
                 {
