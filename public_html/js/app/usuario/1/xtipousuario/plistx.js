@@ -96,7 +96,33 @@ moduloUsuario.controller('UsuarioXtipousuarioPList1Controller',
                     $location.path('/home');
                 };
 
-
+                //--------------------------------------------------------------
+                $scope.showViewButton = function (oBean) {
+                    return true;
+                }
+                $scope.showEditButton = function (oBean) {
+                    return true;
+                }
+                $scope.showRemoveButton = function (oBean) {
+                    if (oBean.link_grupo > 0 || oBean.link_paciente > 0) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
+                $scope.showOtherButton = function (oBean) {
+                    return false;
+                }
+                $scope.goViewURL = function (oBean) {
+                    $location.path("usuario/" + $scope.profile + "/view/" + oBean.id);
+                }
+                $scope.goEditURL = function (oBean) {
+                    $location.path("usuario/" + $scope.profile + "/edit/" + oBean.id);
+                }
+                $scope.goRemoveURL = function (oBean) {
+                    $location.path("usuario/" + $scope.profile + "/remove/" + oBean.id);
+                }
+                //--------------------------------------------------------------
 
                 $scope.renderLinksHtml = function (html_code) {
                     return toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
