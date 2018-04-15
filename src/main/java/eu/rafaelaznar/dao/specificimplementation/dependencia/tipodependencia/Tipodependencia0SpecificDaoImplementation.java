@@ -43,10 +43,10 @@ public class Tipodependencia0SpecificDaoImplementation extends TableGenericDaoIm
         super("tipodependencia", oPooledConnection, oPuserBean_security, strWhere);
     }
 
-    @Override
-    public boolean canGet(Integer id) throws Exception {
-        return true;
-    }
+//    @Override
+//    public boolean canGet(Integer id) throws Exception {
+//        return true;
+//    }
 
 
 }

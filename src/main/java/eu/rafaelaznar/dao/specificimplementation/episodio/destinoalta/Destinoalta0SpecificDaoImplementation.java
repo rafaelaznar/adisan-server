@@ -43,8 +43,8 @@ public class Destinoalta0SpecificDaoImplementation extends TableGenericDaoImplem
         super("destinoalta", oPooledConnection, oPuserBean_security, strWhere);
     }
 
-    @Override
-    public boolean canGet(Integer id) throws Exception {
-        return true;
-    }
+//    @Override
+//    public boolean canGet(Integer id) throws Exception {
+//        return true;
+//    }
 }

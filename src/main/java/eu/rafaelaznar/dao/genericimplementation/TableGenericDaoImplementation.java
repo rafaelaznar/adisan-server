@@ -52,10 +52,10 @@ public abstract class TableGenericDaoImplementation extends ViewGenericDaoImplem
         super(ob, oPooledConnection, oPuserBean_security, strWhere);
     }
 
-    @Override
-    public boolean canGet(Integer id) throws Exception {
-        return false;
-    }
+//    @Override
+//    public boolean canGet(Integer id) throws Exception {
+//        return false;
+//    }
 
     @Override
     public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
@@ -74,7 +74,7 @@ public abstract class TableGenericDaoImplementation extends ViewGenericDaoImplem
 
     @Override
     public MetaBeanHelper get(int id, int intExpand) throws Exception {
-        if (this.canGet(id)) {
+        //if (this.canGet(id)) {
             TraceHelper.trace("get-TableGenericDaoImplementation(begin):object=" + ob);
             PreparedStatement oPreparedStatement = null;
             ResultSet oResultSet = null;
@@ -109,12 +109,12 @@ public abstract class TableGenericDaoImplementation extends ViewGenericDaoImplem
                 TraceHelper.trace("get-TableGenericDaoImplementation(end):object=" + ob);
             }
             return oMetaBeanHelper;
-        } else {
-//            String msg = this.getClass().getName() + ": You don't have enought oermissions to perform this operation" + " ob:" + ob + " op: get";
-//            Log4jHelper.errorLog(msg);
-//            throw new Exception(msg);
-            return null;
-        }
+//        } else {
+////            String msg = this.getClass().getName() + ": You don't have enought oermissions to perform this operation" + " ob:" + ob + " op: get";
+////            Log4jHelper.errorLog(msg);
+////            throw new Exception(msg);
+//            return null;
+//        }
     }
 
     @Override

@@ -43,9 +43,9 @@ public class Tipopago0SpecificDaoImplementation extends TableGenericDaoImplement
         super("tipopago", oPooledConnection, oPuserBean_security, strWhere);
     }
 
-    @Override
-    public boolean canGet(Integer id) throws Exception {
-        return true;
-    }
+//    @Override
+//    public boolean canGet(Integer id) throws Exception {
+//        return true;
+//    }
 
 }

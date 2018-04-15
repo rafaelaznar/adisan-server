@@ -43,8 +43,8 @@ public class Medico5SpecificDaoImplementation extends TableGenericDaoImplementat
         super("medico", oPooledConnection, oPuserBean_security, strWhere);
     }
 
-    @Override
-    public boolean canGet(Integer id) throws Exception {
-        return true;
-    }
+//    @Override
+//    public boolean canGet(Integer id) throws Exception {
+//        return true;
+//    }
 }

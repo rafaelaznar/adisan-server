@@ -42,9 +42,9 @@ public class Paciente5SpecificDaoImplementation extends TableGenericDaoImplement
         super("paciente", oPooledConnection, oPuserBean_security, strWhere);
     }
 
-    @Override
-    public boolean canGet(Integer id) throws Exception {
-        return true;
-    }
+//    @Override
+//    public boolean canGet(Integer id) throws Exception {
+//        return true;
+//    }
 
 }

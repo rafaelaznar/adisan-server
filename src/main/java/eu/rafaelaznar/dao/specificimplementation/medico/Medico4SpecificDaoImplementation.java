@@ -71,9 +71,9 @@ public class Medico4SpecificDaoImplementation extends TableGenericDaoImplementat
 
     }
 
-    @Override
-    public boolean canGet(Integer id) throws Exception {
-        return true;
-    }
+//    @Override
+//    public boolean canGet(Integer id) throws Exception {
+//        return true;
+//    }
 
 }

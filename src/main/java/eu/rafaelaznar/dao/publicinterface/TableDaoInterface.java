@@ -37,7 +37,7 @@ import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 
 public interface TableDaoInterface extends ViewDaoInterface {
 
-    public boolean canGet(Integer id) throws Exception;
+//    public boolean canGet(Integer id) throws Exception;
 
     public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception;
 

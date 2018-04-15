@@ -43,10 +43,10 @@ public class Servicio1SpecificDaoImplementation extends TableGenericDaoImplement
         super("servicio", oPooledConnection, oPuserBean_security, strWhere);
     }
 
-    @Override
-    public boolean canGet(Integer id) throws Exception {
-        return true;
-    }
+//    @Override
+//    public boolean canGet(Integer id) throws Exception {
+//        return true;
+//    }
 
     @Override
     public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {

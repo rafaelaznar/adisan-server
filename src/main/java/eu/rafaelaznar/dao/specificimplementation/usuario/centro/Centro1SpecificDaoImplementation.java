@@ -42,10 +42,10 @@ public class Centro1SpecificDaoImplementation extends TableGenericDaoImplementat
     public Centro1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("centro", oPooledConnection, oPuserBean_security, strWhere);
     }
-    @Override
-    public boolean canGet(Integer id) throws Exception {
-        return true;
-    }
+//    @Override
+//    public boolean canGet(Integer id) throws Exception {
+//        return true;
+//    }
 
     @Override
     public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {

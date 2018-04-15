@@ -42,8 +42,8 @@ public class Tiposervicio0SpecificDaoImplementation extends TableGenericDaoImple
         super("tiposervicio", oPooledConnection, oPuserBean_security, strWhere);
     }
 
-    @Override
-    public boolean canGet(Integer id) throws Exception {
-        return true;
-    }
+//    @Override
+//    public boolean canGet(Integer id) throws Exception {
+//        return true;
+//    }
 }

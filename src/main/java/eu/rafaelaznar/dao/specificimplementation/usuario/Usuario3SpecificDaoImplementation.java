@@ -102,14 +102,14 @@ public class Usuario3SpecificDaoImplementation extends Usuario1SpecificDaoImplem
         return countSQL(strSQLini);
     }
 
-    @Override
-    public boolean canGet(Integer id) throws Exception {
-        if (alumnoIsMine(id)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+//    @Override
+//    public boolean canGet(Integer id) throws Exception {
+//        if (alumnoIsMine(id)) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
 
     @Override
     public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {

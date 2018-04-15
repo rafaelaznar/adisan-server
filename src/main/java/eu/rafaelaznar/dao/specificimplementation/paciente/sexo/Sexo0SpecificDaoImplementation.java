@@ -42,9 +42,9 @@ public class Sexo0SpecificDaoImplementation extends TableGenericDaoImplementatio
         super("sexo", oPooledConnection, oPuserBean_security, strWhere);
     }
 
-   @Override
-    public boolean canGet(Integer id) throws Exception {
-        return true;
-    }
+//   @Override
+//    public boolean canGet(Integer id) throws Exception {
+//        return true;
+//    }
 
 }

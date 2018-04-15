@@ -44,10 +44,10 @@ public class Usuario5SpecificDaoImplementation extends TableGenericDaoImplementa
         super("usuario", oPooledConnection, oPuserBean_security, strWhere);
     }
     
-    @Override
-    public boolean canGet(Integer id) throws Exception {
-        return true;
-    }
+//    @Override
+//    public boolean canGet(Integer id) throws Exception {
+//        return true;
+//    }
         
     @Override
     public MetaBeanHelper get(int id, int intExpand) throws Exception {

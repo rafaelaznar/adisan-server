@@ -42,8 +42,8 @@ public class Grupo0SpecificDaoImplementation extends TableGenericDaoImplementati
         super("grupo", oPooledConnection, oPuserBean_security, strWhere);
     }
 
-    @Override
-    public boolean canGet(Integer id) throws Exception {
-        return true;
-    }
+//    @Override
+//    public boolean canGet(Integer id) throws Exception {
+//        return true;
+//    }
 }

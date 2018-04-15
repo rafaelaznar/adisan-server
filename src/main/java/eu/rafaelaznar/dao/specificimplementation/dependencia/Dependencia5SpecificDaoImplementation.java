@@ -42,8 +42,8 @@ public class Dependencia5SpecificDaoImplementation extends TableGenericDaoImplem
         super("dependencia", oPooledConnection, oPuserBean_security, strWhere);
     }
 
-    @Override
-    public boolean canGet(Integer id) throws Exception {
-        return true;
-    }
+//    @Override
+//    public boolean canGet(Integer id) throws Exception {
+//        return true;
+//    }
 }

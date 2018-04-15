@@ -43,17 +43,17 @@ public class Usuario0SpecificDaoImplementation extends TableGenericDaoImplementa
         super("usuario", oPooledConnection, oPuserBean_security, strWhere);
     }
 
-    @Override
-    public boolean canGet(Integer id) throws Exception {
-        if (oPuserSecurity != null) {
-            UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
-            if (oUsuario.getId() == id) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return true;
-        }
-    }
+//    @Override
+//    public boolean canGet(Integer id) throws Exception {
+//        if (oPuserSecurity != null) {
+//            UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+//            if (oUsuario.getId() == id) {
+//                return true;
+//            } else {
+//                return false;
+//            }
+//        } else {
+//            return true;
+//        }
+//    }
 }

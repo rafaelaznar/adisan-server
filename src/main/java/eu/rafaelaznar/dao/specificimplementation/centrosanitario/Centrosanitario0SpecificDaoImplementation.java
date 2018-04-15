@@ -42,9 +42,9 @@ public class Centrosanitario0SpecificDaoImplementation extends TableGenericDaoIm
         super("centrosanitario", oPooledConnection, oPuserBean_security, strWhere);
     }
 
-    @Override
-    public boolean canGet(Integer id) throws Exception {
-        return true;
-    }
+//    @Override
+//    public boolean canGet(Integer id) throws Exception {
+//        return true;
+//    }
 
 }
