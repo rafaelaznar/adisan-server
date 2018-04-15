@@ -83,22 +83,23 @@ moduloUsuario.controller('UsuarioPList1Controller',
 
 
                 //--------------------------------------------------------------
-                $scope.showViewButton = function (oBean) {
+                $scope.showViewButton = function (oBean) {                    
                     return true;
                 }
-                $scope.showEditButton = function (oBean) {
-                    return true;
+                $scope.showEditButton = function (oBean) {                    
+                    return oBean.canUpdate;
                 }
                 $scope.showRemoveButton = function (oBean) {
-                    if (oBean.link_paciente > 0) {
-                        return false;
-                    } else {
-                        if (oBean.link_grupo > 0) {
-                            return false;
-                        } else {
-                            return true;
-                        }
-                    }
+                    return oBean.canDelete;
+//                    if (oBean.link_paciente > 0) {
+//                        return false;
+//                    } else {
+//                        if (oBean.link_grupo > 0) {
+//                            return false;
+//                        } else {
+//                            return true;
+//                        }
+//                    }
 
                 }
                 $scope.showOtherButton = function (oBean) {
