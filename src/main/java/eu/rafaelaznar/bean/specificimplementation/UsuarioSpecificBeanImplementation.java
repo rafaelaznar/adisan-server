@@ -492,4 +492,20 @@ public class UsuarioSpecificBeanImplementation extends TableGenericBeanImplement
         return this;
     }
 
+    public Integer getLink_grupo() {
+        return link_grupo;
+    }
+
+    public void setLink_grupo(Integer link_grupo) {
+        this.link_grupo = link_grupo;
+    }
+
+    public Integer getLink_paciente() {
+        return link_paciente;
+    }
+
+    public void setLink_paciente(Integer link_paciente) {
+        this.link_paciente = link_paciente;
+    }
+
 }

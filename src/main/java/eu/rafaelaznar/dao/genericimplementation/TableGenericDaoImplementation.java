@@ -68,7 +68,7 @@ public abstract class TableGenericDaoImplementation extends ViewGenericDaoImplem
     }
 
     @Override
-    public boolean canDelete(Integer id) throws Exception {
+    public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
         return false;
     }
 
@@ -202,15 +202,15 @@ public abstract class TableGenericDaoImplementation extends ViewGenericDaoImplem
     }
 
     @Override
-    public Integer delete(Integer id) throws Exception {
-        if (this.canDelete(id)) {
+    public Integer delete(TableGenericBeanImplementation oBean) throws Exception {        
+        if (this.canDelete(oBean)) {
             TraceHelper.trace("remove-TableGenericDaoImplementation(begin):object=" + ob);
             int iResult = 0;
             strSQL = "DELETE FROM " + ob + " WHERE id=?";
             PreparedStatement oPreparedStatement = null;
             try {
                 oPreparedStatement = oConnection.prepareStatement(strSQL);
-                oPreparedStatement.setInt(1, id);
+                oPreparedStatement.setInt(1, oBean.getId());
                 iResult = oPreparedStatement.executeUpdate();
             } catch (Exception ex) {
                 String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;

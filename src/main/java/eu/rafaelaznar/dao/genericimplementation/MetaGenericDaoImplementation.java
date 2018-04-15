@@ -84,7 +84,8 @@ public abstract class MetaGenericDaoImplementation implements MetaDaoInterface {
                     MetaPropertyBeanInterface fieldAnnotation = (MetaPropertyBeanInterface) fieldAnnotations[i];
                     if (fieldAnnotation.Type() != EnumHelper.FieldType.Password
                             && fieldAnnotation.Type() != EnumHelper.FieldType.Token
-                            && fieldAnnotation.Type() != EnumHelper.FieldType.ForeignId) {
+                            && fieldAnnotation.Type() != EnumHelper.FieldType.ForeignId
+                            && fieldAnnotation.Type() != EnumHelper.FieldType.Can) {
                         MetaPropertyGenericBeanHelper oMeta = new MetaPropertyGenericBeanHelper();
                         oMeta.setName(field.getName());
                         oMeta.setShortName(fieldAnnotation.ShortName());

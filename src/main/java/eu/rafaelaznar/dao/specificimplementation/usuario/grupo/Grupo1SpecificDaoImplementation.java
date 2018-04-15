@@ -63,7 +63,7 @@ public class Grupo1SpecificDaoImplementation extends TableGenericDaoImplementati
     }
 
     @Override
-    public boolean canDelete(Integer id) throws Exception {
+    public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
         //pte -> puedo borrar grupos que no tengan alumnos
         return true;
     }

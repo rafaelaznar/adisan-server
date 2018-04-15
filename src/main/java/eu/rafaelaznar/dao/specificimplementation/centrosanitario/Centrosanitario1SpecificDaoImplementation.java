@@ -59,7 +59,7 @@ public class Centrosanitario1SpecificDaoImplementation extends TableGenericDaoIm
     }
 
     @Override
-    public boolean canDelete(Integer id) throws Exception {
+    public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
         //pte -> puedo borrar centros sanitarios que no tengan grupos ni medicos ni dependencias ni profesores...
         return true;
     }

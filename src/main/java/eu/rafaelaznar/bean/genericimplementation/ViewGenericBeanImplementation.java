@@ -166,6 +166,31 @@ public abstract class ViewGenericBeanImplementation implements GenericBeanInterf
                 oField.setAccessible(false);
             }
             this.ComputeCalculatedFields();
+
+            if (this.getClass().getSuperclass() == TableGenericBeanImplementation.class) {
+
+                TableDaoInterface oObDao = (TableDaoInterface) DaoFactory.getDao(getOwnNameFromObjectMetaData(), oConnection, oPuserBean_security, "");
+
+                TraceHelper.trace("Filling canCreate field");
+                Field oFieldcanCreate = this.getClass().getSuperclass().getDeclaredField("canCreate");
+                oFieldcanCreate.setAccessible(true);
+                oFieldcanCreate.set(this, oObDao.canCreate((TableGenericBeanImplementation) this));
+                oFieldcanCreate.setAccessible(false);
+
+                TraceHelper.trace("Filling canUpdate field");
+                Field oFieldcanUpdate = this.getClass().getSuperclass().getDeclaredField("canUpdate");
+                oFieldcanUpdate.setAccessible(true);
+                oFieldcanUpdate.set(this, oObDao.canUpdate((TableGenericBeanImplementation) this));
+                oFieldcanUpdate.setAccessible(false);
+
+                TraceHelper.trace("Filling canDelete field");
+                Field oFieldcanDelete = this.getClass().getSuperclass().getDeclaredField("canDelete");
+                oFieldcanDelete.setAccessible(true);
+                oFieldcanDelete.set(this, oObDao.canDelete((TableGenericBeanImplementation) this));
+                oFieldcanDelete.setAccessible(false);
+
+            }
+
         } catch (Exception ex) {
             String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
             Log4jHelper.errorLog(msg, ex);

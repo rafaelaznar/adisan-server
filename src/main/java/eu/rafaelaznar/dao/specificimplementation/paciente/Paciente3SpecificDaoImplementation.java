@@ -145,7 +145,7 @@ public class Paciente3SpecificDaoImplementation extends TableGenericDaoImplement
     }
 
     @Override
-    public boolean canDelete(Integer id) throws Exception {
+    public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
 
             return true;
     }

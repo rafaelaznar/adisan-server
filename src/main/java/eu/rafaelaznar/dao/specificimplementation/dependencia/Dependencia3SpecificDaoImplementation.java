@@ -123,7 +123,7 @@ public class Dependencia3SpecificDaoImplementation extends TableGenericDaoImplem
     }
 
     @Override
-    public boolean canDelete(Integer id) throws Exception {
+    public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
         return false;
     }
 
@@ -145,7 +145,7 @@ public class Dependencia3SpecificDaoImplementation extends TableGenericDaoImplem
     }
 
     @Override
-    public Integer delete(Integer id) throws Exception {
+    public Integer delete(TableGenericBeanImplementation oBean) throws Exception {
         //para borrar una dependencia que contacten con el administrador
         return 0;
     }

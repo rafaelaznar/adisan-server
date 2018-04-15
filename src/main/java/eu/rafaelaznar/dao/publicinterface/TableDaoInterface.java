@@ -43,7 +43,7 @@ public interface TableDaoInterface extends ViewDaoInterface {
 
     public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception;
 
-    public boolean canDelete(Integer id) throws Exception;
+    public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception;
 
     public MetaBeanHelper get(int id, int intExpand) throws Exception;
 
@@ -51,6 +51,6 @@ public interface TableDaoInterface extends ViewDaoInterface {
 
     public Integer update(TableGenericBeanImplementation oBean) throws Exception;
 
-    public Integer delete(Integer id) throws Exception;
+    public Integer delete(TableGenericBeanImplementation oBean) throws Exception;
 
 }

@@ -121,7 +121,7 @@ public class Medico3SpecificDaoImplementation extends TableGenericDaoImplementat
     }
 
     @Override
-    public boolean canDelete(Integer id) throws Exception {
+    public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
         return false;
     }
 
@@ -148,7 +148,7 @@ public class Medico3SpecificDaoImplementation extends TableGenericDaoImplementat
     }
 
     @Override
-    public Integer delete(Integer id) throws Exception {
+    public Integer delete(TableGenericBeanImplementation oBean) throws Exception {
         //para borrar un medico que contacten con el administrador
         return 0;
     }

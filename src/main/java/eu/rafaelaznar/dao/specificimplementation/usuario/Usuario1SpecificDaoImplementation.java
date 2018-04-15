@@ -53,7 +53,7 @@ public class Usuario1SpecificDaoImplementation extends TableGenericDaoImplementa
 //    public boolean canGet(Integer id) throws Exception {
 //        return true;
 //    }
-
+    
     @Override
     public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
         return true;
@@ -65,8 +65,13 @@ public class Usuario1SpecificDaoImplementation extends TableGenericDaoImplementa
     }
 
     @Override
-    public boolean canDelete(Integer id) throws Exception {
-        return true;
+    public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
+        UsuarioSpecificBeanImplementation oUsuarioBean = (UsuarioSpecificBeanImplementation) oBean;
+        if (oUsuarioBean.getLink_grupo() > 0 || oUsuarioBean.getLink_paciente() > 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public MetaBeanHelper getFromLoginAndPass(UsuarioSpecificBeanImplementation oUsuarioBean) throws Exception {

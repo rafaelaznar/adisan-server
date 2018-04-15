@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017-2018
  *
  * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
+ *
  * GESANE: Free Open Source Health Management System
  *
  * Sources at:
@@ -55,7 +55,32 @@ public abstract class TableGenericBeanImplementation extends ViewGenericBeanImpl
     )
 
     protected Integer id;
-
+    @Expose
+    @MetaPropertyBeanInterface(
+            ShortName = "canCreate",
+            LongName = "canCreate",
+            Description = "canCreate",
+            Type = EnumHelper.FieldType.Can
+    )
+    private Boolean canCreate;
+    
+    @Expose
+    @MetaPropertyBeanInterface(
+            ShortName = "canUpdate",
+            LongName = "canUpdate",
+            Description = "canUpdate",
+            Type = EnumHelper.FieldType.Can
+    )
+    private Boolean canUpdate;
+    
+    @Expose
+    @MetaPropertyBeanInterface(
+            ShortName = "canDelete",
+            LongName = "canDelete",
+            Description = "canDelete",
+            Type = EnumHelper.FieldType.Can
+    )
+    private Boolean canDelete;
 
     public TableGenericBeanImplementation() {
 
@@ -72,7 +97,31 @@ public abstract class TableGenericBeanImplementation extends ViewGenericBeanImpl
     public void setId(Integer id) {
         this.id = id;
     }
-    
+
+    public Boolean getCanCreate() {
+        return canCreate;
+    }
+
+    public void setCanCreate(Boolean canCreate) {
+        this.canCreate = canCreate;
+    }
+
+    public Boolean getCanUpdate() {
+        return canUpdate;
+    }
+
+    public void setCanUpdate(Boolean canUpdate) {
+        this.canUpdate = canUpdate;
+    }
+
+    public Boolean getCanDelete() {
+        return canDelete;
+    }
+
+    public void setCanDelete(Boolean canDelete) {
+        this.canDelete = canDelete;
+    }
+
     @Override
     public String getColumns() throws Exception {
         String strColumns = "";

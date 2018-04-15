@@ -110,7 +110,6 @@ public class Usuario3SpecificDaoImplementation extends Usuario1SpecificDaoImplem
 //            return false;
 //        }
 //    }
-
     @Override
     public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
         UsuarioSpecificBeanImplementation oNewUser = (UsuarioSpecificBeanImplementation) oBean;
@@ -142,8 +141,8 @@ public class Usuario3SpecificDaoImplementation extends Usuario1SpecificDaoImplem
     }
 
     @Override
-    public boolean canDelete(Integer id) throws Exception {
-        if (alumnoIsMine(id)) {
+    public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
+        if (alumnoIsMine(oBean.getId())) {
             return true;
         } else {
             return false;
@@ -190,9 +189,9 @@ public class Usuario3SpecificDaoImplementation extends Usuario1SpecificDaoImplem
     }
 
     @Override
-    public Integer delete(Integer id) throws Exception {
-        if (alumnoIsMine(id)) {
-            return super.delete(id);
+    public Integer delete(TableGenericBeanImplementation oBean) throws Exception {
+        if (alumnoIsMine(oBean.getId())) {
+            return super.delete(oBean);
         } else {
             return 0;
         }

@@ -59,7 +59,7 @@ public class Curso1SpecificDaoImplementation extends TableGenericDaoImplementati
     }
 
     @Override
-    public boolean canDelete(Integer id) throws Exception {
+    public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
         //pte -> puedo borrar cursos que no tengan grupos        
         return true;
     }

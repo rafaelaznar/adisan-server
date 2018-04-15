@@ -59,7 +59,7 @@ public class Tipoepisodio1SpecificDaoImplementation extends TableGenericDaoImple
     }
 
     @Override
-    public boolean canDelete(Integer id) throws Exception {
+    public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
         return true;
     }
 }

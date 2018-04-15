@@ -59,7 +59,7 @@ public class Sexo1SpecificDaoImplementation extends TableGenericDaoImplementatio
     }
 
     @Override
-    public boolean canDelete(Integer id) throws Exception {
+    public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
         return true;
     }
 }

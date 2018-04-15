@@ -58,7 +58,7 @@ public class Centro1SpecificDaoImplementation extends TableGenericDaoImplementat
     }
 
     @Override
-    public boolean canDelete(Integer id) throws Exception {
+    public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
         //pte -> puedo borrar centros  que no tengan usuarios        
         return true;
     }
