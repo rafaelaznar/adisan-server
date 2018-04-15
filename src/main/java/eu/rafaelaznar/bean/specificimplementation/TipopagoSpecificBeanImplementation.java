@@ -86,4 +86,12 @@ public class TipopagoSpecificBeanImplementation extends TableGenericBeanImplemen
         this.descripcion = descripcion;
     }
 
+    public Integer getLink_paciente() {
+        return link_paciente;
+    }
+
+    public void setLink_paciente(Integer link_paciente) {
+        this.link_paciente = link_paciente;
+    }
+
 }

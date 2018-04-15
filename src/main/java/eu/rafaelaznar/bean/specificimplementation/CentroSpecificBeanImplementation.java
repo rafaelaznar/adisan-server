@@ -265,4 +265,5 @@ public class CentroSpecificBeanImplementation extends TableGenericBeanImplementa
     public void setLink_usuario(Integer link_usuario) {
         this.link_usuario = link_usuario;
     }
+    
 }

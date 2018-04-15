@@ -87,4 +87,12 @@ public class CircunstanciasaltaSpecificBeanImplementation extends TableGenericBe
         this.descripcion = descripcion;
     }
 
+    public Integer getLink_episodio() {
+        return link_episodio;
+    }
+
+    public void setLink_episodio(Integer link_episodio) {
+        this.link_episodio = link_episodio;
+    }
+
 }

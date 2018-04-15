@@ -86,4 +86,12 @@ public class TipousuarioSpecificBeanImplementation extends TableGenericBeanImple
         this.descripcion = descripcion;
     }
 
+    public Integer getLink_usuario() {
+        return link_usuario;
+    }
+
+    public void setLink_usuario(Integer link_usuario) {
+        this.link_usuario = link_usuario;
+    }
+
 }

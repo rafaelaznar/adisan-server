@@ -601,4 +601,12 @@ public class PacienteSpecificBeanImplementation extends TableGenericBeanImplemen
         this.obj_usuario = obj_usuario;
     }
 
+    public Integer getLink_episodio() {
+        return link_episodio;
+    }
+
+    public void setLink_episodio(Integer link_episodio) {
+        this.link_episodio = link_episodio;
+    }
+
 }

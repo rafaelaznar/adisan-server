@@ -152,4 +152,20 @@ public class ServicioSpecificBeanImplementation extends TableGenericBeanImplemen
         this.codigo = codigo;
     }
 
+    public Integer getLink_episodio() {
+        return link_episodio;
+    }
+
+    public void setLink_episodio(Integer link_episodio) {
+        this.link_episodio = link_episodio;
+    }
+
+    public Integer getLink_medico() {
+        return link_medico;
+    }
+
+    public void setLink_medico(Integer link_medico) {
+        this.link_medico = link_medico;
+    }
+
 }

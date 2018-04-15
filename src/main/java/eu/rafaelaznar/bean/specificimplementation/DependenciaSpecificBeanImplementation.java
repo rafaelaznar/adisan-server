@@ -209,4 +209,12 @@ public class DependenciaSpecificBeanImplementation extends TableGenericBeanImple
         this.obj_centrosanitario = obj_centrosanitario;
     }
 
+    public Integer getLink_episodio() {
+        return link_episodio;
+    }
+
+    public void setLink_episodio(Integer link_episodio) {
+        this.link_episodio = link_episodio;
+    }
+
 }

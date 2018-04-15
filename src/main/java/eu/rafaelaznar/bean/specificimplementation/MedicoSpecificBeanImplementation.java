@@ -417,4 +417,12 @@ public class MedicoSpecificBeanImplementation extends TableGenericBeanImplementa
         this.nombrecompleto = this.nombre + " " + this.primer_apellido + " " + this.segundo_apellido;
     }
 
+    public Integer getLink_episodio() {
+        return link_episodio;
+    }
+
+    public void setLink_episodio(Integer link_episodio) {
+        this.link_episodio = link_episodio;
+    }
+
 }

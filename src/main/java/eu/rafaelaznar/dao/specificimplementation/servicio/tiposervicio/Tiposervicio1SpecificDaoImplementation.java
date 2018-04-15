@@ -34,6 +34,7 @@ package eu.rafaelaznar.dao.specificimplementation.servicio.tiposervicio;
 
 import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
+import eu.rafaelaznar.bean.specificimplementation.TiposervicioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
 
@@ -47,7 +48,6 @@ public class Tiposervicio1SpecificDaoImplementation extends TableGenericDaoImple
 //    public boolean canGet(Integer id) throws Exception {
 //        return true;
 //    }
-
     @Override
     public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
         return true;
@@ -60,7 +60,12 @@ public class Tiposervicio1SpecificDaoImplementation extends TableGenericDaoImple
 
     @Override
     public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
-        return true;
+        TiposervicioSpecificBeanImplementation oTiposervicioBean = (TiposervicioSpecificBeanImplementation) oBean;
+        if (oTiposervicioBean.getLink_servicio() > 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
 }

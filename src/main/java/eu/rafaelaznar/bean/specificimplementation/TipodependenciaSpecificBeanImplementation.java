@@ -40,7 +40,7 @@ import eu.rafaelaznar.helper.EnumHelper;
 import eu.rafaelaznar.helper.constant.RegexConstants;
 
 @MetaObjectBeanInterface(
-        TableName = "Tipodependencia",
+        TableName = "tipodependencia",
         SingularDescription = "Tipo de dependencia",
         PluralDescription = "Tipo de dependencias",
         Icon = "fa fa-yelp",
@@ -85,6 +85,14 @@ public class TipodependenciaSpecificBeanImplementation extends TableGenericBeanI
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public Integer getLink_dependencia() {
+        return link_dependencia;
+    }
+
+    public void setLink_dependencia(Integer link_dependencia) {
+        this.link_dependencia = link_dependencia;
     }
 
 }

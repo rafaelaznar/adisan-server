@@ -71,14 +71,6 @@ public class CursoSpecificBeanImplementation extends TableGenericBeanImplementat
     )
     private Integer link_grupo = null;
 
-    public Integer getLink_grupo() {
-        return link_grupo;
-    }
-
-    public void setLink_grupo(Integer link_grupo) {
-        this.link_grupo = link_grupo;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -102,4 +94,11 @@ public class CursoSpecificBeanImplementation extends TableGenericBeanImplementat
         this.descripcion = descripcion;
     }
 
+    public Integer getLink_grupo() {
+        return link_grupo;
+    }
+
+    public void setLink_grupo(Integer link_grupo) {
+        this.link_grupo = link_grupo;
+    }
 }

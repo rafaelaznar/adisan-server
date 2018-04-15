@@ -85,4 +85,15 @@ public class TiposervicioSpecificBeanImplementation extends TableGenericBeanImpl
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    public Integer getLink_servicio() {
+        return link_servicio;
+    }
+
+    public void setLink_servicio(Integer link_servicio) {
+        this.link_servicio = link_servicio;
+    }
+    
+    
+    
 }

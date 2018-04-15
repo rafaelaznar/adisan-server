@@ -86,4 +86,12 @@ public class EspecialidadSpecificBeanImplementation extends TableGenericBeanImpl
         this.descripcion = descripcion;
     }
 
+    public Integer getLink_medico() {
+        return link_medico;
+    }
+
+    public void setLink_medico(Integer link_medico) {
+        this.link_medico = link_medico;
+    }
+
 }

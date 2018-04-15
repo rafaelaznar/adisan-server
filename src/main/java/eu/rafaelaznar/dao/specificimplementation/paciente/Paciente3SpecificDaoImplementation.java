@@ -146,8 +146,12 @@ public class Paciente3SpecificDaoImplementation extends TableGenericDaoImplement
 
     @Override
     public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
-
+        PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oBean;
+        if (oPacienteBean.getLink_episodio() > 0) {
+            return false;
+        } else {
             return true;
+        }
     }
 
 }

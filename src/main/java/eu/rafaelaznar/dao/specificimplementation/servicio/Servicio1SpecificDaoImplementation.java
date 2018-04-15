@@ -34,6 +34,7 @@ package eu.rafaelaznar.dao.specificimplementation.servicio;
 
 import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
+import eu.rafaelaznar.bean.specificimplementation.ServicioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
 
@@ -47,7 +48,6 @@ public class Servicio1SpecificDaoImplementation extends TableGenericDaoImplement
 //    public boolean canGet(Integer id) throws Exception {
 //        return true;
 //    }
-
     @Override
     public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
         return true;
@@ -60,7 +60,12 @@ public class Servicio1SpecificDaoImplementation extends TableGenericDaoImplement
 
     @Override
     public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
-        return true;
+        ServicioSpecificBeanImplementation oServicioBean = (ServicioSpecificBeanImplementation) oBean;
+        if (oServicioBean.getLink_episodio() > 0 || oServicioBean.getLink_medico() > 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
 }

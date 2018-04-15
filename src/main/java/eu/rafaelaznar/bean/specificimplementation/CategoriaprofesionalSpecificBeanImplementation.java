@@ -58,4 +58,13 @@ public class CategoriaprofesionalSpecificBeanImplementation extends TableGeneric
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    public Integer getLink_medico() {
+        return link_medico;
+    }
+
+    public void setLink_medico(Integer link_medico) {
+        this.link_medico = link_medico;
+    }
+    
 }

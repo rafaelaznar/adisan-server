@@ -880,4 +880,12 @@ public class EpisodioSpecificBeanImplementation extends TableGenericBeanImplemen
         this.obj_usuario = obj_usuario;
     }
 
+    public Integer getLink_subepisodio() {
+        return link_subepisodio;
+    }
+
+    public void setLink_subepisodio(Integer link_subepisodio) {
+        this.link_subepisodio = link_subepisodio;
+    }
+
 }

@@ -34,6 +34,7 @@ package eu.rafaelaznar.dao.specificimplementation.paciente;
 
 import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
+import eu.rafaelaznar.bean.specificimplementation.PacienteSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
 
@@ -60,7 +61,12 @@ public class Paciente1SpecificDaoImplementation extends TableGenericDaoImplement
 
     @Override
     public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
-        return true;
+        PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oBean;
+        if (oPacienteBean.getLink_episodio() > 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
 }
