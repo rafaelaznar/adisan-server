@@ -109,23 +109,34 @@ moduloPaciente.controller('PacientexusuarioList4Controller',
                     $location.path('/home');
                 };
                 //--------------------------------------------------------------
+//                $scope.showViewButton = function (oBean) {
+//                    return true;
+//                }
+//                $scope.showEditButton = function (oBean) {
+//                    return true;
+//                }
+//                $scope.showRemoveButton = function (oBean) {
+//                    if (oBean.link_episodio > 0) {
+//                        return false;
+//                    } else {
+//                        if (oBean.obj_usuario.data.id == sessionService.getSessionInfo().id) {
+//                            return true;
+//                        } else {
+//                            return false;
+//                        }
+//                    }
+//                }
+                //--------------------------------------------------------------
                 $scope.showViewButton = function (oBean) {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {
-                    return true;
+                    return oBean.canUpdate;
                 }
                 $scope.showRemoveButton = function (oBean) {
-                    if (oBean.link_episodio > 0) {
-                        return false;
-                    } else {
-                        if (oBean.obj_usuario.data.id == sessionService.getSessionInfo().id) {
-                            return true;
-                        } else {
-                            return false;
-                        }
-                    }
+                    return oBean.canDelete;
                 }
+                //--------------------------------------------------------------
                 $scope.showOtherButton = function (oBean) {
                     return false;
                 }

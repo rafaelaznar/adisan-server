@@ -101,15 +101,21 @@ moduloUsuario.controller('UsuarioXcentroPList1Controller',
                 $scope.showViewButton = function (oBean) {
                     return true;
                 }
+//                $scope.showEditButton = function (oBean) {
+//                    return true;
+//                }
+//                $scope.showRemoveButton = function (oBean) {
+//                    if (oBean.link_grupo > 0 || oBean.link_paciente > 0) {
+//                        return false;
+//                    } else {
+//                        return true;
+//                    }
+//                }
                 $scope.showEditButton = function (oBean) {
-                    return true;
+                    return oBean.canUpdate;
                 }
                 $scope.showRemoveButton = function (oBean) {
-                    if (oBean.link_grupo > 0 || oBean.link_paciente > 0) {
-                        return false;
-                    } else {
-                        return true;
-                    }
+                    return oBean.canDelete;
                 }
                 $scope.showOtherButton = function (oBean) {
                     return false;

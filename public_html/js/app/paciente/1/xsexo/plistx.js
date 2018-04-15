@@ -96,7 +96,29 @@ moduloPaciente.controller('PacienteXsexoPList1Controller',
                 $scope.close = function () {
                     $location.path('/home');
                 };
-
+                //--------------------------------------------------------------
+                $scope.showViewButton = function (oBean) {
+                    return true;
+                }
+                $scope.showEditButton = function (oBean) {
+                    return oBean.canUpdate;
+                }
+                $scope.showRemoveButton = function (oBean) {
+                    return oBean.canDelete;
+                }
+                $scope.showOtherButton = function (oBean) {
+                    return false;
+                }
+                $scope.goViewURL = function (oBean) {
+                    $location.path($scope.ob + "/" + $scope.profile + "/view/" + oBean.id);
+                }
+                $scope.goEditURL = function (oBean) {
+                    $location.path($scope.ob + "/" + $scope.profile + "/edit/" + oBean.id);
+                }
+                $scope.goRemoveURL = function (oBean) {
+                    $location.path($scope.ob + "/" + $scope.profile + "/remove/" + oBean.id);
+                }
+                //--------------------------------------------------------------
                 getDataFromServer();
             }
         ]);

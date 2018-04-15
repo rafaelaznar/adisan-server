@@ -109,10 +109,10 @@ moduloEpisodio.controller('EpisodioxpacientePList5Controller',
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {
-                    return false;
+                    return oBean.canUpdate;
                 }
                 $scope.showRemoveButton = function (oBean) {
-                    return false;
+                    return oBean.canDelete;
                 }
                 $scope.showOtherButton = function (oBean) {
                     return false;

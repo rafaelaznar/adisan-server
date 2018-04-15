@@ -86,23 +86,19 @@ moduloCentro.controller('CentroPList1Controller',
                     $location.path('/home');
                 };
               //--------------------------------------------------------------
+                //--------------------------------------------------------------
                 $scope.showViewButton = function (oBean) {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {
-                    return true;
+                    return oBean.canUpdate;
                 }
                 $scope.showRemoveButton = function (oBean) {
-                    if (oBean.link_usuario > 0) {
-                        return false;
-                    } else {
-                        return true;
-                    }
-
+                    return oBean.canDelete;
                 }
                 $scope.showOtherButton = function (oBean) {
-                    return true;
-                }
+                    return false;
+                } 
                 $scope.goViewURL = function (oBean) {
                     $location.path($scope.ob + "/" + $scope.profile + "/view/" + oBean.id);
                 }

@@ -86,18 +86,15 @@ moduloGrupo.controller('GrupoPList3Controller',
 
 
                 //--------------------------------------------------------------
+                //--------------------------------------------------------------
                 $scope.showViewButton = function (oBean) {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {
-                    return true;
+                    return oBean.canUpdate;
                 }
                 $scope.showRemoveButton = function (oBean) {
-                    if (oBean.link_usuario > 0) {
-                        return false;
-                    } else {
-                        return true;
-                    }
+                    return oBean.canDelete;
                 }
                 $scope.showOtherButton = function (oBean) {
                     return false;
@@ -111,9 +108,7 @@ moduloGrupo.controller('GrupoPList3Controller',
                 $scope.goRemoveURL = function (oBean) {
                     $location.path($scope.ob + "/" + $scope.profile + "/remove/" + oBean.id);
                 }
-//                $scope.includeExtraButtons = function () {
-//                    return "js/app/episodio/3/xpaciente/plistExtraButtons.html"
-//                }
+                //--------------------------------------------------------------
                 //--------------------------------------------------------------
 
 

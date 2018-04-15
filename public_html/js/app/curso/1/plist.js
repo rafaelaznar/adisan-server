@@ -33,7 +33,7 @@ moduloCurso.controller('CursoPList1Controller',
                 $scope.op = "plist";
                 $scope.profile = 1;
                 //----
-                
+
                 //---
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //----
@@ -81,23 +81,19 @@ moduloCurso.controller('CursoPList1Controller',
                 $scope.close = function () {
                     $location.path('/home');
                 };
-              //--------------------------------------------------------------
+                //--------------------------------------------------------------
+                //--------------------------------------------------------------
                 $scope.showViewButton = function (oBean) {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {
-                    return true;
+                    return oBean.canUpdate;
                 }
                 $scope.showRemoveButton = function (oBean) {
-                    if (oBean.link_grupo > 0) {
-                        return false;
-                    } else {
-                        return true;
-                    }
-
+                    return oBean.canDelete;
                 }
                 $scope.showOtherButton = function (oBean) {
-                    return true;
+                    return false;
                 }
                 $scope.goViewURL = function (oBean) {
                     $location.path($scope.ob + "/" + $scope.profile + "/view/" + oBean.id);

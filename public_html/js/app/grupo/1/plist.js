@@ -86,15 +86,10 @@ moduloGrupo.controller('GrupoPList1Controller',
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {
-                    return true;
+                    return oBean.canUpdate;
                 }
                 $scope.showRemoveButton = function (oBean) {
-                    if (oBean.link_usuario > 0) {
-                        return false;
-                    } else {
-                        return true;
-                    }
-
+                    return oBean.canDelete;
                 }
                 $scope.showOtherButton = function (oBean) {
                     return true;
