@@ -40,7 +40,7 @@
                         <div class="row" ng-if="breadcrumbs">
                             <div class="col-xs-12">
                                 <div class="alert alert-info" role="alert">
-                                    <p ng-bind-html="breadcrumbs|trusted"></p>                                    
+                                    <p ng-bind-html="breadcrumbs | trusted"></p>                                    
                                 </div>
                             </div>
                         </div>
@@ -54,6 +54,13 @@
                         <div class="row">
                             <div class="col-xs-12" ng-if="!status">
                                 <div class="navbar-form navbar-right">
+                                    <div class="input-group input-group-xs">
+                                        <span class="input-group-btn"><button class="btn">Filtro rápido</button></span>                                             
+                                        <input class="form-control input-xs"  id="inputFiltervalueClient" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" placeholder="Valor" ng-model="searchText">
+                                        <div class="input-group-addon"><i class="glyphicon glyphicon-zoom-in"></i></div>                                   
+                                    </div>                                 
+                                    <a class="btn btn-primary btn-xs" ng-if="xob" href="{{ob}}/{{profile}}/x{{xob}}/newx/{{xid}}">Crear nuevo {{ob}}</a>
+                                    <a class="btn btn-primary btn-xs" ng-if="!xob" href="{{ob}}/{{profile}}/new">Crear nuevo {{ob}}</a>
                                     <a class="btn btn-default btn-xs" href="home" >Cerrar</a>
                                     <a class="btn btn-default btn-xs" ng-click="back()">Volver</a>
                                 </div>
@@ -61,8 +68,6 @@
                                     <ul class="nav nav-tabs" role="tablist">
                                         <li role="presentation" class="active"><a data-target="#pane0" aria-controls="pane0" role="tab" data-toggle="tab" aria-expanded="false">Consulta</a></li>
                                         <li role="presentation"><a data-target="#pane1" aria-controls="pane1" role="tab" data-toggle="tab">Filtro de servidor</a></li>
-                                        <li role="presentation"><a data-target="#pane2" aria-controls="pane2" role="tab" data-toggle="tab">Filtro de cliente</a></li>
-                                        <li role="presentation"><a data-target="#pane3" aria-controls="pane3" role="tab" data-toggle="tab">Nuevo {{obtitle}}</a></li>
                                     </ul>
                                     <div class="tab-content">
                                         <div role="tabpanel" id="pane0" class="tab-pane fade active in">
@@ -177,27 +182,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div role="tabpanel" id="pane2" class="tab-pane fade">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <p></p>
-                                                    <form class="navbar-form navbar-right" role="form" action="Controller" method="post" id="empresaForm">
-                                                        <input id="inputFiltervalueClient" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" placeholder="Valor" ng-model="searchText">
-                                                    </form>
-                                                    <p></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div role="tabpanel" id="pane3" class="tab-pane fade">
-                                            <div class="row">
-                                                <div class="col-md-12 text-center">
-                                                    <p><br>
-                                                        <a class="btn btn-primary" ng-if="xob" href="{{ob}}/{{profile}}/x{{xob}}/newx/{{xid}}">Crear</a>
-                                                        <a class="btn btn-primary" ng-if="!xob" href="{{ob}}/{{profile}}/new">Crear</a>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
+
                                     </div>
                                 </div>
                                 <div id="datos" ng-if="!status">
@@ -243,7 +228,7 @@
                                                                     <span class="glyphicon glyphicon-remove"></span>
                                                                 </a>
                                                                 <ng-include ng-if="showOtherButton(oBean)" src="includeExtraButtons()"></ng-include>
-                                                                
+
                                                             </div>
                                                         </div>
                                                     </td>
