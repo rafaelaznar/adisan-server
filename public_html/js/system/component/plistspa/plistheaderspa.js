@@ -7,13 +7,11 @@ moduloDirectivas.directive('plistheaderspa', function () {
     };
 });
 
-moduloSistema.controller('plistheaderspaController',
-        ['$scope', '$rootScope',
-            function ($scope, $rootScope) {
-                $scope.dosortSelection = function (field, mode)
-                {
-                    $scope.uorder = field + ',' + mode;
-                    $rootScope.$broadcast('orderSelectionEvent', $scope.uorder);
-                    return false;
-                }
-            }]);
+moduloSistema.controller('plistHeaderSpaController', ['$scope', '$rootScope', function ($scope, $rootScope) {
+        $scope.doorder = function (field, mode)
+        {
+            $scope.uorder = field + ',' + mode;
+            $rootScope.$broadcast('orderSelectionEvent', $scope.uorder);
+            return false;
+        }
+    }]);
