@@ -30,20 +30,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.rafaelaznar.dao.specificimplementation.centrosanitario;
+package eu.rafaelaznar.dao.specificimplementation.centrosanitario.servicio.tiposervicio;
 
 import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
-import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.TiposervicioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
 
-public class Centrosanitario1SpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Tiposervicio1SpecificDaoImplementation extends TableGenericDaoImplementation {
 
-    public Centrosanitario1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("centrosanitario", oPooledConnection, oPuserBean_security, strWhere);
+    public Tiposervicio1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
+        super("tiposervicio", oPooledConnection, oPuserBean_security, strWhere);
     }
 
+//    @Override
+//    public boolean canGet(Integer id) throws Exception {
+//        return true;
+//    }
     @Override
     public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
         return true;
@@ -56,14 +60,12 @@ public class Centrosanitario1SpecificDaoImplementation extends TableGenericDaoIm
 
     @Override
     public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
-        CentrosanitarioSpecificBeanImplementation oCentrosanitarioBean = (CentrosanitarioSpecificBeanImplementation) oBean;
-        if (oCentrosanitarioBean.getLink_usuario() > 0
-                || oCentrosanitarioBean.getLink_dependencia() > 0
-                || oCentrosanitarioBean.getLink_medico() > 0
-                || oCentrosanitarioBean.getLink_tecnico() > 0) {
+        TiposervicioSpecificBeanImplementation oTiposervicioBean = (TiposervicioSpecificBeanImplementation) oBean;
+        if (oTiposervicioBean.getLink_servicio() > 0) {
             return false;
         } else {
             return true;
         }
     }
+
 }

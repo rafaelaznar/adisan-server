@@ -30,20 +30,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.rafaelaznar.dao.specificimplementation.centrosanitario;
+package eu.rafaelaznar.dao.specificimplementation.centrosanitario.usuario.grupo;
 
 import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
-import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.GrupoSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
+import eu.rafaelaznar.helper.Log4jHelper;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
-public class Centrosanitario1SpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Grupo1SpecificDaoImplementation extends TableGenericDaoImplementation {
 
-    public Centrosanitario1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("centrosanitario", oPooledConnection, oPuserBean_security, strWhere);
+    public Grupo1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
+        super("grupo", oPooledConnection, oPuserBean_security, strWhere);
     }
 
+//    @Override
+//    public boolean canGet(Integer id) throws Exception {
+//        return true;
+//    }
     @Override
     public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
         return true;
@@ -56,14 +63,41 @@ public class Centrosanitario1SpecificDaoImplementation extends TableGenericDaoIm
 
     @Override
     public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
-        CentrosanitarioSpecificBeanImplementation oCentrosanitarioBean = (CentrosanitarioSpecificBeanImplementation) oBean;
-        if (oCentrosanitarioBean.getLink_usuario() > 0
-                || oCentrosanitarioBean.getLink_dependencia() > 0
-                || oCentrosanitarioBean.getLink_medico() > 0
-                || oCentrosanitarioBean.getLink_tecnico() > 0) {
+        GrupoSpecificBeanImplementation oGrupoBean = (GrupoSpecificBeanImplementation) oBean;
+        if (oGrupoBean.getLink_usuario() > 0) {
             return false;
         } else {
             return true;
         }
     }
+
+    public MetaBeanHelper getFromCodigo(GrupoSpecificBeanImplementation oCodigoBean) throws Exception {
+        PreparedStatement oPreparedStatement = null;
+        ResultSet oResultSet = null;
+        MetaBeanHelper oMetaBeanHelper = null;
+        strSQL += " AND codigo='" + oCodigoBean.getCodigo() + "'";
+        try {
+            oPreparedStatement = oConnection.prepareStatement(strSQL);
+            oResultSet = oPreparedStatement.executeQuery();
+            if (oResultSet.next()) {
+                oCodigoBean.setId(oResultSet.getInt("id"));
+                oMetaBeanHelper = this.get(oCodigoBean.getId(), 3);
+            } else {
+                throw new Exception("GrupoSpecificDaoImplementation getFromCodigo error");
+            }
+        } catch (Exception ex) {
+            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
+            Log4jHelper.errorLog(msg, ex);
+            throw new Exception(msg, ex);
+        } finally {
+            if (oResultSet != null) {
+                oResultSet.close();
+            }
+            if (oPreparedStatement != null) {
+                oPreparedStatement.close();
+            }
+        }
+        return oMetaBeanHelper;
+    }
+
 }

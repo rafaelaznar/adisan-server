@@ -43,7 +43,7 @@ import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImpleme
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.connection.publicinterface.ConnectionInterface;
 import eu.rafaelaznar.dao.specificimplementation.factory.ApellidoSpecificDaoImplementation;
-import eu.rafaelaznar.dao.specificimplementation.medico.Medico1SpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.centrosanitario.medico.Medico1SpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.factory.NombrefemeninoSpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.factory.NombremasculinoSpecificDaoImplementation;
 import eu.rafaelaznar.factory.ConnectionFactory;

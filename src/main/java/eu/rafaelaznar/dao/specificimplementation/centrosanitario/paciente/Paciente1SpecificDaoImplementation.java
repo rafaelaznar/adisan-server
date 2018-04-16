@@ -30,19 +30,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.rafaelaznar.dao.specificimplementation.centrosanitario;
+package eu.rafaelaznar.dao.specificimplementation.centrosanitario.paciente;
 
 import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
-import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.PacienteSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
 
-public class Centrosanitario1SpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Paciente1SpecificDaoImplementation extends TableGenericDaoImplementation {
 
-    public Centrosanitario1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("centrosanitario", oPooledConnection, oPuserBean_security, strWhere);
+    public Paciente1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
+        super("paciente", oPooledConnection, oPuserBean_security, strWhere);
     }
+
+//    @Override
+//    public boolean canGet(Integer id) throws Exception {
+//        return true;
+//    }
 
     @Override
     public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
@@ -56,14 +61,12 @@ public class Centrosanitario1SpecificDaoImplementation extends TableGenericDaoIm
 
     @Override
     public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
-        CentrosanitarioSpecificBeanImplementation oCentrosanitarioBean = (CentrosanitarioSpecificBeanImplementation) oBean;
-        if (oCentrosanitarioBean.getLink_usuario() > 0
-                || oCentrosanitarioBean.getLink_dependencia() > 0
-                || oCentrosanitarioBean.getLink_medico() > 0
-                || oCentrosanitarioBean.getLink_tecnico() > 0) {
+        PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oBean;
+        if (oPacienteBean.getLink_episodio() > 0) {
             return false;
         } else {
             return true;
         }
     }
+
 }

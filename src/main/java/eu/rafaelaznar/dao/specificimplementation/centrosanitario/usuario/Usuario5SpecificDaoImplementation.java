@@ -30,40 +30,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.rafaelaznar.dao.specificimplementation.centrosanitario;
+package eu.rafaelaznar.dao.specificimplementation.centrosanitario.usuario;
 
-import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
-import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
+import java.util.Date;
 
-public class Centrosanitario1SpecificDaoImplementation extends TableGenericDaoImplementation {
-
-    public Centrosanitario1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("centrosanitario", oPooledConnection, oPuserBean_security, strWhere);
+public class Usuario5SpecificDaoImplementation extends TableGenericDaoImplementation {
+    
+    public Usuario5SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
+        super("usuario", oPooledConnection, oPuserBean_security, strWhere);
     }
-
+    
+//    @Override
+//    public boolean canGet(Integer id) throws Exception {
+//        return true;
+//    }
+        
     @Override
-    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
-        return true;
+    public MetaBeanHelper get(int id, int intExpand) throws Exception {
+        MetaBeanHelper oMetaBeanHelper = super.get(id, intExpand);
+        UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
+        oUsuario.setNombrecompleto("Oculto para proteger la identidad");
+        oUsuario.setNombre("Oculto para proteger la identidad");
+        oUsuario.setPrimer_apellido("Oculto para proteger la identidad");
+        oUsuario.setSegundo_apellido("Oculto para proteger la identidad");
+        oUsuario.setEmail("Oculto para proteger la identidad");
+        oUsuario.setLogin("No tienes permiso para acceder a esta información");
+        oUsuario.setActivo(0);
+        oUsuario.setFecha_alta(new Date(0));
+        return oMetaBeanHelper;
     }
-
-    @Override
-    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
-        return true;
-    }
-
-    @Override
-    public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
-        CentrosanitarioSpecificBeanImplementation oCentrosanitarioBean = (CentrosanitarioSpecificBeanImplementation) oBean;
-        if (oCentrosanitarioBean.getLink_usuario() > 0
-                || oCentrosanitarioBean.getLink_dependencia() > 0
-                || oCentrosanitarioBean.getLink_medico() > 0
-                || oCentrosanitarioBean.getLink_tecnico() > 0) {
-            return false;
-        } else {
-            return true;
-        }
-    }
+    
 }

@@ -48,7 +48,7 @@ import eu.rafaelaznar.dao.specificimplementation.factory.ApellidoSpecificDaoImpl
 import eu.rafaelaznar.dao.specificimplementation.factory.MunicipioSpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.factory.NombrefemeninoSpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.factory.NombremasculinoSpecificDaoImplementation;
-import eu.rafaelaznar.dao.specificimplementation.paciente.Paciente1SpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.centrosanitario.paciente.Paciente1SpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.factory.ProvinciaSpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.factory.ViaSpecificDaoImplementation;
 import eu.rafaelaznar.factory.ConnectionFactory;

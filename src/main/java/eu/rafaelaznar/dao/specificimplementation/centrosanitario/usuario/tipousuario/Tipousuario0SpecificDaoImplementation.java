@@ -30,40 +30,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.rafaelaznar.dao.specificimplementation.centrosanitario;
+package eu.rafaelaznar.dao.specificimplementation.centrosanitario.usuario.tipousuario;
 
 import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
-import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
 import java.sql.Connection;
 
-public class Centrosanitario1SpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Tipousuario0SpecificDaoImplementation extends TableGenericDaoImplementation {
 
-    public Centrosanitario1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("centrosanitario", oPooledConnection, oPuserBean_security, strWhere);
+    // NOTA IMPORTANTE: los tipos de usuario 0 y 5 deberian implementar ViewGenericDaoImplementation y no TableGenericDaoImplementation 
+    // pero no es posible porque las expansiones necesitan hacer get, 
+    // así que a la espera de un rediseño global quedan restringidas las operaciones set y remove mediante sobreescritura
+    public Tipousuario0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
+        super("tipousuario", oPooledConnection, oPuserBean_security, strWhere);
     }
 
-    @Override
-    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
-        return true;
-    }
-
-    @Override
-    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
-        return true;
-    }
-
-    @Override
-    public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
-        CentrosanitarioSpecificBeanImplementation oCentrosanitarioBean = (CentrosanitarioSpecificBeanImplementation) oBean;
-        if (oCentrosanitarioBean.getLink_usuario() > 0
-                || oCentrosanitarioBean.getLink_dependencia() > 0
-                || oCentrosanitarioBean.getLink_medico() > 0
-                || oCentrosanitarioBean.getLink_tecnico() > 0) {
-            return false;
-        } else {
-            return true;
-        }
-    }
+//    @Override
+//    public boolean canGet(Integer id) throws Exception {
+//        return true;
+//    }
 }

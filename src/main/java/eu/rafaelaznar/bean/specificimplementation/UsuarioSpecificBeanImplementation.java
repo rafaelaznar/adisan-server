@@ -37,7 +37,7 @@ import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.meta.publicinterface.MetaObjectBeanInterface;
 import eu.rafaelaznar.bean.meta.publicinterface.MetaPropertyBeanInterface;
-import eu.rafaelaznar.dao.specificimplementation.usuario.grupo.Grupo1SpecificDaoImplementation;
+import eu.rafaelaznar.dao.specificimplementation.centrosanitario.usuario.grupo.Grupo1SpecificDaoImplementation;
 import eu.rafaelaznar.helper.EnumHelper;
 import eu.rafaelaznar.helper.Log4jHelper;
 import eu.rafaelaznar.helper.constant.RegexConstants;
