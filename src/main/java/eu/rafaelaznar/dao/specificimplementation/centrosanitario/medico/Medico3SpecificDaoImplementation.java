@@ -111,9 +111,8 @@ public class Medico3SpecificDaoImplementation extends TableGenericDaoImplementat
     @Override
     public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
         UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
-        MedicoSpecificBeanImplementation oNewMedico = (MedicoSpecificBeanImplementation) oBean;
-        MedicoSpecificBeanImplementation oOldMedico = (MedicoSpecificBeanImplementation) this.get(oNewMedico.getId(), 0).getBean();
-        if (oOldMedico.getId_centrosanitario().equals(oSessionUser.getId_centrosanitario())) {
+        MedicoSpecificBeanImplementation oMedico = (MedicoSpecificBeanImplementation) oBean;        
+        if (oMedico.getId_centrosanitario().equals(oSessionUser.getId_centrosanitario())) {
             return true;
         } else {
             return false;
