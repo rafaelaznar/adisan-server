@@ -55,7 +55,7 @@ moduloUsuario.controller('UsuarioXtipousuarioPList1Controller',
                             if (response.status == 200) {
                                 if (response.data.status == 200) {
                                     $scope.linkedbean = response.data.json;
-                                    $scope.breadcrumbs = toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
+                                    $scope.breadcrumbs = toolService.renderLinkHtml($scope.linkedbean, $scope.profile);                                    
                                 }
                             }
                         }).catch(function (data) {
@@ -95,7 +95,7 @@ moduloUsuario.controller('UsuarioXtipousuarioPList1Controller',
                 };
                 $scope.close = function () {
                     $location.path('/home');
-                };$scope.breadcrumbs = toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
+                };
                 //--------------------------------------------------------------
                 $scope.showViewButton = function (oBean) {
                     return true;
