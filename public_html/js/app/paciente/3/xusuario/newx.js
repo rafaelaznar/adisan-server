@@ -65,7 +65,7 @@ moduloPaciente.controller('PacienteXusuarioNew3Controller',
                                     if (property.Name == 'obj_' + $scope.xob) {
                                         $scope.bean[property.Name].data.id = $scope.xid;
                                     } else {
-                                        $scope.bean[property.Name].data.id = 0;
+                                        $scope.bean[property.Name].data.id = null;
                                     }
                                 }
                             });

@@ -49,7 +49,7 @@ moduloDependencia.controller('DependenciaNew3Controller',
                                 if (property.Type == 'ForeignObject') {
                                     $scope.bean[property.Name] = {};
                                     $scope.bean[property.Name].data = {};
-                                    $scope.bean[property.Name].data.id = 0;
+                                    $scope.bean[property.Name].data.id = null;
                                 }
                             });
                             //--

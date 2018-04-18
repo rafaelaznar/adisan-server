@@ -92,7 +92,7 @@ moduloEpisodio.controller('SubepisodioxpacientexepisodioNew3Controller',
                                         propertyset = true;
                                     }
                                     if (!propertyset) {
-                                        $scope.bean[property.Name].data.id = 0;
+                                        $scope.bean[property.Name].data.id = null;
                                     }
                                 }
                             });

@@ -38,7 +38,7 @@ moduloUsuario.controller('GrupoxusuarioNew1Controller',
                 $scope.xid = $routeParams.id;
                 //---
                 $scope.status = null;
-                $scope.debugging = constantService.debugging();
+                $scope.debugging = 2;//constantService.debugging();
                 //---
                 if ($scope.xob && $scope.xid) {
                     $scope.linkedbean = null;
@@ -65,7 +65,7 @@ moduloUsuario.controller('GrupoxusuarioNew1Controller',
                                     if (property.Name == 'obj_' + $scope.xob) {
                                         $scope.bean[property.Name].data.id = $scope.xid;
                                     } else {
-                                        $scope.bean[property.Name].data.id = 0;
+                                        $scope.bean[property.Name].data.id = null;
                                     }
                                 }
                             });
