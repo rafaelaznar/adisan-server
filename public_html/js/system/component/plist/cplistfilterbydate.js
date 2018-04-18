@@ -3,7 +3,7 @@ moduloDirectivas.component('cplistfilterbydate', {
     restrict: 'E',
     bindings: {
         url: '<',
-        fields: '<',
+        field: '<',
         rpp: '<',
         numpage: '<',
         orderparams: '<',

@@ -2,25 +2,11 @@
     class="form-inline navbar-form navbar-right"
     role="form"
     id="filterForm"
-    name="filterForm">
-    <div class="form-group" 
-         ng-class="{'has-error': (filterForm.filterField.$error.required ||
-                     filterForm.filterField.$error.valid)}">
-        <select
-            id="filterField"
-            ng-required="true"
-            class="form-control"
-            name="filterField"
-            style="width: 160px"
-            ng-model="filterbyboolean.field">
-            <option style="display:none">selecciona un campo</option>
-            <option ng-repeat="field in filterbyboolean.fields"  value="{{field.name}}">{{field.longname}}</option>
-        </select>
-        <span class="help-block" ng-if="!filterForm.filterField.$pristine && filterForm.filterField.$error.required">El campo es obligatorio</span>
-    </div>
+    name="filterForm">   
     <div class="form-group" 
          ng-class="{'has-error': (filterForm.filterOperator.$error.required ||
                      filterForm.filterOperator.$error.valid)}">
+        <label for="filterOperator">{{filterbyboolean.field.LongName}}</label> 
         <select
             id="filterOperator"
             ng-required="true"

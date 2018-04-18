@@ -3,7 +3,7 @@ moduloDirectivas.component('cplistfilterbyboolean', {
     restrict: 'E',
     bindings: {
         url: '<',
-        fields: '<',
+        field: '<',
         rpp: '<',
         numpage: '<',
         orderparams: '<',

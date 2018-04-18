@@ -53,10 +53,19 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-12" ng-if="!status">
+
                                 <div class="navbar-form navbar-right">
+                                    <div class="input-group input-group-xs">                                         
+                                        <span class="input-group-btn"><button class="btn">Filtro</button></span>  
+                                        <select  class="form-control input-xs"  ng-model="filterType">
+                                            <option ng-repeat="f in metap|filter:{Type:'!Calculated'}|filter:{Type:'!Link'}" 
+                                                    value="{{f.Name}}">Filtrar por {{f.LongName}}
+                                            </option>
+                                        </select>
+                                    </div>
                                     <div class="input-group input-group-xs">
                                         <span class="input-group-btn"><button class="btn">Filtro rápido</button></span>                                             
-                                        <input class="form-control input-xs"  id="inputFiltervalueClient" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" placeholder="Valor" ng-model="searchText">
+                                        <input class="form-control input-xs"  id="inputFiltervalueClient" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" placeholder="Valor" ng-model="searchText">
                                         <div class="input-group-addon"><i class="glyphicon glyphicon-zoom-in"></i></div>                                   
                                     </div>                                 
                                     <a class="btn btn-primary btn-xs" ng-if="xob" href="{{ob}}/{{profile}}/x{{xob}}/newx/{{xid}}">Crear nuevo {{ob}}</a>
@@ -64,128 +73,98 @@
                                     <a class="btn btn-default btn-xs" href="home" >Cerrar</a>
                                     <a class="btn btn-default btn-xs" ng-click="back()">Volver</a>
                                 </div>
-                                <div role="tabpanel">
-                                    <ul class="nav nav-tabs" role="tablist">
-                                        <li role="presentation" class="active"><a data-target="#pane0" aria-controls="pane0" role="tab" data-toggle="tab" aria-expanded="false">Consulta</a></li>
-                                        <li role="presentation"><a data-target="#pane1" aria-controls="pane1" role="tab" data-toggle="tab">Filtro de servidor</a></li>
-                                    </ul>
-                                    <div class="tab-content">
-                                        <div role="tabpanel" id="pane0" class="tab-pane fade active in">
-                                            <p></p>
-                                            <div class="row">
-                                                <div class="col-lg-3 col-md-3 col-sm-12">
-                                                    <cplistinfo url="url"
-                                                                numpage="numpage"
-                                                                rpp="rpp"
-                                                                registers="registers"
-                                                                orderparams="orderParams"
-                                                                filterparams="filterParams"
-                                                                searchtext="searchText">
-                                                    </cplistinfo>
-                                                </div>
-                                                <div class="col-lg-6  col-md-6 col-sm-8 text-center">
-                                                    <cplistpagination url="url"
-                                                                      numpage="numpage"
-                                                                      rpp="rpp"
-                                                                      pages="pages"
-                                                                      neighbourhood="neighbourhood"
-                                                                      filterParams="filterParams"
-                                                                      orderParams="orderParams"
-                                                                      sfilterParams="sfilterParams">
-                                                    </cplistpagination>
-                                                </div>
-                                                <div class="col-lg-3  col-md-3 col-sm-4 text-center">
-                                                    <cplistrpp url="url"
-                                                               numpage="numpage"
-                                                               rpp="rpp"
-                                                               filterParams="filterParams"
-                                                               orderParams="orderParams">
-                                                    </cplistrpp>
-                                                </div>
-                                            </div>
-                                            <p></p>
-                                        </div>
-                                        <div role="tabpanel" id="pane1" class="tab-pane fade">
-                                            <div class="row">
-                                                <div class="col-md-5">
-                                                    <form class="navbar-form navbar-left" role="form" id="typeFilterForm">
-                                                        <select class="navbar-form navbar-left" ng-model="filterType" convert-to-number id="filterSelection">
-                                                            <option value="0" ng-repeat="f in metap|filter:{Type:'Id'}">Filtrar por {{f.LongName}}</option>
-                                                            <option value="1" ng-repeat="f in metap|filter:{Type:'String'}">Filtrar por {{f.LongName}}</option>
-                                                            <option value="2" ng-repeat="f in metap|filter:{Type:'Integer'}">Filtrar por {{f.LongName}}</option>
-                                                            <option value="3" ng-repeat="f in metap|filter:{Type:'Decimal'}">Filtrar por {{f.LongName}}</option>
-                                                            <option value="4" ng-repeat="f in metap|filter:{Type:'Date'}">Filtrar por {{f.LongName}}</option>
-                                                            <option value="5" ng-repeat="f in metap|filter:{Type:'Datetime'}">Filtrar por {{f.LongName}}</option>
-                                                            <option value="6" ng-repeat="f in metap|filter:{Type:'Boolean'}">Filtrar por {{f.LongName}}</option>
-                                                            <option value="7" ng-repeat="f in metap|filter:{Type:'ForeignObject'}">Filtrar por {{f.LongName}}</option>
-                                                        </select>
-                                                    </form>
-                                                </div>
-                                                <div class="col-md-7">
-                                                    <div ng-show="filterType == 0">
-                                                        <cplistfilterbyinteger
-                                                            url="url"
-                                                            fields="metap"
-                                                            rpp="rpp"
-                                                            numpage="numpage"
-                                                            orderparams="orderParams"
-                                                            filterparams="filterParams">
-                                                        </cplistfilterbyinteger>
-                                                    </div>
-                                                    <p></p>
-                                                    <div ng-show="filterType == 1">
-                                                        <cplistfilterbystring
-                                                            url="url"
-                                                            fields="metap"
-                                                            rpp="rpp"
-                                                            numpage="numpage"
-                                                            orderparams="orderParams"
-                                                            filterparams="filterParams">
-                                                        </cplistfilterbystring>
-                                                    </div>
-                                                    <p></p>
-                                                    <div ng-show="filterType == 2">
-                                                        <cplistfilterbyinteger
-                                                            url="url"
-                                                            fields="metap"
-                                                            rpp="rpp"
-                                                            numpage="numpage"
-                                                            orderparams="orderParams"
-                                                            filterparams="filterParams">
-                                                        </cplistfilterbyinteger>
-                                                    </div>
-                                                    <p></p>
-                                                    <div ng-show="filterType == 4">
-                                                        <cplistfilterbydate
-                                                            url="url"
-                                                            fields="metap"
-                                                            rpp="rpp"
-                                                            numpage="numpage"
-                                                            orderparams="orderParams"
-                                                            filterparams="filterParams">
-                                                        </cplistfilterbydate>
-                                                    </div>
-                                                    <p></p>
-                                                    <div ng-repeat="f in metap|filter:{Type:'ForeignObject'}">
-                                                        <div ng-show="filterType == 7">
-                                                            <cplistfilterbyforeign
-                                                                url="url"
-                                                                field="f"
-                                                                rpp="rpp"
-                                                                numpage="numpage"
-                                                                orderparams="orderParams"
-                                                                filterparams="filterParams"
-                                                                profile="profile">
-                                                            </cplistfilterbyforeign>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
 
+                                <div ng-repeat="f in metap" ng-show="filterType == f.Name" value="f.Name">
+
+                                    <div ng-show="f.Type == 'Integer' || f.Type == 'Id'">
+                                        <cplistfilterbyinteger
+                                            url="url"
+                                            field="f"
+                                            rpp="rpp"
+                                            numpage="numpage"
+                                            orderparams="orderParams"
+                                            filterparams="filterParams">
+                                        </cplistfilterbyinteger>
+                                    </div>
+                                    <p></p>
+                                    <div ng-show="f.Type == 'String'">
+                                        <cplistfilterbystring
+                                            url="url"
+                                            field="f"
+                                            rpp="rpp"
+                                            numpage="numpage"
+                                            orderparams="orderParams"
+                                            filterparams="filterParams">
+                                        </cplistfilterbystring>
+                                    </div>
+                                    <p></p>
+                                    <div ng-show="f.Type == 'Date'">
+                                        <cplistfilterbydate
+                                            url="url"
+                                            field="f"
+                                            rpp="rpp"
+                                            numpage="numpage"
+                                            orderparams="orderParams"
+                                            filterparams="filterParams">
+                                        </cplistfilterbydate>
+                                    </div>
+                                    <p></p>
+                                    <div ng-show="f.Type == 'ForeignObject'">
+                                        <cplistfilterbyforeign
+                                            url="url"
+                                            field="f"
+                                            rpp="rpp"
+                                            numpage="numpage"
+                                            orderparams="orderParams"
+                                            filterparams="filterParams"
+                                            profile="profile">
+                                        </cplistfilterbyforeign>
                                     </div>
                                 </div>
-                                <div id="datos" ng-if="!status">
+
+
+
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-12">
+                                        <cplistinfo url="url"
+                                                    numpage="numpage"
+                                                    rpp="rpp"
+                                                    registers="registers"
+                                                    orderparams="orderParams"
+                                                    filterparams="filterParams"
+                                                    searchtext="searchText">
+                                        </cplistinfo>
+                                    </div>
+                                    <div class="col-lg-6  col-md-6 col-sm-8 text-center">
+                                        <cplistpagination url="url"
+                                                          numpage="numpage"
+                                                          rpp="rpp"
+                                                          pages="pages"
+                                                          neighbourhood="neighbourhood"
+                                                          filterParams="filterParams"
+                                                          orderParams="orderParams"
+                                                          sfilterParams="sfilterParams">
+                                        </cplistpagination>
+                                    </div>
+                                    <div class="col-lg-3  col-md-3 col-sm-4 text-center">
+                                        <cplistrpp url="url"
+                                                   numpage="numpage"
+                                                   rpp="rpp"
+                                                   filterParams="filterParams"
+                                                   orderParams="orderParams">
+                                        </cplistrpp>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12"
+                                 <div id="datos" ng-if="!status">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
                                             <div class="text-center">

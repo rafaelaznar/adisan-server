@@ -5,7 +5,13 @@
     name="filterForm">    
     <div class="form-group"
          ng-class="{'has-error': (filterForm.filterOperator.$error.required ||
-                     filterForm.filterOperator.$error.valid)}">
+                     filterForm.filterOperator.$error.valid || filterForm[filterbyforeign.field.name].$error.required ||
+                         filterForm[filterbyforeign.field.name].$error.valid)
+         
+         
+         
+         }"> 
+        <button class="btn">Filtrando por {{filterbyforeign.field.LongName}}</button>      
         <select 
             id="filterOperator" 
             ng-required="true"   
@@ -20,10 +26,8 @@
         </select>
         <span class="help-block" ng-if="!filterForm.filterOperator.$pristine && filterForm.filterOperator.$error.valid">El campo es obligatorio</span>        
     </div>
-    <div class="form-group">
-        <div class="form-group" 
-             ng-class="{'has-error': (filterForm[filterbyforeign.field.name].$error.required ||
-                         filterForm[filterbyforeign.field.name].$error.valid)}">                
+    
+             
             <foreign-key
                 class=""
                 bean="filterbyforeign.obj_foreign"
@@ -34,7 +38,7 @@
                 required="true">
             </foreign-key>
             <span class="help-block" ng-if="!filterForm[filterbyforeign.field.name].$pristine && filterForm[filterbyforeign.field.name].$error.required">El campo es obligatorio</span>        
-        </div>
+      
         <!--
     <div class="row">
         <foreign-key

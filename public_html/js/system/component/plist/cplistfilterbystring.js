@@ -3,7 +3,7 @@ moduloDirectivas.component('cplistfilterbystring', {
     restrict: 'E',
     bindings: {
         url: '<',
-        fields: '<',
+        field: '<',
         rpp: '<',
         numpage: '<',
         orderparams: '<',
@@ -14,13 +14,12 @@ moduloDirectivas.component('cplistfilterbystring', {
     controller:
             ['$location',
                 function ($location) {
-                    var self = this;
-                    self.field = "";
+                    var self = this;                
                     self.operator = "";
                     self.value = "";
                     self.dofilter = function () {
                         if (self.field != "" && self.operator != "" && self.value != "") {
-                            var newFilter = self.filterparams + "+and," + self.field + "," + self.operator + "," + self.value;
+                            var newFilter = self.filterparams + "+and," + self.field.Name + "," + self.operator + "," + self.value;
                             if (self.orderparams) {
                                 $location.path(self.url + '/' + self.numpage + '/' + self.rpp).search('filter', newFilter).search('order', self.orderparams);
                             } else {
