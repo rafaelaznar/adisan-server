@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017-2018
  *
  * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
+ *
  * GESANE: Free Open Source Health Management System
  *
  * Sources at:
@@ -53,7 +53,6 @@ public class Usuario1SpecificDaoImplementation extends TableGenericDaoImplementa
 //    public boolean canGet(Integer id) throws Exception {
 //        return true;
 //    }
-    
     @Override
     public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
         return true;
@@ -79,7 +78,7 @@ public class Usuario1SpecificDaoImplementation extends TableGenericDaoImplementa
         ResultSet oResultSet = null;
         MetaBeanHelper oMetaBeanHelper = null;
         strSQL += " AND login='" + oUsuarioBean.getLogin() + "'";
-        strSQL += " AND password='" + oUsuarioBean.getPassword() + "'";
+        strSQL += " AND UPPER(password)='" + oUsuarioBean.getPassword().toUpperCase() + "'";
         try {
             oPreparedStatement = oConnection.prepareStatement(strSQL);
             oResultSet = oPreparedStatement.executeQuery();
@@ -160,4 +159,17 @@ public class Usuario1SpecificDaoImplementation extends TableGenericDaoImplementa
         return intResult;
     }
 
+    public Integer activate(Integer id) throws Exception {
+        MetaBeanHelper oUsuarioMBH = this.get(id, 0);
+        UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oUsuarioMBH.getBean();
+        oUsuario.setActivo(1);
+        return this.update(oUsuario);
+    }
+
+    public Integer deactivate(Integer id) throws Exception {
+        MetaBeanHelper oUsuarioMBH = this.get(id, 0);
+        UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oUsuarioMBH.getBean();
+        oUsuario.setActivo(0);
+        return this.update(oUsuario);
+    }
 }

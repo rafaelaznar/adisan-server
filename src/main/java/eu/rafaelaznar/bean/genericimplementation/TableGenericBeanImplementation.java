@@ -163,7 +163,8 @@ public abstract class TableGenericBeanImplementation extends ViewGenericBeanImpl
                                 if (getTypeFromPropertyMetaData(x) == EnumHelper.FieldType.ForeignId) {
                                     strColumns += (Integer) x.get(this) + ",";
                                 } else if (getTypeFromPropertyMetaData(x) == EnumHelper.FieldType.Password) {
-                                    strColumns += EncodingHelper.quotate("da8ab09ab4889c6208116a675cad0b13e335943bd7fc418782d054b32fdfba04") + ", ";
+                                    strColumns += EncodingHelper.quotate((String) x.get(this).toString().toUpperCase()) + ",";
+                                //    strColumns += EncodingHelper.quotate("da8ab09ab4889c6208116a675cad0b13e335943bd7fc418782d054b32fdfba04") + ", ";
                                 } else if (getTypeFromPropertyMetaData(x) == EnumHelper.FieldType.Token) {
                                     strColumns += EncodingHelper.quotate(RandomHelper.getToken(ConfigurationConstants.tokenSize)) + ", ";
                                 } else if (x.getType() == String.class) {
