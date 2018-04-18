@@ -80,30 +80,15 @@ moduloUsuario.controller('UsuarioPList1Controller',
                 $scope.close = function () {
                     $location.path('/home');
                 };
-
-
                 //--------------------------------------------------------------
-                $scope.showViewButton = function (oBean) {                    
+                $scope.showViewButton = function (oBean) {
                     return true;
                 }
-                $scope.showEditButton = function (oBean) {                    
+                $scope.showEditButton = function (oBean) {
                     return oBean.canUpdate;
                 }
                 $scope.showRemoveButton = function (oBean) {
                     return oBean.canDelete;
-//                    if (oBean.link_paciente > 0) {
-//                        return false;
-//                    } else {
-//                        if (oBean.link_grupo > 0) {
-//                            return false;
-//                        } else {
-//                            return true;
-//                        }
-//                    }
-
-                }
-                $scope.showOtherButton = function (oBean) {
-                    return true;
                 }
                 $scope.goViewURL = function (oBean) {
                     $location.path($scope.ob + "/" + $scope.profile + "/view/" + oBean.id);
@@ -115,7 +100,52 @@ moduloUsuario.controller('UsuarioPList1Controller',
                     $location.path($scope.ob + "/" + $scope.profile + "/remove/" + oBean.id);
                 }
                 //--------------------------------------------------------------
+                $scope.showOtherButton = function (oBean) {
+                    return true;
+                }
+                $scope.includeExtraButtons = function () {
+                    return "js/app/usuario/plistExtraButtons.html"
+                }
+                $scope.showActivateButton = function (oBean) {
+                        if (oBean.activo == 1) {
+                            return false
+                        } else {
 
+                            return true;
+                        }
+                }
+                $scope.showDeactivateButton = function (oBean) {
+                       if (oBean.activo == 1) {
+                            return true
+                        } else {
+
+                            return false;
+                        }
+                }
+                //----                
+                //----------
+                $scope.activate = function (oBean) {
+                    serverCallService.activate(oBean.id).then(function (response) {
+                        if (response.status == 200) {
+                            if (response.data.status == 200) {
+                                getDataFromServer();
+                            }
+                        }
+                    }).catch(function (data) {
+                    });
+                }
+                $scope.deactivate = function (oBean) {
+                    serverCallService.deactivate(oBean.id).then(function (response) {
+                        if (response.status == 200) {
+                            if (response.data.status == 200) {
+                                getDataFromServer();
+                            }
+                        }
+                    }).catch(function (data) {
+                    });
+
+                }
+                //-------------------------------------------------------------- 
                 getDataFromServer();
             }
         ]);

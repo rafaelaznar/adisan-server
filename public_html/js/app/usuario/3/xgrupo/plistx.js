@@ -133,9 +133,9 @@ moduloUsuario.controller('UsuarioxgrupoPList3Controller',
                     return true;
                 }
                 $scope.includeExtraButtons = function () {
-                    return "js/app/usuario/3/xgrupo/plistExtraButtons.html"
+                    return "js/app/usuario/plistExtraButtons.html"
                 }
-                //--------------------------------------------------------------
+                //----------
                 $scope.showActivateButton = function (oBean) {
                     if (oBean.obj_tipousuario.data.id == 4) {
                         return true;
@@ -172,7 +172,7 @@ moduloUsuario.controller('UsuarioxgrupoPList3Controller',
                     });
 
                 }
-                //--------------------------------------------------------------
+                //--------------------------------------------------------------     
                 getDataFromServer();
             }
         ]);

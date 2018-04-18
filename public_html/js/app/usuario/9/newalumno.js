@@ -100,7 +100,7 @@ moduloUsuario.controller('UsuarioNewalumno9Controller',
 //                $scope.bean.obj_medico.id = null;
 //            }
                     delete $scope.bean.password2;
-                    $scope.bean.id_grupo = $scope.grupo.data.obj_curso.data.id;
+                    $scope.bean.id_grupo = $scope.grupo.data.obj_grupo.data.id;
                     $scope.bean.id_centro = $scope.grupo.data.obj_usuario.data.obj_centro.data.id;
                     $scope.bean.id_centrosanitario = $scope.grupo.data.obj_usuario.data.obj_centrosanitario.data.id;
                     $scope.bean.password = forge_sha256($scope.bean.password).toUpperCase();

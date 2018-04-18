@@ -111,9 +111,6 @@ moduloUsuario.controller('UsuarioPList3Controller',
                         return true;
                     }
                 }
-                $scope.showOtherButton = function (oBean) {
-                    return false;
-                }
                 $scope.goViewURL = function (oBean) {
                     $location.path($scope.ob + "/" + $scope.profile + "/view/" + oBean.id);
                 }
@@ -123,19 +120,69 @@ moduloUsuario.controller('UsuarioPList3Controller',
                 $scope.goRemoveURL = function (oBean) {
                     $location.path($scope.ob + "/" + $scope.profile + "/remove/" + oBean.id);
                 }
-//                $scope.includeExtraButtons = function () {
-//                    return "js/app/paciente/3/plistExtraButtons.html"
-//                }
                 //--------------------------------------------------------------
-
-
                 $scope.renderLinksHtml = function (html_code) {
                     return "";
                 }
+                //--------------------------------------------------------------
+                $scope.showOtherButton = function (oBean) {
+                    return true;
+                }
+                $scope.includeExtraButtons = function () {
+                    return "js/app/usuario/plistExtraButtons.html"
+                }
+                //----------
+                $scope.showActivateButton = function (oBean) {
+                    if (oBean.obj_tipousuario.data.id == 4) {
+
+                        if (oBean.activo == 1) {
+                            return false
+                        } else {
+
+                            return true;
+                        }
 
 
+                    } else {
+                        return false;
+                    }
+                }
+                $scope.showDeactivateButton = function (oBean) {
+                    if (oBean.obj_tipousuario.data.id == 4) {
+                      
+                        if (oBean.activo == 1) {
+                            return true
+                        } else {
 
+                            return false;
+                        }
+                    } else {
+                        return false;
+                    }
+                }
+                //----
+                $scope.activate = function (oBean) {
+                    serverCallService.activate(oBean.id).then(function (response) {
+                        if (response.status == 200) {
+                            if (response.data.status == 200) {
+                                getDataFromServer();
+                            }
+                        }
+                    }).catch(function (data) {
+                    });
+                }
+                $scope.deactivate = function (oBean) {
+                    serverCallService.deactivate(oBean.id).then(function (response) {
+                        if (response.status == 200) {
+                            if (response.data.status == 200) {
+                                getDataFromServer();
+                            }
+                        }
+                    }).catch(function (data) {
+                    });
 
+                }
+                //--------------------------------------------------------------                
                 getDataFromServer();
             }
         ]);
