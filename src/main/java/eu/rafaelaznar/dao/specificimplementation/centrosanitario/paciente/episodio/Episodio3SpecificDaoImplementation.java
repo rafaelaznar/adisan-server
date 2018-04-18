@@ -130,9 +130,8 @@ public class Episodio3SpecificDaoImplementation extends TableGenericDaoImplement
     @Override
     public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
         UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
-        EpisodioSpecificBeanImplementation oNewEpisodio = (EpisodioSpecificBeanImplementation) oBean;
-        EpisodioSpecificBeanImplementation oOldEpisodio = (EpisodioSpecificBeanImplementation) this.get(oNewEpisodio.getId(), 0).getBean();
-        if (oOldEpisodio.getId_usuario().equals(oSessionUser.getId()) || alumnoIsMine(oOldEpisodio.getId_usuario())) {
+        EpisodioSpecificBeanImplementation oEpisodio = (EpisodioSpecificBeanImplementation) oBean;        
+        if (oEpisodio.getId_usuario().equals(oSessionUser.getId())) {
             return true;
         } else {
             return false;
@@ -142,8 +141,8 @@ public class Episodio3SpecificDaoImplementation extends TableGenericDaoImplement
     @Override
     public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
         UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
-        EpisodioSpecificBeanImplementation oOldEpisodio = (EpisodioSpecificBeanImplementation) this.get(oBean.getId(), 0).getBean();
-        if (oOldEpisodio.getId_usuario().equals(oSessionUser.getId()) || alumnoIsMine(oOldEpisodio.getId_usuario())) {
+        EpisodioSpecificBeanImplementation oEpisodio = (EpisodioSpecificBeanImplementation) oBean; 
+        if (oEpisodio.getId_usuario().equals(oSessionUser.getId())) {
             return true;
         } else {
             return false;

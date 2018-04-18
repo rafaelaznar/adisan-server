@@ -102,7 +102,7 @@ public class Grupo3SpecificDaoImplementation extends TableGenericDaoImplementati
 
     @Override
     public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
-        GrupoSpecificBeanImplementation oGrupo = (GrupoSpecificBeanImplementation) this.get(oBean.getId(), 0).getBean();
+        GrupoSpecificBeanImplementation oGrupo = (GrupoSpecificBeanImplementation) oBean;
         if (oGrupo.getId_usuario().equals(idUsuario)) {
             return true;
         } else {
@@ -112,7 +112,7 @@ public class Grupo3SpecificDaoImplementation extends TableGenericDaoImplementati
 
     @Override
     public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
-        GrupoSpecificBeanImplementation oGrupo = (GrupoSpecificBeanImplementation) this.get(oBean.getId(), 0).getBean();
+        GrupoSpecificBeanImplementation oGrupo = (GrupoSpecificBeanImplementation) oBean;
         //puedo borrar mis cursos
         if (oGrupo.getId_usuario().equals(idUsuario)) {
             //pte -> puedo borrar mis cursos que no tengan alumnos
