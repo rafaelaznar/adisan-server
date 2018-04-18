@@ -95,7 +95,7 @@ moduloUsuario.controller('UsuarioXtipousuarioPList1Controller',
                 };
                 $scope.close = function () {
                     $location.path('/home');
-                };
+                };$scope.breadcrumbs = toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
                 //--------------------------------------------------------------
                 $scope.showViewButton = function (oBean) {
                     return true;

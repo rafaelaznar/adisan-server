@@ -30,17 +30,17 @@
 <menu></menu>
 <div id="wrapper" ng-cloak>
     <div class="container-fluid">
-        <div class="row">
+        <div class="row" ng-init="searchText = ''">
             <div class="col-lg-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">                                                                        
-                        <header ob="ob" op="op"></header>                                                                        
+                    <div class="panel-heading">
+                        <header ob="ob" op="op"></header>
                     </div>
                     <div class="panel-body">
                         <div class="row" ng-if="breadcrumbs">
                             <div class="col-xs-12">
                                 <div class="alert alert-info" role="alert">
-                                    <p ng-bind-html="breadcrumbs | trusted"></p>                                    
+                                    <p ng-bind-html="breadcrumbs | trusted"></p>
                                 </div>
                             </div>
                         </div>
@@ -52,21 +52,21 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-12" ng-if="!status">
+                            <div class="col-xs-12" ng-show="!status">
                                 <div class="navbar-form navbar-right">
-                                    <div class="form-group input-group input-group-xs">                                         
-                                        <span class="input-group-btn"><button class="btn">Filtro</button></span>  
+                                    <div class="form-group input-group input-group-xs">
+                                        <span class="input-group-btn"><button class="btn">Filtro</button></span>
                                         <select  class="form-control input-xs"  ng-model="filterType">
-                                            <option ng-repeat="f in metap|filter:{Type:'!Calculated'}|filter:{Type:'!Link'}" 
+                                            <option ng-repeat="f in metap|filter:{Type:'!Calculated'}|filter:{Type:'!Link'}"
                                                     value="{{f.Name}}">Filtrar por {{f.LongName}}
                                             </option>
                                         </select>
                                     </div>
                                     <div class="form-group input-group input-group-xs">
-                                        <span class="input-group-btn"><button class="btn">Filtro rápido</button></span>                                             
-                                        <input class="form-control input-xs"  id="inputFiltervalueClient" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" placeholder="Valor" ng-model="searchText">
-                                        <div class="input-group-addon"><i class="glyphicon glyphicon-zoom-in"></i></div>                                   
-                                    </div>                                 
+                                        <span class="input-group-btn"><button class="btn">Filtro rápido</button></span>
+                                        <input class="form-control input-xs"  id="inputFiltervalueClient2" name="filtervalue2" type="text" size="20" maxlength="50" value="" width="100" placeholder="Valor" ng-model="searchText">
+                                        <div class="input-group-addon"><i class="glyphicon glyphicon-zoom-in"></i></div>
+                                    </div>
                                     <a class="btn btn-primary btn-xs" ng-if="xob" href="{{ob}}/{{profile}}/x{{xob}}/newx/{{xid}}">Crear nuevo {{ob}}</a>
                                     <a class="btn btn-primary btn-xs" ng-if="!xob" href="{{ob}}/{{profile}}/new">Crear nuevo {{ob}}</a>
                                     <a class="btn btn-default btn-xs" href="home" >Cerrar</a>
@@ -168,8 +168,8 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-12"
-                                 <div id="datos" ng-if="!status">
+                            <div class="col-xs-12">
+                                <div id="datos" ng-show="!status">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
                                             <div class="text-center">
@@ -198,7 +198,7 @@
                                                             <a ng-if="oBean[oMetap.Name] > 0" class="btn btn-default btn-xs" href="{{oMetap.References}}/{{profile}}/x{{ob}}/plistx/{{oBean['id']}}">{{setShowRemove(false);oBean[oMetap.Name]}}</a>
                                                             <a ng-if="oBean[oMetap.Name] == 0" class="btn btn-default btn-xs" href="{{oMetap.References}}/{{profile}}/x{{ob}}/newx/{{oBean['id']}}">{{setShowRemove(true);oBean[oMetap.Name]}}</a>
                                                         </div>
-                                                    </td>                                                    
+                                                    </td>
                                                     <td class="col-md-1">
                                                         <div class="btn-toolbar" role="toolbar">
                                                             <div class="btn-group">
