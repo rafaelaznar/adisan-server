@@ -6,7 +6,7 @@
     <div class="form-group" 
          ng-class="{'has-error': (filterForm.filterOperator.$error.required ||
                      filterForm.filterOperator.$error.valid)}">
-        <label for="filterOperator">{{filterbyboolean.field.LongName}}</label> 
+        <div class="form-group"><button class="btn">Filtrando por {{filterbyboolean.field.LongName}}</button></div>     
         <select
             id="filterOperator"
             ng-required="true"

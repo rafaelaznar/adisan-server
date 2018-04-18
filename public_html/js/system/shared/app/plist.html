@@ -75,7 +75,6 @@
                                 </div>
 
                                 <div ng-repeat="f in metap" ng-show="filterType == f.Name" value="f.Name">
-
                                     <div ng-show="f.Type == 'Integer' || f.Type == 'Id'">
                                         <cplistfilterbyinteger
                                             url="url"
@@ -109,6 +108,17 @@
                                         </cplistfilterbydate>
                                     </div>
                                     <p></p>
+                                    <div ng-show="f.Type == 'Boolean'">
+                                        <cplistfilterbyboolean
+                                            url="url"
+                                            field="f"
+                                            rpp="rpp"
+                                            numpage="numpage"
+                                            orderparams="orderParams"
+                                            filterparams="filterParams">
+                                        </cplistfilterbyboolean>
+                                    </div>
+                                    <p></p>
                                     <div ng-show="f.Type == 'ForeignObject'">
                                         <cplistfilterbyforeign
                                             url="url"
@@ -121,9 +131,6 @@
                                         </cplistfilterbyforeign>
                                     </div>
                                 </div>
-
-
-
                             </div>
                         </div>
                         <hr />
