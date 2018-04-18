@@ -217,7 +217,7 @@ public class UsuarioSpecificBeanImplementation extends TableGenericBeanImplement
             LongName = "Grupo del usuario",
             Description = "Grupo del usuario",
             Type = EnumHelper.FieldType.ForeignObject,
-            IsRequired = true,
+            IsRequired = false,
             References = "grupo",
             Width = 4
     )

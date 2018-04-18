@@ -63,7 +63,7 @@ public abstract class TableGenericBeanImplementation extends ViewGenericBeanImpl
             Type = EnumHelper.FieldType.Can
     )
     private Boolean canCreate;
-    
+
     @Expose
     @MetaPropertyBeanInterface(
             ShortName = "canUpdate",
@@ -72,7 +72,7 @@ public abstract class TableGenericBeanImplementation extends ViewGenericBeanImpl
             Type = EnumHelper.FieldType.Can
     )
     private Boolean canUpdate;
-    
+
     @Expose
     @MetaPropertyBeanInterface(
             ShortName = "canDelete",
@@ -163,8 +163,11 @@ public abstract class TableGenericBeanImplementation extends ViewGenericBeanImpl
                                 if (getTypeFromPropertyMetaData(x) == EnumHelper.FieldType.ForeignId) {
                                     strColumns += (Integer) x.get(this) + ",";
                                 } else if (getTypeFromPropertyMetaData(x) == EnumHelper.FieldType.Password) {
-                                    strColumns += EncodingHelper.quotate((String) x.get(this).toString().toUpperCase()) + ",";
-                                //    strColumns += EncodingHelper.quotate("da8ab09ab4889c6208116a675cad0b13e335943bd7fc418782d054b32fdfba04") + ", ";
+                                    if (x.get(this) == null) {
+                                        strColumns += EncodingHelper.quotate("29A666F773333B5BA55BB7B1E6177A236665616BB87CF6DFCFEDAA08F8E7D01B".toUpperCase()) + ", "; //por defecto pass=gesane
+                                    } else {
+                                        strColumns += EncodingHelper.quotate((String) x.get(this).toString().toUpperCase()) + ",";
+                                    }
                                 } else if (getTypeFromPropertyMetaData(x) == EnumHelper.FieldType.Token) {
                                     strColumns += EncodingHelper.quotate(RandomHelper.getToken(ConfigurationConstants.tokenSize)) + ", ";
                                 } else if (x.getType() == String.class) {
