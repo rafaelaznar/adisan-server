@@ -66,11 +66,7 @@ public class Usuario1SpecificDaoImplementation extends TableGenericDaoImplementa
     @Override
     public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
         UsuarioSpecificBeanImplementation oUsuarioBean = (UsuarioSpecificBeanImplementation) oBean;
-        if (oUsuarioBean.getLink_grupo() > 0 || oUsuarioBean.getLink_paciente() > 0) {
-            return false;
-        } else {
-            return true;
-        }
+        return !(oUsuarioBean.getLink_grupo() > 0 || oUsuarioBean.getLink_paciente() > 0);
     }
 
     public MetaBeanHelper getFromLoginAndPass(UsuarioSpecificBeanImplementation oUsuarioBean) throws Exception {

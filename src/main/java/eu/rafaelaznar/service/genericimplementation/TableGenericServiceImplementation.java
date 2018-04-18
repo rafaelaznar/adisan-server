@@ -162,6 +162,8 @@ public abstract class TableGenericServiceImplementation extends ViewGenericServi
                 TableDaoInterface oDao = (TableDaoInterface) DaoFactory.getDao(ob, oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
                 TableGenericBeanImplementation oBean = (TableGenericBeanImplementation) BeanFactory.getBean(ob, (MetaBeanHelper) oRequest.getSession().getAttribute("user"));
                 oBean.setId(id);
+                
+                oBean = (TableGenericBeanImplementation) oDao.get(oBean.getId(),0).getBean();
                 iResult = oDao.delete(oBean);
                 Gson oGson = GsonHelper.getGson();
                 String strJson = oGson.toJson(iResult);
