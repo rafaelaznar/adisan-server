@@ -8,7 +8,7 @@
             <div class="form-group"
                  ng-class="{'has-error': (filterForm.filterOperator.$error.required ||
                      filterForm.filterOperator.$error.valid)}">
-                <label for="filterOperator">{{filterbyinteger.field.LongName}}</label> 
+                <div class="form-group"><button class="btn">Filtrando por {{filterbyinteger.field.LongName}}</button></div>                     
                 <select 
                     id="filterOperator" 
                     ng-required="true"   
@@ -25,7 +25,9 @@
                     <option value="ngrea">es mayor que</option>
                     <option value="ngequ">es mayor o igual que</option>
                 </select>
+                <!--
                 <span class="help-block" ng-if="!filterForm.filterOperator.$pristine && filterForm.filterOperator.$error.valid">El campo es obligatorio</span>        
+                -->
             </div>
             <div class="form-group"
                  ng-class="{'has-error': (filterForm.filterValue.$error.required ||
@@ -44,8 +46,10 @@
                     style="width: 140px" 
                     placeholder="Valor" 
                     ng-model="filterbyinteger.value">
+                <!--
                 <span class="help-block" ng-if="!filterForm.filterValue.$pristine && filterForm.filterValue.$error.required">El campo es obligatorio</span>        
                 <span class="help-block" ng-if="!filterForm.filterValue.$pristine && filterForm.filterValue.$error.pattern">El campo no tiene formato adecuado: debe ser un número entero o decimal (la coma es un punto).</span>
+                -->
             </div>
             <input 
                 type="button" 
