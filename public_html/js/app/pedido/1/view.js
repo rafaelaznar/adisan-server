@@ -33,7 +33,7 @@ moduloUsuario.controller('UsuarioView1Controller',
                 $scope.op = "view";
                 $scope.profile = 1;
                 //---
-                $scope.id = $routeParams.id;                
+                $scope.id = $routeParams.id;
                 //---
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---

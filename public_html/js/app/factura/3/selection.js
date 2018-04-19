@@ -48,7 +48,7 @@ moduloFactura.controller('FacturaSelection1Controller',
                 $scope.visibles.id = true;
                 $scope.visibles.descripcion = true;
                 $scope.visibles.fecha = true;
-                
+
                 $scope.filterDate = [{'name': 'fecha', 'longname': 'Fecha'}];
                 $scope.filterString = [{'name': 'descripcion', 'longname': 'Descripción'}];
                 $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'}];

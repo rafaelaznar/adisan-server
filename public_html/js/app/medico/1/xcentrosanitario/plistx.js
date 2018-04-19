@@ -60,7 +60,7 @@ moduloMedico.controller('MedicoXcentrosanitarioPList1Controller',
                             }
                         }).catch(function (data) {
                         });
-                    }                    
+                    }
                     serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
                         if (response.status == 200) {
                             $scope.registers = response.data.json;
@@ -77,7 +77,7 @@ moduloMedico.controller('MedicoXcentrosanitarioPList1Controller',
                             $scope.page = response.data.json.data;
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
-                            toolService.hideField($scope.metap, "obj_" + $scope.xob);                           
+                            toolService.hideField($scope.metap, "obj_" + $scope.xob);
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -97,7 +97,7 @@ moduloMedico.controller('MedicoXcentrosanitarioPList1Controller',
                     $location.path('/home');
                 };
                 //--------------------------------------------------------------
-                $scope.showViewButton = function (oBean) {
+                $scope.showCreateButton = function () {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {

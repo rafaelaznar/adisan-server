@@ -58,7 +58,7 @@ moduloMedico.controller('MedicoSelection5Controller',
                 $scope.filterString = [{'name': 'dni', 'longname': 'DNI'}, {'name': 'nombre', 'longname': 'Nombre'},
                     {'name': 'primer_apellido', 'longname': 'Primer Apellido'}, {'name': 'segundo_apellido', 'longname': 'Segundo Apellido'},
                     {'name': 'dni', 'longname': 'DNI'}];
-                
+
                 $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'}];
                 $scope.filterDate = [{'name': 'fecha_nacimiento', 'longname': 'Fecha Nacimiento'}];
 

@@ -39,7 +39,7 @@ moduloDependencia.controller('DependenciaxcentrosanitarioPList1Controller',
                 $scope.profile = 1;
                 //---
                 $scope.status = null;
-                $scope.debugging = constantService.debugging();                
+                $scope.debugging = constantService.debugging();
                 //----
                 $scope.xob = "centrosanitario";
                 $scope.xid = $routeParams.id;
@@ -103,7 +103,7 @@ moduloDependencia.controller('DependenciaxcentrosanitarioPList1Controller',
                     $location.path('/home');
                 };
                 //--------------------------------------------------------------
-                $scope.showViewButton = function (oBean) {
+                $scope.showCreateButton = function () {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {

@@ -102,8 +102,8 @@ moduloEpisodio.controller('EpisodioxfacturaPList1Controller',
                 $scope.close = function () {
                     $location.path('/home');
                 };
-                                //--------------------------------------------------------------
-                $scope.showViewButton = function (oBean) {
+                //--------------------------------------------------------------
+                $scope.showCreateButton = function () {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {

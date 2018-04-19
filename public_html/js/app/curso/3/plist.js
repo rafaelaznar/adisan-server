@@ -33,7 +33,7 @@ moduloCurso.controller('CursoPList3Controller',
                 $scope.op = "plist";
                 $scope.profile = 3;
                 //----
-                
+
                 //---
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //----
@@ -82,7 +82,7 @@ moduloCurso.controller('CursoPList3Controller',
                     $location.path('/home');
                 };
                 //--------------------------------------------------------------
-                $scope.showViewButton = function (oBean) {
+                $scope.showCreateButton = function () {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {

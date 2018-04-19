@@ -85,11 +85,8 @@ moduloCentrosanitario.controller('CentrosanitarioPList1Controller',
                 $scope.close = function () {
                     $location.path('/home');
                 };
-
-
                 //--------------------------------------------------------------
-                //--------------------------------------------------------------
-                $scope.showViewButton = function (oBean) {
+                $scope.showCreateButton = function () {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {
@@ -97,7 +94,7 @@ moduloCentrosanitario.controller('CentrosanitarioPList1Controller',
                 }
                 $scope.showRemoveButton = function (oBean) {
                     return oBean.canDelete;
-                } 
+                }
                 $scope.showOtherButton = function (oBean) {
                     return false;
                 }
@@ -111,8 +108,6 @@ moduloCentrosanitario.controller('CentrosanitarioPList1Controller',
                     $location.path($scope.ob + "/" + $scope.profile + "/remove/" + oBean.id);
                 }
                 //--------------------------------------------------------------
-
-
                 getDataFromServer();
             }
         ]);

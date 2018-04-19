@@ -60,7 +60,7 @@ moduloPaciente.controller('PacienteXsexoPList1Controller',
                             }
                         }).catch(function (data) {
                         });
-                    }                    
+                    }
                     serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
                         if (response.status == 200) {
                             $scope.registers = response.data.json;
@@ -97,7 +97,7 @@ moduloPaciente.controller('PacienteXsexoPList1Controller',
                     $location.path('/home');
                 };
                 //--------------------------------------------------------------
-                $scope.showViewButton = function (oBean) {
+                $scope.showCreateButton = function () {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {

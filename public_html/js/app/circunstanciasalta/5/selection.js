@@ -43,7 +43,7 @@ moduloCircunstanciasalta.controller('CircunstanciasaltaSelection5Controller',
                 $scope.rpp = 10;
                 $scope.neighbourhood = 1;
                 $scope.onlyview = true;
-                
+
                 //---
                 $scope.status = null;
                 $scope.debugging = true;
@@ -117,13 +117,11 @@ moduloCircunstanciasalta.controller('CircunstanciasaltaSelection5Controller',
                     $scope.closeForm(id);
                     return false;
                 }
-
                 $scope.doorder = function (orderField, ascDesc) {
                     $scope.orderParams = orderField + ',' + ascDesc;
                     getData();
                     return false;
                 };
-
                 getData();
             }
         ]);

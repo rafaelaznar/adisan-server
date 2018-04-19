@@ -52,7 +52,7 @@ moduloPaciente.controller('PacienteEdit4Controller',
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
                             //eliminar clave ajena
-                            $scope.metap = toolService.deleteForeignKey($scope.metap,"obj_usuario");
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_usuario");
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }

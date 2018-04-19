@@ -108,7 +108,7 @@ moduloEpisodio.controller('SubepisodioXepisodioPList4Controller',
                 };
 
                 //--------------------------------------------------------------
-                $scope.showViewButton = function (oBean) {
+                $scope.showCreateButton = function () {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {

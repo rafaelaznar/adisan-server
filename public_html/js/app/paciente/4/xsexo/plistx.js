@@ -65,13 +65,13 @@ moduloPaciente.controller('PacientexsexoPList4Controller',
                             $scope.iduser = response.data.json.data.id;
                         }
                     }).then(
-                    serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
+                            serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
                         if ($scope.xob && $scope.xid) {
                             serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
                                 if (response.status == 200) {
                                     if (response.data.status == 200) {
                                         $scope.linkedbean = response.data.json;
-                                        $scope.linkedbean2 = response.data.json.data.obj_usuario;                                        
+                                        $scope.linkedbean2 = response.data.json.data.obj_usuario;
                                         $scope.breadcrumbs = toolService.renderLinkHtml($scope.linkedbean, $scope.profile) + toolService.renderLinkHtml($scope.linkedbean2, $scope.profile);
                                     }
                                 }
@@ -112,20 +112,7 @@ moduloPaciente.controller('PacientexsexoPList4Controller',
                     $location.path('/home');
                 };
                 //--------------------------------------------------------------
-//                $scope.showViewButton = function (oBean) {
-//                    return true;
-//                }
-//                $scope.showEditButton = function (oBean) {
-//                    return true;
-//                }
-//                $scope.showRemoveButton = function (oBean) {
-//                    if (oBean.link_episodio > 0) {
-//                        return false;
-//                    } else {
-//                        return true;
-//                    }
-//                }
-                $scope.showViewButton = function (oBean) {
+                $scope.showCreateButton = function () {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {

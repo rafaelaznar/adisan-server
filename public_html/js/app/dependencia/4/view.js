@@ -33,7 +33,7 @@ moduloDependencia.controller('DependenciaView4Controller',
                 $scope.op = "view";
                 $scope.profile = 4;
                 //----
-             
+
                 //---
                 $scope.id = $routeParams.id;
                 //---

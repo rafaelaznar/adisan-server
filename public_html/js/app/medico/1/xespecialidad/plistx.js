@@ -55,8 +55,8 @@ moduloMedico.controller('MedicoXespecialidadPList1Controller',
                         serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
                             if (response.status == 200) {
                                 if (response.data.status == 200) {
-                                    $scope.linkedbean = response.data.json;                                    
-                                    $scope.breadcrumbs = toolService.renderLinkHtml($scope.linkedbean, $scope.profile) ;
+                                    $scope.linkedbean = response.data.json;
+                                    $scope.breadcrumbs = toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
                                 }
                             }
                         }).catch(function (data) {
@@ -97,7 +97,7 @@ moduloMedico.controller('MedicoXespecialidadPList1Controller',
                     $location.path('/home');
                 };
                 //--------------------------------------------------------------
-                $scope.showViewButton = function (oBean) {
+                $scope.showCreateButton = function () {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {

@@ -32,9 +32,7 @@ moduloDependencia.controller('DependenciaPList4Controller',
                 $scope.ob = "dependencia";
                 $scope.op = "plist";
                 $scope.profile = 4;
-
                 //----
-                
                 //---
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //----
@@ -82,9 +80,7 @@ moduloDependencia.controller('DependenciaPList4Controller',
                 $scope.close = function () {
                     $location.path('/home');
                 };
-                $scope.setShowRemove = function (show) {
-                    $scope.showRemove = show;
-                };
+
                 getDataFromServer();
             }
         ]);

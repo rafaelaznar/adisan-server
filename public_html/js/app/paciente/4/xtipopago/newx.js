@@ -61,7 +61,7 @@ moduloPaciente.controller('PacientextipopagoNew4Controller',
                                 ///////////IMPORTANTE PARA CLAVES QUE SE HEREDAN///////////
                                 ///////////////////////////////////////////////////////////
                                 ///////////////////////////////////////////////////////////
-                                
+
                                 $scope.bean.obj_tipopago.data.id = $scope.linkedbean.data.id;
                             }
                         }
@@ -88,7 +88,7 @@ moduloPaciente.controller('PacientextipopagoNew4Controller',
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
                             $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_usuario");
-                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_tipopago");                            
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_tipopago");
                             //OJO, NO HACEMOS EL DELETEFOREIGNKEYOBJETCT PORQUE NOSOTROS MACHACAMOS EN SERVIDOR LA SESION
                             //SERIA $scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_usuario");
                         } else {

@@ -85,19 +85,15 @@ moduloCentro.controller('CentroPList3Controller',
                 $scope.close = function () {
                     $location.path('/home');
                 };
-
-
                 //--------------------------------------------------------------
-                $scope.showViewButton = function (oBean) {
+                $scope.showCreateButton = function () {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {
                     return false;
                 }
                 $scope.showRemoveButton = function (oBean) {
-
                     return false;
-
                 }
                 $scope.showOtherButton = function (oBean) {
                     return false;
@@ -111,9 +107,6 @@ moduloCentro.controller('CentroPList3Controller',
                 $scope.goRemoveURL = function (oBean) {
                     $location.path($scope.ob + "/" + $scope.profile + "/remove/" + oBean.id);
                 }
-
-
-
                 getDataFromServer();
             }
         ]);

@@ -81,7 +81,7 @@ moduloUsuario.controller('UsuarioPList1Controller',
                     $location.path('/home');
                 };
                 //--------------------------------------------------------------
-                $scope.showViewButton = function (oBean) {
+                $scope.showCreateButton = function () {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {
@@ -107,20 +107,20 @@ moduloUsuario.controller('UsuarioPList1Controller',
                     return "js/app/usuario/plistExtraButtons.html"
                 }
                 $scope.showActivateButton = function (oBean) {
-                        if (oBean.activo == 1) {
-                            return false
-                        } else {
+                    if (oBean.activo == 1) {
+                        return false
+                    } else {
 
-                            return true;
-                        }
+                        return true;
+                    }
                 }
                 $scope.showDeactivateButton = function (oBean) {
-                       if (oBean.activo == 1) {
-                            return true
-                        } else {
+                    if (oBean.activo == 1) {
+                        return true
+                    } else {
 
-                            return false;
-                        }
+                        return false;
+                    }
                 }
                 //----                
                 //----------

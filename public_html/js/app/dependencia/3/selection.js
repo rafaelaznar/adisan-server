@@ -48,8 +48,7 @@ moduloDependencia.controller('DependenciaSelection3Controller',
                 $scope.visibles.id = true;
                 $scope.visibles.descripcion = true;
                 $scope.
-
-                $scope.filterString = [{'name': 'descripcion', 'longname': 'Descripción'}];
+                        $scope.filterString = [{'name': 'descripcion', 'longname': 'Descripción'}];
                 $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'}];
 
                 $scope.closeForm = function (id) {
@@ -118,11 +117,11 @@ moduloDependencia.controller('DependenciaSelection3Controller',
                     getData();
                     return false;
                 };
-                
-                
-                
+
+
+
 
                 getData();
             }
-            
+
         ]);

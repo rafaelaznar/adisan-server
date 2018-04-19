@@ -33,7 +33,7 @@ moduloTipopago.controller('TipopagoPList1Controller',
                 $scope.op = "plist";
                 $scope.profile = 1;
                 //----
-                
+
                 //---
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //----
@@ -82,7 +82,7 @@ moduloTipopago.controller('TipopagoPList1Controller',
                     $location.path('/home');
                 };
                 //--------------------------------------------------------------
-                $scope.showViewButton = function (oBean) {
+                $scope.showCreateButton = function () {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {

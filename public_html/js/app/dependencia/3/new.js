@@ -43,7 +43,7 @@ moduloDependencia.controller('DependenciaNew3Controller',
                         if (response.data.status == 200) {
                             $scope.status = null;
                             //--For every foreign key create obj inside bean tobe filled...
-                                                        
+
                             $scope.bean = {};
                             response.data.json.metaProperties.forEach(function (property) {
                                 if (property.Type == 'ForeignObject') {
@@ -55,9 +55,9 @@ moduloDependencia.controller('DependenciaNew3Controller',
                             //--
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
-                            
-                                                        
-                            $scope.metap = toolService.deleteForeignKey($scope.metap,"obj_centrosanitario");
+
+
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_centrosanitario");
 
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";

@@ -103,8 +103,7 @@ moduloEpisodio.controller('EpisodioxpacientePList1Controller',
                     $location.path('/home');
                 };
                 //--------------------------------------------------------------
-                //--------------------------------------------------------------
-                $scope.showViewButton = function (oBean) {
+                $scope.showCreateButton = function () {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {

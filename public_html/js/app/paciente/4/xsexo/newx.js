@@ -55,13 +55,13 @@ moduloPaciente.controller('PacientexsexoNew4Controller',
                         if (response.status == 200) {
                             if (response.data.status == 200) {
                                 $scope.linkedbean = response.data.json;
-                                
+
                                 ///////////////////////////////////////////////////////////
                                 ///////////////////////////////////////////////////////////
                                 ///////////IMPORTANTE PARA CLAVES QUE SE HEREDAN///////////
                                 ///////////////////////////////////////////////////////////
                                 ///////////////////////////////////////////////////////////
-                                
+
                                 $scope.bean.obj_sexo.data.id = $scope.linkedbean.data.id;
                             }
                         }
@@ -90,7 +90,7 @@ moduloPaciente.controller('PacientexsexoNew4Controller',
                             $scope.metap = response.data.json.metaProperties;
                             $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_usuario");
                             $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_sexo");
-                            
+
 
 
                         } else {

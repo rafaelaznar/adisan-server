@@ -51,7 +51,7 @@ moduloFactura.controller('FacturaSelection1Controller',
                 $scope.filterString = [{'name': 'descripcion', 'longname': 'Descripción'}];
                 $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'}];
                 $scope.filterDate = [{'name': 'fecha', 'longname': 'Fecha'}];
-                
+
                 $scope.closeForm = function (id) {
                     $modalInstance.close(id);
                 };

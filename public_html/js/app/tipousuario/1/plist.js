@@ -82,20 +82,9 @@ moduloTipousuario.controller('TipousuarioPList1Controller',
                     $location.path('/home');
                 };
                 //--------------------------------------------------------------
-                $scope.showViewButton = function (oBean) {
-                    return true;
+                $scope.showCreateButton = function () {
+                    return false;
                 }
-//                $scope.showEditButton = function (oBean) {
-//                    return true;
-//                }
-//                $scope.showRemoveButton = function (oBean) {
-//                    if (oBean.link_usuario > 0) {
-//                        return false;
-//                    } else {
-//                        return true;
-//                    }
-//
-//                }
                 $scope.showEditButton = function (oBean) {
                     return oBean.canUpdate;
                 }

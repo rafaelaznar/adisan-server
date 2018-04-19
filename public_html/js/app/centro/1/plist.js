@@ -85,9 +85,8 @@ moduloCentro.controller('CentroPList1Controller',
                 $scope.close = function () {
                     $location.path('/home');
                 };
-              //--------------------------------------------------------------
                 //--------------------------------------------------------------
-                $scope.showViewButton = function (oBean) {
+                $scope.showCreateButton = function () {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {
@@ -98,7 +97,7 @@ moduloCentro.controller('CentroPList1Controller',
                 }
                 $scope.showOtherButton = function (oBean) {
                     return false;
-                } 
+                }
                 $scope.goViewURL = function (oBean) {
                     $location.path($scope.ob + "/" + $scope.profile + "/view/" + oBean.id);
                 }

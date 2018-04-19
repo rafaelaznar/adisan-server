@@ -34,7 +34,7 @@ moduloDependencia.controller('DependenciaPList3Controller',
                 $scope.profile = 3;
 
                 //----
-                
+
                 //---
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //----
@@ -83,7 +83,7 @@ moduloDependencia.controller('DependenciaPList3Controller',
                     $location.path('/home');
                 };
                 //--------------------------------------------------------------
-                $scope.showViewButton = function (oBean) {
+                $scope.showCreateButton = function () {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {

@@ -88,30 +88,8 @@ moduloPaciente.controller('PacientePList4Controller',
                 $scope.close = function () {
                     $location.path('/home');
                 };
-
-
-
-
-                //--------------
-//                $scope.showViewButton = function (oBean) {
-//                    return true;
-//                }
-//                $scope.showEditButton = function (oBean) {
-//                    return true;
-//                }
-//                $scope.showRemoveButton = function (oBean) {
-//                    if (oBean.link_episodio > 0) {
-//                        return false;
-//                    } else {
-//                        if (oBean.obj_usuario.data.id == sessionService.getSessionInfo().id) {
-//                            return true;
-//                        } else {
-//                            return false;
-//                        }
-//                    }
-//                }
                 //--------------------------------------------------------------
-                $scope.showViewButton = function (oBean) {
+                $scope.showCreateButton = function () {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {
@@ -133,13 +111,7 @@ moduloPaciente.controller('PacientePList4Controller',
                 $scope.goRemoveURL = function (oBean) {
                     $location.path($scope.ob + "/" + $scope.profile + "/remove/" + oBean.id);
                 }
-//                $scope.includeExtraButtons = function (oBean) {
-//                    return "js/app/paciente/3/botones.html"
-//                }
                 //-------------
-
-
-
                 getDataFromServer();
             }
         ]);

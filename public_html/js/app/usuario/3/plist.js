@@ -94,11 +94,8 @@ moduloUsuario.controller('UsuarioPList3Controller',
                 $scope.close = function () {
                     $location.path('/home');
                 };
-
-
-
                 //--------------------------------------------------------------
-                $scope.showViewButton = function (oBean) {
+                $scope.showCreateButton = function () {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {
@@ -149,7 +146,7 @@ moduloUsuario.controller('UsuarioPList3Controller',
                 }
                 $scope.showDeactivateButton = function (oBean) {
                     if (oBean.obj_tipousuario.data.id == 4) {
-                      
+
                         if (oBean.activo == 1) {
                             return true
                         } else {

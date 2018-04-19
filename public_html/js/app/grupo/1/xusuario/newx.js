@@ -38,7 +38,7 @@ moduloUsuario.controller('GrupoxusuarioNew1Controller',
                 $scope.xid = $routeParams.id;
                 //---
                 $scope.status = null;
-                $scope.debugging = 2;//constantService.debugging();
+                $scope.debugging = constantService.debugging();
                 //---
                 if ($scope.xob && $scope.xid) {
                     $scope.linkedbean = null;
@@ -46,6 +46,7 @@ moduloUsuario.controller('GrupoxusuarioNew1Controller',
                         if (response.status == 200) {
                             if (response.data.status == 200) {
                                 $scope.linkedbean = response.data.json;
+                                $scope.breadcrumbs = toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
                             }
                         }
                     }).catch(function (data) {

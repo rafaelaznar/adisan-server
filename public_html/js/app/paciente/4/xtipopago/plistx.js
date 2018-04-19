@@ -107,20 +107,7 @@ moduloPaciente.controller('PacientextipopagoPList4Controller',
                     $location.path('/home');
                 };
                 //--------------------------------------------------------------
-//                $scope.showViewButton = function (oBean) {
-//                    return true;
-//                }
-//                $scope.showEditButton = function (oBean) {
-//                    return true;
-//                }
-//                $scope.showRemoveButton = function (oBean) {
-//                    if (oBean.link_episodio > 0) {
-//                        return false;
-//                    } else {
-//                        return true;
-//                    }
-//                }
-                $scope.showViewButton = function (oBean) {
+                $scope.showCreateButton = function () {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {

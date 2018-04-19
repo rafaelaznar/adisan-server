@@ -33,7 +33,7 @@ moduloFactura.controller('FacturaView5Controller',
                 $scope.op = "view";
                 $scope.profile = 5;
                 //----
-              //  $scope.onlyview = true;
+                //  $scope.onlyview = true;
                 //---
                 $scope.id = $routeParams.id;
                 //---

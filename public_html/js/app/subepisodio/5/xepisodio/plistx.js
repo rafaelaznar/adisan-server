@@ -82,7 +82,7 @@ moduloEpisodio.controller('SubepisodioXepisodioPList5Controller',
                             $scope.page = response.data.json.data;
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
-                            
+
                             //--
                             $scope.metap = toolService.deleteForeignKey($scope.metap, "link_subepisodio");
                             /////////
@@ -105,7 +105,7 @@ moduloEpisodio.controller('SubepisodioXepisodioPList5Controller',
                     $location.path('/home');
                 };
                 //--------------------------------------------------------------
-                $scope.showViewButton = function (oBean) {
+                $scope.showCreateButton = function () {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {

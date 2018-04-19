@@ -79,15 +79,8 @@ moduloGrupo.controller('GrupoPList3Controller',
                 $scope.close = function () {
                     $location.path('/home');
                 };
-
-
-
-
-
-
                 //--------------------------------------------------------------
-                //--------------------------------------------------------------
-                $scope.showViewButton = function (oBean) {
+                $scope.showCreateButton = function () {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {
@@ -109,14 +102,9 @@ moduloGrupo.controller('GrupoPList3Controller',
                     $location.path($scope.ob + "/" + $scope.profile + "/remove/" + oBean.id);
                 }
                 //--------------------------------------------------------------
-                //--------------------------------------------------------------
-
-
                 $scope.renderLinksHtml = function (html_code) {
                     return "";
                 }
-
-
                 getDataFromServer();
             }
         ]);

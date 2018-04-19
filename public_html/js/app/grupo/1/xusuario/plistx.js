@@ -97,15 +97,12 @@ moduloUsuario.controller('GrupoxusuarioPList1Controller',
                 $scope.close = function () {
                     $location.path('/home');
                 };
-
                 //--------------------------------------------------------------
-
                 $scope.renderLinksHtml = function (html_code) {
                     return toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
                 }
                 //--------------------------------------------------------------
-                //--------------------------------------------------------------
-                $scope.showViewButton = function (oBean) {
+                $scope.showCreateButton = function () {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {
@@ -127,7 +124,6 @@ moduloUsuario.controller('GrupoxusuarioPList1Controller',
                     $location.path($scope.ob + "/" + $scope.profile + "/remove/" + oBean.id);
                 }
                 //--------------------------------------------------------------
-
                 getDataFromServer();
             }
         ]);

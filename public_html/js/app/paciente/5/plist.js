@@ -80,9 +80,8 @@ moduloPaciente.controller('PacientePList5Controller',
                 $scope.close = function () {
                     $location.path('/home');
                 };
-
                 //--------------
-                $scope.showViewButton = function (oBean) {
+                $scope.showCreateButton = function () {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {
@@ -104,9 +103,6 @@ moduloPaciente.controller('PacientePList5Controller',
                     $location.path($scope.ob + "/" + $scope.profile + "/remove/" + oBean.id);
                 }
                 //-------------
-
-
-
                 getDataFromServer();
             }
         ]);
