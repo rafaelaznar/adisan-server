@@ -86,7 +86,10 @@ moduloCentrosanitario.controller('CentrosanitarioPList1Controller',
                     $location.path('/home');
                 };
                 //--------------------------------------------------------------
-                $scope.showCreateButton = function () {
+                $scope.showViewButton = function () {
+                    return true;
+                }
+                $scope.showNewButton = function () {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {

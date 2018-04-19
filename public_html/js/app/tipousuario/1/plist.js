@@ -82,7 +82,10 @@ moduloTipousuario.controller('TipousuarioPList1Controller',
                     $location.path('/home');
                 };
                 //--------------------------------------------------------------
-                $scope.showCreateButton = function () {
+                $scope.showViewButton = function () {
+                    return true;
+                }
+                $scope.showNewButton = function () {
                     return false;
                 }
                 $scope.showEditButton = function (oBean) {
@@ -92,7 +95,7 @@ moduloTipousuario.controller('TipousuarioPList1Controller',
                     return oBean.canDelete;
                 }
                 $scope.showOtherButton = function (oBean) {
-                    return true;
+                    return false;
                 }
                 $scope.goViewURL = function (oBean) {
                     $location.path($scope.ob + "/" + $scope.profile + "/view/" + oBean.id);

@@ -112,7 +112,10 @@ moduloPaciente.controller('PacientexusuarioList5Controller',
                 };
 
                 //--------------
-                $scope.showCreateButton = function () {
+                $scope.showViewButton = function () {
+                    return true;
+                }
+                $scope.showNewButton = function () {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {

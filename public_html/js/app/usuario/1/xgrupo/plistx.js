@@ -97,7 +97,10 @@ moduloUsuario.controller('UsuarioXgrupoPList1Controller',
                     $location.path('/home');
                 };
                 //--------------------------------------------------------------
-                $scope.showCreateButton = function () {
+                $scope.showViewButton = function () {
+                    return true;
+                }
+                $scope.showNewButton = function () {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {
@@ -109,8 +112,11 @@ moduloUsuario.controller('UsuarioXgrupoPList1Controller',
                 $scope.goViewURL = function (oBean) {
                     $location.path("usuario/" + $scope.profile + "/view/" + oBean.id);
                 }
+                $scope.goNewURL = function () {
+                    $location.path($scope.ob + "/" + $scope.profile + "/x" + $scope.xob + "/newx/" + $scope.xid);
+                }                
                 $scope.goEditURL = function (oBean) {
-                    $location.path("usuario/" + $scope.profile + "/edit/" + oBean.id);
+                    $location.path("usuario/" + $scope.profile + "/x" + $scope.xob + "/editx/" + oBean.id + "/" + $scope.xid);
                 }
                 $scope.goRemoveURL = function (oBean) {
                     $location.path("usuario/" + $scope.profile + "/remove/" + oBean.id);

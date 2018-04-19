@@ -81,7 +81,10 @@ moduloUsuario.controller('UsuarioPList1Controller',
                     $location.path('/home');
                 };
                 //--------------------------------------------------------------
-                $scope.showCreateButton = function () {
+                $scope.showViewButton = function () {
+                    return true;
+                }
+                $scope.showNewButton = function () {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {
@@ -93,6 +96,9 @@ moduloUsuario.controller('UsuarioPList1Controller',
                 $scope.goViewURL = function (oBean) {
                     $location.path($scope.ob + "/" + $scope.profile + "/view/" + oBean.id);
                 }
+                $scope.goNewURL = function () {
+                    $location.path($scope.ob + "/" + $scope.profile + "/new");
+                }                
                 $scope.goEditURL = function (oBean) {
                     $location.path($scope.ob + "/" + $scope.profile + "/edit/" + oBean.id);
                 }

@@ -85,7 +85,7 @@ moduloUsuario.controller('UsuarioXtipousuarioPList1Controller',
                         $scope.status = "Error en la recepción de datos del servidor";
                     });
                 }
-                //---                
+                //---
                 $scope.doorder = function (orderField, ascDesc) {
                     $location.url($scope.url + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', $scope.filterParams).search('order', orderField + ',' + ascDesc);
                     return false;
@@ -97,7 +97,10 @@ moduloUsuario.controller('UsuarioXtipousuarioPList1Controller',
                     $location.path('/home');
                 };
                 //--------------------------------------------------------------
-                $scope.showCreateButton = function () {
+                $scope.showViewButton = function () {
+                    return true;
+                }
+                $scope.showNewButton = function () {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {
@@ -107,20 +110,23 @@ moduloUsuario.controller('UsuarioXtipousuarioPList1Controller',
                     return oBean.canDelete;
                 }
                 $scope.goViewURL = function (oBean) {
-                    $location.path("usuario/" + $scope.profile + "/view/" + oBean.id);
+                    $location.path($scope.ob + "/" + $scope.profile + "/view/" + oBean.id);
+                }
+                $scope.goNewURL = function () {
+                    $location.path($scope.ob + "/" + $scope.profile + "/x" + $scope.xob + "/newx/" + $scope.xid);
                 }
                 $scope.goEditURL = function (oBean) {
-                    $location.path("usuario/" + $scope.profile + "/edit/" + oBean.id);
+                    $location.path($scope.ob + "/" + $scope.profile + "/x" + $scope.xob + "/editx/" + oBean.id + "/" + $scope.xid);
                 }
                 $scope.goRemoveURL = function (oBean) {
-                    $location.path("usuario/" + $scope.profile + "/remove/" + oBean.id);
+                    $location.path($scope.ob + "/" + $scope.profile + "/remove/" + oBean.id);
                 }
                 //--------------------------------------------------------------
                 $scope.showOtherButton = function (oBean) {
                     return true;
                 }
                 $scope.includeExtraButtons = function () {
-                    return "js/app/usuario/plistExtraButtons.html"
+                    return "js/app/" + $scope.ob + "/plistExtraButtons.html"
                 }
                 $scope.showActivateButton = function (oBean) {
                     return true;
@@ -150,7 +156,7 @@ moduloUsuario.controller('UsuarioXtipousuarioPList1Controller',
                     });
 
                 }
-                //--------------------------------------------------------------                 
+                //--------------------------------------------------------------
                 getDataFromServer();
             }
         ]);

@@ -102,7 +102,10 @@ moduloUsuario.controller('GrupoxusuarioPList1Controller',
                     return toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
                 }
                 //--------------------------------------------------------------
-                $scope.showCreateButton = function () {
+                $scope.showViewButton = function () {
+                    return true;
+                }
+                $scope.showNewButton = function () {
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {
