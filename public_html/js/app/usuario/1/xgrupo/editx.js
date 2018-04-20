@@ -27,7 +27,7 @@
  */
 'use strict';
 
-moduloPaciente.controller('UsuarioXgrupoEdit1Controller',
+moduloUsuario.controller('UsuarioXgrupoEdit1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
                 $scope.ob = "usuario";

@@ -28,7 +28,7 @@
 
 'use strict';
 
-moduloCentro.controller('CentroSelection4Controller',
+moduloCentrosanitario.controller('CentroSelection4Controller',
         ['$scope', '$uibModalInstance', 'serverCallService', '$location', 'toolService',
             function ($scope, $modalInstance, serverCallService, $location, toolService) {
                 $scope.ob = 'centrosanitario';

@@ -26,7 +26,7 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloTipopago.controller('TipopagoView4Controller',
+moduloModalidadepisodio.controller('TipopagoView4Controller',
         ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService',
             function ($scope, $routeParams, serverCallService, $location, sessionService, constantService) {
                 $scope.ob = "tipopago";

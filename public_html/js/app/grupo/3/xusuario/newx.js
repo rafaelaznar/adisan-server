@@ -27,7 +27,7 @@
  */
 'use strict';
 
-moduloUsuario.controller('GrupoxusuarioNew3Controller',
+moduloGrupo.controller('GrupoxusuarioNew3Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
                 $scope.ob = "grupo";
