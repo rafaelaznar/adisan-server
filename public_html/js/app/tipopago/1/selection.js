@@ -33,6 +33,7 @@ moduloTipopago.controller('TipopagoSelection1Controller',
             function ($scope, $modalInstance, serverCallService, $location, toolService) {
                 $scope.ob = 'tipopago';
                 $scope.op = "selection";
+                $scope.profile = 1;                
                 //---
                 $scope.numpage = 1;
                 $scope.rpp = 10;

@@ -33,6 +33,7 @@ moduloTiposervicio.controller('TiposervicioSelection1Controller',
             function ($scope, $modalInstance, serverCallService, $location, toolService) {
                 $scope.ob = 'tiposervicio';
                 $scope.op = "selection";
+                $scope.profile = 1;                
                 //---
                 $scope.numpage = 1;
                 $scope.rpp = 10;

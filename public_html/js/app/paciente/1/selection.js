@@ -33,6 +33,7 @@ moduloPaciente.controller('PacienteSelection1Controller',
             function ($scope, $modalInstance, serverCallService, $location, toolService) {
                 $scope.ob = 'paciente';
                 $scope.op = "selection";
+                $scope.profile = 1;                
                 //---
                 $scope.numpage = 1;
                 $scope.rpp = 10;

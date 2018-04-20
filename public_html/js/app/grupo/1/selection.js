@@ -33,6 +33,7 @@ moduloGrupo.controller('GrupoSelection1Controller',
             function ($scope, $modalInstance, serverCallService, $location, toolService) {
                 $scope.ob = 'grupo';
                 $scope.op = "selection";
+                $scope.profile = 1;                
                 //---
                 $scope.numpage = 1;
                 $scope.rpp = 10;

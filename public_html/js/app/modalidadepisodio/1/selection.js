@@ -33,6 +33,7 @@ moduloModalidadepisodio.controller('ModalidadepisodioSelection1Controller',
             function ($scope, $modalInstance, serverCallService, $location, toolService) {
                 $scope.ob = 'modalidadepisodio';
                 $scope.op = "selection";
+                $scope.profile = 1;                
                 //---
                 $scope.numpage = 1;
                 $scope.rpp = 10;

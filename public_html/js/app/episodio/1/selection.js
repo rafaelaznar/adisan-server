@@ -38,6 +38,7 @@ moduloEpisodio.controller('EpisodioSelection1Controller',
             function ($scope, $modalInstance, serverCallService, $location, toolService) {
                 $scope.ob = 'episodio';
                 $scope.op = "selection";
+                $scope.profile = 1;                
                 //---
                 $scope.numpage = 1;
                 $scope.rpp = 10;
@@ -115,13 +116,11 @@ moduloEpisodio.controller('EpisodioSelection1Controller',
                     $scope.closeForm(id);
                     return false;
                 }
-
                 $scope.doorder = function (orderField, ascDesc) {
                     $scope.orderParams = orderField + ',' + ascDesc;
                     getData();
                     return false;
                 };
-
                 getData();
             }
         ]);

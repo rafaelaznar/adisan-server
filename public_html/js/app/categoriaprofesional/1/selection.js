@@ -33,6 +33,7 @@ moduloCategoriaprofesional.controller('CategoriaprofesionalSelection1Controller'
             function ($scope, $modalInstance, serverCallService, $location, toolService) {
                 $scope.ob = 'categoriaprofesional';
                 $scope.op = "selection";
+                $scope.profile = 1;                
                 //---
                 $scope.numpage = 1;
                 $scope.rpp = 10;

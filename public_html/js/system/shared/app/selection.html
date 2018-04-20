@@ -66,16 +66,78 @@ THE SOFTWARE.
                         <div class="row">
                             <div class="col-md-5">
                                 <form class="navbar-form navbar-left" role="form" id="typeFilterForm">
-                                    <label class="control-label col-sm-3" for="filterSelection">
-                                        Selecciona filtro:
-                                    </label>
-                                    <select class="navbar-form navbar-left" ng-model="filterType" convert-to-number id="filterSelection">
-                                        <option value="0">Filtrar por descripcion</option>
-                                        <option value="1">Filtrar por id</option>
-                                    </select>
+                                    <div class="form-group input-group input-group-xs">
+                                        <span class="input-group-btn"><button class="btn">Filtro</button></span>
+                                        <select  class="form-control input-xs"  ng-model="filterType">
+                                            <option ng-repeat="f in metap|filter:{Type:'!Calculated'}|filter:{Type:'!Link'}"
+                                                    value="{{f.Name}}">Filtrar por {{f.LongName}}
+                                            </option>
+                                        </select>
+                                    </div>  
+
                                 </form>
                             </div>
                             <div class="col-md-7">
+                                <div ng-repeat="f in metap" ng-show="filterType == f.Name" value="f.Name">
+                                    <div ng-show="f.Type == 'Integer' || f.Type == 'Id'">
+                                        <cplistfilterbyintegerspa
+                                            field="f"
+                                            rpp="rpp"
+                                            numpage="numpage"
+                                            orderparams="orderParams"
+                                            filterparams="filterParams">
+                                        </cplistfilterbyintegerspa>
+                                    </div>
+                                    <p></p>
+                                    <div ng-show="f.Type == 'String'">
+                                        <cplistfilterbystringspa
+                                            field="f"
+                                            rpp="rpp"
+                                            numpage="numpage"
+                                            orderparams="orderParams"
+                                            filterparams="filterParams">
+                                        </cplistfilterbystringspa>
+                                    </div>
+                                    <p></p>
+                                    <div ng-show="f.Type == 'Date'">
+                                        <cplistfilterbydatespa
+                                            field="f"
+                                            rpp="rpp"
+                                            numpage="numpage"
+                                            orderparams="orderParams"
+                                            filterparams="filterParams">
+                                        </cplistfilterbydatespa>
+                                    </div>
+                                    <p></p>
+                                    <div ng-show="f.Type == 'Boolean'">
+                                        <cplistfilterbybooleanspa
+                                            field="f"
+                                            rpp="rpp"
+                                            numpage="numpage"
+                                            orderparams="orderParams"
+                                            filterparams="filterParams">
+                                        </cplistfilterbybooleanspa>
+                                    </div>
+                                    <p></p>
+                                    <div ng-show="f.Type == 'ForeignObject'">
+                                        <cplistfilterbyforeignspa
+                                            field="f"
+                                            rpp="rpp"
+                                            numpage="numpage"
+                                            orderparams="orderParams"
+                                            filterparams="filterParams"
+                                            profile="profile">
+                                        </cplistfilterbyforeignspa>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+
                                 <div ng-show="filterType == 0">
                                     <plistfilterbystringspa                                   
                                         fields="filterString"

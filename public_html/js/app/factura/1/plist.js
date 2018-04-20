@@ -73,7 +73,7 @@ moduloFactura.controller('FacturaPList1Controller',
                 }
                 $scope.goNewURL = function () {
                     $location.path($scope.ob + "/" + $scope.profile + "/new");
-                }                      
+                }
                 $scope.goEditURL = function (oBean) {
                     $location.path($scope.ob + "/" + $scope.profile + "/edit/" + oBean.id);
                 }
