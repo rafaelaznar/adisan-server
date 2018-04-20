@@ -80,6 +80,13 @@ moduloPaciente.controller('PacientePList1Controller',
                     $location.path('/home');
                 };
                 //--------------------------------------------------------------
+                $scope.showHeaderExtraButtons = function () {
+                    return true;
+                }         
+                $scope.includeHeaderExtraButtons = function () {
+                    return "js/app/paciente/plistExtraHeaderButtons.html"
+                }         
+                //---
                 $scope.showViewButton = function () {
                     return true;
                 }
