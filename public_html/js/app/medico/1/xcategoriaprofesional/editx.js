@@ -27,7 +27,7 @@
  */
 'use strict';
 
-moduloCategoriaprofesional.controller('MedicoXcategoriaprofesionalEdit1Controller',
+moduloMedico.controller('MedicoXcategoriaprofesionalEdit1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
                 $scope.ob = "medico";
@@ -48,6 +48,7 @@ moduloCategoriaprofesional.controller('MedicoXcategoriaprofesionalEdit1Controlle
                         if (response.status == 200) {
                             if (response.data.status == 200) {
                                 $scope.linkedbean = response.data.json;
+                                $scope.breadcrumbs = toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
                             }
                         }
                     }).catch(function (data) {

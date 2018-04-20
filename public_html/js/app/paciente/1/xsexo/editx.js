@@ -48,6 +48,7 @@ moduloPaciente.controller('PacienteXsexoEdit1Controller',
                         if (response.status == 200) {
                             if (response.data.status == 200) {
                                 $scope.linkedbean = response.data.json;
+                                $scope.breadcrumbs = toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
                             }
                         }
                     }).catch(function (data) {

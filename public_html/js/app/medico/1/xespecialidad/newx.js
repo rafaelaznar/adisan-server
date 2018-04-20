@@ -27,14 +27,14 @@
  */
 'use strict';
 
-moduloEspecialidad.controller('MedicoxespecialidadNew1Controller',
+moduloMedico.controller('MedicoXespecialidadNew1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
                 $scope.ob = "medico";
                 $scope.op = "newx";
                 $scope.profile = 1;
                 //---
-                $scope.xob = "espcialidad";
+                $scope.xob = "especialidad";
                 $scope.xid = $routeParams.id;
                 //---
                 $scope.status = null;
@@ -46,6 +46,7 @@ moduloEspecialidad.controller('MedicoxespecialidadNew1Controller',
                         if (response.status == 200) {
                             if (response.data.status == 200) {
                                 $scope.linkedbean = response.data.json;
+                                $scope.breadcrumbs = toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
                             }
                         }
                     }).catch(function (data) {

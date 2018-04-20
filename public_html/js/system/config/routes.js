@@ -119,11 +119,13 @@ gesane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/grupo/1/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'GrupoEdit1Controller', resolve: {auth: authentication1Promise}});
         $routeProvider.when('/grupo/1/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'GrupoRemove1Controller', resolve: {auth: authentication1Promise}});
         //--
-        $routeProvider.when('/grupo/1/xcurso/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'GrupoxcursoPList1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/grupo/1/xcurso/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'GrupoXcursoPList1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/grupo/1/xcurso/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'GrupoXcursoNew1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/grupo/1/xcurso/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'GrupoXcursoEdit1Controller', resolve: {auth: authentication1Promise}});        
         //--
-        $routeProvider.when('/grupo/1/xusuario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'GrupoxusuarioPList1Controller', resolve: {auth: authentication1Promise}});
-        $routeProvider.when('/grupo/1/xusuario/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'GrupoxusuarioNew1Controller', resolve: {auth: authentication1Promise}});
-        $routeProvider.when('/grupo/1/xusuario/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'GrupoxusuarioEdit1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/grupo/1/xusuario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'GrupoXusuarioPList1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/grupo/1/xusuario/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'GrupoXusuarioNew1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/grupo/1/xusuario/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'GrupoXusuarioEdit1Controller', resolve: {auth: authentication1Promise}});
         //--
         $routeProvider.when('/grupo/3/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'GrupoPList3Controller', resolve: {auth: authentication3Promise}});
         $routeProvider.when('/grupo/3/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'GrupoView3Controller', resolve: {auth: authentication3Promise}});
@@ -190,9 +192,9 @@ gesane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/dependencia/1/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'DependenciaEdit1Controller', resolve: {auth: authentication1Promise}});
         $routeProvider.when('/dependencia/1/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'DependenciaRemove1Controller', resolve: {auth: authentication1Promise}});
         //-- foreign key xtipodependencia
-        $routeProvider.when('/dependencia/1/xtipodependencia/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'DependenciaxtipodependenciaPList1Controller', resolve: {auth: authentication1Promise}});
-        $routeProvider.when('/dependencia/1/xtipodependencia/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'DependenciaxtipodependenciaNew1Controller', resolve: {auth: authentication1Promise}});
-        $routeProvider.when('/dependencia/1/xtipodependencia/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'DependenciaxtipodependenciaEdit1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/dependencia/1/xtipodependencia/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'DependenciaXtipodependenciaPList1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/dependencia/1/xtipodependencia/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'DependenciaXtipodependenciaNew1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/dependencia/1/xtipodependencia/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'DependenciaXtipodependenciaEdit1Controller', resolve: {auth: authentication1Promise}});
         //-- foreign key xcentrosanitario
         $routeProvider.when('/dependencia/1/xcentrosanitario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'DependenciaxcentrosanitarioPList1Controller', resolve: {auth: authentication1Promise}});
         $routeProvider.when('/dependencia/1/xcentrosanitario/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'DependenciaxcentrosanitarioNew1Controller', resolve: {auth: authentication1Promise}});
@@ -271,9 +273,9 @@ gesane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/servicio/1/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'ServicioEdit1Controller', resolve: {auth: authentication1Promise}});
         $routeProvider.when('/servicio/1/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'ServicioRemove1Controller', resolve: {auth: authentication1Promise}});
         //--
-        $routeProvider.when('/servicio/1/xtiposervicio/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'ServicioxtiposervicioPList1Controller', resolve: {auth: authentication1Promise}});
-        $routeProvider.when('/servicio/1/xtiposervicio/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'ServicioxtiposervicioNew1Controller', resolve: {auth: authentication1Promise}});
-        $routeProvider.when('/servicio/1/xtiposervicio/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'ServicioxtiposervicioEdit1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/servicio/1/xtiposervicio/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'ServicioXtiposervicioPList1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/servicio/1/xtiposervicio/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'ServicioXtiposervicioNew1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/servicio/1/xtiposervicio/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'ServicioXtiposervicioEdit1Controller', resolve: {auth: authentication1Promise}});
         //----Servicio 3 profesor --
         $routeProvider.when('/servicio/3/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'ServicioView3Controller', resolve: {auth: authentication3Promise}});
         //----Servicio 4 profesor --
@@ -380,45 +382,41 @@ gesane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/episodio/1/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioEdit1Controller', resolve: {auth: authentication1Promise}});
         $routeProvider.when('/episodio/1/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'EpisodioRemove1Controller', resolve: {auth: authentication1Promise}});
         //-- foreign key xcircunstanciasalta
-        $routeProvider.when('/episodio/1/xcircunstanciasalta/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'EpisodioxcircunstanciasaltaPList1Controller', resolve: {auth: authentication1Promise}});
-        $routeProvider.when('/episodio/1/xcircunstanciasalta/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioxcircunstanciasaltaNew1Controller', resolve: {auth: authentication1Promise}});
-        $routeProvider.when('/episodio/1/xcircunstanciasalta/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioxcircunstanciasaltaEdit1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/episodio/1/xcircunstanciasalta/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'EpisodioXcircunstanciasaltaPList1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/episodio/1/xcircunstanciasalta/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioXcircunstanciasaltaNew1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/episodio/1/xcircunstanciasalta/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioXcircunstanciasaltaEdit1Controller', resolve: {auth: authentication1Promise}});
         //-- foreign key xservicio
-        $routeProvider.when('/episodio/1/xservicio/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'EpisodioxservicioPList1Controller', resolve: {auth: authentication1Promise}});
-        $routeProvider.when('/episodio/1/xservicio/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioxservicioNew1Controller', resolve: {auth: authentication1Promise}});
-        $routeProvider.when('/episodio/1/xservicio/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioxservicioEdit1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/episodio/1/xservicio/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'EpisodioXservicioPList1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/episodio/1/xservicio/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioXservicioNew1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/episodio/1/xservicio/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioXservicioEdit1Controller', resolve: {auth: authentication1Promise}});
         //-- foreign key xpaciente
         $routeProvider.when('/episodio/1/xpaciente/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'EpisodioxpacientePList1Controller', resolve: {auth: authentication1Promise}});
         $routeProvider.when('/episodio/1/xpaciente/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioxpacienteNew1Controller', resolve: {auth: authentication1Promise}});
         $routeProvider.when('/episodio/1/xpaciente/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioxpacienteEdit1Controller', resolve: {auth: authentication1Promise}});
         //-- foreign key xfactura
-        $routeProvider.when('/episodio/1/xfactura/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'EpisodioxfacturaPList1Controller', resolve: {auth: authentication1Promise}});
-        $routeProvider.when('/episodio/1/xfactura/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioxfacturaNew1Controller', resolve: {auth: authentication1Promise}});
-        $routeProvider.when('/episodio/1/xfactura/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioxfacturaEdit1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/episodio/1/xfactura/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'EpisodioXfacturaPList1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/episodio/1/xfactura/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioXfacturaNew1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/episodio/1/xfactura/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioXfacturaEdit1Controller', resolve: {auth: authentication1Promise}});
         //-- foreign key xdependencia
-        $routeProvider.when('/episodio/1/xdependencia/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'EpisodioxdependenciaPList1Controller', resolve: {auth: authentication1Promise}});
-        $routeProvider.when('/episodio/1/xdependencia/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioxdependenciaNew1Controller', resolve: {auth: authentication1Promise}});
-        $routeProvider.when('/episodio/1/xdependencia/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioxdependenciaEdit1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/episodio/1/xdependencia/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'EpisodioXdependenciaPList1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/episodio/1/xdependencia/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioXdependenciaNew1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/episodio/1/xdependencia/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioXdependenciaEdit1Controller', resolve: {auth: authentication1Promise}});
         //-- foreign key xmedico
-        $routeProvider.when('/episodio/1/xmedico/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'EpisodioxmedicoPList1Controller', resolve: {auth: authentication1Promise}});
-        $routeProvider.when('/episodio/1/xmedico/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioxmedicoNew1Controller', resolve: {auth: authentication1Promise}});
-        $routeProvider.when('/episodio/1/xmedico/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioxmedicoEdit1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/episodio/1/xmedico/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'EpisodioXmedicoPList1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/episodio/1/xmedico/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioXmedicoNew1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/episodio/1/xmedico/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioXmedicoEdit1Controller', resolve: {auth: authentication1Promise}});
         //-- foreign key xtipoepisodio
-        $routeProvider.when('/episodio/1/xtipoepisodio/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'EpisodioxtipoepisodioPList1Controller', resolve: {auth: authentication1Promise}});
-        $routeProvider.when('/episodio/1/xtipoepisodio/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioxtipoepisodioNew1Controller', resolve: {auth: authentication1Promise}});
-        $routeProvider.when('/episodio/1/xtipoepisodio/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioxtipoepisodioEdit1Controller', resolve: {auth: authentication1Promise}});
-        //-- foreign key xepisodio
-        $routeProvider.when('/episodio/1/xepisodio/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'EpisodioxepisodioPList1Controller', resolve: {auth: authentication1Promise}});
-        $routeProvider.when('/episodio/1/xepisodio/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioxepisodioNew1Controller', resolve: {auth: authentication1Promise}});
-        $routeProvider.when('/episodio/1/xepisodio/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioxepisodioEdit1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/episodio/1/xtipoepisodio/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'EpisodioXtipoepisodioPList1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/episodio/1/xtipoepisodio/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioXtipoepisodioNew1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/episodio/1/xtipoepisodio/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioXtipoepisodioEdit1Controller', resolve: {auth: authentication1Promise}});
         //-- foreign key xdestinoalta
-        $routeProvider.when('/episodio/1/xdestinoalta/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'EpisodioxdestinoaltaPList1Controller', resolve: {auth: authentication1Promise}});
-        $routeProvider.when('/episodio/1/xdestinoalta/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioxdestinoaltaNew1Controller', resolve: {auth: authentication1Promise}});
-        $routeProvider.when('/episodio/1/xdestinoalta/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioxdestinoaltaEdit1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/episodio/1/xdestinoalta/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'EpisodioXdestinoaltaPList1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/episodio/1/xdestinoalta/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioXdestinoaltaNew1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/episodio/1/xdestinoalta/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioXdestinoaltaEdit1Controller', resolve: {auth: authentication1Promise}});
         //-- foreign key xmodalidadepisodio
-        $routeProvider.when('/episodio/1/xmodalidadepisodio/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioxmodalidadepisodioNew1Controller', resolve: {auth: authentication1Promise}});
-        $routeProvider.when('/episodio/1/xmodalidadepisodio/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioxmodalidadepisodioEdit1Controller', resolve: {auth: authentication1Promise}});
-        $routeProvider.when('/episodio/1/xmodalidadepisodio/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'EpisodioxmodalidadepisodioPList1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/episodio/1/xmodalidadepisodio/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioXmodalidadepisodioNew1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/episodio/1/xmodalidadepisodio/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioXmodalidadepisodioEdit1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/episodio/1/xmodalidadepisodio/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'EpisodioXmodalidadepisodioPList1Controller', resolve: {auth: authentication1Promise}});
         //-- foreign key xusuario
         $routeProvider.when('/episodio/1/xusuario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'EpisodioxusuarioPList1Controller', resolve: {auth: authentication1Promise}});
         $routeProvider.when('/episodio/1/xusuario/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'EpisodioxusuarioNew1Controller', resolve: {auth: authentication1Promise}});
@@ -467,6 +465,7 @@ gesane.config(['$routeProvider', function ($routeProvider) {
         //-- Subepisodio 1
         $routeProvider.when('/subepisodio/1/xepisodio/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'SubepisodioXepisodioPList1Controller', resolve: {auth: authentication1Promise}});
         $routeProvider.when('/subepisodio/1/xepisodio/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'SubepisodioXepisodioNew1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/subepisodio/1/xepisodio/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'SubepisodioXepisodioEdit1Controller', resolve: {auth: authentication1Promise}});
         //-- Subepisodio 3
         $routeProvider.when('/subepisodio/3/xepisodio/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'SubepisodioXepisodioPList3Controller', resolve: {auth: authentication3Promise}});
         $routeProvider.when('/subepisodio/3/xepisodio/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'SubepisodioXepisodioNew3Controller', resolve: {auth: authentication3Promise}});

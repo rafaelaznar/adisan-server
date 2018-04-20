@@ -1,16 +1,11 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
  *
- * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
- * GESANE: Free Open Source Health Management System
+ * TROLLEYES helps you to learn how to develop easily AJAX web applications
  *
- * Sources at:
- *                            https://github.com/rafaelaznar/gesane-server
- *                            https://github.com/rafaelaznar/gesane-client
- *                            https://github.com/rafaelaznar/gesane-database
+ * Sources at https://github.com/rafaelaznar/gesane-client
  *
- * GESANE is distributed under the MIT License (MIT)
+ * TROLLEYES is distributed under the MIT License (MIT)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,17 +27,15 @@
  */
 'use strict';
 
-moduloEpisodio.controller('EpisodioxepisodioEdit1Controller',
+moduloGrupo.controller('GrupoXcursoNew1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
-                $scope.ob = "episodio";
-                $scope.op = "editx";
+                $scope.ob = "grupo";
+                $scope.op = "newx";
                 $scope.profile = 1;
-                //----
-                $scope.id = $routeParams.id;
                 //---
-                $scope.xob = "episodio";
-                $scope.xid = $routeParams.xid;
+                $scope.xob = "curso";
+                $scope.xid = $routeParams.id;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
@@ -53,20 +46,34 @@ moduloEpisodio.controller('EpisodioxepisodioEdit1Controller',
                         if (response.status == 200) {
                             if (response.data.status == 200) {
                                 $scope.linkedbean = response.data.json;
+                                $scope.breadcrumbs = toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
                             }
                         }
                     }).catch(function (data) {
                     });
                 }
-
-
-                serverCallService.getOne($scope.ob, $scope.id).then(function (response) {
+                ;
+                serverCallService.getMeta($scope.ob).then(function (response) {
                     if (response.status == 200) {
                         if (response.data.status == 200) {
                             $scope.status = null;
-                            $scope.bean = response.data.json.data;
+                            //--For every foreign key create obj inside bean tobe filled...
+                            $scope.bean = {};
+                            response.data.json.metaProperties.forEach(function (property) {
+                                if (property.Type == 'ForeignObject') {
+                                    $scope.bean[property.Name] = {};
+                                    $scope.bean[property.Name].data = {};
+                                    if (property.Name == 'obj_' + $scope.xob) {
+                                        $scope.bean[property.Name].data.id = $scope.xid;
+                                    } else {
+                                        $scope.bean[property.Name].data.id = null;
+                                    }
+                                }
+                            });
+                            //--
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
+
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }

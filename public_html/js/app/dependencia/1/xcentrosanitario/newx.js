@@ -1,16 +1,11 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
  *
- * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
- * GESANE: Free Open Source Health Management System
+ * TROLLEYES helps you to learn how to develop easily AJAX web applications
  *
- * Sources at:
- *                            https://github.com/rafaelaznar/gesane-server
- *                            https://github.com/rafaelaznar/gesane-client
- *                            https://github.com/rafaelaznar/gesane-database
+ * Sources at https://github.com/rafaelaznar/gesane-client
  *
- * GESANE is distributed under the MIT License (MIT)
+ * TROLLEYES is distributed under the MIT License (MIT)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,7 +27,7 @@
  */
 'use strict';
 
-moduloDependencia.controller('DependenciaxcentrosanitarioNew1Controller',
+moduloDependencia.controller('DependenciaXcentrosanitarioNew1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
                 $scope.ob = "dependencia";
@@ -51,6 +46,7 @@ moduloDependencia.controller('DependenciaxcentrosanitarioNew1Controller',
                         if (response.status == 200) {
                             if (response.data.status == 200) {
                                 $scope.linkedbean = response.data.json;
+                                $scope.breadcrumbs = toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
                             }
                         }
                     }).catch(function (data) {

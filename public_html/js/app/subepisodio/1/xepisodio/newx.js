@@ -1,16 +1,11 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
  *
- * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
- * GESANE: Free Open Source Health Management System
+ * TROLLEYES helps you to learn how to develop easily AJAX web applications
  *
- * Sources at:
- *                            https://github.com/rafaelaznar/gesane-server
- *                            https://github.com/rafaelaznar/gesane-client
- *                            https://github.com/rafaelaznar/gesane-database
+ * Sources at https://github.com/rafaelaznar/gesane-client
  *
- * GESANE is distributed under the MIT License (MIT)
+ * TROLLEYES is distributed under the MIT License (MIT)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -45,51 +40,49 @@ moduloEpisodio.controller('SubepisodioXepisodioNew1Controller',
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
                 //---
-                function getDataFromServer() {
-                    if ($scope.xob && $scope.xid) {
-                        $scope.linkedbean = null;
-                        serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
-                            if (response.status == 200) {
-                                if (response.data.status == 200) {
-                                    $scope.linkedbean = response.data.json;
-                                    $scope.breadcrumbs = toolService.renderLinkHtml($scope.linkedbean.data.obj_paciente, $scope.profile) + toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
-                                }
-                            }
-                        }).catch(function (data) {
-                        });
-                    }
-                    ;
-                    serverCallService.getMeta($scope.ob).then(function (response) {
+                if ($scope.xob && $scope.xid) {
+                    $scope.linkedbean = null;
+                    serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
                         if (response.status == 200) {
                             if (response.data.status == 200) {
-                                $scope.status = null;
-                                //--For every foreign key create obj inside bean tobe filled...
-                                $scope.bean = {};
-                                response.data.json.metaProperties.forEach(function (property) {
-                                    if (property.Type == 'ForeignObject') {
-                                        $scope.bean[property.Name] = {};
-                                        $scope.bean[property.Name].data = {};
-                                        if (property.Name == 'obj_' + $scope.xob) {
-                                            $scope.bean[property.Name].data.id = $scope.xid;
-                                        } else {
-                                            $scope.bean[property.Name].data.id = null;
-                                        }
-                                    }
-                                });
-                                //--
-                                $scope.metao = response.data.json.metaObject;
-                                $scope.metap = response.data.json.metaProperties;
-
-                            } else {
-                                $scope.status = "Error en la recepción de datos del servidor";
+                                $scope.linkedbean = response.data.json;
+                                $scope.breadcrumbs = toolService.renderLinkHtml($scope.linkedbean.data.obj_paciente, $scope.profile) + toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
                             }
+                        }
+                    }).catch(function (data) {
+                    });
+                }
+                ;
+                serverCallService.getMeta($scope.ob).then(function (response) {
+                    if (response.status == 200) {
+                        if (response.data.status == 200) {
+                            $scope.status = null;
+                            //--For every foreign key create obj inside bean tobe filled...
+                            $scope.bean = {};
+                            response.data.json.metaProperties.forEach(function (property) {
+                                if (property.Type == 'ForeignObject') {
+                                    $scope.bean[property.Name] = {};
+                                    $scope.bean[property.Name].data = {};
+                                    if (property.Name == 'obj_' + $scope.xob) {
+                                        $scope.bean[property.Name].data.id = $scope.xid;
+                                    } else {
+                                        $scope.bean[property.Name].data.id = null;
+                                    }
+                                }
+                            });
+                            //--
+                            $scope.metao = response.data.json.metaObject;
+                            $scope.metap = response.data.json.metaProperties;
+
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
-                    }).catch(function (data) {
+                    } else {
                         $scope.status = "Error en la recepción de datos del servidor";
-                    });
-                }
+                    }
+                }).catch(function (data) {
+                    $scope.status = "Error en la recepción de datos del servidor";
+                });
                 //--
                 $scope.save = function () {
                     var jsonToSend = {json: JSON.stringify(toolService.array_identificarArray($scope.bean))};
@@ -116,11 +109,6 @@ moduloEpisodio.controller('SubepisodioXepisodioNew1Controller',
                 $scope.close = function () {
                     $location.path('/home');
                 };
-                $scope.renderLinksHtml = function (html_code) {
-                    return  toolService.renderLinkHtml($scope.linkedbean.data.obj_paciente, $scope.profile) +
-                            toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
-                }
-                getDataFromServer();
             }
         ]);
 

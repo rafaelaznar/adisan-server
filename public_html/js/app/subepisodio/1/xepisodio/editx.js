@@ -27,16 +27,16 @@
  */
 'use strict';
 
-moduloServicio.controller('ServicioXtiposervicioEdit1Controller',
+moduloEpisodio.controller('SubepisodioXepisodioEdit1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
-                $scope.ob = "servicio";
+                $scope.ob = "subepisodio";
                 $scope.op = "editx";
                 $scope.profile = 1;
                 //----
                 $scope.id = $routeParams.id;
                 //---
-                $scope.xob = "tiposervicio";
+                $scope.xob = "episodio";
                 $scope.xid = $routeParams.xid;
                 //---
                 $scope.status = null;
@@ -48,7 +48,7 @@ moduloServicio.controller('ServicioXtiposervicioEdit1Controller',
                         if (response.status == 200) {
                             if (response.data.status == 200) {
                                 $scope.linkedbean = response.data.json;
-                                $scope.breadcrumbs = toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
+                                $scope.breadcrumbs = toolService.renderLinkHtml($scope.linkedbean.data.obj_paciente, $scope.profile) + toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
                             }
                         }
                     }).catch(function (data) {

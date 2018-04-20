@@ -1,16 +1,11 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
  *
- * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
- * GESANE: Free Open Source Health Management System
+ * TROLLEYES helps you to learn how to develop easily AJAX web applications
  *
- * Sources at:
- *                            https://github.com/rafaelaznar/gesane-server
- *                            https://github.com/rafaelaznar/gesane-client
- *                            https://github.com/rafaelaznar/gesane-database
+ * Sources at https://github.com/rafaelaznar/gesane-client
  *
- * GESANE is distributed under the MIT License (MIT)
+ * TROLLEYES is distributed under the MIT License (MIT)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,19 +27,16 @@
  */
 'use strict';
 moduloEpisodio.controller('SubepisodioXepisodioPList1Controller',
-        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService', '$filter',
-            function ($scope, $routeParams, $location, serverCallService, toolService, constantService, $filter) {
+        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
+            function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
                 $scope.ob = "subepisodio";
                 $scope.op = "plistx";
                 $scope.profile = 1;
-                //---
-                $scope.status = null;
-                $scope.debugging = constantService.debugging();
                 //----
                 $scope.xob = "episodio";
                 $scope.xid = $routeParams.id;
                 //----
-                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op + $scope.xob + '/' + $routeParams.id;
+                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op + $scope.xob + '/' + $scope.xid;
                 //----
                 $scope.numpage = toolService.checkDefault(1, $routeParams.page);
                 $scope.rpp = toolService.checkDefault(10, $routeParams.rpp);
@@ -53,9 +45,12 @@ moduloEpisodio.controller('SubepisodioXepisodioPList1Controller',
                 $scope.orderParams = toolService.checkEmptyString($routeParams.order);
                 $scope.filterParams = toolService.checkEmptyString($routeParams.filter);
                 //---
+                $scope.status = null;
+                $scope.debugging = constantService.debugging();
+                //---
                 function getDataFromServer() {
-                    $scope.linkedbean = null;
                     if ($scope.xob && $scope.xid) {
+                        $scope.linkedbean = null;
                         serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
                             if (response.status == 200) {
                                 if (response.data.status == 200) {
@@ -66,6 +61,7 @@ moduloEpisodio.controller('SubepisodioXepisodioPList1Controller',
                         }).catch(function (data) {
                         });
                     }
+                    ;
                     serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
                         if (response.status == 200) {
                             $scope.registers = response.data.json;
@@ -82,13 +78,8 @@ moduloEpisodio.controller('SubepisodioXepisodioPList1Controller',
                             $scope.page = response.data.json.data;
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
-
-
                             $scope.metap = toolService.deleteForeignKey($scope.metap, "link_subepisodio");
-                            /////////
-                            //$scope.bean = toolService.deleteForeignKeyObject($scope.bean, "obj_episodio");
-
-
+                            toolService.hideField($scope.metap, "obj_" + $scope.xob);
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -96,6 +87,7 @@ moduloEpisodio.controller('SubepisodioXepisodioPList1Controller',
                         $scope.status = "Error en la recepción de datos del servidor";
                     });
                 }
+                //---                
                 $scope.doorder = function (orderField, ascDesc) {
                     $location.url($scope.url + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', $scope.filterParams).search('order', orderField + ',' + ascDesc);
                     return false;
@@ -114,28 +106,59 @@ moduloEpisodio.controller('SubepisodioXepisodioPList1Controller',
                     return true;
                 }
                 $scope.showEditButton = function (oBean) {
-                    return true;
+                    return oBean.canUpdate;
                 }
                 $scope.showRemoveButton = function (oBean) {
-                    if (oBean.link_subepisodio > 0) {
-                        return false;
-                    } else {
-                        return true;
-                    }
-                }
-                $scope.showOtherButton = function (oBean) {
-                    return false;
+                    return oBean.canDelete;
                 }
                 $scope.goViewURL = function (oBean) {
-                    $location.path("episodio/" + $scope.profile + "/view/" + oBean.id);
+                    $location.path("usuario/" + $scope.profile + "/view/" + oBean.id);
                 }
+                $scope.goNewURL = function () {
+                    $location.path($scope.ob + "/" + $scope.profile + "/x" + $scope.xob + "/newx/" + $scope.xid);
+                }                
                 $scope.goEditURL = function (oBean) {
-                    $location.path("episodio/" + $scope.profile + "/edit/" + oBean.id);
+                    $location.path($scope.ob + "/" + $scope.profile + "/x" + $scope.xob + "/editx/" + oBean.id + "/" + $scope.xid);
                 }
                 $scope.goRemoveURL = function (oBean) {
-                    $location.path("episodio/" + $scope.profile + "/remove/" + oBean.id);
+                    $location.path($scope.ob + "/" + $scope.profile + "/remove/" + oBean.id);
                 }
                 //--------------------------------------------------------------
+                $scope.showOtherButton = function (oBean) {
+                    return true;
+                }
+                $scope.includeExtraButtons = function () {
+                    return "js/app/usuario/plistExtraButtons.html"
+                }
+                //----------
+                $scope.showActivateButton = function (oBean) {
+                    return true;
+                }
+                $scope.showDeactivateButton = function (oBean) {
+                    return true;
+                }
+                $scope.activate = function (oBean) {
+                    serverCallService.activate(oBean.id).then(function (response) {
+                        if (response.status == 200) {
+                            if (response.data.status == 200) {
+                                getDataFromServer();
+                            }
+                        }
+                    }).catch(function (data) {
+                    });
+                }
+                $scope.deactivate = function (oBean) {
+                    serverCallService.deactivate(oBean.id).then(function (response) {
+                        if (response.status == 200) {
+                            if (response.data.status == 200) {
+                                getDataFromServer();
+                            }
+                        }
+                    }).catch(function (data) {
+                    });
+
+                }
+                //--------------------------------------------------------------                 
                 getDataFromServer();
             }
         ]);
