@@ -82,10 +82,29 @@ moduloPaciente.controller('PacientePList1Controller',
                 //--------------------------------------------------------------
                 $scope.showHeaderExtraButtons = function () {
                     return true;
-                }         
+                }
                 $scope.includeHeaderExtraButtons = function () {
                     return "js/app/paciente/plistExtraHeaderButtons.html"
-                }         
+                }
+                $scope.create = function () {
+                    serverCallService.create($scope.ob).then(function (response) {
+                        if (response.status == 200) {
+                            if (response.data.status == 200) {
+                                $scope.status = null;
+                                $scope.createbean = response.data.json.data;
+                                //$scope.metao = response.data.json.metaObject;
+                                //$scope.metap = response.data.json.metaProperties;
+                                getDataFromServer();
+                            } else {
+                                $scope.status = "Error en la recepción de datos del servidor";
+                            }
+                        } else {
+                            $scope.status = "Error en la recepción de datos del servidor";
+                        }
+                    }).catch(function (data) {
+                        $scope.status = "Error en la recepción de datos del servidor";
+                    });
+                }
                 //---
                 $scope.showViewButton = function () {
                     return true;
@@ -107,7 +126,7 @@ moduloPaciente.controller('PacientePList1Controller',
                 }
                 $scope.goNewURL = function () {
                     $location.path($scope.ob + "/" + $scope.profile + "/new");
-                }                      
+                }
                 $scope.goEditURL = function (oBean) {
                     $location.path($scope.ob + "/" + $scope.profile + "/edit/" + oBean.id);
                 }

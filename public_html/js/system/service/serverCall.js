@@ -116,6 +116,9 @@ moduloServicios.factory('serverCallService',
                     },
                     deactivate: function (id) {
                         return $http.get(constantService.getAppUrl() + '?ob=usuario&op=deactivate&id=' + id, 'GET', '');
+                    },
+                    create: function (strClass, id) {
+                        return $http.get(constantService.getAppUrl() + '?ob=' + strClass + '&op=create', 'GET', '');
                     }
                 }
             }
