@@ -22,7 +22,7 @@ moduloDirectivas.component('cplistrpp', {
                     }
                 } else {
                     if (self.orderparams) {
-                        $location.url(self.url + '/' + self.numpage + '/' + rpp + '&order=' + self.orderparams);
+                        $location.url(self.url + '/' + self.numpage + '/' + rpp + '?order=' + self.orderparams);
                     } else {
                         $location.url(self.url + '/' + self.numpage + '/' + rpp);
                     }

@@ -27,7 +27,7 @@ moduloDirectivas.component('cplistpagination', {
                             }
                         } else {
                             if (self.orderparams) {
-                                $location.url(self.url + '/' + self.numpage + '/' + self.rpp + '&order=' + self.orderparams);
+                                $location.url(self.url + '/' + self.numpage + '/' + self.rpp + '?order=' + self.orderparams);
                             } else {
                                 $location.url(self.url + '/' + self.numpage + '/' + self.rpp);
                             }
