@@ -182,9 +182,10 @@ public class PacienteSpecificServiceImplementation extends TableGenericServiceIm
             Integer idTipousuario = oTipousuario.getId();
 
             //for (int j = 1; j <= num; j++) {
-            String dni = "0";
-            for (int i = 1; i <= 10; i++) {
-                dni += RandomHelper.getRandomInt(0, 8);
+            //String dni = "0";
+            String dni = "";
+            for (int i = 1; i <= 8; i++) {
+                dni += RandomHelper.getRandomInt(0, 9);
             }
             dni += RandomHelper.getRadomChar();
             oPacienteBean.setDni(dni);
