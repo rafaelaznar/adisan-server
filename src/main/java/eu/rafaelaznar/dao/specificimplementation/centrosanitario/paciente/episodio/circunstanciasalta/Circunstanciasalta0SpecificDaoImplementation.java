@@ -32,12 +32,12 @@
  */
 package eu.rafaelaznar.dao.specificimplementation.centrosanitario.paciente.episodio.circunstanciasalta;
 
-import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
+import eu.rafaelaznar.bean.genericimplementation.GenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
-import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
+import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
-public class Circunstanciasalta0SpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Circunstanciasalta0SpecificDaoImplementation extends GenericDaoImplementation {
 
     public Circunstanciasalta0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("circunstanciasalta", oPooledConnection, oPuserBean_security, strWhere);

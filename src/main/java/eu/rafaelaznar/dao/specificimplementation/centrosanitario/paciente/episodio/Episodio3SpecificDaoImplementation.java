@@ -32,18 +32,18 @@
  */
 package eu.rafaelaznar.dao.specificimplementation.centrosanitario.paciente.episodio;
 
-import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
+import eu.rafaelaznar.bean.genericimplementation.GenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.EpisodioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
-import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
+import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
 import eu.rafaelaznar.helper.Log4jHelper;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class Episodio3SpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Episodio3SpecificDaoImplementation extends GenericDaoImplementation {
 
     private Integer idCentrosanitario = null;
     private Integer idUsuario;
@@ -126,11 +126,10 @@ public class Episodio3SpecificDaoImplementation extends TableGenericDaoImplement
 //        }
 //        return iResult > 0;
 //    }
-
     @Override
-    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
         UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
-        EpisodioSpecificBeanImplementation oEpisodio = (EpisodioSpecificBeanImplementation) oBean;        
+        EpisodioSpecificBeanImplementation oEpisodio = (EpisodioSpecificBeanImplementation) oBean;
         if (oEpisodio.getId_usuario().equals(oSessionUser.getId())) {
             return true;
         } else {
@@ -139,9 +138,9 @@ public class Episodio3SpecificDaoImplementation extends TableGenericDaoImplement
     }
 
     @Override
-    public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
         UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
-        EpisodioSpecificBeanImplementation oEpisodio = (EpisodioSpecificBeanImplementation) oBean; 
+        EpisodioSpecificBeanImplementation oEpisodio = (EpisodioSpecificBeanImplementation) oBean;
         if (oEpisodio.getId_usuario().equals(oSessionUser.getId())) {
             return true;
         } else {
@@ -150,14 +149,14 @@ public class Episodio3SpecificDaoImplementation extends TableGenericDaoImplement
     }
 
     @Override
-    public Integer create(TableGenericBeanImplementation oBean) throws Exception {
+    public Integer create(GenericBeanImplementation oBean) throws Exception {
         EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oBean;
         oEpisodioBean.setId_usuario(idUsuario);
         return super.create(oEpisodioBean);
     }
 
     @Override
-    public Integer update(TableGenericBeanImplementation oBean) throws Exception {
+    public Integer update(GenericBeanImplementation oBean) throws Exception {
         UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
         EpisodioSpecificBeanImplementation oNewEpisodio = (EpisodioSpecificBeanImplementation) oBean;
         EpisodioSpecificBeanImplementation oOldEpisodio = (EpisodioSpecificBeanImplementation) this.get(oNewEpisodio.getId(), 0).getBean();
@@ -171,7 +170,7 @@ public class Episodio3SpecificDaoImplementation extends TableGenericDaoImplement
 
     //puede borrar un episodio suyo o de sus alumnos
     @Override
-    public Integer delete(TableGenericBeanImplementation oBean) throws Exception {
+    public Integer delete(GenericBeanImplementation oBean) throws Exception {
         UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
         EpisodioSpecificBeanImplementation oOldEpisodio = (EpisodioSpecificBeanImplementation) this.get(oBean.getId(), 0).getBean();
         if (oOldEpisodio.getId_usuario().equals(oSessionUser.getId()) || alumnoIsMine(oOldEpisodio.getId_usuario())) {

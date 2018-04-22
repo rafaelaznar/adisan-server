@@ -33,7 +33,7 @@
 package eu.rafaelaznar.service.specificimplementation;
 
 import com.google.gson.Gson;
-import eu.rafaelaznar.service.genericimplementation.TableGenericServiceImplementation;
+import eu.rafaelaznar.service.genericimplementation.GenericServiceImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.helper.ReplyBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
@@ -41,7 +41,7 @@ import eu.rafaelaznar.connection.publicinterface.ConnectionInterface;
 import eu.rafaelaznar.dao.specificimplementation.centrosanitario.usuario.Usuario1SpecificDaoImplementation;
 import eu.rafaelaznar.factory.ConnectionFactory;
 import eu.rafaelaznar.helper.constant.ConnectionConstants;
-import eu.rafaelaznar.dao.publicinterface.MetaDaoInterface;
+import eu.rafaelaznar.dao.publicinterface.DaoInterface;
 import eu.rafaelaznar.dao.specificimplementation.centrosanitario.usuario.Usuario3SpecificDaoImplementation;
 import eu.rafaelaznar.dao.specificimplementation.centrosanitario.usuario.grupo.Grupo1SpecificDaoImplementation;
 import eu.rafaelaznar.factory.DaoFactory;
@@ -57,7 +57,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-public class UsuarioSpecificServiceImplementation extends TableGenericServiceImplementation {
+public class UsuarioSpecificServiceImplementation extends GenericServiceImplementation {
 
     public UsuarioSpecificServiceImplementation(HttpServletRequest request) {
         super(request);
@@ -67,7 +67,7 @@ public class UsuarioSpecificServiceImplementation extends TableGenericServiceImp
         if (this.checkPermission("getallobjectsmetadata")) {
             ReplyBeanHelper oReplyBean = null;
             HashMap hmObjectsMetaData = new HashMap();
-            MetaDaoInterface oDao = null;
+            DaoInterface oDao = null;
             oDao = DaoFactory.getDao("usuario", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
             hmObjectsMetaData.put("usuario", oDao.getObjectMetaData());
             oDao = DaoFactory.getDao("tipousuario", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);

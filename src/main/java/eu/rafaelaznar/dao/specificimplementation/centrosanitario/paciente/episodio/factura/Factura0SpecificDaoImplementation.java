@@ -32,12 +32,12 @@
  */
 package eu.rafaelaznar.dao.specificimplementation.centrosanitario.paciente.episodio.factura;
 
-import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
+import eu.rafaelaznar.bean.genericimplementation.GenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
-import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
+import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
-public class Factura0SpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Factura0SpecificDaoImplementation extends GenericDaoImplementation {
 
     public Factura0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("factura", oPooledConnection, oPuserBean_security, strWhere);

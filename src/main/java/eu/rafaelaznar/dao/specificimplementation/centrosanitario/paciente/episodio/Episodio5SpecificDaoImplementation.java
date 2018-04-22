@@ -33,10 +33,10 @@
 package eu.rafaelaznar.dao.specificimplementation.centrosanitario.paciente.episodio;
 
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
-import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
+import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
-public class Episodio5SpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Episodio5SpecificDaoImplementation extends GenericDaoImplementation {
 
     public Episodio5SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("episodio", oPooledConnection, oPuserBean_security, strWhere);
@@ -46,5 +46,4 @@ public class Episodio5SpecificDaoImplementation extends TableGenericDaoImplement
 //    public boolean canGet(Integer id) throws Exception {
 //        return true;
 //    }
-
 }

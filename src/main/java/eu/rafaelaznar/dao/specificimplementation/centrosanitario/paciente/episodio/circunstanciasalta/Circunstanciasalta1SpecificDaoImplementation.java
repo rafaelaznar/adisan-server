@@ -32,13 +32,13 @@
  */
 package eu.rafaelaznar.dao.specificimplementation.centrosanitario.paciente.episodio.circunstanciasalta;
 
-import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
+import eu.rafaelaznar.bean.genericimplementation.GenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.CircunstanciasaltaSpecificBeanImplementation;
-import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
+import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
-public class Circunstanciasalta1SpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Circunstanciasalta1SpecificDaoImplementation extends GenericDaoImplementation {
 
     public Circunstanciasalta1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("circunstanciasalta", oPooledConnection, oPuserBean_security, strWhere);
@@ -49,17 +49,17 @@ public class Circunstanciasalta1SpecificDaoImplementation extends TableGenericDa
 //        return true;
 //    }
     @Override
-    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         return true;
     }
 
     @Override
-    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
         return true;
     }
 
     @Override
-    public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
         CircunstanciasaltaSpecificBeanImplementation oCircunstanciasaltaBean = (CircunstanciasaltaSpecificBeanImplementation) oBean;
         if (oCircunstanciasaltaBean.getLink_episodio() > 0) {
             return false;

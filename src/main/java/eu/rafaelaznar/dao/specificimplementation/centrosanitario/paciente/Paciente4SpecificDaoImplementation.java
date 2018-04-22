@@ -32,20 +32,20 @@
  */
 package eu.rafaelaznar.dao.specificimplementation.centrosanitario.paciente;
 
-import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
+import eu.rafaelaznar.bean.genericimplementation.GenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.GrupoSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.PacienteSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
-import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
+import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
 import eu.rafaelaznar.helper.Log4jHelper;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class Paciente4SpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Paciente4SpecificDaoImplementation extends GenericDaoImplementation {
 
     private Integer idCentrosanitario = 0;
     private Integer idUsuario = 0;
@@ -121,12 +121,12 @@ public class Paciente4SpecificDaoImplementation extends TableGenericDaoImplement
 //        return iResult > 0;
 //    }
     @Override
-    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         return true;
     }
 
     @Override
-    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
         PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) this.get(oBean.getId(), 0).getBean();
         if (oPacienteBean.getId_usuario() == idUsuario) {
             return true;
@@ -136,7 +136,7 @@ public class Paciente4SpecificDaoImplementation extends TableGenericDaoImplement
     }
 
     @Override
-    public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
         PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) this.get(oBean.getId(), 0).getBean();
         if (oPacienteBean.getId_usuario() == idUsuario) {
             return true;
@@ -146,14 +146,14 @@ public class Paciente4SpecificDaoImplementation extends TableGenericDaoImplement
     }
 
     @Override
-    public Integer create(TableGenericBeanImplementation oBean) throws Exception {
+    public Integer create(GenericBeanImplementation oBean) throws Exception {
         PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oBean;
         oPacienteBean.setId_usuario(idUsuario);
         return super.create(oPacienteBean);
     }
 
     @Override
-    public Integer update(TableGenericBeanImplementation oBean) throws Exception {
+    public Integer update(GenericBeanImplementation oBean) throws Exception {
         PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oBean;
         oPacienteBean.setId_usuario(idUsuario);
         return super.update(oPacienteBean);
@@ -161,7 +161,7 @@ public class Paciente4SpecificDaoImplementation extends TableGenericDaoImplement
     }
 
     @Override
-    public Integer delete(TableGenericBeanImplementation oBean) throws Exception {
+    public Integer delete(GenericBeanImplementation oBean) throws Exception {
         PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) this.get(oBean.getId(), 0).getBean();
         if (oPacienteBean.getId_usuario() == idUsuario) {
             return super.delete(oBean);

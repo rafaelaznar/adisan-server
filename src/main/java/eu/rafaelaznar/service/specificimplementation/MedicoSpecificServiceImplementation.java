@@ -51,20 +51,20 @@ import eu.rafaelaznar.helper.EncodingHelper;
 import eu.rafaelaznar.helper.Log4jHelper;
 import eu.rafaelaznar.helper.RandomHelper;
 import eu.rafaelaznar.helper.constant.ConnectionConstants;
-import eu.rafaelaznar.service.genericimplementation.TableGenericServiceImplementation;
+import eu.rafaelaznar.service.genericimplementation.GenericServiceImplementation;
 import java.sql.Connection;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 
-public class MedicoSpecificServiceImplementation extends TableGenericServiceImplementation {
-    
+public class MedicoSpecificServiceImplementation extends GenericServiceImplementation {
+
     public MedicoSpecificServiceImplementation(HttpServletRequest request) {
         super(request);
     }
-    
+
     Connection oConnection = null;
     ConnectionInterface oPooledConnection = null;
-    
+
 //    @Override
 //    protected Boolean checkPermission(String strMethodName) {
 //        MetaBeanHelper oUsuarioBean = (MetaBeanHelper) oRequest.getSession().getAttribute("user");
@@ -147,7 +147,6 @@ public class MedicoSpecificServiceImplementation extends TableGenericServiceImpl
 //        }
 //        return false;
 //    }
-    
     public ReplyBeanHelper rellenaMedico() throws Exception {
         ob = "medico";
         ReplyBeanHelper oReplyBean = null;
@@ -159,7 +158,7 @@ public class MedicoSpecificServiceImplementation extends TableGenericServiceImpl
             oConnection = oPooledConnection.newConnection();
             Medico1SpecificDaoImplementation oMedicoDao = new Medico1SpecificDaoImplementation(oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
             MedicoSpecificBeanImplementation oMedicoBean = new MedicoSpecificBeanImplementation();
-            
+
             MetaBeanHelper oUsuarioBean = (MetaBeanHelper) oRequest.getSession().getAttribute("user");
             UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oUsuarioBean.getBean();
             MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_centrosanitario();
@@ -173,14 +172,14 @@ public class MedicoSpecificServiceImplementation extends TableGenericServiceImpl
 
             //dni
             for (int j = 1; j <= num; j++) {
-                
+
                 String dni = "0";
                 for (int i = 1; i <= 10; i++) {
                     dni += RandomHelper.getRandomInt(0, 8);
                 }
                 dni += RandomHelper.getRadomChar();
                 oMedicoBean.setDni(dni);
-                
+
                 int sexo = (int) RandomHelper.getRandomInt(0, 1);
                 //-- Nombre
                 if (sexo == 1) {
@@ -188,7 +187,7 @@ public class MedicoSpecificServiceImplementation extends TableGenericServiceImpl
                     oMetaBean = oDaoMasculino.get((int) RandomHelper.getRandomInt(1, oDaoMasculino.getCount(null).intValue()), 0);
                     NombremasculinoSpecificBeanImplementation oNombremasculinoBean = (NombremasculinoSpecificBeanImplementation) oMetaBean.getBean();
                     oMedicoBean.setNombre(oNombremasculinoBean.getNombre());
-                    
+
                 } else {
                     NombrefemeninoSpecificDaoImplementation oDaoFemenino = new NombrefemeninoSpecificDaoImplementation(oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
                     oMetaBean = oDaoFemenino.get((int) RandomHelper.getRandomInt(1, oDaoFemenino.getCount(null).intValue()), 0);
@@ -221,13 +220,13 @@ public class MedicoSpecificServiceImplementation extends TableGenericServiceImpl
                 Date fnac = RandomHelper.getRadomDate();
                 oMedicoBean.setFecha_nacimiento(fnac);
                 //id categoria profesional
-                oMedicoBean.setId_categoriaprofesional(RandomHelper.getRandomInt(1, 3));     
+                oMedicoBean.setId_categoriaprofesional(RandomHelper.getRandomInt(1, 3));
                 //id centro sanitario 
                 oMedicoBean.setId_centrosanitario(idCentrosanitario);
-                
+
                 result += oMedicoDao.create(oMedicoBean);
             }
-            
+
             oReplyBean = new ReplyBeanHelper(200, Integer.toString(result));
         } catch (Exception ex) {
             String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
@@ -241,7 +240,7 @@ public class MedicoSpecificServiceImplementation extends TableGenericServiceImpl
                 oPooledConnection.disposeConnection();
             }
         }
-        
+
         return oReplyBean;
     }
 }

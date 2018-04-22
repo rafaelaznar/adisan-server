@@ -32,12 +32,12 @@
  */
 package eu.rafaelaznar.dao.specificimplementation.centrosanitario.paciente.episodio.destinoalta;
 
-import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
+import eu.rafaelaznar.bean.genericimplementation.GenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
-import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
+import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
-public class Destinoalta0SpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Destinoalta0SpecificDaoImplementation extends GenericDaoImplementation {
 
     public Destinoalta0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("destinoalta", oPooledConnection, oPuserBean_security, strWhere);

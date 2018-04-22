@@ -37,10 +37,10 @@ import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 
-import eu.rafaelaznar.service.genericimplementation.TableGenericServiceImplementation;
+import eu.rafaelaznar.service.genericimplementation.GenericServiceImplementation;
 import javax.servlet.http.HttpServletRequest;
 
-public class TipopagoSpecificServiceImplementation extends TableGenericServiceImplementation {
+public class TipopagoSpecificServiceImplementation extends GenericServiceImplementation {
 
     public TipopagoSpecificServiceImplementation(HttpServletRequest request) {
         super(request);
@@ -90,5 +90,4 @@ public class TipopagoSpecificServiceImplementation extends TableGenericServiceIm
 //        }
 //        return false;
 //    }
-
 }

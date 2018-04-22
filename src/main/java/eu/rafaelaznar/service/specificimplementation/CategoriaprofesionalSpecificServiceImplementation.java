@@ -5,14 +5,10 @@
  */
 package eu.rafaelaznar.service.specificimplementation;
 
-import eu.rafaelaznar.service.genericimplementation.TableGenericServiceImplementation;
+import eu.rafaelaznar.service.genericimplementation.GenericServiceImplementation;
 import javax.servlet.http.HttpServletRequest;
 
-/**
- *
- * @author a0y3770325h
- */
-public class CategoriaprofesionalSpecificServiceImplementation extends TableGenericServiceImplementation {
+public class CategoriaprofesionalSpecificServiceImplementation extends GenericServiceImplementation {
 
     public CategoriaprofesionalSpecificServiceImplementation(HttpServletRequest request) {
         super(request);

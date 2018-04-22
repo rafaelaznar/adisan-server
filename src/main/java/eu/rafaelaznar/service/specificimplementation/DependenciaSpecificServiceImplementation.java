@@ -33,7 +33,7 @@
 package eu.rafaelaznar.service.specificimplementation;
 
 import com.google.gson.Gson;
-import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
+import eu.rafaelaznar.bean.genericimplementation.GenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
@@ -44,7 +44,7 @@ import eu.rafaelaznar.factory.ConnectionFactory;
 import eu.rafaelaznar.helper.GsonHelper;
 import eu.rafaelaznar.helper.Log4jHelper;
 import eu.rafaelaznar.helper.constant.ConnectionConstants;
-import eu.rafaelaznar.service.genericimplementation.TableGenericServiceImplementation;
+import eu.rafaelaznar.service.genericimplementation.GenericServiceImplementation;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
@@ -53,7 +53,7 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author a022583952e
  */
-public class DependenciaSpecificServiceImplementation extends TableGenericServiceImplementation {
+public class DependenciaSpecificServiceImplementation extends GenericServiceImplementation {
 
     public DependenciaSpecificServiceImplementation(HttpServletRequest request) {
         super(request);

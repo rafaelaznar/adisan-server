@@ -72,7 +72,7 @@ public class MetaPropertyGenericBeanHelper {
     @Expose
     private Integer MaxLength = 255;
     @Expose
-    private boolean IsFormVisible = true;    
+    private boolean IsFormVisible = true;
 
     public String getName() {
         return Name;

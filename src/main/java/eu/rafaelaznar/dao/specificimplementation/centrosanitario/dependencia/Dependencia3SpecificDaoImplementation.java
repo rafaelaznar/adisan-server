@@ -32,19 +32,19 @@
  */
 package eu.rafaelaznar.dao.specificimplementation.centrosanitario.dependencia;
 
-import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
+import eu.rafaelaznar.bean.genericimplementation.GenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.DependenciaSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
-import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
+import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
 import eu.rafaelaznar.helper.Log4jHelper;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class Dependencia3SpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Dependencia3SpecificDaoImplementation extends GenericDaoImplementation {
 
     private Integer idCentrosanitario = 0;
     private Integer idUsuario = 0;
@@ -111,24 +111,23 @@ public class Dependencia3SpecificDaoImplementation extends TableGenericDaoImplem
 //        }
 //        return iResult > 0;
 //    }
-
     @Override
-    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         return true;
     }
 
     @Override
-    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
         return false;
     }
 
     @Override
-    public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
         return false;
     }
 
     @Override
-    public Integer create(TableGenericBeanImplementation oBean) throws Exception {
+    public Integer create(GenericBeanImplementation oBean) throws Exception {
         //se puede crear una dependencia en el centro sanitario del porfesor
         UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
         DependenciaSpecificBeanImplementation oNewDependencia = (DependenciaSpecificBeanImplementation) oBean;
@@ -137,7 +136,7 @@ public class Dependencia3SpecificDaoImplementation extends TableGenericDaoImplem
     }
 
     @Override
-    public Integer update(TableGenericBeanImplementation oBean) throws Exception {
+    public Integer update(GenericBeanImplementation oBean) throws Exception {
         UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
         DependenciaSpecificBeanImplementation oNewDependencia = (DependenciaSpecificBeanImplementation) oBean;
         oNewDependencia.setId_centrosanitario(oSessionUser.getId_centrosanitario());
@@ -145,7 +144,7 @@ public class Dependencia3SpecificDaoImplementation extends TableGenericDaoImplem
     }
 
     @Override
-    public Integer delete(TableGenericBeanImplementation oBean) throws Exception {
+    public Integer delete(GenericBeanImplementation oBean) throws Exception {
         //para borrar una dependencia que contacten con el administrador
         return 0;
     }

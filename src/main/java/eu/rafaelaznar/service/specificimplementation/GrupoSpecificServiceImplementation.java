@@ -43,11 +43,11 @@ import eu.rafaelaznar.factory.ConnectionFactory;
 import eu.rafaelaznar.helper.EncodingHelper;
 import eu.rafaelaznar.helper.Log4jHelper;
 import eu.rafaelaznar.helper.constant.ConnectionConstants;
-import eu.rafaelaznar.service.genericimplementation.TableGenericServiceImplementation;
+import eu.rafaelaznar.service.genericimplementation.GenericServiceImplementation;
 import java.sql.Connection;
 import javax.servlet.http.HttpServletRequest;
 
-public class GrupoSpecificServiceImplementation extends TableGenericServiceImplementation {
+public class GrupoSpecificServiceImplementation extends GenericServiceImplementation {
 
     public GrupoSpecificServiceImplementation(HttpServletRequest request) {
         super(request);

@@ -35,7 +35,7 @@ package eu.rafaelaznar.bean.specificimplementation;
 import com.google.gson.annotations.Expose;
 import eu.rafaelaznar.bean.meta.publicinterface.MetaObjectBeanInterface;
 import eu.rafaelaznar.helper.EnumHelper;
-import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
+import eu.rafaelaznar.bean.genericimplementation.GenericBeanImplementation;
 import eu.rafaelaznar.bean.meta.publicinterface.MetaPropertyBeanInterface;
 import eu.rafaelaznar.helper.constant.RegexConstants;
 
@@ -47,7 +47,7 @@ import eu.rafaelaznar.helper.constant.RegexConstants;
         Type = EnumHelper.SourceType.Table
 )
 
-public class CircunstanciasaltaSpecificBeanImplementation extends TableGenericBeanImplementation {
+public class CircunstanciasaltaSpecificBeanImplementation extends GenericBeanImplementation {
 
     @Expose
     @MetaPropertyBeanInterface(

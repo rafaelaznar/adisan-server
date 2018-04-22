@@ -34,7 +34,7 @@ package eu.rafaelaznar.service.publicinterface;
 
 import eu.rafaelaznar.bean.helper.ReplyBeanHelper;
 
-public interface MetaServiceInterface {
+public interface ServiceInterface {
 
     public ReplyBeanHelper getMetaData() throws Exception;
 
@@ -42,4 +42,17 @@ public interface MetaServiceInterface {
 
     public ReplyBeanHelper getPropertiesMetaData() throws Exception;
 
+    public ReplyBeanHelper getPage() throws Exception;
+
+    public ReplyBeanHelper getCount() throws Exception;
+
+    public ReplyBeanHelper getPageX() throws Exception;
+
+    public ReplyBeanHelper getCountX() throws Exception;
+
+    public ReplyBeanHelper get() throws Exception;
+
+    public ReplyBeanHelper set() throws Exception;
+
+    public ReplyBeanHelper remove() throws Exception;
 }

@@ -33,10 +33,10 @@
 package eu.rafaelaznar.dao.specificimplementation.centrosanitario.usuario.grupo;
 
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
-import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
+import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
-public class Grupo0SpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Grupo0SpecificDaoImplementation extends GenericDaoImplementation {
 
     public Grupo0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("grupo", oPooledConnection, oPuserBean_security, strWhere);

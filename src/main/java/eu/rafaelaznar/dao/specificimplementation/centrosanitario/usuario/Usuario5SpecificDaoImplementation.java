@@ -34,21 +34,20 @@ package eu.rafaelaznar.dao.specificimplementation.centrosanitario.usuario;
 
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
-import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
+import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 import java.util.Date;
 
-public class Usuario5SpecificDaoImplementation extends TableGenericDaoImplementation {
-    
+public class Usuario5SpecificDaoImplementation extends GenericDaoImplementation {
+
     public Usuario5SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("usuario", oPooledConnection, oPuserBean_security, strWhere);
     }
-    
+
 //    @Override
 //    public boolean canGet(Integer id) throws Exception {
 //        return true;
 //    }
-        
     @Override
     public MetaBeanHelper get(int id, int intExpand) throws Exception {
         MetaBeanHelper oMetaBeanHelper = super.get(id, intExpand);
@@ -63,5 +62,5 @@ public class Usuario5SpecificDaoImplementation extends TableGenericDaoImplementa
         oUsuario.setFecha_alta(new Date(0));
         return oMetaBeanHelper;
     }
-    
+
 }

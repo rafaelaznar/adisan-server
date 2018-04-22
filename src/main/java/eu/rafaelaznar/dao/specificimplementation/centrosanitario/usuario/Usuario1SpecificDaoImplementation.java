@@ -32,10 +32,10 @@
  */
 package eu.rafaelaznar.dao.specificimplementation.centrosanitario.usuario;
 
-import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
+import eu.rafaelaznar.bean.genericimplementation.GenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
-import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
+import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
 import eu.rafaelaznar.helper.Log4jHelper;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -43,7 +43,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Usuario1SpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Usuario1SpecificDaoImplementation extends GenericDaoImplementation {
 
     public Usuario1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("usuario", oPooledConnection, oPuserBean_security, strWhere);
@@ -54,17 +54,17 @@ public class Usuario1SpecificDaoImplementation extends TableGenericDaoImplementa
 //        return true;
 //    }
     @Override
-    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         return true;
     }
 
     @Override
-    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
         return true;
     }
 
     @Override
-    public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
         UsuarioSpecificBeanImplementation oUsuarioBean = (UsuarioSpecificBeanImplementation) oBean;
         return !(oUsuarioBean.getLink_grupo() > 0 || oUsuarioBean.getLink_paciente() > 0);
     }

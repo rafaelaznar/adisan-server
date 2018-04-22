@@ -32,15 +32,15 @@
  */
 package eu.rafaelaznar.dao.specificimplementation.centrosanitario.medico;
 
-import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
+import eu.rafaelaznar.bean.genericimplementation.GenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.GrupoSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
-import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
+import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
-public class Medico4SpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Medico4SpecificDaoImplementation extends GenericDaoImplementation {
 
     private Integer idCentrosanitario = null;
     private Integer idUsuario;
@@ -75,5 +75,4 @@ public class Medico4SpecificDaoImplementation extends TableGenericDaoImplementat
 //    public boolean canGet(Integer id) throws Exception {
 //        return true;
 //    }
-
 }

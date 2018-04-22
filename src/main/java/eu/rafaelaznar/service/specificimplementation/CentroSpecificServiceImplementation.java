@@ -32,10 +32,10 @@
  */
 package eu.rafaelaznar.service.specificimplementation;
 
-import eu.rafaelaznar.service.genericimplementation.TableGenericServiceImplementation;
+import eu.rafaelaznar.service.genericimplementation.GenericServiceImplementation;
 import javax.servlet.http.HttpServletRequest;
 
-public class CentroSpecificServiceImplementation extends TableGenericServiceImplementation {
+public class CentroSpecificServiceImplementation extends GenericServiceImplementation {
 
     public CentroSpecificServiceImplementation(HttpServletRequest request) {
         super(request);
@@ -78,7 +78,7 @@ public class CentroSpecificServiceImplementation extends TableGenericServiceImpl
 //                                    oConnection = oPooledConnection.newConnection();
 //                                    Centro3SpecificDaoImplementation oDao = new Centro3SpecificDaoImplementation(oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
 //                                    String jason = oRequest.getParameter("json");
-//                                    TableGenericBeanImplementation oBean = (TableGenericBeanImplementation) BeanFactory.getBean(ob, (MetaBeanHelper) oRequest.getSession().getAttribute("user"));
+//                                    GenericBeanImplementation oBean = (GenericBeanImplementation) BeanFactory.getBean(ob, (MetaBeanHelper) oRequest.getSession().getAttribute("user"));
 //                                    Gson oGson = GsonHelper.getGson();
 //                                    oBean = oGson.fromJson(jason, oBean.getClass());
 //                                    oResult = oDao.checkUpdate(oBean.getId());

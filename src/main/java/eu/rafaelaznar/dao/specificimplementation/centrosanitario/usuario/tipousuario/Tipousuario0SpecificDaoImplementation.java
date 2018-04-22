@@ -32,14 +32,14 @@
  */
 package eu.rafaelaznar.dao.specificimplementation.centrosanitario.usuario.tipousuario;
 
-import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
+import eu.rafaelaznar.bean.genericimplementation.GenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
-import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
+import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
-public class Tipousuario0SpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Tipousuario0SpecificDaoImplementation extends GenericDaoImplementation {
 
-    // NOTA IMPORTANTE: los tipos de usuario 0 y 5 deberian implementar ViewGenericDaoImplementation y no TableGenericDaoImplementation 
+    // NOTA IMPORTANTE: los tipos de usuario 0 y 5 deberian implementar ViewGenericDaoImplementation y no GenericDaoImplementation 
     // pero no es posible porque las expansiones necesitan hacer get, 
     // así que a la espera de un rediseño global quedan restringidas las operaciones set y remove mediante sobreescritura
     public Tipousuario0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {

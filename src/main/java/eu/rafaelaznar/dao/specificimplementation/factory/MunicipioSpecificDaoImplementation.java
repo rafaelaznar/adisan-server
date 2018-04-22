@@ -6,14 +6,13 @@
 package eu.rafaelaznar.dao.specificimplementation.factory;
 
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
-import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
+import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
+public class MunicipioSpecificDaoImplementation extends GenericDaoImplementation {
 
-public class MunicipioSpecificDaoImplementation extends TableGenericDaoImplementation{
-    
     public MunicipioSpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("municipio", oPooledConnection, oPuserBean_security, strWhere);
     }
-    
+
 }

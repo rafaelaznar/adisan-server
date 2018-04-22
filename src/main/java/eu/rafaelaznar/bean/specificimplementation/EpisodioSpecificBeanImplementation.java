@@ -33,7 +33,7 @@
 package eu.rafaelaznar.bean.specificimplementation;
 
 import com.google.gson.annotations.Expose;
-import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
+import eu.rafaelaznar.bean.genericimplementation.GenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.meta.publicinterface.MetaObjectBeanInterface;
 import eu.rafaelaznar.bean.meta.publicinterface.MetaPropertyBeanInterface;
@@ -54,7 +54,7 @@ import java.util.Date;
         Icon = "fa fa-eercast",
         Type = EnumHelper.SourceType.Table
 )
-public class EpisodioSpecificBeanImplementation extends TableGenericBeanImplementation {
+public class EpisodioSpecificBeanImplementation extends GenericBeanImplementation {
 
     @Expose
     @MetaPropertyBeanInterface(

@@ -32,10 +32,10 @@
  */
 package eu.rafaelaznar.service.specificimplementation;
 
-import eu.rafaelaznar.service.genericimplementation.TableGenericServiceImplementation;
+import eu.rafaelaznar.service.genericimplementation.GenericServiceImplementation;
 import javax.servlet.http.HttpServletRequest;
 
-public class TiposervicioSpecificServiceImplementation extends TableGenericServiceImplementation {
+public class TiposervicioSpecificServiceImplementation extends GenericServiceImplementation {
 
     public TiposervicioSpecificServiceImplementation(HttpServletRequest request) {
         super(request);

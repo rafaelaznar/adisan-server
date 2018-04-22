@@ -33,10 +33,10 @@
 package eu.rafaelaznar.dao.specificimplementation.centrosanitario.servicio.tiposervicio;
 
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
-import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
+import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
-public class Tiposervicio0SpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Tiposervicio0SpecificDaoImplementation extends GenericDaoImplementation {
 
     public Tiposervicio0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("tiposervicio", oPooledConnection, oPuserBean_security, strWhere);

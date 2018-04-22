@@ -6,14 +6,13 @@
 package eu.rafaelaznar.dao.specificimplementation.factory;
 
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
-import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
+import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
+public class NombrefemeninoSpecificDaoImplementation extends GenericDaoImplementation {
 
-public class NombrefemeninoSpecificDaoImplementation extends TableGenericDaoImplementation{
-    
     public NombrefemeninoSpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("nombrefemenino", oPooledConnection, oPuserBean_security, strWhere);
     }
-    
+
 }

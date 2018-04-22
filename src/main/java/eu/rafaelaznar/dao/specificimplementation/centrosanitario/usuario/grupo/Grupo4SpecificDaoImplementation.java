@@ -34,13 +34,13 @@ package eu.rafaelaznar.dao.specificimplementation.centrosanitario.usuario.grupo;
 
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
-import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
+import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
 import eu.rafaelaznar.helper.Log4jHelper;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class Grupo4SpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Grupo4SpecificDaoImplementation extends GenericDaoImplementation {
 
     private final Integer idUsuario;
 
@@ -92,5 +92,4 @@ public class Grupo4SpecificDaoImplementation extends TableGenericDaoImplementati
 //        }
 //        return iResult > 0;
 //    }
-
 }

@@ -33,7 +33,7 @@
 package eu.rafaelaznar.bean.specificimplementation;
 
 import com.google.gson.annotations.Expose;
-import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
+import eu.rafaelaznar.bean.genericimplementation.GenericBeanImplementation;
 import eu.rafaelaznar.bean.meta.publicinterface.MetaObjectBeanInterface;
 import eu.rafaelaznar.bean.meta.publicinterface.MetaPropertyBeanInterface;
 import eu.rafaelaznar.helper.EnumHelper;
@@ -46,7 +46,7 @@ import eu.rafaelaznar.helper.constant.RegexConstants;
         Icon = "fa fa-calendar-check-o",
         Type = EnumHelper.SourceType.Table
 )
-public class CursoSpecificBeanImplementation extends TableGenericBeanImplementation {
+public class CursoSpecificBeanImplementation extends GenericBeanImplementation {
 
     @Expose
     @MetaPropertyBeanInterface(

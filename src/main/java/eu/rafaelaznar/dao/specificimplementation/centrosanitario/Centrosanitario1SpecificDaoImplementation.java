@@ -32,30 +32,30 @@
  */
 package eu.rafaelaznar.dao.specificimplementation.centrosanitario;
 
-import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
+import eu.rafaelaznar.bean.genericimplementation.GenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
-import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
+import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
-public class Centrosanitario1SpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Centrosanitario1SpecificDaoImplementation extends GenericDaoImplementation {
 
     public Centrosanitario1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("centrosanitario", oPooledConnection, oPuserBean_security, strWhere);
     }
 
     @Override
-    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         return true;
     }
 
     @Override
-    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
         return true;
     }
 
     @Override
-    public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
         CentrosanitarioSpecificBeanImplementation oCentrosanitarioBean = (CentrosanitarioSpecificBeanImplementation) oBean;
         if (oCentrosanitarioBean.getLink_usuario() > 0
                 || oCentrosanitarioBean.getLink_dependencia() > 0

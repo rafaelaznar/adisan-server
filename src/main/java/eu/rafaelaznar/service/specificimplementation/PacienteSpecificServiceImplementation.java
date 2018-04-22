@@ -57,12 +57,12 @@ import eu.rafaelaznar.helper.GsonHelper;
 import eu.rafaelaznar.helper.Log4jHelper;
 import eu.rafaelaznar.helper.RandomHelper;
 import eu.rafaelaznar.helper.constant.ConnectionConstants;
-import eu.rafaelaznar.service.genericimplementation.TableGenericServiceImplementation;
+import eu.rafaelaznar.service.genericimplementation.GenericServiceImplementation;
 import java.sql.Connection;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 
-public class PacienteSpecificServiceImplementation extends TableGenericServiceImplementation {
+public class PacienteSpecificServiceImplementation extends GenericServiceImplementation {
 
     public PacienteSpecificServiceImplementation(HttpServletRequest request) {
         super(request);

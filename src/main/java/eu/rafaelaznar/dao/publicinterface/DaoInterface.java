@@ -32,13 +32,39 @@
  */
 package eu.rafaelaznar.dao.publicinterface;
 
+import eu.rafaelaznar.bean.genericimplementation.GenericBeanImplementation;
+import eu.rafaelaznar.bean.helper.FilterBeanHelper;
+import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.meta.helper.MetaObjectGenericBeanHelper;
 import eu.rafaelaznar.bean.meta.helper.MetaPropertyGenericBeanHelper;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
-public interface MetaDaoInterface {
+public interface DaoInterface {
 
     public MetaObjectGenericBeanHelper getObjectMetaData() throws Exception;
 
     public ArrayList<MetaPropertyGenericBeanHelper> getPropertiesMetaData() throws Exception;
+
+    public Long getCount(ArrayList<FilterBeanHelper> alFilter) throws Exception;
+
+    public MetaBeanHelper getPage(int intRegsPerPag, int intPage, LinkedHashMap<String, String> hmOrder, ArrayList<FilterBeanHelper> alFilter, int expand) throws Exception;
+
+    public MetaBeanHelper getPageX(int id_foreign, String ob_foreign, int intRegsPerPag, int intPage, LinkedHashMap<String, String> hmOrder, ArrayList<FilterBeanHelper> alFilter, int expand) throws Exception;
+
+    public Long getCountX(int id_foreign, String ob_foreign, ArrayList<FilterBeanHelper> alFilter) throws Exception;
+
+    public boolean canCreate(GenericBeanImplementation oBean) throws Exception;
+
+    public boolean canUpdate(GenericBeanImplementation oBean) throws Exception;
+
+    public boolean canDelete(GenericBeanImplementation oBean) throws Exception;
+
+    public MetaBeanHelper get(int id, int intExpand) throws Exception;
+
+    public Integer create(GenericBeanImplementation oBean) throws Exception;
+
+    public Integer update(GenericBeanImplementation oBean) throws Exception;
+
+    public Integer delete(GenericBeanImplementation oBean) throws Exception;
 }

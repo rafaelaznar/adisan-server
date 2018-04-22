@@ -32,13 +32,13 @@
  */
 package eu.rafaelaznar.dao.specificimplementation.centrosanitario.usuario.centro;
 
-import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
+import eu.rafaelaznar.bean.genericimplementation.GenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.CentroSpecificBeanImplementation;
-import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
+import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
-public class Centro1SpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Centro1SpecificDaoImplementation extends GenericDaoImplementation {
 
     public Centro1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("centro", oPooledConnection, oPuserBean_security, strWhere);
@@ -49,17 +49,17 @@ public class Centro1SpecificDaoImplementation extends TableGenericDaoImplementat
 //    }
 
     @Override
-    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         return true;
     }
 
     @Override
-    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
         return true;
     }
 
     @Override
-    public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
         CentroSpecificBeanImplementation oCentroBean = (CentroSpecificBeanImplementation) oBean;
         if (oCentroBean.getLink_usuario() > 0) {
             return false;

@@ -35,10 +35,10 @@ package eu.rafaelaznar.service.specificimplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
-import eu.rafaelaznar.service.genericimplementation.TableGenericServiceImplementation;
+import eu.rafaelaznar.service.genericimplementation.GenericServiceImplementation;
 import javax.servlet.http.HttpServletRequest;
 
-public class ModalidadepisodioSpecificServiceImplementation extends TableGenericServiceImplementation {
+public class ModalidadepisodioSpecificServiceImplementation extends GenericServiceImplementation {
 
     public ModalidadepisodioSpecificServiceImplementation(HttpServletRequest request) {
         super(request);
@@ -88,5 +88,4 @@ public class ModalidadepisodioSpecificServiceImplementation extends TableGeneric
 //        }
 //        return false;
 //    }
-
 }

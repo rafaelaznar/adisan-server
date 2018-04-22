@@ -37,10 +37,10 @@ import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 
-import eu.rafaelaznar.service.genericimplementation.TableGenericServiceImplementation;
+import eu.rafaelaznar.service.genericimplementation.GenericServiceImplementation;
 import javax.servlet.http.HttpServletRequest;
 
-public class FacturaSpecificServiceImplementation extends TableGenericServiceImplementation {
+public class FacturaSpecificServiceImplementation extends GenericServiceImplementation {
 
     public FacturaSpecificServiceImplementation(HttpServletRequest request) {
         super(request);

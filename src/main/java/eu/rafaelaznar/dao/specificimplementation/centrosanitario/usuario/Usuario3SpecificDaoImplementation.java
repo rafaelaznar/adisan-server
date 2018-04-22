@@ -32,7 +32,7 @@
  */
 package eu.rafaelaznar.dao.specificimplementation.centrosanitario.usuario;
 
-import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
+import eu.rafaelaznar.bean.genericimplementation.GenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
@@ -111,7 +111,7 @@ public class Usuario3SpecificDaoImplementation extends Usuario1SpecificDaoImplem
 //        }
 //    }
     @Override
-    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         UsuarioSpecificBeanImplementation oNewUser = (UsuarioSpecificBeanImplementation) oBean;
         //comprobar que al alumno lo metemos en uno de los grupos del profe en sesion
         if (grupoIsMine(oNewUser.getId_grupo())) {
@@ -122,7 +122,7 @@ public class Usuario3SpecificDaoImplementation extends Usuario1SpecificDaoImplem
     }
 
     @Override
-    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
         UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
         UsuarioSpecificBeanImplementation oUpdateUser = (UsuarioSpecificBeanImplementation) oBean;
         if (oSessionUser.getId().equals(oUpdateUser.getId())) {
@@ -141,7 +141,7 @@ public class Usuario3SpecificDaoImplementation extends Usuario1SpecificDaoImplem
     }
 
     @Override
-    public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
         if (alumnoIsMine(oBean.getId())) {
             return true;
         } else {
@@ -150,7 +150,7 @@ public class Usuario3SpecificDaoImplementation extends Usuario1SpecificDaoImplem
     }
 
     @Override
-    public Integer create(TableGenericBeanImplementation oBean) throws Exception {
+    public Integer create(GenericBeanImplementation oBean) throws Exception {
         UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
         UsuarioSpecificBeanImplementation oNewUser = (UsuarioSpecificBeanImplementation) oBean;
         if (grupoIsMine(oNewUser.getId_grupo())) {
@@ -164,7 +164,7 @@ public class Usuario3SpecificDaoImplementation extends Usuario1SpecificDaoImplem
     }
 
     @Override
-    public Integer update(TableGenericBeanImplementation oBean) throws Exception {
+    public Integer update(GenericBeanImplementation oBean) throws Exception {
         UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
         UsuarioSpecificBeanImplementation oUpdateUser = (UsuarioSpecificBeanImplementation) oBean;
         if (oSessionUser.getId().equals(oUpdateUser.getId())) {
@@ -189,7 +189,7 @@ public class Usuario3SpecificDaoImplementation extends Usuario1SpecificDaoImplem
     }
 
     @Override
-    public Integer delete(TableGenericBeanImplementation oBean) throws Exception {
+    public Integer delete(GenericBeanImplementation oBean) throws Exception {
         if (alumnoIsMine(oBean.getId())) {
             return super.delete(oBean);
         } else {

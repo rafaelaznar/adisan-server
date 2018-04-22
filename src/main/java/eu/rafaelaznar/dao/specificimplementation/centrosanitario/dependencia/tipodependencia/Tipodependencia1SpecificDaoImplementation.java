@@ -32,13 +32,13 @@
  */
 package eu.rafaelaznar.dao.specificimplementation.centrosanitario.dependencia.tipodependencia;
 
-import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
+import eu.rafaelaznar.bean.genericimplementation.GenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.TipodependenciaSpecificBeanImplementation;
-import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
+import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
-public class Tipodependencia1SpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Tipodependencia1SpecificDaoImplementation extends GenericDaoImplementation {
 
     public Tipodependencia1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("tipodependencia", oPooledConnection, oPuserBean_security, strWhere);
@@ -49,17 +49,17 @@ public class Tipodependencia1SpecificDaoImplementation extends TableGenericDaoIm
 //        return true;
 //    }
     @Override
-    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         return true;
     }
 
     @Override
-    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
         return true;
     }
 
     @Override
-    public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
         TipodependenciaSpecificBeanImplementation oTipodependenciaBean = (TipodependenciaSpecificBeanImplementation) oBean;
         if (oTipodependenciaBean.getLink_dependencia() > 0) {
             return false;

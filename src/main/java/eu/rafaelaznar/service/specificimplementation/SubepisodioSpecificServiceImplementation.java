@@ -32,14 +32,14 @@
  */
 package eu.rafaelaznar.service.specificimplementation;
 
-import eu.rafaelaznar.service.genericimplementation.TableGenericServiceImplementation;
+import eu.rafaelaznar.service.genericimplementation.GenericServiceImplementation;
 import javax.servlet.http.HttpServletRequest;
 
-public class SubepisodioSpecificServiceImplementation extends TableGenericServiceImplementation {
+public class SubepisodioSpecificServiceImplementation extends GenericServiceImplementation {
 
     public SubepisodioSpecificServiceImplementation(HttpServletRequest request) {
         super(request);
-        ob="subepisodio";
+        ob = "subepisodio";
     }
 
 }

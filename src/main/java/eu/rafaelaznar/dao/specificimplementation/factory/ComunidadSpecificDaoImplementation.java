@@ -6,14 +6,13 @@
 package eu.rafaelaznar.dao.specificimplementation.factory;
 
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
-import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
+import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
+public class ComunidadSpecificDaoImplementation extends GenericDaoImplementation {
 
-public class ComunidadSpecificDaoImplementation extends TableGenericDaoImplementation{
-    
     public ComunidadSpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("comunidad", oPooledConnection, oPuserBean_security, strWhere);
     }
-    
+
 }

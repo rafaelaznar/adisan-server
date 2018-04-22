@@ -32,16 +32,16 @@
  */
 package eu.rafaelaznar.dao.specificimplementation.centrosanitario.usuario.grupo;
 
-import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
+import eu.rafaelaznar.bean.genericimplementation.GenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.GrupoSpecificBeanImplementation;
-import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
+import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
 import eu.rafaelaznar.helper.Log4jHelper;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class Grupo1SpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Grupo1SpecificDaoImplementation extends GenericDaoImplementation {
 
     public Grupo1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("grupo", oPooledConnection, oPuserBean_security, strWhere);
@@ -52,17 +52,17 @@ public class Grupo1SpecificDaoImplementation extends TableGenericDaoImplementati
 //        return true;
 //    }
     @Override
-    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         return true;
     }
 
     @Override
-    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
         return true;
     }
 
     @Override
-    public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
         GrupoSpecificBeanImplementation oGrupoBean = (GrupoSpecificBeanImplementation) oBean;
         if (oGrupoBean.getLink_usuario() > 0) {
             return false;

@@ -32,17 +32,17 @@
  */
 package eu.rafaelaznar.dao.specificimplementation.centrosanitario.usuario.grupo;
 
-import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
+import eu.rafaelaznar.bean.genericimplementation.GenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.GrupoSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
-import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
+import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
 import eu.rafaelaznar.helper.Log4jHelper;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class Grupo3SpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Grupo3SpecificDaoImplementation extends GenericDaoImplementation {
 
     private Integer idUsuario;
     UsuarioSpecificBeanImplementation oUsuario;
@@ -94,14 +94,13 @@ public class Grupo3SpecificDaoImplementation extends TableGenericDaoImplementati
 //        }
 //        return iResult > 0;
 //    }
-
     @Override
-    public boolean canCreate(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         return true;
     }
 
     @Override
-    public boolean canUpdate(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
         GrupoSpecificBeanImplementation oGrupo = (GrupoSpecificBeanImplementation) oBean;
         if (oGrupo.getId_usuario().equals(idUsuario)) {
             return true;
@@ -111,7 +110,7 @@ public class Grupo3SpecificDaoImplementation extends TableGenericDaoImplementati
     }
 
     @Override
-    public boolean canDelete(TableGenericBeanImplementation oBean) throws Exception {
+    public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
         GrupoSpecificBeanImplementation oGrupo = (GrupoSpecificBeanImplementation) oBean;
         //puedo borrar mis cursos
         if (oGrupo.getId_usuario().equals(idUsuario)) {
@@ -123,7 +122,7 @@ public class Grupo3SpecificDaoImplementation extends TableGenericDaoImplementati
     }
 
     @Override
-    public Integer create(TableGenericBeanImplementation oBean) throws Exception {
+    public Integer create(GenericBeanImplementation oBean) throws Exception {
         UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
         GrupoSpecificBeanImplementation oNewGrupo = (GrupoSpecificBeanImplementation) oBean;
         oNewGrupo.setId_usuario(oSessionUser.getId());
@@ -131,7 +130,7 @@ public class Grupo3SpecificDaoImplementation extends TableGenericDaoImplementati
     }
 
     @Override
-    public Integer update(TableGenericBeanImplementation oBean) throws Exception {
+    public Integer update(GenericBeanImplementation oBean) throws Exception {
         UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
         GrupoSpecificBeanImplementation oUpdateGrupo = (GrupoSpecificBeanImplementation) oBean;
         //pte falta comprobar que el grupo sea efectivamente de ese profe
@@ -144,7 +143,7 @@ public class Grupo3SpecificDaoImplementation extends TableGenericDaoImplementati
     }
 
     @Override
-    public Integer delete(TableGenericBeanImplementation oBean) throws Exception {
+    public Integer delete(GenericBeanImplementation oBean) throws Exception {
         GrupoSpecificBeanImplementation oGrupo = (GrupoSpecificBeanImplementation) this.get(oBean.getId(), 0).getBean();
         if (oGrupo.getId_usuario().equals(idUsuario)) {
             return super.delete(oBean);

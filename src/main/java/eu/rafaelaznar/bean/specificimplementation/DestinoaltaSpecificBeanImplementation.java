@@ -33,7 +33,7 @@
 package eu.rafaelaznar.bean.specificimplementation;
 
 import com.google.gson.annotations.Expose;
-import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
+import eu.rafaelaznar.bean.genericimplementation.GenericBeanImplementation;
 import eu.rafaelaznar.bean.meta.publicinterface.MetaObjectBeanInterface;
 import eu.rafaelaznar.bean.meta.publicinterface.MetaPropertyBeanInterface;
 import eu.rafaelaznar.helper.EnumHelper;
@@ -46,7 +46,7 @@ import eu.rafaelaznar.helper.constant.RegexConstants;
         Icon = "fa fa-ellipsis-v",
         Type = EnumHelper.SourceType.Table
 )
-public class DestinoaltaSpecificBeanImplementation extends TableGenericBeanImplementation {
+public class DestinoaltaSpecificBeanImplementation extends GenericBeanImplementation {
 
     @Expose
     @MetaPropertyBeanInterface(
@@ -93,7 +93,5 @@ public class DestinoaltaSpecificBeanImplementation extends TableGenericBeanImple
     public void setLink_episodio(Integer link_episodio) {
         this.link_episodio = link_episodio;
     }
-    
-    
-    
+
 }

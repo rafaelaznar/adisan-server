@@ -32,10 +32,10 @@
  */
 package eu.rafaelaznar.service.specificimplementation;
 
-import eu.rafaelaznar.service.genericimplementation.TableGenericServiceImplementation;
+import eu.rafaelaznar.service.genericimplementation.GenericServiceImplementation;
 import javax.servlet.http.HttpServletRequest;
 
-public class EpisodioSpecificServiceImplementation extends TableGenericServiceImplementation {
+public class EpisodioSpecificServiceImplementation extends GenericServiceImplementation {
 
     public EpisodioSpecificServiceImplementation(HttpServletRequest request) {
         super(request);
@@ -134,5 +134,4 @@ public class EpisodioSpecificServiceImplementation extends TableGenericServiceIm
 //        }
 //        return false;
 //    }
-
 }

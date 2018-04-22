@@ -32,12 +32,12 @@
  */
 package eu.rafaelaznar.dao.specificimplementation.centrosanitario.paciente.tipopago;
 
-import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
+import eu.rafaelaznar.bean.genericimplementation.GenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
-import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
+import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
-public class Tipopago0SpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Tipopago0SpecificDaoImplementation extends GenericDaoImplementation {
 
     public Tipopago0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("tipopago", oPooledConnection, oPuserBean_security, strWhere);
@@ -47,5 +47,4 @@ public class Tipopago0SpecificDaoImplementation extends TableGenericDaoImplement
 //    public boolean canGet(Integer id) throws Exception {
 //        return true;
 //    }
-
 }

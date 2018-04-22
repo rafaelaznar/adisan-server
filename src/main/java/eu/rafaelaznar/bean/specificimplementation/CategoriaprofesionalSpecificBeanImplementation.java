@@ -6,7 +6,7 @@
 package eu.rafaelaznar.bean.specificimplementation;
 
 import com.google.gson.annotations.Expose;
-import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
+import eu.rafaelaznar.bean.genericimplementation.GenericBeanImplementation;
 import eu.rafaelaznar.bean.meta.publicinterface.MetaObjectBeanInterface;
 import eu.rafaelaznar.bean.meta.publicinterface.MetaPropertyBeanInterface;
 import eu.rafaelaznar.helper.EnumHelper;
@@ -19,7 +19,7 @@ import eu.rafaelaznar.helper.constant.RegexConstants;
         Icon = "fa fa-list-alt",
         Type = EnumHelper.SourceType.Table
 )
-public class CategoriaprofesionalSpecificBeanImplementation extends TableGenericBeanImplementation {
+public class CategoriaprofesionalSpecificBeanImplementation extends GenericBeanImplementation {
 
     @Expose
     @MetaPropertyBeanInterface(
@@ -66,5 +66,5 @@ public class CategoriaprofesionalSpecificBeanImplementation extends TableGeneric
     public void setLink_medico(Integer link_medico) {
         this.link_medico = link_medico;
     }
-    
+
 }

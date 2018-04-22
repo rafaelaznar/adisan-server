@@ -32,19 +32,19 @@
  */
 package eu.rafaelaznar.dao.specificimplementation.centrosanitario.dependencia;
 
-import eu.rafaelaznar.bean.genericimplementation.TableGenericBeanImplementation;
+import eu.rafaelaznar.bean.genericimplementation.GenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.GrupoSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
-import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
+import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
 import eu.rafaelaznar.helper.Log4jHelper;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class Dependencia4SpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Dependencia4SpecificDaoImplementation extends GenericDaoImplementation {
 
     private Integer idCentrosanitario = 0;
     private Integer idUsuario = 0;
@@ -114,5 +114,4 @@ public class Dependencia4SpecificDaoImplementation extends TableGenericDaoImplem
 //        }
 //        return iResult > 0;
 //    }
-
 }

@@ -33,10 +33,10 @@
 package eu.rafaelaznar.dao.specificimplementation.centrosanitario.usuario.curso;
 
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
-import eu.rafaelaznar.dao.genericimplementation.TableGenericDaoImplementation;
+import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
-public class Curso0SpecificDaoImplementation extends TableGenericDaoImplementation {
+public class Curso0SpecificDaoImplementation extends GenericDaoImplementation {
 
     public Curso0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("curso", oPooledConnection, oPuserBean_security, strWhere);
@@ -46,5 +46,4 @@ public class Curso0SpecificDaoImplementation extends TableGenericDaoImplementati
 //    public boolean canGet(Integer id) throws Exception {
 //        return true;
 //    }
-
 }
