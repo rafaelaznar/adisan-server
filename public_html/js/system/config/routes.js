@@ -88,8 +88,21 @@ gesane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/usuario/3/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'UsuarioEdit3Controller', resolve: {auth: authentication3Promise}});
         $routeProvider.when('/usuario/3/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'UsuarioRemove3Controller', resolve: {auth: authentication3Promise}});
         //--
-        $routeProvider.when('/usuario/3/xgrupo/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'UsuarioxgrupoPList3Controller', resolve: {auth: authentication3Promise}});
-        $routeProvider.when('/usuario/3/xcentro/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'UsuarioxcentroPList3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/usuario/3/xtipousuario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'UsuarioXtipousuarioPList3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/usuario/3/xtipousuario/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'UsuarioXtipousuarioNew3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/usuario/3/xtipousuario/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'UsuarioXtipousuarioEdit3Controller', resolve: {auth: authentication3Promise}});
+        //--
+        $routeProvider.when('/usuario/3/xgrupo/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'UsuarioXgrupoPList3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/usuario/3/xgrupo/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'UsuarioXgrupoNew3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/usuario/3/xgrupo/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'UsuarioXgrupoEdit3Controller', resolve: {auth: authentication3Promise}});
+        //--
+        $routeProvider.when('/usuario/3/xcentro/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'UsuarioXcentroPList3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/usuario/3/xcentro/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'UsuarioXcentroNew3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/usuario/3/xcentro/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'UsuarioXcentroEdit3Controller', resolve: {auth: authentication3Promise}});
+        //--
+        $routeProvider.when('/usuario/3/xcentrosanitario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'UsuarioXcentrosanitarioPList3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/usuario/3/xcentrosanitario/newx/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'UsuarioXcentrosanitarioNew3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/usuario/3/xcentrosanitario/editx/:id/:xid', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'UsuarioXcentrosanitarioEdit3Controller', resolve: {auth: authentication3Promise}});        
         //--
         $routeProvider.when('/usuario/4/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'UsuarioView4Controller', resolve: {auth: authentication4Promise}});
         //--
@@ -105,7 +118,11 @@ gesane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/tipousuario/1/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'TipousuarioEdit1Controller', resolve: {auth: authentication1Promise}});
         $routeProvider.when('/tipousuario/1/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'TipousuarioRemove1Controller', resolve: {auth: authentication1Promise}});
         //--
+        $routeProvider.when('/tipousuario/3/plist/:page?/:rpp?', {templateUrl: 'js/system/shared/app/plist.html', controller: 'TipousuarioPList3Controller', resolve: {auth: authentication3Promise}});
         $routeProvider.when('/tipousuario/3/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'TipousuarioView3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/tipousuario/3/new/:id?', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'TipousuarioNew3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/tipousuario/3/edit/:id', {templateUrl: 'js/system/shared/app/newedit.html', controller: 'TipousuarioEdit3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/tipousuario/3/remove/:id', {templateUrl: 'js/system/shared/app/remove.html', controller: 'TipousuarioRemove3Controller', resolve: {auth: authentication3Promise}});
         //--
         $routeProvider.when('/tipousuario/4/view/:id', {templateUrl: 'js/system/shared/app/view.html', controller: 'TipousuarioView4Controller', resolve: {auth: authentication4Promise}});
         //--

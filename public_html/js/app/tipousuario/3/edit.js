@@ -27,21 +27,18 @@
  */
 
 'use strict';
-moduloTipousuario.controller('TipousuarioView3Controller',
-        ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService',
-            function ($scope, $routeParams, serverCallService, $location, sessionService, constantService) {
+moduloTipousuario.controller('TipousuarioEdit3Controller',
+        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
+            function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
                 $scope.ob = "tipousuario";
-                $scope.op = "view";
+                $scope.op = "edit";
                 $scope.profile = 3;
-                //----
-                $scope.onlyview = true;
-                //---
-                $scope.id = $routeParams.id;
-                //---
-                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
+                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
+                //---
+                $scope.id = $routeParams.id;
                 //---
                 serverCallService.getOne($scope.ob, $scope.id).then(function (response) {
                     if (response.status == 200) {
@@ -50,8 +47,6 @@ moduloTipousuario.controller('TipousuarioView3Controller',
                             $scope.bean = response.data.json.data;
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
-
-
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -61,6 +56,24 @@ moduloTipousuario.controller('TipousuarioView3Controller',
                 }).catch(function (data) {
                     $scope.status = "Error en la recepción de datos del servidor";
                 });
+                $scope.save = function () {
+                    var jsonToSend = {json: JSON.stringify(toolService.array_identificarArray($scope.bean))};
+                    serverCallService.set($scope.ob, jsonToSend).then(function (response) {
+                        if (response.status == 200) {
+                            if (response.data.status == 200) {
+                                $scope.response = response;
+                                $scope.status = "El registro con id=" + $scope.id + " se ha modificado.";
+                            } else {
+                                $scope.status = "Error en la recepción de datos del servidor";
+                            }
+                        } else {
+                            $scope.status = "Error en la recepción de datos del servidor";
+                        }
+                    }).catch(function (data) {
+                        $scope.status = "Error en la recepción de datos del servidor";
+                    });
+                    ;
+                };
                 $scope.back = function () {
                     window.history.back();
                 };

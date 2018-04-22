@@ -26,12 +26,14 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloUsuario.controller('UsuarioPList3Controller',
+moduloTipousuario.controller('TipousuarioPList3Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
-                $scope.ob = "usuario";
+                $scope.ob = "tipousuario";
                 $scope.op = "plist";
                 $scope.profile = 3;
+                //----
+                //$scope.onlyview = true;
                 //---
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //----
@@ -42,7 +44,6 @@ moduloUsuario.controller('UsuarioPList3Controller',
                 $scope.orderParams = toolService.checkEmptyString($routeParams.order);
                 $scope.filterParams = toolService.checkEmptyString($routeParams.filter);
                 //---
-                $scope.breadcrumbs = "";
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
                 //---
@@ -85,7 +86,7 @@ moduloUsuario.controller('UsuarioPList3Controller',
                     return true;
                 }
                 $scope.showNewButton = function () {
-                    return true;
+                    return false;
                 }
                 $scope.showEditButton = function (oBean) {
                     return oBean.canUpdate;
@@ -93,12 +94,12 @@ moduloUsuario.controller('UsuarioPList3Controller',
                 $scope.showRemoveButton = function (oBean) {
                     return oBean.canDelete;
                 }
+                $scope.showOtherButton = function (oBean) {
+                    return false;
+                }
                 $scope.goViewURL = function (oBean) {
                     $location.path($scope.ob + "/" + $scope.profile + "/view/" + oBean.id);
                 }
-                $scope.goNewURL = function () {
-                    $location.path($scope.ob + "/" + $scope.profile + "/new");
-                }                
                 $scope.goEditURL = function (oBean) {
                     $location.path($scope.ob + "/" + $scope.profile + "/edit/" + oBean.id);
                 }
@@ -106,52 +107,6 @@ moduloUsuario.controller('UsuarioPList3Controller',
                     $location.path($scope.ob + "/" + $scope.profile + "/remove/" + oBean.id);
                 }
                 //--------------------------------------------------------------
-                $scope.showOtherButton = function (oBean) {
-                    return true;
-                }
-                $scope.includeExtraButtons = function () {
-                    return "js/app/usuario/plistExtraButtons.html"
-                }
-                $scope.showActivateButton = function (oBean) {
-                    if (oBean.activo == 1) {
-                        return false
-                    } else {
-
-                        return true;
-                    }
-                }
-                $scope.showDeactivateButton = function (oBean) {
-                    if (oBean.activo == 1) {
-                        return true
-                    } else {
-
-                        return false;
-                    }
-                }
-                //----                
-                //----------
-                $scope.activate = function (oBean) {
-                    serverCallService.activate(oBean.id).then(function (response) {
-                        if (response.status == 200) {
-                            if (response.data.status == 200) {
-                                getDataFromServer();
-                            }
-                        }
-                    }).catch(function (data) {
-                    });
-                }
-                $scope.deactivate = function (oBean) {
-                    serverCallService.deactivate(oBean.id).then(function (response) {
-                        if (response.status == 200) {
-                            if (response.data.status == 200) {
-                                getDataFromServer();
-                            }
-                        }
-                    }).catch(function (data) {
-                    });
-
-                }
-                //-------------------------------------------------------------- 
                 getDataFromServer();
             }
         ]);

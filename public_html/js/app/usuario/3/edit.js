@@ -1,16 +1,11 @@
 /*
- * Copyright (c) 2017-2018
+ * Copyright (c) 2017 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
  *
- * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
+ * TROLLEYES helps you to learn how to develop easily AJAX web applications
  *
- * GESANE: Free Open Source Health Management System
+ * Sources at https://github.com/rafaelaznar/gesane-client
  *
- * Sources at:
- *                            https://github.com/rafaelaznar/gesane-server
- *                            https://github.com/rafaelaznar/gesane-client
- *                            https://github.com/rafaelaznar/gesane-database
- *
- * GESANE is distributed under the MIT License (MIT)
+ * TROLLEYES is distributed under the MIT License (MIT)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,6 +25,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 'use strict';
 moduloUsuario.controller('UsuarioEdit3Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
@@ -37,9 +33,6 @@ moduloUsuario.controller('UsuarioEdit3Controller',
                 $scope.ob = "usuario";
                 $scope.op = "edit";
                 $scope.profile = 3;
-                //---
-                $scope.xob = "usuario";
-                $scope.xid = $routeParams.id;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();

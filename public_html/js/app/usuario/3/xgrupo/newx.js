@@ -27,17 +27,32 @@
  */
 'use strict';
 
-moduloUsuario.controller('UsuarioNew3Controller',
+moduloUsuario.controller('UsuarioXgrupoNew3Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
                 $scope.ob = "usuario";
-                $scope.op = "new";
+                $scope.op = "newx";
                 $scope.profile = 3;
+                //---
+                $scope.xob = "grupo";
+                $scope.xid = $routeParams.id;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
-                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
+                if ($scope.xob && $scope.xid) {
+                    $scope.linkedbean = null;
+                    serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
+                        if (response.status == 200) {
+                            if (response.data.status == 200) {
+                                $scope.linkedbean = response.data.json;
+                                $scope.breadcrumbs = toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
+                            }
+                        }
+                    }).catch(function (data) {
+                    });
+                }
+                ;
                 serverCallService.getMeta($scope.ob).then(function (response) {
                     if (response.status == 200) {
                         if (response.data.status == 200) {
@@ -48,7 +63,11 @@ moduloUsuario.controller('UsuarioNew3Controller',
                                 if (property.Type == 'ForeignObject') {
                                     $scope.bean[property.Name] = {};
                                     $scope.bean[property.Name].data = {};
-                                    $scope.bean[property.Name].data.id = null;
+                                    if (property.Name == 'obj_' + $scope.xob) {
+                                        $scope.bean[property.Name].data.id = $scope.xid;
+                                    } else {
+                                        $scope.bean[property.Name].data.id = null;
+                                    }
                                 }
                             });
                             //--

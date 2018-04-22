@@ -26,14 +26,17 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloUsuario.controller('UsuarioPList3Controller',
+moduloUsuario.controller('UsuarioXcentrosanitarioPList3Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
                 $scope.ob = "usuario";
-                $scope.op = "plist";
+                $scope.op = "plistx";
                 $scope.profile = 3;
-                //---
-                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
+                //----
+                $scope.xob = "centrosanitario";
+                $scope.xid = $routeParams.id;
+                //----
+                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op + $scope.xob + '/' + $scope.xid;
                 //----
                 $scope.numpage = toolService.checkDefault(1, $routeParams.page);
                 $scope.rpp = toolService.checkDefault(10, $routeParams.rpp);
@@ -42,19 +45,31 @@ moduloUsuario.controller('UsuarioPList3Controller',
                 $scope.orderParams = toolService.checkEmptyString($routeParams.order);
                 $scope.filterParams = toolService.checkEmptyString($routeParams.filter);
                 //---
-                $scope.breadcrumbs = "";
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
                 //---
                 function getDataFromServer() {
-                    serverCallService.getCount($scope.ob, $scope.filterParams).then(function (response) {
+                    if ($scope.xob && $scope.xid) {
+                        $scope.linkedbean = null;
+                        serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
+                            if (response.status == 200) {
+                                if (response.data.status == 200) {
+                                    $scope.linkedbean = response.data.json;
+                                    $scope.breadcrumbs = toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
+                                }
+                            }
+                        }).catch(function (data) {
+                        });
+                    }
+                    ;
+                    serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
                         if (response.status == 200) {
                             $scope.registers = response.data.json;
                             $scope.pages = toolService.calculatePages($scope.rpp, $scope.registers);
                             if ($scope.numpage > $scope.pages) {
                                 $scope.numpage = $scope.pages;
                             }
-                            return serverCallService.getPage($scope.ob, $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order);
+                            return serverCallService.getPageX($scope.ob, $scope.xob, $scope.xid, $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order);
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -63,6 +78,7 @@ moduloUsuario.controller('UsuarioPList3Controller',
                             $scope.page = response.data.json.data;
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
+                            toolService.hideField($scope.metap, "obj_" + $scope.xob);
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -70,6 +86,7 @@ moduloUsuario.controller('UsuarioPList3Controller',
                         $scope.status = "Error en la recepción de datos del servidor";
                     });
                 }
+                //---                
                 $scope.doorder = function (orderField, ascDesc) {
                     $location.url($scope.url + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', $scope.filterParams).search('order', orderField + ',' + ascDesc);
                     return false;
@@ -94,16 +111,16 @@ moduloUsuario.controller('UsuarioPList3Controller',
                     return oBean.canDelete;
                 }
                 $scope.goViewURL = function (oBean) {
-                    $location.path($scope.ob + "/" + $scope.profile + "/view/" + oBean.id);
+                    $location.path("usuario/" + $scope.profile + "/view/" + oBean.id);
                 }
                 $scope.goNewURL = function () {
-                    $location.path($scope.ob + "/" + $scope.profile + "/new");
+                    $location.path($scope.ob + "/" + $scope.profile + "/x" + $scope.xob + "/newx/" + $scope.xid);
                 }                
                 $scope.goEditURL = function (oBean) {
-                    $location.path($scope.ob + "/" + $scope.profile + "/edit/" + oBean.id);
+                    $location.path("usuario/" + $scope.profile + "/x" + $scope.xob + "/editx/" + oBean.id + "/" + $scope.xid);
                 }
                 $scope.goRemoveURL = function (oBean) {
-                    $location.path($scope.ob + "/" + $scope.profile + "/remove/" + oBean.id);
+                    $location.path("usuario/" + $scope.profile + "/remove/" + oBean.id);
                 }
                 //--------------------------------------------------------------
                 $scope.showOtherButton = function (oBean) {
@@ -112,24 +129,13 @@ moduloUsuario.controller('UsuarioPList3Controller',
                 $scope.includeExtraButtons = function () {
                     return "js/app/usuario/plistExtraButtons.html"
                 }
+                //----------
                 $scope.showActivateButton = function (oBean) {
-                    if (oBean.activo == 1) {
-                        return false
-                    } else {
-
-                        return true;
-                    }
+                    return true;
                 }
                 $scope.showDeactivateButton = function (oBean) {
-                    if (oBean.activo == 1) {
-                        return true
-                    } else {
-
-                        return false;
-                    }
+                    return true;
                 }
-                //----                
-                //----------
                 $scope.activate = function (oBean) {
                     serverCallService.activate(oBean.id).then(function (response) {
                         if (response.status == 200) {
@@ -151,7 +157,7 @@ moduloUsuario.controller('UsuarioPList3Controller',
                     });
 
                 }
-                //-------------------------------------------------------------- 
+                //--------------------------------------------------------------                 
                 getDataFromServer();
             }
         ]);

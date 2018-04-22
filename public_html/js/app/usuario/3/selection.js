@@ -1,27 +1,21 @@
-/*
- * Copyright (c) 2017-2018 
- *
- * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
+/* 
+ * Copyright (c) 2015 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
  * 
- * GESANE: Free Open Source Health Management System
- *
- * Sources at:
- *                            https://github.com/rafaelaznar/gesane-server
- *                            https://github.com/rafaelaznar/gesane-client
- *                            https://github.com/rafaelaznar/gesane-database
- *
- * GESANE is distributed under the MIT License (MIT)
- *
+ * sisane: The stunning micro-library that helps you to develop easily 
+ *             AJAX web applications by using Angular.js 1.x & sisane-server
+ * sisane is distributed under the MIT License (MIT)
+ * Sources at https://github.com/rafaelaznar/
+ * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -29,6 +23,7 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
+ * 
  */
 
 'use strict';
@@ -38,12 +33,11 @@ moduloUsuario.controller('UsuarioSelection3Controller',
             function ($scope, $modalInstance, serverCallService, $location, toolService) {
                 $scope.ob = 'usuario';
                 $scope.op = "selection";
+                $scope.profile = 3;                
                 //---
                 $scope.numpage = 1;
                 $scope.rpp = 10;
                 $scope.neighbourhood = 1;
-                $scope.onlyview = true;
-
                 //---
                 $scope.status = null;
                 $scope.debugging = true;
@@ -55,8 +49,10 @@ moduloUsuario.controller('UsuarioSelection3Controller',
                 $scope.visibles.id = true;
                 $scope.visibles.descripcion = true;
 
-                $scope.filterString = [{'name': 'descripcion', 'longname': 'Descripción'}];
-                $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'}];
+                $scope.filterString = [{'name': 'nombre', 'longname': 'Nombre'}, {'name': 'primer_apellido', 'longname': 'Primer Apellido'}, {'name': 'segundo_apellido', 'longname': 'Segundo Apellido'}, {'name': 'email', 'longname': 'Email'}, {'name': 'token', 'longname': 'Token'}];
+                $scope.filterNumber = [{'name': 'id', 'longname': 'Identificador'}, {'name': 'id_tipousuario', 'longname': 'Identificador Tipo Usuario'}, {'name': 'id_grupo', 'longname': 'Identificador de Grupo'}, {'name': 'id_centro', 'longname': 'Identificador Centro'}, {'name': 'id_centrosanitario', 'longname': 'Identificador Centro Sanitario'}];
+                $scope.filterDate = [{'name': 'fecha_alta', 'longname': 'Fecha Alta'}];
+
 
                 $scope.closeForm = function (id) {
                     $modalInstance.close(id);
