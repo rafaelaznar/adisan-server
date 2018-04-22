@@ -42,6 +42,7 @@ public class EnumHelper {
     public static enum FieldType {
         Id,
         String,
+        LongText,
         Integer,
         Decimal,
         Date,
