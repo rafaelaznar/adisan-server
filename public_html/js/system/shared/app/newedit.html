@@ -40,7 +40,7 @@
                         <div class="row" ng-if="breadcrumbs">
                             <div class="col-xs-12">
                                 <div class="alert alert-info" role="alert">
-                                    <p ng-bind-html="breadcrumbs|trusted"></p>                                    
+                                    <p ng-bind-html="breadcrumbs | trusted"></p>                                    
                                 </div>
                             </div>
                         </div>
@@ -88,6 +88,36 @@
                                                maxlength="{{oMetap.MaxLength}}"
                                                ng-required="oMetap.IsRequired"
                                                />
+                                        <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.required">El campo es obligatorio</span>
+                                        <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.pattern">El campo no tiene formato adecuado: Introduzca {{oMetap.RegexHelp}}</span>
+                                    </div>
+                                    <div class="control col-md-1 alert alert-success" ng-if="debugging == 2">
+                                        pristine:{{outerForm[oMetap.Name].$pristine}}<br>
+                                        required:{{outerForm[oMetap.Name].$error.required}}<br>
+                                        valid:{{outerForm[oMetap.Name].$valid}}<br>
+                                    </div>
+                                </div>
+                                <!-- longtext ------------------------------------------------>
+                                <div ng-if="oMetap.Type == 'LongText'" class="form-group" id="{{oMetap.Name}}-group"
+                                     ng-class="{'has-error':(outerForm[oMetap.Name].$error.pattern && !outerForm.$pristine) ||
+                                                             (outerForm[oMetap.Name].$error.required && !outerForm.$pristine)}">
+                                    <label class="control-label col-sm-2" for="{{oMetap.Name}}">
+                                        <span ng-if="oMetap.IsRequired">*</span>
+                                        {{oMetap.LongName}}
+                                    </label>
+                                    <div class="control">
+                                        <textarea 
+                                            style="width: 70%"
+                                            rows="8"
+                                            class="form-control rounded-0"
+                                            id="{{oMetap.Name}}"
+                                            name="{{oMetap.Name}}"
+                                            ng-model="bean[oMetap.Name]"
+                                            ng-pattern="oMetap.RegexPattern"
+                                            placeholder="{{oMetap.Description}}"
+                                            maxlength="{{oMetap.MaxLength}}"
+                                            ng-required="oMetap.IsRequired"
+                                            />
                                         <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.required">El campo es obligatorio</span>
                                         <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.pattern">El campo no tiene formato adecuado: Introduzca {{oMetap.RegexHelp}}</span>
                                     </div>

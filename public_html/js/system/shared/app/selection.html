@@ -203,6 +203,7 @@ THE SOFTWARE.
                                     <div ng-if="oMetap.IsVisible && oMetap.Type == 'Decimal'" class="text-center">{{oBean[oMetap.Name]}}</div>
                                     <div ng-if="oMetap.IsVisible && oMetap.Type == 'String'" class="text-left">{{oBean[oMetap.Name]|clipString}}</div>
                                     <div ng-if="oMetap.IsVisible && oMetap.Type == 'Calculated'" class="text-left">{{oBean[oMetap.Name]|clipString}}</div>
+                                    <div ng-if="oMetap.IsVisible && oMetap.Type == 'Calculated'" class="text-left">{{oBean[oMetap.Name]|clipString}}</div>
                                     <div ng-if="oMetap.IsVisible && oMetap.Type == 'Boolean'" class="text-center" ng-bind-html="oBean[oMetap.Name] | booleanizate"></div>                                                        
                                     <div ng-if="oMetap.IsVisible && oMetap.Type == 'ForeignObject'" class="text-left">
                                         <span class="{{oBean[oMetap.Name].metaObject.Icon}}"></span>
