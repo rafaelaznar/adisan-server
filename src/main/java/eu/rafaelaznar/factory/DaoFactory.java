@@ -608,7 +608,7 @@ public class DaoFactory {
                     MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_tipousuario();
                     TipousuarioSpecificBeanImplementation oTipoUsuario = (TipousuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
                     Integer idTipousuario = oTipoUsuario.getId();
-                    if (idTipousuario == 1) {
+                    if (idTipousuario == 1 || idTipousuario == 3) {
                         oDao = (DaoInterface) new NombremasculinoSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
                     }
                 }
@@ -620,7 +620,7 @@ public class DaoFactory {
                     MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_tipousuario();
                     TipousuarioSpecificBeanImplementation oTipoUsuario = (TipousuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
                     Integer idTipousuario = oTipoUsuario.getId();
-                    if (idTipousuario == 1) {
+                    if (idTipousuario == 1 || idTipousuario == 3) {
                         oDao = (DaoInterface) new NombrefemeninoSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
                     }
                 }
@@ -632,7 +632,7 @@ public class DaoFactory {
                     MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_tipousuario();
                     TipousuarioSpecificBeanImplementation oTipoUsuario = (TipousuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
                     Integer idTipousuario = oTipoUsuario.getId();
-                    if (idTipousuario == 1) {
+                    if (idTipousuario == 1 || idTipousuario == 3) {
                         oDao = (DaoInterface) new ApellidoSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
                     }
                 }
@@ -644,7 +644,7 @@ public class DaoFactory {
                     MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_tipousuario();
                     TipousuarioSpecificBeanImplementation oTipoUsuario = (TipousuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
                     Integer idTipousuario = oTipoUsuario.getId();
-                    if (idTipousuario == 1) {
+                    if (idTipousuario == 1 || idTipousuario == 3) {
                         oDao = (DaoInterface) new MunicipioSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
                     }
                 }
@@ -656,7 +656,7 @@ public class DaoFactory {
                     MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_tipousuario();
                     TipousuarioSpecificBeanImplementation oTipoUsuario = (TipousuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
                     Integer idTipousuario = oTipoUsuario.getId();
-                    if (idTipousuario == 1) {
+                    if (idTipousuario == 1 || idTipousuario == 3) {
                         oDao = (DaoInterface) new ViaSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
                     }
                 }
@@ -668,7 +668,7 @@ public class DaoFactory {
                     MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_tipousuario();
                     TipousuarioSpecificBeanImplementation oTipoUsuario = (TipousuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
                     Integer idTipousuario = oTipoUsuario.getId();
-                    if (idTipousuario == 1) {
+                    if (idTipousuario == 1 || idTipousuario == 3) {
                         oDao = (DaoInterface) new ProvinciaSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
                     }
                 }
@@ -680,7 +680,7 @@ public class DaoFactory {
                     MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_tipousuario();
                     TipousuarioSpecificBeanImplementation oTipoUsuario = (TipousuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
                     Integer idTipousuario = oTipoUsuario.getId();
-                    if (idTipousuario == 1) {
+                    if (idTipousuario == 1 || idTipousuario == 3) {
                         oDao = (DaoInterface) new ComunidadSpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
                     }
                 }
