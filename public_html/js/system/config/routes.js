@@ -78,8 +78,33 @@ gesane.config(['$routeProvider', function ($routeProvider) {
         //-- subepisodio
         //--
         $routeProvider.when('/subepisodio/1/episodio/plist/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'SubepisodioXepisodioPList1Controller', resolve: {auth: authentication1Promise}});
+        //-- 3 PROFILE ---------------------------------------------------------
         //--
-        //-- generic
+        //-- usuario
+        //--
+        $routeProvider.when('/usuario/3/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'UsuarioPList3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/usuario/3/tipousuario/plist/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'UsuarioXtipousuarioPList3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/usuario/3/grupo/plist/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'UsuarioXgrupoPList3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/usuario/3/centro/plist/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'UsuarioXcentroPList3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/usuario/3/centrosanitario/plist/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'UsuarioXcentrosanitarioPList3Controller', resolve: {auth: authentication3Promise}});
+        //--
+        //-- paciente
+        //--
+        $routeProvider.when('/paciente/3/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'PacientePList3Controller', resolve: {auth: authentication3Promise}});
+        //--
+        //-- subepisodio
+        //--
+        $routeProvider.when('/subepisodio/3/episodio/plist/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'SubepisodioXepisodioPList3Controller', resolve: {auth: authentication3Promise}});
+        //-- 4 PROFILE ---------------------------------------------------------       
+        //-- subepisodio
+        //--
+        $routeProvider.when('/subepisodio/4/episodio/plist/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'SubepisodioXepisodioPList4Controller', resolve: {auth: authentication4Promise}});
+        //-- 5 PROFILE ---------------------------------------------------------
+        //-- subepisodio
+        //--
+        $routeProvider.when('/subepisodio/5/episodio/plist/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'SubepisodioXepisodioPList5Controller', resolve: {auth: authentication5Promise}});
+        //--
+        //-- generic 1
         //--
         $routeProvider.when('/:ob/1/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'plistGenericController1', resolve: {auth: authentication1Promise}});
         $routeProvider.when('/:ob/1/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'viewGenericController1', resolve: {auth: authentication1Promise}});
@@ -90,6 +115,42 @@ gesane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/:ob/1/:xob/plist/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'plistXGeneric1Controller', resolve: {auth: authentication1Promise}});
         $routeProvider.when('/:ob/1/:xob/new/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'newXGeneric1Controller', resolve: {auth: authentication1Promise}});
         $routeProvider.when('/:ob/1/:xob/edit/:id/:xid', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'editXGeneric1Controller', resolve: {auth: authentication1Promise}});
+        //--
+        //-- generic 3
+        //--
+        $routeProvider.when('/:ob/3/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'plistGenericController3', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/:ob/3/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'viewGenericController3', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/:ob/3/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'newGenericController3', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/:ob/3/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'editGenericController3', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/:ob/3/remove/:id', {templateUrl: 'js/system/generic/template/remove.html', controller: 'removeGenericController3', resolve: {auth: authentication3Promise}});
+        //--
+        $routeProvider.when('/:ob/3/:xob/plist/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'plistXGeneric3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/:ob/3/:xob/new/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'newXGeneric3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/:ob/3/:xob/edit/:id/:xid', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'editXGeneric3Controller', resolve: {auth: authentication3Promise}});
+        //--
+        //-- generic 4
+        //--
+        $routeProvider.when('/:ob/4/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'plistGenericController4', resolve: {auth: authentication4Promise}});
+        $routeProvider.when('/:ob/4/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'viewGenericController4', resolve: {auth: authentication4Promise}});
+        $routeProvider.when('/:ob/4/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'newGenericController4', resolve: {auth: authentication4Promise}});
+        $routeProvider.when('/:ob/4/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'editGenericController4', resolve: {auth: authentication4Promise}});
+        $routeProvider.when('/:ob/4/remove/:id', {templateUrl: 'js/system/generic/template/remove.html', controller: 'removeGenericController4', resolve: {auth: authentication4Promise}});
+        //--
+        $routeProvider.when('/:ob/4/:xob/plist/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'plistXGeneric4Controller', resolve: {auth: authentication4Promise}});
+        $routeProvider.when('/:ob/4/:xob/new/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'newXGeneric4Controller', resolve: {auth: authentication4Promise}});
+        $routeProvider.when('/:ob/4/:xob/edit/:id/:xid', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'editXGeneric4Controller', resolve: {auth: authentication4Promise}});
+        //--
+        //-- generic 5
+        //--
+        $routeProvider.when('/:ob/5/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'plistGenericController5', resolve: {auth: authentication5Promise}});
+        $routeProvider.when('/:ob/5/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'viewGenericController5', resolve: {auth: authentication5Promise}});
+        $routeProvider.when('/:ob/5/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'newGenericController5', resolve: {auth: authentication5Promise}});
+        $routeProvider.when('/:ob/5/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'editGenericController5', resolve: {auth: authentication5Promise}});
+        $routeProvider.when('/:ob/5/remove/:id', {templateUrl: 'js/system/generic/template/remove.html', controller: 'removeGenericController5', resolve: {auth: authentication5Promise}});
+        //--
+        $routeProvider.when('/:ob/5/:xob/plist/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'plistXGeneric5Controller', resolve: {auth: authentication5Promise}});
+        $routeProvider.when('/:ob/5/:xob/new/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'newXGeneric5Controller', resolve: {auth: authentication5Promise}});
+        $routeProvider.when('/:ob/5/:xob/edit/:id/:xid', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'editXGeneric5Controller', resolve: {auth: authentication5Promise}});
 
 
 

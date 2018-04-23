@@ -26,8 +26,13 @@ function foreignkeyController1(toolService, serverCallService, $uibModal) {
             //templateUrl: 'js/app/' + self.reference + '/' + self.profile + '/selection.html',
             templateUrl: 'js/system/generic/template/selection.html',
             //controller: toolService.capitalizeWord(self.reference) + "Selection" + self.profile + "Controller",
-            controller: 'selectionGenericController1', //the controller name should be a biding in the component
-            size: 'lg'
+            controller: 'selectionGenericController', //the controller name should be a biding in the component
+            size: 'lg',
+            resolve: {
+                ob: function () {
+                    return self.reference
+                }
+            }
         }).result.then(function (modalResult) {
             self.bean.id = modalResult;
             self.change_value();

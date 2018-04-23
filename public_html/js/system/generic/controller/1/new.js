@@ -30,7 +30,7 @@
 genericModule.controller('newGenericController1',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
-                $scope.ob = "paciente";
+                $scope.ob = $routeParams.ob;
                 $scope.op = "new";
                 $scope.profile = 1;
                 //---

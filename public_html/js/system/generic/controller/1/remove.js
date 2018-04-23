@@ -31,7 +31,7 @@
 genericModule.controller('removeGenericController1',
         ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService',
             function ($scope, $routeParams, serverCallService, $location, sessionService, constantService) {
-                $scope.ob = "paciente";
+                $scope.ob = $routeParams.ob;
                 $scope.op = "remove";
                 $scope.profile = 1;
                 //---

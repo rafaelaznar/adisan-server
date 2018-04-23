@@ -28,12 +28,12 @@
 
 'use strict';
 
-genericModule.controller('selectionGenericController1',
-        ['$scope', '$uibModalInstance', 'serverCallService', '$location', 'toolService',
-            function ($scope, $modalInstance, serverCallService, $location, toolService) {
-                $scope.ob = 'paciente';
+genericModule.controller('selectionGenericController',
+        ['ob', '$scope', '$uibModalInstance', 'serverCallService', '$location', 'toolService',
+            function (ob, $scope, $modalInstance, serverCallService, $location, toolService) {
+                $scope.ob = ob;
                 $scope.op = "selection";
-                $scope.profile = 1;                
+                $scope.profile = 1;
                 //---
                 $scope.numpage = 1;
                 $scope.rpp = 10;

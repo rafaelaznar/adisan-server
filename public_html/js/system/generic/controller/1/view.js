@@ -29,7 +29,7 @@
 genericModule.controller('viewGenericController1',
         ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService',
             function ($scope, $routeParams, serverCallService, $location, sessionService, constantService) {
-                $scope.ob = "paciente";
+                $scope.ob = $routeParams.ob;
                 $scope.op = "view";
                 $scope.profile = 1;
                 //---

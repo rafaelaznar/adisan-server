@@ -27,18 +27,20 @@
  */
 
 'use strict';
-genericModule.controller('editGenericController1',
-        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
-            function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
+
+genericModule.controller('removeGenericController4',
+        ['$scope', '$routeParams', 'serverCallService', '$location', 'sessionService', 'constantService',
+            function ($scope, $routeParams, serverCallService, $location, sessionService, constantService) {
                 $scope.ob = $routeParams.ob;
-                $scope.op = "edit";
-                $scope.profile = 1;
+                $scope.op = "remove";
+                $scope.profile = 4;
+                //---
+                $scope.id = $routeParams.id;
+                //---
+                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
-                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
-                //---
-                $scope.id = $routeParams.id;
                 //---
                 serverCallService.getOne($scope.ob, $scope.id).then(function (response) {
                     if (response.status == 200) {
@@ -56,13 +58,15 @@ genericModule.controller('editGenericController1',
                 }).catch(function (data) {
                     $scope.status = "Error en la recepción de datos del servidor";
                 });
-                $scope.save = function () {
-                    var jsonToSend = {json: JSON.stringify(toolService.array_identificarArray($scope.bean))};
-                    serverCallService.set($scope.ob, jsonToSend).then(function (response) {
+                $scope.remove = function () {
+                    serverCallService.remove($scope.ob, $scope.id).then(function (response) {
                         if (response.status == 200) {
                             if (response.data.status == 200) {
-                                $scope.response = response;
-                                $scope.status = "El registro con id=" + $scope.id + " se ha modificado.";
+                                if (response.data.json == 1) {
+                                    $scope.status = "El registro con id=" + $scope.id + " se ha eliminado.";
+                                } else {
+                                    $scope.status = "Error en el borrado de datos del servidor";
+                                }
                             } else {
                                 $scope.status = "Error en la recepción de datos del servidor";
                             }
@@ -72,13 +76,11 @@ genericModule.controller('editGenericController1',
                     }).catch(function (data) {
                         $scope.status = "Error en la recepción de datos del servidor";
                     });
-                    ;
-                };
+                }
                 $scope.back = function () {
                     window.history.back();
                 };
                 $scope.close = function () {
                     $location.path('/home');
                 };
-            }
-        ]);
+            }]);

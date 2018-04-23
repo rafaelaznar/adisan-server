@@ -25,28 +25,55 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 'use strict';
-genericModule.controller('editGenericController1',
-        ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
-            function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
+
+genericModule.controller('newXGeneric4Controller',
+        ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
+            function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
                 $scope.ob = $routeParams.ob;
-                $scope.op = "edit";
-                $scope.profile = 1;
+                $scope.op = "newx";
+                $scope.profile = 4;
+                //---
+                $scope.xob = $routeParams.xob;
+                $scope.xid = $routeParams.id;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
-                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //---
-                $scope.id = $routeParams.id;
-                //---
-                serverCallService.getOne($scope.ob, $scope.id).then(function (response) {
+                if ($scope.xob && $scope.xid) {
+                    $scope.linkedbean = null;
+                    serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
+                        if (response.status == 200) {
+                            if (response.data.status == 200) {
+                                $scope.linkedbean = response.data.json;
+                                $scope.breadcrumbs = toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
+                            }
+                        }
+                    }).catch(function (data) {
+                    });
+                }
+                ;
+                serverCallService.getMeta($scope.ob).then(function (response) {
                     if (response.status == 200) {
                         if (response.data.status == 200) {
                             $scope.status = null;
-                            $scope.bean = response.data.json.data;
+                            //--For every foreign key create obj inside bean tobe filled...
+                            $scope.bean = {};
+                            response.data.json.metaProperties.forEach(function (property) {
+                                if (property.Type == 'ForeignObject') {
+                                    $scope.bean[property.Name] = {};
+                                    $scope.bean[property.Name].data = {};
+                                    if (property.Name == 'obj_' + $scope.xob) {
+                                        $scope.bean[property.Name].data.id = $scope.xid;
+                                    } else {
+                                        $scope.bean[property.Name].data.id = null;
+                                    }
+                                }
+                            });
+                            //--
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
+
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -56,13 +83,15 @@ genericModule.controller('editGenericController1',
                 }).catch(function (data) {
                     $scope.status = "Error en la recepción de datos del servidor";
                 });
+                //--
                 $scope.save = function () {
                     var jsonToSend = {json: JSON.stringify(toolService.array_identificarArray($scope.bean))};
                     serverCallService.set($scope.ob, jsonToSend).then(function (response) {
                         if (response.status == 200) {
                             if (response.data.status == 200) {
                                 $scope.response = response;
-                                $scope.status = "El registro con id=" + $scope.id + " se ha modificado.";
+                                $scope.status = "El registro se ha creado con id=" + response.data.json;
+                                $scope.bean.id = response.data.json;
                             } else {
                                 $scope.status = "Error en la recepción de datos del servidor";
                             }
@@ -82,3 +111,4 @@ genericModule.controller('editGenericController1',
                 };
             }
         ]);
+

@@ -27,12 +27,12 @@
  */
 
 'use strict';
-genericModule.controller('editGenericController1',
+genericModule.controller('editGenericController4',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
                 $scope.ob = $routeParams.ob;
                 $scope.op = "edit";
-                $scope.profile = 1;
+                $scope.profile = 4;
                 //---
                 $scope.status = null;
                 $scope.debugging = constantService.debugging();
