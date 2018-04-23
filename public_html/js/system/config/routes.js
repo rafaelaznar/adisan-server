@@ -57,6 +57,28 @@ gesane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/home', {templateUrl: 'js/system/shared/home.html', controller: 'HomeController', resolve: {auth: anyAuthenticationPromise}});
         $routeProvider.when('/license', {templateUrl: 'js/system/shared/license.html', controller: 'LicenseController', resolve: {auth: anyAuthenticationPromise}});
         $routeProvider.when('/passchange', {templateUrl: 'js/system/shared/passchange.html', controller: 'PasschangeController', resolve: {auth: anyAuthenticationPromise}});
+
+
+
+
+
+//        $routeProvider.when('/:ob/1/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/templates/plist.html', controller: 'UsuarioPList1Controller', resolve: {auth: authentication1Promise}});
+//        $routeProvider.when('/:ob/1/view/:id', {templateUrl: 'js/system/generic/templates/view.html', controller: 'UsuarioView1Controller', resolve: {auth: authentication1Promise}});
+//        $routeProvider.when('/:ob/1/new/:id?', {templateUrl: 'js/system/generic/templates/newedit.html', controller: 'UsuarioNew1Controller', resolve: {auth: authentication1Promise}});
+//        $routeProvider.when('/:ob/1/edit/:id', {templateUrl: 'js/system/generic/templates/newedit.html', controller: 'UsuarioEdit1Controller', resolve: {auth: authentication1Promise}});
+//        $routeProvider.when('/:ob/1/remove/:id', {templateUrl: 'js/system/generic/templates/remove.html', controller: 'UsuarioRemove1Controller', resolve: {auth: authentication1Promise}});
+//        //--
+//        $routeProvider.when('/:ob/1/:xob/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/templates/plist.html', controller: 'UsuarioXtipousuarioPList1Controller', resolve: {auth: authentication1Promise}});
+//        $routeProvider.when('/:ob/1/:xob/newx/:id', {templateUrl: 'js/system/generic/templates/newedit.html', controller: 'UsuarioXtipousuarioNew1Controller', resolve: {auth: authentication1Promise}});
+//        $routeProvider.when('/:ob/1/:xob/editx/:id/:xid', {templateUrl: 'js/system/generic/templates/newedit.html', controller: 'UsuarioXtipousuarioEdit1Controller', resolve: {auth: authentication1Promise}});
+
+
+
+
+
+
+
+
         //--
         //-- usuario
         //--
