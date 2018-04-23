@@ -24,7 +24,7 @@ function foreignkeyController1(toolService, serverCallService, $uibModal) {
     self.chooseOne = function () {
         var modalInstance = $uibModal.open({
             //templateUrl: 'js/app/' + self.reference + '/' + self.profile + '/selection.html',
-            templateUrl: 'js/system/shared/app/selection.html',
+            templateUrl: 'js/system/generic/template/selection.html',
             controller: toolService.capitalizeWord(self.reference) + "Selection" + self.profile + "Controller",
             size: 'lg'
         }).result.then(function (modalResult) {
