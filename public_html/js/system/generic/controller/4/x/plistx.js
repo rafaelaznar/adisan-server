@@ -36,7 +36,7 @@ genericModule.controller('plistXGeneric4Controller',
                 $scope.xob = $routeParams.xob;
                 $scope.xid = $routeParams.id;
                 //----
-                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.xob +'/'+ $scope.op + '/' + $scope.xid;
+                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.xob + '/' + $scope.op + '/' + $scope.xid;
                 //----
                 $scope.numpage = toolService.checkDefault(1, $routeParams.page);
                 $scope.rpp = toolService.checkDefault(10, $routeParams.rpp);
@@ -111,23 +111,23 @@ genericModule.controller('plistXGeneric4Controller',
                     return oBean.canDelete;
                 }
                 $scope.goViewURL = function (oBean) {
-                    $location.path("usuario/" + $scope.profile + "/view/" + oBean.id);
+                    $location.path($scope.ob + "/" + $scope.profile + "/view/" + oBean.id);
                 }
                 $scope.goNewURL = function () {
-                    $location.path($scope.ob + "/" + $scope.profile + "/x" + $scope.xob + "/newx/" + $scope.xid);
+                    $location.path($scope.ob + "/" + $scope.profile + "/" + $scope.xob + "/new/" + $scope.xid);
                 }
                 $scope.goEditURL = function (oBean) {
-                    $location.path($scope.ob + "/" + $scope.profile + "/x" + $scope.xob + "/editx/" + oBean.id + "/" + $scope.xid);
+                    $location.path($scope.ob + "/" + $scope.profile + "/" + $scope.xob + "/edit/" + oBean.id + "/" + $scope.xid);
                 }
                 $scope.goRemoveURL = function (oBean) {
                     $location.path($scope.ob + "/" + $scope.profile + "/remove/" + oBean.id);
                 }
                 //--------------------------------------------------------------
                 $scope.showOtherButton = function (oBean) {
-                    return true;
+                    return false;
                 }
                 $scope.includeExtraButtons = function () {
-                    return "js/app/usuario/plistExtraButtons.html"
+                    return ""
                 }
                 //----------
                 $scope.showActivateButton = function (oBean) {
