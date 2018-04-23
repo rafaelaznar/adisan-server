@@ -38,6 +38,7 @@ var gesane = angular.module('myApp', [
     'Services',
     'Directives',
     'systemControllers',
+    'genericControllers',
     'usuarioControllers',
     'tipousuarioControllers',
     'pedidoControllers',
@@ -74,6 +75,7 @@ var moduloDirectivas = angular.module('Directives', []);
 var moduloServicios = angular.module('Services', []);
 var moduloFiltros = angular.module('Filters', []);
 //-------------
+var genericModule = angular.module('genericControllers', []);
 var moduloUsuario = angular.module('usuarioControllers', []);
 var moduloTipousuario = angular.module('tipousuarioControllers', []);
 var moduloPedido = angular.module('pedidoControllers', []);
@@ -97,14 +99,12 @@ var moduloModalidadepisodio = angular.module('modalidadepisodioControllers', [])
 var moduloServicio = angular.module('servicioControllers', []);
 //------------
 var moduloTipodependencia = angular.module('tipodependeciaControllers', []);
-var moduloGrupo= angular.module('grupoControllers', []);
-var moduloCurso= angular.module('cursoControllers', []);
-var moduloPaciente = angular.module('pacienteControllers', []);
-var moduloCentro= angular.module('centroControllers', []);
-var moduloCentrosanitario= angular.module('centrosanitarioControllers', []);
-var moduloCategoriaprofesional= angular.module('categoriaprofesionalControllers', []);
-var moduloDependencia = angular.module('dependenciaControllers', []);
-var moduloUsuario = angular.module('usuarioControllers', []);
+var moduloGrupo = angular.module('grupoControllers', []);
+var moduloCurso = angular.module('cursoControllers', []);
+var moduloCentro = angular.module('centroControllers', []);
+var moduloCentrosanitario = angular.module('centrosanitarioControllers', []);
+var moduloCategoriaprofesional = angular.module('categoriaprofesionalControllers', []);
+
 
 
 
