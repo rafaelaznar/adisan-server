@@ -168,7 +168,7 @@ public abstract class GenericBeanImplementation implements GenericBeanInterface 
                                 }
                             } else {
                                 String ob = getReferencesFromPropertyMetaData(oField);
-                                TraceHelper.trace("Filling ForeignObject field=" + ob + "EoFieldpansion Limit Found!");
+                                TraceHelper.trace("Filling ForeignObject field=" + ob + " Field Expansion Limit Found!");
                             }
                         } else {
                             if (getTypeFromPropertyMetaData(oField) == FieldType.Link) {

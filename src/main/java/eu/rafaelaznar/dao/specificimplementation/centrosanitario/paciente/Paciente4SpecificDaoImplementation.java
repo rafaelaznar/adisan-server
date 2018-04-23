@@ -125,9 +125,29 @@ public class Paciente4SpecificDaoImplementation extends GenericDaoImplementation
         return true;
     }
 
+    private boolean pacienteIsMine(Integer idPaciente) throws Exception {
+        String strSQLini = "SELECT COUNT(*) "
+                + " paciente p, usuario u, grupo g, usuario u2 "
+                + " WHERE "
+                + " p.id_usuario = u.id "
+                + " AND u.id_tipousuario = 4 "
+                + " AND u.id_grupo = g.id "
+                + " AND g.id_usuario = u2.id "
+                + " AND u2.id_centrosanitario= " + idCentrosanitario
+                + " AND p.id = " + idPaciente + ")";
+        String strSQLini2 = "SELECT COUNT(*) "
+                + " paciente p, usuario u"
+                + " WHERE "
+                + " p.id_usuario = u.id "
+                + " AND u.id_tipousuario = 3 "
+                + " AND u.id_centrosanitario= " + idCentrosanitario
+                + " AND p.id = " + idPaciente + ")";
+        return countSQL(strSQLini) || countSQL(strSQLini2);
+    }
+
     @Override
     public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
-        PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) this.get(oBean.getId(), 0).getBean();
+        PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oBean;
         if (oPacienteBean.getId_usuario() == idUsuario) {
             return true;
         } else {
@@ -137,7 +157,7 @@ public class Paciente4SpecificDaoImplementation extends GenericDaoImplementation
 
     @Override
     public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
-        PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) this.get(oBean.getId(), 0).getBean();
+        PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oBean;
         if (oPacienteBean.getId_usuario() == idUsuario) {
             return true;
         } else {
@@ -162,7 +182,7 @@ public class Paciente4SpecificDaoImplementation extends GenericDaoImplementation
 
     @Override
     public Integer delete(GenericBeanImplementation oBean) throws Exception {
-        PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) this.get(oBean.getId(), 0).getBean();
+        PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oBean;
         if (oPacienteBean.getId_usuario() == idUsuario) {
             return super.delete(oBean);
         } else {
