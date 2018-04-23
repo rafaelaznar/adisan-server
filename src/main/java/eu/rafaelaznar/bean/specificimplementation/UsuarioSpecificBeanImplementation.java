@@ -489,6 +489,20 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
                 }
             }
         }
+
+        if (oPuserBean_security!=null) {
+            UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
+            if (oUsuario.getId_tipousuario() == 5) {
+                this.setNombrecompleto("Oculto para proteger la identidad");
+                this.setNombre("Oculto para proteger la identidad");
+                this.setPrimer_apellido("Oculto para proteger la identidad");
+                this.setSegundo_apellido("Oculto para proteger la identidad");
+                this.setEmail("Oculto para proteger la identidad");
+                this.setLogin("No tienes permiso para acceder a esta información");
+                this.setActivo(0);
+                this.setFecha_alta(new Date(0));
+            }
+        }
         return this;
     }
 
