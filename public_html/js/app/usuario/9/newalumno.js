@@ -89,6 +89,9 @@ moduloUsuario.controller('UsuarioNewalumno9Controller',
                 $scope.back = function () {
                     window.history.back();
                 };
+                $scope.close = function () {
+                    $location.path('/home');
+                };
             }
         ]);
 

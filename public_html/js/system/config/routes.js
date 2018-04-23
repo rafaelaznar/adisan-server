@@ -104,6 +104,8 @@ gesane.config(['$routeProvider', function ($routeProvider) {
         //--
         $routeProvider.when('/subepisodio/5/episodio/plist/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'SubepisodioXepisodioPList5Controller', resolve: {auth: authentication5Promise}});
         //--
+        $routeProvider.when('/newalumno/9/:codigo', {templateUrl: 'js/app/usuario/9/newalumno.html', controller: 'UsuarioNewalumno9Controller', resolve: {auth: anyAuthenticationPromise}});
+        //--
         //-- generic 1
         //--
         $routeProvider.when('/:ob/1/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'plistGenericController1', resolve: {auth: authentication1Promise}});
