@@ -26,17 +26,17 @@
  * THE SOFTWARE.
  */
 'use strict';
-genericModule.controller('plistGenericControllerX1',
+genericModule.controller('plistXGeneric1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
-                $scope.ob = "paciente";
-                $scope.op = "plistx";
+                $scope.ob = $routeParams.ob;
+                $scope.op = "plist";
                 $scope.profile = 1;
                 //----
-                $scope.xob = "sexo";
+                $scope.xob = $routeParams.xob;
                 $scope.xid = $routeParams.id;
                 //----
-                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op + $scope.xob + '/' + $scope.xid;
+                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.xob +'/'+ $scope.op + '/' + $scope.xid;
                 //----
                 $scope.numpage = toolService.checkDefault(1, $routeParams.page);
                 $scope.rpp = toolService.checkDefault(10, $routeParams.rpp);
@@ -115,7 +115,7 @@ genericModule.controller('plistGenericControllerX1',
                 }
                 $scope.goNewURL = function () {
                     $location.path($scope.ob + "/" + $scope.profile + "/x" + $scope.xob + "/newx/" + $scope.xid);
-                }                
+                }
                 $scope.goEditURL = function (oBean) {
                     $location.path($scope.ob + "/" + $scope.profile + "/x" + $scope.xob + "/editx/" + oBean.id + "/" + $scope.xid);
                 }

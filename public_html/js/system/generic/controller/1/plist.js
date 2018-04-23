@@ -31,8 +31,6 @@ genericModule.controller('plistGenericController1',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {                
                 $scope.ob = $routeParams.ob;
                 $scope.op = "plist";
-//                $scope.ob = "paciente";
-//                $scope.op = "plist";
                 $scope.profile = 1;
                 //---
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;

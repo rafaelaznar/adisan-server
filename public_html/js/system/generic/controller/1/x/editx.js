@@ -27,16 +27,16 @@
  */
 'use strict';
 
-genericModule.controller('PacienteXsexoEdit1Controller',
+genericModule.controller('editXGeneric1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
-                $scope.ob = "paciente";
+                $scope.ob = $routeParams.ob;
                 $scope.op = "editx";
                 $scope.profile = 1;
                 //----
                 $scope.id = $routeParams.id;
                 //---
-                $scope.xob = "sexo";
+                $scope.xob = $routeParams.xob;
                 $scope.xid = $routeParams.xid;
                 //---
                 $scope.status = null;

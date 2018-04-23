@@ -27,14 +27,14 @@
  */
 'use strict';
 
-genericModule.controller('PacienteXsexoNew1Controller',
+genericModule.controller('newXGeneric1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
-                $scope.ob = "paciente";
+                $scope.ob = $routeParams.ob;
                 $scope.op = "newx";
                 $scope.profile = 1;
                 //---
-                $scope.xob = "sexo";
+                $scope.xob = $routeParams.xob;
                 $scope.xid = $routeParams.id;
                 //---
                 $scope.status = null;

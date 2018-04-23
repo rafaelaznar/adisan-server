@@ -196,8 +196,8 @@
                                                             <a href="{{oMetap.References}}/{{profile}}/view/{{oBean[oMetap.Name].data.id}}">{{oBean[oMetap.Name]|getForeignDescription}}</a>
                                                         </div>
                                                         <div ng-if="oMetap.IsVisible && oMetap.Type == 'Link'" class="text-center">
-                                                            <a ng-if="oBean[oMetap.Name] > 0" class="btn btn-default btn-xs" href="{{oMetap.References}}/{{profile}}/x{{ob}}/plistx/{{oBean['id']}}">{{setShowRemove(false);oBean[oMetap.Name]}}</a>
-                                                            <a ng-if="oBean[oMetap.Name] == 0" class="btn btn-default btn-xs" href="{{oMetap.References}}/{{profile}}/x{{ob}}/newx/{{oBean['id']}}">{{setShowRemove(true);oBean[oMetap.Name]}}</a>
+                                                            <a ng-if="oBean[oMetap.Name] > 0" class="btn btn-default btn-xs" href="{{oMetap.References}}/{{profile}}/{{ob}}/plist/{{oBean['id']}}">{{setShowRemove(false);oBean[oMetap.Name]}}</a>
+                                                            <a ng-if="oBean[oMetap.Name] == 0" class="btn btn-default btn-xs" href="{{oMetap.References}}/{{profile}}/{{ob}}/new/{{oBean['id']}}">{{setShowRemove(true);oBean[oMetap.Name]}}</a>
                                                         </div>
                                                     </td>
                                                     <td class="col-md-1">
