@@ -43,8 +43,7 @@
 
         <div id="navbar" class="navbar-collapse collapse" >
             <ul class="nav navbar-nav" id="appMenu">
-                <li ng-class="{ 'active': mn.isActive('/home')}"><a href="home"><i class="fa fa-home"></i> Home</a></li>
-
+                <li ng-class="{'active': mn.isActive('/home')}"><a href="home"><i class="fa fa-home"></i> Home</a></li>
                 <!-- Administración ------------------------------------------- -->
                 <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 1"
                     ng-class="{'active': mn.isActive('/usuario') || mn.isActive('/tipousuario') || mn.isActive('/grupo') || mn.isActive('/curso') || mn.isActive('/centro/')}">
@@ -60,7 +59,6 @@
 
                     </ul>
                 </li>
-
                 <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 1"
                     ng-class="{'active': mn.isActive('/centrosanitario') || mn.isActive('/dependencia') || mn.isActive('/tipodependencia')}">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button">
@@ -74,7 +72,6 @@
                         <li ng-class="{ 'active': mn.isActive('/tipodependencia/1/plist')}"><a href="tipodependencia/1/plist"> <i ng-class="mn.meta.tipodependencia.Icon"></i> {{mn.meta.tipodependencia.PluralDescription}}</a></li>
                     </ul>
                 </li>
-
                 <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 1"
                     ng-class="{'active': mn.isActive('/servicio') || mn.isActive('/tiposervicio') || mn.isActive('/especialidad') || mn.isActive('/medico/') || mn.isActive('/categoriaprofesional/')}">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button">
@@ -89,9 +86,6 @@
                         <li ng-class="{ 'active': mn.isActive('/categoriaprofesional/1/plist')}"><a href="categoriaprofesional/1/plist"> <i ng-class="mn.meta.categoriaprofesional.Icon"></i> {{mn.meta.categoriaprofesional.PluralDescription}}</a></li>
                     </ul>
                 </li>
-
-
-
                 <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 1"
                     ng-class="{'active': mn.isActive('/paciente') || mn.isActive('/episodio') || mn.isActive('/sexo') || mn.isActive('/destinoalta') || mn.isActive('/modalidadepisodio') || mn.isActive('/circunstanciasalta') || mn.isActive('/tipoepisodio')}">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button">
@@ -106,12 +100,8 @@
                         <li ng-class="{ 'active': mn.isActive('/modalidadepisodio/1/plist')}"><a href="modalidadepisodio/1/plist"> <i ng-class="mn.meta.modalidadepisodio.Icon"></i> {{mn.meta.modalidadepisodio.PluralDescription}}</a></li>
                         <li ng-class="{ 'active': mn.isActive('/circunstanciasalta/1/plist')}"><a href="circunstanciasalta/1/plist"> <i ng-class="mn.meta.circunstanciasalta.Icon"></i> {{mn.meta.circunstanciasalta.PluralDescription}}</a></li>
                         <li ng-class="{ 'active': mn.isActive('/tipoepisodio/1/plist')}"><a href="tipoepisodio/1/plist"> <i ng-class="mn.meta.tipoepisodio.Icon"></i> {{mn.meta.tipoepisodio.PluralDescription}}</a></li>
-
-
-
                     </ul>
                 </li>
-
                 <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 1"
                     ng-class="{'active': mn.isActive('/tipopago') || mn.isActive('/factura')}">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button">
@@ -121,34 +111,8 @@
                         <li ng-class="{ 'active': mn.isActive('/factura/1/plist')}"><a href="factura/1/plist"> <i ng-class="mn.meta.factura.Icon"></i> {{mn.meta.factura.PluralDescription}}</a></li>
                     </ul>
                 </li>
-
-                <!-- Coordinación -------------------------------------------
-                <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 2">
-                    <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Coordinador<span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li class="dropdown-header">Medico</li>
-                        <li ng-class="{ active: isActive('/generic/especialidad/plist')}"><a href="generic/especialidad/plist"> <i class="fa fa-address-book-o"></i> Especialidad</a></li>
-                        <li ng-class="{ active: isActive('/generic/categoriaprofesional/plist')}"><a href="generic/categoriaprofesional/plist"> <i class="fa fa-address-book-o"></i> Categoria Profesional</a></li>
-                        <li class="dropdown-header">Centro sanitario</li>
-                        <li ng-class="{ active: isActive('/generic/servicio/plist')}"><a href="generic/servicio/plist"> <i class="fa fa-address-book-o"></i> Servicio</a></li>
-                        <li ng-class="{ active: isActive('/generic/tiposervicio/plist')}"><a href="generic/tiposervicio/plist"> <i class="fa fa-address-book-o"></i> Tipo de servicio</a></li>
-                        <li ng-class="{ active: isActive('/generic/tipodependencia/plist')}"><a href="generic/tipodependencia/plist"> <i class="fa fa-address-book-o"></i> Tipo de dependencia</a></li>
-                        <li class="dropdown-header">Episodio</li>
-                        <li ng-class="{ active: isActive('/generic/tipoepisodio/plist')}"><a href="generic/tipoepisodio/plist"> <i class="fa fa-address-book-o"></i> Tipo de episodio</a></li>
-                        <li ng-class="{ active: isActive('/generic/modalidadepisodio/plist')}"><a href="generic/modalidadepisodio/plist"> <i class="fa fa-address-book-o"></i> Modalidad del episodio</a></li>
-                        <li ng-class="{ active: isActive('/generic/circunstanciasalta/plist')}"><a href="generic/circunstanciasalta/plist"> <i class="fa fa-address-book-o"></i> Circunstancias de alta</a></li>
-                        <li ng-class="{ active: isActive('/generic/destinoalta/plist')}"><a href="generic/destinoalta/plist"> <i class="fa fa-address-book-o"></i> Destino de alta</a></li>
-                    </ul>
-                </li>
-                -->
-
-
-                <!-- Profesor ------------------------------------------- 
-                <li ng-class="{ 'active': mn.isActive('/paciente/3/plist')}" ng-if="mn.session_info.obj_tipousuario.data.id == 3"><a href="paciente/3/plist"> <i ng-class="mn.meta.paciente.Icon"></i> {{mn.meta.paciente.PluralDescription}}</a></li>
-                
-                -->
-
-
+                <!-- Coordinación ------------------------------------------- -->
+                <!-- Profesor -------------------------------------------    -->
                 <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 3"
                     ng-class="{'active': mn.isActive('/usuario') || mn.isActive('/tipousuario') || mn.isActive('/grupo') || mn.isActive('/curso') || mn.isActive('/centro/')}">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button">
@@ -160,10 +124,8 @@
                         <li ng-class="{ 'active': mn.isActive('/grupo/3/plist')}"><a href="grupo/3/plist"> <i ng-class="mn.meta.grupo.Icon"></i> {{mn.meta.grupo.PluralDescription}}</a></li>
                         <li ng-class="{ 'active': mn.isActive('/curso/3/plist')}"><a href="curso/3/plist"> <i ng-class="mn.meta.curso.Icon"></i> {{mn.meta.curso.PluralDescription}}</a></li>
                         <li ng-class="{ 'active': mn.isActive('/centro/3/plist')}"><a href="centro/3/plist"> <i ng-class="mn.meta.centro.Icon"></i> {{mn.meta.centro.PluralDescription}}</a></li>
-
                     </ul>
                 </li>
-
                 <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 3"
                     ng-class="{'active': mn.isActive('/centrosanitario') || mn.isActive('/dependencia') || mn.isActive('/tipodependencia')}">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button">
@@ -177,7 +139,6 @@
                         <li ng-class="{ 'active': mn.isActive('/tipodependencia/3/plist')}"><a href="tipodependencia/3/plist"> <i ng-class="mn.meta.tipodependencia.Icon"></i> {{mn.meta.tipodependencia.PluralDescription}}</a></li>
                     </ul>
                 </li>
-
                 <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 3"
                     ng-class="{'active': mn.isActive('/servicio') || mn.isActive('/tiposervicio') || mn.isActive('/especialidad') || mn.isActive('/medico/') || mn.isActive('/categoriaprofesional/')}">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button">
@@ -192,9 +153,6 @@
                         <li ng-class="{ 'active': mn.isActive('/categoriaprofesional/3/plist')}"><a href="categoriaprofesional/3/plist"> <i ng-class="mn.meta.categoriaprofesional.Icon"></i> {{mn.meta.categoriaprofesional.PluralDescription}}</a></li>
                     </ul>
                 </li>
-
-
-
                 <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 3"
                     ng-class="{'active': mn.isActive('/paciente') || mn.isActive('/episodio') || mn.isActive('/sexo') || mn.isActive('/destinoalta') || mn.isActive('/modalidadepisodio') || mn.isActive('/circunstanciasalta') || mn.isActive('/tipoepisodio')}">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button">
@@ -209,12 +167,8 @@
                         <li ng-class="{ 'active': mn.isActive('/modalidadepisodio/3/plist')}"><a href="modalidadepisodio/3/plist"> <i ng-class="mn.meta.modalidadepisodio.Icon"></i> {{mn.meta.modalidadepisodio.PluralDescription}}</a></li>
                         <li ng-class="{ 'active': mn.isActive('/circunstanciasalta/3/plist')}"><a href="circunstanciasalta/3/plist"> <i ng-class="mn.meta.circunstanciasalta.Icon"></i> {{mn.meta.circunstanciasalta.PluralDescription}}</a></li>
                         <li ng-class="{ 'active': mn.isActive('/tipoepisodio/3/plist')}"><a href="tipoepisodio/3/plist"> <i ng-class="mn.meta.tipoepisodio.Icon"></i> {{mn.meta.tipoepisodio.PluralDescription}}</a></li>
-
-
-
                     </ul>
                 </li>
-
                 <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 3"
                     ng-class="{'active': mn.isActive('/tipopago') || mn.isActive('/factura')}">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button">
@@ -224,54 +178,7 @@
                         <li ng-class="{ 'active': mn.isActive('/factura/3/plist')}"><a href="factura/3/plist"> <i ng-class="mn.meta.factura.Icon"></i> {{mn.meta.factura.PluralDescription}}</a></li>
                     </ul>
                 </li>
-
-
-
-
-
-
-
-
-
-                <!--
-               <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 3">
-                   <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Profesor<span class="caret"></span></a>
-                   <ul class="dropdown-menu" role="menu">
-                       <li class="dropdown-header">Gestión sanitaria</li>
-                       <li ng-class="{ 'active': mn.isActive('/paciente/3/plist')}"><a href="paciente/3/plist"> <i ng-class="mn.meta.paciente.Icon"></i> {{mn.meta.paciente.PluralDescription}}</a></li>
-                      
-                       <li ng-class="{ 'active': mn.isActive('/episodio/3/plist')}"><a href="episodio/3/plist"> <i ng-class="mn.meta.episodio.Icon"></i> {{mn.meta.episodio.PluralDescription}}</a></li>
-                       
-                   </ul>
-               </li>
-                
-
-                <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 3"
-                    ng-class="{'active': mn.isActive('/usuario') || mn.isActive('/tipousuario') || mn.isActive('/grupo') || mn.isActive('/curso') || mn.isActive('/centro/')}">
-                    <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-user-circle"></i> Usuarios<span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li ng-class="{ 'active': mn.isActive('/usuario/3/plist')}"><a href="usuario/3/plist"> <i ng-class="mn.meta.usuario.Icon"></i> {{mn.meta.usuario.PluralDescription}}</a></li>
-                        <li ng-class="{ 'active': mn.isActive('/grupo/3/plist')}"><a href="grupo/3/plist"> <i ng-class="mn.meta.grupo.Icon"></i> {{mn.meta.grupo.PluralDescription}}</a></li>
-                        <li ng-class="{ 'active': mn.isActive('/curso/3/plist')}"><a href="curso/3/plist"> <i ng-class="mn.meta.curso.Icon"></i> {{mn.meta.curso.PluralDescription}}</a></li>
-                        <li ng-class="{ 'active': mn.isActive('/centro/3/plist')}"><a href="centro/3/plist"> <i ng-class="mn.meta.centro.Icon"></i> {{mn.meta.centro.PluralDescription}}</a></li>
-                    </ul>
-
-                </li>
-                -->
-
-
-
-
-
-
-
-
-
-                <!-- Alumno ------------------------------------------- 
-
-                <li ng-class="{ 'active': mn.isActive('/paciente/4/plist')}" ng-if="mn.session_info.obj_tipousuario.data.id == 4"><a href="paciente/4/plist"> <i ng-class="mn.meta.paciente.Icon"></i> {{mn.meta.paciente.PluralDescription}}</a></li>
-                -->
-
+                <!-- Alumno --------------------------------------------->
                 <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 4"
                     ng-class="{'active': mn.isActive('/usuario') || mn.isActive('/tipousuario') || mn.isActive('/grupo') || mn.isActive('/curso') || mn.isActive('/centro/')}">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button">
@@ -286,7 +193,6 @@
 
                     </ul>
                 </li>
-
                 <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 4"
                     ng-class="{'active': mn.isActive('/centrosanitario') || mn.isActive('/dependencia') || mn.isActive('/tipodependencia')}">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button">
@@ -300,7 +206,6 @@
                         <li ng-class="{ 'active': mn.isActive('/tipodependencia/4/plist')}"><a href="tipodependencia/4/plist"> <i ng-class="mn.meta.tipodependencia.Icon"></i> {{mn.meta.tipodependencia.PluralDescription}}</a></li>
                     </ul>
                 </li>
-
                 <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 4"
                     ng-class="{'active': mn.isActive('/servicio') || mn.isActive('/tiposervicio') || mn.isActive('/especialidad') || mn.isActive('/medico/') || mn.isActive('/categoriaprofesional/')}">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button">
@@ -315,9 +220,6 @@
                         <li ng-class="{ 'active': mn.isActive('/categoriaprofesional/4/plist')}"><a href="categoriaprofesional/4/plist"> <i ng-class="mn.meta.categoriaprofesional.Icon"></i> {{mn.meta.categoriaprofesional.PluralDescription}}</a></li>
                     </ul>
                 </li>
-
-
-
                 <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 4"
                     ng-class="{'active': mn.isActive('/paciente') || mn.isActive('/episodio') || mn.isActive('/sexo') || mn.isActive('/destinoalta') || mn.isActive('/modalidadepisodio') || mn.isActive('/circunstanciasalta') || mn.isActive('/tipoepisodio')}">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button">
@@ -332,9 +234,6 @@
                         <li ng-class="{ 'active': mn.isActive('/modalidadepisodio/4/plist')}"><a href="modalidadepisodio/4/plist"> <i ng-class="mn.meta.modalidadepisodio.Icon"></i> {{mn.meta.modalidadepisodio.PluralDescription}}</a></li>
                         <li ng-class="{ 'active': mn.isActive('/circunstanciasalta/4/plist')}"><a href="circunstanciasalta/4/plist"> <i ng-class="mn.meta.circunstanciasalta.Icon"></i> {{mn.meta.circunstanciasalta.PluralDescription}}</a></li>
                         <li ng-class="{ 'active': mn.isActive('/tipoepisodio/4/plist')}"><a href="tipoepisodio/4/plist"> <i ng-class="mn.meta.tipoepisodio.Icon"></i> {{mn.meta.tipoepisodio.PluralDescription}}</a></li>
-
-
-
                     </ul>
                 </li>
 
@@ -347,52 +246,77 @@
                         <li ng-class="{ 'active': mn.isActive('/factura/4/plist')}"><a href="factura/4/plist"> <i ng-class="mn.meta.factura.Icon"></i> {{mn.meta.factura.PluralDescription}}</a></li>
                     </ul>
                 </li>
-
-
-
-
-
-
-
-
-                <!--
-                              <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 4">
-                                  <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i>Alumno<span class="caret"></span></a>
-                                  <ul class="dropdown-menu" role="menu">
-                                      <li class="dropdown-header">Gestión sanitaria</li>
-                                      <li ng-class="{ 'active': mn.isActive('/paciente/4/plist')}"><a href="paciente/4/plist"> <i ng-class="mn.meta.paciente.Icon"></i> {{mn.meta.paciente.PluralDescription}}</a></li>
-                                  </ul>
-                              </li>
-              
-                -->
-
                 <!-- Invitado visitante ------------------------------------------- -->
-
-                <li ng-class="{ 'active': mn.isActive('/paciente/5/plist')}" ng-if="mn.session_info.obj_tipousuario.data.id == 5"><a href="paciente/5/plist"> <i ng-class="mn.meta.paciente.Icon"></i> {{mn.meta.paciente.PluralDescription}}</a></li>
-
-                <!--
-                <li class="dropdown"  ng-if="mn.session_info.obj_tipousuario.data.id == 5">
-                    <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-icon-list-alt"></i> Visitante<span class="caret"></span></a>
+                <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 5"
+                    ng-class="{'active': mn.isActive('/usuario') || mn.isActive('/tipousuario') || mn.isActive('/grupo') || mn.isActive('/curso') || mn.isActive('/centro/')}">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button">
+                        <i class="fa fa-icon-list-alt"></i>Usuarios<span class="caret"></span>
+                    </a>
                     <ul class="dropdown-menu" role="menu">
-                        <li ng-class="{'active': mn.isActive('/paciente/5/plist')}"><a href="paciente/5/plist"> <i ng-class="mn.meta.paciente.Icon"></i> {{mn.meta.paciente.PluralDescription}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/usuario/5/plist')}"><a href="usuario/5/plist"> <i ng-class="mn.meta.usuario.Icon"></i> {{mn.meta.usuario.PluralDescription}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/tipousuario/5/plist')}"><a href="tipousuario/5/plist"> <i ng-class="mn.meta.tipousuario.Icon"></i> {{mn.meta.tipousuario.PluralDescription}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/grupo/5/plist')}"><a href="grupo/5/plist"> <i ng-class="mn.meta.grupo.Icon"></i> {{mn.meta.grupo.PluralDescription}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/curso/5/plist')}"><a href="curso/5/plist"> <i ng-class="mn.meta.curso.Icon"></i> {{mn.meta.curso.PluralDescription}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/centro/5/plist')}"><a href="centro/5/plist"> <i ng-class="mn.meta.centro.Icon"></i> {{mn.meta.centro.PluralDescription}}</a></li>
 
                     </ul>
                 </li>
-                -->
-
-                <!-- Invitado visitante ------------------------------------------- -->
-
-
-
+                <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 5"
+                    ng-class="{'active': mn.isActive('/centrosanitario') || mn.isActive('/dependencia') || mn.isActive('/tipodependencia')}">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button">
+                        <i class="fa fa-icon-list-alt"></i>Centros sanitarios<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="dropdown-header">Datos Específicos del centro sanitario</li>
+                        <li ng-class="{ 'active': mn.isActive('/centrosanitario/5/plist')}"><a href="centrosanitario/5/plist"> <i ng-class="mn.meta.centrosanitario.Icon"></i> {{mn.meta.centrosanitario.PluralDescription}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/dependencia/5/plist')}"><a href="dependencia/5/plist"> <i ng-class="mn.meta.dependencia.Icon"></i> {{mn.meta.dependencia.PluralDescription}}</a></li>
+                        <li class="dropdown-header">Datos Comunes</li>
+                        <li ng-class="{ 'active': mn.isActive('/tipodependencia/5/plist')}"><a href="tipodependencia/5/plist"> <i ng-class="mn.meta.tipodependencia.Icon"></i> {{mn.meta.tipodependencia.PluralDescription}}</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 5"
+                    ng-class="{'active': mn.isActive('/servicio') || mn.isActive('/tiposervicio') || mn.isActive('/especialidad') || mn.isActive('/medico/') || mn.isActive('/categoriaprofesional/')}">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button">
+                        <i class="fa fa-icon-list-alt"></i>Personal sanitario<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="dropdown-header">Datos Específicos del centro sanitario</li>
+                        <li ng-class="{ 'active': mn.isActive('/medico/5/plist')}"><a href="medico/5/plist"> <i ng-class="mn.meta.medico.Icon"></i> {{mn.meta.medico.PluralDescription}}</a></li>
+                        <li class="dropdown-header">Datos Comunes</li>
+                        <li ng-class="{ 'active': mn.isActive('/servicio/5/plist')}"><a href="servicio/5/plist"> <i ng-class="mn.meta.servicio.Icon"></i> {{mn.meta.servicio.PluralDescription}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/tiposervicio/5/plist')}"><a href="tiposervicio/5/plist"> <i ng-class="mn.meta.tiposervicio.Icon"></i> {{mn.meta.tiposervicio.PluralDescription}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/especialidad/5/plist')}"><a href="especialidad/5/plist"> <i ng-class="mn.meta.especialidad.Icon"></i> {{mn.meta.especialidad.PluralDescription}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/categoriaprofesional/5/plist')}"><a href="categoriaprofesional/5/plist"> <i ng-class="mn.meta.categoriaprofesional.Icon"></i> {{mn.meta.categoriaprofesional.PluralDescription}}</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 5"
+                    ng-class="{'active': mn.isActive('/paciente') || mn.isActive('/episodio') || mn.isActive('/sexo') || mn.isActive('/destinoalta') || mn.isActive('/modalidadepisodio') || mn.isActive('/circunstanciasalta') || mn.isActive('/tipoepisodio')}">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button">
+                        <i class="fa fa-icon-list-alt"></i>Pacientes<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="dropdown-header">Datos Específicos del centro sanitario</li>
+                        <li ng-class="{ 'active': mn.isActive('/paciente/5/plist')}"><a href="paciente/5/plist"> <i ng-class="mn.meta.paciente.Icon"></i> {{mn.meta.paciente.PluralDescription}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/episodio/5/plist')}"><a href="episodio/5/plist"> <i ng-class="mn.meta.episodio.Icon"></i> {{mn.meta.episodio.PluralDescription}}</a></li>
+                        <li class="dropdown-header">Datos Comunes</li>
+                        <li ng-class="{ 'active': mn.isActive('/sexo/5/plist')}"><a href="sexo/5/plist"> <i ng-class="mn.meta.sexo.Icon"></i> {{mn.meta.sexo.PluralDescription}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/destinoalta/5/plist')}"><a href="destinoalta/5/plist"> <i ng-class="mn.meta.destinoalta.Icon"></i> {{mn.meta.destinoalta.PluralDescription}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/modalidadepisodio/5/plist')}"><a href="modalidadepisodio/5/plist"> <i ng-class="mn.meta.modalidadepisodio.Icon"></i> {{mn.meta.modalidadepisodio.PluralDescription}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/circunstanciasalta/5/plist')}"><a href="circunstanciasalta/5/plist"> <i ng-class="mn.meta.circunstanciasalta.Icon"></i> {{mn.meta.circunstanciasalta.PluralDescription}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/tipoepisodio/5/plist')}"><a href="tipoepisodio/5/plist"> <i ng-class="mn.meta.tipoepisodio.Icon"></i> {{mn.meta.tipoepisodio.PluralDescription}}</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 5"
+                    ng-class="{'active': mn.isActive('/tipopago') || mn.isActive('/factura')}">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button">
+                        <i class="fa fa-icon-list-alt"></i>Facturación<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li ng-class="{ 'active': mn.isActive('/tipopago/5/plist')}"><a href="tipopago/5/plist"> <i ng-class="mn.meta.tipopago.Icon"></i> {{mn.meta.tipopago.PluralDescription}}</a></li>
+                        <li ng-class="{ 'active': mn.isActive('/factura/5/plist')}"><a href="factura/5/plist"> <i ng-class="mn.meta.factura.Icon"></i> {{mn.meta.factura.PluralDescription}}</a></li>
+                    </ul>
+                </li>
+                <!--  ------------------------------------------- -->
                 <li ng-class="{ active: mn.isActive('/license')}"><a href="license"><i class="fa fa-paper-plane"></i> Licencia y créditos</a></li>
             </ul>
-
-
-
-            <!------------
-            //---------- USUARIO ------
-            ----------------- -->
-
+            <!------------ USUARIO ------             ----------------- -->
             <ul class="nav navbar-nav navbar-right">
                 <!-- <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li> -->
                 <li class="dropdown">
