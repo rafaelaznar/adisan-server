@@ -26,14 +26,14 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloEpisodio.controller('SubepisodioXepisodioPList1Controller',
+genericModule.controller('plistGenericControllerX1',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
-                $scope.ob = "subepisodio";
+                $scope.ob = "paciente";
                 $scope.op = "plistx";
                 $scope.profile = 1;
                 //----
-                $scope.xob = "episodio";
+                $scope.xob = "sexo";
                 $scope.xid = $routeParams.id;
                 //----
                 $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op + $scope.xob + '/' + $scope.xid;
@@ -55,7 +55,7 @@ moduloEpisodio.controller('SubepisodioXepisodioPList1Controller',
                             if (response.status == 200) {
                                 if (response.data.status == 200) {
                                     $scope.linkedbean = response.data.json;
-                                    $scope.breadcrumbs = toolService.renderLinkHtml($scope.linkedbean.data.obj_paciente, $scope.profile) + toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
+                                    $scope.breadcrumbs = toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
                                 }
                             }
                         }).catch(function (data) {
@@ -78,7 +78,6 @@ moduloEpisodio.controller('SubepisodioXepisodioPList1Controller',
                             $scope.page = response.data.json.data;
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
-                            $scope.metap = toolService.deleteForeignKey($scope.metap, "link_subepisodio");
                             toolService.hideField($scope.metap, "obj_" + $scope.xob);
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
@@ -125,10 +124,10 @@ moduloEpisodio.controller('SubepisodioXepisodioPList1Controller',
                 }
                 //--------------------------------------------------------------
                 $scope.showOtherButton = function (oBean) {
-                    return false;
+                    return true;
                 }
                 $scope.includeExtraButtons = function () {
-                    return ""
+                    return "js/app/usuario/plistExtraButtons.html"
                 }
                 //----------
                 $scope.showActivateButton = function (oBean) {

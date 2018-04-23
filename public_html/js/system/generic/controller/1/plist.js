@@ -26,17 +26,16 @@
  * THE SOFTWARE.
  */
 'use strict';
-moduloEpisodio.controller('SubepisodioXepisodioPList1Controller',
+genericModule.controller('plistGenericController1',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
-            function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
-                $scope.ob = "subepisodio";
-                $scope.op = "plistx";
+            function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {                
+                $scope.ob = $routeParams.ob;
+                $scope.op = "plist";
+//                $scope.ob = "paciente";
+//                $scope.op = "plist";
                 $scope.profile = 1;
-                //----
-                $scope.xob = "episodio";
-                $scope.xid = $routeParams.id;
-                //----
-                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op + $scope.xob + '/' + $scope.xid;
+                //---
+                $scope.url = $scope.ob + '/' + $scope.profile + '/' + $scope.op;
                 //----
                 $scope.numpage = toolService.checkDefault(1, $routeParams.page);
                 $scope.rpp = toolService.checkDefault(10, $routeParams.rpp);
@@ -49,27 +48,14 @@ moduloEpisodio.controller('SubepisodioXepisodioPList1Controller',
                 $scope.debugging = constantService.debugging();
                 //---
                 function getDataFromServer() {
-                    if ($scope.xob && $scope.xid) {
-                        $scope.linkedbean = null;
-                        serverCallService.getOne($scope.xob, $scope.xid).then(function (response) {
-                            if (response.status == 200) {
-                                if (response.data.status == 200) {
-                                    $scope.linkedbean = response.data.json;
-                                    $scope.breadcrumbs = toolService.renderLinkHtml($scope.linkedbean.data.obj_paciente, $scope.profile) + toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
-                                }
-                            }
-                        }).catch(function (data) {
-                        });
-                    }
-                    ;
-                    serverCallService.getCountX($scope.ob, $scope.xob, $scope.xid, $scope.filterParams).then(function (response) {
+                    serverCallService.getCount($scope.ob, $scope.filterParams).then(function (response) {
                         if (response.status == 200) {
                             $scope.registers = response.data.json;
                             $scope.pages = toolService.calculatePages($scope.rpp, $scope.registers);
                             if ($scope.numpage > $scope.pages) {
                                 $scope.numpage = $scope.pages;
                             }
-                            return serverCallService.getPageX($scope.ob, $scope.xob, $scope.xid, $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order);
+                            return serverCallService.getPage($scope.ob, $scope.rpp, $scope.numpage, $scope.filterParams, $routeParams.order);
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -78,8 +64,6 @@ moduloEpisodio.controller('SubepisodioXepisodioPList1Controller',
                             $scope.page = response.data.json.data;
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
-                            $scope.metap = toolService.deleteForeignKey($scope.metap, "link_subepisodio");
-                            toolService.hideField($scope.metap, "obj_" + $scope.xob);
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -87,7 +71,6 @@ moduloEpisodio.controller('SubepisodioXepisodioPList1Controller',
                         $scope.status = "Error en la recepción de datos del servidor";
                     });
                 }
-                //---                
                 $scope.doorder = function (orderField, ascDesc) {
                     $location.url($scope.url + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', $scope.filterParams).search('order', orderField + ',' + ascDesc);
                     return false;
@@ -99,6 +82,29 @@ moduloEpisodio.controller('SubepisodioXepisodioPList1Controller',
                     $location.path('/home');
                 };
                 //--------------------------------------------------------------
+                $scope.showHeaderExtraButtons = function () {
+                    return false;
+                }
+                $scope.create = function () {
+                    serverCallService.create($scope.ob).then(function (response) {
+                        if (response.status == 200) {
+                            if (response.data.status == 200) {
+                                $scope.status = null;
+                                $scope.createbean = response.data.json.data;
+                                //$scope.metao = response.data.json.metaObject;
+                                //$scope.metap = response.data.json.metaProperties;
+                                getDataFromServer();
+                            } else {
+                                $scope.status = "Error en la recepción de datos del servidor";
+                            }
+                        } else {
+                            $scope.status = "Error en la recepción de datos del servidor";
+                        }
+                    }).catch(function (data) {
+                        $scope.status = "Error en la recepción de datos del servidor";
+                    });
+                }
+                //---
                 $scope.showViewButton = function () {
                     return true;
                 }
@@ -111,54 +117,22 @@ moduloEpisodio.controller('SubepisodioXepisodioPList1Controller',
                 $scope.showRemoveButton = function (oBean) {
                     return oBean.canDelete;
                 }
+                $scope.showOtherButton = function (oBean) {
+                    return false;
+                }
                 $scope.goViewURL = function (oBean) {
-                    $location.path("usuario/" + $scope.profile + "/view/" + oBean.id);
+                    $location.path($scope.ob + "/" + $scope.profile + "/view/" + oBean.id);
                 }
                 $scope.goNewURL = function () {
-                    $location.path($scope.ob + "/" + $scope.profile + "/x" + $scope.xob + "/newx/" + $scope.xid);
-                }                
+                    $location.path($scope.ob + "/" + $scope.profile + "/new");
+                }
                 $scope.goEditURL = function (oBean) {
-                    $location.path($scope.ob + "/" + $scope.profile + "/x" + $scope.xob + "/editx/" + oBean.id + "/" + $scope.xid);
+                    $location.path($scope.ob + "/" + $scope.profile + "/edit/" + oBean.id);
                 }
                 $scope.goRemoveURL = function (oBean) {
                     $location.path($scope.ob + "/" + $scope.profile + "/remove/" + oBean.id);
                 }
                 //--------------------------------------------------------------
-                $scope.showOtherButton = function (oBean) {
-                    return false;
-                }
-                $scope.includeExtraButtons = function () {
-                    return ""
-                }
-                //----------
-                $scope.showActivateButton = function (oBean) {
-                    return true;
-                }
-                $scope.showDeactivateButton = function (oBean) {
-                    return true;
-                }
-                $scope.activate = function (oBean) {
-                    serverCallService.activate(oBean.id).then(function (response) {
-                        if (response.status == 200) {
-                            if (response.data.status == 200) {
-                                getDataFromServer();
-                            }
-                        }
-                    }).catch(function (data) {
-                    });
-                }
-                $scope.deactivate = function (oBean) {
-                    serverCallService.deactivate(oBean.id).then(function (response) {
-                        if (response.status == 200) {
-                            if (response.data.status == 200) {
-                                getDataFromServer();
-                            }
-                        }
-                    }).catch(function (data) {
-                    });
-
-                }
-                //--------------------------------------------------------------                 
                 getDataFromServer();
             }
         ]);
