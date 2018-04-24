@@ -49,6 +49,10 @@ moduloEpisodio.controller('SubepisodioXepisodioEdit3Controller',
                             if (response.data.status == 200) {
                                 $scope.linkedbean = response.data.json;
                                 $scope.breadcrumbs = toolService.renderLinkHtml($scope.linkedbean.data.obj_paciente, $scope.profile) + toolService.renderLinkHtml($scope.linkedbean, $scope.profile);
+                                $scope.bean['obj_paciente'].data.id = $scope.linkedbean.data.obj_paciente.data.id;
+                                $scope.bean['obj_episodio'].data.id = $scope.linkedbean.data.id;
+                                $scope.bean['obj_usuario'].data.id = $scope.linkedbean.data.obj_usuario.data.id;
+                                ;
                             }
                         }
                     }).catch(function (data) {
@@ -63,6 +67,9 @@ moduloEpisodio.controller('SubepisodioXepisodioEdit3Controller',
                             $scope.bean = response.data.json.data;
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_paciente");
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_usuario");
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_episodio");
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
@@ -79,8 +86,7 @@ moduloEpisodio.controller('SubepisodioXepisodioEdit3Controller',
                         if (response.status == 200) {
                             if (response.data.status == 200) {
                                 $scope.response = response;
-                                $scope.status = "El registro se ha creado con id=" + response.data.json;
-                                $scope.bean.id = response.data.json;
+                                $scope.status = "El registro se ha modificado con id=" + $scope.id; 
                             } else {
                                 $scope.status = "Error en la recepción de datos del servidor";
                             }

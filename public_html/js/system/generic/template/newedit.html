@@ -40,7 +40,7 @@
                         <div class="row" ng-if="breadcrumbs">
                             <div class="col-xs-12">
                                 <div class="alert alert-info" role="alert">
-                                    <p ng-bind-html="breadcrumbs | trusted"></p>                                    
+                                    <p ng-bind-html="breadcrumbs | trusted"></p>
                                 </div>
                             </div>
                         </div>
@@ -79,15 +79,14 @@
                                     </label>
                                     <div class="control col-md-{{oMetap.Width}}">
                                         <input type="text"
-                                               class="form-control"
-                                               id="{{oMetap.Name}}"
-                                               name="{{oMetap.Name}}"
-                                               ng-model="bean[oMetap.Name]"
-                                               ng-pattern="oMetap.RegexPattern"
-                                               placeholder="{{oMetap.Description}}"
-                                               maxlength="{{oMetap.MaxLength}}"
-                                               ng-required="oMetap.IsRequired"
-                                               />
+                                               class="form-control" 
+                                               id="{{oMetap.Name}}" 
+                                               name="{{oMetap.Name}}" 
+                                               ng-model="bean[oMetap.Name]" 
+                                               ng-pattern="oMetap.RegexPattern" 
+                                               placeholder="{{oMetap.Description}}" 
+                                               maxlength="{{oMetap.MaxLength}}" 
+                                               ng-required="oMetap.IsRequired" />
                                         <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.required">El campo es obligatorio</span>
                                         <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.pattern">El campo no tiene formato adecuado: Introduzca {{oMetap.RegexHelp}}</span>
                                     </div>
@@ -106,7 +105,7 @@
                                         {{oMetap.LongName}}
                                     </label>
                                     <div class="control">
-                                        <textarea 
+                                        <textarea
                                             style="width: 70%"
                                             rows="8"
                                             class="form-control rounded-0"
@@ -116,8 +115,7 @@
                                             ng-pattern="oMetap.RegexPattern"
                                             placeholder="{{oMetap.Description}}"
                                             maxlength="{{oMetap.MaxLength}}"
-                                            ng-required="oMetap.IsRequired"
-                                            />
+                                            ng-required="oMetap.IsRequired"></textarea>                                            
                                         <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.required">El campo es obligatorio</span>
                                         <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.pattern">El campo no tiene formato adecuado: Introduzca {{oMetap.RegexHelp}}</span>
                                     </div>
@@ -162,7 +160,7 @@
                                         <input
                                             ng-model="bean[oMetap.Name]"
                                             type="checkbox"
-                                            ng-true-value="1" 
+                                            ng-true-value="1"
                                             ng-false-value="0"
                                             id="{{oMetap.Name}}"
                                             name="{{oMetap.Name}}">
@@ -174,8 +172,8 @@
                                     </div>
                                 </div>
 
-                                <!-- foreign  ----------------------------------------------->                            
-                                <div ng-if="oMetap.Type == 'ForeignObject'" 
+                                <!-- foreign  ----------------------------------------------->
+                                <div ng-if="oMetap.Type == 'ForeignObject'"
                                      ng-show="(oMetap.References != xob && oMetap.IsFormVisible) || (profile == 1 && oMetap.IsFormVisible == false && oMetap.References != xob)"
                                      class="form-group" id="{{oMetap.Name}}-group"
                                      ng-class="{'has-error': (outerForm[oMetap.Name].$error.exists || outerForm[oMetap.Name].$error.required) && !outerForm.$pristine}">
@@ -204,7 +202,7 @@
                                 </div>
 
                             </div>
-
+                            <!--   ----------------------------------------------->
                             <div class="control-group text-right">
                                 <div class="controls">
                                     <a class="btn btn-primary" ng-click="save()" ng-disabled="!outerForm.$dirty || !outerForm.$valid">Guardar</a>
@@ -217,6 +215,8 @@
                                 <h4>Debug:</h4>
                                 FORM DIRTY:{{outerForm.$dirty}}<br>
                                 FORM VALID:{{outerForm.$valid}}<br>
+                                FORM PRISTINE: {{outerForm.$pristine}}<br>
+                                FORM : {{outerForm.$error|json}}<br>
                             </div>
                             <!------------------------------------------------->
                         </form>

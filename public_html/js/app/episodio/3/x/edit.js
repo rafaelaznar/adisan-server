@@ -80,8 +80,7 @@ moduloEpisodio.controller('EpisodioXxobEdit3Controller',
                         if (response.status == 200) {
                             if (response.data.status == 200) {
                                 $scope.response = response;
-                                $scope.status = "El registro se ha creado con id=" + response.data.json;
-                                $scope.bean.id = response.data.json;
+                                $scope.status = "El registro se ha modificado con id=" + $scope.id; 
                             } else {
                                 $scope.status = "Error en la recepción de datos del servidor";
                             }
