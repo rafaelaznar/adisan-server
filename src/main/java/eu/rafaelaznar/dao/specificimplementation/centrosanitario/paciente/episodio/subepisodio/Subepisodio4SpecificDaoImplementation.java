@@ -62,7 +62,7 @@ public class Subepisodio4SpecificDaoImplementation extends GenericDaoImplementat
                 UsuarioSpecificBeanImplementation oProfesor = (UsuarioSpecificBeanImplementation) oGrupo.getObj_usuario().getBean();
                 CentrosanitarioSpecificBeanImplementation oCentroSanitario = (CentrosanitarioSpecificBeanImplementation) oProfesor.getObj_centrosanitario().getBean();
                 idCentrosanitario = oCentroSanitario.getId();
-                strSQLini = "FROM episodio where 1=1 "
+                strSQLini = "FROM episodio where 1=1 and (id_episodio IS NOT NULL AND id_episodio<>0 AND id_episodio<>'') "
                         + "AND (id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=3 ) "
                         + " OR  id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=5 ) "
                         + " OR  id_usuario IN (SELECT distinct u.id FROM usuario u, grupo g, usuario u2 "

@@ -38,10 +38,7 @@ import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImp
 import eu.rafaelaznar.bean.specificimplementation.EpisodioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
-import eu.rafaelaznar.helper.Log4jHelper;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 public class Subepisodio3SpecificDaoImplementation extends GenericDaoImplementation {
 
@@ -59,7 +56,7 @@ public class Subepisodio3SpecificDaoImplementation extends GenericDaoImplementat
 
                 CentrosanitarioSpecificBeanImplementation oCentroSanitario = (CentrosanitarioSpecificBeanImplementation) oUsuario.getObj_centrosanitario().getBean();
                 idCentrosanitario = oCentroSanitario.getId();
-                strSQLini = "FROM episodio where 1=1 "
+                strSQLini = "FROM episodio where 1=1 AND (id_episodio IS NOT NULL AND id_episodio<>0 AND id_episodio<>'') "
                         + "AND (id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=3 ) "
                         + " OR  id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=5 ) "
                         + " OR  id_usuario IN (SELECT distinct u.id FROM usuario u, grupo g, usuario u2 "

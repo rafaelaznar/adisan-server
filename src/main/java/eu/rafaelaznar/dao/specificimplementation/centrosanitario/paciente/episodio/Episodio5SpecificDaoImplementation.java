@@ -40,10 +40,13 @@ public class Episodio5SpecificDaoImplementation extends GenericDaoImplementation
 
     public Episodio5SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("episodio", oPooledConnection, oPuserBean_security, strWhere);
+        String strSQLini = "FROM episodio where (id_episodio IS NULL OR id_episodio=0 OR id_episodio='') ";
+        strSQL = "SELECT * " + strSQLini;
+        strCountSQL = "SELECT COUNT(*) " + strSQLini;
+        if (strWhere != null) {
+            strSQL += " " + strWhere + " ";
+            strCountSQL += " " + strWhere + " ";
+        }
     }
 
-//    @Override
-//    public boolean canGet(Integer id) throws Exception {
-//        return true;
-//    }
 }

@@ -130,6 +130,9 @@ public class BeanFactory {
             case "episodio":
                 oBean = new EpisodioSpecificBeanImplementation();
                 break;
+            case "subepisodio":
+                oBean = new EpisodioSpecificBeanImplementation();
+                break;
             case "medico":
                 oBean = new MedicoSpecificBeanImplementation();
                 break;

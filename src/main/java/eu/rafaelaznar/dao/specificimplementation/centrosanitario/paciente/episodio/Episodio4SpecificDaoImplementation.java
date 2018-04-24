@@ -39,10 +39,7 @@ import eu.rafaelaznar.bean.specificimplementation.EpisodioSpecificBeanImplementa
 import eu.rafaelaznar.bean.specificimplementation.GrupoSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
-import eu.rafaelaznar.helper.Log4jHelper;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 public class Episodio4SpecificDaoImplementation extends GenericDaoImplementation {
 
@@ -62,7 +59,7 @@ public class Episodio4SpecificDaoImplementation extends GenericDaoImplementation
                 UsuarioSpecificBeanImplementation oProfesor = (UsuarioSpecificBeanImplementation) oGrupo.getObj_usuario().getBean();
                 CentrosanitarioSpecificBeanImplementation oCentroSanitario = (CentrosanitarioSpecificBeanImplementation) oProfesor.getObj_centrosanitario().getBean();
                 idCentrosanitario = oCentroSanitario.getId();
-                strSQLini = "FROM episodio where 1=1 "
+                strSQLini = "FROM episodio where 1=1 and (id_episodio IS NULL OR id_episodio=0 OR id_episodio='') "
                         + "AND (id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=3 ) "
                         + " OR  id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=5 ) "
                         + " OR  id_usuario IN (SELECT distinct u.id FROM usuario u, grupo g, usuario u2 "
@@ -145,19 +142,20 @@ public class Episodio4SpecificDaoImplementation extends GenericDaoImplementation
     public Integer create(GenericBeanImplementation oBean) throws Exception {
         EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oBean;
         oEpisodioBean.setId_usuario(idUsuario);
+        oEpisodioBean.setId_episodio(null);
         return super.create(oEpisodioBean);
     }
 
     @Override
     public Integer update(GenericBeanImplementation oBean) throws Exception {
         UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
-        EpisodioSpecificBeanImplementation oEpisodio = (EpisodioSpecificBeanImplementation) oBean;
-        if (oEpisodio.getId_usuario().equals(oSessionUser.getId())) {
+        EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oBean;
+        oEpisodioBean.setId_episodio(null);
+        if (oEpisodioBean.getId_usuario().equals(oSessionUser.getId())) {
             return super.update(oBean);
         } else {
             return 0;
         }
-
     }
 
     //puede borrar un episodio suyo o de sus alumnos

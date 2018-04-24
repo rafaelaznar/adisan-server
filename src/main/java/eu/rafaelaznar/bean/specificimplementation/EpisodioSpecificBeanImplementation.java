@@ -339,7 +339,7 @@ public class EpisodioSpecificBeanImplementation extends GenericBeanImplementatio
             IsRequired = true,
             RegexPattern = RegexConstants.capitalizedSentence,
             RegexHelp = RegexConstants.capitalizedSentence_Help,
-            IsForeignKeyDescriptor = false,
+            IsForeignKeyDescriptor = true,
             Width = 3,
             MaxLength = 100,
             IsVisible = false
@@ -419,7 +419,7 @@ public class EpisodioSpecificBeanImplementation extends GenericBeanImplementatio
             //IsRequired = true,
             RegexPattern = RegexConstants.capitalizedSentence,
             RegexHelp = RegexConstants.capitalizedSentence_Help,
-            IsForeignKeyDescriptor = true,
+            IsForeignKeyDescriptor = false,
             Width = 3,
             MaxLength = 100,
             IsVisible = false
