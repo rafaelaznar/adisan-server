@@ -31,7 +31,7 @@ genericModule.controller('editXGeneric1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', '$filter', '$uibModal', 'sessionService', '$route', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, $filter, $uibModal, sessionService, $route, toolService, constantService) {
                 $scope.ob = $routeParams.ob;
-                $scope.op = "editx";
+                $scope.op = "edit";
                 $scope.profile = 1;
                 //----
                 $scope.id = $routeParams.id;

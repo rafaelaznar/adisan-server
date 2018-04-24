@@ -60,7 +60,12 @@ moduloFiltros
                                         description += foreignObject.data[foreignObject.metaProperties[i].Name] + " ";
                                     }
                                 }
-                                return description.trim();
+                                if (description.trim().length > 80) {
+                                    return description.trim().substr(0, 80) + " ...";
+
+                                } else {
+                                    return description.trim();
+                                }
                             } else {
                                 return "";
                             }
