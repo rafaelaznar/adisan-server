@@ -37,16 +37,17 @@ import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
+import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
 import eu.rafaelaznar.helper.Log4jHelper;
 import java.sql.Connection;
 
-public class Usuario3SpecificDaoImplementation extends Usuario1SpecificDaoImplementation {
+public class Usuario3SpecificDaoImplementation extends GenericDaoImplementation {
 
     private Integer idCentrosanitario = null;
     private Integer idUsuario = 0;
 
     public Usuario3SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super(oPooledConnection, oPuserBean_security, strWhere);
+        super("usuario", oPooledConnection, oPuserBean_security, strWhere);
         if (oPuserBean_security != null) {
             UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
             idUsuario = oUsuario.getId();
@@ -102,14 +103,6 @@ public class Usuario3SpecificDaoImplementation extends Usuario1SpecificDaoImplem
         return countSQL(strSQLini);
     }
 
-//    @Override
-//    public boolean canGet(Integer id) throws Exception {
-//        if (alumnoIsMine(id)) {
-//            return true;
-//        } else {
-//            return false;
-//        }
-//    }
     @Override
     public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         UsuarioSpecificBeanImplementation oNewUser = (UsuarioSpecificBeanImplementation) oBean;

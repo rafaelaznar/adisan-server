@@ -457,9 +457,11 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
     @Override
     public UsuarioSpecificBeanImplementation fill(ResultSet oResultSet, Connection oConnection, MetaBeanHelper oPuserBean_security, Integer expand) throws Exception {
         super.fill(oResultSet, oConnection, oPuserBean_security, expand);
-        Grupo1SpecificDaoImplementation oGrupoDao = null;
-        GrupoSpecificBeanImplementation oGrupoBean = null;
-        MetaBeanHelper oMetaBeanHelper = null;
+
+        if (this.id_tipousuario == 4) { // si alumno...
+
+        }
+
         if (this.id_tipousuario == 3) { // si profesor rellenar sus grupos
             GrupoSpecificBeanImplementation oGrupo = null;
             PreparedStatement oPreparedStatement = null;
@@ -470,6 +472,8 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
                 oPreparedStatement.setInt(1, this.getId());
                 oResultSet2 = oPreparedStatement.executeQuery();
                 if (oResultSet2.next()) {
+                    Grupo1SpecificDaoImplementation oGrupoDao = null;
+                    GrupoSpecificBeanImplementation oGrupoBean = null;
                     oGrupoDao = new Grupo1SpecificDaoImplementation(oConnection, oPuserBean_security, "and id_usuario=" + this.getId().toString());
                     oGrupoBean = (GrupoSpecificBeanImplementation) new GrupoSpecificBeanImplementation();
                     this.getObj_grupos().add(oGrupoDao.get(oResultSet2.getInt("id"), expand - 1));
@@ -490,7 +494,7 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
             }
         }
 
-        if (oPuserBean_security!=null) {
+        if (oPuserBean_security != null) {
             UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
             if (oUsuario.getId_tipousuario() == 5) {
                 this.setNombrecompleto("Oculto para proteger la identidad");

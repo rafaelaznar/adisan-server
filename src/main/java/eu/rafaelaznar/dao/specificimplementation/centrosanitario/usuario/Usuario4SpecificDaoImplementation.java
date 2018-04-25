@@ -36,16 +36,17 @@ import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.GrupoSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
+import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
 import eu.rafaelaznar.helper.Log4jHelper;
 import java.sql.Connection;
 
-public class Usuario4SpecificDaoImplementation extends Usuario1SpecificDaoImplementation {
+public class Usuario4SpecificDaoImplementation extends GenericDaoImplementation {
 
     private Integer idCentrosanitario = null;
     private Integer idUsuario = 0;
 
     public Usuario4SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super(oPooledConnection, oPuserBean_security, strWhere);
+        super("usuario", oPooledConnection, oPuserBean_security, strWhere);
         if (oPuserBean_security != null) {
             UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
             idUsuario = oUsuario.getId();
@@ -82,5 +83,5 @@ public class Usuario4SpecificDaoImplementation extends Usuario1SpecificDaoImplem
             Log4jHelper.errorLog(msg);
             throw new Exception(msg);
         }
-    }
+    }  
 }
