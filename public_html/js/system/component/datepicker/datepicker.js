@@ -42,7 +42,7 @@ function datepicker() {
     this.$postLink = function () {
         checkValidity();
     }
-    this.$onInit = function () {
-        checkValidity();
-    }
+//    this.$onInit = function () {
+//        checkValidity();
+//    }
 }

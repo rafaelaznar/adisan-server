@@ -60,6 +60,7 @@ moduloEpisodio.controller('EpisodioNew3Controller',
                             $scope.metao = response.data.json.metaObject;
                             $scope.metap = response.data.json.metaProperties;
                             $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_episodio");
+                            $scope.metap = toolService.deleteForeignKey($scope.metap, "obj_usuario");
                         } else {
                             $scope.status = "Error en la recepción de datos del servidor";
                         }
