@@ -127,7 +127,8 @@
                                 </div>
                                 <!-- date ------------------------------------------------>
                                 <div ng-if="oMetap.Type == 'Date'" class="form-group" id="{{oMetap.Name}}-group"
-                                     ng-class="{'has-error': (outerForm[oMetap.Name].$error.required || outerForm[oMetap.Name].$error.valid) && !outerForm.$pristine}">
+                                      ng-class="{'has-error':(outerForm[oMetap.Name].$error.valid && !outerForm.$pristine) ||
+                                                             (outerForm[oMetap.Name].$error.required && !outerForm.$pristine || outerForm[oMetap.Name].$error.valid)}">
                                     <label class="control-label col-sm-2" for="{{oMetap.Name}}">
                                         <span ng-if="oMetap.IsRequired">*</span>
                                         {{oMetap.LongName}}
@@ -135,12 +136,12 @@
                                     <div class="control col-md-{{oMetap.Width}}">
                                         <date-time-picker
                                             name="oMetap.Name"
-                                            required="oMetap.Required"
+                                            required="oMetap.IsRequired"
                                             model="bean[oMetap.Name]"
                                             form="outerForm">
-                                        </date-time-picker>
+                                        </date-time-picker>Valido form: {{outerForm[oMetap.Name].$valid}}
                                         <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.required">El campo es obligatorio</span>
-                                        <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && !outerForm[oMetap.Name].$valid">El campo no tiene formato adecuado: Introduzca {{oMetap.RegexHelp}}</span>
+                                        <span class="help-block" ng-if="!outerForm[oMetap.Name].$pristine && outerForm[oMetap.Name].$error.required && !outerForm[oMetap.Name].$valid">El campo no tiene formato adecuado: Introduzca {{oMetap.RegexHelp}}</span>
                                     </div>
                                     <div class="control col-md-1 alert alert-success" ng-if="debugging == 2">
                                         pristine:{{outerForm[oMetap.Name].$pristine}}<br>

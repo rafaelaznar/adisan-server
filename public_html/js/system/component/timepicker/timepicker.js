@@ -9,6 +9,7 @@ moduloDirectivas.component('dateTimePicker', {
         form: '='
     }
 });
+// $postLink $onInit  $onChanges  $onDestroy
 function datetimepicker() {
     var self = this;
     var validity = function (isValid) {
@@ -17,12 +18,20 @@ function datetimepicker() {
         }
     }
     var checkValidity = function () {
-        var fechaCompleta = moment(self.model, "DD/MM/YYYY hh:mm");
-        var dayA = moment("01/01/1970 00:00", "DD/MM/YYYY hh:mm");
-        var dayB = moment("31/12/2099 23:59", "DD/MM/YYYY hh:mm");
-        var fechaHora = moment(self.model, "DD/MM/YYYY HH:mm", true).isValid();
-        if ((fechaCompleta <= dayA || fechaCompleta >= dayB) || !fechaHora) {
-            validity(false);
+        if (self.model) {
+            var fechaCompleta = moment(self.model, "DD/MM/YYYY hh:mm");
+            var dayA = moment("01/01/1970 00:00", "DD/MM/YYYY hh:mm");
+            var dayB = moment("31/12/2099 23:59", "DD/MM/YYYY hh:mm");
+            var fechaHora = moment(self.model, "DD/MM/YYYY HH:mm", true).isValid();
+            if ((fechaCompleta <= dayA || fechaCompleta >= dayB) || !fechaHora) {
+                if (self.model == '') {
+                    validity(true);
+                } else {
+                    validity(false);
+                }
+            } else {
+                validity(true);
+            }
         } else {
             validity(true);
         }
@@ -31,6 +40,9 @@ function datetimepicker() {
         checkValidity();
     }
     this.$postLink = function () {
+        checkValidity();
+    }
+    this.$onInit = function () {
         checkValidity();
     }
 }
