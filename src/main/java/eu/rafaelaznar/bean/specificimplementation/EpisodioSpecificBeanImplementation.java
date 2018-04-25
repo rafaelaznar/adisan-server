@@ -63,7 +63,7 @@ public class EpisodioSpecificBeanImplementation extends GenericBeanImplementatio
             Description = "Fecha de la firma",
             Type = EnumHelper.FieldType.Date,
             RegexHelp = "una fecha correcta",
-            IsRequired = true,
+            IsRequired = false,
             IsVisible = false
     )
     private Date fecha_firma;
@@ -75,7 +75,8 @@ public class EpisodioSpecificBeanImplementation extends GenericBeanImplementatio
             Description = "Fecha inicio del episodio",
             Type = EnumHelper.FieldType.Date,
             RegexHelp = "una fecha correcta",
-            IsRequired = true
+            IsRequired = true,
+            DefaultValue = "today"
     )
     private Date fecha_inicio;
 
