@@ -30,7 +30,7 @@ moduloUsuario.controller('UsuarioXcentrosanitarioPList1Controller',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
             function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
                 $scope.ob = "usuario";
-                $scope.op = "plistx";
+                $scope.op = "plist";
                 $scope.profile = 1;
                 //----
                 $scope.xob = "centrosanitario";
@@ -111,16 +111,16 @@ moduloUsuario.controller('UsuarioXcentrosanitarioPList1Controller',
                     return oBean.canDelete;
                 }
                 $scope.goViewURL = function (oBean) {
-                    $location.path("usuario/" + $scope.profile + "/view/" + oBean.id);
+                    $location.path($scope.ob + "/" + $scope.profile + "/view/" + oBean.id);
                 }
                 $scope.goNewURL = function () {
-                    $location.path($scope.ob + "/" + $scope.profile + "/x" + $scope.xob + "/newx/" + $scope.xid);
+                    $location.path($scope.ob + "/" + $scope.profile + "/" + $scope.xob + "/new/" + $scope.xid);
                 }                
                 $scope.goEditURL = function (oBean) {
-                    $location.path("usuario/" + $scope.profile + "/x" + $scope.xob + "/editx/" + oBean.id + "/" + $scope.xid);
+                    $location.path($scope.ob + "/" + $scope.profile + "/" + $scope.xob + "/edit/" + oBean.id + "/" + $scope.xid);
                 }
                 $scope.goRemoveURL = function (oBean) {
-                    $location.path("usuario/" + $scope.profile + "/remove/" + oBean.id);
+                    $location.path($scope.ob + "/" + $scope.profile + "/remove/" + oBean.id);
                 }
                 //--------------------------------------------------------------
                 $scope.showOtherButton = function (oBean) {
