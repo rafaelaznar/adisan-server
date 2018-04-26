@@ -73,7 +73,9 @@ gesane.config(['$routeProvider', function ($routeProvider) {
         //--
         //-- paciente
         //--
-        $routeProvider.when('/paciente/1/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'PacientePList1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/paciente/1/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'PacientePList1Controller', resolve: {auth: authentication1Promise}});        
+        $routeProvider.when('/paciente/1/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'PacienteNew1Controller', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/paciente/1/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'PacienteEdit1Controller', resolve: {auth: authentication1Promise}});        
         //--
         //-- episodio
         //--
@@ -103,6 +105,8 @@ gesane.config(['$routeProvider', function ($routeProvider) {
         //-- paciente
         //--
         $routeProvider.when('/paciente/3/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'PacientePList3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/paciente/3/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'PacienteNew3Controller', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/paciente/3/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'PacienteEdit3Controller', resolve: {auth: authentication3Promise}});        
         //--
         //-- episodio
         //--
@@ -118,6 +122,11 @@ gesane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/subepisodio/3/episodio/edit/:id/:xid', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'SubepisodioXepisodioEdit3Controller', resolve: {auth: authentication3Promise}});
 
         //-- 4 PROFILE ---------------------------------------------------------
+        //--
+        //-- paciente
+        //--        
+        $routeProvider.when('/paciente/4/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'PacienteNew4Controller', resolve: {auth: authentication4Promise}});
+        $routeProvider.when('/paciente/4/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'PacienteEdit4Controller', resolve: {auth: authentication4Promise}});                
         //--
         //-- episodio
         //--
