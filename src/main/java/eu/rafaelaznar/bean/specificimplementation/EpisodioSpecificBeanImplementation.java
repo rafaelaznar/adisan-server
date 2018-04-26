@@ -340,7 +340,7 @@ public class EpisodioSpecificBeanImplementation extends GenericBeanImplementatio
             IsRequired = true,
             RegexPattern = RegexConstants.capitalizedSentence,
             RegexHelp = RegexConstants.capitalizedSentence_Help,
-            IsForeignKeyDescriptor = true,
+            IsForeignKeyDescriptor = false,
             Width = 3,
             MaxLength = 100,
             IsVisible = false
@@ -401,7 +401,7 @@ public class EpisodioSpecificBeanImplementation extends GenericBeanImplementatio
             LongName = "Evolución Comentario",
             Description = "Evolución Comentario",
             Type = EnumHelper.FieldType.LongText,
-            IsRequired = true,
+            //IsRequired = true,
             RegexPattern = RegexConstants.capitalizedSentence,
             RegexHelp = RegexConstants.capitalizedSentence_Help,
             IsForeignKeyDescriptor = false,
@@ -417,13 +417,13 @@ public class EpisodioSpecificBeanImplementation extends GenericBeanImplementatio
             LongName = "Diagnóstico Principal",
             Description = "Diasnóstico Principal",
             Type = EnumHelper.FieldType.LongText,
-            //IsRequired = true,
+            IsRequired = true,
             RegexPattern = RegexConstants.capitalizedSentence,
             RegexHelp = RegexConstants.capitalizedSentence_Help,
-            IsForeignKeyDescriptor = false,
+            IsForeignKeyDescriptor = true,
             Width = 3,
             MaxLength = 100,
-            IsVisible = false
+            IsVisible = true
     )
     private String diagnostico_principal;
 
@@ -449,7 +449,7 @@ public class EpisodioSpecificBeanImplementation extends GenericBeanImplementatio
             LongName = "Procedimientos",
             Description = "Procedimientos",
             Type = EnumHelper.FieldType.LongText,
-            IsRequired = true,
+            //IsRequired = true,
             RegexPattern = RegexConstants.capitalizedSentence,
             RegexHelp = RegexConstants.capitalizedSentence_Help,
             IsForeignKeyDescriptor = false,
@@ -497,7 +497,7 @@ public class EpisodioSpecificBeanImplementation extends GenericBeanImplementatio
             LongName = "Recomendaciones",
             Description = "Recomendaciones",
             Type = EnumHelper.FieldType.LongText,
-            IsRequired = true,
+            //IsRequired = true,
             RegexPattern = RegexConstants.capitalizedSentence,
             RegexHelp = RegexConstants.capitalizedSentence_Help,
             IsForeignKeyDescriptor = false,
