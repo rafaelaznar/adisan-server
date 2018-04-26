@@ -19,9 +19,9 @@ function datetimepicker() {
     }
     var checkValidity = function () {
         if (self.model) {
-            var fechaCompleta = moment(self.model, "DD/MM/YYYY hh:mm");
-            var dayA = moment("01/01/1970 00:00", "DD/MM/YYYY hh:mm");
-            var dayB = moment("31/12/2099 23:59", "DD/MM/YYYY hh:mm");
+            var fechaCompleta = moment(self.model, "DD/MM/YYYY HH:mm");
+            var dayA = moment("01/01/1970 00:00", "DD/MM/YYYY HH:mm");
+            var dayB = moment("31/12/2099 23:59", "DD/MM/YYYY HH:mm");
             var fechaHora = moment(self.model, "DD/MM/YYYY HH:mm", true).isValid();
             if ((fechaCompleta <= dayA || fechaCompleta >= dayB) || !fechaHora) {
                 if (self.model == '') {
