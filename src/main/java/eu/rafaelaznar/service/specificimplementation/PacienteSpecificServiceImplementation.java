@@ -326,7 +326,7 @@ public class PacienteSpecificServiceImplementation extends GenericServiceImpleme
             //--
             oPacienteBean.setId_tipopago(RandomHelper.getRandomInt(1, 3));
             oPacienteBean.setId_sexo(sexo);
-            oPacienteBean.setId_usuario(idTipousuario);
+            oPacienteBean.setId_usuario(oUsuario.getId());
 
             result += oPacienteDao.create(oPacienteBean);
 

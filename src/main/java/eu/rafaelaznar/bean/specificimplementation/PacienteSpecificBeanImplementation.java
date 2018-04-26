@@ -324,9 +324,9 @@ public class PacienteSpecificBeanImplementation extends GenericBeanImplementatio
 
     @Expose
     @MetaPropertyBeanInterface(
-            ShortName = "Sip",
-            LongName = "Sip aseguradora",
-            Description = "Sip del paciente",
+            ShortName = "SIP",
+            LongName = "SIP aseguradora",
+            Description = "SIP del paciente",
             Type = EnumHelper.FieldType.Integer,
             RegexPattern = "[0-9]{10,10}",
             RegexHelp = "10 dígitos",
@@ -334,7 +334,7 @@ public class PacienteSpecificBeanImplementation extends GenericBeanImplementatio
             IsForeignKeyDescriptor = false,
             Width = 3,
             MaxLength = 100,
-            IsVisible = false
+            IsVisible = true
     )
     private String sip_aseguradora;
 
