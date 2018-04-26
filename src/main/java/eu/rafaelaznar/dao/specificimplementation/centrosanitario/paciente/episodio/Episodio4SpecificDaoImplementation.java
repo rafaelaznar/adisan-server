@@ -117,6 +117,18 @@ public class Episodio4SpecificDaoImplementation extends GenericDaoImplementation
 //        return iResult > 0;
 //    }
     @Override
+    public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
+//        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+//        EpisodioSpecificBeanImplementation oEpisodio = (EpisodioSpecificBeanImplementation) oBean;
+//        if (oEpisodio.getId_usuario().equals(oSessionUser.getId())) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+        return true;
+    }
+
+    @Override
     public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
         UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
         EpisodioSpecificBeanImplementation oEpisodio = (EpisodioSpecificBeanImplementation) oBean;
