@@ -324,7 +324,7 @@ public class PacienteSpecificServiceImplementation extends GenericServiceImpleme
             }
             oPacienteBean.setSip_aseguradora(sip);
             //--
-            oPacienteBean.setId_tipopago(RandomHelper.getRandomInt(1, 3));
+            //oPacienteBean.setId_tipopago(RandomHelper.getRandomInt(1, 3));
             oPacienteBean.setId_sexo(sexo);
             oPacienteBean.setId_usuario(oUsuario.getId());
 

@@ -162,24 +162,24 @@ public class EpisodioSpecificBeanImplementation extends GenericBeanImplementatio
     )
     private MetaBeanHelper obj_paciente = null;
 
-    @Expose(serialize = false)
-    @MetaPropertyBeanInterface(
-            Type = EnumHelper.FieldType.ForeignId
-    )
-    private Integer id_factura = 0;
-
-    @Expose(deserialize = false)
-    @MetaPropertyBeanInterface(
-            ShortName = "Fact.",
-            LongName = "Factura",
-            Description = "Factura del episodio",
-            Type = EnumHelper.FieldType.ForeignObject,
-            IsRequired = true,
-            References = "factura",
-            Width = 4,
-            IsVisible = false
-    )
-    private MetaBeanHelper obj_factura = null;
+//    @Expose(serialize = false)
+//    @MetaPropertyBeanInterface(
+//            Type = EnumHelper.FieldType.ForeignId
+//    )
+//    private Integer id_factura = 0;
+//
+//    @Expose(deserialize = false)
+//    @MetaPropertyBeanInterface(
+//            ShortName = "Fact.",
+//            LongName = "Factura",
+//            Description = "Factura del episodio",
+//            Type = EnumHelper.FieldType.ForeignObject,
+//            IsRequired = true,
+//            References = "factura",
+//            Width = 4,
+//            IsVisible = false
+//    )
+//    private MetaBeanHelper obj_factura = null;
 
     @Expose(serialize = false)
     @MetaPropertyBeanInterface(
@@ -658,13 +658,13 @@ public class EpisodioSpecificBeanImplementation extends GenericBeanImplementatio
         this.id_paciente = id_paciente;
     }
 
-    public Integer getId_factura() {
-        return id_factura;
-    }
-
-    public void setId_factura(Integer id_factura) {
-        this.id_factura = id_factura;
-    }
+//    public Integer getId_factura() {
+//        return id_factura;
+//    }
+//
+//    public void setId_factura(Integer id_factura) {
+//        this.id_factura = id_factura;
+//    }
 
     public Integer getId_dependencia() {
         return id_dependencia;
@@ -810,13 +810,13 @@ public class EpisodioSpecificBeanImplementation extends GenericBeanImplementatio
         this.obj_paciente = obj_paciente;
     }
 
-    public MetaBeanHelper getObj_factura() {
-        return obj_factura;
-    }
-
-    public void setObj_factura(MetaBeanHelper obj_factura) {
-        this.obj_factura = obj_factura;
-    }
+//    public MetaBeanHelper getObj_factura() {
+//        return obj_factura;
+//    }
+//
+//    public void setObj_factura(MetaBeanHelper obj_factura) {
+//        this.obj_factura = obj_factura;
+//    }
 
     public MetaBeanHelper getObj_dependencia() {
         return obj_dependencia;

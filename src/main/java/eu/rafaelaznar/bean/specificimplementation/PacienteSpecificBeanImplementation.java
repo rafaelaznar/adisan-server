@@ -338,23 +338,23 @@ public class PacienteSpecificBeanImplementation extends GenericBeanImplementatio
     )
     private String sip_aseguradora;
 
-    @Expose(serialize = false)
-    @MetaPropertyBeanInterface(
-            Type = EnumHelper.FieldType.ForeignId
-    )
-    private Integer id_tipopago = 0;
-    @Expose(deserialize = false)
-    @MetaPropertyBeanInterface(
-            ShortName = "Tipo",
-            LongName = "Tipo pago",
-            Description = "Tipo de pago",
-            Type = EnumHelper.FieldType.ForeignObject,
-            IsRequired = true,
-            References = "tipopago",
-            Width = 4,
-            IsVisible = false
-    )
-    private MetaBeanHelper obj_tipopago = null;
+//    @Expose(serialize = false)
+//    @MetaPropertyBeanInterface(
+//            Type = EnumHelper.FieldType.ForeignId
+//    )
+//    private Integer id_tipopago = 0;
+//    @Expose(deserialize = false)
+//    @MetaPropertyBeanInterface(
+//            ShortName = "Tipo",
+//            LongName = "Tipo pago",
+//            Description = "Tipo de pago",
+//            Type = EnumHelper.FieldType.ForeignObject,
+//            IsRequired = false,
+//            References = "tipopago",
+//            Width = 4,
+//            IsVisible = false
+//    )
+//    private MetaBeanHelper obj_tipopago = null;
 
     @Expose(serialize = false)
     @MetaPropertyBeanInterface(
@@ -553,21 +553,21 @@ public class PacienteSpecificBeanImplementation extends GenericBeanImplementatio
         this.sip_aseguradora = sip_aseguradora;
     }
 
-    public Integer getId_tipopago() {
-        return id_tipopago;
-    }
-
-    public void setId_tipopago(Integer id_tipopago) {
-        this.id_tipopago = id_tipopago;
-    }
-
-    public MetaBeanHelper getObj_tipopago() {
-        return obj_tipopago;
-    }
-
-    public void setObj_tipopago(MetaBeanHelper obj_tipopago) {
-        this.obj_tipopago = obj_tipopago;
-    }
+//    public Integer getId_tipopago() {
+//        return id_tipopago;
+//    }
+//
+//    public void setId_tipopago(Integer id_tipopago) {
+//        this.id_tipopago = id_tipopago;
+//    }
+//
+//    public MetaBeanHelper getObj_tipopago() {
+//        return obj_tipopago;
+//    }
+//
+//    public void setObj_tipopago(MetaBeanHelper obj_tipopago) {
+//        this.obj_tipopago = obj_tipopago;
+//    }
 
     public Integer getId_sexo() {
         return id_sexo;
