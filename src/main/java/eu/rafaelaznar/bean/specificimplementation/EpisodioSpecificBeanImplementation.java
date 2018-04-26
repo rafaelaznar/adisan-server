@@ -87,6 +87,7 @@ public class EpisodioSpecificBeanImplementation extends GenericBeanImplementatio
             Description = "Fecha alta del episodio",
             Type = EnumHelper.FieldType.Date,
             RegexHelp = "una fecha correcta",
+            IsVisible = false,
             IsRequired = false
     )
     private Date fecha_alta;
