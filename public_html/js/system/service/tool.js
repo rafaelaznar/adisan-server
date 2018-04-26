@@ -74,8 +74,10 @@ moduloServicios.factory('toolService', ['$filter', function ($filter) {
                             newObj[property.replace("obj_", "id_")] = arr[property].data.id;
                         } else {
                             if (property.match("^fecha")) {
-                                if (moment(arr[property], "DD/MM/YYYY", true).isValid()) {
-                                    newObj[property] = arr[property] + " 00:00";
+                                if (!moment(arr[property], "DD/MM/YYYY hh:mm", true).isValid()) {
+                                    if (moment(arr[property], "DD/MM/YYYY", true).isValid()) {
+                                        newObj[property] = arr[property] + " 00:00";
+                                    }
                                 }
                             } else {
                                 if (!property.match("^link_")) {
