@@ -82,6 +82,41 @@ public abstract class GenericDaoImplementation implements DaoInterface {
         }
     }
 
+    protected Long count(String strCountSQL) throws Exception {
+        PreparedStatement oPreparedStatement = null;
+        ResultSet oResultSet = null;
+        Long iResult = 0L;
+        try {
+            oPreparedStatement = oConnection.prepareStatement(strCountSQL);
+            oResultSet = oPreparedStatement.executeQuery();
+            if (oResultSet.next()) {
+                iResult = oResultSet.getLong("COUNT(*)");
+            } else {
+                String msg = this.getClass().getName() + ": getcount";
+                Log4jHelper.errorLog(msg);
+                throw new Exception(msg);
+            }
+        } catch (Exception ex) {
+            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
+            Log4jHelper.errorLog(msg, ex);
+            throw new Exception(msg, ex);
+        } finally {
+            if (oResultSet != null) {
+                oResultSet.close();
+            }
+            if (oPreparedStatement != null) {
+                oPreparedStatement.close();
+            }
+            TraceHelper.trace("count-Estadistica0SpecificDaoImplementation(end):object=" + ob);
+        }
+        return iResult;
+    }
+
+    @Override
+    public MetaBeanHelper getStatistics(int id) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
     private ArrayList<MetaPropertyGenericBeanHelper> fillPropertiesMetaData(Class oClassBEAN, ArrayList<MetaPropertyGenericBeanHelper> alVector) {
         TraceHelper.trace("fillPropertiesMetaData(start): object = " + ob);
         for (Field field : oClassBEAN.getDeclaredFields()) {
@@ -154,7 +189,40 @@ public abstract class GenericDaoImplementation implements DaoInterface {
     }
 
     @Override
+    public MetaObjectGenericBeanHelper getObjectMetaData(String ob) throws Exception {
+        MetaObjectGenericBeanHelper oMetaObject;
+        try {
+            GenericBeanImplementation oBean = (GenericBeanImplementation) BeanFactory.getBean(ob, oPuserSecurity);
+            Class oClassBEAN = oBean.getClass();
+            oMetaObject = new MetaObjectGenericBeanHelper();
+            oMetaObject = fillObjectMetaData(oClassBEAN, oMetaObject);
+        } catch (Exception ex) {
+            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
+            Log4jHelper.errorLog(msg, ex);
+            throw new Exception(msg, ex);
+        }
+        return oMetaObject;
+    }
+
+    @Override
     public ArrayList<MetaPropertyGenericBeanHelper> getPropertiesMetaData() throws Exception {
+        ArrayList<MetaPropertyGenericBeanHelper> alVector = new ArrayList<>();
+        try {
+            GenericBeanImplementation oBean = (GenericBeanImplementation) BeanFactory.getBean(ob, oPuserSecurity);
+            Class classBean = oBean.getClass();
+            Class superClassBean = oBean.getClass().getSuperclass();
+            alVector = fillPropertiesMetaData(superClassBean, alVector);
+            alVector = fillPropertiesMetaData(classBean, alVector);
+        } catch (Exception ex) {
+            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
+            Log4jHelper.errorLog(msg, ex);
+            throw new Exception(msg, ex);
+        }
+        return alVector;
+    }
+
+    @Override
+    public ArrayList<MetaPropertyGenericBeanHelper> getPropertiesMetaData(String ob) throws Exception {
         ArrayList<MetaPropertyGenericBeanHelper> alVector = new ArrayList<>();
         try {
             GenericBeanImplementation oBean = (GenericBeanImplementation) BeanFactory.getBean(ob, oPuserSecurity);

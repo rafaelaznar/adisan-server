@@ -35,13 +35,12 @@ package eu.rafaelaznar.dao.specificimplementation.centrosanitario;
 import eu.rafaelaznar.bean.genericimplementation.GenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
-import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
-public class Centrosanitario1SpecificDaoImplementation extends GenericDaoImplementation {
+public class Centrosanitario1SpecificDaoImplementation extends CentrosanitarioSpecificDaoImplementation {
 
     public Centrosanitario1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("centrosanitario", oPooledConnection, oPuserBean_security, strWhere);
+        super(oPooledConnection, oPuserBean_security, strWhere);
     }
 
     @Override

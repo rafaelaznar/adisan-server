@@ -420,4 +420,37 @@ public abstract class GenericServiceImplementation implements ServiceInterface {
         }
     }
 
+    @Override
+    public ReplyBeanHelper getStatistics() throws Exception {
+        if (this.checkPermission("getStatistics")) {
+            int id = Integer.parseInt(oRequest.getParameter("id"));
+            Connection oConnection = null;
+            ConnectionInterface oPooledConnection = null;
+            ReplyBeanHelper oReplyBean = null;
+            try {
+                oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
+                oConnection = oPooledConnection.newConnection();
+                DaoInterface oDao = (DaoInterface) DaoFactory.getDao(ob, oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+                MetaBeanHelper oMetaBeanHelper = (MetaBeanHelper) oDao.getStatistics(id);
+                String strJson = GsonHelper.getGson().toJson(oMetaBeanHelper);
+                oReplyBean = new ReplyBeanHelper(200, strJson);
+            } catch (Exception ex) {
+                String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
+                Log4jHelper.errorLog(msg, ex);
+                throw new Exception(msg, ex);
+            } finally {
+                if (oConnection != null) {
+                    oConnection.close();
+                }
+                if (oPooledConnection != null) {
+                    oPooledConnection.disposeConnection();
+                }
+            }
+            return oReplyBean;
+        } else {
+            return new ReplyBeanHelper(401, EncodingHelper.quotate("Unauthorized"));
+        }
+
+    }
+
 }

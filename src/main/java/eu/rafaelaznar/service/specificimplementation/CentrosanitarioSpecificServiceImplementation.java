@@ -39,6 +39,6 @@ public class CentrosanitarioSpecificServiceImplementation extends GenericService
 
     public CentrosanitarioSpecificServiceImplementation(HttpServletRequest request) {
         super(request);
-    }
-
+    }   
+    
 }

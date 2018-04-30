@@ -47,7 +47,7 @@ import eu.rafaelaznar.bean.specificimplementation.DependenciaSpecificBeanImpleme
 import eu.rafaelaznar.bean.specificimplementation.EspecialidadSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.DestinoaltaSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.EpisodioSpecificBeanImplementation;
-import eu.rafaelaznar.bean.specificimplementation.EstadisticaXCentrosanitarioSpecificBeanImplementation;
+import eu.rafaelaznar.bean.statisticsspecificimplementation.CentrosanitarioStatisticsSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.FacturaSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.GrupoSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.MedicoSpecificBeanImplementation;
@@ -162,7 +162,7 @@ public class BeanFactory {
                 oBean = new ComunidadSpecificBeanImplementation();
                 break;
             case "estadistica":
-                oBean = new EstadisticaXCentrosanitarioSpecificBeanImplementation();
+                oBean = new CentrosanitarioStatisticsSpecificBeanImplementation();
                 break;
             default:
 

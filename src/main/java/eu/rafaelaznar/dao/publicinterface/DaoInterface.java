@@ -35,6 +35,7 @@ package eu.rafaelaznar.dao.publicinterface;
 import eu.rafaelaznar.bean.genericimplementation.GenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.FilterBeanHelper;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
+import eu.rafaelaznar.bean.helper.ReplyBeanHelper;
 import eu.rafaelaznar.bean.meta.helper.MetaObjectGenericBeanHelper;
 import eu.rafaelaznar.bean.meta.helper.MetaPropertyGenericBeanHelper;
 import java.util.ArrayList;
@@ -44,7 +45,11 @@ public interface DaoInterface {
 
     public MetaObjectGenericBeanHelper getObjectMetaData() throws Exception;
 
+    public MetaObjectGenericBeanHelper getObjectMetaData(String ob) throws Exception; //only for statistics (different bean)
+
     public ArrayList<MetaPropertyGenericBeanHelper> getPropertiesMetaData() throws Exception;
+
+    public ArrayList<MetaPropertyGenericBeanHelper> getPropertiesMetaData(String ob) throws Exception; //only for statistics (different bean)
 
     public Long getCount(ArrayList<FilterBeanHelper> alFilter) throws Exception;
 
@@ -67,4 +72,6 @@ public interface DaoInterface {
     public Integer update(GenericBeanImplementation oBean) throws Exception;
 
     public Integer delete(GenericBeanImplementation oBean) throws Exception;
+
+    public MetaBeanHelper getStatistics(int id) throws Exception;
 }

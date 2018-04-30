@@ -55,4 +55,6 @@ public interface ServiceInterface {
     public ReplyBeanHelper set() throws Exception;
 
     public ReplyBeanHelper remove() throws Exception;
+    
+    public ReplyBeanHelper getStatistics () throws Exception;
 }

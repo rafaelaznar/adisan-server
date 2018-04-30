@@ -44,7 +44,6 @@ import eu.rafaelaznar.service.specificimplementation.DependenciaSpecificServiceI
 import eu.rafaelaznar.service.specificimplementation.EspecialidadSpecificServiceImplementation;
 import eu.rafaelaznar.service.specificimplementation.DestinoaltaSpecificServiceImplementation;
 import eu.rafaelaznar.service.specificimplementation.EpisodioSpecificServiceImplementation;
-import eu.rafaelaznar.service.specificimplementation.EstadisticaXCentrosanitarioSpecificServiceImplementation;
 import eu.rafaelaznar.service.specificimplementation.FacturaSpecificServiceImplementation;
 import eu.rafaelaznar.service.specificimplementation.GrupoSpecificServiceImplementation;
 import eu.rafaelaznar.service.specificimplementation.MedicoSpecificServiceImplementation;
@@ -282,6 +281,9 @@ public class ServiceFactory {
                         break;
                     case "getpagex":
                         oReplyBean = oCentrosanitarioService.getPageX();
+                        break;
+                    case "getStatistics":
+                        oReplyBean = oCentrosanitarioService.getStatistics();
                         break;
                     default:
                         oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Operation not found : Please contact your administrator"));
@@ -933,17 +935,6 @@ public class ServiceFactory {
                         break;
                     case "getpagex":
                         oReplyBean = oDependenciaService.getPageX();
-                        break;
-                    default:
-                        oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Operation not found : Please contact your administrator"));
-                        break;
-                }
-                break;
-            case "estadistica":
-                EstadisticaXCentrosanitarioSpecificServiceImplementation oEstadisticaService = new EstadisticaXCentrosanitarioSpecificServiceImplementation(oRequest);
-                switch (op) {
-                    case "get":
-                        oReplyBean = oEstadisticaService.get();
                         break;
                     default:
                         oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Operation not found : Please contact your administrator"));

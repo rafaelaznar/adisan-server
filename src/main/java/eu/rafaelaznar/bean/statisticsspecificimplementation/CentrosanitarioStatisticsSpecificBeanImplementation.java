@@ -30,10 +30,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.rafaelaznar.bean.specificimplementation;
+package eu.rafaelaznar.bean.statisticsspecificimplementation;
 
 import com.google.gson.annotations.Expose;
-import eu.rafaelaznar.bean.genericimplementation.GenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.meta.publicinterface.MetaObjectBeanInterface;
 import eu.rafaelaznar.bean.meta.publicinterface.MetaPropertyBeanInterface;
@@ -49,7 +48,7 @@ import java.sql.ResultSet;
         Icon = "fa fa-bar-chart",
         Type = EnumHelper.SourceType.Table
 )
-public class EstadisticaXCentrosanitarioSpecificBeanImplementation implements BeanInterface {
+public class CentrosanitarioStatisticsSpecificBeanImplementation implements BeanInterface {
 
     @Expose(deserialize = false)
     @MetaPropertyBeanInterface(
