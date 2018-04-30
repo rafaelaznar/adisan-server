@@ -102,15 +102,6 @@
                         <li ng-class="{ 'active': mn.isActive('/tipoepisodio/1/plist')}"><a href="tipoepisodio/1/plist"> <i ng-class="mn.meta.tipoepisodio.Icon"></i> {{mn.meta.tipoepisodio.PluralDescription}}</a></li>
                     </ul>
                 </li>
-                <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 1"
-                    ng-class="{'active': mn.isActive('/tipopago') || mn.isActive('/factura')}">
-                    <a class="dropdown-toggle" data-toggle="dropdown" role="button">
-                        <i class="fa fa-icon-list-alt"></i>Facturación<span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li ng-class="{ 'active': mn.isActive('/tipopago/1/plist')}"><a href="tipopago/1/plist"> <i ng-class="mn.meta.tipopago.Icon"></i> {{mn.meta.tipopago.PluralDescription}}</a></li>
-                        <li ng-class="{ 'active': mn.isActive('/factura/1/plist')}"><a href="factura/1/plist"> <i ng-class="mn.meta.factura.Icon"></i> {{mn.meta.factura.PluralDescription}}</a></li>
-                    </ul>
-                </li>
                 <!-- Coordinación ------------------------------------------- -->
                 <!-- Profesor -------------------------------------------    -->
                 <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 3"
@@ -167,15 +158,6 @@
                         <li ng-class="{ 'active': mn.isActive('/modalidadepisodio/3/plist')}"><a href="modalidadepisodio/3/plist"> <i ng-class="mn.meta.modalidadepisodio.Icon"></i> {{mn.meta.modalidadepisodio.PluralDescription}}</a></li>
                         <li ng-class="{ 'active': mn.isActive('/circunstanciasalta/3/plist')}"><a href="circunstanciasalta/3/plist"> <i ng-class="mn.meta.circunstanciasalta.Icon"></i> {{mn.meta.circunstanciasalta.PluralDescription}}</a></li>
                         <li ng-class="{ 'active': mn.isActive('/tipoepisodio/3/plist')}"><a href="tipoepisodio/3/plist"> <i ng-class="mn.meta.tipoepisodio.Icon"></i> {{mn.meta.tipoepisodio.PluralDescription}}</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 3"
-                    ng-class="{'active': mn.isActive('/tipopago') || mn.isActive('/factura')}">
-                    <a class="dropdown-toggle" data-toggle="dropdown" role="button">
-                        <i class="fa fa-icon-list-alt"></i>Facturación<span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li ng-class="{ 'active': mn.isActive('/tipopago/3/plist')}"><a href="tipopago/3/plist"> <i ng-class="mn.meta.tipopago.Icon"></i> {{mn.meta.tipopago.PluralDescription}}</a></li>
-                        <li ng-class="{ 'active': mn.isActive('/factura/3/plist')}"><a href="factura/3/plist"> <i ng-class="mn.meta.factura.Icon"></i> {{mn.meta.factura.PluralDescription}}</a></li>
                     </ul>
                 </li>
                 <!-- Alumno --------------------------------------------->
@@ -236,16 +218,6 @@
                         <li ng-class="{ 'active': mn.isActive('/tipoepisodio/4/plist')}"><a href="tipoepisodio/4/plist"> <i ng-class="mn.meta.tipoepisodio.Icon"></i> {{mn.meta.tipoepisodio.PluralDescription}}</a></li>
                     </ul>
                 </li>
-
-                <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 4"
-                    ng-class="{'active': mn.isActive('/tipopago') || mn.isActive('/factura')}">
-                    <a class="dropdown-toggle" data-toggle="dropdown" role="button">
-                        <i class="fa fa-icon-list-alt"></i>Facturación<span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li ng-class="{ 'active': mn.isActive('/tipopago/4/plist')}"><a href="tipopago/4/plist"> <i ng-class="mn.meta.tipopago.Icon"></i> {{mn.meta.tipopago.PluralDescription}}</a></li>
-                        <li ng-class="{ 'active': mn.isActive('/factura/4/plist')}"><a href="factura/4/plist"> <i ng-class="mn.meta.factura.Icon"></i> {{mn.meta.factura.PluralDescription}}</a></li>
-                    </ul>
-                </li>
                 <!-- Invitado visitante ------------------------------------------- -->
                 <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 5"
                     ng-class="{'active': mn.isActive('/usuario') || mn.isActive('/tipousuario') || mn.isActive('/grupo') || mn.isActive('/curso') || mn.isActive('/centro/')}">
@@ -302,15 +274,6 @@
                         <li ng-class="{ 'active': mn.isActive('/modalidadepisodio/5/plist')}"><a href="modalidadepisodio/5/plist"> <i ng-class="mn.meta.modalidadepisodio.Icon"></i> {{mn.meta.modalidadepisodio.PluralDescription}}</a></li>
                         <li ng-class="{ 'active': mn.isActive('/circunstanciasalta/5/plist')}"><a href="circunstanciasalta/5/plist"> <i ng-class="mn.meta.circunstanciasalta.Icon"></i> {{mn.meta.circunstanciasalta.PluralDescription}}</a></li>
                         <li ng-class="{ 'active': mn.isActive('/tipoepisodio/5/plist')}"><a href="tipoepisodio/5/plist"> <i ng-class="mn.meta.tipoepisodio.Icon"></i> {{mn.meta.tipoepisodio.PluralDescription}}</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown" ng-if="mn.session_info.obj_tipousuario.data.id == 5"
-                    ng-class="{'active': mn.isActive('/tipopago') || mn.isActive('/factura')}">
-                    <a class="dropdown-toggle" data-toggle="dropdown" role="button">
-                        <i class="fa fa-icon-list-alt"></i>Facturación<span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li ng-class="{ 'active': mn.isActive('/tipopago/5/plist')}"><a href="tipopago/5/plist"> <i ng-class="mn.meta.tipopago.Icon"></i> {{mn.meta.tipopago.PluralDescription}}</a></li>
-                        <li ng-class="{ 'active': mn.isActive('/factura/5/plist')}"><a href="factura/5/plist"> <i ng-class="mn.meta.factura.Icon"></i> {{mn.meta.factura.PluralDescription}}</a></li>
                     </ul>
                 </li>
                 <!--  ------------------------------------------- -->
