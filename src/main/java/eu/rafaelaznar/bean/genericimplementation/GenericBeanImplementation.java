@@ -38,7 +38,6 @@ import eu.rafaelaznar.bean.meta.publicinterface.MetaObjectBeanInterface;
 import eu.rafaelaznar.bean.meta.publicinterface.MetaPropertyBeanInterface;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import eu.rafaelaznar.bean.publicinterface.GenericBeanInterface;
 import eu.rafaelaznar.dao.publicinterface.DaoInterface;
 import eu.rafaelaznar.factory.DaoFactory;
 import eu.rafaelaznar.helper.EncodingHelper;
@@ -51,8 +50,9 @@ import eu.rafaelaznar.helper.constant.ConfigurationConstants;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.Date;
+import eu.rafaelaznar.bean.publicinterface.BeanInterface;
 
-public abstract class GenericBeanImplementation implements GenericBeanInterface {
+public abstract class GenericBeanImplementation implements BeanInterface {
 
     @Expose
     @MetaPropertyBeanInterface(
@@ -136,7 +136,7 @@ public abstract class GenericBeanImplementation implements GenericBeanInterface 
     }
 
     @Override
-    public GenericBeanInterface fill(ResultSet oResultSet, Connection oConnection, MetaBeanHelper oPuserBean_security, Integer expand) throws Exception {
+    public BeanInterface fill(ResultSet oResultSet, Connection oConnection, MetaBeanHelper oPuserBean_security, Integer expand) throws Exception {
 
         try {
             GenericBeanImplementation oBean = (GenericBeanImplementation) Class.forName(this.getClass().getName()).newInstance();

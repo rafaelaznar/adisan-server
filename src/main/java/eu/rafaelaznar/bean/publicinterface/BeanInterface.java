@@ -36,7 +36,7 @@ import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import java.sql.Connection;
 import java.sql.ResultSet;
 
-public interface GenericBeanInterface {
+public interface BeanInterface {
 
     public String getColumns() throws Exception;
 
@@ -44,7 +44,7 @@ public interface GenericBeanInterface {
 
     public String toPairs() throws Exception;
 
-    public GenericBeanInterface fill(ResultSet oResultSet, Connection oConnection, MetaBeanHelper oPuserBean_security, Integer expand) throws Exception;
+    public BeanInterface fill(ResultSet oResultSet, Connection oConnection, MetaBeanHelper oPuserBean_security, Integer expand) throws Exception;
 
     public void ComputeCalculatedFields();
 

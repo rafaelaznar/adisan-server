@@ -39,7 +39,6 @@ import eu.rafaelaznar.bean.meta.helper.MetaObjectGenericBeanHelper;
 import eu.rafaelaznar.bean.meta.helper.MetaPropertyGenericBeanHelper;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.meta.publicinterface.MetaObjectBeanInterface;
-import eu.rafaelaznar.bean.publicinterface.GenericBeanInterface;
 import eu.rafaelaznar.dao.publicinterface.DaoInterface;
 import eu.rafaelaznar.helper.Log4jHelper;
 import eu.rafaelaznar.factory.BeanFactory;
@@ -55,6 +54,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import eu.rafaelaznar.bean.publicinterface.BeanInterface;
 
 public abstract class GenericDaoImplementation implements DaoInterface {
 
@@ -218,7 +218,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
             oPreparedStatement = oConnection.prepareStatement(strSQL1);
             oResultSet = oPreparedStatement.executeQuery(strSQL1);
             while (oResultSet.next()) {
-                GenericBeanInterface oBean = BeanFactory.getBean(ob, oPuserSecurity);
+                BeanInterface oBean = BeanFactory.getBean(ob, oPuserSecurity);
                 oBean = (GenericBeanImplementation) oBean.fill(oResultSet, oConnection, oPuserSecurity, expand);
                 aloBean.add((GenericBeanImplementation) oBean);
             }
@@ -259,7 +259,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
             oPreparedStatement = oConnection.prepareStatement(strSQL1);
             oResultSet = oPreparedStatement.executeQuery(strSQL1);
             while (oResultSet.next()) {
-                GenericBeanInterface oBean = BeanFactory.getBean(ob, oPuserSecurity);
+                BeanInterface oBean = BeanFactory.getBean(ob, oPuserSecurity);
                 oBean = (GenericBeanImplementation) oBean.fill(oResultSet, oConnection, oPuserSecurity, expand);
                 aloBean.add((GenericBeanImplementation) oBean);
             }

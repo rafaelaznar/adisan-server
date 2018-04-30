@@ -35,7 +35,6 @@ package eu.rafaelaznar.factory;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
-import eu.rafaelaznar.bean.publicinterface.GenericBeanInterface;
 import eu.rafaelaznar.bean.specificimplementation.ApellidoSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.CategoriaprofesionalSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.CentroSpecificBeanImplementation;
@@ -48,6 +47,7 @@ import eu.rafaelaznar.bean.specificimplementation.DependenciaSpecificBeanImpleme
 import eu.rafaelaznar.bean.specificimplementation.EspecialidadSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.DestinoaltaSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.EpisodioSpecificBeanImplementation;
+import eu.rafaelaznar.bean.specificimplementation.EstadisticaXCentrosanitarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.FacturaSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.GrupoSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.MedicoSpecificBeanImplementation;
@@ -63,11 +63,12 @@ import eu.rafaelaznar.bean.specificimplementation.SexoSpecificBeanImplementation
 import eu.rafaelaznar.bean.specificimplementation.TipodependenciaSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.TiposervicioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.ViaSpecificBeanImplementation;
+import eu.rafaelaznar.bean.publicinterface.BeanInterface;
 
 public class BeanFactory {
 
-    public static GenericBeanInterface getBean(String ob, MetaBeanHelper oPuserBean_security) {
-        GenericBeanInterface oBean = null;
+    public static BeanInterface getBean(String ob, MetaBeanHelper oPuserBean_security) {
+        BeanInterface oBean = null;
         MetaBeanHelper oPuserSecurity = oPuserBean_security;
         switch (ob) {
             case "usuario":
@@ -159,6 +160,9 @@ public class BeanFactory {
                 break;
             case "comunidad":
                 oBean = new ComunidadSpecificBeanImplementation();
+                break;
+            case "estadistica":
+                oBean = new EstadisticaXCentrosanitarioSpecificBeanImplementation();
                 break;
             default:
 

@@ -33,9 +33,9 @@
 package eu.rafaelaznar.bean.helper;
 
 import com.google.gson.annotations.Expose;
-import eu.rafaelaznar.bean.genericimplementation.GenericBeanImplementation;
 import eu.rafaelaznar.bean.meta.helper.MetaObjectGenericBeanHelper;
 import eu.rafaelaznar.bean.meta.helper.MetaPropertyGenericBeanHelper;
+import eu.rafaelaznar.bean.publicinterface.BeanInterface;
 import java.util.ArrayList;
 
 public class MetaBeanHelper {
@@ -77,7 +77,7 @@ public class MetaBeanHelper {
         return data;
     }
 
-    public void setBean(GenericBeanImplementation bean) {
+    public void setBean(BeanInterface bean) {
         this.data = bean;
     }
 
