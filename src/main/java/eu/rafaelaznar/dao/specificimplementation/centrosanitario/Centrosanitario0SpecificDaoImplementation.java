@@ -41,11 +41,4 @@ public class Centrosanitario0SpecificDaoImplementation extends CentrosanitarioSp
         super(oPooledConnection, oPuserBean_security, strWhere);
     }
 
-
-
-    
-    
-    
-    
-    
 }

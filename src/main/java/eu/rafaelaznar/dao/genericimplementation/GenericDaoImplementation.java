@@ -192,7 +192,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
     public MetaObjectGenericBeanHelper getObjectMetaData(String ob) throws Exception {
         MetaObjectGenericBeanHelper oMetaObject;
         try {
-            GenericBeanImplementation oBean = (GenericBeanImplementation) BeanFactory.getBean(ob, oPuserSecurity);
+            BeanInterface oBean = (BeanInterface) BeanFactory.getBean(ob, oPuserSecurity);
             Class oClassBEAN = oBean.getClass();
             oMetaObject = new MetaObjectGenericBeanHelper();
             oMetaObject = fillObjectMetaData(oClassBEAN, oMetaObject);
@@ -208,7 +208,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
     public ArrayList<MetaPropertyGenericBeanHelper> getPropertiesMetaData() throws Exception {
         ArrayList<MetaPropertyGenericBeanHelper> alVector = new ArrayList<>();
         try {
-            GenericBeanImplementation oBean = (GenericBeanImplementation) BeanFactory.getBean(ob, oPuserSecurity);
+            BeanInterface oBean = (BeanInterface) BeanFactory.getBean(ob, oPuserSecurity);
             Class classBean = oBean.getClass();
             Class superClassBean = oBean.getClass().getSuperclass();
             alVector = fillPropertiesMetaData(superClassBean, alVector);
@@ -225,7 +225,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
     public ArrayList<MetaPropertyGenericBeanHelper> getPropertiesMetaData(String ob) throws Exception {
         ArrayList<MetaPropertyGenericBeanHelper> alVector = new ArrayList<>();
         try {
-            GenericBeanImplementation oBean = (GenericBeanImplementation) BeanFactory.getBean(ob, oPuserSecurity);
+            BeanInterface oBean = (BeanInterface) BeanFactory.getBean(ob, oPuserSecurity);
             Class classBean = oBean.getClass();
             Class superClassBean = oBean.getClass().getSuperclass();
             alVector = fillPropertiesMetaData(superClassBean, alVector);

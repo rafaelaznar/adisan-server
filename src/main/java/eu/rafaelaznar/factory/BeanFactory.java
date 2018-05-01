@@ -161,7 +161,7 @@ public class BeanFactory {
             case "comunidad":
                 oBean = new ComunidadSpecificBeanImplementation();
                 break;
-            case "estadistica":
+            case "centrosanitariostatistics":
                 oBean = new CentrosanitarioStatisticsSpecificBeanImplementation();
                 break;
             default:

@@ -53,9 +53,9 @@ public class CentrosanitarioSpecificDaoImplementation extends GenericDaoImplemen
     @Override
     public MetaBeanHelper getStatistics(int id) throws Exception {
         //El id es del centro sanitario
-        CentrosanitarioStatisticsSpecificBeanImplementation oEstadistica = (CentrosanitarioStatisticsSpecificBeanImplementation) BeanFactory.getBean(ob, oPuserSecurity);
+        CentrosanitarioStatisticsSpecificBeanImplementation oEstadistica = (CentrosanitarioStatisticsSpecificBeanImplementation) BeanFactory.getBean(ob + "statistics", oPuserSecurity);
         //obtener el numero de profesores del centro sanitario
-        String countSQL1 = "select count(*) from usuario where id_tipousuario=3 and u.id_centrosanitario=" + id;
+        String countSQL1 = "select count(*) from usuario where id_tipousuario=3 and id_centrosanitario=" + id;
         oEstadistica.setProfesores(this.count(countSQL1));
         //alumnos de un centro sanitario
         countSQL1 = "select count(*) from usuario u, grupo g, usuario u2 WHERE u.id_tipousuario=4 AND u.id_grupo=g.id AND g.id_usuario=u2.id AND u2.id_centrosanitario=" + id;
@@ -66,8 +66,8 @@ public class CentrosanitarioSpecificDaoImplementation extends GenericDaoImplemen
         //--
         MetaBeanHelper oMetaBeanHelper = new MetaBeanHelper();
         oMetaBeanHelper.setBean(oEstadistica);
-        oMetaBeanHelper.setMetaObject(this.getObjectMetaData("CentrosanitarioStatisticsSpecificBeanImplementation"));
-        oMetaBeanHelper.setMetaProperties(this.getPropertiesMetaData("CentrosanitarioStatisticsSpecificBeanImplementation"));
+        oMetaBeanHelper.setMetaObject(this.getObjectMetaData(ob + "statistics"));
+        oMetaBeanHelper.setMetaProperties(this.getPropertiesMetaData(ob + "statistics"));
         return oMetaBeanHelper;
     }
 
