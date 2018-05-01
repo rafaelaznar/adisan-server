@@ -73,9 +73,9 @@ gesane.config(['$routeProvider', function ($routeProvider) {
         //--
         //-- paciente
         //--
-        $routeProvider.when('/paciente/1/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'PacientePList1Controller', resolve: {auth: authentication1Promise}});        
+        $routeProvider.when('/paciente/1/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'PacientePList1Controller', resolve: {auth: authentication1Promise}});
         $routeProvider.when('/paciente/1/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'PacienteNew1Controller', resolve: {auth: authentication1Promise}});
-        $routeProvider.when('/paciente/1/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'PacienteEdit1Controller', resolve: {auth: authentication1Promise}});        
+        $routeProvider.when('/paciente/1/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'PacienteEdit1Controller', resolve: {auth: authentication1Promise}});
         //--
         //-- episodio
         //--
@@ -106,14 +106,14 @@ gesane.config(['$routeProvider', function ($routeProvider) {
         //--
         $routeProvider.when('/paciente/3/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'PacientePList3Controller', resolve: {auth: authentication3Promise}});
         $routeProvider.when('/paciente/3/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'PacienteNew3Controller', resolve: {auth: authentication3Promise}});
-        $routeProvider.when('/paciente/3/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'PacienteEdit3Controller', resolve: {auth: authentication3Promise}});        
+        $routeProvider.when('/paciente/3/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'PacienteEdit3Controller', resolve: {auth: authentication3Promise}});
         //--
         //-- episodio
         //--
         $routeProvider.when('/episodio/3/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'EpisodioNew3Controller', resolve: {auth: authentication3Promise}});
         $routeProvider.when('/episodio/3/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'EpisodioEdit3Controller', resolve: {auth: authentication3Promise}});
         $routeProvider.when('/episodio/3/:xob/new/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'EpisodioXxobNew3Controller', resolve: {auth: authentication3Promise}});
-        $routeProvider.when('/episodio/3/:xob/edit/:id/:xid', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'EpisodioXxobEdit3Controller', resolve: {auth: authentication3Promise}});        
+        $routeProvider.when('/episodio/3/:xob/edit/:id/:xid', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'EpisodioXxobEdit3Controller', resolve: {auth: authentication3Promise}});
         //--
         //-- subepisodio
         //--
@@ -124,16 +124,16 @@ gesane.config(['$routeProvider', function ($routeProvider) {
         //-- 4 PROFILE ---------------------------------------------------------
         //--
         //-- paciente
-        //--        
+        //--
         $routeProvider.when('/paciente/4/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'PacienteNew4Controller', resolve: {auth: authentication4Promise}});
-        $routeProvider.when('/paciente/4/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'PacienteEdit4Controller', resolve: {auth: authentication4Promise}});                
+        $routeProvider.when('/paciente/4/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'PacienteEdit4Controller', resolve: {auth: authentication4Promise}});
         //--
         //-- episodio
         //--
         $routeProvider.when('/episodio/4/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'EpisodioNew4Controller', resolve: {auth: authentication4Promise}});
         $routeProvider.when('/episodio/4/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'EpisodioEdit4Controller', resolve: {auth: authentication4Promise}});
         $routeProvider.when('/episodio/4/:xob/new/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'EpisodioXxobNew4Controller', resolve: {auth: authentication4Promise}});
-        $routeProvider.when('/episodio/4/:xob/edit/:id/:xid', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'EpisodioXxobEdit4Controller', resolve: {auth: authentication4Promise}});        
+        $routeProvider.when('/episodio/4/:xob/edit/:id/:xid', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'EpisodioXxobEdit4Controller', resolve: {auth: authentication4Promise}});
         //-- subepisodio
         $routeProvider.when('/subepisodio/4/episodio/plist/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'SubepisodioXepisodioPList4Controller', resolve: {auth: authentication4Promise}});
         $routeProvider.when('/subepisodio/4/episodio/new/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'SubepisodioXepisodioNew4Controller', resolve: {auth: authentication4Promise}});
@@ -141,7 +141,7 @@ gesane.config(['$routeProvider', function ($routeProvider) {
         //-- 5 PROFILE ---------------------------------------------------------
         //-- subepisodio
         //--
-        $routeProvider.when('/subepisodio/5/episodio/plist/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'SubepisodioXepisodioPList5Controller', resolve: {auth: authentication5Promise}});               
+        $routeProvider.when('/subepisodio/5/episodio/plist/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'SubepisodioXepisodioPList5Controller', resolve: {auth: authentication5Promise}});
         //--
         $routeProvider.when('/newalumno/9/:codigo', {templateUrl: 'js/app/usuario/9/newalumno.html', controller: 'UsuarioNewalumno9Controller', resolve: {auth: anyAuthenticationPromise}});
         //--
@@ -152,6 +152,7 @@ gesane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/:ob/1/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'newGenericController1', resolve: {auth: authentication1Promise}});
         $routeProvider.when('/:ob/1/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'editGenericController1', resolve: {auth: authentication1Promise}});
         $routeProvider.when('/:ob/1/remove/:id', {templateUrl: 'js/system/generic/template/remove.html', controller: 'removeGenericController1', resolve: {auth: authentication1Promise}});
+        $routeProvider.when('/:ob/1/statistics/:id', {templateUrl: 'js/system/generic/template/statistics.html', controller: 'statisticsGenericController1', resolve: {auth: authentication1Promise}});
         //--
         $routeProvider.when('/:ob/1/:xob/plist/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'plistXGeneric1Controller', resolve: {auth: authentication1Promise}});
         $routeProvider.when('/:ob/1/:xob/new/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'newXGeneric1Controller', resolve: {auth: authentication1Promise}});
@@ -164,6 +165,7 @@ gesane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/:ob/3/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'newGenericController3', resolve: {auth: authentication3Promise}});
         $routeProvider.when('/:ob/3/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'editGenericController3', resolve: {auth: authentication3Promise}});
         $routeProvider.when('/:ob/3/remove/:id', {templateUrl: 'js/system/generic/template/remove.html', controller: 'removeGenericController3', resolve: {auth: authentication3Promise}});
+        $routeProvider.when('/:ob/3/statistics/:id', {templateUrl: 'js/system/generic/template/statistics.html', controller: 'statisticsGenericController3', resolve: {auth: authentication3Promise}});
         //--
         $routeProvider.when('/:ob/3/:xob/plist/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'plistXGeneric3Controller', resolve: {auth: authentication3Promise}});
         $routeProvider.when('/:ob/3/:xob/new/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'newXGeneric3Controller', resolve: {auth: authentication3Promise}});
@@ -176,6 +178,7 @@ gesane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/:ob/4/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'newGenericController4', resolve: {auth: authentication4Promise}});
         $routeProvider.when('/:ob/4/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'editGenericController4', resolve: {auth: authentication4Promise}});
         $routeProvider.when('/:ob/4/remove/:id', {templateUrl: 'js/system/generic/template/remove.html', controller: 'removeGenericController4', resolve: {auth: authentication4Promise}});
+        $routeProvider.when('/:ob/4/statistics/:id', {templateUrl: 'js/system/generic/template/statistics.html', controller: 'statisticsGenericController4', resolve: {auth: authentication4Promise}});
         //--
         $routeProvider.when('/:ob/4/:xob/plist/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'plistXGeneric4Controller', resolve: {auth: authentication4Promise}});
         $routeProvider.when('/:ob/4/:xob/new/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'newXGeneric4Controller', resolve: {auth: authentication4Promise}});
@@ -188,429 +191,11 @@ gesane.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/:ob/5/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'newGenericController5', resolve: {auth: authentication5Promise}});
         $routeProvider.when('/:ob/5/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'editGenericController5', resolve: {auth: authentication5Promise}});
         $routeProvider.when('/:ob/5/remove/:id', {templateUrl: 'js/system/generic/template/remove.html', controller: 'removeGenericController5', resolve: {auth: authentication5Promise}});
+        $routeProvider.when('/:ob/5/statistics/:id', {templateUrl: 'js/system/generic/template/statistics.html', controller: 'statisticsGenericController5', resolve: {auth: authentication5Promise}});
         //--
         $routeProvider.when('/:ob/5/:xob/plist/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'plistXGeneric5Controller', resolve: {auth: authentication5Promise}});
         $routeProvider.when('/:ob/5/:xob/new/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'newXGeneric5Controller', resolve: {auth: authentication5Promise}});
         $routeProvider.when('/:ob/5/:xob/edit/:id/:xid', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'editXGeneric5Controller', resolve: {auth: authentication5Promise}});
-
-
-
-
-
-
-
-//
-//
-//
-//        //--
-//        $routeProvider.when('/usuario/3/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'UsuarioPList3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/usuario/3/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'UsuarioView3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/usuario/3/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'UsuarioNew3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/usuario/3/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'UsuarioEdit3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/usuario/3/remove/:id', {templateUrl: 'js/system/generic/template/remove.html', controller: 'UsuarioRemove3Controller', resolve: {auth: authentication3Promise}});
-//        //--
-//        $routeProvider.when('/usuario/3/xtipousuario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'UsuarioXtipousuarioPList3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/usuario/3/xtipousuario/newx/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'UsuarioXtipousuarioNew3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/usuario/3/xtipousuario/editx/:id/:xid', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'UsuarioXtipousuarioEdit3Controller', resolve: {auth: authentication3Promise}});
-//        //--
-//        $routeProvider.when('/usuario/3/xgrupo/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'UsuarioXgrupoPList3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/usuario/3/xgrupo/newx/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'UsuarioXgrupoNew3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/usuario/3/xgrupo/editx/:id/:xid', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'UsuarioXgrupoEdit3Controller', resolve: {auth: authentication3Promise}});
-//        //--
-//        $routeProvider.when('/usuario/3/xcentro/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'UsuarioXcentroPList3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/usuario/3/xcentro/newx/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'UsuarioXcentroNew3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/usuario/3/xcentro/editx/:id/:xid', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'UsuarioXcentroEdit3Controller', resolve: {auth: authentication3Promise}});
-//        //--
-//        $routeProvider.when('/usuario/3/xcentrosanitario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'UsuarioXcentrosanitarioPList3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/usuario/3/xcentrosanitario/newx/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'UsuarioXcentrosanitarioNew3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/usuario/3/xcentrosanitario/editx/:id/:xid', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'UsuarioXcentrosanitarioEdit3Controller', resolve: {auth: authentication3Promise}});
-//        //--
-//        $routeProvider.when('/usuario/4/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'UsuarioView4Controller', resolve: {auth: authentication4Promise}});
-//        //--
-//        $routeProvider.when('/usuario/5/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'UsuarioView5Controller', resolve: {auth: authentication5Promise}});
-//        //--
-//        $routeProvider.when('/newalumno/9/:codigo', {templateUrl: 'js/app/usuario/9/newalumno.html', controller: 'UsuarioNewalumno9Controller', resolve: {auth: anyAuthenticationPromise}});
-//        //--
-//        //-- tipousuario
-//        //--
-//        $routeProvider.when('/tipousuario/1/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'TipousuarioPList1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/tipousuario/1/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'TipousuarioView1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/tipousuario/1/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'TipousuarioNew1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/tipousuario/1/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'TipousuarioEdit1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/tipousuario/1/remove/:id', {templateUrl: 'js/system/generic/template/remove.html', controller: 'TipousuarioRemove1Controller', resolve: {auth: authentication1Promise}});
-//        //--
-//        $routeProvider.when('/tipousuario/3/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'TipousuarioPList3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/tipousuario/3/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'TipousuarioView3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/tipousuario/3/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'TipousuarioNew3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/tipousuario/3/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'TipousuarioEdit3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/tipousuario/3/remove/:id', {templateUrl: 'js/system/generic/template/remove.html', controller: 'TipousuarioRemove3Controller', resolve: {auth: authentication3Promise}});
-//        //--
-//        $routeProvider.when('/tipousuario/4/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'TipousuarioView4Controller', resolve: {auth: authentication4Promise}});
-//        //--
-//        $routeProvider.when('/tipousuario/5/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'TipousuarioView5Controller', resolve: {auth: authentication5Promise}});
-//        //--
-//        //-- grupo
-//        //--
-//        $routeProvider.when('/grupo/1/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'GrupoPList1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/grupo/1/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'GrupoView1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/grupo/1/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'GrupoNew1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/grupo/1/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'GrupoEdit1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/grupo/1/remove/:id', {templateUrl: 'js/system/generic/template/remove.html', controller: 'GrupoRemove1Controller', resolve: {auth: authentication1Promise}});
-//        //--
-//        $routeProvider.when('/grupo/1/xcurso/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'GrupoXcursoPList1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/grupo/1/xcurso/newx/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'GrupoXcursoNew1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/grupo/1/xcurso/editx/:id/:xid', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'GrupoXcursoEdit1Controller', resolve: {auth: authentication1Promise}});
-//        //--
-//        $routeProvider.when('/grupo/1/xusuario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'GrupoXusuarioPList1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/grupo/1/xusuario/newx/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'GrupoXusuarioNew1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/grupo/1/xusuario/editx/:id/:xid', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'GrupoXusuarioEdit1Controller', resolve: {auth: authentication1Promise}});
-//        //--
-//        $routeProvider.when('/grupo/3/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'GrupoPList3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/grupo/3/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'GrupoView3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/grupo/3/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'GrupoNew3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/grupo/3/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'GrupoEdit3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/grupo/3/remove/:id', {templateUrl: 'js/system/generic/template/remove.html', controller: 'GrupoRemove3Controller', resolve: {auth: authentication3Promise}});
-//        //--
-//        $routeProvider.when('/grupo/3/xusuario/newx/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'GrupoxusuarioNew3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/grupo/3/xusuario/editx/:id/:xid', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'GrupoxusuarioEdit3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/grupo/3/xusuario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'GrupoxusuarioPList3Controller', resolve: {auth: authentication3Promise}});
-//        //--
-//        $routeProvider.when('/grupo/4/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'GrupoView4Controller', resolve: {auth: authentication4Promise}});
-//        //--
-//        $routeProvider.when('/grupo/5/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'GrupoView5Controller', resolve: {auth: authentication5Promise}});
-//        //--
-//        //--
-//        //-- curso
-//        //--
-//        $routeProvider.when('/curso/1/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'CursoPList1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/curso/1/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'CursoView1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/curso/1/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'CursoNew1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/curso/1/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'CursoEdit1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/curso/1/remove/:id', {templateUrl: 'js/system/generic/template/remove.html', controller: 'CursoRemove1Controller', resolve: {auth: authentication1Promise}});
-//        //--
-//        $routeProvider.when('/curso/3/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'CursoPList3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/curso/3/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'CursoView3Controller', resolve: {auth: authentication3Promise}});
-//        //--
-//        $routeProvider.when('/curso/4/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'CursoView4Controller', resolve: {auth: authentication4Promise}});
-//        //--
-//        $routeProvider.when('/curso/5/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'CursoView5Controller', resolve: {auth: authentication5Promise}});
-//        //--
-//        //-- centro
-//        //--
-//        $routeProvider.when('/centro/1/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'CentroPList1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/centro/1/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'CentroView1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/centro/1/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'CentroNew1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/centro/1/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'CentroEdit1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/centro/1/remove/:id', {templateUrl: 'js/system/generic/template/remove.html', controller: 'CentroRemove1Controller', resolve: {auth: authentication1Promise}});
-//        //-----------3
-//        $routeProvider.when('/centro/3/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'CentroView3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/centro/3/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'CentroPList3Controller', resolve: {auth: authentication3Promise}});
-//        //-----------4
-//        $routeProvider.when('/centro/4/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'CentroView4Controller', resolve: {auth: authentication4Promise}});
-//        //-----------5
-//        $routeProvider.when('/centro/5/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'CentroView5Controller', resolve: {auth: authentication5Promise}});
-//        //-- centrosanitario
-//        $routeProvider.when('/centrosanitario/1/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'CentrosanitarioPList1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/centrosanitario/1/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'CentrosanitarioView1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/centrosanitario/1/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'CentrosanitarioNew1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/centrosanitario/1/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'CentrosanitarioEdit1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/centrosanitario/1/remove/:id', {templateUrl: 'js/system/generic/template/remove.html', controller: 'CentrosanitarioRemove1Controller', resolve: {auth: authentication1Promise}});
-//        //-----------3
-//        $routeProvider.when('/centrosanitario/3/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'CentrosanitarioView3Controller', resolve: {auth: authentication3Promise}});
-//        //-----------4
-//        $routeProvider.when('/centrosanitario/4/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'CentrosanitarioView4Controller', resolve: {auth: authentication4Promise}});
-//        //-----------5
-//        $routeProvider.when('/centrosanitario/5/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'CentrosanitarioView5Controller', resolve: {auth: authentication5Promise}});
-//        //--
-//        //-- dependencia
-//        //--
-//        $routeProvider.when('/dependencia/1/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'DependenciaPList1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/dependencia/1/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'DependenciaView1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/dependencia/1/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'DependenciaNew1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/dependencia/1/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'DependenciaEdit1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/dependencia/1/remove/:id', {templateUrl: 'js/system/generic/template/remove.html', controller: 'DependenciaRemove1Controller', resolve: {auth: authentication1Promise}});
-//        //-- foreign key xtipodependencia
-//        $routeProvider.when('/dependencia/1/xtipodependencia/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'DependenciaXtipodependenciaPList1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/dependencia/1/xtipodependencia/newx/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'DependenciaXtipodependenciaNew1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/dependencia/1/xtipodependencia/editx/:id/:xid', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'DependenciaXtipodependenciaEdit1Controller', resolve: {auth: authentication1Promise}});
-//        //-- foreign key xcentrosanitario
-//        $routeProvider.when('/dependencia/1/xcentrosanitario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'DependenciaxcentrosanitarioPList1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/dependencia/1/xcentrosanitario/newx/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'DependenciaxcentrosanitarioNew1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/dependencia/1/xcentrosanitario/editx/:id/:xid', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'DependenciaxcentrosanitarioEdit1Controller', resolve: {auth: authentication1Promise}});
-//        //-----------3
-//        $routeProvider.when('/dependencia/3/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'DependenciaPList3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/dependencia/3/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'DependenciaView3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/dependencia/3/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'DependenciaNew3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/dependencia/3/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'DependenciaEdit3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/dependencia/3/remove/:id', {templateUrl: 'js/system/generic/template/remove.html', controller: 'DependenciaRemove3Controller', resolve: {auth: authentication3Promise}});
-//        //-- foreign key xtipodependencia
-//        $routeProvider.when('/dependencia/3/xtipodependencia/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'DependenciaxtipodependenciaPList3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/dependencia/3/xtipodependencia/newx/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'DependenciaxtipodependenciaNew3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/dependencia/3/xtipodependencia/editx/:id/:xid', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'DependenciaxtipodependenciaEdit3Controller', resolve: {auth: authentication3Promise}});
-//        //-- foreign key xcentrosanitario
-//        $routeProvider.when('/dependencia/3/xcentrosanitario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'DependenciaxcentrosanitarioPList3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/dependencia/3/xcentrosanitario/newx/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'DependenciaxcentrosanitarioNew3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/dependencia/3/xcentrosanitario/editx/:id/:xid', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'DependenciaxcentrosanitarioEdit3Controller', resolve: {auth: authentication3Promise}});
-//        //-----------4
-//        $routeProvider.when('/dependencia/4/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'DependenciaPList4Controller', resolve: {auth: authentication4Promise}});
-//        $routeProvider.when('/dependencia/4/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'DependenciaView4Controller', resolve: {auth: authentication4Promise}});
-//        //-----------5
-//        $routeProvider.when('/dependencia/5/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'DependenciaView5Controller', resolve: {auth: authentication5Promise}});
-//        //--
-//        //-- tipodependencia
-//        //--
-//        $routeProvider.when('/tipodependencia/1/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'TipodependenciaPList1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/tipodependencia/1/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'TipodependenciaView1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/tipodependencia/1/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'TipodependenciaNew1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/tipodependencia/1/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'TipodependenciaEdit1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/tipodependencia/1/remove/:id', {templateUrl: 'js/system/generic/template/remove.html', controller: 'TipodependenciaRemove1Controller', resolve: {auth: authentication1Promise}});
-//        //-----------3
-//        $routeProvider.when('/tipodependencia/3/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'TipodependenciaView3Controller', resolve: {auth: authentication3Promise}});
-//        //-----------4
-//        $routeProvider.when('/tipodependencia/4/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'TipodependenciaView4Controller', resolve: {auth: authentication4Promise}});
-//        //-----------5
-//        $routeProvider.when('/tipodependencia/5/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'TipodependenciaView5Controller', resolve: {auth: authentication5Promise}});
-//        //--
-//        //-- medico
-//        //--
-//        $routeProvider.when('/medico/1/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'MedicoPList1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/medico/1/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'MedicoView1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/medico/1/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'MedicoNew1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/medico/1/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'MedicoEdit1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/medico/1/remove/:id', {templateUrl: 'js/system/generic/template/remove.html', controller: 'MedicoRemove1Controller', resolve: {auth: authentication1Promise}});
-//        //--
-//        $routeProvider.when('/medico/1/xespecialidad/newx/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'MedicoXespecialidadNew1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/medico/1/xespecialidad/editx/:id/:xid', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'MedicoXespecialidadEdit1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/medico/1/xespecialidad/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'MedicoXespecialidadPList1Controller', resolve: {auth: authentication1Promise}});
-//        //--
-//        $routeProvider.when('/medico/1/xservicio/newx/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'MedicoXservicioNew1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/medico/1/xservicio/editx/:id/:xid', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'MedicoXservicioEdit1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/medico/1/xservicio/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'MedicoXservicioPList1Controller', resolve: {auth: authentication1Promise}});
-//        //--
-//        $routeProvider.when('/medico/1/xcentrosanitario/newx/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'MedicoXcentrosanitarioNew1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/medico/1/xcentrosanitario/editx/:id/:xid', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'MedicoXcentrosanitarioEdit1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/medico/1/xcentrosanitario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'MedicoXcentrosanitarioPList1Controller', resolve: {auth: authentication1Promise}});
-//        //--
-//        $routeProvider.when('/medico/1/xcategoriaprofesional/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'MedicoXcategoriaprofesionalPList1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/medico/1/xcategoriaprofesional/newx/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'MedicoXcategoriaprofesionalNew1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/medico/1/xcategoriaprofesional/editx/:id/:xid', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'MedicoXcategoriaprofesionalEdit1Controller', resolve: {auth: authentication1Promise}});
-//        //-----------3
-//        $routeProvider.when('/medico/3/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'MedicoPList3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/medico/3/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'MedicoView3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/medico/3/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'MedicoEdit3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/medico/3/remove/:id', {templateUrl: 'js/system/generic/template/remove.html', controller: 'MedicoRemove3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/medico/3/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'MedicoNew3Controller', resolve: {auth: authentication3Promise}});
-//        //-----------5
-//        $routeProvider.when('/medico/5/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'MedicoView5Controller', resolve: {auth: authentication5Promise}});
-//        //--
-//        //-- servicio
-//        //--
-//        $routeProvider.when('/servicio/1/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'ServicioPList1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/servicio/1/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'ServicioView1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/servicio/1/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'ServicioNew1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/servicio/1/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'ServicioEdit1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/servicio/1/remove/:id', {templateUrl: 'js/system/generic/template/remove.html', controller: 'ServicioRemove1Controller', resolve: {auth: authentication1Promise}});
-//        //--
-//        $routeProvider.when('/servicio/1/xtiposervicio/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'ServicioXtiposervicioPList1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/servicio/1/xtiposervicio/newx/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'ServicioXtiposervicioNew1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/servicio/1/xtiposervicio/editx/:id/:xid', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'ServicioXtiposervicioEdit1Controller', resolve: {auth: authentication1Promise}});
-//        //----Servicio 3 profesor --
-//        $routeProvider.when('/servicio/3/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'ServicioView3Controller', resolve: {auth: authentication3Promise}});
-//        //----Servicio 4 profesor --
-//        $routeProvider.when('/servicio/4/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'ServicioView4Controller', resolve: {auth: authentication4Promise}});
-//        //----Servicio 5 visitante --
-//        $routeProvider.when('/servicio/5/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'ServicioView5Controller', resolve: {auth: authentication5Promise}});
-//        //--
-//        //-- tiposervicio
-//        //--
-//        $routeProvider.when('/tiposervicio/1/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'TiposervicioView1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/tiposervicio/1/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'TiposervicioPlist1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/tiposervicio/1/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'TiposervicioNew1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/tiposervicio/1/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'TiposervicioEdit1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/tiposervicio/1/remove/:id', {templateUrl: 'js/system/generic/template/remove.html', controller: 'TiposervicioRemove1Controller', resolve: {auth: authentication1Promise}});
-//        //----------
-//        $routeProvider.when('/tiposervicio/3/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'TiposervicioView3Controller', resolve: {auth: authentication3Promise}});
-//        //-----------
-//        $routeProvider.when('/tiposervicio/4/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'TiposervicioView4Controller', resolve: {auth: authentication4Promise}});
-//        //-----------
-//        $routeProvider.when('/tiposervicio/5/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'TiposervicioView5Controller', resolve: {auth: authentication5Promise}});
-//        //--
-//        //-- especialidad
-//        //--
-//        $routeProvider.when('/especialidad/1/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'EspecialidadPList1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/especialidad/1/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'EspecialidadView1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/especialidad/1/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'EspecialidadNew1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/especialidad/1/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'EspecialidadEdit1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/especialidad/1/remove/:id', {templateUrl: 'js/system/generic/template/remove.html', controller: 'EspecialidadRemove1Controller', resolve: {auth: authentication1Promise}});
-//        //-----------3
-//        $routeProvider.when('/especialidad/3/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'EspecialidadView3Controller', resolve: {auth: authentication3Promise}});
-//        //-----------4
-//        $routeProvider.when('/especialidad/4/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'EspecialidadView4Controller', resolve: {auth: authentication4Promise}});
-//        //-----------5
-//        $routeProvider.when('/especialidad/5/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'EspecialidadView5Controller', resolve: {auth: authentication5Promise}});
-//        //--
-//        //-- categoriaprofesional
-//        //--
-//        $routeProvider.when('/categoriaprofesional/1/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'CategoriaprofesionalPList1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/categoriaprofesional/1/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'CategoriaprofesionalView1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/categoriaprofesional/1/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'CategoriaprofesionalNew1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/categoriaprofesional/1/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'CategoriaprofesionalEdit1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/categoriaprofesional/1/remove/:id', {templateUrl: 'js/system/generic/template/remove.html', controller: 'CategoriaprofesionalRemove1Controller', resolve: {auth: authentication1Promise}});
-//        //-----------3
-//        $routeProvider.when('/categoriaprofesional/3/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'CategoriaprofesionalView3Controller', resolve: {auth: authentication3Promise}});
-//        //-----------4
-//        $routeProvider.when('/categoriaprofesional/4/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'CategoriaprofesionalView4Controller', resolve: {auth: authentication4Promise}});
-//        //-----------5
-//        $routeProvider.when('/categoriaprofesional/5/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'CategoriaprofesionalView5Controller', resolve: {auth: authentication5Promise}});
-//        //--
-//        //-- paciente
-//        //--
-//        $routeProvider.when('/paciente/1/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'PacientePList1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/paciente/1/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'PacienteView1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/paciente/1/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'PacienteNew1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/paciente/1/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'PacienteEdit1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/paciente/1/remove/:id', {templateUrl: 'js/system/generic/template/remove.html', controller: 'PacienteRemove1Controller', resolve: {auth: authentication1Promise}});
-//        //--
-//        $routeProvider.when('/paciente/1/xtipopago/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'PacienteXtipopagoPList1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/paciente/1/xtipopago/newx/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'PacienteXtipopagoNew1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/paciente/1/xtipopago/editx/:id/:xid', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'PacienteXtipopagoEdit1Controller', resolve: {auth: authentication1Promise}});
-//        //--
-//        $routeProvider.when('/paciente/1/xsexo/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'PacienteXsexoPList1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/paciente/1/xsexo/newx/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'PacienteXsexoNew1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/paciente/1/xsexo/editx/:id/:xid', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'PacienteXsexoEdit1Controller', resolve: {auth: authentication1Promise}});
-//        //--
-//        $routeProvider.when('/paciente/1/xusuario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'PacienteXusuarioPList1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/paciente/1/xusuario/newx/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'PacienteXusuarioNew1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/paciente/1/xusuario/editx/:id/:xid', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'PacienteXusuarioEdit1Controller', resolve: {auth: authentication1Promise}});
-//        //-----------paciente 3
-//        $routeProvider.when('/paciente/3/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'PacientePList3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/paciente/3/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'PacienteNew3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/paciente/3/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'PacienteView3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/paciente/3/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'PacienteEdit3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/paciente/3/remove/:id', {templateUrl: 'js/system/generic/template/remove.html', controller: 'PacienteRemove3Controller', resolve: {auth: authentication3Promise}});
-//        //--
-//        $routeProvider.when('/paciente/3/xusuario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'PacienteXusuarioPList3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/paciente/3/xusuario/newx/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'PacienteXusuarioNew3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/paciente/3/xusuario/editx/:id/:xid', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'PacienteXusuarioEdit3Controller', resolve: {auth: authentication3Promise}});
-//        //-----------paciente 4
-//        $routeProvider.when('/paciente/4/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'PacientePList4Controller', resolve: {auth: authentication4Promise}});
-//        $routeProvider.when('/paciente/4/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'PacienteView4Controller', resolve: {auth: authentication4Promise}});
-//        $routeProvider.when('/paciente/4/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'PacienteNew4Controller', resolve: {auth: authentication4Promise}});
-//        $routeProvider.when('/paciente/4/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'PacienteEdit4Controller', resolve: {auth: authentication4Promise}});
-//        //--
-//        $routeProvider.when('/paciente/4/xusuario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'PacientexusuarioList4Controller', resolve: {auth: authentication4Promise}});
-//        $routeProvider.when('/paciente/4/xusuario/newx/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'PacienteNew4Controller', resolve: {auth: authentication4Promise}});
-//        //--
-//        $routeProvider.when('/paciente/4/xsexo/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'PacientexsexoPList4Controller', resolve: {auth: authentication4Promise}});
-//        $routeProvider.when('/paciente/4/xsexo/newx/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'PacientexsexoNew4Controller', resolve: {auth: authentication4Promise}});
-//        //--
-//        $routeProvider.when('/paciente/4/xtipopago/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'PacientextipopagoPList4Controller', resolve: {auth: authentication4Promise}});
-//        $routeProvider.when('/paciente/4/xtipopago/newx/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'PacientextipopagoNew4Controller', resolve: {auth: authentication4Promise}});
-//        //-----------paciente 5
-//        $routeProvider.when('/paciente/5/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'PacienteView5Controller', resolve: {auth: authentication5Promise}});
-//        $routeProvider.when('/paciente/5/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'PacientePList5Controller', resolve: {auth: authentication5Promise}});
-//        //--
-//        $routeProvider.when('/paciente/5/xusuario/plistx/:id/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'PacientexusuarioList5Controller', resolve: {auth: authentication5Promise}});
-//        //--
-//        //-- sexo
-//        //--
-//        $routeProvider.when('/sexo/1/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'SexoPList1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/sexo/1/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'SexoView1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/sexo/1/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'SexoNew1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/sexo/1/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'SexoEdit1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/sexo/1/remove/:id', {templateUrl: 'js/system/generic/template/remove.html', controller: 'SexoRemove1Controller', resolve: {auth: authentication1Promise}});
-//        //--
-//        $routeProvider.when('/sexo/2/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'SexoView2Controller', resolve: {auth: authentication2Promise}});
-//        //--
-//        $routeProvider.when('/sexo/3/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'SexoView3Controller', resolve: {auth: authentication3Promise}});
-//        //--
-//        $routeProvider.when('/sexo/4/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'SexoView4Controller', resolve: {auth: authentication4Promise}});
-//        //--
-//        $routeProvider.when('/sexo/5/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'SexoView5Controller', resolve: {auth: authentication5Promise}});
-//        //--
-//        //-- destinoalta
-//        //--
-//        $routeProvider.when('/destinoalta/1/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'DestinoaltaPlist1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/destinoalta/1/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'DestinoaltaView1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/destinoalta/1/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'DestinoaltaNew1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/destinoalta/1/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'DestinoaltaEdit1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/destinoalta/1/remove/:id', {templateUrl: 'js/system/generic/template/remove.html', controller: 'DestinoaltaRemove1Controller', resolve: {auth: authentication1Promise}});
-//        //-----------
-//        $routeProvider.when('/destinoalta/3/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'DestinoaltaView3Controller', resolve: {auth: authentication3Promise}});
-//        //-----------
-//        $routeProvider.when('/destinoalta/4/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'DestinoaltaView4Controller', resolve: {auth: authentication4Promise}});
-//        //-----------
-//        $routeProvider.when('/destinoalta/5/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'DestinoaltaView5Controller', resolve: {auth: authentication5Promise}});
-//        //--
-//        //-- modalidadepisodio
-//        //--
-//        $routeProvider.when('/modalidadepisodio/1/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'ModalidadepisodioPList1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/modalidadepisodio/1/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'ModalidadepisodioView1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/modalidadepisodio/1/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'ModalidadepisodioNew1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/modalidadepisodio/1/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'ModalidadepisodioEdit1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/modalidadepisodio/1/remove/:id', {templateUrl: 'js/system/generic/template/remove.html', controller: 'ModalidadepisodioRemove1Controller', resolve: {auth: authentication1Promise}});
-//        //-----------
-//        $routeProvider.when('/modalidadepisodio/3/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'ModalidadepisodioView3Controller', resolve: {auth: authentication3Promise}});
-//        //-----------
-//        $routeProvider.when('/modalidadepisodio/4/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'ModalidadepisodioView4Controller', resolve: {auth: authentication4Promise}});
-//        //-----------
-//        $routeProvider.when('/modalidadepisodio/5/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'ModalidadepisodioView5Controller', resolve: {auth: authentication5Promise}});
-//        //--
-//        //-- circunstanciasalta
-//        //--
-//        $routeProvider.when('/circunstanciasalta/1/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'CircunstanciasaltaPList1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/circunstanciasalta/1/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'CircunstanciasaltaView1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/circunstanciasalta/1/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'CircunstanciasaltaNew1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/circunstanciasalta/1/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'CircunstanciasaltaEdit1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/circunstanciasalta/1/remove/:id', {templateUrl: 'js/system/generic/template/remove.html', controller: 'CircunstanciasaltaRemove1Controller', resolve: {auth: authentication1Promise}});
-//        //----Circunstanciasalta 3 profesor --
-//        $routeProvider.when('/circunstanciasalta/3/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'CircunstanciasaltaView3Controller', resolve: {auth: authentication3Promise}});
-//        //----Circunstanciasalta 4 alumno --
-//        $routeProvider.when('/circunstanciasalta/4/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'CircunstanciasaltaView4Controller', resolve: {auth: authentication4Promise}});
-//        //----Circunstanciasalta 5 visitante --
-//        $routeProvider.when('/circunstanciasalta/5/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'CircunstanciasaltaView5Controller', resolve: {auth: authentication5Promise}});
-//        //--
-//        //-- tipoepisodio
-//        //--
-//        $routeProvider.when('/tipoepisodio/1/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'TipoepisodioPList1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/tipoepisodio/1/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'TipoepisodioView1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/tipoepisodio/1/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'TipoepisodioEdit1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/tipoepisodio/1/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'TipoepisodioNew1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/tipoepisodio/1/remove/:id', {templateUrl: 'js/system/generic/template/remove.html', controller: 'TipoepisodioRemove1Controller', resolve: {auth: authentication1Promise}});
-//        //--
-//        $routeProvider.when('/tipoepisodio/3/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'TipoepisodioView3Controller', resolve: {auth: authentication3Promise}});
-//        //--
-//        $routeProvider.when('/tipoepisodio/4/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'TipoepisodioView4Controller', resolve: {auth: authentication4Promise}});
-//        //--
-//        $routeProvider.when('/tipoepisodio/5/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'TipoepisodioView5Controller', resolve: {auth: authentication5Promise}});
-//        //--
-//        //-- tipopago
-//        //--
-//        $routeProvider.when('/tipopago/1/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'TipopagoView1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/tipopago/1/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'TipopagoPList1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/tipopago/1/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'TipopagoNew1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/tipopago/1/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'TipopagoEdit1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/tipopago/1/remove/:id', {templateUrl: 'js/system/generic/template/remove.html', controller: 'TipopagoRemove1Controller', resolve: {auth: authentication1Promise}});
-//        //-----------
-//        $routeProvider.when('/tipopago/3/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'TipopagoView3Controller', resolve: {auth: authentication3Promise}});
-//        //-----------
-//        $routeProvider.when('/tipopago/4/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'TipopagoView4Controller', resolve: {auth: authentication4Promise}});
-//        //-----------
-//        $routeProvider.when('/tipopago/5/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'TipopagoView5Controller', resolve: {auth: authentication5Promise}});
-//        //--
-//        //-- factura
-//        //--
-//        $routeProvider.when('/factura/1/plist/:page?/:rpp?', {templateUrl: 'js/system/generic/template/plist.html', controller: 'FacturaPList1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/factura/1/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'FacturaView1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/factura/3/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'FacturaView3Controller', resolve: {auth: authentication3Promise}});
-//        $routeProvider.when('/factura/4/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'FacturaView4Controller', resolve: {auth: authentication4Promise}});
-//        $routeProvider.when('/factura/5/view/:id', {templateUrl: 'js/system/generic/template/view.html', controller: 'FacturaView5Controller', resolve: {auth: authentication5Promise}});
-//        $routeProvider.when('/factura/1/new/:id?', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'FacturaNew1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/factura/1/edit/:id', {templateUrl: 'js/system/generic/template/newedit.html', controller: 'FacturaEdit1Controller', resolve: {auth: authentication1Promise}});
-//        $routeProvider.when('/factura/1/remove/:id', {templateUrl: 'js/system/generic/template/remove.html', controller: 'FacturaRemove1Controller', resolve: {auth: authentication1Promise}});
-//        //--
-//        //--
-//        //--
-//        //--
+        //--
         $routeProvider.otherwise({redirectTo: '/'});
     }]);

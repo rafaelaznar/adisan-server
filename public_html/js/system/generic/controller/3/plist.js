@@ -115,6 +115,9 @@ genericModule.controller('plistGenericController3',
                 $scope.showRemoveButton = function (oBean) {
                     return oBean.canDelete;
                 }
+                $scope.showStatisticsButton = function (oBean) {
+                    return oBean.canStatistics;
+                }                
                 $scope.showOtherButton = function (oBean) {
                     return false;
                 }
@@ -130,6 +133,9 @@ genericModule.controller('plistGenericController3',
                 $scope.goRemoveURL = function (oBean) {
                     $location.path($scope.ob + "/" + $scope.profile + "/remove/" + oBean.id);
                 }
+                $scope.goStatisticsURL = function (oBean) {
+                    $location.path($scope.ob + "/" + $scope.profile + "/statistics/" + oBean.id);
+                }                
                 //--------------------------------------------------------------
                 getDataFromServer();
             }

@@ -28,7 +28,7 @@
 'use strict';
 genericModule.controller('plistGenericController5',
         ['$scope', '$routeParams', '$location', 'serverCallService', 'toolService', 'constantService',
-            function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {                
+            function ($scope, $routeParams, $location, serverCallService, toolService, constantService) {
                 $scope.ob = $routeParams.ob;
                 $scope.op = "plist";
                 $scope.profile = 5;
@@ -115,6 +115,9 @@ genericModule.controller('plistGenericController5',
                 $scope.showRemoveButton = function (oBean) {
                     return oBean.canDelete;
                 }
+                $scope.showStatisticsButton = function (oBean) {
+                    return oBean.canStatistics;
+                }
                 $scope.showOtherButton = function (oBean) {
                     return false;
                 }
@@ -129,6 +132,9 @@ genericModule.controller('plistGenericController5',
                 }
                 $scope.goRemoveURL = function (oBean) {
                     $location.path($scope.ob + "/" + $scope.profile + "/remove/" + oBean.id);
+                }
+                $scope.goStatisticsURL = function (oBean) {
+                    $location.path($scope.ob + "/" + $scope.profile + "/statistics/" + oBean.id);
                 }
                 //--------------------------------------------------------------
                 getDataFromServer();
