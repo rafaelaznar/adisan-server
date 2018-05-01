@@ -32,6 +32,7 @@
  */
 package eu.rafaelaznar.dao.specificimplementation.centrosanitario;
 
+import eu.rafaelaznar.bean.genericimplementation.GenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.statisticsspecificimplementation.CentrosanitarioStatisticsSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
@@ -45,8 +46,13 @@ public class CentrosanitarioSpecificDaoImplementation extends GenericDaoImplemen
     }
 
     @Override
-    public MetaBeanHelper getStatistics (int id) throws Exception{
-         //El id es del centro sanitario
+    public boolean canStatistics(GenericBeanImplementation oBean) throws Exception {
+        return true;
+    }
+
+    @Override
+    public MetaBeanHelper getStatistics(int id) throws Exception {
+        //El id es del centro sanitario
         CentrosanitarioStatisticsSpecificBeanImplementation oEstadistica = (CentrosanitarioStatisticsSpecificBeanImplementation) BeanFactory.getBean(ob, oPuserSecurity);
         //obtener el numero de profesores del centro sanitario
         String countSQL1 = "select count(*) from usuario where id_tipousuario=3 and u.id_centrosanitario=" + id;
@@ -62,10 +68,7 @@ public class CentrosanitarioSpecificDaoImplementation extends GenericDaoImplemen
         oMetaBeanHelper.setBean(oEstadistica);
         oMetaBeanHelper.setMetaObject(this.getObjectMetaData("CentrosanitarioStatisticsSpecificBeanImplementation"));
         oMetaBeanHelper.setMetaProperties(this.getPropertiesMetaData("CentrosanitarioStatisticsSpecificBeanImplementation"));
-        return oMetaBeanHelper;       
+        return oMetaBeanHelper;
     }
-    
-    
-    
-    
+
 }

@@ -433,6 +433,11 @@ public abstract class GenericDaoImplementation implements DaoInterface {
     }
 
     @Override
+    public boolean canStatistics(GenericBeanImplementation oBean) throws Exception {
+        return false;
+    }
+
+    @Override
     public MetaBeanHelper get(int id, int intExpand) throws Exception {
         //if (this.canGet(id)) {
         TraceHelper.trace("get-GenericDaoImplementation(begin):object=" + ob);

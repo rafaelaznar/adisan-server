@@ -53,7 +53,7 @@ public class CentrosanitarioStatisticsSpecificBeanImplementation implements Bean
     @Expose(deserialize = false)
     @MetaPropertyBeanInterface(
             ShortName = "Profesores",
-            LongName = "Profesores",
+            LongName = "Profesores del centro sanitario",
             Description = "Profesores del centro sanitario",
             Type = EnumHelper.FieldType.Integer,
             IsVisible = true
@@ -63,7 +63,7 @@ public class CentrosanitarioStatisticsSpecificBeanImplementation implements Bean
     @Expose(deserialize = false)
     @MetaPropertyBeanInterface(
             ShortName = "Alumnos",
-            LongName = "Alumnos",
+            LongName = "Alumnos del centro sanitario",
             Description = "Alumnos del centro sanitario",
             Type = EnumHelper.FieldType.Integer,
             IsVisible = true
@@ -73,7 +73,7 @@ public class CentrosanitarioStatisticsSpecificBeanImplementation implements Bean
     @Expose(deserialize = false)
     @MetaPropertyBeanInterface(
             ShortName = "Grupos",
-            LongName = "Grupos",
+            LongName = "Grupos del centro sanitario",
             Description = "Grupos del centro sanitario",
             Type = EnumHelper.FieldType.Integer,
             IsVisible = true

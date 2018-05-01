@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017-2018
  *
  * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
+ *
  * GESANE: Free Open Source Health Management System
  *
  * Sources at:
@@ -91,12 +91,61 @@ public abstract class GenericBeanImplementation implements BeanInterface {
     )
     private Boolean canDelete;
 
+    @Expose
+    @MetaPropertyBeanInterface(
+            ShortName = "canStatistics",
+            LongName = "canStatistics",
+            Description = "canStatistics",
+            Type = EnumHelper.FieldType.Can
+    )
+    private Boolean canStatistics;
+
     public GenericBeanImplementation() {
 
     }
 
     public GenericBeanImplementation(Integer id) {
         this.id = id;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Boolean getCanCreate() {
+        return canCreate;
+    }
+
+    public void setCanCreate(Boolean canCreate) {
+        this.canCreate = canCreate;
+    }
+
+    public Boolean getCanUpdate() {
+        return canUpdate;
+    }
+
+    public void setCanUpdate(Boolean canUpdate) {
+        this.canUpdate = canUpdate;
+    }
+
+    public Boolean getCanDelete() {
+        return canDelete;
+    }
+
+    public void setCanDelete(Boolean canDelete) {
+        this.canDelete = canDelete;
+    }
+
+    public Boolean getCanStatistics() {
+        return canStatistics;
+    }
+
+    public void setCanStatistics(Boolean canStatistics) {
+        this.canStatistics = canStatistics;
     }
 
     private String getOwnNameFromObjectMetaData() {
@@ -235,6 +284,12 @@ public abstract class GenericBeanImplementation implements BeanInterface {
                 oFieldcanDelete.set(this, oObDao.canDelete((GenericBeanImplementation) this));
                 oFieldcanDelete.setAccessible(false);
 
+                TraceHelper.trace("Filling canStatistics field");
+                Field oFieldcanStatistics = this.getClass().getSuperclass().getDeclaredField("canStatistics");
+                oFieldcanStatistics.setAccessible(true);
+                oFieldcanStatistics.set(this, oObDao.canStatistics((GenericBeanImplementation) this));
+                oFieldcanStatistics.setAccessible(false);
+
             }
 
         } catch (Exception ex) {
@@ -250,38 +305,6 @@ public abstract class GenericBeanImplementation implements BeanInterface {
     @Override
     public void ComputeCalculatedFields() {
         TraceHelper.trace("ComputeCalculatedFields-GenericBeanImplementation(brgin-end)");
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Boolean getCanCreate() {
-        return canCreate;
-    }
-
-    public void setCanCreate(Boolean canCreate) {
-        this.canCreate = canCreate;
-    }
-
-    public Boolean getCanUpdate() {
-        return canUpdate;
-    }
-
-    public void setCanUpdate(Boolean canUpdate) {
-        this.canUpdate = canUpdate;
-    }
-
-    public Boolean getCanDelete() {
-        return canDelete;
-    }
-
-    public void setCanDelete(Boolean canDelete) {
-        this.canDelete = canDelete;
     }
 
     @Override

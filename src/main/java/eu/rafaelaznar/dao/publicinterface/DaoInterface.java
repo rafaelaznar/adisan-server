@@ -64,6 +64,8 @@ public interface DaoInterface {
     public boolean canUpdate(GenericBeanImplementation oBean) throws Exception;
 
     public boolean canDelete(GenericBeanImplementation oBean) throws Exception;
+    
+    public boolean canStatistics(GenericBeanImplementation oBean) throws Exception;
 
     public MetaBeanHelper get(int id, int intExpand) throws Exception;
 
