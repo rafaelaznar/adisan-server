@@ -40,6 +40,10 @@ function datepicker() {
         checkValidity();
     }
     this.$postLink = function () {
+        if (self.model) {
+            moment.suppressDeprecationWarnings = true;
+            self.model = moment(self.model).format("DD/MM/YYYY");
+        }
         checkValidity();
     }
 //    this.$onInit = function () {
