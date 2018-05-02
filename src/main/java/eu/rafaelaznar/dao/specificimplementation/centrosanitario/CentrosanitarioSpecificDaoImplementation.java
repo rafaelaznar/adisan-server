@@ -63,7 +63,28 @@ public class CentrosanitarioSpecificDaoImplementation extends GenericDaoImplemen
         //grupos de un centro sanitario
         countSQL1 = "select count(*) from usuario u, grupo g WHERE u.id_tipousuario=3 AND u.id=g.id_usuario AND u.id_centrosanitario=" + id;
         oEstadistica.setGrupos(this.count(countSQL1));
+        //-- pacientes de profesores del centro sanitario
+        countSQL1 = "select count(*) from paciente p, usuario u where p.id_usuario = u.id and u.id_tipousuario=3 and u.id_centrosanitario=" + id;
+        Long pacientesProfesores = this.count(countSQL1);
+        oEstadistica.setPacientesDeProfesores(pacientesProfesores);
+        //-- pacientes de alumnos del centro sanitario
+        countSQL1 = "select count(*) from paciente p, usuario u, grupo g, usuario u2 where p.id_usuario = u.id and u.id_tipousuario=4 and u.id_grupo=g.id and g.id_usuario=u2.id and u2.id_tipousuario=3 and u2.id_centrosanitario=" + id;
+        Long pacientesAlumnos = this.count(countSQL1);
+        oEstadistica.setPacientesDeAlumnos(pacientesAlumnos);
+        //-- pacientes totales del centro
+        oEstadistica.setPacientes(pacientesProfesores + pacientesAlumnos);
         //--
+        //-- episodios de profesores del centro sanitario
+        countSQL1 = "select count(*) from episodio e, paciente p, usuario u where e.id_paciente=p.id and p.id_usuario = u.id and u.id_tipousuario=3 and u.id_centrosanitario=" + id;
+        Long episodiosProfesores = this.count(countSQL1);
+        oEstadistica.setEpisodiosDeProfesores(episodiosProfesores);
+        //-- episodios de alumnos del centro sanitario
+        countSQL1 = "select count(*) from episodio e, paciente p, usuario u, grupo g, usuario u2 where e.id_paciente=p.id and p.id_usuario = u.id and u.id_tipousuario=4 and u.id_grupo=g.id and g.id_usuario=u2.id and u2.id_tipousuario=3 and u2.id_centrosanitario=" + id;
+        Long episodiosAlumnos = this.count(countSQL1);
+        oEstadistica.setEpisodiosDeAlumnos(episodiosAlumnos);
+        //-- episodios totales del centro
+        oEstadistica.setEpisodios(episodiosProfesores + episodiosAlumnos);
+        //---
         MetaBeanHelper oMetaBeanHelper = new MetaBeanHelper();
         oMetaBeanHelper.setBean(oEstadistica);
         oMetaBeanHelper.setMetaObject(this.getObjectMetaData(ob + "statistics"));

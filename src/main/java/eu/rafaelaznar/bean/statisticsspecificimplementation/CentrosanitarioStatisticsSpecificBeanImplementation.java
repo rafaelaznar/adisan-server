@@ -59,7 +59,7 @@ public class CentrosanitarioStatisticsSpecificBeanImplementation implements Bean
             IsVisible = true
     )
     private Long profesores = null;
-    
+
     @Expose(deserialize = false)
     @MetaPropertyBeanInterface(
             ShortName = "Alumnos",
@@ -69,7 +69,7 @@ public class CentrosanitarioStatisticsSpecificBeanImplementation implements Bean
             IsVisible = true
     )
     private Long alumnos = null;
-    
+
     @Expose(deserialize = false)
     @MetaPropertyBeanInterface(
             ShortName = "Grupos",
@@ -80,8 +80,66 @@ public class CentrosanitarioStatisticsSpecificBeanImplementation implements Bean
     )
     private Long grupos = null;
 
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Pacientes",
+            LongName = "Pacientes del centro sanitario",
+            Description = "Pacientes del centro sanitario",
+            Type = EnumHelper.FieldType.Integer,
+            IsVisible = true
+    )
+    private Long pacientes = null;
+
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Pacientes de profesores",
+            LongName = "Pacientes de profesores del centro sanitario",
+            Description = "Pacientes de profesores del centro sanitario",
+            Type = EnumHelper.FieldType.Integer,
+            IsVisible = true
+    )
+    private Long pacientesDeProfesores = null;
+
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Pacientes de alumnos",
+            LongName = "Pacientes de alumnos del centro sanitario",
+            Description = "Pacientes de alumnos del centro sanitario",
+            Type = EnumHelper.FieldType.Integer,
+            IsVisible = true
+    )
+    private Long pacientesDeAlumnos = null;
     
-    
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Episodios",
+            LongName = "Episodios del centro sanitario",
+            Description = "Episodios del centro sanitario",
+            Type = EnumHelper.FieldType.Integer,
+            IsVisible = true
+    )
+    private Long episodios = null;
+
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Episodios de pacientes de profesores",
+            LongName = "Episodios de pacientes de profesores del centro sanitario",
+            Description = "Episodios de pacientes de profesores del centro sanitario",
+            Type = EnumHelper.FieldType.Integer,
+            IsVisible = true
+    )
+    private Long episodiosDeProfesores = null;
+
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Episodios de pacientes de alumnos",
+            LongName = "Episodios de pacientes de alumnos del centro sanitario",
+            Description = "Episodios de pacientes de alumnos del centro sanitario",
+            Type = EnumHelper.FieldType.Integer,
+            IsVisible = true
+    )
+    private Long episodiosDeAlumnos = null;
+
     @Override
     public String getColumns() throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -131,10 +189,52 @@ public class CentrosanitarioStatisticsSpecificBeanImplementation implements Bean
         this.grupos = grupos;
     }
 
+    public Long getPacientes() {
+        return pacientes;
+    }
 
+    public void setPacientes(Long pacientes) {
+        this.pacientes = pacientes;
+    }
 
-    
-    
-    
-    
+    public Long getPacientesDeProfesores() {
+        return pacientesDeProfesores;
+    }
+
+    public void setPacientesDeProfesores(Long pacientesDeProfesores) {
+        this.pacientesDeProfesores = pacientesDeProfesores;
+    }
+
+    public Long getPacientesDeAlumnos() {
+        return pacientesDeAlumnos;
+    }
+
+    public void setPacientesDeAlumnos(Long pacientesDeAlumnos) {
+        this.pacientesDeAlumnos = pacientesDeAlumnos;
+    }
+
+    public Long getEpisodios() {
+        return episodios;
+    }
+
+    public void setEpisodios(Long episodios) {
+        this.episodios = episodios;
+    }
+
+    public Long getEpisodiosDeProfesores() {
+        return episodiosDeProfesores;
+    }
+
+    public void setEpisodiosDeProfesores(Long episodiosDeProfesores) {
+        this.episodiosDeProfesores = episodiosDeProfesores;
+    }
+
+    public Long getEpisodiosDeAlumnos() {
+        return episodiosDeAlumnos;
+    }
+
+    public void setEpisodiosDeAlumnos(Long episodiosDeAlumnos) {
+        this.episodiosDeAlumnos = episodiosDeAlumnos;
+    }
+
 }
