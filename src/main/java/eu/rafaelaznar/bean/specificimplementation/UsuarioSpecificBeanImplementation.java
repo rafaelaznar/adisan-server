@@ -162,7 +162,7 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
             Description = "¿Usuario activo?",
             Type = EnumHelper.FieldType.Boolean,
             IsRequired = true,
-            IsVisible = false
+            IsVisible = true
     )
     private Integer activo;
 
