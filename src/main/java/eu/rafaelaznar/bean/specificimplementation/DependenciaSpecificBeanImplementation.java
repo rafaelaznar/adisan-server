@@ -60,8 +60,8 @@ public class DependenciaSpecificBeanImplementation extends GenericBeanImplementa
             Description = "Código de la dependencia",
             Type = EnumHelper.FieldType.String,
             IsRequired = true,
-            RegexPattern = "[^a-z0-9-]",
-            RegexHelp = "letras mayúsculas y números",
+            RegexPattern = RegexConstants.capscode,
+            RegexHelp = RegexConstants.capscode_Help,
             IsForeignKeyDescriptor = true,
             MaxLength = 50
     )

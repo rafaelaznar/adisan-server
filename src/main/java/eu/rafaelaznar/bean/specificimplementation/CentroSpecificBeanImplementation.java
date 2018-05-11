@@ -43,8 +43,8 @@ public class CentroSpecificBeanImplementation extends GenericBeanImplementation 
             Description = "Código del centro",
             Type = EnumHelper.FieldType.String,
             IsRequired = true,
-            RegexPattern = "[^a-z0-9-]",
-            RegexHelp = "letras mayúsculas y números",
+            RegexPattern = RegexConstants.capscode,
+            RegexHelp = RegexConstants.capscode_Help,
             MaxLength = 50
     )
     private String codigo;
