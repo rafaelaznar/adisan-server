@@ -236,7 +236,7 @@ public class UsuarioSpecificServiceImplementation extends GenericServiceImplemen
                 UsuarioSpecificBeanImplementation oSessionUsuarioBean = (UsuarioSpecificBeanImplementation) oSessionUsuarioBeanMeta.getBean();
                 if (oSessionUsuarioBean.getPassword().equalsIgnoreCase(oldPass)) {
                     oSessionUsuarioBean.setPassword(newPass);
-                    iResult = oUserDao.update(oSessionUsuarioBean);
+                    iResult = oUserDao.updatePassword(oSessionUsuarioBean.getId(), oldPass, newPass);
                     if (iResult >= 1) {
                         oReplyBean = new ReplyBeanHelper(200, EncodingHelper.quotate(iResult.toString()));
                     } else {

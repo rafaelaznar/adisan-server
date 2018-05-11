@@ -36,7 +36,9 @@ import eu.rafaelaznar.bean.genericimplementation.GenericBeanImplementation;
 import eu.rafaelaznar.bean.helper.MetaBeanHelper;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
+import eu.rafaelaznar.helper.EncodingHelper;
 import eu.rafaelaznar.helper.Log4jHelper;
+import eu.rafaelaznar.helper.TraceHelper;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -97,6 +99,37 @@ public class Usuario1SpecificDaoImplementation extends GenericDaoImplementation 
             }
         }
         return oMetaBeanHelper;
+    }
+
+    public Integer updatePassword(int id, String oldPass, String newPass) throws Exception {
+        TraceHelper.trace("updatePassword-GenericDaoImplementation(begin):object=" + ob);
+        PreparedStatement oPreparedStatement = null;
+        Integer iResult = 0;
+        try {
+            strSQL = "UPDATE usuario ";
+            strSQL += " SET ";
+            strSQL += " password = " + EncodingHelper.quotate(newPass);
+            strSQL += " WHERE id=? and password=? ";
+            oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
+            oPreparedStatement.setInt(1, id);
+            oPreparedStatement.setString(2, oldPass);
+            iResult = oPreparedStatement.executeUpdate();
+            if (iResult < 1) {
+                String msg = this.getClass().getName() + ": set";
+                Log4jHelper.errorLog(msg);
+                throw new Exception(msg);
+            }
+        } catch (Exception ex) {
+            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
+            Log4jHelper.errorLog(msg, ex);
+            throw new Exception(msg, ex);
+        } finally {
+            if (oPreparedStatement != null) {
+                oPreparedStatement.close();
+            }
+            TraceHelper.trace("updatePassword-GenericDaoImplementation(end):object=" + ob);
+        }
+        return iResult;
     }
 
     public Integer getIDfromUser(String strLogin) throws Exception {
