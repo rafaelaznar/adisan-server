@@ -135,11 +135,22 @@ moduloUsuario.controller('UsuarioXgrupoPList3Controller',
                     return "js/app/usuario/plistExtraButtons.html"
                 }
                 $scope.showActivateButton = function (oBean) {
-                    return true;
+                    if (oBean.activo == 1) {
+                        return false
+                    } else {
+
+                        return true;
+                    }
                 }
                 $scope.showDeactivateButton = function (oBean) {
-                    return true;
+                    if (oBean.activo == 1) {
+                        return true
+                    } else {
+
+                        return false;
+                    }
                 }
+                //----                
                 //----------
                 $scope.activate = function (oBean) {
                     serverCallService.activate(oBean.id).then(function (response) {

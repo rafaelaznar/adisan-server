@@ -135,13 +135,24 @@ moduloUsuario.controller('UsuarioXcentrosanitarioPList1Controller',
                 $scope.includeExtraButtons = function () {
                     return "js/app/usuario/plistExtraButtons.html"
                 }
-                //----------
                 $scope.showActivateButton = function (oBean) {
-                    return true;
+                    if (oBean.activo == 1) {
+                        return false
+                    } else {
+
+                        return true;
+                    }
                 }
                 $scope.showDeactivateButton = function (oBean) {
-                    return true;
+                    if (oBean.activo == 1) {
+                        return true
+                    } else {
+
+                        return false;
+                    }
                 }
+                //----                
+                //----------
                 $scope.activate = function (oBean) {
                     serverCallService.activate(oBean.id).then(function (response) {
                         if (response.status == 200) {
@@ -162,7 +173,7 @@ moduloUsuario.controller('UsuarioXcentrosanitarioPList1Controller',
                     }).catch(function (data) {
                     });
 
-                }
+                }             
                 //--------------------------------------------------------------     
                 $scope.showResetPass = function (oBean) {
                     return true;

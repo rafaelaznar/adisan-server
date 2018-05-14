@@ -132,14 +132,25 @@ moduloUsuario.controller('UsuarioXtipousuarioPList1Controller',
                     return true;
                 }
                 $scope.includeExtraButtons = function () {
-                    return "js/app/" + $scope.ob + "/plistExtraButtons.html"
+                    return "js/app/usuario/plistExtraButtons.html"
                 }
                 $scope.showActivateButton = function (oBean) {
-                    return true;
+                    if (oBean.activo == 1) {
+                        return false
+                    } else {
+
+                        return true;
+                    }
                 }
                 $scope.showDeactivateButton = function (oBean) {
-                    return true;
+                    if (oBean.activo == 1) {
+                        return true
+                    } else {
+
+                        return false;
+                    }
                 }
+                //----                
                 //----------
                 $scope.activate = function (oBean) {
                     serverCallService.activate(oBean.id).then(function (response) {
@@ -161,7 +172,7 @@ moduloUsuario.controller('UsuarioXtipousuarioPList1Controller',
                     }).catch(function (data) {
                     });
 
-                }
+                }               
                 //--------------------------------------------------------------
                 $scope.showResetPass = function (oBean) {
                     return true;

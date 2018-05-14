@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017-2018
  *
  * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
+ *
  * GESANE: Free Open Source Health Management System
  *
  * Sources at:
@@ -92,7 +92,7 @@ moduloUsuario.controller('UsuarioXcentroPList1Controller',
                         $scope.status = "Error en la recepción de datos del servidor";
                     });
                 }
-                //---                
+                //---
                 $scope.doorder = function (orderField, ascDesc) {
                     $location.url($scope.url + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', $scope.filterParams).search('order', orderField + ',' + ascDesc);
                     return false;
@@ -135,13 +135,24 @@ moduloUsuario.controller('UsuarioXcentroPList1Controller',
                 $scope.includeExtraButtons = function () {
                     return "js/app/usuario/plistExtraButtons.html"
                 }
-                //----------
                 $scope.showActivateButton = function (oBean) {
-                    return true;
+                    if (oBean.activo == 1) {
+                        return false
+                    } else {
+
+                        return true;
+                    }
                 }
                 $scope.showDeactivateButton = function (oBean) {
-                    return true;
+                    if (oBean.activo == 1) {
+                        return true
+                    } else {
+
+                        return false;
+                    }
                 }
+                //----
+                //----------
                 $scope.activate = function (oBean) {
                     serverCallService.activate(oBean.id).then(function (response) {
                         if (response.status == 200) {
@@ -163,7 +174,7 @@ moduloUsuario.controller('UsuarioXcentroPList1Controller',
                     });
 
                 }
-                //--------------------------------------------------------------   
+                //--------------------------------------------------------------
                 $scope.showResetPass = function (oBean) {
                     return true;
                 }
@@ -192,7 +203,7 @@ moduloUsuario.controller('UsuarioXcentroPList1Controller',
                     }).catch(function (data) {
                     });
                 }
-                //-------------------------------------------------------------- 
+                //--------------------------------------------------------------
                 getDataFromServer();
             }
         ]);
