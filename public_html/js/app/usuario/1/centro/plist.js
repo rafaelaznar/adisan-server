@@ -121,7 +121,7 @@ moduloUsuario.controller('UsuarioXcentroPList1Controller',
                 }
                 $scope.goNewURL = function () {
                     $location.path($scope.ob + "/" + $scope.profile + "/" + $scope.xob + "/new/" + $scope.xid);
-                }                
+                }
                 $scope.goEditURL = function (oBean) {
                     $location.path($scope.ob + "/" + $scope.profile + "/" + $scope.xob + "/edit/" + oBean.id + "/" + $scope.xid);
                 }
@@ -163,7 +163,36 @@ moduloUsuario.controller('UsuarioXcentroPList1Controller',
                     });
 
                 }
-                //--------------------------------------------------------------                 
+                //--------------------------------------------------------------   
+                $scope.showResetPass = function (oBean) {
+                    return true;
+                }
+                $scope.resetPass = function (oBean) {
+                    $scope.modalMessage = "¿Estás seguro que quieres resetear el password?";
+                    $scope.modalYesno = true;
+                    $scope.methodYes = 'resetarPass';
+                    $scope.params = oBean;
+                    $('#myModal').modal({
+                        keyboard: true
+                    })
+                }
+                $scope.resetarPass = function (oBean) {
+                    $('#myModal').modal('hide');
+                    serverCallService.resetPass(oBean.id).then(function (response) {
+                        if (response.status == 200) {
+                            if (response.data.status == 200) {
+                                $scope.modalMessage = "Password reseteado";
+                                $scope.modalYesno = false;
+                                $('#myModal').modal({
+                                    keyboard: true
+                                })
+                                //getDataFromServer();
+                            }
+                        }
+                    }).catch(function (data) {
+                    });
+                }
+                //-------------------------------------------------------------- 
                 getDataFromServer();
             }
         ]);

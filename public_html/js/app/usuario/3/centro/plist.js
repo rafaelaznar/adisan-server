@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017-2018
  *
  * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
+ *
  * GESANE: Free Open Source Health Management System
  *
  * Sources at:
@@ -92,7 +92,7 @@ moduloUsuario.controller('UsuarioXcentroPList3Controller',
                         $scope.status = "Error en la recepción de datos del servidor";
                     });
                 }
-                //---                
+                //---
                 $scope.doorder = function (orderField, ascDesc) {
                     $location.url($scope.url + '/' + $scope.numpage + '/' + $scope.rpp).search('filter', $scope.filterParams).search('order', orderField + ',' + ascDesc);
                     return false;
@@ -121,7 +121,7 @@ moduloUsuario.controller('UsuarioXcentroPList3Controller',
                 }
                 $scope.goNewURL = function () {
                     $location.path($scope.ob + "/" + $scope.profile + "/" + $scope.xob + "/new/" + $scope.xid);
-                }                
+                }
                 $scope.goEditURL = function (oBean) {
                     $location.path($scope.ob + "/" + $scope.profile + "/" + $scope.xob + "/edit/" + oBean.id + "/" + $scope.xid);
                 }
@@ -163,7 +163,36 @@ moduloUsuario.controller('UsuarioXcentroPList3Controller',
                     });
 
                 }
-                //--------------------------------------------------------------                 
+                //--------------------------------------------------------------
+                $scope.showResetPass = function (oBean) {
+                    return true;
+                }
+                $scope.resetPass = function (oBean) {
+                    $scope.modalMessage = "¿Estás seguro que quieres resetear el password?";
+                    $scope.modalYesno = true;
+                    $scope.methodYes = 'resetarPass';
+                    $scope.params = oBean;
+                    $('#myModal').modal({
+                        keyboard: true
+                    })
+                }
+                $scope.resetarPass = function (oBean) {
+                    $('#myModal').modal('hide');
+                    serverCallService.resetPass(oBean.id).then(function (response) {
+                        if (response.status == 200) {
+                            if (response.data.status == 200) {
+                                $scope.modalMessage = "Password reseteado";
+                                $scope.modalYesno = false;
+                                $('#myModal').modal({
+                                    keyboard: true
+                                })
+                                //getDataFromServer();
+                            }
+                        }
+                    }).catch(function (data) {
+                    });
+                }
+                //--------------------------------------------------------------
                 getDataFromServer();
             }
         ]);

@@ -122,6 +122,9 @@ moduloServicios.factory('serverCallService',
                     },
                     create: function (strClass, id) {
                         return $http.get(constantService.getAppUrl() + '?ob=' + strClass + '&op=create', 'GET', '');
+                    },
+                    resetPass: function (id) {
+                        return $http.get(constantService.getAppUrl() + '?ob=usuario&op=resetpass&id=' + id, 'GET', '');
                     }
                 }
             }
