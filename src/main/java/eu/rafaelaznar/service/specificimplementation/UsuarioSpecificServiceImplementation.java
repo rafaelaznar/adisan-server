@@ -219,6 +219,64 @@ public class UsuarioSpecificServiceImplementation extends GenericServiceImplemen
         }
     }
 
+    public ReplyBeanHelper resetPass() throws Exception {
+        if (this.checkPermission("passchange")) {
+            Connection oConnection = null;
+            ConnectionInterface oPooledConnection = null;
+            int id = Integer.parseInt(oRequest.getParameter("id"));
+            String newPass = "29A666F773333B5BA55BB7B1E6177A236665616BB87CF6DFCFEDAA08F8E7D01B"; //gesane
+            ReplyBeanHelper oReplyBean = null;
+            Integer iResult = 0;
+            try {
+                oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
+                oConnection = oPooledConnection.newConnection();
+                oConnection.setAutoCommit(false);
+
+                MetaBeanHelper oPuserBean_security = (MetaBeanHelper) oRequest.getSession().getAttribute("user");
+                UsuarioSpecificBeanImplementation oUserSessionBean = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
+
+                switch (oUserSessionBean.getId_tipousuario()) {
+                    case 1:
+                        Usuario1SpecificDaoImplementation oUser1Dao = new Usuario1SpecificDaoImplementation(oConnection, oPuserBean_security, "");
+                        MetaBeanHelper oUser1 = oUser1Dao.get(id, 0);
+                        UsuarioSpecificBeanImplementation oUsuario1Bean = (UsuarioSpecificBeanImplementation) oUser1.getBean();
+                        iResult = oUser1Dao.updatePassword(oUsuario1Bean.getId(), oUsuario1Bean.getPassword(), newPass);
+                        break;
+                    case 3:
+                        Usuario3SpecificDaoImplementation oUser3Dao = new Usuario3SpecificDaoImplementation(oConnection, oPuserBean_security, "");
+                        MetaBeanHelper oUser = oUser3Dao.get(id, 0);
+                        UsuarioSpecificBeanImplementation oUsuario3Bean = (UsuarioSpecificBeanImplementation) oUser.getBean();
+                        iResult = oUser3Dao.updatePassword(oUsuario3Bean.getId(), oUsuario3Bean.getPassword(), newPass);
+                        break;
+                }
+
+                if (iResult >= 1) {
+                    oReplyBean = new ReplyBeanHelper(200, EncodingHelper.quotate(iResult.toString()));
+                } else {
+                    oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Server error during password change operation"));
+                }
+                oConnection.commit();
+            } catch (Exception ex) {
+                if (oConnection != null) {
+                    oConnection.rollback();
+                }
+                String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
+                Log4jHelper.errorLog(msg, ex);
+                throw new Exception(msg, ex);
+            } finally {
+                if (oConnection != null) {
+                    oConnection.close();
+                }
+                if (oPooledConnection != null) {
+                    oPooledConnection.disposeConnection();
+                }
+            }
+            return oReplyBean;
+        } else {
+            return new ReplyBeanHelper(401, EncodingHelper.quotate("Unauthorized"));
+        }
+    }
+
     public ReplyBeanHelper setPass() throws Exception {
         if (this.checkPermission("passchange")) {
             Connection oConnection = null;

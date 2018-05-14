@@ -133,6 +133,9 @@ public class ServiceFactory {
                     case "deactivate":
                         oReplyBean = oUsuarioService.deactivate();
                         break;
+                    case "resetpass":
+                        oReplyBean = oUsuarioService.resetPass();
+                        break;
                     default:
                         oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Operation not found : Please contact your administrator"));
                         break;

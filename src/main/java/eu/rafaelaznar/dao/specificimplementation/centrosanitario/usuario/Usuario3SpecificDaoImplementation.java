@@ -38,8 +38,12 @@ import eu.rafaelaznar.bean.specificimplementation.CentrosanitarioSpecificBeanImp
 import eu.rafaelaznar.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import eu.rafaelaznar.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import eu.rafaelaznar.dao.genericimplementation.GenericDaoImplementation;
+import eu.rafaelaznar.helper.EncodingHelper;
 import eu.rafaelaznar.helper.Log4jHelper;
+import eu.rafaelaznar.helper.TraceHelper;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 
 public class Usuario3SpecificDaoImplementation extends GenericDaoImplementation {
 
@@ -210,6 +214,42 @@ public class Usuario3SpecificDaoImplementation extends GenericDaoImplementation 
         } else {
             return 0;
         }
+    }
+
+    public Integer updatePassword(int id, String oldPass, String newPass) throws Exception {
+        TraceHelper.trace("updatePassword-GenericDaoImplementation(begin):object=" + ob);
+        if (this.alumnoIsMine(id) || idUsuario == id) {
+            PreparedStatement oPreparedStatement = null;
+            Integer iResult = 0;
+            try {
+                strSQL = "UPDATE usuario ";
+                strSQL += " SET ";
+                strSQL += " password = " + EncodingHelper.quotate(newPass);
+                strSQL += " WHERE id=? and password=? ";
+                oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
+                oPreparedStatement.setInt(1, id);
+                oPreparedStatement.setString(2, oldPass);
+                iResult = oPreparedStatement.executeUpdate();
+                if (iResult < 1) {
+                    String msg = this.getClass().getName() + ": set";
+                    Log4jHelper.errorLog(msg);
+                    throw new Exception(msg);
+                }
+            } catch (Exception ex) {
+                String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
+                Log4jHelper.errorLog(msg, ex);
+                throw new Exception(msg, ex);
+            } finally {
+                if (oPreparedStatement != null) {
+                    oPreparedStatement.close();
+                }
+                TraceHelper.trace("updatePassword-GenericDaoImplementation(end):object=" + ob);
+            }
+            return iResult;
+        } else {
+            throw new Exception("Can't reset password: not mine nor my student");
+        }
+
     }
 
 }
