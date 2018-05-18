@@ -55,7 +55,8 @@
                                     <span class="{{grupo.data.obj_curso.metaObject.Icon}}"></span>
                                     Curso: {{grupo.data.obj_curso.data.descripcion}}<br>
                                     <span class="{{grupo.data.obj_usuario.metaObject.Icon}}"></span>
-                                    Profesor: {{grupo.data.obj_usuario.data.nombre}} {{grupo.data.obj_usuario.data.primer_apellido}} {{grupo.data.obj_usuario.data.segundo_apellido}}<br>
+                                    <!-- Profesor: {{grupo.data.obj_usuario.data.nombre}} {{grupo.data.obj_usuario.data.primer_apellido}} {{grupo.data.obj_usuario.data.segundo_apellido}}<br> -->
+                                    Profesor: {{grupo.data.obj_usuario.data.login}}<br>
                                     <span class="{{grupo.data.obj_usuario.data.obj_centro.metaObject.Icon}}"></span>
                                     Centro: {{grupo.data.obj_usuario.data.obj_centro.data.nombre}}<br>
                                     <span class="{{grupo.data.obj_usuario.data.obj_centrosanitario.metaObject.Icon}}"></span>
@@ -182,6 +183,8 @@
                                         </div>
                                     </div>
 
+                                    <!--
+                                    
                                     <div class="panel panel-default">
                                         <div class="panel-heading"><span style="font-size: 25px !important">&#10104</span> Introduce los datos personales</div>
                                         <div class="panel-body" ng-show="fase == 3">
@@ -315,6 +318,9 @@
                                         </div>
 
                                     </div>
+                                    
+                                    -->
+                                    
                                 </form>
                                 <div ng-if="fase == 4">
                                     <div class="alert alert-success" ng-if="response.status == 200">

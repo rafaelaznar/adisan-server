@@ -45,6 +45,7 @@
                                             <td>Nombre de usuario</td>
                                             <td>{{session_info.login}}</td>
                                         </tr>
+                                        <!--
                                         <tr>
                                             <td>Nombre completo</td>
                                             <td>{{session_info.nombre + ' ' + session_info.primer_apellido + ' ' + session_info.segundo_apellido}}</td>
@@ -53,6 +54,7 @@
                                             <td>Correo electrónico</td>
                                             <td>{{session_info.email}}</td>
                                         </tr>
+                                        -->
                                         <tr>
                                             <td>Fecha de alta</td>
                                             <td>{{session_info.fecha_alta}}</td>
@@ -79,7 +81,8 @@
                                         </tr>
                                         <tr ng-if="session_info.obj_tipousuario.data.id == 4">
                                             <td>Profesor/a</td>
-                                            <td>{{session_info.obj_grupo.data.obj_usuario.data.nombre + ' ' + session_info.obj_grupo.data.obj_usuario.data.primer_apellido + ' ' + session_info.obj_grupo.data.obj_usuario.data.segundo_apellido}}</td>
+                                            <!-- <td>{{session_info.obj_grupo.data.obj_usuario.data.nombre + ' ' + session_info.obj_grupo.data.obj_usuario.data.primer_apellido + ' ' + session_info.obj_grupo.data.obj_usuario.data.segundo_apellido}}</td> -->
+                                            <td>{{session_info.obj_grupo.data.obj_usuario.data.login}}</td>
                                         </tr>
                                         <tr ng-if="session_info.obj_tipousuario.data.id == 4">
                                             <td>Centro</td>

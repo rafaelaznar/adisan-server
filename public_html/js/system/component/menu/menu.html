@@ -285,7 +285,8 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-user"></i>
-                        <span id="username_id" ng-if="mn.isSessionActive"> {{mn.session_info.nombre + ' ' + mn.session_info.primer_apellido + ' ' + mn.session_info.segundo_apellido}} ({{mn.session_info.obj_tipousuario.data.descripcion}})</span>
+                        <!-- <span id="username_id" ng-if="mn.isSessionActive"> {{mn.session_info.nombre + ' ' + mn.session_info.primer_apellido + ' ' + mn.session_info.segundo_apellido}} ({{mn.session_info.obj_tipousuario.data.descripcion}})</span> -->
+                        <span id="username_id" ng-if="mn.isSessionActive"> {{mn.session_info.login}} ({{mn.session_info.obj_tipousuario.data.descripcion}})</span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu dropdown">

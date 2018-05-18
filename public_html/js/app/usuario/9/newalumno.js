@@ -91,9 +91,10 @@ moduloUsuario.controller('UsuarioNewalumno9Controller',
                 };
                 $scope.validaContrasenya = function () {
                     $scope.fase = 3;
+                    $scope.send();
                 };
                 $scope.send = function () {
-                    delete $scope.bean.password2;
+                    delete $scope.bean.password2;                    
                     $scope.bean.id_grupo = $scope.grupo.data.id;
                     $scope.bean.id_centro = $scope.grupo.data.obj_usuario.data.obj_centro.data.id;
                     $scope.bean.id_centrosanitario = $scope.grupo.data.obj_usuario.data.obj_centrosanitario.data.id;
