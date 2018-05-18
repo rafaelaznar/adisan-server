@@ -49,7 +49,9 @@ import eu.rafaelaznar.helper.EncodingHelper;
 import eu.rafaelaznar.helper.GsonHelper;
 import eu.rafaelaznar.helper.Log4jHelper;
 import eu.rafaelaznar.helper.RandomHelper;
+import eu.rafaelaznar.helper.Recaptcha;
 import eu.rafaelaznar.helper.constant.ConfigurationConstants;
+import eu.rafaelaznar.helper.constant.RecaptchaConstants;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -129,44 +131,50 @@ public class UsuarioSpecificServiceImplementation extends GenericServiceImplemen
         UsuarioSpecificBeanImplementation oUsuarioBean = new UsuarioSpecificBeanImplementation();
         oUsuarioBean.setLogin(oRequest.getParameter("user"));
         oUsuarioBean.setPassword(oRequest.getParameter("pass"));
-        if (!oUsuarioBean.getLogin().equalsIgnoreCase("") || !oUsuarioBean.getPassword().equalsIgnoreCase("")) {
-            try {
-                oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
-                oConnection = oPooledConnection.newConnection();
-                Usuario1SpecificDaoImplementation oDao = new Usuario1SpecificDaoImplementation(oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
-                MetaBeanHelper oMetaBeanHelper = oDao.getFromLoginAndPass(oUsuarioBean);
+        String recaptcha = oRequest.getParameter("g-recaptcha-response");
+        if (Recaptcha.isCaptchaValid(RecaptchaConstants.getSecretKey(), oRequest.getParameter("g-recaptcha-response"))) {
+            if (!oUsuarioBean.getLogin().equalsIgnoreCase("") || !oUsuarioBean.getPassword().equalsIgnoreCase("")) {
+                try {
+                    oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
+                    oConnection = oPooledConnection.newConnection();
+                    Usuario1SpecificDaoImplementation oDao = new Usuario1SpecificDaoImplementation(oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+                    MetaBeanHelper oMetaBeanHelper = oDao.getFromLoginAndPass(oUsuarioBean);
 
-                UsuarioSpecificBeanImplementation oUsuarioSession = (UsuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
-                if (oUsuarioSession.getId_tipousuario() > 2) {
-                    if (oUsuarioSession.getActivo() == 1) {
+                    UsuarioSpecificBeanImplementation oUsuarioSession = (UsuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
+                    if (oUsuarioSession.getId_tipousuario() > 2) {
+                        if (oUsuarioSession.getActivo() == 1) {
+                            HttpSession oSession = oRequest.getSession();
+                            oSession.setAttribute("user", oMetaBeanHelper);
+                            String strJson = GsonHelper.getGson().toJson(oMetaBeanHelper);
+                            oReplyBean = new ReplyBeanHelper(200, strJson);
+                        } else {
+                            String msg1 = this.getClass().getName() + ": Inactive user try to login: rejected: ob:" + ob;
+                            Log4jHelper.errorLog(msg1);
+                            throw new Exception(msg1);
+                        }
+                    } else { //el administrador siempre activo
                         HttpSession oSession = oRequest.getSession();
                         oSession.setAttribute("user", oMetaBeanHelper);
                         String strJson = GsonHelper.getGson().toJson(oMetaBeanHelper);
                         oReplyBean = new ReplyBeanHelper(200, strJson);
-                    } else {
-                        String msg1 = this.getClass().getName() + ": Inactive user try to login: rejected: ob:" + ob;
-                        Log4jHelper.errorLog(msg1);
-                        throw new Exception(msg1);
                     }
-                } else { //el administrador siempre activo
-                    HttpSession oSession = oRequest.getSession();
-                    oSession.setAttribute("user", oMetaBeanHelper);
-                    String strJson = GsonHelper.getGson().toJson(oMetaBeanHelper);
-                    oReplyBean = new ReplyBeanHelper(200, strJson);
-                }
-
-            } catch (Exception ex) {
-                String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-                Log4jHelper.errorLog(msg, ex);
-                throw new Exception(msg, ex);
-            } finally {
-                if (oConnection != null) {
-                    oConnection.close();
-                }
-                if (oPooledConnection != null) {
-                    oPooledConnection.disposeConnection();
+                } catch (Exception ex) {
+                    String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
+                    Log4jHelper.errorLog(msg, ex);
+                    throw new Exception(msg, ex);
+                } finally {
+                    if (oConnection != null) {
+                        oConnection.close();
+                    }
+                    if (oPooledConnection != null) {
+                        oPooledConnection.disposeConnection();
+                    }
                 }
             }
+        } else {
+            String msg1 = this.getClass().getName() + ": Invalid captcha ob:" + ob;
+            Log4jHelper.errorLog(msg1);
+            throw new Exception(msg1);
         }
         return oReplyBean;
     }
