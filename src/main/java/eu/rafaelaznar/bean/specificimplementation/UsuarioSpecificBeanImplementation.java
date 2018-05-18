@@ -56,65 +56,65 @@ import java.util.Date;
 )
 public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation {
 
-    @Expose(deserialize = false)
-    @MetaPropertyBeanInterface(
-            ShortName = "Nombre completo",
-            LongName = "Nombre completo",
-            Description = "Nombre completo del usuario",
-            Type = EnumHelper.FieldType.Calculated,
-            IsForeignKeyDescriptor = true,
-            Width = 3,
-            MaxLength = 100
-    )
-    private String nombrecompleto;
-
-    @Expose
-    @MetaPropertyBeanInterface(
-            ShortName = "Nombre",
-            LongName = "Nombre",
-            Description = "Nombre del usuario",
-            Type = EnumHelper.FieldType.String,
-            IsRequired = true,
-            RegexPattern = RegexConstants.capitalizedName,
-            RegexHelp = RegexConstants.capitalizedName_Help,
-            IsForeignKeyDescriptor = false,
-            Width = 3,
-            MaxLength = 100,
-            IsVisible = false
-    )
-    private String nombre;
-
-    @Expose
-    @MetaPropertyBeanInterface(
-            ShortName = "1er. Ap.",
-            LongName = "Primer Apellido",
-            Description = "Primer Apellido del usuario",
-            Type = EnumHelper.FieldType.String,
-            IsRequired = true,
-            RegexPattern = RegexConstants.capitalizedName,
-            RegexHelp = RegexConstants.capitalizedName_Help,
-            IsForeignKeyDescriptor = false,
-            Width = 3,
-            MaxLength = 100,
-            IsVisible = false
-    )
-    private String primer_apellido;
-
-    @Expose
-    @MetaPropertyBeanInterface(
-            ShortName = "2º Ap.",
-            LongName = "Segundo Apellido",
-            Description = "Segundo Apellido del usuario",
-            Type = EnumHelper.FieldType.String,
-            IsRequired = true,
-            RegexPattern = RegexConstants.capitalizedName,
-            RegexHelp = RegexConstants.capitalizedName_Help,
-            IsForeignKeyDescriptor = false,
-            Width = 3,
-            MaxLength = 100,
-            IsVisible = false
-    )
-    private String segundo_apellido;
+//    @Expose(deserialize = false)
+//    @MetaPropertyBeanInterface(
+//            ShortName = "Nombre completo",
+//            LongName = "Nombre completo",
+//            Description = "Nombre completo del usuario",
+//            Type = EnumHelper.FieldType.Calculated,
+//            IsForeignKeyDescriptor = false,
+//            Width = 3,
+//            MaxLength = 100
+//    )
+//    private String nombrecompleto;
+//
+//    @Expose
+//    @MetaPropertyBeanInterface(
+//            ShortName = "Nombre",
+//            LongName = "Nombre",
+//            Description = "Nombre del usuario",
+//            Type = EnumHelper.FieldType.String,
+//            IsRequired = true,
+//            RegexPattern = RegexConstants.capitalizedName,
+//            RegexHelp = RegexConstants.capitalizedName_Help,
+//            IsForeignKeyDescriptor = false,
+//            Width = 3,
+//            MaxLength = 100,
+//            IsVisible = false
+//    )
+//    private String nombre;
+//
+//    @Expose
+//    @MetaPropertyBeanInterface(
+//            ShortName = "1er. Ap.",
+//            LongName = "Primer Apellido",
+//            Description = "Primer Apellido del usuario",
+//            Type = EnumHelper.FieldType.String,
+//            IsRequired = true,
+//            RegexPattern = RegexConstants.capitalizedName,
+//            RegexHelp = RegexConstants.capitalizedName_Help,
+//            IsForeignKeyDescriptor = false,
+//            Width = 3,
+//            MaxLength = 100,
+//            IsVisible = false
+//    )
+//    private String primer_apellido;
+//
+//    @Expose
+//    @MetaPropertyBeanInterface(
+//            ShortName = "2º Ap.",
+//            LongName = "Segundo Apellido",
+//            Description = "Segundo Apellido del usuario",
+//            Type = EnumHelper.FieldType.String,
+//            IsRequired = true,
+//            RegexPattern = RegexConstants.capitalizedName,
+//            RegexHelp = RegexConstants.capitalizedName_Help,
+//            IsForeignKeyDescriptor = false,
+//            Width = 3,
+//            MaxLength = 100,
+//            IsVisible = false
+//    )
+//    private String segundo_apellido;
 
     @Expose
     @MetaPropertyBeanInterface(
@@ -123,6 +123,7 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
             Description = "Login para entrar en el sistema",
             Type = EnumHelper.FieldType.String,
             IsRequired = true,
+            IsForeignKeyDescriptor = true,
             RegexPattern = RegexConstants.nameWithEndingNumbers,
             RegexHelp = RegexConstants.nameWithEndingNumbers_Help,
             MaxLength = 15
@@ -135,19 +136,19 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
     )
     private String password;
 
-    @Expose
-    @MetaPropertyBeanInterface(
-            ShortName = "email",
-            LongName = "Correo electrónico",
-            Description = "Correo electrónico del usuario",
-            Type = EnumHelper.FieldType.String,
-            IsRequired = true,
-            RegexPattern = RegexConstants.email,
-            RegexHelp = RegexConstants.email_Help,
-            MaxLength = 50,
-            IsVisible = false
-    )
-    private String email;
+//    @Expose
+//    @MetaPropertyBeanInterface(
+//            ShortName = "email",
+//            LongName = "Correo electrónico",
+//            Description = "Correo electrónico del usuario",
+//            Type = EnumHelper.FieldType.String,
+//            IsRequired = true,
+//            RegexPattern = RegexConstants.email,
+//            RegexHelp = RegexConstants.email_Help,
+//            MaxLength = 50,
+//            IsVisible = false
+//    )
+//    private String email;
 
     @Expose(serialize = false)
     @MetaPropertyBeanInterface(
@@ -291,40 +292,40 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
 
     @Override
     public void ComputeCalculatedFields() {
-        this.nombrecompleto = this.nombre + " " + this.primer_apellido + " " + this.segundo_apellido;
+        //this.nombrecompleto = this.nombre + " " + this.primer_apellido + " " + this.segundo_apellido;
     }
-
-    public String getNombrecompleto() {
-        return nombrecompleto;
-    }
-
-    public void setNombrecompleto(String nombrecompleto) {
-        this.nombrecompleto = nombrecompleto;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getPrimer_apellido() {
-        return primer_apellido;
-    }
-
-    public void setPrimer_apellido(String primerapellido) {
-        this.primer_apellido = primerapellido;
-    }
-
-    public String getSegundo_apellido() {
-        return segundo_apellido;
-    }
-
-    public void setSegundo_apellido(String segundo_apellido) {
-        this.segundo_apellido = segundo_apellido;
-    }
+//
+//    public String getNombrecompleto() {
+//        return nombrecompleto;
+//    }
+//
+//    public void setNombrecompleto(String nombrecompleto) {
+//        this.nombrecompleto = nombrecompleto;
+//    }
+//
+//    public String getNombre() {
+//        return nombre;
+//    }
+//
+//    public void setNombre(String nombre) {
+//        this.nombre = nombre;
+//    }
+//
+//    public String getPrimer_apellido() {
+//        return primer_apellido;
+//    }
+//
+//    public void setPrimer_apellido(String primerapellido) {
+//        this.primer_apellido = primerapellido;
+//    }
+//
+//    public String getSegundo_apellido() {
+//        return segundo_apellido;
+//    }
+//
+//    public void setSegundo_apellido(String segundo_apellido) {
+//        this.segundo_apellido = segundo_apellido;
+//    }
 
     public String getLogin() {
         return login;
@@ -342,13 +343,13 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
+//    public String getEmail() {
+//        return email;
+//    }
+//
+//    public void setEmail(String email) {
+//        this.email = email;
+//    }
 
     public String getToken() {
         return token;
@@ -497,12 +498,12 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
         if (oPuserBean_security != null) {
             UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
             if (oUsuario.getId_tipousuario() == 5) {
-                this.setNombrecompleto("Oculto para proteger la identidad");
-                this.setNombre("Oculto para proteger la identidad");
-                this.setPrimer_apellido("Oculto para proteger la identidad");
-                this.setSegundo_apellido("Oculto para proteger la identidad");
-                this.setEmail("Oculto para proteger la identidad");
-                this.setLogin("No tienes permiso para acceder a esta información");
+//                this.setNombrecompleto("Oculto para proteger la identidad");
+//                this.setNombre("Oculto para proteger la identidad");
+//                this.setPrimer_apellido("Oculto para proteger la identidad");
+//                this.setSegundo_apellido("Oculto para proteger la identidad");
+//                this.setEmail("Oculto para proteger la identidad");
+                this.setLogin("Información oculta");
                 this.setActivo(0);
                 this.setFecha_alta(new Date(0));
             }

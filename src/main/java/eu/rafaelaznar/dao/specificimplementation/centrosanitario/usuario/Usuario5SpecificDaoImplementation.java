@@ -48,12 +48,12 @@ public class Usuario5SpecificDaoImplementation extends GenericDaoImplementation 
     public MetaBeanHelper get(int id, int intExpand) throws Exception {
         MetaBeanHelper oMetaBeanHelper = super.get(id, intExpand);
         UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
-        oUsuario.setNombrecompleto("Oculto para proteger la identidad");
-        oUsuario.setNombre("Oculto para proteger la identidad");
-        oUsuario.setPrimer_apellido("Oculto para proteger la identidad");
-        oUsuario.setSegundo_apellido("Oculto para proteger la identidad");
-        oUsuario.setEmail("Oculto para proteger la identidad");
-        oUsuario.setLogin("No tienes permiso para acceder a esta información");
+//        oUsuario.setNombrecompleto("Oculto para proteger la identidad");
+//        oUsuario.setNombre("Oculto para proteger la identidad");
+//        oUsuario.setPrimer_apellido("Oculto para proteger la identidad");
+//        oUsuario.setSegundo_apellido("Oculto para proteger la identidad");
+//        oUsuario.setEmail("Oculto para proteger la identidad");
+        oUsuario.setLogin("Información oculta");
         oUsuario.setActivo(0);
         oUsuario.setFecha_alta(new Date(0));
         return oMetaBeanHelper;
