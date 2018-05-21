@@ -27,8 +27,8 @@
  */
 'use strict';
 moduloSistema.controller('LoginController',
-        ['$http', '$scope', '$location', 'constantService', 'sessionServerCallService', 'sessionService',
-            function ($http, $scope, $location, constantService, sessionServerCallService, sessionService) {
+        ['$http', '$scope', '$location', 'constantService', 'sessionServerCallService', 'sessionService', 'toolService',
+            function ($http, $scope, $location, constantService, sessionServerCallService, sessionService, toolService) {
                 $scope.title = "Formulario de entrada al sistema";
                 $scope.icon = "fa-file-text-o";
                 $scope.user = {};
@@ -66,6 +66,8 @@ moduloSistema.controller('LoginController',
                     }
                 }
                 $scope.login = function () {
+                    //var jsonToSend = {json: JSON.stringify(toolService.array_identificarArray($scope.user))};
+                    //hay que enviar el recaptcha
                     sessionServerCallService.login($scope.user.username, $scope.user.password).then(function (response) {
                         if (response.status == 200) {
                             sessionService.setSessionActive();
