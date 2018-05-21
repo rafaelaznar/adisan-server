@@ -5,6 +5,8 @@
  */
 package eu.rafaelaznar.helper;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -38,14 +40,10 @@ public static boolean isCaptchaValid(String secretKey, String response) {
         String jsonText = sb.toString();
         res.close();
 
-        
-        
-        //JSONObject json = new JSONObject(jsonText);
-        //return json.getBoolean("success");
-        
-        //implementar con google gson
-        
-        return true;
+        JsonObject jobj = new Gson().fromJson(jsonText, JsonObject.class);
+        Boolean result = jobj.get("success").getAsBoolean();
+                                
+        return result;
     } catch (Exception e) {
         return false;
     }
