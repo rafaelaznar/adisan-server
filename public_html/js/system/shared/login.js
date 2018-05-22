@@ -29,6 +29,7 @@
 moduloSistema.controller('LoginController',
         ['$http', '$scope', '$location', 'constantService', 'sessionServerCallService', 'sessionService', 'toolService',
             function ($http, $scope, $location, constantService, sessionServerCallService, sessionService, toolService) {
+                $.getScript("https://www.google.com/recaptcha/api.js?onload=recaptchaOnload&render=explicit");
                 $scope.title = "Formulario de entrada al sistema";
                 $scope.icon = "fa-file-text-o";
                 $scope.user = {};
@@ -66,9 +67,10 @@ moduloSistema.controller('LoginController',
                     }
                 }
                 $scope.login = function () {
+                    var recaptchaValue = $('#loginform')[0][2].value;
                     //var jsonToSend = {json: JSON.stringify(toolService.array_identificarArray($scope.user))};
                     //hay que enviar el recaptcha
-                    sessionServerCallService.login($scope.user.username, $scope.user.password).then(function (response) {
+                    sessionServerCallService.login($scope.user.username, $scope.user.password, recaptchaValue).then(function (response) {
                         if (response.status == 200) {
                             sessionService.setSessionActive();
                             sessionService.setSessionInfo(response.data.json.data);
@@ -88,5 +90,6 @@ moduloSistema.controller('LoginController',
                         return false;
                     });
                 };
+               //recaptchaOnload();
             }
         ]);

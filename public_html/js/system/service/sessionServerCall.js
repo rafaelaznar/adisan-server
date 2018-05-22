@@ -30,9 +30,9 @@ moduloServicios.factory('sessionServerCallService',
         ['$http', 'constantService',
             function ($http, constantService) {
                 return {
-                    login: function (username, password) {
+                    login: function (username, password, recaptchaValue) {
                         password = forge_sha256(password).toUpperCase();
-                        return $http.get(constantService.getAppUrl() + '?ob=usuario&op=login&user=' + username + '&pass=' + password, 'GET', '');
+                        return $http.get(constantService.getAppUrl() + '?ob=usuario&op=login&user=' + username + '&pass=' + password + "&g-recaptcha-response=" + recaptchaValue, 'GET', '');
                     },
                     setPass: function (oldpass, newpass) {
                         var oldpassword = forge_sha256(oldpass).toUpperCase();
