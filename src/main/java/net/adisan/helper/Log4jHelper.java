@@ -1,0 +1,70 @@
+/*
+ * Copyright (c) 2017-2018 
+ *
+ * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
+ * 
+ * GESANE: Free Open Source Health Management System
+ *
+ * Sources at:
+ *                            https://github.com/rafaelaznar/gesane-server
+ *                            https://github.com/rafaelaznar/gesane-client
+ *                            https://github.com/rafaelaznar/gesane-database
+ *
+ * GESANE is distributed under the MIT License (MIT)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+package net.adisan.helper;
+
+import org.apache.log4j.Logger;
+
+public class Log4jHelper {
+
+    public static void infoLog(String strMessage) {
+        Logger log = Logger.getLogger("gesane");
+        log.info(strMessage);
+    }
+
+    public static void errorLog(String strMessage) {
+        Logger log = Logger.getLogger("gesane");
+        log.error(strMessage);
+    }
+
+    public static void errorLog(String strMessage, Exception ex) {
+        Logger log = Logger.getLogger("gesane");
+        log.error(strMessage, ex);
+        TraceHelper.trace(strMessage + " " + ex.getMessage());
+    }
+
+    public static void fatalLog(String strMessage) {
+        Logger log = Logger.getLogger("gesane");
+        log.fatal(strMessage);
+    }
+
+    public static void debugLog(String strMessage) {
+        Logger log = Logger.getLogger("gesane");
+        log.debug(strMessage);
+    }
+
+    public static void warnLog(String strMessage) {
+        Logger log = Logger.getLogger("gesane");
+        log.warn(strMessage);
+    }
+
+}
