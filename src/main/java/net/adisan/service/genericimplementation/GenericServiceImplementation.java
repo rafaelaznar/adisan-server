@@ -3,14 +3,14 @@
  *
  * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
  * 
- * GESANE: Free Open Source Health Management System
+ * ADISAN: Free Open Source Health Management System
  *
  * Sources at:
- *                            https://github.com/rafaelaznar/gesane-server
- *                            https://github.com/rafaelaznar/gesane-client
- *                            https://github.com/rafaelaznar/gesane-database
+ *                            https://github.com/rafaelaznar/adisan
+ *                            
+ * Database at:               https://github.com/rafaelaznar/adisan-database
  *
- * GESANE is distributed under the MIT License (MIT)
+ * ADISAN is distributed under the MIT License (MIT)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -137,7 +137,7 @@ public abstract class GenericServiceImplementation implements ServiceInterface {
     }
 
     /*
-    * http://127.0.0.1:8081/trolleyes-server/json?ob=xxxxxx&op=getpage&np=1&rpp=10
+    * http://127.0.0.1:8081/adisan/json?ob=xxxxxx&op=getpage&np=1&rpp=10
      */
     @Override
     public ReplyBeanHelper getPage() throws Exception {
@@ -178,7 +178,7 @@ public abstract class GenericServiceImplementation implements ServiceInterface {
     }
 
     /*
-    * http://127.0.0.1:8081/trolleyes-server/json?ob=xxxxxxxx&op=getcount
+    * http://127.0.0.1:8081/adisan/json?ob=xxxxxxxx&op=getcount
      */
     @Override
     public ReplyBeanHelper getCount() throws Exception {
@@ -291,7 +291,7 @@ public abstract class GenericServiceImplementation implements ServiceInterface {
     }
 
     /*
-    * http://127.0.0.1:8081/gesane/json?ob=xxxxxx&op=get&id=n
+    * http://127.0.0.1:8081/adisan/json?ob=xxxxxx&op=get&id=n
      */
     @Override
     public ReplyBeanHelper get() throws Exception {
@@ -326,7 +326,7 @@ public abstract class GenericServiceImplementation implements ServiceInterface {
     }
 
     /*
-    * http://127.0.0.1:8081/trolleyes-server/json?ob=xxxxxx&op=set (datos aparte)
+    * http://127.0.0.1:8081/adisan/json?ob=xxxxxx&op=set    (With data)
      */
     private ReplyBeanHelper setoBean(GenericBeanImplementation oBean) throws Exception {
         Connection oConnection = null;
@@ -380,7 +380,7 @@ public abstract class GenericServiceImplementation implements ServiceInterface {
     }
 
     /*
-    * http://127.0.0.1:8081/trolleyes-server/json?ob=xxxxxxx&op=remove&id=1
+    * http://127.0.0.1:8081/adisan/json?ob=xxxxxxx&op=remove&id=1
      */
     @Override
     public ReplyBeanHelper remove() throws Exception {

@@ -3,7 +3,7 @@
  *
  * TROLLEYES helps you to learn how to develop easily AJAX web applications
  *
- * Sources at https://github.com/rafaelaznar/gesane-client
+ * Sources at 
  *
  * TROLLEYES is distributed under the MIT License (MIT)
  *
@@ -67,9 +67,8 @@ moduloSistema.controller('LoginController',
                     }
                 }
                 $scope.login = function () {
-                    var recaptchaValue = $('#loginform')[0][2].value;
-                    //var jsonToSend = {json: JSON.stringify(toolService.array_identificarArray($scope.user))};
-                    //hay que enviar el recaptcha
+                    //var recaptchaValue = $('#loginform')[0][2].value;
+                    var recaptchaValue = "";
                     sessionServerCallService.login($scope.user.username, $scope.user.password, recaptchaValue).then(function (response) {
                         if (response.status == 200) {
                             sessionService.setSessionActive();

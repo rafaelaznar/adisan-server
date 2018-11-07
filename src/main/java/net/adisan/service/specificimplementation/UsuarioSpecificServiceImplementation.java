@@ -3,14 +3,14 @@
  *
  * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
  *
- * GESANE: Free Open Source Health Management System
+ * ADISAN: Free Open Source Health Management System
  *
  * Sources at:
- *                            https://github.com/rafaelaznar/gesane-server
- *                            https://github.com/rafaelaznar/gesane-client
- *                            https://github.com/rafaelaznar/gesane-database
+ *                            https://github.com/rafaelaznar/adisan
+ *                            
+ * Database at:               https://github.com/rafaelaznar/adisan-database
  *
- * GESANE is distributed under the MIT License (MIT)
+ * ADISAN is distributed under the MIT License (MIT)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -131,8 +131,8 @@ public class UsuarioSpecificServiceImplementation extends GenericServiceImplemen
         UsuarioSpecificBeanImplementation oUsuarioBean = new UsuarioSpecificBeanImplementation();
         oUsuarioBean.setLogin(oRequest.getParameter("user"));
         oUsuarioBean.setPassword(oRequest.getParameter("pass"));
-        String recaptcha = oRequest.getParameter("g-recaptcha-response");
-        if (Recaptcha.isCaptchaValid(RecaptchaConstants.getSecretKey(), oRequest.getParameter("g-recaptcha-response"))) {
+//        String recaptcha = oRequest.getParameter("g-recaptcha-response");
+//        if (Recaptcha.isCaptchaValid(RecaptchaConstants.getSecretKey(), oRequest.getParameter("g-recaptcha-response"))) {
             if (!oUsuarioBean.getLogin().equalsIgnoreCase("") || !oUsuarioBean.getPassword().equalsIgnoreCase("")) {
                 try {
                     oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
@@ -171,11 +171,11 @@ public class UsuarioSpecificServiceImplementation extends GenericServiceImplemen
                     }
                 }
             }
-        } else {
-            String msg1 = this.getClass().getName() + ": Invalid captcha ob:" + ob;
-            Log4jHelper.errorLog(msg1);
-            throw new Exception(msg1);
-        }
+//        } else {
+//            String msg1 = this.getClass().getName() + ": Invalid captcha ob:" + ob;
+//            Log4jHelper.errorLog(msg1);
+//            throw new Exception(msg1);
+//        }
         return oReplyBean;
     }
 

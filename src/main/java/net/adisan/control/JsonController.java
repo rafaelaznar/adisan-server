@@ -3,14 +3,14 @@
  *
  * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
  * 
- * GESANE: Free Open Source Health Management System
+ * ADISAN: Free Open Source Health Management System
  *
  * Sources at:
- *                            https://github.com/rafaelaznar/gesane-server
- *                            https://github.com/rafaelaznar/gesane-client
- *                            https://github.com/rafaelaznar/gesane-database
+ *                            https://github.com/rafaelaznar/adisan
+ *                            
+ * Database at:               https://github.com/rafaelaznar/adisan-database
  *
- * GESANE is distributed under the MIT License (MIT)
+ * ADISAN is distributed under the MIT License (MIT)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -86,7 +86,7 @@ public class JsonController extends HttpServlet {
                 out.println("<!DOCTYPE html>");
                 out.println("<html>");
                 out.println("<head><title>GESANE server</title><link rel=\"shortcut icon\" href=\"favicon.ico\" type=\"image/x-icon\"></head>");
-                out.println("<body style=\"background: url(gesane80g.png) no-repeat center center fixed; background-repeat: no-repeat;background-size: 900px;\">");
+                out.println("<body style=\"background: url(adisan80g.png) no-repeat center center fixed; background-repeat: no-repeat;background-size: 900px;\">");
                 out.println("<h1>Welcome to GESANE server</h1><h2>Servlet controller json listening at " + InetAddress.getLocalHost().getHostAddress() + ":" + request.getLocalPort() + request.getContextPath() + "</h2>");
                 out.println("version: " + ConfigurationConstants.version + " (" + ConfigurationConstants.versionDate + ")" + "<br>");
                 out.println("author: " + ConfigurationConstants.author + " (" + ConfigurationConstants.authorMail + ") " + "<br>");

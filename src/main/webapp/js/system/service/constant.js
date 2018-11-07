@@ -3,7 +3,7 @@
  *
  * TROLLEYES helps you to learn how to develop easily AJAX web applications
  *
- * Sources at https://github.com/rafaelaznar/gesane-client
+ * Sources at 
  *
  * TROLLEYES is distributed under the MIT License (MIT)
  *
@@ -30,7 +30,7 @@
 moduloServicios.factory('constantService', function () {
     return {
         getAppUrl: function () {
-            return "http://127.0.0.1:8081/gesane/json";
+            return "http://127.0.0.1:8081/adisan/json";
             //return location.protocol + '//' + location.hostname + ':' + location.port + '/' + this.getAppName() + '/index.php';
         },
 //        getCAppUrl: function () {

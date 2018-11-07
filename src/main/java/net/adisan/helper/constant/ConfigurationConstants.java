@@ -3,14 +3,14 @@
  *
  * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
  * 
- * GESANE: Free Open Source Health Management System
+ * ADISAN: Free Open Source Health Management System
  *
  * Sources at:
- *                            https://github.com/rafaelaznar/gesane-server
- *                            https://github.com/rafaelaznar/gesane-client
- *                            https://github.com/rafaelaznar/gesane-database
+ *                            https://github.com/rafaelaznar/adisan
+ *                            
+ * Database at:               https://github.com/rafaelaznar/adisan-database
  *
- * GESANE is distributed under the MIT License (MIT)
+ * ADISAN is distributed under the MIT License (MIT)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -43,7 +43,7 @@ public class ConfigurationConstants {
     public static final String versionDate = "December 2017";
     public static final String author = "Rafael Aznar & 2017-2018 DAW STUDENTS";
     public static final String authorMail = "rafaaznar{at}gmail{dot}com";
-    public static final String sources = "https://github.com/rafaelaznar/gesane-server";
+    public static final String sources = "https://github.com/rafaelaznar/adisan";
     public static final String licenseLink = "<a href=\"https://opensource.org/licenses/MIT\">MIT License</a>";
     public static final int programDalay = 0;
 

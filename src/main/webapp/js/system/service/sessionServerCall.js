@@ -3,7 +3,7 @@
  *
  * TROLLEYES helps you to learn how to develop easily AJAX web applications
  *
- * Sources at https://github.com/rafaelaznar/gesane-client
+ * Sources at 
  *
  * TROLLEYES is distributed under the MIT License (MIT)
  *
@@ -32,7 +32,8 @@ moduloServicios.factory('sessionServerCallService',
                 return {
                     login: function (username, password, recaptchaValue) {
                         password = forge_sha256(password).toUpperCase();
-                        return $http.get(constantService.getAppUrl() + '?ob=usuario&op=login&user=' + username + '&pass=' + password + "&g-recaptcha-response=" + recaptchaValue, 'GET', '');
+                        //return $http.get(constantService.getAppUrl() + '?ob=usuario&op=login&user=' + username + '&pass=' + password + "&g-recaptcha-response=" + recaptchaValue, 'GET', '');
+                        return $http.get(constantService.getAppUrl() + '?ob=usuario&op=login&user=' + username + '&pass=' + password, 'GET', '');
                     },
                     setPass: function (oldpass, newpass) {
                         var oldpassword = forge_sha256(oldpass).toUpperCase();
