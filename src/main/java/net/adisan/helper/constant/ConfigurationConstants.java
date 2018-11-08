@@ -39,11 +39,12 @@ public class ConfigurationConstants {
     public static final int jsonMsgDepth = 1;
     public static final int tokenSize = 20;
     public static final Environment environment = Environment.Debug;
-    public static final String version = "02.01";
-    public static final String versionDate = "December 2017";
-    public static final String author = "Rafael Aznar & 2017-2018 DAW STUDENTS";
+    public static final String version = "3.0";
+    public static final String versionDate = "November 2018";
+    public static final String author = "Rafael Aznar & DAW STUDENTS";
     public static final String authorMail = "rafaaznar{at}gmail{dot}com";
-    public static final String sources = "https://github.com/rafaelaznar/adisan";
+    public static final String sources = "https://github.com/rafaelaznar/adisan";    
+    public static final String database = "https://github.com/rafaelaznar/adisan-database";    
     public static final String licenseLink = "<a href=\"https://opensource.org/licenses/MIT\">MIT License</a>";
     public static final int programDalay = 0;
 

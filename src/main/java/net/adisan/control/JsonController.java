@@ -86,13 +86,12 @@ public class JsonController extends HttpServlet {
                 out.println("<!DOCTYPE html>");
                 out.println("<html>");
                 out.println("<head><title>ADISAN server</title><link rel=\"shortcut icon\" href=\"favicon.ico\" type=\"image/x-icon\"></head>");
-                out.println("<body style=\"background: url(adisan80g.png) no-repeat center center fixed; background-repeat: no-repeat;background-size: 900px;\">");
+                out.println("<body style=\"background: url(/images/adisan80g.png) no-repeat center center fixed; background-repeat: no-repeat;background-size: 900px;\">");
                 out.println("<h1>Welcome to ADISAN server</h1><h2>Servlet controller json listening at " + InetAddress.getLocalHost().getHostAddress() + ":" + request.getLocalPort() + request.getContextPath() + "</h2>");
                 out.println("version: " + ConfigurationConstants.version + " (" + ConfigurationConstants.versionDate + ")" + "<br>");
                 out.println("author: " + ConfigurationConstants.author + " (" + ConfigurationConstants.authorMail + ") " + "<br>");
                 out.println("license: " + ConfigurationConstants.licenseLink + "<br>");
                 out.println("sources: " + ConfigurationConstants.sources + "<br>");
-
                 try {
                     oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
                     oConnection = oPooledConnection.newConnection();
