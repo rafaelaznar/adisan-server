@@ -5,8 +5,8 @@
  *
  * ADISAN: Free Open Source Health Management System
  *
- * Sources at:
- *                            https://github.com/rafaelaznar/adisan
+ *
+ * Sources at:                https://github.com/rafaelaznar/adisan
  *                            
  * Database at:               https://github.com/rafaelaznar/adisan-database
  *
