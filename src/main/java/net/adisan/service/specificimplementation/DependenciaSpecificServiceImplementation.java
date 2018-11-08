@@ -38,7 +38,7 @@ import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.connection.publicinterface.ConnectionInterface;
-import net.adisan.dao.specificimplementation.centrosanitario.paciente.Paciente3SpecificDaoImplementation;
+import net.adisan.dao.specificimplementation.paciente.Paciente3SpecificDaoImplementation;
 import net.adisan.factory.BeanFactory;
 import net.adisan.factory.ConnectionFactory;
 import net.adisan.helper.GsonHelper;

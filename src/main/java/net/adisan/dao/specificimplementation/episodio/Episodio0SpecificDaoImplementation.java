@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017-2018
  *
  * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
+ *
  * ADISAN: Free Open Source Health Management System
  *
  *
@@ -30,24 +30,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package net.adisan.dao.specificimplementation.episodio;
 
-'use strict';
+import net.adisan.bean.helper.MetaBeanHelper;
+import net.adisan.dao.genericimplementation.GenericDaoImplementation;
+import java.sql.Connection;
 
-moduloServicios.factory('constantService', function () {
-    return {
-        getAppUrl: function () {
-            if (this.debugging()) {
-                return "http://127.0.0.1:8081/adisan/json";
-                //return location.protocol + '//' + location.hostname + ':' + location.port + '/' + this.getAppName() + '/index.php';                
-            } else {
-                return "http://www.adisan.net/json";
-            }
-        },
-        debugging: function () {
-            return 1;
-        },
-        getGlobalNeighbourhood: function () {
-            return 2;
-        }
+public class Episodio0SpecificDaoImplementation extends GenericDaoImplementation {
+
+    public Episodio0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
+        super("episodio", oPooledConnection, oPuserBean_security, strWhere);
     }
-});
+
+}

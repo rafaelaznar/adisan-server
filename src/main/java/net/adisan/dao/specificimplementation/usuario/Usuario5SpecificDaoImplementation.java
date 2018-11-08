@@ -30,24 +30,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package net.adisan.dao.specificimplementation.usuario;
 
-'use strict';
+import net.adisan.bean.helper.MetaBeanHelper;
+import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
+import net.adisan.dao.genericimplementation.GenericDaoImplementation;
+import java.sql.Connection;
+import java.util.Date;
 
-moduloServicios.factory('constantService', function () {
-    return {
-        getAppUrl: function () {
-            if (this.debugging()) {
-                return "http://127.0.0.1:8081/adisan/json";
-                //return location.protocol + '//' + location.hostname + ':' + location.port + '/' + this.getAppName() + '/index.php';                
-            } else {
-                return "http://www.adisan.net/json";
-            }
-        },
-        debugging: function () {
-            return 1;
-        },
-        getGlobalNeighbourhood: function () {
-            return 2;
-        }
+public class Usuario5SpecificDaoImplementation extends GenericDaoImplementation {
+
+    public Usuario5SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
+        super("usuario", oPooledConnection, oPuserBean_security, strWhere);
     }
-});
+
+    @Override
+    public MetaBeanHelper get(int id, int intExpand) throws Exception {
+        MetaBeanHelper oMetaBeanHelper = super.get(id, intExpand);
+        UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
+//        oUsuario.setNombrecompleto("Oculto para proteger la identidad");
+//        oUsuario.setNombre("Oculto para proteger la identidad");
+//        oUsuario.setPrimer_apellido("Oculto para proteger la identidad");
+//        oUsuario.setSegundo_apellido("Oculto para proteger la identidad");
+//        oUsuario.setEmail("Oculto para proteger la identidad");
+        oUsuario.setLogin("Información oculta");
+        oUsuario.setActivo(0);
+        oUsuario.setFecha_alta(new Date(0));
+        return oMetaBeanHelper;
+    }
+
+}

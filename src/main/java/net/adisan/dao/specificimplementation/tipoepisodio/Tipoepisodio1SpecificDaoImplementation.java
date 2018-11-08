@@ -30,24 +30,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package net.adisan.dao.specificimplementation.tipoepisodio;
 
-'use strict';
+import net.adisan.bean.genericimplementation.GenericBeanImplementation;
+import net.adisan.bean.helper.MetaBeanHelper;
+import net.adisan.bean.specificimplementation.TipoepisodioSpecificBeanImplementation;
+import net.adisan.dao.genericimplementation.GenericDaoImplementation;
+import java.sql.Connection;
 
-moduloServicios.factory('constantService', function () {
-    return {
-        getAppUrl: function () {
-            if (this.debugging()) {
-                return "http://127.0.0.1:8081/adisan/json";
-                //return location.protocol + '//' + location.hostname + ':' + location.port + '/' + this.getAppName() + '/index.php';                
-            } else {
-                return "http://www.adisan.net/json";
-            }
-        },
-        debugging: function () {
-            return 1;
-        },
-        getGlobalNeighbourhood: function () {
-            return 2;
+public class Tipoepisodio1SpecificDaoImplementation extends GenericDaoImplementation {
+
+    public Tipoepisodio1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
+        super("tipoepisodio", oPooledConnection, oPuserBean_security, strWhere);
+    }
+
+//    @Override
+//    public boolean canGet(Integer id) throws Exception {
+//        return true;
+//    }
+    @Override
+    public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
+        return true;
+    }
+
+    @Override
+    public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
+        return true;
+    }
+
+    @Override
+    public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
+        TipoepisodioSpecificBeanImplementation oTipoepisodioBean = (TipoepisodioSpecificBeanImplementation) oBean;
+        if (oTipoepisodioBean.getLink_episodio() > 0) {
+            return false;
+        } else {
+            return true;
         }
     }
-});
+
+}

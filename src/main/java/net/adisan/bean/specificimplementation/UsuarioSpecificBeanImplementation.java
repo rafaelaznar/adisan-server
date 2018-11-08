@@ -37,7 +37,7 @@ import net.adisan.bean.genericimplementation.GenericBeanImplementation;
 import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.bean.meta.publicinterface.MetaObjectBeanInterface;
 import net.adisan.bean.meta.publicinterface.MetaPropertyBeanInterface;
-import net.adisan.dao.specificimplementation.centrosanitario.usuario.grupo.Grupo1SpecificDaoImplementation;
+import net.adisan.dao.specificimplementation.grupo.Grupo1SpecificDaoImplementation;
 import net.adisan.helper.EnumHelper;
 import net.adisan.helper.Log4jHelper;
 import net.adisan.helper.constant.RegexConstants;

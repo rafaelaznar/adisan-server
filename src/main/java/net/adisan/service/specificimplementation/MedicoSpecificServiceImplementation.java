@@ -43,7 +43,7 @@ import net.adisan.bean.specificimplementation.TipousuarioSpecificBeanImplementat
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.connection.publicinterface.ConnectionInterface;
 import net.adisan.dao.specificimplementation.factory.ApellidoSpecificDaoImplementation;
-import net.adisan.dao.specificimplementation.centrosanitario.medico.Medico1SpecificDaoImplementation;
+import net.adisan.dao.specificimplementation.medico.Medico1SpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.factory.NombrefemeninoSpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.factory.NombremasculinoSpecificDaoImplementation;
 import net.adisan.factory.ConnectionFactory;

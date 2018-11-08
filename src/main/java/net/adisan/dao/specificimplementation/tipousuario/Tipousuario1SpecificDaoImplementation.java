@@ -30,24 +30,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package net.adisan.dao.specificimplementation.tipousuario;
 
-'use strict';
+import net.adisan.bean.helper.MetaBeanHelper;
+import net.adisan.dao.genericimplementation.GenericDaoImplementation;
+import java.sql.Connection;
 
-moduloServicios.factory('constantService', function () {
-    return {
-        getAppUrl: function () {
-            if (this.debugging()) {
-                return "http://127.0.0.1:8081/adisan/json";
-                //return location.protocol + '//' + location.hostname + ':' + location.port + '/' + this.getAppName() + '/index.php';                
-            } else {
-                return "http://www.adisan.net/json";
-            }
-        },
-        debugging: function () {
-            return 1;
-        },
-        getGlobalNeighbourhood: function () {
-            return 2;
-        }
+public class Tipousuario1SpecificDaoImplementation extends GenericDaoImplementation {
+
+    public Tipousuario1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
+        super("tipousuario", oPooledConnection, oPuserBean_security, strWhere);
     }
-});
+
+//    @Override
+//    public boolean canGet(Integer id) throws Exception {
+//        return true;
+//    }
+}

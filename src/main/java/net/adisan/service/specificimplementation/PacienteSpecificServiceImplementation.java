@@ -48,7 +48,7 @@ import net.adisan.dao.specificimplementation.factory.ApellidoSpecificDaoImplemen
 import net.adisan.dao.specificimplementation.factory.MunicipioSpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.factory.NombrefemeninoSpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.factory.NombremasculinoSpecificDaoImplementation;
-import net.adisan.dao.specificimplementation.centrosanitario.paciente.Paciente1SpecificDaoImplementation;
+import net.adisan.dao.specificimplementation.paciente.Paciente1SpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.factory.ProvinciaSpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.factory.ViaSpecificDaoImplementation;
 import net.adisan.factory.ConnectionFactory;

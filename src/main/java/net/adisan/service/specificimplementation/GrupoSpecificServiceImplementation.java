@@ -38,7 +38,7 @@ import net.adisan.bean.specificimplementation.GrupoSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.connection.publicinterface.ConnectionInterface;
-import net.adisan.dao.specificimplementation.centrosanitario.usuario.grupo.Grupo1SpecificDaoImplementation;
+import net.adisan.dao.specificimplementation.grupo.Grupo1SpecificDaoImplementation;
 import net.adisan.factory.ConnectionFactory;
 import net.adisan.helper.EncodingHelper;
 import net.adisan.helper.Log4jHelper;
