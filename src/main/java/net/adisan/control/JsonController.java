@@ -85,9 +85,9 @@ public class JsonController extends HttpServlet {
                 response.setContentType("text/html;charset=UTF-8");
                 out.println("<!DOCTYPE html>");
                 out.println("<html>");
-                out.println("<head><title>GESANE server</title><link rel=\"shortcut icon\" href=\"favicon.ico\" type=\"image/x-icon\"></head>");
+                out.println("<head><title>ADISAN server</title><link rel=\"shortcut icon\" href=\"favicon.ico\" type=\"image/x-icon\"></head>");
                 out.println("<body style=\"background: url(adisan80g.png) no-repeat center center fixed; background-repeat: no-repeat;background-size: 900px;\">");
-                out.println("<h1>Welcome to GESANE server</h1><h2>Servlet controller json listening at " + InetAddress.getLocalHost().getHostAddress() + ":" + request.getLocalPort() + request.getContextPath() + "</h2>");
+                out.println("<h1>Welcome to ADISAN server</h1><h2>Servlet controller json listening at " + InetAddress.getLocalHost().getHostAddress() + ":" + request.getLocalPort() + request.getContextPath() + "</h2>");
                 out.println("version: " + ConfigurationConstants.version + " (" + ConfigurationConstants.versionDate + ")" + "<br>");
                 out.println("author: " + ConfigurationConstants.author + " (" + ConfigurationConstants.authorMail + ") " + "<br>");
                 out.println("license: " + ConfigurationConstants.licenseLink + "<br>");
@@ -123,7 +123,7 @@ public class JsonController extends HttpServlet {
                         out.println(ex);
                         ex.printStackTrace(out);
                     } else {
-                        oReplyBean = new ReplyBeanHelper(500, "gesane-server error. Please, contact your administrator.");
+                        oReplyBean = new ReplyBeanHelper(500, "adisan-server error. Please, contact your administrator.");
                     }
                     Log4jHelper.errorLog(this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName(), ex);
                     oReplyBean = new ReplyBeanHelper(500, "Object or Operation not found : Please contact your administrator");

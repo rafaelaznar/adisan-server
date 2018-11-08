@@ -349,7 +349,7 @@ public abstract class GenericBeanImplementation implements BeanInterface {
                                     strColumns += (Integer) x.get(this) + ",";
                                 } else if (getTypeFromPropertyMetaData(x) == EnumHelper.FieldType.Password) {
                                     if (x.get(this) == null) {
-                                        strColumns += EncodingHelper.quotate("29A666F773333B5BA55BB7B1E6177A236665616BB87CF6DFCFEDAA08F8E7D01B".toUpperCase()) + ", "; //por defecto pass=gesane
+                                        strColumns += EncodingHelper.quotate("60AFD331E8DBEFB78E530FE296CF330F4F8E9B9D585B012B22CD65E0B7CCED09".toUpperCase()) + ", "; //por defecto pass=adisan
                                     } else {
                                         strColumns += EncodingHelper.quotate((String) x.get(this).toString().toUpperCase()) + ",";
                                     }
