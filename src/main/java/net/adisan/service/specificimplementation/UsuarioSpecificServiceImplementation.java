@@ -232,7 +232,7 @@ public class UsuarioSpecificServiceImplementation extends GenericServiceImplemen
             Connection oConnection = null;
             ConnectionInterface oPooledConnection = null;
             int id = Integer.parseInt(oRequest.getParameter("id"));
-            String newPass = "29A666F773333B5BA55BB7B1E6177A236665616BB87CF6DFCFEDAA08F8E7D01B"; //gesane
+            String newPass = "60AFD331E8DBEFB78E530FE296CF330F4F8E9B9D585B012B22CD65E0B7CCED09"; //adisan
             ReplyBeanHelper oReplyBean = null;
             Integer iResult = 0;
             try {

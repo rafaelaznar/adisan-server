@@ -34,7 +34,7 @@ moduloServicios.factory('constantService', function () {
             //return location.protocol + '//' + location.hostname + ':' + location.port + '/' + this.getAppName() + '/index.php';
         },
 //        getCAppUrl: function () {
-//            //return "http://127.0.0.1:8080/gesane/public_html";
+//            //return "http://127.0.0.1:8080/adisan/public_html";
 //            return location.protocol + '//' + location.hostname + ':' + location.port + '/' + this.getAppName() + '/index.php';
 //        },
         debugging: function () {

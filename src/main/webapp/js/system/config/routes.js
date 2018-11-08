@@ -48,7 +48,7 @@ var authentication4Promise = function (sessionService) { //alumno
 var authentication5Promise = function (sessionService) { //visitante
     return sessionService.authenticationPromise(5);
 };
-gesane.config(['$routeProvider', function ($routeProvider) {
+adisan.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/', {templateUrl: 'js/system/shared/home.html', controller: 'HomeController', resolve: {auth: anyAuthenticationPromise}});
         //--
         $routeProvider.when('/login', {templateUrl: 'js/system/shared/login.html', controller: 'LoginController', resolve: {auth: anyAuthenticationPromise}});

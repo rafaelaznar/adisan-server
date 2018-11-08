@@ -32,7 +32,7 @@
  */
 'use strict';
 
-var gesane = angular.module('myApp', [
+var adisan = angular.module('myApp', [
     'ngRoute',
     'Filters',
     'Services',

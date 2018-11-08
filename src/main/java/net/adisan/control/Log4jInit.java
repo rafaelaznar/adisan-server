@@ -42,7 +42,7 @@ public class Log4jInit extends HttpServlet {
     public void init() {
 
         String prefix = getServletContext().getRealPath("/");
-        String file = getInitParameter("log4j-gesane");
+        String file = getInitParameter("log4j-adisan");
 
         if (file != null) {
             PropertyConfigurator.configure(prefix + file);

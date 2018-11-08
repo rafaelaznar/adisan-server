@@ -25,13 +25,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-gesane.config(['$locationProvider', function ($locationProvider) {
+adisan.config(['$locationProvider', function ($locationProvider) {
         $locationProvider.html5Mode({
             //requireBase: false,
             enabled: true
         });
     }]);
 //-------------
-gesane.config(['$httpProvider', function ($httpProvider) {
+adisan.config(['$httpProvider', function ($httpProvider) {
         $httpProvider.defaults.withCredentials = true;
     }]);

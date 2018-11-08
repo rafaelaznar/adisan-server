@@ -25,7 +25,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-gesane.run(function ($rootScope, $location, sessionService) {
+adisan.run(function ($rootScope, $location, sessionService) {
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
         //here's where we notify the auth service with the
         //url where user wants to go
