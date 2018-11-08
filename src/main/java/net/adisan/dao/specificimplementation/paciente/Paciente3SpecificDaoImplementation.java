@@ -39,10 +39,7 @@ import net.adisan.bean.specificimplementation.PacienteSpecificBeanImplementation
 import net.adisan.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
-import net.adisan.helper.Log4jHelper;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 public class Paciente3SpecificDaoImplementation extends GenericDaoImplementation {
 
@@ -131,15 +128,21 @@ public class Paciente3SpecificDaoImplementation extends GenericDaoImplementation
     }
 
     @Override
-    public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
+    public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {      
         return true;
-
     }
 
     @Override
     public Integer update(GenericBeanImplementation oBean) throws Exception {
         PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oBean;
-        oPacienteBean.setId_usuario(idUsuario);
+        
+
+
+        //falta comprobar que el usuario del paciente es del mismo centro sanitario que profe que lo está creando...
+        //oPacienteBean.setId_usuario(idUsuario);
+        
+        
+        
         return super.update(oPacienteBean);
     }
 
