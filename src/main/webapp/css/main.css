@@ -19,7 +19,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     Created on : May 7, 2015, 1:30:12 PM
     Author     : rafa
 */
+
 @charset "UTF-8";
+
+* {margin:0;padding:0;outline:0;font-size:1em;font-weight:normal;font-style:normal;border:0;text-decoration:none;list-style-type:none}
 
 a,
 a label {
