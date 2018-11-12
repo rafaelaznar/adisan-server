@@ -40,6 +40,8 @@ import net.adisan.bean.specificimplementation.TipousuarioSpecificBeanImplementat
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.specificimplementation.GrupoSpecificBeanImplementation;
+import net.adisan.dao.specificimplementation.usuario.Usuario1SpecificDaoImplementation;
 
 public class Paciente3SpecificDaoImplementation extends GenericDaoImplementation {
 
@@ -128,22 +130,55 @@ public class Paciente3SpecificDaoImplementation extends GenericDaoImplementation
     }
 
     @Override
-    public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {      
+    public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
         return true;
+    }
+
+    //yo soy un ptofe y voy a cambiar el usuario de un paciente
+    //hay que comprobar que se lo asigno a otro usuario de mi mismo centro santario
+    private boolean alumnoIsInCentrosanitario(Integer idAlumno, Integer idCentro) throws Exception {
+        String strSQLini = "SELECT COUNT(*) "
+                + "FROM usuario u, grupo g, usuario u2 "
+                + "where u.id_grupo=g.id "
+                + "and g.id_usuario= u2.id "
+                + "and u2.id_centrosanitario=" + idCentro;
+        return countSQL(strSQLini);
     }
 
     @Override
     public Integer update(GenericBeanImplementation oBean) throws Exception {
-        PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oBean;
-        
-
-
-        //falta comprobar que el usuario del paciente es del mismo centro sanitario que profe que lo está creando...
+        //comprobar que el usuario del paciente a modificar es del mismo centro sanitario que profe que lo está creando...
         //oPacienteBean.setId_usuario(idUsuario);
-        
-        
-        
-        return super.update(oPacienteBean);
+        PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oBean;
+        int intUsuarioFromPaciente = oPacienteBean.getId_usuario();
+        if (intUsuarioFromPaciente > 0) {
+            //obtener el usuario
+            Usuario1SpecificDaoImplementation oUsuarioDao = new Usuario1SpecificDaoImplementation(oConnection, oPuserSecurity, "");
+            UsuarioSpecificBeanImplementation oUsuarioFromPaciente = (UsuarioSpecificBeanImplementation) oUsuarioDao.get(intUsuarioFromPaciente, 3).getBean();
+            // problema: no rellena el obj_curso porque no puede ya que el usua en sesión es un profe que no puede ver un curso que no es suyo
+            UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+            if (oUsuarioFromPaciente.getId_tipousuario() == 4) {
+                if (this.alumnoIsInCentrosanitario(oUsuarioFromPaciente.getId(), oSessionUser.getId_centrosanitario())) {
+                    // es un alumno, su centro sanitario es el de su profesor, puede quedarse al paciente
+                    return super.update(oPacienteBean);
+                } else {
+                    return 0;
+                }
+            } else {
+                if (oUsuarioFromPaciente.getId_tipousuario() == 3) {
+                    idCentrosanitario = oUsuarioFromPaciente.getId_centrosanitario();
+                    if (idCentrosanitario == oSessionUser.getId_centrosanitario()) {
+                        return super.update(oPacienteBean);
+                    } else {
+                        return 0;
+                    }
+                } else {
+                    return 0;
+                }
+            }
+        } else {
+            return 0;
+        }
     }
 
     @Override
