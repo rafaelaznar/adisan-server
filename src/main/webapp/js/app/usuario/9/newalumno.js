@@ -62,21 +62,26 @@ moduloUsuario.controller('UsuarioNewalumno9Controller',
                     //$scope.outerForm.login.$setValidity('repetido', true);
                     return false;
                 });
-                $scope.validausuario = function (field) {
+                $scope.validausuario = function (f) {
                     if ($scope.fase == 1) {
                         if ($scope.bean.login) {
                             $http.get(constantService.getAppUrl() + '?ob=usuario&op=checklogin&login=' + $scope.bean.login, 'GET', '').then(function (response) {
                                 if (response.status == 200) {
                                     if (response.data.json == "OK") {
                                         //$scope.outerForm.login.$setValidity('repetido', false);
+                                        //f.outerForm.login.$setValidity('valid', true);
                                         $scope.fase = 2;
                                     }
                                 } else {
                                     //$scope.outerForm.login.$setValidity('repetido', true);
+                                    //f.outerForm.login.$setValidity('valid', false);
+                                    alert('El nombre del usuario elegido no es correcto o está repetido. Escribe otro nombre.');
                                     return false;
                                 }
                             }, function errorCallback(response, status) {
-                                //$scope.outerForm.login.$setValidity('repetido', true);
+                                //f.outerForm.login.$setValidity('valid', false);
+                                //f.outerForm.login.$valid=false;                               
+                                alert('El nombre del usuario elegido no es correcto o está repetido. Escribe otro nombre.');
                                 return false;
                             });
                         }
@@ -94,7 +99,7 @@ moduloUsuario.controller('UsuarioNewalumno9Controller',
                     $scope.send();
                 };
                 $scope.send = function () {
-                    delete $scope.bean.password2;                    
+                    delete $scope.bean.password2;
                     $scope.bean.id_grupo = $scope.grupo.data.id;
                     $scope.bean.id_centro = $scope.grupo.data.obj_usuario.data.obj_centro.data.id;
                     $scope.bean.id_centrosanitario = $scope.grupo.data.obj_usuario.data.obj_centrosanitario.data.id;

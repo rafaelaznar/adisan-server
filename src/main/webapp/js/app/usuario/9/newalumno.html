@@ -80,9 +80,7 @@
                                             <div id="login-group"
                                                  class="form-group"
                                                  ng-show="fase == 1"
-                                                 ng-class="{'has-error': (outerForm.login.$error.pattern && !outerForm.login.$pristine) ||
-                                                                     (outerForm.login.$error.required && !outerForm.login.$pristine) ||
-                                                                     (outerForm.login.$error.repetido && !outerForm.login.$pristine)}">
+                                                 ng-class="{'has-error': (outerForm.login.$error.pattern && !outerForm.login.$pristine)}">
                                                 <label class="control-label col-sm-2" for="labellogin">
                                                     <span>*</span>
                                                     Nombre de usuario
@@ -91,18 +89,16 @@
 
                                                     <input type="text"
                                                            class="form-control"
-                                                           id="{{oMetap.Name}}"
+                                                           id="login"
                                                            name="login"
                                                            ng-model="bean.login"
                                                            placeholder="'Nombre de usuario en el sistema (login nickname)'"
                                                            ng-pattern="'[A-ZÑÁÀÉÈÍÓÒÚa-zàáèéíòóúñç0-9]+'"
                                                            size="15"
-                                                           />
-
-                                                    <span class="help-block" ng-if="!outerForm.login.$pristine && outerForm.login.$error.required">El campo es obligatorio</span>
+                                                           />                                                    
                                                     <span class="help-block" ng-if="!outerForm.login.$pristine && outerForm.login.$error.pattern">El campo no tiene formato adecuado</span>
                                                 </div>
-                                                <a class="btn btn-primary" ng-show="!outerForm.login.$error.pattern && !outerForm.login.$error.required && !outerForm.login.$error.repetido" ng-click="validausuario(this)">Valida el nombre de usuario</a>
+                                                <a class="btn btn-primary" ng-click="validausuario(this)">Valida el nombre de usuario</a>
                                             </div>
                                         </div>
                                         <div class="panel-body"  ng-show="fase != 1">
@@ -326,7 +322,7 @@
                                     </div>
                                     
                                     -->
-                                    
+
                                 </form>
                                 <div ng-if="fase == 4">
                                     <div class="alert alert-success" ng-if="response.status == 200">

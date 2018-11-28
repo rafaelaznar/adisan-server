@@ -115,7 +115,6 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
 //            IsVisible = false
 //    )
 //    private String segundo_apellido;
-
     @Expose
     @MetaPropertyBeanInterface(
             ShortName = "login",
@@ -149,7 +148,6 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
 //            IsVisible = false
 //    )
 //    private String email;
-
     @Expose(serialize = false)
     @MetaPropertyBeanInterface(
             Type = EnumHelper.FieldType.Token
@@ -240,7 +238,8 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
             Type = EnumHelper.FieldType.ForeignObject,
             IsRequired = true,
             References = "centro",
-            Width = 4
+            Width = 4,
+            IsVisible = false
     )
     private MetaBeanHelper obj_centro = null;
 
@@ -257,7 +256,8 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
             Type = EnumHelper.FieldType.ForeignObject,
             IsRequired = true,
             References = "centrosanitario",
-            Width = 4
+            Width = 4,
+            IsVisible = false
     )
     private MetaBeanHelper obj_centrosanitario = null;
 
@@ -350,7 +350,6 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
 //    public void setEmail(String email) {
 //        this.email = email;
 //    }
-
     public String getToken() {
         return token;
     }
