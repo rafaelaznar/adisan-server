@@ -45,7 +45,7 @@ moduloServicios.factory('constantService', function () {
 //            }
         },
         debugging: function () {
-            return 0;
+            return 1;
         },
         getGlobalNeighbourhood: function () {
             return 2;
