@@ -36,12 +36,13 @@
 moduloServicios.factory('constantService', function () {
     return {
         getAppUrl: function () {
-            if (this.debugging()) {
-                return "http://127.0.0.1:8081/adisan/json";
-                //return location.protocol + '//' + location.hostname + ':' + location.port + '/' + this.getAppName() + '/index.php';                
-            } else {
-                return "http://www.adisan.net/json";
-            }
+             return "/json";
+//            if (this.debugging()) {
+//                return "/json";
+//                //return location.protocol + '//' + location.hostname + ':' + location.port + '/' + this.getAppName() + '/index.php';                
+//            } else {
+//                return "/json";
+//            }
         },
         debugging: function () {
             return 1;
