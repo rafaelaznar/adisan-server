@@ -40,7 +40,7 @@ public class RegexConstants {
     public static final String code_Help = "Mayúscula y letras o dígitos separados por guión";
     public static final String capscode = "[A-Z0-9_-]*";
     public static final String capscode_Help = "Mayúsculas o dígitos separados por guión";      
-    public static final String capitalizedName = "([A-Z]{1}[a-zçñáéíóúàèò ]+[\\s]*)+";
+    public static final String capitalizedName = "([A-Z]{1}[a-zçñáéíóúàèò,\\- ]+[\\s]*)+";
     public static final String capitalizedName_Help = "una o varias palabras que todas comienzan en mayúscula";
     public static final String nameWithEndingNumbers = "[a-z][a-z0-9 ]+";
     public static final String nameWithEndingNumbers_Help = "un texto en minúsculas que puede acabar en dígitos";
