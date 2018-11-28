@@ -132,14 +132,21 @@ public class UsuarioSpecificServiceImplementation extends GenericServiceImplemen
         UsuarioSpecificBeanImplementation oUsuarioBean = new UsuarioSpecificBeanImplementation();
         oUsuarioBean.setLogin(oRequest.getParameter("user"));
         oUsuarioBean.setPassword(oRequest.getParameter("pass"));
-        if (ConfigurationConstants.environment != EnumHelper.Environment.Debug) {
-            String recaptcha = oRequest.getParameter("g-recaptcha-response");
-            if (!Recaptcha.isCaptchaValid(RecaptchaConstants.getSecretKey(), oRequest.getParameter("g-recaptcha-response"))) {
-                String msg1 = this.getClass().getName() + ": Invalid captcha ob:" + ob;
-                Log4jHelper.errorLog(msg1);
-                throw new Exception(msg1);
-            }
-        }
+        
+        //actualmente el catcha está deshabilitado...
+        
+//        if (ConfigurationConstants.environment != EnumHelper.Environment.Debug) {
+//            String recaptcha = oRequest.getParameter("g-recaptcha-response");
+//            if (!Recaptcha.isCaptchaValid(RecaptchaConstants.getSecretKey(), oRequest.getParameter("g-recaptcha-response"))) {
+//                String msg1 = this.getClass().getName() + ": Invalid captcha ob:" + ob;
+//                Log4jHelper.errorLog(msg1);
+//                throw new Exception(msg1);
+//            }
+//        }
+
+
+
+
         if (!oUsuarioBean.getLogin().equalsIgnoreCase("") || !oUsuarioBean.getPassword().equalsIgnoreCase("")) {
             try {
                 oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);

@@ -34,6 +34,8 @@ package net.adisan.helper.constant;
 
 public class RecaptchaConstants {
 
+    //actualmente el captcha esta deshabilitado...
+    
     public static final String secretKey = "";
 
     public static String getSecretKey() {
