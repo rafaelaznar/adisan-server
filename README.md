@@ -1,2 +1,2 @@
-# adisan project
-Health and medical management application.
+# adisan-server
+server for the ADISAN project
