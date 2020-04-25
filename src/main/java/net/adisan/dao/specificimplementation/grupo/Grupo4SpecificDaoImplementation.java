@@ -35,13 +35,11 @@ package net.adisan.dao.specificimplementation.grupo;
 import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
-import net.adisan.helper.Log4jHelper;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 public class Grupo4SpecificDaoImplementation extends GenericDaoImplementation {
 
+    //private final Logger oLogger = (Logger) LogManager.getLogger(this.getClass().getName());
     private final Integer idUsuario;
 
     public Grupo4SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {

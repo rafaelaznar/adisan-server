@@ -43,7 +43,7 @@ import net.adisan.helper.constant.RegexConstants;
         TableName = "curso",
         SingularDescription = "Curso",
         PluralDescription = "Cursos",
-        Icon = "fa fa-calendar-check-o",
+        Icon = "fa fa-calendar-check",
         Type = EnumHelper.SourceType.Table
 )
 public class CursoSpecificBeanImplementation extends GenericBeanImplementation {

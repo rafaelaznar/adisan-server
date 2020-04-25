@@ -162,7 +162,7 @@ public class Paciente3SpecificDaoImplementation extends GenericDaoImplementation
                     // es un alumno, su centro sanitario es el de su profesor, puede quedarse al paciente
                     return super.update(oPacienteBean);
                 } else {
-                    return 0;
+                    throw new Exception("No tienes permiso para efectuar la operación");
                 }
             } else {
                 if (oUsuarioFromPaciente.getId_tipousuario() == 3) {
@@ -170,14 +170,14 @@ public class Paciente3SpecificDaoImplementation extends GenericDaoImplementation
                     if (idCentrosanitario == oSessionUser.getId_centrosanitario()) {
                         return super.update(oPacienteBean);
                     } else {
-                        return 0;
+                        throw new Exception("No tienes permiso para efectuar la operación");
                     }
                 } else {
-                    return 0;
+                    throw new Exception("No tienes permiso para efectuar la operación");
                 }
             }
         } else {
-            return 0;
+            throw new Exception("No tienes permiso para efectuar la operación");
         }
     }
 

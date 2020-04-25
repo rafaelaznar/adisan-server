@@ -1,13 +1,13 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017-2018
  *
  * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
+ *
  * ADISAN: Free Open Source Health Management System
  *
  *
  * Sources at:                https://github.com/rafaelaznar/adisan
- *                            
+ *
  * Database at:               https://github.com/rafaelaznar/adisan-database
  *
  * ADISAN is distributed under the MIT License (MIT)
@@ -32,6 +32,7 @@
  */
 package net.adisan.factory;
 
+import java.lang.reflect.Method;
 import net.adisan.bean.helper.ReplyBeanHelper;
 import net.adisan.helper.EncodingHelper;
 import net.adisan.service.specificimplementation.CategoriaprofesionalSpecificServiceImplementation;
@@ -60,6 +61,92 @@ import net.adisan.service.specificimplementation.UsuarioSpecificServiceImplement
 import javax.servlet.http.HttpServletRequest;
 
 public class ServiceFactory {
+
+
+    public static Method getServiceMethod(HttpServletRequest oRequest) throws Exception {
+        String ob = oRequest.getParameter("ob");
+        String op = oRequest.getParameter("op");
+        Method oMethod  = null;
+        switch (ob) {
+            case "usuario":
+                UsuarioSpecificServiceImplementation oUsuarioService = new UsuarioSpecificServiceImplementation(oRequest);
+                switch (op) {
+                    case "getallobjectsmetadata":
+                        oMethod = UsuarioSpecificServiceImplementation.class.getMethod("getallobjectsmetadata");
+                        break;
+                    case "getmetadata":
+                        oMethod = UsuarioSpecificServiceImplementation.class.getMethod("getmetadata");
+                        break;
+                    case "getobjectmetadata":
+                        oMethod = UsuarioSpecificServiceImplementation.class.getMethod("getmetadata");
+                        break;
+                    case "getpropertiesmetadata":
+                        oMethod = UsuarioSpecificServiceImplementation.class.getMethod("getmetadata");
+                        break;
+                    case "get":
+                        oMethod = UsuarioSpecificServiceImplementation.class.getMethod("getmetadata");
+                        break;
+                    case "set":
+                        oMethod = UsuarioSpecificServiceImplementation.class.getMethod("getmetadata");
+                        break;
+                    case "remove":
+                        oMethod = UsuarioSpecificServiceImplementation.class.getMethod("getmetadata");
+                        break;
+                    case "getpage":
+                        oMethod = UsuarioSpecificServiceImplementation.class.getMethod("getmetadata");
+                        break;
+                    case "getcount":
+                        oMethod = UsuarioSpecificServiceImplementation.class.getMethod("getmetadata");
+                        break;
+                    case "login":
+                        oMethod = UsuarioSpecificServiceImplementation.class.getMethod("getmetadata");
+                        break;
+                    case "logout":
+                        oMethod = UsuarioSpecificServiceImplementation.class.getMethod("getmetadata");
+                        break;
+                    case "getsessionstatus":
+                        oMethod = UsuarioSpecificServiceImplementation.class.getMethod("getmetadata");
+                        break;
+                    case "getcountx":
+                        oMethod = UsuarioSpecificServiceImplementation.class.getMethod("getmetadata");
+                        break;
+                    case "getpagex":
+                        oMethod = UsuarioSpecificServiceImplementation.class.getMethod("getmetadata");
+                        break;
+                    case "setpass":
+                        oMethod = UsuarioSpecificServiceImplementation.class.getMethod("getmetadata");
+                        break;
+                    case "getsessionuserlevel":
+                        oMethod = UsuarioSpecificServiceImplementation.class.getMethod("getmetadata");
+                        break;
+                    case "checklogin":
+                        oMethod = UsuarioSpecificServiceImplementation.class.getMethod("getmetadata");
+                        break;
+                    case "setalumno":
+                        oMethod = UsuarioSpecificServiceImplementation.class.getMethod("getmetadata");
+                        break;
+                    case "getidcurso":
+                        oMethod = UsuarioSpecificServiceImplementation.class.getMethod("getmetadata");
+                        break;
+                    case "activate":
+                        oMethod = UsuarioSpecificServiceImplementation.class.getMethod("getmetadata");
+                        break;
+                    case "deactivate":
+                        oMethod = UsuarioSpecificServiceImplementation.class.getMethod("getmetadata");
+                        break;
+                    case "resetpass":
+                        oMethod = UsuarioSpecificServiceImplementation.class.getMethod("getmetadata");
+                        break;
+                    default:
+                        throw new Exception("Operation not found for object usuario");
+                }
+                break;
+                
+            default:
+                throw new Exception("Object not found");
+        }
+            return oMethod;
+    }
 
     public static ReplyBeanHelper executeMethodService(HttpServletRequest oRequest) throws Exception {
         String ob = oRequest.getParameter("ob");

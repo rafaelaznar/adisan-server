@@ -43,7 +43,7 @@ import net.adisan.helper.constant.RegexConstants;
         TableName = "modalidadepisodio",
         SingularDescription = "Modalidad del episodio",
         PluralDescription = "Modalidades de episodios",
-        Icon = "fa   fa-file-text",
+        Icon = "fa fa-file-alt",
         Type = EnumHelper.SourceType.Table
 )
 public class ModalidadepisodioSpecificBeanImplementation extends GenericBeanImplementation {

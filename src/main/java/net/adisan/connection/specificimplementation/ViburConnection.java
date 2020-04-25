@@ -34,7 +34,6 @@ package net.adisan.connection.specificimplementation;
 
 import net.adisan.connection.publicinterface.ConnectionInterface;
 import net.adisan.helper.constant.ConnectionConstants;
-import net.adisan.helper.Log4jHelper;
 import java.sql.Connection;
 import java.sql.SQLException;
 import org.vibur.dbcp.ViburDBCPDataSource;
@@ -69,9 +68,7 @@ public class ViburConnection implements ConnectionInterface {
             oConnection = dataSource.getConnection();
 
         } catch (SQLException | ViburDBCPException ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
+            throw ex;
         }
         return oConnection;
     }
@@ -86,9 +83,7 @@ public class ViburConnection implements ConnectionInterface {
                 dataSource.close();
             }
         } catch (SQLException ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
+            throw ex;
         }
     }
 }

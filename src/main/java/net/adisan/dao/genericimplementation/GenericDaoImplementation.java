@@ -1,13 +1,13 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017-2018
  *
  * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
+ *
  * ADISAN: Free Open Source Health Management System
  *
  *
  * Sources at:                https://github.com/rafaelaznar/adisan
- *                            
+ *
  * Database at:               https://github.com/rafaelaznar/adisan-database
  *
  * ADISAN is distributed under the MIT License (MIT)
@@ -40,49 +40,47 @@ import net.adisan.bean.meta.helper.MetaPropertyGenericBeanHelper;
 import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.bean.meta.publicinterface.MetaObjectBeanInterface;
 import net.adisan.dao.publicinterface.DaoInterface;
-import net.adisan.helper.Log4jHelper;
 import net.adisan.factory.BeanFactory;
 import net.adisan.helper.EnumHelper;
 import net.adisan.helper.SqlHelper;
-import net.adisan.helper.TraceHelper;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import net.adisan.bean.publicinterface.BeanInterface;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 
 public abstract class GenericDaoImplementation implements DaoInterface {
 
+    //private final Logger oLogger = (Logger) LogManager.getLogger(this.getClass().getName());
     protected String ob = null;
     protected String strSQL = null;
     protected String strCountSQL = null;
     protected Connection oConnection = null;
     protected MetaBeanHelper oPuserSecurity = null;
 
-    public GenericDaoImplementation(String obj, Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
+    public GenericDaoImplementation(String obj, Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) {
+        //oLogger.trace("GenericDaoImplementation", "constructor", "object=" + ob + "; strWhere=" + strWhere);
         oConnection = oPooledConnection;
         oPuserSecurity = oPuserBean_security;
         ob = obj;
-        try {
-            strSQL = "SELECT * FROM " + ob + " WHERE 1=1 ";
-            strCountSQL = "SELECT COUNT(*) FROM " + ob + " WHERE 1=1 ";
-            if (strWhere != null) {
-                strSQL += " " + strWhere + " ";
-                strCountSQL += " " + strWhere + " ";
-            }
-        } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
+        strSQL = "SELECT * FROM " + ob + " WHERE 1=1 ";
+        strCountSQL = "SELECT COUNT(*) FROM " + ob + " WHERE 1=1 ";
+        if (strWhere != null) {
+            strSQL += " " + strWhere + " ";
+            strCountSQL += " " + strWhere + " ";
         }
     }
 
-    protected Long count(String strCountSQL) throws Exception {
+    protected Long count(String strCountSQL) throws SQLException {
+        //oLogger.trace("GenericDaoImplementation", "count", "ob" + ob);
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
         Long iResult = 0L;
@@ -92,14 +90,13 @@ public abstract class GenericDaoImplementation implements DaoInterface {
             if (oResultSet.next()) {
                 iResult = oResultSet.getLong("COUNT(*)");
             } else {
-                String msg = this.getClass().getName() + ": getcount";
-                Log4jHelper.errorLog(msg);
-                throw new Exception(msg);
+                //oLogger.error(this.getClass().getName() + ".count-No count(*) result:ob=" + ob);
+                throw new SQLException(this.getClass().getName() + ".count-No count(*) result:ob=" + ob);
             }
-        } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
+            return iResult;
+        } catch (SQLException ex) {
+            //oLogger.error(this.getClass().getName() + ".count ob:" + ob, ex);
+            throw ex;
         } finally {
             if (oResultSet != null) {
                 oResultSet.close();
@@ -107,18 +104,16 @@ public abstract class GenericDaoImplementation implements DaoInterface {
             if (oPreparedStatement != null) {
                 oPreparedStatement.close();
             }
-            TraceHelper.trace("count-Estadistica0SpecificDaoImplementation(end):object=" + ob);
         }
-        return iResult;
     }
 
     @Override
     public MetaBeanHelper getStatistics(int id) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
+        throw new UnsupportedOperationException("GenericDaoImplementation.getStatistics:Not supported yet.");
     }
 
     private ArrayList<MetaPropertyGenericBeanHelper> fillPropertiesMetaData(Class oClassBEAN, ArrayList<MetaPropertyGenericBeanHelper> alVector) {
-        TraceHelper.trace("fillPropertiesMetaData(start): object = " + ob);
+        //oLogger.trace("GenericDaoImplementation", "fillPropertiesMetaData", "object = " + ob);
         for (Field field : oClassBEAN.getDeclaredFields()) {
             Annotation[] fieldAnnotations = field.getDeclaredAnnotations();
             for (Integer i = 0; i < fieldAnnotations.length; i++) {
@@ -152,11 +147,11 @@ public abstract class GenericDaoImplementation implements DaoInterface {
                 }
             }
         }
-        TraceHelper.trace("fillPropertiesMetaData(end): object = " + ob);
         return alVector;
     }
 
     private MetaObjectGenericBeanHelper fillObjectMetaData(Class oClassBEAN, MetaObjectGenericBeanHelper oMetaObject) {
+        //oLogger.trace("GenericDaoImplementation", "fillObjectMetaData", "object = " + ob);
         Annotation[] classAnnotations = oClassBEAN.getAnnotations();
         for (Integer i = 0; i < classAnnotations.length; i++) {
             if (classAnnotations[i].annotationType().equals(MetaObjectBeanInterface.class)) {
@@ -174,6 +169,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
 
     @Override
     public MetaObjectGenericBeanHelper getObjectMetaData() throws Exception {
+        //oLogger.trace("GenericDaoImplementation", "getObjectMetaData", "object = " + ob);
         MetaObjectGenericBeanHelper oMetaObject;
         try {
             GenericBeanImplementation oBean = (GenericBeanImplementation) BeanFactory.getBean(ob, oPuserSecurity);
@@ -181,15 +177,15 @@ public abstract class GenericDaoImplementation implements DaoInterface {
             oMetaObject = new MetaObjectGenericBeanHelper();
             oMetaObject = fillObjectMetaData(oClassBEAN, oMetaObject);
         } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
+            //oLogger.error(this.getClass().getName() + ".getObjectMetaData ob:" + ob, ex);
+            throw ex;
         }
         return oMetaObject;
     }
 
     @Override
     public MetaObjectGenericBeanHelper getObjectMetaData(String ob) throws Exception {
+        //oLogger.trace("GenericDaoImplementation", "getObjectMetaData(ob)", "object = " + ob);
         MetaObjectGenericBeanHelper oMetaObject;
         try {
             BeanInterface oBean = (BeanInterface) BeanFactory.getBean(ob, oPuserSecurity);
@@ -197,15 +193,15 @@ public abstract class GenericDaoImplementation implements DaoInterface {
             oMetaObject = new MetaObjectGenericBeanHelper();
             oMetaObject = fillObjectMetaData(oClassBEAN, oMetaObject);
         } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
+            //oLogger.error(this.getClass().getName() + ".getObjectMetaData(ob) ob:" + ob, ex);
+            throw ex;
         }
         return oMetaObject;
     }
 
     @Override
     public ArrayList<MetaPropertyGenericBeanHelper> getPropertiesMetaData() throws Exception {
+        //oLogger.trace("GenericDaoImplementation", "getPropertiesMetaData()", "object = " + ob);
         ArrayList<MetaPropertyGenericBeanHelper> alVector = new ArrayList<>();
         try {
             BeanInterface oBean = (BeanInterface) BeanFactory.getBean(ob, oPuserSecurity);
@@ -214,15 +210,15 @@ public abstract class GenericDaoImplementation implements DaoInterface {
             alVector = fillPropertiesMetaData(superClassBean, alVector);
             alVector = fillPropertiesMetaData(classBean, alVector);
         } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
+            //oLogger.error(this.getClass().getName() + ".getPropertiesMetaData() ob:" + ob, ex);
+            throw ex;
         }
         return alVector;
     }
 
     @Override
     public ArrayList<MetaPropertyGenericBeanHelper> getPropertiesMetaData(String ob) throws Exception {
+        //oLogger.trace("GenericDaoImplementation", "getPropertiesMetaData(ob)", "object = " + ob);
         ArrayList<MetaPropertyGenericBeanHelper> alVector = new ArrayList<>();
         try {
             BeanInterface oBean = (BeanInterface) BeanFactory.getBean(ob, oPuserSecurity);
@@ -231,34 +227,32 @@ public abstract class GenericDaoImplementation implements DaoInterface {
             alVector = fillPropertiesMetaData(superClassBean, alVector);
             alVector = fillPropertiesMetaData(classBean, alVector);
         } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
+            //TraceHelper.traceError(this.getClass().getName() + ".getPropertiesMetaData(ob) ob:" + ob, ex);
+            throw ex;
         }
         return alVector;
     }
 
     @Override
-    public Long getCount(ArrayList<FilterBeanHelper> alFilter) throws Exception {
-        TraceHelper.trace("getCount-ViewGenericDaoImplementation(begin):object=" + ob);
+    public Long getCount(ArrayList<FilterBeanHelper> alFilter) throws SQLException, ParseException, Exception {
+        //oLogger.trace("GenericDaoImplementation", "getCount", "object=" + ob);
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
-        strCountSQL += SqlHelper.buildSqlFilter(alFilter);
         Long iResult = 0L;
         try {
+            strCountSQL += SqlHelper.buildSqlFilter(alFilter);
             oPreparedStatement = oConnection.prepareStatement(strCountSQL);
             oResultSet = oPreparedStatement.executeQuery();
             if (oResultSet.next()) {
                 iResult = oResultSet.getLong("COUNT(*)");
             } else {
-                String msg = this.getClass().getName() + ": getcount";
-                Log4jHelper.errorLog(msg);
-                throw new Exception(msg);
+                String msg = this.getClass().getName() + ": getCount";
+                //oLogger.error(msg);
+                throw new SQLException(msg);
             }
         } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
+            //TraceHelper.traceError(this.getClass().getName() + ".getCount ob:" + ob, ex);
+            throw ex;
         } finally {
             if (oResultSet != null) {
                 oResultSet.close();
@@ -266,14 +260,13 @@ public abstract class GenericDaoImplementation implements DaoInterface {
             if (oPreparedStatement != null) {
                 oPreparedStatement.close();
             }
-            TraceHelper.trace("getCount-ViewGenericDaoImplementation(end):object=" + ob);
         }
         return iResult;
     }
 
     @Override
     public MetaBeanHelper getPage(int intRegsPerPag, int intPage, LinkedHashMap<String, String> hmOrder, ArrayList<FilterBeanHelper> alFilter, int expand) throws Exception {
-        TraceHelper.trace("getPage-ViewGenericDaoImplementation(begin):object=" + ob);
+        //oLogger.trace("GenericDaoImplementation", "getPage", "object=" + ob);
         String strSQL1 = strSQL;
         strSQL1 += SqlHelper.buildSqlFilter(alFilter);
         strSQL1 += SqlHelper.buildSqlOrder(hmOrder);
@@ -296,9 +289,8 @@ public abstract class GenericDaoImplementation implements DaoInterface {
             oMetaBeanHelper = new MetaBeanHelper(oMetaObject, alMetaProperties, aloBean);
 
         } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
+            //oLogger.error(this.getClass().getName() + ".getPage ob:" + ob, ex);
+            throw ex;
         } finally {
             if (oResultSet != null) {
                 oResultSet.close();
@@ -306,14 +298,13 @@ public abstract class GenericDaoImplementation implements DaoInterface {
             if (oPreparedStatement != null) {
                 oPreparedStatement.close();
             }
-            TraceHelper.trace("getPage-ViewGenericDaoImplementation(end):object=" + ob);
         }
         return oMetaBeanHelper;
     }
 
     @Override
     public MetaBeanHelper getPageX(int id_foreign, String ob_foreign, int intRegsPerPag, int intPage, LinkedHashMap<String, String> hmOrder, ArrayList<FilterBeanHelper> alFilter, int expand) throws Exception {
-        TraceHelper.trace("getPageX-ViewGenericDaoImplementation(begin):object=" + ob);
+        //oLogger.trace("GenericDaoImplementation", "getPageX", "object=" + ob);
         String strSQL1 = strSQL;
         strSQL1 += " and id_" + ob_foreign + "=" + id_foreign + " ";
         strSQL1 += SqlHelper.buildSqlFilter(alFilter);
@@ -337,9 +328,8 @@ public abstract class GenericDaoImplementation implements DaoInterface {
             oMetaBeanHelper = new MetaBeanHelper(oMetaObject, alMetaProperties, aloBean);
 
         } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
+            //Logger.error(this.getClass().getName() + ".getPageX ob:" + ob, ex);
+            throw ex;
         } finally {
             if (oResultSet != null) {
                 oResultSet.close();
@@ -347,17 +337,16 @@ public abstract class GenericDaoImplementation implements DaoInterface {
             if (oPreparedStatement != null) {
                 oPreparedStatement.close();
             }
-            TraceHelper.trace("getPageX-ViewGenericDaoImplementation(end):object=" + ob);
         }
         return oMetaBeanHelper;
     }
 
     @Override
     public Long getCountX(int id_foreign, String ob_foreign, ArrayList<FilterBeanHelper> alFilter) throws Exception {
-        TraceHelper.trace("getCountX-ViewGenericDaoImplementation(begin):object=" + ob);
+        //oLogger.trace("GenericDaoImplementation", "getCountX", "object=" + ob);
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
-        strSQL = "SELECT COUNT(*) FROM " + ob;
+        String strSQL = "SELECT COUNT(*) FROM " + ob;
         strSQL += " WHERE 1=1 ";
         strSQL += " and id_" + ob_foreign + "=" + id_foreign + " ";
         strSQL += SqlHelper.buildSqlFilter(alFilter);
@@ -369,13 +358,12 @@ public abstract class GenericDaoImplementation implements DaoInterface {
                 iResult = oResultSet.getLong("COUNT(*)");
             } else {
                 String msg = this.getClass().getName() + ": getCountxtipousuario";
-                Log4jHelper.errorLog(msg);
+                //oLogger.error(msg);
                 throw new Exception(msg);
             }
         } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
+            //TraceHelper.traceError(this.getClass().getName() + ".getCountX ob:" + ob, ex);
+            throw ex;
         } finally {
             if (oResultSet != null) {
                 oResultSet.close();
@@ -383,12 +371,12 @@ public abstract class GenericDaoImplementation implements DaoInterface {
             if (oPreparedStatement != null) {
                 oPreparedStatement.close();
             }
-            TraceHelper.trace("getCountX-ViewGenericDaoImplementation(end):object=" + ob);
         }
         return iResult;
     }
 
     protected boolean countSQL(String strSQLini) throws Exception {
+        //oLogger.trace("GenericDaoImplementation", "countSQL", "object=" + ob);
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
         Long iResult = 0L;
@@ -399,13 +387,12 @@ public abstract class GenericDaoImplementation implements DaoInterface {
                 iResult = oResultSet.getLong("COUNT(*)");
             } else {
                 String msg = this.getClass().getName() + ": getcount";
-                Log4jHelper.errorLog(msg);
+                //oLogger.error(msg);
                 throw new Exception(msg);
             }
         } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
+            //TraceHelper.traceError(this.getClass().getName() + ".countSQL ob:" + ob, ex);
+            throw ex;
         } finally {
             if (oResultSet != null) {
                 oResultSet.close();
@@ -439,19 +426,17 @@ public abstract class GenericDaoImplementation implements DaoInterface {
 
     @Override
     public MetaBeanHelper get(int id, int intExpand) throws Exception {
-        //if (this.canGet(id)) {
-        TraceHelper.trace("get-GenericDaoImplementation(begin):object=" + ob);
+        //oLogger.trace("GenericDaoImplementation", "get", "object=" + ob);
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
-        strSQL += " AND id=? ";
+        String strSQLget = this.strSQL + " AND id=? ";  //OJOOOO
         GenericBeanImplementation oBean = null;
         MetaBeanHelper oMetaBeanHelper = null;
         try {
-            oPreparedStatement = oConnection.prepareStatement(strSQL);
+            oPreparedStatement = oConnection.prepareStatement(strSQLget);
             oPreparedStatement.setInt(1, id);
             oResultSet = oPreparedStatement.executeQuery();
             oBean = (GenericBeanImplementation) BeanFactory.getBean(ob, oPuserSecurity);
-
             if (oResultSet.next()) {
                 oBean = (GenericBeanImplementation) oBean.fill(oResultSet, oConnection, oPuserSecurity, intExpand);
             } else {
@@ -461,9 +446,8 @@ public abstract class GenericDaoImplementation implements DaoInterface {
             MetaObjectGenericBeanHelper oMetaObject = this.getObjectMetaData();
             oMetaBeanHelper = new MetaBeanHelper(oMetaObject, alMetaProperties, oBean);
         } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
+            //oLogger.error(this.getClass().getName() + ".get ob:" + ob, ex);
+            throw ex;
         } finally {
             if (oResultSet != null) {
                 oResultSet.close();
@@ -471,26 +455,19 @@ public abstract class GenericDaoImplementation implements DaoInterface {
             if (oPreparedStatement != null) {
                 oPreparedStatement.close();
             }
-            TraceHelper.trace("get-GenericDaoImplementation(end):object=" + ob);
         }
         return oMetaBeanHelper;
-//        } else {
-////            String msg = this.getClass().getName() + ": You don't have enought oermissions to perform this operation" + " ob:" + ob + " op: get";
-////            Log4jHelper.errorLog(msg);
-////            throw new Exception(msg);
-//            return null;
-//        }
     }
 
     @Override
     public Integer create(GenericBeanImplementation oBean) throws Exception {
+        //oLogger.trace("GenericDaoImplementation", "create", "object=" + ob);
+        Integer iResult = 0;
         if (this.canCreate(oBean)) {
-            TraceHelper.trace("create-GenericDaoImplementation(begin):object=" + ob);
             PreparedStatement oPreparedStatement = null;
             ResultSet oResultSet = null;
-            Integer iResult = 0;
             try {
-                strSQL = "INSERT INTO " + ob;
+                String strSQL = "INSERT INTO " + ob;
                 strSQL += "(" + oBean.getColumns() + ")";
                 strSQL += " VALUES ";
                 strSQL += "(" + oBean.getValues() + ")";
@@ -498,7 +475,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
                 iResult = oPreparedStatement.executeUpdate();
                 if (iResult < 1) {
                     String msg = this.getClass().getName() + ": set";
-                    Log4jHelper.errorLog(msg);
+                    //oLogger.error(msg);
                     throw new Exception(msg);
                 }
                 oResultSet = oPreparedStatement.getGeneratedKeys();
@@ -506,9 +483,8 @@ public abstract class GenericDaoImplementation implements DaoInterface {
                 iResult = oResultSet.getInt(1);
 
             } catch (Exception ex) {
-                String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-                Log4jHelper.errorLog(msg, ex);
-                throw new Exception(msg, ex);
+                //TraceHelper.traceError(this.getClass().getName() + ".create ob:" + ob, ex);
+                throw ex;
             } finally {
                 if (oResultSet != null) {
                     oResultSet.close();
@@ -516,82 +492,71 @@ public abstract class GenericDaoImplementation implements DaoInterface {
                 if (oPreparedStatement != null) {
                     oPreparedStatement.close();
                 }
-                TraceHelper.trace("create-GenericDaoImplementation(end):object=" + ob);
             }
-            return iResult;
         } else {
-            String msg = this.getClass().getName() + ": You don't have enought oermissions to perform this operation" + " ob:" + ob + " op: create";
-            Log4jHelper.errorLog(msg);
-            throw new Exception(msg);
+            //oLogger.error(this.getClass().getName() + ".create ob:" + ob);
+            throw new Exception(this.getClass().getName() + ": You don't have enought permissions to perform this operation" + " ob:" + ob + " op: create");
         }
+        return iResult;
     }
 
     @Override
     public Integer update(GenericBeanImplementation oBean) throws Exception {
+        //oLogger.trace("GenericDaoImplementation", "update", "object=" + ob);
+        Integer iResult = 0;
         if (this.canUpdate(oBean)) {
-            TraceHelper.trace("update-GenericDaoImplementation(begin):object=" + ob);
             PreparedStatement oPreparedStatement = null;
-            Integer iResult = 0;
             try {
-                strSQL = "UPDATE " + ob;
+                String strSQL = "UPDATE " + ob;
                 strSQL += " SET ";
                 strSQL += oBean.toPairs();
                 strSQL += " WHERE id=? ";
                 oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
                 oPreparedStatement.setInt(1, oBean.getId());
                 iResult = oPreparedStatement.executeUpdate();
-
                 if (iResult < 1) {
                     String msg = this.getClass().getName() + ": set";
-                    Log4jHelper.errorLog(msg);
+                    //oLogger.error(msg);
                     throw new Exception(msg);
                 }
             } catch (Exception ex) {
-                String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-                Log4jHelper.errorLog(msg, ex);
-                throw new Exception(msg, ex);
+                //TraceHelper.traceError(this.getClass().getName() + ".update ob:" + ob, ex);
+                throw ex;
             } finally {
-
                 if (oPreparedStatement != null) {
                     oPreparedStatement.close();
                 }
-                TraceHelper.trace("update-GenericDaoImplementation(end):object=" + ob);
             }
-            return iResult;
         } else {
-            String msg = this.getClass().getName() + ": You don't have enought oermissions to perform this operation" + " ob:" + ob + " op: update";
-            Log4jHelper.errorLog(msg);
-            throw new Exception(msg);
+            //oLogger.error(this.getClass().getName() + ".update ob:" + ob);
+            throw new Exception(this.getClass().getName() + ": You don't have enought permissions to perform this operation" + " ob:" + ob + " op: update");
         }
-
+        return iResult;
     }
 
     @Override
     public Integer delete(GenericBeanImplementation oBean) throws Exception {
+        //oLogger.trace("GenericDaoImplementation", "delete", "object=" + ob);
+        int iResult = 0;
         if (this.canDelete(oBean)) {
-            TraceHelper.trace("remove-GenericDaoImplementation(begin):object=" + ob);
-            int iResult = 0;
-            strSQL = "DELETE FROM " + ob + " WHERE id=?";
+            String strSQL = "DELETE FROM " + ob + " WHERE id=?";
             PreparedStatement oPreparedStatement = null;
             try {
                 oPreparedStatement = oConnection.prepareStatement(strSQL);
                 oPreparedStatement.setInt(1, oBean.getId());
                 iResult = oPreparedStatement.executeUpdate();
             } catch (Exception ex) {
-                String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-                Log4jHelper.errorLog(msg, ex);
-                throw new Exception(msg, ex);
+                //TraceHelper.traceError(this.getClass().getName() + ".delete ob:" + ob, ex);
+                throw ex;
             } finally {
                 if (oPreparedStatement != null) {
                     oPreparedStatement.close();
                 }
-                TraceHelper.trace("remove-GenericDaoImplementation(end):object=" + ob);
             }
-            return iResult;
         } else {
-            String msg = this.getClass().getName() + ": You don't have enought oermissions to perform this operation" + " ob:" + ob + " op: update";
-            Log4jHelper.errorLog(msg);
-            throw new Exception(msg);
+            //oLogger.error(this.getClass().getName() + ".delete ob:" + ob);
+            throw new Exception(this.getClass().getName() + ": You don't have enought permissions to perform this operation" + " ob:" + ob + " op: delete");
         }
+        return iResult;
     }
 }

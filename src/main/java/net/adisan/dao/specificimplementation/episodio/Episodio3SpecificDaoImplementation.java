@@ -38,13 +38,11 @@ import net.adisan.bean.specificimplementation.CentrosanitarioSpecificBeanImpleme
 import net.adisan.bean.specificimplementation.EpisodioSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
-import net.adisan.helper.Log4jHelper;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 public class Episodio3SpecificDaoImplementation extends GenericDaoImplementation {
 
+    //private final Logger oLogger = (Logger) LogManager.getLogger(this.getClass().getName());
     private Integer idCentrosanitario = null;
     private Integer idUsuario;
 
@@ -97,7 +95,7 @@ public class Episodio3SpecificDaoImplementation extends GenericDaoImplementation
     public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
         UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
         EpisodioSpecificBeanImplementation oEpisodio = (EpisodioSpecificBeanImplementation) oBean;
-        if (oEpisodio.getId_usuario().equals(oSessionUser.getId())) {
+        if (oEpisodio.getId_usuario().equals(oSessionUser.getId()) || alumnoIsMine(oEpisodio.getId_usuario()) ) {
             return true;
         } else {
             return false;
@@ -108,7 +106,7 @@ public class Episodio3SpecificDaoImplementation extends GenericDaoImplementation
     public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
         UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
         EpisodioSpecificBeanImplementation oEpisodio = (EpisodioSpecificBeanImplementation) oBean;
-        if (oEpisodio.getId_usuario().equals(oSessionUser.getId())) {
+        if (oEpisodio.getId_usuario().equals(oSessionUser.getId()) || alumnoIsMine(oEpisodio.getId_usuario())) {
             return true;
         } else {
             return false;
@@ -128,12 +126,10 @@ public class Episodio3SpecificDaoImplementation extends GenericDaoImplementation
         UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
         EpisodioSpecificBeanImplementation oNewEpisodio = (EpisodioSpecificBeanImplementation) oBean;
         EpisodioSpecificBeanImplementation oOldEpisodio = (EpisodioSpecificBeanImplementation) this.get(oNewEpisodio.getId(), 0).getBean();
-        EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oBean;
-        oEpisodioBean.setId_episodio(null);
         if (oOldEpisodio.getId_usuario().equals(oSessionUser.getId()) || alumnoIsMine(oOldEpisodio.getId_usuario())) {
             return super.update(oBean);
         } else {
-            return 0;
+            throw new Exception("No tienes permiso para cambiar el episodio");
         }
 
     }
@@ -146,7 +142,7 @@ public class Episodio3SpecificDaoImplementation extends GenericDaoImplementation
         if (oOldEpisodio.getId_usuario().equals(oSessionUser.getId()) || alumnoIsMine(oOldEpisodio.getId_usuario())) {
             return super.delete(oBean);
         } else {
-            return 0;
+            throw new Exception("Los profesores sólo pueden borrar los episodios suyos o de sus alumnos");
         }
 
     }

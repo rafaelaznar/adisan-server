@@ -128,7 +128,7 @@ public class Subepisodio3SpecificDaoImplementation extends GenericDaoImplementat
         if (oOldEpisodio.getId_usuario().equals(oSessionUser.getId()) || alumnoIsMine(oOldEpisodio.getId_usuario())) {
             return super.update(oBean);
         } else {
-            return 0;
+            throw new Exception("No tienes permiso para efectuar la operación");
         }
 
     }
@@ -141,7 +141,7 @@ public class Subepisodio3SpecificDaoImplementation extends GenericDaoImplementat
         if (oOldEpisodio.getId_usuario().equals(oSessionUser.getId()) || alumnoIsMine(oOldEpisodio.getId_usuario())) {
             return super.delete(oBean);
         } else {
-            return 0;
+            throw new Exception("No tienes permiso para efectuar la operación");
         }
 
     }

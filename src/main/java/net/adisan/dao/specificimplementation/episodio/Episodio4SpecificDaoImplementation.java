@@ -166,7 +166,7 @@ public class Episodio4SpecificDaoImplementation extends GenericDaoImplementation
         if (oEpisodioBean.getId_usuario().equals(oSessionUser.getId())) {
             return super.update(oBean);
         } else {
-            return 0;
+            throw new Exception("No tienes permiso para efectuar la operación");
         }
     }
 
@@ -178,7 +178,7 @@ public class Episodio4SpecificDaoImplementation extends GenericDaoImplementation
         if (oEpisodio.getId_usuario().equals(oSessionUser.getId())) {
             return super.delete(oBean);
         } else {
-            return 0;
+            throw new Exception("No tienes permiso para efectuar la operación");
         }
 
     }

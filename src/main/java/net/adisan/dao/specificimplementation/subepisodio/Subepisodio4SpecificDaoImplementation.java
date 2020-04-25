@@ -39,13 +39,12 @@ import net.adisan.bean.specificimplementation.EpisodioSpecificBeanImplementation
 import net.adisan.bean.specificimplementation.GrupoSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
-import net.adisan.helper.Log4jHelper;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+
 
 public class Subepisodio4SpecificDaoImplementation extends GenericDaoImplementation {
 
+    //private final Logger oLogger = (Logger) LogManager.getLogger(this.getClass().getName());
     private Integer idCentrosanitario = null;
     private Integer idUsuario;
 
@@ -162,7 +161,7 @@ public class Subepisodio4SpecificDaoImplementation extends GenericDaoImplementat
         if (oOldEpisodio.getId_usuario().equals(oSessionUser.getId())) {
             return super.update(oBean);
         } else {
-            return 0;
+            throw new Exception("No tienes permiso para efectuar la operación");
         }
 
     }
@@ -175,7 +174,7 @@ public class Subepisodio4SpecificDaoImplementation extends GenericDaoImplementat
         if (oOldEpisodio.getId_usuario().equals(oSessionUser.getId())) {
             return super.delete(oBean);
         } else {
-            return 0;
+            throw new Exception("No tienes permiso para efectuar la operación");
         }
 
     }

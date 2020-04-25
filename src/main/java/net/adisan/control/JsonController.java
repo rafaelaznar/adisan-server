@@ -1,13 +1,13 @@
 /*
- * Copyright (c) 2017-2018 
+ * Copyright (c) 2017-2018
  *
  * by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com) & DAW students
- * 
+ *
  * ADISAN: Free Open Source Health Management System
  *
  *
  * Sources at:                https://github.com/rafaelaznar/adisan
- *                            
+ *
  * Database at:               https://github.com/rafaelaznar/adisan-database
  *
  * ADISAN is distributed under the MIT License (MIT)
@@ -37,7 +37,7 @@ import net.adisan.connection.publicinterface.ConnectionInterface;
 import net.adisan.factory.ConnectionFactory;
 import net.adisan.helper.constant.ConnectionConstants;
 import net.adisan.helper.constant.ConfigurationConstants;
-import net.adisan.helper.Log4jHelper;
+
 import net.adisan.factory.ServiceFactory;
 import net.adisan.helper.EnumHelper.Environment;
 import static net.adisan.helper.ParameterHelper.prepareCamelCaseObject;
@@ -46,14 +46,19 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import net.adisan.helper.EncodingHelper;
+
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 
 public class JsonController extends HttpServlet {
+
+    //private final Logger oLogger = (Logger) LogManager.getLogger(this.getClass().getName());
 
     private void Controllerdelay(Integer iLast) {
         try {
@@ -68,7 +73,9 @@ public class JsonController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, Exception {
         ReplyBeanHelper oReplyBean = null;
-        try (PrintWriter out = response.getWriter()) {
+        try ( PrintWriter out = response.getWriter()) {
+            String ob = prepareCamelCaseObject(request);
+            String op = request.getParameter("op");
             try {
                 Class.forName("com.mysql.jdbc.Driver");
             } catch (Exception ex) {
@@ -77,8 +84,6 @@ public class JsonController extends HttpServlet {
             if (ConfigurationConstants.environment == Environment.Debug) {
                 Controllerdelay(ConfigurationConstants.programDalay);
             }
-            String ob = prepareCamelCaseObject(request);
-            String op = request.getParameter("op");
             if (("".equalsIgnoreCase(ob) && "".equalsIgnoreCase(op)) || (ob == null && op == null)) {
                 Connection oConnection = null;
                 ConnectionInterface oPooledConnection = null;
@@ -97,7 +102,7 @@ public class JsonController extends HttpServlet {
                     oConnection = oPooledConnection.newConnection();
                     out.print("<h3>Database Connection OK</h3>");
                 } catch (Exception ex) {
-                    out.print("<h3>Database Conexión KO</h3>");
+                    out.println("<h3>Database Conexión KO:</h3><h4>" + ex.getMessage() + "</h4>");
                 } finally {
                     out.println("</body>");
                     out.println("</html>");
@@ -115,20 +120,24 @@ public class JsonController extends HttpServlet {
                 response.setHeader("Access-Control-Max-Age", "86400");
                 response.setHeader("Access-Control-Allow-Credentials", "true");
                 response.setHeader("Access-Control-Allow-Headers", "Origin, Accept, x-requested-with, Content-Type");
+                //response.setHeader("Set-Cookie: cross-site-cookie=name; SameSite=None; Secure");
+                response.setHeader("Set-Cookie", "HttpOnly;SameSite=Strict;Secure");
+                 //response.setHeader("Set-Cookie", "HttpOnly;SameSite=None;Secure");
+                if (ob.equalsIgnoreCase("usuario") && op.equalsIgnoreCase("getpage")) {
+                    //TraceHelper.traceCode = true;
+                }
+                //oLogger.info("JsonController.processRequest(ob=" + ob + ";op=" + op + ")");
                 try {
                     oReplyBean = (ReplyBeanHelper) ServiceFactory.executeMethodService(request);
                 } catch (Exception ex) {
-                    if (ConfigurationConstants.environment == Environment.Debug) {
-                        out.println(ex);
-                        ex.printStackTrace(out);
-                    } else {
-                        oReplyBean = new ReplyBeanHelper(500, "adisan-server error. Please, contact your administrator.");
-                    }
-                    Log4jHelper.errorLog(this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName(), ex);
-                    oReplyBean = new ReplyBeanHelper(500, "Object or Operation not found : Please contact your administrator");
+                    //oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("ADISAN-server error. Please, contact your administrator."));
+                    oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate(ex.getMessage()));
+                    //oLogger.error("JsonController.processRequest", ex);
                 }
-                response.setStatus(oReplyBean.getCode());
+                //response.setStatus(oReplyBean.getCode());
+                response.setStatus(200);
                 out.print("{\"status\":" + oReplyBean.getCode() + ", \"json\":" + oReplyBean.getJson() + "}");
+                
             }
         }
     }
@@ -148,7 +157,7 @@ public class JsonController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(JsonController.class.getName()).log(Level.SEVERE, null, ex);
+            //oLogger.error("JsonController.doGet",ex);
         }
     }
 
@@ -166,7 +175,7 @@ public class JsonController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(JsonController.class.getName()).log(Level.SEVERE, null, ex);
+            //oLogger.error("JsonController.doPost",ex);
         }
     }
 
@@ -177,7 +186,7 @@ public class JsonController extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "Controller";
     }// </editor-fold>
 
 }

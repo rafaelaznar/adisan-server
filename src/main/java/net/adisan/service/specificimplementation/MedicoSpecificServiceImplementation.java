@@ -39,7 +39,6 @@ import net.adisan.bean.specificimplementation.CentrosanitarioSpecificBeanImpleme
 import net.adisan.bean.specificimplementation.MedicoSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.NombrefemeninoSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.NombremasculinoSpecificBeanImplementation;
-import net.adisan.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.connection.publicinterface.ConnectionInterface;
 import net.adisan.dao.specificimplementation.factory.ApellidoSpecificDaoImplementation;
@@ -47,16 +46,17 @@ import net.adisan.dao.specificimplementation.medico.Medico1SpecificDaoImplementa
 import net.adisan.dao.specificimplementation.factory.NombrefemeninoSpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.factory.NombremasculinoSpecificDaoImplementation;
 import net.adisan.factory.ConnectionFactory;
-import net.adisan.helper.EncodingHelper;
-import net.adisan.helper.Log4jHelper;
 import net.adisan.helper.RandomHelper;
 import net.adisan.helper.constant.ConnectionConstants;
 import net.adisan.service.genericimplementation.GenericServiceImplementation;
 import java.sql.Connection;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
+;
 
 public class MedicoSpecificServiceImplementation extends GenericServiceImplementation {
+
+    //private final Logger oLogger = (Logger) LogManager.getLogger(this.getClass().getName());
 
     public MedicoSpecificServiceImplementation(HttpServletRequest request) {
         super(request);
@@ -229,9 +229,7 @@ public class MedicoSpecificServiceImplementation extends GenericServiceImplement
 
             oReplyBean = new ReplyBeanHelper(200, Integer.toString(result));
         } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
+            throw ex;
         } finally {
             if (oConnection != null) {
                 oConnection.close();

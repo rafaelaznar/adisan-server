@@ -54,7 +54,6 @@ import net.adisan.dao.specificimplementation.factory.ViaSpecificDaoImplementatio
 import net.adisan.factory.ConnectionFactory;
 import net.adisan.helper.EncodingHelper;
 import net.adisan.helper.GsonHelper;
-import net.adisan.helper.Log4jHelper;
 import net.adisan.helper.RandomHelper;
 import net.adisan.helper.constant.ConnectionConstants;
 import net.adisan.service.genericimplementation.GenericServiceImplementation;
@@ -64,6 +63,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class PacienteSpecificServiceImplementation extends GenericServiceImplementation {
 
+    //private final Logger oLogger = (Logger) LogManager.getLogger(this.getClass().getName());
     public PacienteSpecificServiceImplementation(HttpServletRequest request) {
         super(request);
     }
@@ -249,6 +249,7 @@ public class PacienteSpecificServiceImplementation extends GenericServiceImpleme
             oPacienteBean.setDireccion(Direccion);
 
             //-- Ciudad
+            // Se requiere que los pacientes de un profesor sean de su provincia; está pendiente de desarrollar           
             MunicipioSpecificDaoImplementation oDaoMunicipio = new MunicipioSpecificDaoImplementation(oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
             oMetaBean = oDaoMunicipio.get((int) RandomHelper.getRandomInt(1, oDaoMunicipio.getCount(null).intValue()), 0);
             MunicipioSpecificBeanImplementation oMunicipioBean = (MunicipioSpecificBeanImplementation) oMetaBean.getBean();
@@ -336,9 +337,10 @@ public class PacienteSpecificServiceImplementation extends GenericServiceImpleme
             //}
             //oReplyBean = new ReplyBeanHelper(200, Integer.toString(result));
         } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
+//            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
+//            oLogger.error(msg, ex);
+//            throw new Exception(msg, ex);
+            throw ex;
         } finally {
             if (oConnection != null) {
                 oConnection.close();

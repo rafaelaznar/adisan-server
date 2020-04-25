@@ -51,7 +51,7 @@ import java.util.Date;
         TableName = "episodio",
         SingularDescription = "Episodio",
         PluralDescription = "Episodios",
-        Icon = "fa fa-eercast",
+        Icon = "fa fa-address-card",
         Type = EnumHelper.SourceType.Table
 )
 public class EpisodioSpecificBeanImplementation extends GenericBeanImplementation {
@@ -239,7 +239,7 @@ public class EpisodioSpecificBeanImplementation extends GenericBeanImplementatio
     @MetaPropertyBeanInterface(
             Type = EnumHelper.FieldType.ForeignId
     )
-    private Integer id_episodio = 0;
+    private Integer id_episodio = null;
 
     @Expose(deserialize = false)
     @MetaPropertyBeanInterface(
@@ -398,6 +398,22 @@ public class EpisodioSpecificBeanImplementation extends GenericBeanImplementatio
 
     @Expose
     @MetaPropertyBeanInterface(
+            ShortName = "Expl.compl.",
+            LongName = "Exploraciones complementarias",
+            Description = "Exploraciones complementarias",
+            Type = EnumHelper.FieldType.LongText,
+            //IsRequired = true,
+            RegexPattern = RegexConstants.capitalizedSentence,
+            RegexHelp = RegexConstants.capitalizedSentence_Help,
+            IsForeignKeyDescriptor = false,
+            Width = 3,
+            MaxLength = 100,
+            IsVisible = false
+    )
+    private String tratamiento_recomendaciones;    
+    
+    @Expose
+    @MetaPropertyBeanInterface(
             ShortName = "Evo Com.",
             LongName = "Evolución Comentario",
             Description = "Evolución Comentario",
@@ -416,7 +432,7 @@ public class EpisodioSpecificBeanImplementation extends GenericBeanImplementatio
     @MetaPropertyBeanInterface(
             ShortName = "Diag Pr.",
             LongName = "Diagnóstico Principal",
-            Description = "Diasnóstico Principal",
+            Description = "Diagnóstico Principal",
             Type = EnumHelper.FieldType.LongText,
             IsRequired = true,
             RegexPattern = RegexConstants.capitalizedSentence,
@@ -460,21 +476,21 @@ public class EpisodioSpecificBeanImplementation extends GenericBeanImplementatio
     )
     private String procedimientos;
 
-    @Expose
-    @MetaPropertyBeanInterface(
-            ShortName = "Tra reco.",
-            LongName = "Tratamiento recomendaciones",
-            Description = "Recomendaciones del tratamiento",
-            Type = EnumHelper.FieldType.LongText,
-            //IsRequired = true,
-            RegexPattern = RegexConstants.capitalizedSentence,
-            RegexHelp = RegexConstants.capitalizedSentence_Help,
-            IsForeignKeyDescriptor = false,
-            Width = 3,
-            MaxLength = 100,
-            IsVisible = false
-    )
-    private String tratamiento_recomendaciones;
+//    @Expose
+//    @MetaPropertyBeanInterface(
+//            ShortName = "Tra reco.",
+//            LongName = "Tratamiento recomendaciones",
+//            Description = "Recomendaciones del tratamiento",
+//            Type = EnumHelper.FieldType.LongText,
+//            //IsRequired = true,
+//            RegexPattern = RegexConstants.capitalizedSentence,
+//            RegexHelp = RegexConstants.capitalizedSentence_Help,
+//            IsForeignKeyDescriptor = false,
+//            Width = 3,
+//            MaxLength = 100,
+//            IsVisible = false
+//    )
+//    private String tratamiento_recomendaciones;
 
     @Expose
     @MetaPropertyBeanInterface(

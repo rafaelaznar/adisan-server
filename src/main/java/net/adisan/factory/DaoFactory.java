@@ -7,7 +7,7 @@
  *
  *
  * Sources at:                https://github.com/rafaelaznar/adisan
- *                            
+ *
  * Database at:               https://github.com/rafaelaznar/adisan-database
  *
  * ADISAN is distributed under the MIT License (MIT)
@@ -109,12 +109,12 @@ import net.adisan.dao.specificimplementation.factory.NombrefemeninoSpecificDaoIm
 import net.adisan.dao.specificimplementation.factory.NombremasculinoSpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.factory.ProvinciaSpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.factory.ViaSpecificDaoImplementation;
-import net.adisan.helper.TraceHelper;
 import java.sql.Connection;
 
 public class DaoFactory {
 
     public static DaoInterface getDao(String ob, Connection oConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
+        //TraceHelper.trace("GenericDaoImplementation", "getDao", "object=" + ob);
         DaoInterface oDao = null;
         switch (ob) {
             case "usuario":
@@ -685,10 +685,10 @@ public class DaoFactory {
                 break;
             //------------------------------------------------------------------
             default:
-                TraceHelper.trace("DAO not found: can't create DAO in DaoFactory.");
-                //oReplyBean = new ReplyBean(500, "Object not found : Please contact your administrator");
+                //TraceHelper.traceError("DAO not found: can't create DAO in DaoFactory for " + ob);
+                //throw new Exception("Object not found: " + ob);
                 break;
-        }
+        } 
         return oDao;
     }
 

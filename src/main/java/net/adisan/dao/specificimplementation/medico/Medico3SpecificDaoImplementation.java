@@ -38,13 +38,12 @@ import net.adisan.bean.specificimplementation.CentrosanitarioSpecificBeanImpleme
 import net.adisan.bean.specificimplementation.MedicoSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
-import net.adisan.helper.Log4jHelper;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+
 
 public class Medico3SpecificDaoImplementation extends GenericDaoImplementation {
 
+    //private final Logger oLogger = (Logger) LogManager.getLogger(this.getClass().getName());
     private Integer idCentrosanitario = null;
     private Integer idUsuario;
 
@@ -141,14 +140,14 @@ public class Medico3SpecificDaoImplementation extends GenericDaoImplementation {
             oNewMedico.setId_centrosanitario(oSessionUser.getId_centrosanitario());
             return super.update(oBean);
         } else {
-            return 0;
+            throw new Exception("No tienes permiso para efectuar la operación");
         }
     }
 
     @Override
     public Integer delete(GenericBeanImplementation oBean) throws Exception {
         //para borrar un medico que contacten con el administrador
-        return 0;
+        throw new Exception("No tienes permiso para efectuar la operación");
     }
 
 }

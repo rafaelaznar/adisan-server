@@ -36,9 +36,9 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import net.adisan.connection.publicinterface.ConnectionInterface;
 import net.adisan.helper.constant.ConnectionConstants;
-import net.adisan.helper.Log4jHelper;
 import java.sql.Connection;
 import java.sql.SQLException;
+
 
 public class HikariConnection implements ConnectionInterface {
 
@@ -51,8 +51,15 @@ public class HikariConnection implements ConnectionInterface {
         config.setJdbcUrl(ConnectionConstants.getConnectionChain());
         config.setUsername(ConnectionConstants.databaseLogin);
         config.setPassword(ConnectionConstants.databasePassword);
-        config.setMaximumPoolSize(10);
-        config.setMinimumIdle(5);
+        config.setMaximumPoolSize(ConnectionConstants.getDatabaseMaxPoolSize);
+        config.setMinimumIdle(ConnectionConstants.getDatabaseMinPoolSize);
+
+        config.addDataSourceProperty("cachePrepStmts", "true");
+        config.addDataSourceProperty("prepStmtCacheSize", "250");
+        config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
+
+        //config.setIsolateInternalQueries(false);
+        
         config.setLeakDetectionThreshold(15000);
         config.setConnectionTestQuery("SELECT 1");
         config.setConnectionTimeout(2000);
@@ -60,10 +67,8 @@ public class HikariConnection implements ConnectionInterface {
             oConnectionPool = new HikariDataSource(config);
             oConnection = oConnectionPool.getConnection();
         } catch (SQLException ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
-        }
+            throw ex;
+        } 
         return oConnection;
     }
 
@@ -76,10 +81,8 @@ public class HikariConnection implements ConnectionInterface {
             if (oConnectionPool != null) {
                 oConnectionPool.close();
             }
-        } catch (SQLException ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
-        }
+        } catch (SQLException ex) {            
+            throw ex;
+        } 
     }
 }

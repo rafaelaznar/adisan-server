@@ -45,7 +45,7 @@ import java.util.Date;
         TableName = "paciente",
         SingularDescription = "Paciente",
         PluralDescription = "Pacientes",
-        Icon = "fa fa-address-card-o",
+        Icon = "fa fa-head-side-cough",
         Type = EnumHelper.SourceType.Table
 )
 public class PacienteSpecificBeanImplementation extends GenericBeanImplementation {

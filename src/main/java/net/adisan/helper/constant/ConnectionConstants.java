@@ -35,14 +35,17 @@ package net.adisan.helper.constant;
 public class ConnectionConstants {
 
     public static final String connectionName = "hikari";
-    public static final String databaseName = "gesane";
+    public static final String databaseName = "adisan";
     public static final String databaseLogin = "root";
     public static final String databasePassword = "bitnami";
     public static final String databasePort = "3306";
     public static final String databaseIP = "127.0.0.1";
+    public static final int getDatabaseMaxPoolSize = 5;
+    public static final int getDatabaseMinPoolSize = 2;
 
     public static String getConnectionChain() {
-        return "jdbc:mysql://" + ConnectionConstants.databaseIP + ":" + ConnectionConstants.databasePort + "/" + ConnectionConstants.databaseName;
+        String options = "useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+        return "jdbc:mysql://" + ConnectionConstants.databaseIP + ":" + ConnectionConstants.databasePort + "/" + ConnectionConstants.databaseName + "?" + options;
     }
 
 }

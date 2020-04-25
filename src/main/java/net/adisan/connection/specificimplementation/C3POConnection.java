@@ -35,7 +35,6 @@ package net.adisan.connection.specificimplementation;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import net.adisan.connection.publicinterface.ConnectionInterface;
 import net.adisan.helper.constant.ConnectionConstants;
-import net.adisan.helper.Log4jHelper;
 import java.beans.PropertyVetoException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -56,9 +55,7 @@ public class C3POConnection implements ConnectionInterface {
             connectionPool.setMaxStatements(180);
             oConnection = connectionPool.getConnection();
         } catch (PropertyVetoException | SQLException ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
+                throw ex;
         }
         return oConnection;
     }
@@ -73,9 +70,7 @@ public class C3POConnection implements ConnectionInterface {
                 connectionPool.close();
             }
         } catch (SQLException ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
+            throw ex;
         }
     }
 }

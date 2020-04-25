@@ -35,13 +35,10 @@ package net.adisan.service.specificimplementation;
 import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.bean.helper.ReplyBeanHelper;
 import net.adisan.bean.specificimplementation.GrupoSpecificBeanImplementation;
-import net.adisan.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
-import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.connection.publicinterface.ConnectionInterface;
 import net.adisan.dao.specificimplementation.grupo.Grupo1SpecificDaoImplementation;
 import net.adisan.factory.ConnectionFactory;
 import net.adisan.helper.EncodingHelper;
-import net.adisan.helper.Log4jHelper;
 import net.adisan.helper.constant.ConnectionConstants;
 import net.adisan.service.genericimplementation.GenericServiceImplementation;
 import java.sql.Connection;
@@ -49,6 +46,8 @@ import javax.servlet.http.HttpServletRequest;
 
 public class GrupoSpecificServiceImplementation extends GenericServiceImplementation {
 
+    //private final Logger oLogger = (Logger) LogManager.getLogger(this.getClass().getName());
+    
     public GrupoSpecificServiceImplementation(HttpServletRequest request) {
         super(request);
     }
@@ -75,9 +74,7 @@ public class GrupoSpecificServiceImplementation extends GenericServiceImplementa
                 if (oConnection != null) {
                     oConnection.rollback();
                 }
-                String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-                Log4jHelper.errorLog(msg, ex);
-                throw new Exception(msg, ex);
+                throw ex;
             } finally {
                 if (oConnection != null) {
                     oConnection.close();

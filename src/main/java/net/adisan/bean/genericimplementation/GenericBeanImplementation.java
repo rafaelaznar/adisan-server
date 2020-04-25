@@ -7,7 +7,7 @@
  *
  *
  * Sources at:                https://github.com/rafaelaznar/adisan
- *                            
+ *
  * Database at:               https://github.com/rafaelaznar/adisan-database
  *
  * ADISAN is distributed under the MIT License (MIT)
@@ -43,9 +43,7 @@ import net.adisan.factory.DaoFactory;
 import net.adisan.helper.EncodingHelper;
 import net.adisan.helper.EnumHelper;
 import net.adisan.helper.EnumHelper.FieldType;
-import net.adisan.helper.Log4jHelper;
 import net.adisan.helper.RandomHelper;
-import net.adisan.helper.TraceHelper;
 import net.adisan.helper.constant.ConfigurationConstants;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -186,12 +184,11 @@ public abstract class GenericBeanImplementation implements BeanInterface {
 
     @Override
     public BeanInterface fill(ResultSet oResultSet, Connection oConnection, MetaBeanHelper oPuserBean_security, Integer expand) throws Exception {
-
+        //TraceHelper.trace("GenericBeanImplementation", "fill", "bean=" + this.getClass().getName());
         try {
-            GenericBeanImplementation oBean = (GenericBeanImplementation) Class.forName(this.getClass().getName()).newInstance();
-            TraceHelper.trace("fill-GenericBeanImplementation(begin):object=" + oBean.getClass().getName());
+            GenericBeanImplementation oBean = (GenericBeanImplementation) Class.forName(this.getClass().getName()).getDeclaredConstructor().newInstance();
             if (this.getClass().getSuperclass() == GenericBeanImplementation.class) {
-                TraceHelper.trace("Filling ID field;value=" + oResultSet.getInt("id"));
+                //TraceHelper.trace("Filling ID field;value=" + oResultSet.getInt("id"));
                 Field oField = this.getClass().getSuperclass().getDeclaredField("id");
                 oField.setAccessible(true);
                 oField.set(this, oResultSet.getInt("id"));
@@ -199,15 +196,16 @@ public abstract class GenericBeanImplementation implements BeanInterface {
             }
             Field[] oFields = oBean.getClass().getDeclaredFields();
             for (Field oField : oFields) {
+                //TraceHelper.trace("GenericBeanImplementacion.fill field=" + oField.getName());
                 oField.setAccessible(true);
                 if (getTypeFromPropertyMetaData(oField) != null) {
                     if (getTypeFromPropertyMetaData(oField) != FieldType.Calculated) {
                         if (getTypeFromPropertyMetaData(oField) == FieldType.ForeignObject) {
-                            TraceHelper.trace("Filling ForeignObject field=" + oField.getName());
+                            //TraceHelper.trace("-->Filling ForeignObject field=" + oField.getName());
                             if (expand > 0) {
                                 String ob = getReferencesFromPropertyMetaData(oField);
                                 DaoInterface oObDao = (DaoInterface) DaoFactory.getDao(ob, oConnection, oPuserBean_security, null);
-                                TraceHelper.trace("Filling ForeignObject object=" + ob + ";id=" + oResultSet.getInt("id_" + ob));
+                                //TraceHelper.trace("---->Filling ForeignObject object=" + ob + ";id=" + oResultSet.getInt("id_" + ob));
                                 Integer id = oResultSet.getInt("id_" + ob);
                                 if (id != null && id > 0) {
                                     MetaBeanHelper oMetaBeanHelper = (MetaBeanHelper) oObDao.get(id, expand - 1);
@@ -217,13 +215,13 @@ public abstract class GenericBeanImplementation implements BeanInterface {
                                 }
                             } else {
                                 String ob = getReferencesFromPropertyMetaData(oField);
-                                TraceHelper.trace("Filling ForeignObject field=" + ob + " Field Expansion Limit Found!");
+                                //TraceHelper.trace("---->Filling ForeignObject field=" + ob + " Field Expansion Limit Found!");
                             }
                         } else {
                             if (getTypeFromPropertyMetaData(oField) == FieldType.Link) {
                                 String ob = getReferencesFromPropertyMetaData(oField);
                                 DaoInterface oObDao = (DaoInterface) DaoFactory.getDao(ob, oConnection, oPuserBean_security, " and id_" + getOwnNameFromObjectMetaData() + "=" + oResultSet.getInt("id"));
-                                TraceHelper.trace("Filling Link field=" + oField.getName() + ";references=" + ob);
+                                //TraceHelper.trace("-->Filling Link field=" + oField.getName() + ";references=" + ob);
                                 if (oObDao != null) { //en el proceso de login puede ser nulo!!
                                     oField.set(this, oObDao.getCount(null).intValue());
                                 } else {
@@ -231,23 +229,27 @@ public abstract class GenericBeanImplementation implements BeanInterface {
                                 }
                             } else {
                                 if (getTypeFromPropertyMetaData(oField) == FieldType.ForeignId) {
-                                    TraceHelper.trace("Filling ForeignID field=" + oField.getName() + ";value=" + oResultSet.getInt(oField.getName()));
+                                    //TraceHelper.trace("-->Filling ForeignID field=" + oField.getName() + ";value=" + oResultSet.getInt(oField.getName()));
                                     oField.set(this, oResultSet.getInt(oField.getName()));
                                 } else {
                                     if (oField.getType() == String.class) {
-                                        TraceHelper.trace("Filling String field=" + oField.getName() + ";value=" + oResultSet.getString(oField.getName()));
+                                        if (oField.getName().equalsIgnoreCase("password")) {
+                                            //TraceHelper.trace("-->Filling String field=" + oField.getName());
+                                        } else {
+                                            //TraceHelper.trace("-->Filling String field=" + oField.getName() + ";value=" + oResultSet.getString(oField.getName()));
+                                        }
                                         oField.set(this, oResultSet.getString(oField.getName()));
                                     } else {
                                         if (oField.getType() == Date.class) {
-                                            TraceHelper.trace("Filling Date field=" + oField.getName() + ";value=" + oResultSet.getDate(oField.getName()));
+                                            //TraceHelper.trace("-->Filling Date field=" + oField.getName() + ";value=" + oResultSet.getDate(oField.getName()));
                                             oField.set(this, oResultSet.getDate(oField.getName()));
                                         } else {
                                             if (oField.getType() == Double.class || oField.getType() == double.class) {
-                                                TraceHelper.trace("Filling Double field=" + oField.getName() + ";value=" + oResultSet.getDouble(oField.getName()));
+                                                //TraceHelper.trace("-->Filling Double field=" + oField.getName() + ";value=" + oResultSet.getDouble(oField.getName()));
                                                 oField.set(this, oResultSet.getDouble(oField.getName()));
                                             } else {
                                                 if (oField.getType() == Integer.class || oField.getType() == int.class) {
-                                                    TraceHelper.trace("Filling Integer field=" + oField.getName() + ";value=" + oResultSet.getInt(oField.getName()));
+                                                    //TraceHelper.trace("-->Filling Integer field=" + oField.getName() + ";value=" + oResultSet.getInt(oField.getName()));
                                                     oField.set(this, oResultSet.getInt(oField.getName()));
                                                 }
                                             }
@@ -266,49 +268,45 @@ public abstract class GenericBeanImplementation implements BeanInterface {
 
                 DaoInterface oObDao = (DaoInterface) DaoFactory.getDao(getOwnNameFromObjectMetaData(), oConnection, oPuserBean_security, "");
 
-                TraceHelper.trace("Filling canCreate field");
+                //TraceHelper.trace("Filling canCreate field");
                 Field oFieldcanCreate = this.getClass().getSuperclass().getDeclaredField("canCreate");
                 oFieldcanCreate.setAccessible(true);
                 oFieldcanCreate.set(this, oObDao.canCreate((GenericBeanImplementation) this));
                 oFieldcanCreate.setAccessible(false);
 
-                TraceHelper.trace("Filling canUpdate field");
+                //TraceHelper.trace("Filling canUpdate field");
                 Field oFieldcanUpdate = this.getClass().getSuperclass().getDeclaredField("canUpdate");
                 oFieldcanUpdate.setAccessible(true);
                 oFieldcanUpdate.set(this, oObDao.canUpdate((GenericBeanImplementation) this));
                 oFieldcanUpdate.setAccessible(false);
 
-                TraceHelper.trace("Filling canDelete field");
+                //TraceHelper.trace("Filling canDelete field");
                 Field oFieldcanDelete = this.getClass().getSuperclass().getDeclaredField("canDelete");
                 oFieldcanDelete.setAccessible(true);
                 oFieldcanDelete.set(this, oObDao.canDelete((GenericBeanImplementation) this));
                 oFieldcanDelete.setAccessible(false);
 
-                TraceHelper.trace("Filling canStatistics field");
+                //TraceHelper.trace("Filling canStatistics field");
                 Field oFieldcanStatistics = this.getClass().getSuperclass().getDeclaredField("canStatistics");
                 oFieldcanStatistics.setAccessible(true);
                 oFieldcanStatistics.set(this, oObDao.canStatistics((GenericBeanImplementation) this));
                 oFieldcanStatistics.setAccessible(false);
-
             }
-
         } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
-        } finally {
-            TraceHelper.trace("fill-GenericBeanImplementation(end)");
-        }
+            //TraceHelper.traceError(this.getClass().getName() + ".fill", ex);
+            throw ex;
+        }        
         return this;
     }
 
     @Override
     public void ComputeCalculatedFields() {
-        TraceHelper.trace("ComputeCalculatedFields-GenericBeanImplementation(brgin-end)");
+        //TraceHelper.trace("GenericBeanImplementation", "ComputeCalculatedFields");
     }
 
     @Override
     public String getColumns() throws Exception {
+        //TraceHelper.trace("GenericBeanImplementation", "getColumns");
         String strColumns = "";
         try {
             GenericBeanImplementation oBean = (GenericBeanImplementation) Class.forName(this.getClass().getName()).newInstance();
@@ -326,18 +324,18 @@ public abstract class GenericBeanImplementation implements BeanInterface {
             }
             strColumns = strColumns.substring(0, strColumns.length() - 1);
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
+            //TraceHelper.traceError(this.getClass().getName() + ".getColumns", ex);
+            throw ex;
         }
         return strColumns;
     }
 
     @Override
     public String getValues() throws Exception {
+        //TraceHelper.trace("GenericBeanImplementation", "getColumns");
         String strColumns = "";
         try {
-            GenericBeanImplementation oBean = (GenericBeanImplementation) Class.forName(this.getClass().getName()).newInstance();
+            GenericBeanImplementation oBean = (GenericBeanImplementation) Class.forName(this.getClass().getName()).getDeclaredConstructor().newInstance();
             Field[] oFields = oBean.getClass().getDeclaredFields();
             for (Field x : oFields) {
                 if (getTypeFromPropertyMetaData(x) != null) {
@@ -374,15 +372,15 @@ public abstract class GenericBeanImplementation implements BeanInterface {
             }
             strColumns = strColumns.substring(0, strColumns.length() - 1);
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
+            //TraceHelper.traceError(this.getClass().getName() + ".getValues", ex);
+            throw ex;
         }
         return strColumns;
     }
 
     @Override
     public String toPairs() throws Exception {
+        //TraceHelper.trace("GenericBeanImplementation", "toPairs");
         String strColumns = "";
         try {
             GenericBeanImplementation oBean = (GenericBeanImplementation) Class.forName(this.getClass().getName()).newInstance();
@@ -415,9 +413,8 @@ public abstract class GenericBeanImplementation implements BeanInterface {
             }
             strColumns = strColumns.substring(0, strColumns.length() - 1);
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
+            //TraceHelper.traceError(this.getClass().getName() + ".toPairs", ex);
+            throw ex;
         }
         return strColumns;
     }

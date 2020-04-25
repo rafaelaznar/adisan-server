@@ -39,7 +39,6 @@ import net.adisan.bean.meta.publicinterface.MetaObjectBeanInterface;
 import net.adisan.bean.meta.publicinterface.MetaPropertyBeanInterface;
 import net.adisan.dao.specificimplementation.grupo.Grupo1SpecificDaoImplementation;
 import net.adisan.helper.EnumHelper;
-import net.adisan.helper.Log4jHelper;
 import net.adisan.helper.constant.RegexConstants;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -481,9 +480,7 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
 //                    this.getObj_grupos().add(oGrupo);
                 }
             } catch (Exception ex) {
-                String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
-                Log4jHelper.errorLog(msg, ex);
-                throw new Exception(msg, ex);
+                throw ex;
             } finally {
                 if (oResultSet2 != null) {
                     oResultSet2.close();

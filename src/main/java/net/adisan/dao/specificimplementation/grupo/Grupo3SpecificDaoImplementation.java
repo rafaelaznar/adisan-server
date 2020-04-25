@@ -37,13 +37,13 @@ import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.bean.specificimplementation.GrupoSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
-import net.adisan.helper.Log4jHelper;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class Grupo3SpecificDaoImplementation extends GenericDaoImplementation {
 
+    //private final Logger oLogger = (Logger) LogManager.getLogger(this.getClass().getName());
     private Integer idUsuario;
     UsuarioSpecificBeanImplementation oUsuario;
 
@@ -138,7 +138,7 @@ public class Grupo3SpecificDaoImplementation extends GenericDaoImplementation {
             oUpdateGrupo.setId_usuario(oSessionUser.getId());
             return super.update(oBean);
         } else {
-            return 0;
+            throw new Exception("No tienes permiso para efectuar la operación");
         }
     }
 
@@ -148,7 +148,7 @@ public class Grupo3SpecificDaoImplementation extends GenericDaoImplementation {
         if (oGrupo.getId_usuario().equals(idUsuario)) {
             return super.delete(oBean);
         } else {
-            return 0;
+            throw new Exception("No tienes permiso para efectuar la operación");
         }
     }
 }

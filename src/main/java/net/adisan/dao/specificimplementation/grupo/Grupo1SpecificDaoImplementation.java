@@ -36,13 +36,15 @@ import net.adisan.bean.genericimplementation.GenericBeanImplementation;
 import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.bean.specificimplementation.GrupoSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
-import net.adisan.helper.Log4jHelper;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+;
+
 public class Grupo1SpecificDaoImplementation extends GenericDaoImplementation {
 
+    //private final Logger oLogger = (Logger) LogManager.getLogger(this.getClass().getName());
     public Grupo1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("grupo", oPooledConnection, oPuserBean_security, strWhere);
     }
@@ -75,9 +77,9 @@ public class Grupo1SpecificDaoImplementation extends GenericDaoImplementation {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
         MetaBeanHelper oMetaBeanHelper = null;
-        strSQL += " AND codigo='" + oCodigoBean.getCodigo() + "'";
+        String sSQL = strSQL + " AND codigo='" + oCodigoBean.getCodigo() + "'";
         try {
-            oPreparedStatement = oConnection.prepareStatement(strSQL);
+            oPreparedStatement = oConnection.prepareStatement(sSQL);
             oResultSet = oPreparedStatement.executeQuery();
             if (oResultSet.next()) {
                 oCodigoBean.setId(oResultSet.getInt("id"));
@@ -86,9 +88,9 @@ public class Grupo1SpecificDaoImplementation extends GenericDaoImplementation {
                 throw new Exception("GrupoSpecificDaoImplementation getFromCodigo error");
             }
         } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
+            //String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
+            //throw new Exception(msg, ex);
+            throw ex;
         } finally {
             if (oResultSet != null) {
                 oResultSet.close();

@@ -37,8 +37,6 @@ import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import net.adisan.helper.EncodingHelper;
-import net.adisan.helper.Log4jHelper;
-import net.adisan.helper.TraceHelper;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -47,14 +45,11 @@ import java.sql.Statement;
 
 public class Usuario1SpecificDaoImplementation extends GenericDaoImplementation {
 
+    //private final Logger oLogger = (Logger) LogManager.getLogger(this.getClass().getName());
     public Usuario1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("usuario", oPooledConnection, oPuserBean_security, strWhere);
     }
 
-//    @Override
-//    public boolean canGet(Integer id) throws Exception {
-//        return true;
-//    }
     @Override
     public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         return true;
@@ -72,13 +67,15 @@ public class Usuario1SpecificDaoImplementation extends GenericDaoImplementation 
     }
 
     public MetaBeanHelper getFromLoginAndPass(UsuarioSpecificBeanImplementation oUsuarioBean) throws Exception {
+        //TraceHelper.trace("GenericDaoImplementation", "getFromLoginAndPass", "object=" + ob);
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
         MetaBeanHelper oMetaBeanHelper = null;
-        strSQL += " AND login='" + oUsuarioBean.getLogin() + "'";
-        strSQL += " AND UPPER(password)='" + oUsuarioBean.getPassword().toUpperCase() + "'";
+        String sSQL = strSQL;
+        sSQL += " AND login='" + oUsuarioBean.getLogin() + "'";
+        sSQL += " AND UPPER(password)='" + oUsuarioBean.getPassword().toUpperCase() + "'";
         try {
-            oPreparedStatement = oConnection.prepareStatement(strSQL);
+            oPreparedStatement = oConnection.prepareStatement(sSQL);
             oResultSet = oPreparedStatement.executeQuery();
             if (oResultSet.next()) {
                 oUsuarioBean.setId(oResultSet.getInt("id"));
@@ -87,9 +84,10 @@ public class Usuario1SpecificDaoImplementation extends GenericDaoImplementation 
                 throw new Exception("UsuarioDao getFromLoginAndPass error");
             }
         } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
+            //String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
+            //Log4jHelper.errorLog(msg, ex);
+            //throw new Exception(msg, ex);
+            throw ex;
         } finally {
             if (oResultSet != null) {
                 oResultSet.close();
@@ -102,11 +100,11 @@ public class Usuario1SpecificDaoImplementation extends GenericDaoImplementation 
     }
 
     public Integer updatePassword(int id, String oldPass, String newPass) throws Exception {
-        TraceHelper.trace("updatePassword-GenericDaoImplementation(begin):object=" + ob);
+        //TraceHelper.trace("GenericDaoImplementation", "updatePassword", "object=" + ob);
         PreparedStatement oPreparedStatement = null;
         Integer iResult = 0;
         try {
-            strSQL = "UPDATE usuario ";
+            String strSQL = "UPDATE usuario ";
             strSQL += " SET ";
             strSQL += " password = " + EncodingHelper.quotate(newPass);
             strSQL += " WHERE id=? and password=? ";
@@ -116,23 +114,24 @@ public class Usuario1SpecificDaoImplementation extends GenericDaoImplementation 
             iResult = oPreparedStatement.executeUpdate();
             if (iResult < 1) {
                 String msg = this.getClass().getName() + ": set";
-                Log4jHelper.errorLog(msg);
+                //Log4jHelper.errorLog(msg);
                 throw new Exception(msg);
             }
         } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
+            //String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
+            //Log4jHelper.errorLog(msg, ex);
+            //throw new Exception(msg, ex);
+            throw ex;
         } finally {
             if (oPreparedStatement != null) {
                 oPreparedStatement.close();
             }
-            TraceHelper.trace("updatePassword-GenericDaoImplementation(end):object=" + ob);
         }
         return iResult;
     }
 
     public Integer getIDfromUser(String strLogin) throws Exception {
+        //TraceHelper.trace("GenericDaoImplementation", "getIDfromUser", "object=" + ob);
         Integer intResult = null;
         Statement oStatement = null;
         ResultSet oResultSet = null;
@@ -143,12 +142,13 @@ public class Usuario1SpecificDaoImplementation extends GenericDaoImplementation 
             if (oResultSet.next()) {
                 intResult = oResultSet.getInt("id");
             } else {
-                return 0;
+                throw new Exception("No tienes permiso para efectuar la operación");
             }
         } catch (SQLException ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
+//            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
+//            Log4jHelper.errorLog(msg, ex);
+//            throw new Exception(msg, ex);
+            throw ex;
         } finally {
             if (oResultSet != null) {
                 oResultSet.close();
@@ -161,6 +161,7 @@ public class Usuario1SpecificDaoImplementation extends GenericDaoImplementation 
     }
 
     public Integer getIDfromCodigoGrupo(String strCode) throws Exception {
+        //TraceHelper.trace("GenericDaoImplementation", "getIDfromCodigoGrupo", "object=" + ob);
         Integer intResult = null;
         Statement oStatement = null;
         ResultSet oResultSet = null;
@@ -171,12 +172,13 @@ public class Usuario1SpecificDaoImplementation extends GenericDaoImplementation 
             if (oResultSet.next()) {
                 intResult = oResultSet.getInt("id");
             } else {
-                return 0;
+                throw new Exception("No tienes permiso para efectuar la operación");
             }
         } catch (SQLException ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
+            //String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
+            //Log4jHelper.errorLog(msg, ex);
+            //throw new Exception(msg, ex);
+            throw ex;
         } finally {
             if (oResultSet != null) {
                 oResultSet.close();
@@ -189,6 +191,7 @@ public class Usuario1SpecificDaoImplementation extends GenericDaoImplementation 
     }
 
     public Integer activate(Integer id) throws Exception {
+        //TraceHelper.trace("GenericDaoImplementation", "activate", "object=" + ob);
         MetaBeanHelper oUsuarioMBH = this.get(id, 0);
         UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oUsuarioMBH.getBean();
         oUsuario.setActivo(1);
@@ -196,6 +199,7 @@ public class Usuario1SpecificDaoImplementation extends GenericDaoImplementation 
     }
 
     public Integer deactivate(Integer id) throws Exception {
+        //TraceHelper.trace("GenericDaoImplementation", "deactivate", "object=" + ob);
         MetaBeanHelper oUsuarioMBH = this.get(id, 0);
         UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oUsuarioMBH.getBean();
         oUsuario.setActivo(0);

@@ -42,7 +42,6 @@ import net.adisan.dao.specificimplementation.paciente.Paciente3SpecificDaoImplem
 import net.adisan.factory.BeanFactory;
 import net.adisan.factory.ConnectionFactory;
 import net.adisan.helper.GsonHelper;
-import net.adisan.helper.Log4jHelper;
 import net.adisan.helper.constant.ConnectionConstants;
 import net.adisan.service.genericimplementation.GenericServiceImplementation;
 import java.sql.Connection;

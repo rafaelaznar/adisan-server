@@ -40,13 +40,11 @@ import net.adisan.bean.specificimplementation.PacienteSpecificBeanImplementation
 import net.adisan.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
-import net.adisan.helper.Log4jHelper;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 public class Paciente4SpecificDaoImplementation extends GenericDaoImplementation {
 
+    //private final Logger oLogger = (Logger) LogManager.getLogger(this.getClass().getName());
     private Integer idCentrosanitario = 0;
     private Integer idUsuario = 0;
 
@@ -186,7 +184,7 @@ public class Paciente4SpecificDaoImplementation extends GenericDaoImplementation
         if (oPacienteBean.getId_usuario() == idUsuario) {
             return super.delete(oBean);
         } else {
-            return 0;
+            throw new Exception("No tienes permiso para efectuar la operación");
         }
     }
 }

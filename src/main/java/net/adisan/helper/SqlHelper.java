@@ -43,7 +43,7 @@ import java.util.Map;
 
 public class SqlHelper {
 
-    public static String buildSqlFilter(ArrayList<FilterBeanHelper> alFilter) throws ParseException {
+    public static String buildSqlFilter(ArrayList<FilterBeanHelper> alFilter) throws ParseException, Exception {
         String strSQLFilter = "";
         if (alFilter != null) {
             for (FilterBeanHelper oFilterBean : alFilter) {
@@ -61,7 +61,7 @@ public class SqlHelper {
         return fecha;
     }
 
-    private static String getFilterExpression(FilterBeanHelper temp) throws ParseException {
+    private static String getFilterExpression(FilterBeanHelper temp) throws ParseException, Exception {
 
         switch (temp.getOperation()) {
             //operations for date ----------------------------------------------
@@ -112,11 +112,11 @@ public class SqlHelper {
                 return temp.getLink() + " " + temp.getField() + " = " + temp.getValue() + " ";
             //------------------------------------------------------------------
             default:
-                throw new Error("Filter expression malformed. Operator not valid.");
+                throw new Exception("Filter expression malformed. Operator not valid.");
         }
     }
 
-    public static String buildSqlLimit(Long intTotalRegs, Integer intRegsPerPage, Integer intPageNumber) {
+    public static String buildSqlLimit(Long intTotalRegs, Integer intRegsPerPage, Integer intPageNumber) throws Exception {
         String SQLLimit = "";
         if (intRegsPerPage > 0 && intRegsPerPage < 10000) {
             if (intPageNumber > 0 && intPageNumber <= (ceil((intTotalRegs / intRegsPerPage) + 1))) {
@@ -124,6 +124,8 @@ public class SqlHelper {
             } else {
                 SQLLimit = " LIMIT 0 ";
             }
+        } else {
+             throw new Exception("Error in parameter: Registers per page. (1..9999)");
         }
         return SQLLimit;
     }

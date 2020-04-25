@@ -40,7 +40,7 @@ public class RegexConstants {
     public static final String code_Help = "mayúscula y letras o dígitos separados por guión";
     public static final String capscode = "[A-Z0-9_-]*";
     public static final String capscode_Help = "mayúsculas o dígitos separados por guión";      
-    public static final String capitalizedName = "([A-Z]{1}[a-zçñáéíóúàèòü,\\-\\ ]+[\\s]*)+";
+    public static final String capitalizedName = "([A-Z]{1}[A-Za-zÀÁÈÉÍÒÓÚçñáéíóúàèòü,\\.\\-\\ ]+[\\s]*)+";
     public static final String capitalizedName_Help = "una o varias palabras que todas comienzan en mayúscula";
     public static final String nameWithEndingNumbers = "[a-z][a-z0-9 ]+";
     public static final String nameWithEndingNumbers_Help = "un texto en minúsculas que puede acabar en dígitos";
@@ -48,6 +48,6 @@ public class RegexConstants {
     public static final String email_Help = "un email válido"; // see \\ is \    
     public static final String capitalizedSentence = "[A-Z]([^\\s]*\\s?)+";
     public static final String capitalizedSentence_Help = "una frase que comienza en mayúscula";
-    public static final String direction = "[A-Z]{1}[A-Aa-z0-9ºçñáéíóúàèòü\\-\\ ]*";
+    public static final String direction = "[A-Z]{1}[A-Za-z0-9ºÀÁÈÉÍÒÓÚçñáéíóúàèòü\\.\\,\\-\\ ]*";
     public static final String directionSentence_Help = "una direccion que comienza en mayúscula";
 }

@@ -37,11 +37,11 @@ import net.adisan.bean.specificimplementation.CentrosanitarioSpecificBeanImpleme
 import net.adisan.bean.specificimplementation.GrupoSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
-import net.adisan.helper.Log4jHelper;
 import java.sql.Connection;
 
 public class Usuario4SpecificDaoImplementation extends GenericDaoImplementation {
 
+    //private final Logger oLogger = (Logger) LogManager.getLogger(this.getClass().getName());
     private Integer idCentrosanitario = null;
     private Integer idUsuario = 0;
 
@@ -74,13 +74,11 @@ public class Usuario4SpecificDaoImplementation extends GenericDaoImplementation 
                     strCountSQL += " " + strWhere + " ";
                 }
             } else {
-                String msg = this.getClass().getName() + ": constuctor: Unauthorized access";
-                Log4jHelper.errorLog(msg);
+                String msg = this.getClass().getName() + ": constuctor: Unauthorized access";            
                 throw new Exception(msg);
             }
         } else {
             String msg = this.getClass().getName() + ": constuctor: Unauthorized access";
-            Log4jHelper.errorLog(msg);
             throw new Exception(msg);
         }
     }  

@@ -40,6 +40,7 @@ public class GsonHelper {
     public static Gson getGson() throws Exception {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setDateFormat("dd/MM/yyyy HH:mm");
+        //gsonBuilder.serializeNulls();  
         Gson oGson = gsonBuilder.excludeFieldsWithoutExposeAnnotation().create();
         return oGson;
     }

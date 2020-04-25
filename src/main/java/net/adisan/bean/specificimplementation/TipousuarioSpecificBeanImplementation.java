@@ -43,7 +43,7 @@ import net.adisan.helper.constant.RegexConstants;
         TableName = "tipousuario",
         SingularDescription = "Tipo de usuario",
         PluralDescription = "Tipos de usuarios",
-        Icon = "fa fa-user-o",
+        Icon = "fa fa-user-tie",
         Type = EnumHelper.SourceType.Table
 )
 public class TipousuarioSpecificBeanImplementation extends GenericBeanImplementation {

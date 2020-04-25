@@ -39,14 +39,13 @@ import net.adisan.bean.specificimplementation.TipousuarioSpecificBeanImplementat
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import net.adisan.helper.EncodingHelper;
-import net.adisan.helper.Log4jHelper;
-import net.adisan.helper.TraceHelper;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 
 public class Usuario3SpecificDaoImplementation extends GenericDaoImplementation {
 
+    //private final Logger oLogger = (Logger) LogManager.getLogger(this.getClass().getName());
     private Integer idCentrosanitario = null;
     private Integer idUsuario = 0;
 
@@ -80,12 +79,10 @@ public class Usuario3SpecificDaoImplementation extends GenericDaoImplementation 
                 }
             } else {
                 String msg = this.getClass().getName() + ": constuctor: Unauthorized access";
-                Log4jHelper.errorLog(msg);
                 throw new Exception(msg);
             }
         } else {
             String msg = this.getClass().getName() + ": constuctor: Unauthorized access";
-            Log4jHelper.errorLog(msg);
             throw new Exception(msg);
         }
     }
@@ -156,7 +153,7 @@ public class Usuario3SpecificDaoImplementation extends GenericDaoImplementation 
             oNewUser.setId_centrosanitario(oSessionUser.getId_centrosanitario());
             return super.create(oBean);
         } else {
-            return 0;
+            throw new Exception("No tienes permiso para efectuar la operación");
         }
     }
 
@@ -178,51 +175,57 @@ public class Usuario3SpecificDaoImplementation extends GenericDaoImplementation 
                 oUpdateUser.setId_centrosanitario(oSessionUser.getId_centrosanitario());
                 return super.update(oBean);
             } else {
-                return 0;
+                throw new Exception("No tienes permiso para efectuar la operación");
             }
         } else {
-            return 0;
+            throw new Exception("No tienes permiso para efectuar la operación");
         }
     }
 
     @Override
     public Integer delete(GenericBeanImplementation oBean) throws Exception {
+        //TraceHelper.trace("Usuario3SpecificDaoImplementation", "delete", "object=" + ob);
         if (alumnoIsMine(oBean.getId())) {
             return super.delete(oBean);
         } else {
-            return 0;
+            //TraceHelper.traceError(this.getClass().getName() + ".delete ob:" + ob + " Can't delete: only allowed to delete your own students");
+            throw new Exception("Can't delete: only allowed to delete your own students");
         }
     }
 
     public Integer activate(Integer id) throws Exception {
+        //TraceHelper.trace("Usuario3SpecificDaoImplementation", "activate", "object=" + ob);
         if (alumnoIsMine(id)) {
             MetaBeanHelper oUsuarioMBH = this.get(id, 0);
             UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oUsuarioMBH.getBean();
             oUsuario.setActivo(1);
             return this.update(oUsuario);
         } else {
-            return 0;
+            //TraceHelper.traceError(this.getClass().getName() + ".activate ob:" + ob + " Can't activate: only allowed to deactivate your own students");
+            throw new Exception("Can't activate: only allowed to activate your own students");
         }
     }
 
     public Integer deactivate(Integer id) throws Exception {
+        //TraceHelper.trace("Usuario3SpecificDaoImplementation", "deactivate", "object=" + ob);
         if (alumnoIsMine(id)) {
             MetaBeanHelper oUsuarioMBH = this.get(id, 0);
             UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oUsuarioMBH.getBean();
             oUsuario.setActivo(0);
             return this.update(oUsuario);
         } else {
-            return 0;
+            //TraceHelper.traceError(this.getClass().getName() + ".deactivate ob:" + ob + " Can't deactivate: only allowed to deactivate your own students");
+            throw new Exception("Can't deactivate: only allowed to deactivate your own students");
         }
     }
 
     public Integer updatePassword(int id, String oldPass, String newPass) throws Exception {
-        TraceHelper.trace("updatePassword-GenericDaoImplementation(begin):object=" + ob);
+        //TraceHelper.trace("Usuario3SpecificDaoImplementation", "updatePassword", "object=" + ob);
         if (this.alumnoIsMine(id) || idUsuario == id) {
             PreparedStatement oPreparedStatement = null;
             Integer iResult = 0;
             try {
-                strSQL = "UPDATE usuario ";
+                String strSQL = "UPDATE usuario ";
                 strSQL += " SET ";
                 strSQL += " password = " + EncodingHelper.quotate(newPass);
                 strSQL += " WHERE id=? and password=? ";
@@ -232,24 +235,20 @@ public class Usuario3SpecificDaoImplementation extends GenericDaoImplementation 
                 iResult = oPreparedStatement.executeUpdate();
                 if (iResult < 1) {
                     String msg = this.getClass().getName() + ": set";
-                    Log4jHelper.errorLog(msg);
                     throw new Exception(msg);
                 }
             } catch (Exception ex) {
-                String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-                Log4jHelper.errorLog(msg, ex);
-                throw new Exception(msg, ex);
+                throw ex;
             } finally {
                 if (oPreparedStatement != null) {
                     oPreparedStatement.close();
                 }
-                TraceHelper.trace("updatePassword-GenericDaoImplementation(end):object=" + ob);
             }
             return iResult;
         } else {
-            throw new Exception("Can't reset password: not mine nor my student");
+            //TraceHelper.traceError(this.getClass().getName() + ".update ob:" + ob + " Can't reset password: not mine nor my student's pass");
+            throw new Exception("Can't reset password: not mine nor my student's pass");
         }
-
     }
 
 }

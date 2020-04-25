@@ -43,7 +43,6 @@ import net.adisan.factory.BeanFactory;
 import net.adisan.factory.ConnectionFactory;
 import net.adisan.helper.EncodingHelper;
 import net.adisan.helper.GsonHelper;
-import net.adisan.helper.Log4jHelper;
 import net.adisan.factory.DaoFactory;
 import net.adisan.helper.ParameterHelper;
 import net.adisan.helper.constant.ConfigurationConstants;
@@ -86,9 +85,7 @@ public abstract class GenericServiceImplementation implements ServiceInterface {
                 alMeta.put("metaProperties", oDao.getPropertiesMetaData());
                 oReplyBean = new ReplyBeanHelper(200, GsonHelper.getGson().toJson(alMeta));
             } catch (Exception ex) {
-                String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-                Log4jHelper.errorLog(msg, ex);
-                throw new Exception(msg, ex);
+                throw ex;                
             }
             return oReplyBean;
         } else {
@@ -106,9 +103,7 @@ public abstract class GenericServiceImplementation implements ServiceInterface {
                 String strJson = GsonHelper.getGson().toJson(oDao.getObjectMetaData());
                 oReplyBean = new ReplyBeanHelper(200, strJson);
             } catch (Exception ex) {
-                String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-                Log4jHelper.errorLog(msg, ex);
-                throw new Exception(msg, ex);
+                throw ex;
             }
             return oReplyBean;
         } else {
@@ -126,9 +121,7 @@ public abstract class GenericServiceImplementation implements ServiceInterface {
                 String strJson = GsonHelper.getGson().toJson(oDao.getPropertiesMetaData());
                 oReplyBean = new ReplyBeanHelper(200, strJson);
             } catch (Exception ex) {
-                String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-                Log4jHelper.errorLog(msg, ex);
-                throw new Exception(msg, ex);
+                throw ex;
             }
             return oReplyBean;
         } else {
@@ -160,9 +153,7 @@ public abstract class GenericServiceImplementation implements ServiceInterface {
                 String strJson = GsonHelper.getGson().toJson(oMetaBeanHelper);
                 oReplyBean = new ReplyBeanHelper(200, strJson);
             } catch (Exception ex) {
-                String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-                Log4jHelper.errorLog(msg, ex);
-                throw new Exception(msg, ex);
+                throw ex;
             } finally {
                 if (oConnection != null) {
                     oConnection.close();
@@ -197,9 +188,7 @@ public abstract class GenericServiceImplementation implements ServiceInterface {
                 String strJson = GsonHelper.getGson().toJson(lResult);
                 oReplyBean = new ReplyBeanHelper(200, strJson);
             } catch (Exception ex) {
-                String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-                Log4jHelper.errorLog(msg, ex);
-                throw new Exception(msg, ex);
+                throw ex;
             } finally {
                 if (oConnection != null) {
                     oConnection.close();
@@ -236,9 +225,7 @@ public abstract class GenericServiceImplementation implements ServiceInterface {
                 String strJson = GsonHelper.getGson().toJson(oMetaBeanHelper);
                 oReplyBean = new ReplyBeanHelper(200, strJson);
             } catch (Exception ex) {
-                String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-                Log4jHelper.errorLog(msg, ex);
-                throw new Exception(msg, ex);
+                throw ex;
             } finally {
                 if (oConnection != null) {
                     oConnection.close();
@@ -273,9 +260,7 @@ public abstract class GenericServiceImplementation implements ServiceInterface {
                 String strJson = oGson.toJson(lResult);
                 oReplyBean = new ReplyBeanHelper(200, strJson);
             } catch (Exception ex) {
-                String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-                Log4jHelper.errorLog(msg, ex);
-                throw new Exception(msg, ex);
+                throw ex;
             } finally {
                 if (oConnection != null) {
                     oConnection.close();
@@ -308,9 +293,7 @@ public abstract class GenericServiceImplementation implements ServiceInterface {
                 String strJson = GsonHelper.getGson().toJson(oMetaBeanHelper);
                 oReplyBean = new ReplyBeanHelper(200, strJson);
             } catch (Exception ex) {
-                String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-                Log4jHelper.errorLog(msg, ex);
-                throw new Exception(msg, ex);
+                throw ex;
             } finally {
                 if (oConnection != null) {
                     oConnection.close();
@@ -346,9 +329,7 @@ public abstract class GenericServiceImplementation implements ServiceInterface {
             String strJson = oGson.toJson(iResult);
             oReplyBean = new ReplyBeanHelper(200, strJson);
         } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
+                throw ex;
         } finally {
             if (oConnection != null) {
                 oConnection.close();
@@ -403,9 +384,7 @@ public abstract class GenericServiceImplementation implements ServiceInterface {
                 String strJson = oGson.toJson(iResult);
                 oReplyBean = new ReplyBeanHelper(200, strJson);
             } catch (Exception ex) {
-                String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-                Log4jHelper.errorLog(msg, ex);
-                throw new Exception(msg, ex);
+                throw ex;
             } finally {
                 if (oConnection != null) {
                     oConnection.close();
@@ -435,9 +414,7 @@ public abstract class GenericServiceImplementation implements ServiceInterface {
                 String strJson = GsonHelper.getGson().toJson(oMetaBeanHelper);
                 oReplyBean = new ReplyBeanHelper(200, strJson);
             } catch (Exception ex) {
-                String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-                Log4jHelper.errorLog(msg, ex);
-                throw new Exception(msg, ex);
+                throw ex;
             } finally {
                 if (oConnection != null) {
                     oConnection.close();

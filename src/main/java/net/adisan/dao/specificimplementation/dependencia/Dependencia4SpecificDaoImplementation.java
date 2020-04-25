@@ -39,13 +39,15 @@ import net.adisan.bean.specificimplementation.GrupoSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
-import net.adisan.helper.Log4jHelper;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 
 public class Dependencia4SpecificDaoImplementation extends GenericDaoImplementation {
 
+    //private final Logger oLogger = (Logger) LogManager.getLogger(this.getClass().getName());
     private Integer idCentrosanitario = 0;
     private Integer idUsuario = 0;
 
@@ -64,20 +66,18 @@ public class Dependencia4SpecificDaoImplementation extends GenericDaoImplementat
                 CentrosanitarioSpecificBeanImplementation oCentroSanitario = (CentrosanitarioSpecificBeanImplementation) oProfesor.getObj_centrosanitario().getBean();
                 idCentrosanitario = oCentroSanitario.getId();
                 strSQLini = "FROM dependencia WHERE id_centrosanitario = " + idCentrosanitario;
-                strSQL = "SELECT * " + strSQLini;
-                strCountSQL = "SELECT COUNT(*) " + strSQLini;
+                String strSQL = "SELECT * " + strSQLini;
+                String strCountSQL = "SELECT COUNT(*) " + strSQLini;
                 if (strWhere != null) {
                     strSQL += " " + strWhere + " ";
                     strCountSQL += " " + strWhere + " ";
                 }
             } else {
-                String msg = this.getClass().getName() + ": constuctor: Unauthorized access";
-                Log4jHelper.errorLog(msg);
+                String msg = this.getClass().getName() + ": constuctor: Unauthorized access";                
                 throw new Exception(msg);
             }
         } else {
             String msg = this.getClass().getName() + ": constuctor: Unauthorized access";
-            Log4jHelper.errorLog(msg);
             throw new Exception(msg);
         }
 

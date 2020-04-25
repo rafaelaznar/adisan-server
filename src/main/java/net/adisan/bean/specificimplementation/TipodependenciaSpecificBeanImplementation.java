@@ -43,7 +43,7 @@ import net.adisan.helper.constant.RegexConstants;
         TableName = "tipodependencia",
         SingularDescription = "Tipo de dependencia",
         PluralDescription = "Tipo de dependencias",
-        Icon = "fa fa-yelp",
+        Icon = "fa fa-border-all",
         Type = EnumHelper.SourceType.Table
 )
 

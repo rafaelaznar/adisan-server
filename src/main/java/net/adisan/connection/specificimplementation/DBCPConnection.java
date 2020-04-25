@@ -34,7 +34,6 @@ package net.adisan.connection.specificimplementation;
 
 import net.adisan.connection.publicinterface.ConnectionInterface;
 import net.adisan.helper.constant.ConnectionConstants;
-import net.adisan.helper.Log4jHelper;
 import java.sql.Connection;
 import java.sql.SQLException;
 import org.apache.commons.dbcp.BasicDataSource;
@@ -58,9 +57,7 @@ public class DBCPConnection implements ConnectionInterface {
             dataSource.setMaxIdle(10);
             oConnection = dataSource.getConnection();
         } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
+                throw ex;
         }
         return oConnection;
     }
@@ -75,9 +72,7 @@ public class DBCPConnection implements ConnectionInterface {
                 dataSource.close();
             }
         } catch (SQLException ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
-            Log4jHelper.errorLog(msg, ex);
-            throw new Exception(msg, ex);
+            throw ex;
         }
     }
 }
