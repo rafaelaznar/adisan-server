@@ -104,7 +104,7 @@ public class EpisodioSpecificBeanImplementation extends GenericBeanImplementatio
     )
     private Double importe;
 
-    @Expose(deserialize = false)
+    @Expose
     @MetaPropertyBeanInterface(
             ShortName = "Fin.",
             LongName = "Finalizado",
@@ -115,7 +115,7 @@ public class EpisodioSpecificBeanImplementation extends GenericBeanImplementatio
     )
     private Integer finalizado;
 
-    @Expose(deserialize = false)
+    @Expose
     @MetaPropertyBeanInterface(
             ShortName = "Bloq.",
             LongName = "Bloqueado",
@@ -180,7 +180,6 @@ public class EpisodioSpecificBeanImplementation extends GenericBeanImplementatio
 //            IsVisible = false
 //    )
 //    private MetaBeanHelper obj_factura = null;
-
     @Expose(serialize = false)
     @MetaPropertyBeanInterface(
             Type = EnumHelper.FieldType.ForeignId
@@ -410,8 +409,8 @@ public class EpisodioSpecificBeanImplementation extends GenericBeanImplementatio
             MaxLength = 100,
             IsVisible = false
     )
-    private String tratamiento_recomendaciones;    
-    
+    private String tratamiento_recomendaciones;
+
     @Expose
     @MetaPropertyBeanInterface(
             ShortName = "Evo Com.",
@@ -491,7 +490,6 @@ public class EpisodioSpecificBeanImplementation extends GenericBeanImplementatio
 //            IsVisible = false
 //    )
 //    private String tratamiento_recomendaciones;
-
     @Expose
     @MetaPropertyBeanInterface(
             ShortName = "Tra far.",
@@ -560,6 +558,16 @@ public class EpisodioSpecificBeanImplementation extends GenericBeanImplementatio
             References = "subepisodio"
     )
     private Integer link_subepisodio = null;
+
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Diagnósticos",
+            LongName = "Diagnósticos del episodio",
+            Description = "Diagnósticos del episodio",
+            Type = EnumHelper.FieldType.Link,
+            References = "episodiodiagnostico"
+    )
+    private Integer link_episodiodiagnostico = null;
 
     //    @Expose(deserialize = false)
 //    @MetaPropertyBeanInterface(
@@ -681,7 +689,6 @@ public class EpisodioSpecificBeanImplementation extends GenericBeanImplementatio
 //    public void setId_factura(Integer id_factura) {
 //        this.id_factura = id_factura;
 //    }
-
     public Integer getId_dependencia() {
         return id_dependencia;
     }
@@ -833,7 +840,6 @@ public class EpisodioSpecificBeanImplementation extends GenericBeanImplementatio
 //    public void setObj_factura(MetaBeanHelper obj_factura) {
 //        this.obj_factura = obj_factura;
 //    }
-
     public MetaBeanHelper getObj_dependencia() {
         return obj_dependencia;
     }
@@ -906,4 +912,12 @@ public class EpisodioSpecificBeanImplementation extends GenericBeanImplementatio
         this.link_subepisodio = link_subepisodio;
     }
 
+    public Integer getLink_episodiodiagnostico() {
+        return link_episodiodiagnostico;
+    }
+
+    public void setLink_episodiodiagnostico(Integer link_episodiodiagnostico) {
+        this.link_episodiodiagnostico = link_episodiodiagnostico;
+    }
+        
 }

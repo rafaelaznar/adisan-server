@@ -32,9 +32,6 @@
  */
 package net.adisan.service.specificimplementation;
 
-import net.adisan.bean.helper.MetaBeanHelper;
-import net.adisan.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
-import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.service.genericimplementation.GenericServiceImplementation;
 import javax.servlet.http.HttpServletRequest;
 

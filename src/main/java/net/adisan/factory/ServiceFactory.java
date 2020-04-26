@@ -59,6 +59,11 @@ import net.adisan.service.specificimplementation.TiposervicioSpecificServiceImpl
 import net.adisan.service.specificimplementation.TipousuarioSpecificServiceImplementation;
 import net.adisan.service.specificimplementation.UsuarioSpecificServiceImplementation;
 import javax.servlet.http.HttpServletRequest;
+import net.adisan.service.specificimplementation.DiagnosticoSpecificServiceImplementation;
+import net.adisan.service.specificimplementation.EpisodiodiagnosticoSpecificServiceImplementation;
+import net.adisan.service.specificimplementation.PresenciadiagnosticoSpecificServiceImplementation;
+import net.adisan.service.specificimplementation.PresenciadiagnosticoingresoSpecificServiceImplementation;
+import net.adisan.service.specificimplementation.TipodiagnosticoSpecificServiceImplementation;
 
 public class ServiceFactory {
 
@@ -243,12 +248,12 @@ public class ServiceFactory {
                     case "get":
                         oReplyBean = oTipousuarioService.get();
                         break;
-                    case "set":
-                        oReplyBean = oTipousuarioService.set();
-                        break;
-                    case "remove":
-                        oReplyBean = oTipousuarioService.remove();
-                        break;
+//                    case "set":
+//                        oReplyBean = oTipousuarioService.set();
+//                        break;
+//                    case "remove":
+//                        oReplyBean = oTipousuarioService.remove();
+//                        break;
                     case "getpage":
                         oReplyBean = oTipousuarioService.getPage();
                         break;
@@ -1031,6 +1036,184 @@ public class ServiceFactory {
                         break;
                 }
                 break;
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            case "diagnostico":
+                DiagnosticoSpecificServiceImplementation oDiagnosticoService = new DiagnosticoSpecificServiceImplementation(oRequest);
+                switch (op) {
+                    case "getmetadata":
+                        oReplyBean = oDiagnosticoService.getMetaData();
+                        break;
+                    case "getobjectmetadata":
+                        oReplyBean = oDiagnosticoService.getObjectMetaData();
+                        break;
+                    case "getpropertiesmetadata":
+                        oReplyBean = oDiagnosticoService.getPropertiesMetaData();
+                        break;
+                    case "get":
+                        oReplyBean = oDiagnosticoService.get();
+                        break;
+                    case "set":
+                        oReplyBean = oDiagnosticoService.set();
+                        break;
+                    case "remove":
+                        oReplyBean = oDiagnosticoService.remove();
+                        break;
+                    case "getpage":
+                        oReplyBean = oDiagnosticoService.getPage();
+                        break;
+                    case "getcount":
+                        oReplyBean = oDiagnosticoService.getCount();
+                        break;
+                    default:
+                        oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Operation not found : Please contact your administrator"));
+                        break;
+                }
+                break;      
+            case "presenciadiagnostico":
+                PresenciadiagnosticoSpecificServiceImplementation oPresenciadiagnosticoService = new PresenciadiagnosticoSpecificServiceImplementation(oRequest);
+                switch (op) {
+                    case "getmetadata":
+                        oReplyBean = oPresenciadiagnosticoService.getMetaData();
+                        break;
+                    case "getobjectmetadata":
+                        oReplyBean = oPresenciadiagnosticoService.getObjectMetaData();
+                        break;
+                    case "getpropertiesmetadata":
+                        oReplyBean = oPresenciadiagnosticoService.getPropertiesMetaData();
+                        break;
+                    case "get":
+                        oReplyBean = oPresenciadiagnosticoService.get();
+                        break;
+                    case "set":
+                        oReplyBean = oPresenciadiagnosticoService.set();
+                        break;
+                    case "remove":
+                        oReplyBean = oPresenciadiagnosticoService.remove();
+                        break;
+                    case "getpage":
+                        oReplyBean = oPresenciadiagnosticoService.getPage();
+                        break;
+                    case "getcount":
+                        oReplyBean = oPresenciadiagnosticoService.getCount();
+                        break;
+                    default:
+                        oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Operation not found : Please contact your administrator"));
+                        break;
+                }
+                break;                      
+            case "presenciadiagnosticoingreso":
+                PresenciadiagnosticoingresoSpecificServiceImplementation oPresenciadiagnosticoingresoService = new PresenciadiagnosticoingresoSpecificServiceImplementation(oRequest);
+                switch (op) {
+                    case "getmetadata":
+                        oReplyBean = oPresenciadiagnosticoingresoService.getMetaData();
+                        break;
+                    case "getobjectmetadata":
+                        oReplyBean = oPresenciadiagnosticoingresoService.getObjectMetaData();
+                        break;
+                    case "getpropertiesmetadata":
+                        oReplyBean = oPresenciadiagnosticoingresoService.getPropertiesMetaData();
+                        break;
+                    case "get":
+                        oReplyBean = oPresenciadiagnosticoingresoService.get();
+                        break;
+                    case "set":
+                        oReplyBean = oPresenciadiagnosticoingresoService.set();
+                        break;
+                    case "remove":
+                        oReplyBean = oPresenciadiagnosticoingresoService.remove();
+                        break;
+                    case "getpage":
+                        oReplyBean = oPresenciadiagnosticoingresoService.getPage();
+                        break;
+                    case "getcount":
+                        oReplyBean = oPresenciadiagnosticoingresoService.getCount();
+                        break;
+                    default:
+                        oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Operation not found : Please contact your administrator"));
+                        break;
+                }
+                break;                      
+            case "tipodiagnostico":
+                TipodiagnosticoSpecificServiceImplementation oTipodiagnosticoService = new TipodiagnosticoSpecificServiceImplementation(oRequest);
+                switch (op) {
+                    case "getmetadata":
+                        oReplyBean = oTipodiagnosticoService.getMetaData();
+                        break;
+                    case "getobjectmetadata":
+                        oReplyBean = oTipodiagnosticoService.getObjectMetaData();
+                        break;
+                    case "getpropertiesmetadata":
+                        oReplyBean = oTipodiagnosticoService.getPropertiesMetaData();
+                        break;
+                    case "get":
+                        oReplyBean = oTipodiagnosticoService.get();
+                        break;
+                    case "set":
+                        oReplyBean = oTipodiagnosticoService.set();
+                        break;
+                    case "remove":
+                        oReplyBean = oTipodiagnosticoService.remove();
+                        break;
+                    case "getpage":
+                        oReplyBean = oTipodiagnosticoService.getPage();
+                        break;
+                    case "getcount":
+                        oReplyBean = oTipodiagnosticoService.getCount();
+                        break;
+                    default:
+                        oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Operation not found : Please contact your administrator"));
+                        break;
+                }
+                break;                                                                                      
+            case "episodiodiagnostico":
+                EpisodiodiagnosticoSpecificServiceImplementation oEpisodiodiagnosticoService = new EpisodiodiagnosticoSpecificServiceImplementation(oRequest);
+                switch (op) {
+                    case "getmetadata":
+                        oReplyBean = oEpisodiodiagnosticoService.getMetaData();
+                        break;
+                    case "getobjectmetadata":
+                        oReplyBean = oEpisodiodiagnosticoService.getObjectMetaData();
+                        break;
+                    case "getpropertiesmetadata":
+                        oReplyBean = oEpisodiodiagnosticoService.getPropertiesMetaData();
+                        break;
+                    case "get":
+                        oReplyBean = oEpisodiodiagnosticoService.get();
+                        break;
+                    case "set":
+                        oReplyBean = oEpisodiodiagnosticoService.set();
+                        break;
+                    case "remove":
+                        oReplyBean = oEpisodiodiagnosticoService.remove();
+                        break;
+                    case "getpage":
+                        oReplyBean = oEpisodiodiagnosticoService.getPage();
+                        break;
+                    case "getcount":
+                        oReplyBean = oEpisodiodiagnosticoService.getCount();
+                        break;
+                    case "getcountx":
+                        oReplyBean = oEpisodiodiagnosticoService.getCountX();
+                        break;
+                    case "getpagex":
+                        oReplyBean = oEpisodiodiagnosticoService.getPageX();
+                        break;
+                    default:
+                        oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Operation not found : Please contact your administrator"));
+                        break;
+                }
+                break;
+                
+                
+                        
             default:
                 oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Object not found : Please contact your administrator"));
                 break;

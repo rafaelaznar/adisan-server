@@ -114,6 +114,19 @@ public class UsuarioSpecificServiceImplementation extends GenericServiceImplemen
             hmObjectsMetaData.put("dependencia", oDao.getObjectMetaData());
             oDao = DaoFactory.getDao("medico", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
             hmObjectsMetaData.put("medico", oDao.getObjectMetaData());
+            
+            
+            oDao = DaoFactory.getDao("episodiodiagnostico", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            hmObjectsMetaData.put("episodiodiagnostico", oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("tipodiagnostico", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            hmObjectsMetaData.put("tipodiagnostico", oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("diagnostico", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            hmObjectsMetaData.put("diagnostico", oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("presenciadiagnostico", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            hmObjectsMetaData.put("presenciadiagnostico", oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("presenciadiagnosticoingreso", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            hmObjectsMetaData.put("presenciadiagnosticoingreso", oDao.getObjectMetaData());            
+            
             String strJson = GsonHelper.getGson().toJson(hmObjectsMetaData);
             oReplyBean = new ReplyBeanHelper(200, strJson);
             return oReplyBean;

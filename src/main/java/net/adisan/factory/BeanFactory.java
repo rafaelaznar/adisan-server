@@ -64,6 +64,11 @@ import net.adisan.bean.specificimplementation.TipodependenciaSpecificBeanImpleme
 import net.adisan.bean.specificimplementation.TiposervicioSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.ViaSpecificBeanImplementation;
 import net.adisan.bean.publicinterface.BeanInterface;
+import net.adisan.bean.specificimplementation.DiagnosticoSpecificBeanImplementation;
+import net.adisan.bean.specificimplementation.EpisodiodiagnosticoSpecificBeanImplementation;
+import net.adisan.bean.specificimplementation.PresenciadiagnosticoSpecificBeanImplementation;
+import net.adisan.bean.specificimplementation.PresenciadiagnosticoingresoSpecificBeanImplementation;
+import net.adisan.bean.specificimplementation.TipodiagnosticoSpecificBeanImplementation;
 
 public class BeanFactory {
 
@@ -164,6 +169,21 @@ public class BeanFactory {
             case "centrosanitariostatistics":
                 oBean = new CentrosanitarioStatisticsSpecificBeanImplementation();
                 break;
+            case "episodiodiagnostico":
+                oBean = new EpisodiodiagnosticoSpecificBeanImplementation();
+                break;
+            case "tipodiagnostico":
+                oBean = new TipodiagnosticoSpecificBeanImplementation();
+                break;
+            case "diagnostico":
+                oBean = new DiagnosticoSpecificBeanImplementation();
+                break;
+            case "presenciadiagnostico":
+                oBean = new PresenciadiagnosticoSpecificBeanImplementation();
+                break;
+            case "presenciadiagnosticoingreso":
+                oBean = new PresenciadiagnosticoingresoSpecificBeanImplementation();
+                break;                
             default:
 
                 //  oReplyBean = new ReplyBean(500, "Object not found : Please contact your administrator");

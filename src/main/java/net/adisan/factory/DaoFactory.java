@@ -67,13 +67,12 @@ import net.adisan.dao.specificimplementation.paciente.Paciente1SpecificDaoImplem
 import net.adisan.dao.specificimplementation.paciente.Paciente5SpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.servicio.Servicio0SpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.tipopago.Tipopago1SpecificDaoImplementation;
-import net.adisan.dao.specificimplementation.sexo.Sexo1SpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.tipodependencia.Tipodependencia1SpecificDaoImplementation;
-import net.adisan.dao.specificimplementation.episodio.Episodio0SpecificDaoImplementation;
-import net.adisan.dao.specificimplementation.episodio.Episodio1SpecificDaoImplementation;
-import net.adisan.dao.specificimplementation.episodio.Episodio3SpecificDaoImplementation;
-import net.adisan.dao.specificimplementation.episodio.Episodio4SpecificDaoImplementation;
-import net.adisan.dao.specificimplementation.episodio.Episodio5SpecificDaoImplementation;
+import net.adisan.dao.specificimplementation.episodiodiagnostico.Episodiodiagnostico0SpecificDaoImplementation;
+import net.adisan.dao.specificimplementation.episodiodiagnostico.Episodiodiagnostico1SpecificDaoImplementation;
+import net.adisan.dao.specificimplementation.episodiodiagnostico.Episodiodiagnostico3SpecificDaoImplementation;
+import net.adisan.dao.specificimplementation.episodiodiagnostico.Episodiodiagnostico4SpecificDaoImplementation;
+import net.adisan.dao.specificimplementation.episodiodiagnostico.Episodiodiagnostico5SpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.subepisodio.Subepisodio0SpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.subepisodio.Subepisodio4SpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.subepisodio.Subepisodio5SpecificDaoImplementation;
@@ -88,7 +87,7 @@ import net.adisan.dao.specificimplementation.medico.Medico4SpecificDaoImplementa
 import net.adisan.dao.specificimplementation.medico.Medico5SpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.categoriaprofesional.Categoriaprofesional0SpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.especialidad.Especialidad0SpecificDaoImplementation;
-import net.adisan.dao.specificimplementation.sexo.Sexo0SpecificDaoImplementation;
+import net.adisan.dao.specificimplementation.diagnostico.Diagnostico0SpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.tipopago.Tipopago0SpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.servicio.Servicio1SpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.tiposervicio.Tiposervicio0SpecificDaoImplementation;
@@ -110,6 +109,19 @@ import net.adisan.dao.specificimplementation.factory.NombremasculinoSpecificDaoI
 import net.adisan.dao.specificimplementation.factory.ProvinciaSpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.factory.ViaSpecificDaoImplementation;
 import java.sql.Connection;
+import net.adisan.dao.specificimplementation.episodio.Episodio0SpecificDaoImplementation;
+import net.adisan.dao.specificimplementation.episodio.Episodio1SpecificDaoImplementation;
+import net.adisan.dao.specificimplementation.episodio.Episodio3SpecificDaoImplementation;
+import net.adisan.dao.specificimplementation.episodio.Episodio4SpecificDaoImplementation;
+import net.adisan.dao.specificimplementation.episodio.Episodio5SpecificDaoImplementation;
+import net.adisan.dao.specificimplementation.presenciadiagnostico.Presenciadiagnostico0SpecificDaoImplementation;
+import net.adisan.dao.specificimplementation.presenciadiagnostico.Presenciadiagnostico1SpecificDaoImplementation;
+import net.adisan.dao.specificimplementation.presenciadiagnosticoingreso.Presenciadiagnosticoingreso0SpecificDaoImplementation;
+import net.adisan.dao.specificimplementation.presenciadiagnosticoingreso.Presenciadiagnosticoingreso1SpecificDaoImplementation;
+import net.adisan.dao.specificimplementation.sexo.Sexo0SpecificDaoImplementation;
+import net.adisan.dao.specificimplementation.sexo.Sexo1SpecificDaoImplementation;
+import net.adisan.dao.specificimplementation.tipodiagnostico.Tipodiagnostico0SpecificDaoImplementation;
+import net.adisan.dao.specificimplementation.tipodiagnostico.Tipodiagnostico1SpecificDaoImplementation;
 
 public class DaoFactory {
 
@@ -553,6 +565,84 @@ public class DaoFactory {
                     } else {
                         oDao = (DaoInterface) new Circunstanciasalta0SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
                     }
+                }
+                break;                
+            case "presenciadiagnostico":
+                if (oPuserBean_security == null) {
+                    oDao = (DaoInterface) new Presenciadiagnostico0SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                } else {
+                    UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
+                    MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_tipousuario();
+                    TipousuarioSpecificBeanImplementation oTipoUsuario = (TipousuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
+                    Integer idTipousuario = oTipoUsuario.getId();
+                    if (idTipousuario == 1) {
+                        oDao = (DaoInterface) new Presenciadiagnostico1SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                    } else {
+                        oDao = (DaoInterface) new Presenciadiagnostico0SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                    }
+                }
+                break;                                
+            case "presenciadiagnosticoingreso":
+                if (oPuserBean_security == null) {
+                    oDao = (DaoInterface) new Presenciadiagnosticoingreso0SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                } else {
+                    UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
+                    MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_tipousuario();
+                    TipousuarioSpecificBeanImplementation oTipoUsuario = (TipousuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
+                    Integer idTipousuario = oTipoUsuario.getId();
+                    if (idTipousuario == 1) {
+                        oDao = (DaoInterface) new Presenciadiagnosticoingreso1SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                    } else {
+                        oDao = (DaoInterface) new Presenciadiagnosticoingreso0SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                    }
+                }
+                break;                 
+            case "tipodiagnostico":
+                if (oPuserBean_security == null) {
+                    oDao = (DaoInterface) new Tipodiagnostico0SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                } else {
+                    UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
+                    MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_tipousuario();
+                    TipousuarioSpecificBeanImplementation oTipoUsuario = (TipousuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
+                    Integer idTipousuario = oTipoUsuario.getId();
+                    if (idTipousuario == 1) {
+                        oDao = (DaoInterface) new Tipodiagnostico1SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                    } else {
+                        oDao = (DaoInterface) new Tipodiagnostico0SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                    }
+                }
+                break;                 
+            case "diagnostico":                
+                oDao = (DaoInterface) new Diagnostico0SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);                
+                break; 
+                            //------------------------------------------------------------------
+            case "episodiodiagnostico":
+                if (oPuserBean_security == null) {
+                    oDao = (DaoInterface) new Episodiodiagnostico0SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                    break;
+                } else {
+                    UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
+                    MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_tipousuario();
+                    TipousuarioSpecificBeanImplementation oTipoUsuario = (TipousuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
+                    Integer idTipousuario = oTipoUsuario.getId();
+                    switch (idTipousuario) {
+                        case 1:
+                            oDao = (DaoInterface) new Episodiodiagnostico1SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                            break;
+                        case 3:
+                            oDao = (DaoInterface) new Episodiodiagnostico3SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                            break;
+                        case 4:
+                            oDao = (DaoInterface) new Episodiodiagnostico4SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                            break;
+                        case 5:
+                            oDao = (DaoInterface) new Episodiodiagnostico5SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                            break;
+                        default:
+                            oDao = (DaoInterface) new Episodiodiagnostico0SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                            break;
+                    }
+
                 }
                 break;
             //------------------------------------------------------------------
