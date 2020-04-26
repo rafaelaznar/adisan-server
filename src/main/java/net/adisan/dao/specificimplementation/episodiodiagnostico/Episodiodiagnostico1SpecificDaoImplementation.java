@@ -37,7 +37,7 @@ import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.bean.specificimplementation.EpisodioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
-import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
+import net.adisan.bean.specificimplementation.EpisodiodiagnosticoSpecificBeanImplementation;
 
 public class Episodiodiagnostico1SpecificDaoImplementation extends GenericDaoImplementation {
 
@@ -59,20 +59,20 @@ public class Episodiodiagnostico1SpecificDaoImplementation extends GenericDaoImp
 
     @Override
     public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
-        EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oBean;
-        oEpisodioBean.setId_episodio(null);
+        //EpisodiodiagnosticoSpecificBeanImplementation oEpisodiodiagnosticoBean = (EpisodiodiagnosticoSpecificBeanImplementation) oBean;
+        //oEpisodiodiagnosticoBean.setId_episodio(null);
         return true;
     }
 
     @Override
     public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
-        EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oBean;
-        oEpisodioBean.setId_episodio(0);
-        if (oEpisodioBean.getLink_subepisodio() > 0) {
-            return false;
-        } else {
+        //EpisodiodiagnosticoSpecificBeanImplementation oEpisodiodiagnosticoBean = (EpisodiodiagnosticoSpecificBeanImplementation) oBean;
+        //oEpisodiodiagnosticoBean.setId_episodio(0);
+        //if (oEpisodiodiagnosticoBean.getLink_subepisodio() > 0) {
+        //    return false;
+        //} else {
             return true;
-        }
+        //}
     }
     
 }

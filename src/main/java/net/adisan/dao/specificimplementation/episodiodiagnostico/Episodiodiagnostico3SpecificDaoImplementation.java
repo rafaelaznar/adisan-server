@@ -94,57 +94,57 @@ public class Episodiodiagnostico3SpecificDaoImplementation extends GenericDaoImp
 
     @Override
     public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
-        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
-        EpisodioSpecificBeanImplementation oEpisodio = (EpisodioSpecificBeanImplementation) oBean;
-        if (oEpisodio.getId_usuario().equals(oSessionUser.getId()) || alumnoIsMine(oEpisodio.getId_usuario()) ) {
+//        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+//        EpisodioSpecificBeanImplementation oEpisodio = (EpisodioSpecificBeanImplementation) oBean;
+//        if (oEpisodio.getId_usuario().equals(oSessionUser.getId()) || alumnoIsMine(oEpisodio.getId_usuario()) ) {
             return true;
-        } else {
-            return false;
-        }
+//        } else {
+//            return false;
+//        }
     }
 
     @Override
     public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
-        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
-        EpisodioSpecificBeanImplementation oEpisodio = (EpisodioSpecificBeanImplementation) oBean;
-        if (oEpisodio.getId_usuario().equals(oSessionUser.getId()) || alumnoIsMine(oEpisodio.getId_usuario())) {
+//        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+//        EpisodioSpecificBeanImplementation oEpisodio = (EpisodioSpecificBeanImplementation) oBean;
+//        if (oEpisodio.getId_usuario().equals(oSessionUser.getId()) || alumnoIsMine(oEpisodio.getId_usuario())) {
             return true;
-        } else {
-            return false;
-        }
+//        } else {
+//            return false;
+//        }
     }
 
-    @Override
-    public Integer create(GenericBeanImplementation oBean) throws Exception {
-        EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oBean;
-        oEpisodioBean.setId_usuario(idUsuario);
-        oEpisodioBean.setId_episodio(null);
-        return super.create(oEpisodioBean);
-    }
-
-    @Override
-    public Integer update(GenericBeanImplementation oBean) throws Exception {
-        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
-        EpisodioSpecificBeanImplementation oNewEpisodio = (EpisodioSpecificBeanImplementation) oBean;
-        EpisodioSpecificBeanImplementation oOldEpisodio = (EpisodioSpecificBeanImplementation) this.get(oNewEpisodio.getId(), 0).getBean();
-        if (oOldEpisodio.getId_usuario().equals(oSessionUser.getId()) || alumnoIsMine(oOldEpisodio.getId_usuario())) {
-            return super.update(oBean);
-        } else {
-            throw new Exception("No tienes permiso para cambiar el episodio");
-        }
-
-    }
-
-    //puede borrar un episodio suyo o de sus alumnos
-    @Override
-    public Integer delete(GenericBeanImplementation oBean) throws Exception {
-        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
-        EpisodioSpecificBeanImplementation oOldEpisodio = (EpisodioSpecificBeanImplementation) this.get(oBean.getId(), 0).getBean();
-        if (oOldEpisodio.getId_usuario().equals(oSessionUser.getId()) || alumnoIsMine(oOldEpisodio.getId_usuario())) {
-            return super.delete(oBean);
-        } else {
-            throw new Exception("Los profesores sólo pueden borrar los episodios suyos o de sus alumnos");
-        }
-
-    }
+//    @Override
+//    public Integer create(GenericBeanImplementation oBean) throws Exception {
+//        EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oBean;
+//        oEpisodioBean.setId_usuario(idUsuario);
+//        oEpisodioBean.setId_episodio(null);
+//        return super.create(oEpisodioBean);
+//    }
+//
+//    @Override
+//    public Integer update(GenericBeanImplementation oBean) throws Exception {
+//        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+//        EpisodioSpecificBeanImplementation oNewEpisodio = (EpisodioSpecificBeanImplementation) oBean;
+//        EpisodioSpecificBeanImplementation oOldEpisodio = (EpisodioSpecificBeanImplementation) this.get(oNewEpisodio.getId(), 0).getBean();
+//        if (oOldEpisodio.getId_usuario().equals(oSessionUser.getId()) || alumnoIsMine(oOldEpisodio.getId_usuario())) {
+//            return super.update(oBean);
+//        } else {
+//            throw new Exception("No tienes permiso para cambiar el episodio");
+//        }
+//
+//    }
+//
+//    //puede borrar un episodio suyo o de sus alumnos
+//    @Override
+//    public Integer delete(GenericBeanImplementation oBean) throws Exception {
+//        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+//        EpisodioSpecificBeanImplementation oOldEpisodio = (EpisodioSpecificBeanImplementation) this.get(oBean.getId(), 0).getBean();
+//        if (oOldEpisodio.getId_usuario().equals(oSessionUser.getId()) || alumnoIsMine(oOldEpisodio.getId_usuario())) {
+//            return super.delete(oBean);
+//        } else {
+//            throw new Exception("Los profesores sólo pueden borrar los episodios suyos o de sus alumnos");
+//        }
+//
+//    }
 }
