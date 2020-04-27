@@ -41,8 +41,8 @@ import net.adisan.helper.constant.RegexConstants;
 
 @MetaObjectBeanInterface(
         TableName = "diagnostico",
-        SingularDescription = "Diagnóstico codificado",
-        PluralDescription = "Diagnósticos codificados",
+        SingularDescription = "Diagnóstico codificado del catálogo",
+        PluralDescription = "Catálogo de diagnósticos codificados",
         Icon = "fa fa-project-diagram",
         Type = EnumHelper.SourceType.Table
 )

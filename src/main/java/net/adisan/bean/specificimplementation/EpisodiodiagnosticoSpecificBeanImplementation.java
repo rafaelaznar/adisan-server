@@ -48,12 +48,24 @@ import java.util.Date;
  */
 @MetaObjectBeanInterface(
         TableName = "episodiodiagnostico",
-        SingularDescription = "Diagnóstico",
-        PluralDescription = "Diagnósticos",
+        SingularDescription = "Diagnóstico codificado",
+        PluralDescription = "Diagnósticos codificados",
         Icon = "fa fa-search-plus",
         Type = EnumHelper.SourceType.Table
 )
 public class EpisodiodiagnosticoSpecificBeanImplementation extends GenericBeanImplementation {
+
+    @Expose
+    @MetaPropertyBeanInterface(
+            ShortName = "Orden",
+            LongName = "Orden",
+            Description = "Importe del episodio",
+            Type = EnumHelper.FieldType.Integer,
+            Width = 1,
+            IsVisible = true,
+            IsRequired = true
+    )
+    private Integer orden;
 
     @Expose
     @MetaPropertyBeanInterface(
@@ -99,6 +111,7 @@ public class EpisodiodiagnosticoSpecificBeanImplementation extends GenericBeanIm
             Description = "Episodio del diagnóstico",
             Type = EnumHelper.FieldType.ForeignObject,
             IsRequired = true,
+            IsVisible = false,
             References = "episodio",
             Width = 4
     )
@@ -123,13 +136,12 @@ public class EpisodiodiagnosticoSpecificBeanImplementation extends GenericBeanIm
     private MetaBeanHelper obj_diagnostico = null;
 
     //-----------
-
     @Expose(serialize = false)
     @MetaPropertyBeanInterface(
             Type = EnumHelper.FieldType.ForeignId
     )
     private Integer id_presenciadiagnostico = null;
-                        
+
     @Expose(deserialize = false)
     @MetaPropertyBeanInterface(
             ShortName = "POD",
@@ -141,13 +153,13 @@ public class EpisodiodiagnosticoSpecificBeanImplementation extends GenericBeanIm
             Width = 4
     )
     private MetaBeanHelper obj_presenciadiagnostico = null;
-        
+
     @Expose(serialize = false)
     @MetaPropertyBeanInterface(
             Type = EnumHelper.FieldType.ForeignId
     )
     private Integer id_presenciadiagnosticoingreso = null;
-                        
+
     @Expose(deserialize = false)
     @MetaPropertyBeanInterface(
             ShortName = "POA",
@@ -160,6 +172,26 @@ public class EpisodiodiagnosticoSpecificBeanImplementation extends GenericBeanIm
     )
     private MetaBeanHelper obj_presenciadiagnosticoingreso = null;
 
+     @Expose(serialize = false)
+    @MetaPropertyBeanInterface(
+            Type = EnumHelper.FieldType.ForeignId
+    )
+    private Integer id_usuario = 0;
+
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Usu.",
+            LongName = "Usuario",
+            Description = "Usuario del episodio",
+            Type = EnumHelper.FieldType.ForeignObject,
+            IsRequired = false,
+            References = "usuario",
+            Width = 4,
+            IsVisible = false,
+            IsFormVisible = false
+    )
+    private MetaBeanHelper obj_usuario = null;
+    
     //-------------------------------
     //-------------------------------
     //-------------------------------
@@ -258,7 +290,4 @@ public class EpisodiodiagnosticoSpecificBeanImplementation extends GenericBeanIm
         this.obj_presenciadiagnosticoingreso = obj_presenciadiagnosticoingreso;
     }
 
-
-    
-    
 }
