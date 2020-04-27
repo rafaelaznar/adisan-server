@@ -50,7 +50,7 @@ import java.util.Date;
         TableName = "episodiodiagnostico",
         SingularDescription = "Diagnóstico codificado",
         PluralDescription = "Diagnósticos codificados",
-        Icon = "fa fa-search-plus",
+        Icon = "fa fa-project-diagram",
         Type = EnumHelper.SourceType.Table
 )
 public class EpisodiodiagnosticoSpecificBeanImplementation extends GenericBeanImplementation {
@@ -121,19 +121,19 @@ public class EpisodiodiagnosticoSpecificBeanImplementation extends GenericBeanIm
     @MetaPropertyBeanInterface(
             Type = EnumHelper.FieldType.ForeignId
     )
-    private Integer id_diagnostico = null;
+    private Integer id_catalogodiagnosticos = null;
 
     @Expose(deserialize = false)
     @MetaPropertyBeanInterface(
             ShortName = "Diagnostico",
             LongName = "Diagnóstico",
-            Description = "Diagnóstico",
+            Description = "Diagnóstico codificado",
             Type = EnumHelper.FieldType.ForeignObject,
             IsRequired = true,
-            References = "diagnostico",
+            References = "catalogodiagnosticos",
             Width = 6
     )
-    private MetaBeanHelper obj_diagnostico = null;
+    private MetaBeanHelper obj_catalogodiagnosticos = null;
 
     //-----------
     @Expose(serialize = false)
@@ -202,6 +202,14 @@ public class EpisodiodiagnosticoSpecificBeanImplementation extends GenericBeanIm
         this.id = id;
     }
 
+    public Integer getOrden() {
+        return orden;
+    }
+
+    public void setOrden(Integer orden) {
+        this.orden = orden;
+    }
+
     public Date getFecha() {
         return fecha;
     }
@@ -242,20 +250,20 @@ public class EpisodiodiagnosticoSpecificBeanImplementation extends GenericBeanIm
         this.obj_episodio = obj_episodio;
     }
 
-    public Integer getId_diagnostico() {
-        return id_diagnostico;
+    public Integer getId_catalogodiagnosticos() {
+        return id_catalogodiagnosticos;
     }
 
-    public void setId_diagnostico(Integer id_diagnostico) {
-        this.id_diagnostico = id_diagnostico;
+    public void setId_catalogodiagnosticos(Integer id_catalogodiagnosticos) {
+        this.id_catalogodiagnosticos = id_catalogodiagnosticos;
     }
 
-    public MetaBeanHelper getObj_diagnostico() {
-        return obj_diagnostico;
+    public MetaBeanHelper getObj_catalogodiagnosticos() {
+        return obj_catalogodiagnosticos;
     }
 
-    public void setObj_diagnostico(MetaBeanHelper obj_diagnostico) {
-        this.obj_diagnostico = obj_diagnostico;
+    public void setObj_catalogodiagnosticos(MetaBeanHelper obj_catalogodiagnosticos) {
+        this.obj_catalogodiagnosticos = obj_catalogodiagnosticos;
     }
 
     public Integer getId_presenciadiagnostico() {
@@ -289,5 +297,23 @@ public class EpisodiodiagnosticoSpecificBeanImplementation extends GenericBeanIm
     public void setObj_presenciadiagnosticoingreso(MetaBeanHelper obj_presenciadiagnosticoingreso) {
         this.obj_presenciadiagnosticoingreso = obj_presenciadiagnosticoingreso;
     }
+
+    public Integer getId_usuario() {
+        return id_usuario;
+    }
+
+    public void setId_usuario(Integer id_usuario) {
+        this.id_usuario = id_usuario;
+    }
+
+    public MetaBeanHelper getObj_usuario() {
+        return obj_usuario;
+    }
+
+    public void setObj_usuario(MetaBeanHelper obj_usuario) {
+        this.obj_usuario = obj_usuario;
+    }
+
+  
 
 }

@@ -64,7 +64,7 @@ import net.adisan.bean.specificimplementation.TipodependenciaSpecificBeanImpleme
 import net.adisan.bean.specificimplementation.TiposervicioSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.ViaSpecificBeanImplementation;
 import net.adisan.bean.publicinterface.BeanInterface;
-import net.adisan.bean.specificimplementation.DiagnosticoSpecificBeanImplementation;
+import net.adisan.bean.specificimplementation.CatalogodiagnosticosSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.EpisodiodiagnosticoSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.PresenciadiagnosticoSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.PresenciadiagnosticoingresoSpecificBeanImplementation;
@@ -175,8 +175,8 @@ public class BeanFactory {
             case "tipodiagnostico":
                 oBean = new TipodiagnosticoSpecificBeanImplementation();
                 break;
-            case "diagnostico":
-                oBean = new DiagnosticoSpecificBeanImplementation();
+            case "catalogodiagnosticos":
+                oBean = new CatalogodiagnosticosSpecificBeanImplementation();
                 break;
             case "presenciadiagnostico":
                 oBean = new PresenciadiagnosticoSpecificBeanImplementation();

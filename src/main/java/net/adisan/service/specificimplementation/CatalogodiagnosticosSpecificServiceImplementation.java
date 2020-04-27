@@ -35,9 +35,9 @@ package net.adisan.service.specificimplementation;
 import net.adisan.service.genericimplementation.GenericServiceImplementation;
 import javax.servlet.http.HttpServletRequest;
 
-public class DiagnosticoSpecificServiceImplementation extends GenericServiceImplementation {
+public class CatalogodiagnosticosSpecificServiceImplementation extends GenericServiceImplementation {
 
-    public DiagnosticoSpecificServiceImplementation(HttpServletRequest request) {
+    public CatalogodiagnosticosSpecificServiceImplementation(HttpServletRequest request) {
         super(request);
     }
 

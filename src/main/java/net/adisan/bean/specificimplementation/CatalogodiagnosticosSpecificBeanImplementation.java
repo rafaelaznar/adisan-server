@@ -40,14 +40,14 @@ import net.adisan.helper.EnumHelper;
 import net.adisan.helper.constant.RegexConstants;
 
 @MetaObjectBeanInterface(
-        TableName = "diagnostico",
+        TableName = "catalogodiagnosticos",
         SingularDescription = "Diagnóstico codificado del catálogo",
         PluralDescription = "Catálogo de diagnósticos codificados",
-        Icon = "fa fa-project-diagram",
+        Icon = "fa fa-qrcode",
         Type = EnumHelper.SourceType.Table
 )
 
-public class DiagnosticoSpecificBeanImplementation extends GenericBeanImplementation {
+public class CatalogodiagnosticosSpecificBeanImplementation extends GenericBeanImplementation {
 
     @Expose
     @MetaPropertyBeanInterface(
@@ -207,10 +207,10 @@ public class DiagnosticoSpecificBeanImplementation extends GenericBeanImplementa
     )
     private Integer link_episodiodiagnostico = null;
 
-    public DiagnosticoSpecificBeanImplementation() {
+    public CatalogodiagnosticosSpecificBeanImplementation() {
     }
 
-    DiagnosticoSpecificBeanImplementation(Integer id) {
+    CatalogodiagnosticosSpecificBeanImplementation(Integer id) {
         this.id = id;
     }
 
@@ -326,8 +326,8 @@ public class DiagnosticoSpecificBeanImplementation extends GenericBeanImplementa
         this.link_episodiodiagnostico = link_episodiodiagnostico;
     }
 
-
-
+    
+    
     
     
     

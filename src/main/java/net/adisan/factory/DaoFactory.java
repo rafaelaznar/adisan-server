@@ -87,7 +87,7 @@ import net.adisan.dao.specificimplementation.medico.Medico4SpecificDaoImplementa
 import net.adisan.dao.specificimplementation.medico.Medico5SpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.categoriaprofesional.Categoriaprofesional0SpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.especialidad.Especialidad0SpecificDaoImplementation;
-import net.adisan.dao.specificimplementation.diagnostico.Diagnostico0SpecificDaoImplementation;
+import net.adisan.dao.specificimplementation.catalogodiagnosticos.Catalogodiagnosticos0SpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.tipopago.Tipopago0SpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.servicio.Servicio1SpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.tiposervicio.Tiposervicio0SpecificDaoImplementation;
@@ -612,8 +612,8 @@ public class DaoFactory {
                     }
                 }
                 break;                 
-            case "diagnostico":                
-                oDao = (DaoInterface) new Diagnostico0SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);                
+            case "catalogodiagnosticos":                
+                oDao = (DaoInterface) new Catalogodiagnosticos0SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);                
                 break; 
                             //------------------------------------------------------------------
             case "episodiodiagnostico":

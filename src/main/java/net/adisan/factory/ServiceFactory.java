@@ -59,7 +59,7 @@ import net.adisan.service.specificimplementation.TiposervicioSpecificServiceImpl
 import net.adisan.service.specificimplementation.TipousuarioSpecificServiceImplementation;
 import net.adisan.service.specificimplementation.UsuarioSpecificServiceImplementation;
 import javax.servlet.http.HttpServletRequest;
-import net.adisan.service.specificimplementation.DiagnosticoSpecificServiceImplementation;
+import net.adisan.service.specificimplementation.CatalogodiagnosticosSpecificServiceImplementation;
 import net.adisan.service.specificimplementation.EpisodiodiagnosticoSpecificServiceImplementation;
 import net.adisan.service.specificimplementation.PresenciadiagnosticoSpecificServiceImplementation;
 import net.adisan.service.specificimplementation.PresenciadiagnosticoingresoSpecificServiceImplementation;
@@ -1045,8 +1045,8 @@ public class ServiceFactory {
                 
                 
                 
-            case "diagnostico":
-                DiagnosticoSpecificServiceImplementation oDiagnosticoService = new DiagnosticoSpecificServiceImplementation(oRequest);
+            case "catalogodiagnosticos":
+                CatalogodiagnosticosSpecificServiceImplementation oDiagnosticoService = new CatalogodiagnosticosSpecificServiceImplementation(oRequest);
                 switch (op) {
                     case "getmetadata":
                         oReplyBean = oDiagnosticoService.getMetaData();

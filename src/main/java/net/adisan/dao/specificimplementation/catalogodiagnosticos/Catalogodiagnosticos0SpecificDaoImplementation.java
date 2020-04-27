@@ -30,17 +30,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.adisan.dao.specificimplementation.diagnostico;
+package net.adisan.dao.specificimplementation.catalogodiagnosticos;
 
 import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 import net.adisan.bean.genericimplementation.GenericBeanImplementation;
 
-public class Diagnostico0SpecificDaoImplementation extends GenericDaoImplementation {
+public class Catalogodiagnosticos0SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Diagnostico0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("diagnostico", oPooledConnection, oPuserBean_security, strWhere);
+    public Catalogodiagnosticos0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
+        super("catalogodiagnosticos", oPooledConnection, oPuserBean_security, strWhere);
     }
 
     @Override
