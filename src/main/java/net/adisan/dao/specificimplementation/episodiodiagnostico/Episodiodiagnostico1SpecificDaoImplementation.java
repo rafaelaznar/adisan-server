@@ -34,10 +34,8 @@ package net.adisan.dao.specificimplementation.episodiodiagnostico;
 
 import net.adisan.bean.genericimplementation.GenericBeanImplementation;
 import net.adisan.bean.helper.MetaBeanHelper;
-import net.adisan.bean.specificimplementation.EpisodioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
-import net.adisan.bean.specificimplementation.EpisodiodiagnosticoSpecificBeanImplementation;
 
 public class Episodiodiagnostico1SpecificDaoImplementation extends GenericDaoImplementation {
 
@@ -59,20 +57,13 @@ public class Episodiodiagnostico1SpecificDaoImplementation extends GenericDaoImp
 
     @Override
     public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
-        //EpisodiodiagnosticoSpecificBeanImplementation oEpisodiodiagnosticoBean = (EpisodiodiagnosticoSpecificBeanImplementation) oBean;
-        //oEpisodiodiagnosticoBean.setId_episodio(null);
         return true;
     }
 
     @Override
     public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
-        //EpisodiodiagnosticoSpecificBeanImplementation oEpisodiodiagnosticoBean = (EpisodiodiagnosticoSpecificBeanImplementation) oBean;
-        //oEpisodiodiagnosticoBean.setId_episodio(0);
-        //if (oEpisodiodiagnosticoBean.getLink_subepisodio() > 0) {
-        //    return false;
-        //} else {
-            return true;
-        //}
+        return true;
+
     }
-    
+
 }

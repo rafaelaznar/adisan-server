@@ -41,6 +41,8 @@ import net.adisan.bean.specificimplementation.TipousuarioSpecificBeanImplementat
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.dao.specificimplementation.grupo.Grupo1SpecificDaoImplementation;
+import net.adisan.dao.specificimplementation.usuario.Usuario1SpecificDaoImplementation;
 
 public class Paciente4SpecificDaoImplementation extends GenericDaoImplementation {
 
@@ -125,7 +127,7 @@ public class Paciente4SpecificDaoImplementation extends GenericDaoImplementation
 
     private boolean pacienteIsMine(Integer idPaciente) throws Exception {
         String strSQLini = "SELECT COUNT(*) "
-                + " paciente p, usuario u, grupo g, usuario u2 "
+                + " FROM paciente p, usuario u, grupo g, usuario u2 "
                 + " WHERE "
                 + " p.id_usuario = u.id "
                 + " AND u.id_tipousuario = 4 "

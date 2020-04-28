@@ -39,6 +39,8 @@ import net.adisan.bean.specificimplementation.EpisodioSpecificBeanImplementation
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.specificimplementation.EpisodiodiagnosticoSpecificBeanImplementation;
+import net.adisan.factory.DaoFactory;
 
 public class Episodiodiagnostico3SpecificDaoImplementation extends GenericDaoImplementation {
 
@@ -94,57 +96,81 @@ public class Episodiodiagnostico3SpecificDaoImplementation extends GenericDaoImp
 
     @Override
     public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
-//        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
-//        EpisodioSpecificBeanImplementation oEpisodio = (EpisodioSpecificBeanImplementation) oBean;
-//        if (oEpisodio.getId_usuario().equals(oSessionUser.getId()) || alumnoIsMine(oEpisodio.getId_usuario()) ) {
+        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+        EpisodiodiagnosticoSpecificBeanImplementation oEpisodiodiagnosticoBean = (EpisodiodiagnosticoSpecificBeanImplementation) oBean;
+        //obtener el episodio para ver si es de los del profesor o de sus alumnos
+        Episodiodiagnostico3SpecificDaoImplementation oEpisodioDao = (Episodiodiagnostico3SpecificDaoImplementation) DaoFactory.getDao(ob, oConnection, oPuserSecurity, null);
+        MetaBeanHelper oEpisodioMetaBean = oEpisodioDao.get(oEpisodiodiagnosticoBean.getId_episodio(), 0);
+        EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oEpisodioMetaBean.getBean();
+        if (oEpisodiodiagnosticoBean.getId_usuario().equals(oSessionUser.getId()) || alumnoIsMine(oEpisodiodiagnosticoBean.getId_usuario())
+                || oEpisodioBean.getId_usuario().equals(oSessionUser.getId()) || alumnoIsMine(oEpisodioBean.getId_usuario())) {
             return true;
-//        } else {
-//            return false;
-//        }
+        } else {
+            return false;
+        }
     }
 
     @Override
     public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
-//        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
-//        EpisodioSpecificBeanImplementation oEpisodio = (EpisodioSpecificBeanImplementation) oBean;
-//        if (oEpisodio.getId_usuario().equals(oSessionUser.getId()) || alumnoIsMine(oEpisodio.getId_usuario())) {
+
+        EpisodiodiagnosticoSpecificBeanImplementation oEpisodiodiagnosticoBean = (EpisodiodiagnosticoSpecificBeanImplementation) oBean;
+        //obtener el episodio para ver si es de los del profesor o de sus alumnos
+        Episodiodiagnostico3SpecificDaoImplementation oEpisodioDao = (Episodiodiagnostico3SpecificDaoImplementation) DaoFactory.getDao(ob, oConnection, oPuserSecurity, null);
+        MetaBeanHelper oEpisodioMetaBean = oEpisodioDao.get(oEpisodiodiagnosticoBean.getId_episodio(), 0);
+        EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oEpisodioMetaBean.getBean();
+        if (oEpisodiodiagnosticoBean.getId_usuario().equals(idUsuario) || alumnoIsMine(oEpisodiodiagnosticoBean.getId_usuario())
+                || oEpisodioBean.getId_usuario().equals(idUsuario) || alumnoIsMine(oEpisodioBean.getId_usuario())) {
             return true;
-//        } else {
-//            return false;
-//        }
+        } else {
+            return false;
+        }
     }
 
-//    @Override
-//    public Integer create(GenericBeanImplementation oBean) throws Exception {
-//        EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oBean;
-//        oEpisodioBean.setId_usuario(idUsuario);
-//        oEpisodioBean.setId_episodio(null);
-//        return super.create(oEpisodioBean);
-//    }
-//
-//    @Override
-//    public Integer update(GenericBeanImplementation oBean) throws Exception {
-//        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
-//        EpisodioSpecificBeanImplementation oNewEpisodio = (EpisodioSpecificBeanImplementation) oBean;
-//        EpisodioSpecificBeanImplementation oOldEpisodio = (EpisodioSpecificBeanImplementation) this.get(oNewEpisodio.getId(), 0).getBean();
-//        if (oOldEpisodio.getId_usuario().equals(oSessionUser.getId()) || alumnoIsMine(oOldEpisodio.getId_usuario())) {
-//            return super.update(oBean);
-//        } else {
-//            throw new Exception("No tienes permiso para cambiar el episodio");
-//        }
-//
-//    }
-//
-//    //puede borrar un episodio suyo o de sus alumnos
-//    @Override
-//    public Integer delete(GenericBeanImplementation oBean) throws Exception {
-//        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
-//        EpisodioSpecificBeanImplementation oOldEpisodio = (EpisodioSpecificBeanImplementation) this.get(oBean.getId(), 0).getBean();
-//        if (oOldEpisodio.getId_usuario().equals(oSessionUser.getId()) || alumnoIsMine(oOldEpisodio.getId_usuario())) {
-//            return super.delete(oBean);
-//        } else {
-//            throw new Exception("Los profesores sólo pueden borrar los episodios suyos o de sus alumnos");
-//        }
-//
-//    }
+    @Override
+    public Integer create(GenericBeanImplementation oBean) throws Exception {
+        EpisodiodiagnosticoSpecificBeanImplementation oEpisodiodiagnosticoBean = (EpisodiodiagnosticoSpecificBeanImplementation) oBean;
+        //obtener el episodio para ver si es de los del profesor o de sus alumnos
+        Episodiodiagnostico3SpecificDaoImplementation oEpisodioDao = (Episodiodiagnostico3SpecificDaoImplementation) DaoFactory.getDao(ob, oConnection, oPuserSecurity, null);
+        MetaBeanHelper oEpisodioMetaBean = oEpisodioDao.get(oEpisodiodiagnosticoBean.getId_episodio(), 0);
+        EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oEpisodioMetaBean.getBean();
+        if (oEpisodiodiagnosticoBean.getId_usuario().equals(idUsuario) || alumnoIsMine(oEpisodiodiagnosticoBean.getId_usuario())
+                || oEpisodioBean.getId_usuario().equals(idUsuario) || alumnoIsMine(oEpisodioBean.getId_usuario())) {
+            oEpisodiodiagnosticoBean.setId_usuario(idUsuario);
+            return super.create(oEpisodiodiagnosticoBean);
+        } else {
+            throw new Exception("No tienes permiso para crear el diagnóstico");
+        }
+    }
+
+    @Override
+    public Integer update(GenericBeanImplementation oBean) throws Exception {
+        EpisodiodiagnosticoSpecificBeanImplementation oEpisodiodiagnosticoBean = (EpisodiodiagnosticoSpecificBeanImplementation) oBean;
+        //obtener el episodio para ver si es de los del profesor o de sus alumnos
+        Episodiodiagnostico3SpecificDaoImplementation oEpisodioDao = (Episodiodiagnostico3SpecificDaoImplementation) DaoFactory.getDao(ob, oConnection, oPuserSecurity, null);
+        MetaBeanHelper oEpisodioMetaBean = oEpisodioDao.get(oEpisodiodiagnosticoBean.getId_episodio(), 0);
+        EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oEpisodioMetaBean.getBean();
+        if (oEpisodiodiagnosticoBean.getId_usuario().equals(idUsuario) || alumnoIsMine(oEpisodiodiagnosticoBean.getId_usuario())
+                || oEpisodioBean.getId_usuario().equals(idUsuario) || alumnoIsMine(oEpisodioBean.getId_usuario())) {
+            oEpisodiodiagnosticoBean.setId_usuario(idUsuario);
+            return super.update(oBean);
+        } else {
+            throw new Exception("No tienes permiso para cambiar el diagnóstico");
+        }
+    }
+
+    //puede borrar un episodio suyo o de sus alumnos
+    @Override
+    public Integer delete(GenericBeanImplementation oBean) throws Exception {
+        EpisodiodiagnosticoSpecificBeanImplementation oEpisodiodiagnosticoBean = (EpisodiodiagnosticoSpecificBeanImplementation) oBean;
+        //obtener el episodio para ver si es de los del profesor o de sus alumnos
+        Episodiodiagnostico3SpecificDaoImplementation oEpisodioDao = (Episodiodiagnostico3SpecificDaoImplementation) DaoFactory.getDao(ob, oConnection, oPuserSecurity, null);
+        MetaBeanHelper oEpisodioMetaBean = oEpisodioDao.get(oEpisodiodiagnosticoBean.getId_episodio(), 0);
+        EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oEpisodioMetaBean.getBean();
+        if (oEpisodiodiagnosticoBean.getId_usuario().equals(idUsuario) || alumnoIsMine(oEpisodiodiagnosticoBean.getId_usuario())
+                || oEpisodioBean.getId_usuario().equals(idUsuario) || alumnoIsMine(oEpisodioBean.getId_usuario())) {            
+            return super.delete(oBean);
+        } else {
+            throw new Exception("No tienes permiso para borrar el diagnóstico");
+        }
+    }
 }

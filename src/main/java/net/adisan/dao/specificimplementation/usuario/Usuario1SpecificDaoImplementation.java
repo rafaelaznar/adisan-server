@@ -142,7 +142,8 @@ public class Usuario1SpecificDaoImplementation extends GenericDaoImplementation 
             if (oResultSet.next()) {
                 intResult = oResultSet.getInt("id");
             } else {
-                throw new Exception("No tienes permiso para efectuar la operación");
+                intResult = 0;
+                //throw new Exception("No tienes permiso para efectuar la operación");
             }
         } catch (SQLException ex) {
 //            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;

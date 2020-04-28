@@ -371,9 +371,6 @@ public class UsuarioSpecificServiceImplementation extends GenericServiceImplemen
                 }
             }
         } catch (Exception ex) {
-            if (oConnection != null) {
-                oConnection.rollback();
-            }
             throw ex;
         } finally {
             if (oConnection != null) {
