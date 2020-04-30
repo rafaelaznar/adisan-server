@@ -355,7 +355,6 @@ public class PacienteSpecificBeanImplementation extends GenericBeanImplementatio
 //            IsVisible = false
 //    )
 //    private MetaBeanHelper obj_tipopago = null;
-
     @Expose(serialize = false)
     @MetaPropertyBeanInterface(
             Type = EnumHelper.FieldType.ForeignId
@@ -389,6 +388,24 @@ public class PacienteSpecificBeanImplementation extends GenericBeanImplementatio
             Width = 4
     )
     private MetaBeanHelper obj_usuario = null;
+
+    @Expose(serialize = false)
+    @MetaPropertyBeanInterface(
+            Type = EnumHelper.FieldType.ForeignId
+    )
+    private Integer id_centrosanitario = 0;
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Centro san.",
+            LongName = "Centro sanitario",
+            Description = "Centro sanitario del usuario",
+            Type = EnumHelper.FieldType.ForeignObject,
+            IsRequired = true,
+            References = "centrosanitario",
+            Width = 4,
+            IsVisible = false
+    )
+    private MetaBeanHelper obj_centrosanitario = null;
 
     @Expose(deserialize = false)
     @MetaPropertyBeanInterface(
@@ -568,7 +585,6 @@ public class PacienteSpecificBeanImplementation extends GenericBeanImplementatio
 //    public void setObj_tipopago(MetaBeanHelper obj_tipopago) {
 //        this.obj_tipopago = obj_tipopago;
 //    }
-
     public Integer getId_sexo() {
         return id_sexo;
     }
@@ -607,6 +623,22 @@ public class PacienteSpecificBeanImplementation extends GenericBeanImplementatio
 
     public void setLink_episodio(Integer link_episodio) {
         this.link_episodio = link_episodio;
+    }
+
+    public Integer getId_centrosanitario() {
+        return id_centrosanitario;
+    }
+
+    public void setId_centrosanitario(Integer id_centrosanitario) {
+        this.id_centrosanitario = id_centrosanitario;
+    }
+
+    public MetaBeanHelper getObj_centrosanitario() {
+        return obj_centrosanitario;
+    }
+
+    public void setObj_centrosanitario(MetaBeanHelper obj_centrosanitario) {
+        this.obj_centrosanitario = obj_centrosanitario;
     }
 
 }

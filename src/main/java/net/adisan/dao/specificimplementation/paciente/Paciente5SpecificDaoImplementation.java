@@ -35,6 +35,7 @@ package net.adisan.dao.specificimplementation.paciente;
 import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.genericimplementation.GenericBeanImplementation;
 
 public class Paciente5SpecificDaoImplementation extends GenericDaoImplementation {
 
@@ -42,8 +43,5 @@ public class Paciente5SpecificDaoImplementation extends GenericDaoImplementation
         super("paciente", oPooledConnection, oPuserBean_security, strWhere);
     }
 
-//    @Override
-//    public boolean canGet(Integer id) throws Exception {
-//        return true;
-//    }
+
 }

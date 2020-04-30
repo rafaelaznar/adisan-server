@@ -101,6 +101,16 @@ public class CentrosanitarioSpecificBeanImplementation extends GenericBeanImplem
     )
     private Integer link_tecnico = null;
 
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Pacientes",
+            LongName = "Pacientes en el centro sanitario",
+            Description = "Pacientes en el centro sanitario",
+            Type = EnumHelper.FieldType.Link,
+            References = "paciente"
+    )
+    private Integer link_paciente = null;    
+    
     public CentrosanitarioSpecificBeanImplementation() {
     }
 
@@ -146,6 +156,14 @@ public class CentrosanitarioSpecificBeanImplementation extends GenericBeanImplem
 
     public void setLink_tecnico(Integer link_tecnico) {
         this.link_tecnico = link_tecnico;
+    }
+
+    public Integer getLink_paciente() {
+        return link_paciente;
+    }
+
+    public void setLink_paciente(Integer link_paciente) {
+        this.link_paciente = link_paciente;
     }
 
 }

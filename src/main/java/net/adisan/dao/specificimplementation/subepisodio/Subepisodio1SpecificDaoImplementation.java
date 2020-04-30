@@ -50,10 +50,6 @@ public class Subepisodio1SpecificDaoImplementation extends GenericDaoImplementat
         }        
     }
 
-//    @Override
-//    public boolean canGet(Integer id) throws Exception {
-//        return true;
-//    }
     @Override
     public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         return true;

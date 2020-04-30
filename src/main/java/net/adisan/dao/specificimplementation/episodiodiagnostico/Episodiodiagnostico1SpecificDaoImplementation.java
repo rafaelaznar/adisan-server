@@ -62,8 +62,7 @@ public class Episodiodiagnostico1SpecificDaoImplementation extends GenericDaoImp
 
     @Override
     public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
-        return true;
-
+        return true;        
     }
 
 }

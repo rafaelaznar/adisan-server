@@ -87,28 +87,11 @@ public class Usuario3SpecificDaoImplementation extends GenericDaoImplementation 
         }
     }
 
-    private boolean alumnoIsMine(Integer idAlumno) throws Exception {
-        String strSQLini = "SELECT COUNT(*) "
-                + "FROM usuario u, grupo g "
-                + "where u.id_grupo=g.id "
-                + "and g.id_usuario=" + idUsuario + " "
-                + "and u.id=" + idAlumno;
-        return countSQL(strSQLini);
-    }
-
-    private boolean grupoIsMine(Integer idGrupo) throws Exception {
-        String strSQLini = "SELECT COUNT(*) "
-                + "FROM grupo "
-                + "where id=" + idGrupo + " "
-                + "and id_usuario=" + idUsuario;
-        return countSQL(strSQLini);
-    }
-
     @Override
     public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         UsuarioSpecificBeanImplementation oNewUser = (UsuarioSpecificBeanImplementation) oBean;
-        //comprobar que al alumno lo metemos en uno de los grupos del profe en sesion
-        if (grupoIsMine(oNewUser.getId_grupo())) {
+        //comprobar que al alumno lo metemos en uno de los grupos del profe en sesion 
+        if (esMiGrupo(oNewUser.getId_grupo())) {
             return true;
         } else {
             return false;
@@ -120,10 +103,11 @@ public class Usuario3SpecificDaoImplementation extends GenericDaoImplementation 
         UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
         UsuarioSpecificBeanImplementation oUpdateUser = (UsuarioSpecificBeanImplementation) oBean;
         if (oSessionUser.getId().equals(oUpdateUser.getId())) {
+            //soy yo
             return true;
-        } else if (alumnoIsMine(oUpdateUser.getId())) {
+        } else if (esMiAlumno(oUpdateUser.getId())) {
             //el usuario que editamos es realmente un alumno del profesor en sesion
-            if (grupoIsMine(oUpdateUser.getId_grupo())) {
+            if (esMiGrupo(oUpdateUser.getId_grupo())) {
                 //al alumno lo metemos en uno de los grupos del profe en sesion
                 return true;
             } else {
@@ -136,7 +120,7 @@ public class Usuario3SpecificDaoImplementation extends GenericDaoImplementation 
 
     @Override
     public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
-        if (alumnoIsMine(oBean.getId())) {
+        if (esMiAlumno(oBean.getId())) {
             return true;
         } else {
             return false;
@@ -147,68 +131,38 @@ public class Usuario3SpecificDaoImplementation extends GenericDaoImplementation 
     public Integer create(GenericBeanImplementation oBean) throws Exception {
         UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
         UsuarioSpecificBeanImplementation oNewUser = (UsuarioSpecificBeanImplementation) oBean;
-        if (grupoIsMine(oNewUser.getId_grupo())) {
-            oNewUser.setId_centro(oSessionUser.getId_centro());
-            oNewUser.setId_tipousuario(4);
-            oNewUser.setId_centrosanitario(oSessionUser.getId_centrosanitario());
-            return super.create(oBean);
-        } else {
-            throw new Exception("No tienes permiso para efectuar la operación");
-        }
+        oNewUser.setId_centro(oSessionUser.getId_centro());
+        oNewUser.setId_tipousuario(4);
+        oNewUser.setId_centrosanitario(oSessionUser.getId_centrosanitario());
+        return super.create(oBean);
     }
 
     @Override
     public Integer update(GenericBeanImplementation oBean) throws Exception {
         UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
-        UsuarioSpecificBeanImplementation oUpdateUser = (UsuarioSpecificBeanImplementation) oBean;
-        if (oSessionUser.getId().equals(oUpdateUser.getId())) {
-            oUpdateUser.setId_centro(oSessionUser.getId_centro());
-            oUpdateUser.setId_tipousuario(3);
-            oUpdateUser.setId_centrosanitario(oSessionUser.getId_centrosanitario());
-            return super.update(oBean);
-        } else if (alumnoIsMine(oUpdateUser.getId())) {
-            //el usuario que editamos es realmente un alumno del profesor en sesion
-            if (grupoIsMine(oUpdateUser.getId_grupo())) {
-                //al alumno lo metemos en uno de los grupos del profe en sesion
-                oUpdateUser.setId_centro(oSessionUser.getId_centro());
-                oUpdateUser.setId_tipousuario(4);
-                oUpdateUser.setId_centrosanitario(oSessionUser.getId_centrosanitario());
-                return super.update(oBean);
-            } else {
-                throw new Exception("No tienes permiso para efectuar la operación");
-            }
-        } else {
-            throw new Exception("No tienes permiso para efectuar la operación");
-        }
-    }
-
-    @Override
-    public Integer delete(GenericBeanImplementation oBean) throws Exception {
-        //TraceHelper.trace("Usuario3SpecificDaoImplementation", "delete", "object=" + ob);
-        if (alumnoIsMine(oBean.getId())) {
-            return super.delete(oBean);
-        } else {
-            //TraceHelper.traceError(this.getClass().getName() + ".delete ob:" + ob + " Can't delete: only allowed to delete your own students");
-            throw new Exception("Can't delete: only allowed to delete your own students");
-        }
+         UsuarioSpecificBeanImplementation oUpdateUser = (UsuarioSpecificBeanImplementation) oBean;
+        oUpdateUser.setId_centro(oSessionUser.getId_centro());
+        oUpdateUser.setId_tipousuario(4);
+        oUpdateUser.setId_centrosanitario(oSessionUser.getId_centrosanitario());
+        return super.update(oBean);
     }
 
     public Integer activate(Integer id) throws Exception {
         //TraceHelper.trace("Usuario3SpecificDaoImplementation", "activate", "object=" + ob);
-        if (alumnoIsMine(id)) {
+        if (esMiAlumno(id)) {
             MetaBeanHelper oUsuarioMBH = this.get(id, 0);
             UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oUsuarioMBH.getBean();
             oUsuario.setActivo(1);
             return this.update(oUsuario);
         } else {
             //TraceHelper.traceError(this.getClass().getName() + ".activate ob:" + ob + " Can't activate: only allowed to deactivate your own students");
-            throw new Exception("Can't activate: only allowed to activate your own students");
+            throw new Exception("No tienes permiso: sólo se pueden activar tus alumnos");
         }
     }
 
     public Integer deactivate(Integer id) throws Exception {
         //TraceHelper.trace("Usuario3SpecificDaoImplementation", "deactivate", "object=" + ob);
-        if (alumnoIsMine(id)) {
+        if (esMiAlumno(id)) {
             MetaBeanHelper oUsuarioMBH = this.get(id, 0);
             UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oUsuarioMBH.getBean();
             oUsuario.setActivo(0);
@@ -221,7 +175,7 @@ public class Usuario3SpecificDaoImplementation extends GenericDaoImplementation 
 
     public Integer updatePassword(int id, String oldPass, String newPass) throws Exception {
         //TraceHelper.trace("Usuario3SpecificDaoImplementation", "updatePassword", "object=" + ob);
-        if (this.alumnoIsMine(id) || idUsuario == id) {
+        if (esMiAlumno(id) || idUsuario == id) {
             PreparedStatement oPreparedStatement = null;
             Integer iResult = 0;
             try {

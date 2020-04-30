@@ -186,16 +186,19 @@ public abstract class GenericBeanImplementation implements BeanInterface {
     public BeanInterface fill(ResultSet oResultSet, Connection oConnection, MetaBeanHelper oPuserBean_security, Integer expand) throws Exception {
         //TraceHelper.trace("GenericBeanImplementation", "fill", "bean=" + this.getClass().getName());
         try {
+             System.out.println("*** bean=" + this.getClass().getName() + " **********");
             GenericBeanImplementation oBean = (GenericBeanImplementation) Class.forName(this.getClass().getName()).getDeclaredConstructor().newInstance();
             if (this.getClass().getSuperclass() == GenericBeanImplementation.class) {
                 //TraceHelper.trace("Filling ID field;value=" + oResultSet.getInt("id"));
                 Field oField = this.getClass().getSuperclass().getDeclaredField("id");
                 oField.setAccessible(true);
+                System.out.println("*** id=" + oResultSet.getInt("id") + "");
                 oField.set(this, oResultSet.getInt("id"));
                 oField.setAccessible(false);
             }
             Field[] oFields = oBean.getClass().getDeclaredFields();
             for (Field oField : oFields) {
+                System.out.println(oField.getName());
                 //TraceHelper.trace("GenericBeanImplementacion.fill field=" + oField.getName());
                 oField.setAccessible(true);
                 if (getTypeFromPropertyMetaData(oField) != null) {

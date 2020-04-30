@@ -54,6 +54,8 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import net.adisan.bean.publicinterface.BeanInterface;
+import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
+import net.adisan.dao.specificimplementation.usuario.Usuario1SpecificDaoImplementation;
 //import org.apache.logging.log4j.LogManager;
 //import org.apache.logging.log4j.Logger;
 
@@ -375,7 +377,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
         return iResult;
     }
 
-    protected boolean countSQL(String strSQLini) throws Exception {
+    protected Long countSQL(String strSQLini) throws Exception {
         //oLogger.trace("GenericDaoImplementation", "countSQL", "object=" + ob);
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
@@ -401,7 +403,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
                 oPreparedStatement.close();
             }
         }
-        return iResult > 0;
+        return iResult;
     }
 
     @Override
@@ -559,4 +561,49 @@ public abstract class GenericDaoImplementation implements DaoInterface {
         }
         return iResult;
     }
+
+    protected boolean esMiGrupo(Integer idGrupo) throws Exception {
+        UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+        if (oUsuario.getId_tipousuario() == 3) {
+            Integer idUsuarioProfesor = oUsuario.getId();
+            String strSQLini = "SELECT COUNT(*) "
+                    + "FROM grupo g WHERE "                    
+                    + "g.id_usuario=" + idUsuarioProfesor + " "
+                    + "and g.id=" + idGrupo;
+            return this.countSQL(strSQLini) > 0;
+        } else {
+            return false;
+        }
+    }    
+    
+    protected boolean esMiAlumno(Integer idAlumno) throws Exception {
+        UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+        if (oUsuario.getId_tipousuario() == 3) {
+            Integer idUsuarioProfesor = oUsuario.getId();
+            String strSQLini = "SELECT COUNT(*) "
+                    + "FROM usuario u, grupo g "
+                    + "where u.id_grupo=g.id "
+                    + "and g.id_usuario=" + idUsuarioProfesor + " "
+                    + "and u.id=" + idAlumno;
+            return this.countSQL(strSQLini) > 0;
+        } else {
+            return false;
+        }
+    }
+
+    protected boolean esMiProfesor(Integer idProfesor) throws Exception {
+        UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+        if (oUsuario.getId_tipousuario() == 4) {
+            Integer idUsuarioAlumno = oUsuario.getId();
+            String strSQLini = "SELECT COUNT(*) "
+                    + "FROM usuario u, grupo g "
+                    + "where u.id_grupo=g.id "
+                    + "and g.id_usuario=" + idProfesor + " "
+                    + "and u.id=" + idUsuarioAlumno;
+            return this.countSQL(strSQLini) > 0;
+        } else {
+            return false;
+        }
+    }
+
 }

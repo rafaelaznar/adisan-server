@@ -41,8 +41,6 @@ import net.adisan.bean.specificimplementation.TipousuarioSpecificBeanImplementat
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
-import net.adisan.dao.specificimplementation.grupo.Grupo1SpecificDaoImplementation;
-import net.adisan.dao.specificimplementation.usuario.Usuario1SpecificDaoImplementation;
 
 public class Paciente4SpecificDaoImplementation extends GenericDaoImplementation {
 
@@ -82,73 +80,16 @@ public class Paciente4SpecificDaoImplementation extends GenericDaoImplementation
         }
     }
 
-//    @Override
-//    public boolean canGet(Integer id) throws Exception {
-//        String strSQLini1 = "SELECT COUNT(*) FROM paciente where 1=1 "
-//                + "AND (id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=3 ) "
-//                + " OR  id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=5 ) "
-//                + " OR  id_usuario IN (SELECT distinct u.id FROM usuario u, grupo g, usuario u2 "
-//                + "                    WHERE u.id_tipousuario=4 "
-//                + "                      AND u.id_grupo=g.id "
-//                + "                      AND g.id_usuario=u2.id "
-//                + "                      AND u2.id_centrosanitario= " + idCentrosanitario + ")"
-//                + ") and id=" + id;
-//        PreparedStatement oPreparedStatement = null;
-//        ResultSet oResultSet = null;
-//        Long iResult = 0L;
-//        try {
-//            oPreparedStatement = oConnection.prepareStatement(strSQLini1);
-//            oResultSet = oPreparedStatement.executeQuery();
-//            if (oResultSet.next()) {
-//                iResult = oResultSet.getLong("COUNT(*)");
-//            } else {
-//                String msg = this.getClass().getName() + ": getcount";
-//                Log4jHelper.errorLog(msg);
-//                throw new Exception(msg);
-//            }
-//        } catch (Exception ex) {
-//            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-//            Log4jHelper.errorLog(msg, ex);
-//            throw new Exception(msg, ex);
-//        } finally {
-//            if (oResultSet != null) {
-//                oResultSet.close();
-//            }
-//            if (oPreparedStatement != null) {
-//                oPreparedStatement.close();
-//            }
-//        }
-//        return iResult > 0;
-//    }
     @Override
     public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         return true;
     }
 
-    private boolean pacienteIsMine(Integer idPaciente) throws Exception {
-        String strSQLini = "SELECT COUNT(*) "
-                + " FROM paciente p, usuario u, grupo g, usuario u2 "
-                + " WHERE "
-                + " p.id_usuario = u.id "
-                + " AND u.id_tipousuario = 4 "
-                + " AND u.id_grupo = g.id "
-                + " AND g.id_usuario = u2.id "
-                + " AND u2.id_centrosanitario= " + idCentrosanitario
-                + " AND p.id = " + idPaciente + ")";
-        String strSQLini2 = "SELECT COUNT(*) "
-                + " paciente p, usuario u"
-                + " WHERE "
-                + " p.id_usuario = u.id "
-                + " AND u.id_tipousuario = 3 "
-                + " AND u.id_centrosanitario= " + idCentrosanitario
-                + " AND p.id = " + idPaciente + ")";
-        return countSQL(strSQLini) || countSQL(strSQLini2);
-    }
-
     @Override
     public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
-        PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oBean;
-        if (oPacienteBean.getId_usuario() == idUsuario) {
+        PacienteSpecificBeanImplementation oNewPacienteBean = (PacienteSpecificBeanImplementation) oBean;
+        if (oNewPacienteBean.getId_centrosanitario() == idCentrosanitario
+                && (oNewPacienteBean.getId_usuario() == idUsuario)) {
             return true;
         } else {
             return false;
@@ -158,7 +99,8 @@ public class Paciente4SpecificDaoImplementation extends GenericDaoImplementation
     @Override
     public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
         PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oBean;
-        if (oPacienteBean.getId_usuario() == idUsuario) {
+        UsuarioSpecificBeanImplementation oUsuarioSession = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+        if (oPacienteBean.getId_usuario() == oUsuarioSession.getId() && oPacienteBean.getId_centrosanitario() == idCentrosanitario) {
             return true;
         } else {
             return false;
@@ -169,6 +111,7 @@ public class Paciente4SpecificDaoImplementation extends GenericDaoImplementation
     public Integer create(GenericBeanImplementation oBean) throws Exception {
         PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oBean;
         oPacienteBean.setId_usuario(idUsuario);
+        oPacienteBean.setId_centrosanitario(idCentrosanitario);
         return super.create(oPacienteBean);
     }
 
@@ -176,17 +119,8 @@ public class Paciente4SpecificDaoImplementation extends GenericDaoImplementation
     public Integer update(GenericBeanImplementation oBean) throws Exception {
         PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oBean;
         oPacienteBean.setId_usuario(idUsuario);
+        oPacienteBean.setId_centrosanitario(idCentrosanitario);
         return super.update(oPacienteBean);
-
     }
 
-    @Override
-    public Integer delete(GenericBeanImplementation oBean) throws Exception {
-        PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oBean;
-        if (oPacienteBean.getId_usuario() == idUsuario) {
-            return super.delete(oBean);
-        } else {
-            throw new Exception("No tienes permiso para efectuar la operación");
-        }
-    }
 }

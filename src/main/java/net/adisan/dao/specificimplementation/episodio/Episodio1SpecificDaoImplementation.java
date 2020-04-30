@@ -68,11 +68,11 @@ public class Episodio1SpecificDaoImplementation extends GenericDaoImplementation
     public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
         EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oBean;
         oEpisodioBean.setId_episodio(0);
-        if (oEpisodioBean.getLink_subepisodio() > 0) {
+        if (oEpisodioBean.getLink_subepisodio() > 0 || oEpisodioBean.getLink_episodiodiagnostico() > 0) {
             return false;
         } else {
             return true;
         }
     }
-    
+
 }
