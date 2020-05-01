@@ -163,8 +163,8 @@ public class EpisodiodiagnosticoSpecificBeanImplementation extends GenericBeanIm
     @Expose(deserialize = false)
     @MetaPropertyBeanInterface(
             ShortName = "POA",
-            LongName = "Presencia de Diagnóstico",
-            Description = "Presencia de Diagnóstico",
+            LongName = "Presencia de Diagnóstico en ingreso",
+            Description = "Presencia de Diagnóstico en ingreso",
             Type = EnumHelper.FieldType.ForeignObject,
             IsRequired = true,
             References = "presenciadiagnosticoingreso",
@@ -188,7 +188,7 @@ public class EpisodiodiagnosticoSpecificBeanImplementation extends GenericBeanIm
             References = "usuario",
             Width = 4,
             IsVisible = false,
-            IsFormVisible = false
+            IsFormVisible4 = false
     )
     private MetaBeanHelper obj_usuario = null;
     

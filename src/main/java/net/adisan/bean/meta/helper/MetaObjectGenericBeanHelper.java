@@ -37,19 +37,19 @@ import net.adisan.helper.EnumHelper;
 
 public class MetaObjectGenericBeanHelper {
 
-    private String ClassName = "";
+    public String ClassName = "";
     @Expose
-    private String Icon = "";
+    public String Icon = "";
     @Expose
-    private String SingularDescription = "";
+    public String SingularDescription = "";
     @Expose
-    private String PluralDescription = "";
+    public String PluralDescription = "";
     @Expose
-    private EnumHelper.SourceType Type = EnumHelper.SourceType.Table;
+    public EnumHelper.SourceType Type = EnumHelper.SourceType.Table;
     @Expose
-    private String TableName = "";
+    public String TableName = "";
     @Expose
-    private Boolean canCreateObject = false;
+    public Boolean canCreateObject = false;
 
     public String getClassName() {
         return ClassName;

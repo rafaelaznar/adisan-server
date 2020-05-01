@@ -250,7 +250,8 @@ public class EpisodioSpecificBeanImplementation extends GenericBeanImplementatio
             References = "episodio",
             Width = 4,
             IsVisible = false,
-            IsFormVisible = false
+            IsFormVisible4 = false,
+            IsFormVisible3 = false
     )
     private MetaBeanHelper obj_episodio = null;
 
@@ -327,7 +328,7 @@ public class EpisodioSpecificBeanImplementation extends GenericBeanImplementatio
             References = "usuario",
             Width = 4,
             IsVisible = false,
-            IsFormVisible = false
+            IsFormVisible4 = false
     )
     private MetaBeanHelper obj_usuario = null;
 

@@ -200,7 +200,8 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
             Type = EnumHelper.FieldType.ForeignObject,
             IsRequired = true,
             References = "tipousuario",
-            Width = 4
+            Width = 4,
+            IsFormVisible3 = false
     )
     private MetaBeanHelper obj_tipousuario = null;
 
@@ -238,7 +239,8 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
             IsRequired = true,
             References = "centro",
             Width = 4,
-            IsVisible = false
+            IsVisible = false,
+            IsFormVisible3 = false
     )
     private MetaBeanHelper obj_centro = null;
 
@@ -256,7 +258,8 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
             IsRequired = true,
             References = "centrosanitario",
             Width = 4,
-            IsVisible = false
+            IsVisible = false,
+            IsFormVisible3 = false
     )
     private MetaBeanHelper obj_centrosanitario = null;
 

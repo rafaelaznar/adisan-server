@@ -68,6 +68,14 @@ public @interface MetaPropertyBeanInterface {
     public int Width() default 2;
 
     public int MaxLength() default 255;
-
-    public boolean IsFormVisible() default true;
+      
+    public boolean IsFormVisible1() default true;
+    
+    public boolean IsFormVisible2() default true;
+    
+    public boolean IsFormVisible3() default true;
+    
+    public boolean IsFormVisible4() default true;
+    
+    public boolean IsFormVisible5() default false;
 }

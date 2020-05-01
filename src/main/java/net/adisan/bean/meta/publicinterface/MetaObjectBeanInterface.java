@@ -53,4 +53,6 @@ public @interface MetaObjectBeanInterface {
 
     public String PluralDescription() default "";
 
+    //public boolean canCreateObject() default false;
+
 }

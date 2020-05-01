@@ -72,8 +72,17 @@ public class MetaPropertyGenericBeanHelper {
     @Expose
     private Integer MaxLength = 255;
     @Expose
-    private boolean IsFormVisible = true;
+    private boolean IsFormVisible1 = true;
+    @Expose
+    private boolean IsFormVisible2 = true;
+    @Expose
+    private boolean IsFormVisible3 = true;
+    @Expose
+    private boolean IsFormVisible4 = true;
+    @Expose
+    private boolean IsFormVisible5 = true;
 
+    
     public String getName() {
         return Name;
     }
@@ -210,12 +219,46 @@ public class MetaPropertyGenericBeanHelper {
         this.MaxLength = MaxLength;
     }
 
-    public boolean isIsFormVisible() {
-        return IsFormVisible;
+    public boolean isIsFormVisible1() {
+        return IsFormVisible1;
     }
 
-    public void setIsFormVisible(boolean IsFormVisible) {
-        this.IsFormVisible = IsFormVisible;
+    public void setIsFormVisible1(boolean IsFormVisible1) {
+        this.IsFormVisible1 = IsFormVisible1;
     }
+
+    public boolean isIsFormVisible2() {
+        return IsFormVisible2;
+    }
+
+    public void setIsFormVisible2(boolean IsFormVisible2) {
+        this.IsFormVisible2 = IsFormVisible2;
+    }
+
+    public boolean isIsFormVisible3() {
+        return IsFormVisible3;
+    }
+
+    public void setIsFormVisible3(boolean IsFormVisible3) {
+        this.IsFormVisible3 = IsFormVisible3;
+    }
+
+    public boolean isIsFormVisible4() {
+        return IsFormVisible4;
+    }
+
+    public void setIsFormVisible4(boolean IsFormVisible4) {
+        this.IsFormVisible4 = IsFormVisible4;
+    }
+
+    public boolean isIsFormVisible5() {
+        return IsFormVisible5;
+    }
+
+    public void setIsFormVisible5(boolean IsFormVisible5) {
+        this.IsFormVisible5 = IsFormVisible5;
+    }
+
+
 
 }

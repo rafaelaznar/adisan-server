@@ -385,7 +385,8 @@ public class PacienteSpecificBeanImplementation extends GenericBeanImplementatio
             Type = EnumHelper.FieldType.ForeignObject,
             IsRequired = true,
             References = "usuario",
-            Width = 4
+            Width = 4,
+            IsFormVisible4 = false
     )
     private MetaBeanHelper obj_usuario = null;
 
@@ -403,7 +404,9 @@ public class PacienteSpecificBeanImplementation extends GenericBeanImplementatio
             IsRequired = true,
             References = "centrosanitario",
             Width = 4,
-            IsVisible = false
+            IsVisible = false,
+            IsFormVisible4 = false,
+            IsFormVisible3 = false
     )
     private MetaBeanHelper obj_centrosanitario = null;
 
