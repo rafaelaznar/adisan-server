@@ -59,7 +59,7 @@ public class EpisodiodiagnosticoSpecificBeanImplementation extends GenericBeanIm
     @MetaPropertyBeanInterface(
             ShortName = "Orden",
             LongName = "Orden",
-            Description = "Importe del episodio",
+            Description = "Orden del diagnóstico",
             Type = EnumHelper.FieldType.Integer,
             Width = 1,
             IsVisible = true,
