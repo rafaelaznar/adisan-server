@@ -48,6 +48,8 @@ public class MetaObjectGenericBeanHelper {
     private EnumHelper.SourceType Type = EnumHelper.SourceType.Table;
     @Expose
     private String TableName = "";
+    @Expose
+    private Boolean canCreateObject = false;
 
     public String getClassName() {
         return ClassName;
@@ -96,5 +98,15 @@ public class MetaObjectGenericBeanHelper {
     public void setTableName(String TableName) {
         this.TableName = TableName;
     }
+
+    public Boolean getCanCreateObject() {
+        return canCreateObject;
+    }
+
+    public void setCanCreateObject(Boolean canCreateObject) {
+        this.canCreateObject = canCreateObject;
+    }
+
+
 
 }

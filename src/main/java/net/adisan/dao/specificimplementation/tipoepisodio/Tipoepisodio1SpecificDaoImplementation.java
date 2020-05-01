@@ -44,10 +44,11 @@ public class Tipoepisodio1SpecificDaoImplementation extends GenericDaoImplementa
         super("tipoepisodio", oPooledConnection, oPuserBean_security, strWhere);
     }
 
-//    @Override
-//    public boolean canGet(Integer id) throws Exception {
-//        return true;
-//    }
+    @Override
+    public boolean canCreateObject() throws Exception {
+        return true;
+    }
+    
     @Override
     public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         return true;

@@ -44,6 +44,11 @@ public class Centrosanitario1SpecificDaoImplementation extends CentrosanitarioSp
     }
 
     @Override
+    public boolean canCreateObject() throws Exception {
+        return true;
+    }
+
+    @Override
     public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         return true;
     }

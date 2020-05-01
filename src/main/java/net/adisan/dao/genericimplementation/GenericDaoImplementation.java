@@ -152,7 +152,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
         return alVector;
     }
 
-    private MetaObjectGenericBeanHelper fillObjectMetaData(Class oClassBEAN, MetaObjectGenericBeanHelper oMetaObject) {
+    private MetaObjectGenericBeanHelper fillObjectMetaData(Class oClassBEAN, MetaObjectGenericBeanHelper oMetaObject) throws Exception {
         //oLogger.trace("GenericDaoImplementation", "fillObjectMetaData", "object = " + ob);
         Annotation[] classAnnotations = oClassBEAN.getAnnotations();
         for (Integer i = 0; i < classAnnotations.length; i++) {
@@ -164,6 +164,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
                 oMetaObject.setIcon(fieldAnnotation.Icon());
                 oMetaObject.setTableName(fieldAnnotation.TableName());
                 oMetaObject.setType(fieldAnnotation.Type());
+                oMetaObject.setCanCreateObject(this.canCreateObject());
             }
         }
         return oMetaObject;
@@ -406,6 +407,11 @@ public abstract class GenericDaoImplementation implements DaoInterface {
         return iResult;
     }
 
+    @Override
+    public boolean canCreateObject() throws Exception {
+        return false;
+    }
+    
     @Override
     public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         return false;

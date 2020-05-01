@@ -80,6 +80,11 @@ public class Paciente3SpecificDaoImplementation extends GenericDaoImplementation
     }
 
     @Override
+    public boolean canCreateObject() throws Exception {
+        return true;
+    }
+
+    @Override
     public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oBean;
         if (esMiAlumno(oPacienteBean.getId_usuario()) || oPacienteBean.getId_usuario() == idUsuario) {
@@ -93,8 +98,7 @@ public class Paciente3SpecificDaoImplementation extends GenericDaoImplementation
     public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
         PacienteSpecificBeanImplementation oNewPacienteBean = (PacienteSpecificBeanImplementation) oBean;
         //PacienteSpecificBeanImplementation oOldPacienteBean = (PacienteSpecificBeanImplementation) this.get(oNewPacienteBean.getId(), 0).getBean();
-        if (
-                oNewPacienteBean.getId_centrosanitario() == idCentrosanitario
+        if (oNewPacienteBean.getId_centrosanitario() == idCentrosanitario
                 && (oNewPacienteBean.getId_usuario() == idUsuario || esMiAlumno(oNewPacienteBean.getId_usuario()))) {
             return true;
         } else {

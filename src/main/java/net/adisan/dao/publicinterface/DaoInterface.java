@@ -59,12 +59,14 @@ public interface DaoInterface {
 
     public Long getCountX(int id_foreign, String ob_foreign, ArrayList<FilterBeanHelper> alFilter) throws Exception;
 
+    public boolean canCreateObject() throws Exception;
+
     public boolean canCreate(GenericBeanImplementation oBean) throws Exception;
 
     public boolean canUpdate(GenericBeanImplementation oBean) throws Exception;
 
     public boolean canDelete(GenericBeanImplementation oBean) throws Exception;
-    
+
     public boolean canStatistics(GenericBeanImplementation oBean) throws Exception;
 
     public MetaBeanHelper get(int id, int intExpand) throws Exception;

@@ -79,6 +79,11 @@ public class Episodio4SpecificDaoImplementation extends GenericDaoImplementation
     }
 
     @Override
+    public boolean canCreateObject() throws Exception {
+        return true;
+    }
+
+    @Override
     public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         //si el paciente es de su centro
         EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oBean;
@@ -104,7 +109,7 @@ public class Episodio4SpecificDaoImplementation extends GenericDaoImplementation
     public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
         UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
         EpisodioSpecificBeanImplementation oEpisodio = (EpisodioSpecificBeanImplementation) oBean;
-        if (oEpisodio.getId_usuario().equals(oSessionUser.getId()) 
+        if (oEpisodio.getId_usuario().equals(oSessionUser.getId())
                 && oEpisodio.getLink_subepisodio() == 0
                 && oEpisodio.getLink_episodiodiagnostico() == 0) {
             return true;

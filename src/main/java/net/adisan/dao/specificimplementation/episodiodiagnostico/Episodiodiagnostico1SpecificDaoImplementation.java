@@ -51,6 +51,11 @@ public class Episodiodiagnostico1SpecificDaoImplementation extends GenericDaoImp
     }
 
     @Override
+    public boolean canCreateObject() throws Exception {
+        return true;
+    }
+
+    @Override
     public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         return true;
     }
@@ -62,7 +67,7 @@ public class Episodiodiagnostico1SpecificDaoImplementation extends GenericDaoImp
 
     @Override
     public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
-        return true;        
+        return true;
     }
 
 }

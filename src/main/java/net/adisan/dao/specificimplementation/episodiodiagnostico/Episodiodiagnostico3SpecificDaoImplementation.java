@@ -59,7 +59,7 @@ public class Episodiodiagnostico3SpecificDaoImplementation extends GenericDaoImp
 
                 CentrosanitarioSpecificBeanImplementation oCentroSanitario = (CentrosanitarioSpecificBeanImplementation) oUsuario.getObj_centrosanitario().getBean();
                 idCentrosanitario = oCentroSanitario.getId();
-                strSQLini = "FROM episodiodiagnostico where  1=1 "                        
+                strSQLini = "FROM episodiodiagnostico where  1=1 "
                         + "AND (id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=3 ) "
                         + " OR  id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=5 ) "
                         + " OR  id_usuario IN (SELECT distinct u.id FROM usuario u, grupo g, usuario u2 "
@@ -80,14 +80,14 @@ public class Episodiodiagnostico3SpecificDaoImplementation extends GenericDaoImp
     }
 
     @Override
+    public boolean canCreateObject() throws Exception {
+        return true;
+    }
+
+    @Override
     public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         EpisodiodiagnosticoSpecificBeanImplementation oEpisodiodiagnosticoBean = (EpisodiodiagnosticoSpecificBeanImplementation) oBean;
-        //obtener el episodio para ver si es de los del profesor o de sus alumnos
-        //Episodiodiagnostico3SpecificDaoImplementation oEpisodioDao = (Episodiodiagnostico3SpecificDaoImplementation) DaoFactory.getDao(ob, oConnection, oPuserSecurity, null);
-        //MetaBeanHelper oEpisodioMetaBean = oEpisodioDao.get(oEpisodiodiagnosticoBean.getId_episodio(), 0);
-        //EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oEpisodioMetaBean.getBean();
-        if (oEpisodiodiagnosticoBean.getId_usuario().equals(idUsuario) || this.esMiAlumno(oEpisodiodiagnosticoBean.getId_usuario())
-                ) {
+        if (oEpisodiodiagnosticoBean.getId_usuario().equals(idUsuario) || this.esMiAlumno(oEpisodiodiagnosticoBean.getId_usuario())) {
             return true;
         } else {
             return false;
@@ -98,12 +98,7 @@ public class Episodiodiagnostico3SpecificDaoImplementation extends GenericDaoImp
     public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
         UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
         EpisodiodiagnosticoSpecificBeanImplementation oEpisodiodiagnosticoBean = (EpisodiodiagnosticoSpecificBeanImplementation) oBean;
-        //obtener el episodio para ver si es de los del profesor o de sus alumnos
-        //Episodiodiagnostico3SpecificDaoImplementation oEpisodioDao = (Episodiodiagnostico3SpecificDaoImplementation) DaoFactory.getDao(ob, oConnection, oPuserSecurity, null);
-        //MetaBeanHelper oEpisodioMetaBean = oEpisodioDao.get(oEpisodiodiagnosticoBean.getId_episodio(), 0);
-        //EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oEpisodioMetaBean.getBean();
-        if (oEpisodiodiagnosticoBean.getId_usuario().equals(oSessionUser.getId()) || esMiAlumno(oEpisodiodiagnosticoBean.getId_usuario())
-                ) {
+        if (oEpisodiodiagnosticoBean.getId_usuario().equals(oSessionUser.getId()) || esMiAlumno(oEpisodiodiagnosticoBean.getId_usuario())) {
             return true;
         } else {
             return false;
@@ -113,12 +108,7 @@ public class Episodiodiagnostico3SpecificDaoImplementation extends GenericDaoImp
     @Override
     public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
         EpisodiodiagnosticoSpecificBeanImplementation oEpisodiodiagnosticoBean = (EpisodiodiagnosticoSpecificBeanImplementation) oBean;
-        //obtener el episodio para ver si es de los del profesor o de sus alumnos
-        //Episodiodiagnostico3SpecificDaoImplementation oEpisodioDao = (Episodiodiagnostico3SpecificDaoImplementation) DaoFactory.getDao(ob, oConnection, oPuserSecurity, null);
-        //MetaBeanHelper oEpisodioMetaBean = oEpisodioDao.get(oEpisodiodiagnosticoBean.getId_episodio(), 0);
-        //EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oEpisodioMetaBean.getBean();
-        if (oEpisodiodiagnosticoBean.getId_usuario().equals(idUsuario) || esMiAlumno(oEpisodiodiagnosticoBean.getId_usuario())
-                ) {
+        if (oEpisodiodiagnosticoBean.getId_usuario().equals(idUsuario) || esMiAlumno(oEpisodiodiagnosticoBean.getId_usuario())) {
             return true;
         } else {
             return false;

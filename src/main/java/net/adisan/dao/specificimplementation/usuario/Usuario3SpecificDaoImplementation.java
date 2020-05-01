@@ -88,6 +88,11 @@ public class Usuario3SpecificDaoImplementation extends GenericDaoImplementation 
     }
 
     @Override
+    public boolean canCreateObject() throws Exception {
+        return true;
+    }    
+    
+    @Override
     public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         UsuarioSpecificBeanImplementation oNewUser = (UsuarioSpecificBeanImplementation) oBean;
         //comprobar que al alumno lo metemos en uno de los grupos del profe en sesion 
@@ -169,7 +174,7 @@ public class Usuario3SpecificDaoImplementation extends GenericDaoImplementation 
             return this.update(oUsuario);
         } else {
             //TraceHelper.traceError(this.getClass().getName() + ".deactivate ob:" + ob + " Can't deactivate: only allowed to deactivate your own students");
-            throw new Exception("Can't deactivate: only allowed to deactivate your own students");
+            throw new Exception("No tienes permiso: sólo puedes desactivas a tus alumnos");
         }
     }
 
@@ -201,7 +206,7 @@ public class Usuario3SpecificDaoImplementation extends GenericDaoImplementation 
             return iResult;
         } else {
             //TraceHelper.traceError(this.getClass().getName() + ".update ob:" + ob + " Can't reset password: not mine nor my student's pass");
-            throw new Exception("Can't reset password: not mine nor my student's pass");
+            throw new Exception("No puedes resetear el password: no eres tu o uno de tus alumnos");
         }
     }
 

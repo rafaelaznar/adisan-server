@@ -42,8 +42,4 @@ public class Especialidad0SpecificDaoImplementation extends GenericDaoImplementa
         super("especialidad", oPooledConnection, oPuserBean_security, strWhere);
     }
 
-//    @Override
-//    public boolean canGet(Integer id) throws Exception {
-//        return true;
-//    }
 }

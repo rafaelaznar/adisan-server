@@ -76,14 +76,11 @@ public class Subepisodio3SpecificDaoImplementation extends GenericDaoImplementat
 
     }
 
-//    private boolean alumnoIsMine(Integer idAlumno) throws Exception {
-//        String strSQLini = "SELECT COUNT(*) "
-//                + "FROM usuario u, grupo g "
-//                + "where u.id_grupo=g.id "
-//                + "and g.id_usuario=" + idUsuario + " "
-//                + "and u.id=" + idAlumno;
-//        return countSQL(strSQLini);
-//    }
+    @Override
+    public boolean canCreateObject() throws Exception {
+        return true;
+    }
+
     @Override
     public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         //comprobar que el usuario sea el profesor o uno de sus alumnos
@@ -99,8 +96,7 @@ public class Subepisodio3SpecificDaoImplementation extends GenericDaoImplementat
     public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
         EpisodioSpecificBeanImplementation oNewEpisodio = (EpisodioSpecificBeanImplementation) oBean;
         //EpisodioSpecificBeanImplementation oOldEpisodio = (EpisodioSpecificBeanImplementation) this.get(oNewEpisodio.getId(), 0).getBean();
-        if ((esMiAlumno(oNewEpisodio.getId_usuario()) || oNewEpisodio.getId_usuario() == idUsuario)
-                //&& (esMiAlumno(oOldEpisodio.getId_usuario()) || oOldEpisodio.getId_usuario() == idUsuario)
+        if ((esMiAlumno(oNewEpisodio.getId_usuario()) || oNewEpisodio.getId_usuario() == idUsuario) //&& (esMiAlumno(oOldEpisodio.getId_usuario()) || oOldEpisodio.getId_usuario() == idUsuario)
                 ) {
             return true;
         } else {

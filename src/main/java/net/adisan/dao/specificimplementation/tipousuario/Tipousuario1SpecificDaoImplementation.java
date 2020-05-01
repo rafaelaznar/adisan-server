@@ -42,8 +42,9 @@ public class Tipousuario1SpecificDaoImplementation extends GenericDaoImplementat
         super("tipousuario", oPooledConnection, oPuserBean_security, strWhere);
     }
 
-//    @Override
-//    public boolean canGet(Integer id) throws Exception {
-//        return true;
-//    }
+    @Override
+    public boolean canCreateObject() throws Exception {
+        return true;
+    }
+    
 }

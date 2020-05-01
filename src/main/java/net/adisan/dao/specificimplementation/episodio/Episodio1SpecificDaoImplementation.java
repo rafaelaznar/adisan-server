@@ -37,7 +37,6 @@ import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.bean.specificimplementation.EpisodioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
-import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 
 public class Episodio1SpecificDaoImplementation extends GenericDaoImplementation {
 
@@ -51,6 +50,11 @@ public class Episodio1SpecificDaoImplementation extends GenericDaoImplementation
             strCountSQL += " " + strWhere + " ";
         }
     }
+
+    @Override
+    public boolean canCreateObject() throws Exception {
+        return true;
+    }    
 
     @Override
     public boolean canCreate(GenericBeanImplementation oBean) throws Exception {

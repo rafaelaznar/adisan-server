@@ -77,6 +77,11 @@ public class Episodio3SpecificDaoImplementation extends GenericDaoImplementation
     }
 
     @Override
+    public boolean canCreateObject() throws Exception {
+        return true;
+    }    
+    
+    @Override
     public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oBean;
         if (esMiAlumno(oEpisodioBean.getId_usuario()) || oEpisodioBean.getId_usuario() == idUsuario) {

@@ -81,6 +81,11 @@ public class Paciente4SpecificDaoImplementation extends GenericDaoImplementation
     }
 
     @Override
+    public boolean canCreateObject() throws Exception {
+        return true;
+    }    
+    
+    @Override
     public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         return true;
     }

@@ -32,7 +32,6 @@
  */
 package net.adisan.dao.specificimplementation.medico;
 
-import net.adisan.bean.genericimplementation.GenericBeanImplementation;
 import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.GrupoSpecificBeanImplementation;
@@ -71,8 +70,5 @@ public class Medico4SpecificDaoImplementation extends GenericDaoImplementation {
 
     }
 
-//    @Override
-//    public boolean canGet(Integer id) throws Exception {
-//        return true;
-//    }
+
 }

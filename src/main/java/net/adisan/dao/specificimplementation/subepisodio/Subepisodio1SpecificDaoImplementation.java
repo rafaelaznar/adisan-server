@@ -47,7 +47,12 @@ public class Subepisodio1SpecificDaoImplementation extends GenericDaoImplementat
         if (strWhere != null) {
             strSQL += " " + strWhere + " ";
             strCountSQL += " " + strWhere + " ";
-        }        
+        }
+    }
+
+    @Override
+    public boolean canCreateObject() throws Exception {
+        return true;
     }
 
     @Override

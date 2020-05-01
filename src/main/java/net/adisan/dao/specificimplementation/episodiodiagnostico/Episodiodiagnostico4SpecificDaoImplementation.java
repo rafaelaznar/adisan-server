@@ -35,14 +35,11 @@ package net.adisan.dao.specificimplementation.episodiodiagnostico;
 import net.adisan.bean.genericimplementation.GenericBeanImplementation;
 import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
-import net.adisan.bean.specificimplementation.EpisodioSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.GrupoSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 import net.adisan.bean.specificimplementation.EpisodiodiagnosticoSpecificBeanImplementation;
-import net.adisan.dao.specificimplementation.episodio.Episodio1SpecificDaoImplementation;
-import net.adisan.factory.DaoFactory;
 
 public class Episodiodiagnostico4SpecificDaoImplementation extends GenericDaoImplementation {
 
@@ -82,6 +79,11 @@ public class Episodiodiagnostico4SpecificDaoImplementation extends GenericDaoImp
         }
     }
 
+    @Override
+    public boolean canCreateObject() throws Exception {
+        return true;
+    }
+    
     @Override
     public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         return true;
