@@ -258,7 +258,7 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
             IsRequired = true,
             References = "centrosanitario",
             Width = 4,
-            IsVisible = false,
+            IsVisible = true,
             IsFormVisible3 = false
     )
     private MetaBeanHelper obj_centrosanitario = null;

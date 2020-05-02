@@ -39,8 +39,8 @@ public class ConfigurationConstants {
     public static final int jsonMsgDepth = 1;
     public static final int tokenSize = 20;
     public static final Environment environment = Environment.Debug;
-    public static final String version = "4.0";
-    public static final String versionDate = "February 2020";
+    public static final String version = "5.0";
+    public static final String versionDate = "March 2020";
     public static final String author = "Rafael Aznar & DAW STUDENTS";
     public static final String authorMail = "rafaaznar{at}gmail{dot}com";
     public static final String sources = "https://github.com/rafaelaznar/adisan-server";    
