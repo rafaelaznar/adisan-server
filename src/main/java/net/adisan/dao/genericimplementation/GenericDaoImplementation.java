@@ -142,7 +142,9 @@ public abstract class GenericDaoImplementation implements DaoInterface {
                         oMeta.setDefaultValue(fieldAnnotation.DefaultValue());
                         oMeta.setIsVisible(fieldAnnotation.IsVisible());
                         oMeta.setWidth(fieldAnnotation.Width());
-                        oMeta.setMaxLength(fieldAnnotation.MaxLength());                        
+                        oMeta.setMaxLength(fieldAnnotation.MaxLength());
+                                                
+                        oMeta.setClip(fieldAnnotation.Clip());
                         
                         oMeta.setIsFormVisible1(fieldAnnotation.IsFormVisible1());
                         oMeta.setIsFormVisible2(fieldAnnotation.IsFormVisible2());

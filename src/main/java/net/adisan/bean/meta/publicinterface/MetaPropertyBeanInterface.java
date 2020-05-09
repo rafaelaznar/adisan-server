@@ -63,7 +63,9 @@ public @interface MetaPropertyBeanInterface {
 
     public String DefaultValue() default "";
 
-    public boolean IsVisible() default true;
+    public boolean IsVisible() default true;   
+    
+    public boolean Clip() default true;
 
     public int Width() default 2;
 

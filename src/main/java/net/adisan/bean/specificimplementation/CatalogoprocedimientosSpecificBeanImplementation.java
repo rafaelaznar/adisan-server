@@ -58,7 +58,7 @@ public class CatalogoprocedimientosSpecificBeanImplementation extends GenericBea
             Type = EnumHelper.FieldType.String,
             IsRequired = true,
             RegexPattern = RegexConstants.capitalizedSentence,
-            IsForeignKeyDescriptor = true
+            IsForeignKeyDescriptor = true           
     )
     private String codigo = "";
 
@@ -70,6 +70,7 @@ public class CatalogoprocedimientosSpecificBeanImplementation extends GenericBea
             Type = EnumHelper.FieldType.String,
             IsRequired = true,
             RegexPattern = RegexConstants.capitalizedSentence,
+            Clip = false,
             IsForeignKeyDescriptor = true
     )
     private String descripcion = "";
@@ -95,9 +96,8 @@ public class CatalogoprocedimientosSpecificBeanImplementation extends GenericBea
             IsVisible = true
     )
     private Integer males_only;
-    
-    //-----------------------------------------------------
 
+    //-----------------------------------------------------
     @Expose(deserialize = false)
     @MetaPropertyBeanInterface(
             ShortName = "Procedimientos",
@@ -153,6 +153,6 @@ public class CatalogoprocedimientosSpecificBeanImplementation extends GenericBea
 
     public void setLink_procedimiento(Integer link_procedimiento) {
         this.link_procedimiento = link_procedimiento;
-    }    
-    
+    }
+
 }

@@ -72,6 +72,8 @@ public class MetaPropertyGenericBeanHelper {
     @Expose
     private Integer MaxLength = 255;
     @Expose
+    private boolean Clip = true;    
+    @Expose
     private boolean IsFormVisible1 = true;
     @Expose
     private boolean IsFormVisible2 = true;
@@ -259,6 +261,12 @@ public class MetaPropertyGenericBeanHelper {
         this.IsFormVisible5 = IsFormVisible5;
     }
 
+    public boolean isClip() {
+        return Clip;
+    }
 
+    public void setClip(boolean Clip) {
+        this.Clip = Clip;
+    }
 
 }

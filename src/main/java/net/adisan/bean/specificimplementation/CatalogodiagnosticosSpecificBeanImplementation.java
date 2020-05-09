@@ -70,6 +70,7 @@ public class CatalogodiagnosticosSpecificBeanImplementation extends GenericBeanI
             Type = EnumHelper.FieldType.String,
             IsRequired = true,
             RegexPattern = RegexConstants.capitalizedSentence,
+            Clip = false,
             IsForeignKeyDescriptor = true
     )
     private String descripcion = "";
