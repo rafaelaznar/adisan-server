@@ -44,7 +44,8 @@ import net.adisan.helper.constant.RegexConstants;
         SingularDescription = "Tipo de procedimiento",
         PluralDescription = "Tipos de procedimientos",
         Icon = "fa fa-pump-soap",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un código de tipo de procedimiento a ADISAN"
 )
 
 public class TipoprocedimientoSpecificBeanImplementation extends GenericBeanImplementation {
@@ -94,7 +95,5 @@ public class TipoprocedimientoSpecificBeanImplementation extends GenericBeanImpl
     public void setLink_episodioprocedimiento(Integer link_episodioprocedimiento) {
         this.link_episodioprocedimiento = link_episodioprocedimiento;
     }
-
-
 
 }

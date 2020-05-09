@@ -44,6 +44,7 @@ import net.adisan.helper.constant.RegexConstants;
         TableName = "procedimientomedico",
         SingularDescription = "Personal sanitario en procedimiento",
         PluralDescription = "Personal sanitario en procedimientos",
+        CreateDescription = "Añadir personal sanitario al procedimiento",
         Icon = "fa fa-user-nurse",
         Type = EnumHelper.SourceType.Table
 )

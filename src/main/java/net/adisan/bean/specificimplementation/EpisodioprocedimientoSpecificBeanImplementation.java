@@ -46,7 +46,8 @@ import net.adisan.helper.constant.RegexConstants;
         SingularDescription = "Procedimiento de episodio",
         PluralDescription = "Procedimientos de episodio",
         Icon = "fa fa-user-injured",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un procedimiento al episodio"
 )
 public class EpisodioprocedimientoSpecificBeanImplementation extends GenericBeanImplementation {
 

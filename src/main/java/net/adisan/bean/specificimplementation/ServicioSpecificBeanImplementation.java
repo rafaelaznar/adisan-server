@@ -45,7 +45,8 @@ import net.adisan.helper.constant.RegexConstants;
         SingularDescription = "Servicio",
         PluralDescription = "Servicios",
         Icon = "fa fa-strikethrough",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un servicio a ADISAN"
 )
 public class ServicioSpecificBeanImplementation extends GenericBeanImplementation {
 

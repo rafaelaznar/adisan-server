@@ -44,7 +44,8 @@ import net.adisan.helper.constant.RegexConstants;
         SingularDescription = "Estado",
         PluralDescription = "Estados",
         Icon = "fa fa-comment-medical",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un código de estado de los procedimientos a ADISAN"
 )
 public class EstadoSpecificBeanImplementation extends GenericBeanImplementation {
 

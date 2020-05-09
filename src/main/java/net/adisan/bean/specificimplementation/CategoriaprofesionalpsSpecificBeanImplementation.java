@@ -17,7 +17,8 @@ import net.adisan.helper.constant.RegexConstants;
         SingularDescription = "Categoría profesional personal sanitario",
         PluralDescription = "Categorías profesionales personal sanitario",
         Icon = "fa fa-chess-queen",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un código de categoría profesional para personal sanitario a ADISAN"
 )
 public class CategoriaprofesionalpsSpecificBeanImplementation extends GenericBeanImplementation {
 

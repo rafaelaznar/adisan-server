@@ -44,7 +44,8 @@ import net.adisan.helper.constant.RegexConstants;
         SingularDescription = "Diagnóstico codificado del catálogo",
         PluralDescription = "Catálogo de diagnósticos codificados",
         Icon = "fa fa-qrcode",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un diagnóstico al catálogo"
 )
 
 public class CatalogodiagnosticosSpecificBeanImplementation extends GenericBeanImplementation {
@@ -116,7 +117,7 @@ public class CatalogodiagnosticosSpecificBeanImplementation extends GenericBeanI
             IsVisible = true
     )
     private Integer poa_exento;
-    
+
     @Expose
     @MetaPropertyBeanInterface(
             ShortName = "Manif.",
@@ -127,7 +128,6 @@ public class CatalogodiagnosticosSpecificBeanImplementation extends GenericBeanI
             IsVisible = true
     )
     private Integer manifestacion;
-    
 
     @Expose
     @MetaPropertyBeanInterface(
@@ -139,7 +139,7 @@ public class CatalogodiagnosticosSpecificBeanImplementation extends GenericBeanI
             IsVisible = true
     )
     private Integer perinatal;
-    
+
     @Expose
     @MetaPropertyBeanInterface(
             ShortName = "Pediátrico",
@@ -150,7 +150,7 @@ public class CatalogodiagnosticosSpecificBeanImplementation extends GenericBeanI
             IsVisible = true
     )
     private Integer pediatrico;
-    
+
     @Expose
     @MetaPropertyBeanInterface(
             ShortName = "Obstétrico",
@@ -161,7 +161,7 @@ public class CatalogodiagnosticosSpecificBeanImplementation extends GenericBeanI
             IsVisible = true
     )
     private Integer obstetrico;
-    
+
     @Expose
     @MetaPropertyBeanInterface(
             ShortName = "Adulto",
@@ -172,7 +172,7 @@ public class CatalogodiagnosticosSpecificBeanImplementation extends GenericBeanI
             IsVisible = true
     )
     private Integer adulto;
-    
+
     @Expose
     @MetaPropertyBeanInterface(
             ShortName = "Mujer",
@@ -183,7 +183,7 @@ public class CatalogodiagnosticosSpecificBeanImplementation extends GenericBeanI
             IsVisible = true
     )
     private Integer mujer;
-    
+
     @Expose
     @MetaPropertyBeanInterface(
             ShortName = "Hombre",
@@ -194,18 +194,37 @@ public class CatalogodiagnosticosSpecificBeanImplementation extends GenericBeanI
             IsVisible = true
     )
     private Integer hombre;
-    
-    //-----------------------------------------------------
 
+    //-----------------------------------------------------
     @Expose(deserialize = false)
     @MetaPropertyBeanInterface(
-            ShortName = "Diagnósticos",
+            ShortName = "Diagnósticos en episodios",
             LongName = "Diagnósticos del código",
             Description = "Diagnósticos de este código",
             Type = EnumHelper.FieldType.Link,
             References = "episodiodiagnostico"
     )
     private Integer link_episodiodiagnostico = null;
+
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Diagnósticos iniciales en procedimientos",
+            LongName = "Diagnósticos iniciales en procedimientos del código",
+            Description = "Diagnósticos iniciales en procedimientos del código",
+            Type = EnumHelper.FieldType.Link,
+            References = "procedimientodiagnosticoinicial"
+    )
+    private Integer link_procedimientodiagnosticoinicial = null;
+
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Diagnósticos finales en procedimientos",
+            LongName = "Diagnósticos finales en procedimientos del código",
+            Description = "Diagnósticos finales en procedimientos del código",
+            Type = EnumHelper.FieldType.Link,
+            References = "procedimientodiagnosticofinal"
+    )
+    private Integer link_procedimientodiagnosticofinal = null;
 
     public CatalogodiagnosticosSpecificBeanImplementation() {
     }
@@ -326,10 +345,20 @@ public class CatalogodiagnosticosSpecificBeanImplementation extends GenericBeanI
         this.link_episodiodiagnostico = link_episodiodiagnostico;
     }
 
-    
-    
-    
-    
-    
-    
+    public Integer getLink_procedimientodiagnosticoinicial() {
+        return link_procedimientodiagnosticoinicial;
+    }
+
+    public void setLink_procedimientodiagnosticoinicial(Integer link_procedimientodiagnosticoinicial) {
+        this.link_procedimientodiagnosticoinicial = link_procedimientodiagnosticoinicial;
+    }
+
+    public Integer getLink_procedimientodiagnosticofinal() {
+        return link_procedimientodiagnosticofinal;
+    }
+
+    public void setLink_procedimientodiagnosticofinal(Integer link_procedimientodiagnosticofinal) {
+        this.link_procedimientodiagnosticofinal = link_procedimientodiagnosticofinal;
+    }
+
 }

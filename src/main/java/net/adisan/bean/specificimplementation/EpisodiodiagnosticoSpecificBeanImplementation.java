@@ -40,18 +40,14 @@ import net.adisan.bean.meta.publicinterface.MetaPropertyBeanInterface;
 import net.adisan.helper.EnumHelper;
 import java.util.Date;
 
-/**
- *
- * pendiente: falta el campo ingreso con subtabla periférica para la procedencia
- * del ingreso
- *
- */
+
 @MetaObjectBeanInterface(
         TableName = "episodiodiagnostico",
         SingularDescription = "Diagnóstico codificado",
         PluralDescription = "Diagnósticos codificados",
         Icon = "fa fa-project-diagram",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un diagnośtico codificado al episodio"
 )
 public class EpisodiodiagnosticoSpecificBeanImplementation extends GenericBeanImplementation {
 

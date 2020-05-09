@@ -16,7 +16,8 @@ import net.adisan.helper.constant.RegexConstants;
         TableName = "nombremasculino",
         SingularDescription = "Nombre Masculino",
         PluralDescription = "Nombres Masculinos",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un nombre mascualino a ADISAN"
 )
 public class NombremasculinoSpecificBeanImplementation extends GenericBeanImplementation {
 

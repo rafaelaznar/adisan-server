@@ -170,6 +170,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
                 oMetaObject.setTableName(fieldAnnotation.TableName());
                 oMetaObject.setType(fieldAnnotation.Type());
                 oMetaObject.setCanCreateObject(this.canCreateObject());
+                oMetaObject.setCreateDescription(fieldAnnotation.CreateDescription());                
             }
         }
         return oMetaObject;

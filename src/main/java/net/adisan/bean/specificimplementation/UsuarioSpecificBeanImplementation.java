@@ -51,7 +51,8 @@ import java.util.Date;
         SingularDescription = "Usuario",
         PluralDescription = "Usuarios",
         Icon = "fa fa-user",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un usuario a ADISAN"
 )
 public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation {
 

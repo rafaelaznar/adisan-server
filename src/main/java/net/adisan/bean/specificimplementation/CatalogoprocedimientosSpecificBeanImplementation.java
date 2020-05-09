@@ -44,7 +44,8 @@ import net.adisan.helper.constant.RegexConstants;
         SingularDescription = "Procedimiento codificado del catálogo",
         PluralDescription = "Catálogo de procedimientos codificados",
         Icon = "fa fa-procedures",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir una codificación de procedimientos al catálogo"
 )
 
 public class CatalogoprocedimientosSpecificBeanImplementation extends GenericBeanImplementation {

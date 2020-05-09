@@ -44,7 +44,8 @@ import net.adisan.helper.constant.RegexConstants;
         SingularDescription = "Tipo de diagnóstico",
         PluralDescription = "Tipos de diagnóstico",
         Icon = "fa fa-sort-numeric-down",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un código de tipo de diagnóstico a ADISAN"
 )
 
 public class TipodiagnosticoSpecificBeanImplementation extends GenericBeanImplementation {

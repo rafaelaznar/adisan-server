@@ -17,7 +17,8 @@ import net.adisan.helper.constant.RegexConstants;
         SingularDescription = "Categoría profesional médico",
         PluralDescription = "Categorías profesionales médicos",
         Icon = "fa fa-chess-king",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un item de categoría profesional para médico a ADISAN"
 )
 public class CategoriaprofesionalSpecificBeanImplementation extends GenericBeanImplementation {
 

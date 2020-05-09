@@ -45,7 +45,8 @@ import net.adisan.helper.constant.RegexConstants;
         SingularDescription = "Grupo",
         PluralDescription = "Grupos",
         Icon = "fa fa-users",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un grupo de alumnos a ADISAN"
 )
 public class GrupoSpecificBeanImplementation extends GenericBeanImplementation {
 

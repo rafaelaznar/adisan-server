@@ -45,7 +45,8 @@ import net.adisan.helper.EnumHelper;
         SingularDescription = "Diagnostico inicial",
         PluralDescription = "Diagnostico inicial",
         Icon = "fa fa-lungs",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un item codificado de diagnóstico inicial al procedimiento"
 )
 public class ProcedimientodiagnosticoinicialSpecificBeanImplementation extends GenericBeanImplementation {
 
@@ -128,7 +129,7 @@ public class ProcedimientodiagnosticoinicialSpecificBeanImplementation extends G
     )
     private MetaBeanHelper obj_catalogodiagnosticos = null;
 
-     @Expose(serialize = false)
+    @Expose(serialize = false)
     @MetaPropertyBeanInterface(
             Type = EnumHelper.FieldType.ForeignId
     )
@@ -145,7 +146,7 @@ public class ProcedimientodiagnosticoinicialSpecificBeanImplementation extends G
             Width = 4
     )
     private MetaBeanHelper obj_episodioprocedimiento = null;
-    
+
     public ProcedimientodiagnosticoinicialSpecificBeanImplementation() {
     }
 
@@ -232,17 +233,5 @@ public class ProcedimientodiagnosticoinicialSpecificBeanImplementation extends G
     public void setObj_episodioprocedimiento(MetaBeanHelper obj_episodioprocedimiento) {
         this.obj_episodioprocedimiento = obj_episodioprocedimiento;
     }
-
-    
- 
-    
-
-
-
-
-
-
-
-   
 
 }

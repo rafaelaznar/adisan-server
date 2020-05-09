@@ -44,7 +44,8 @@ import net.adisan.helper.constant.RegexConstants;
         SingularDescription = "Curso",
         PluralDescription = "Cursos",
         Icon = "fa fa-calendar-check",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un curso a ADISAN"
 )
 public class CursoSpecificBeanImplementation extends GenericBeanImplementation {
 

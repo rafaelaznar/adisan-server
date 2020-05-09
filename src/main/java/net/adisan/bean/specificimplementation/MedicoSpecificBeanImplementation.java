@@ -41,16 +41,13 @@ import net.adisan.helper.EnumHelper;
 import net.adisan.helper.constant.RegexConstants;
 import java.util.Date;
 
-/**
- *
- * @author a022583952e
- */
 @MetaObjectBeanInterface(
         TableName = "medico",
         SingularDescription = "Medico",
         PluralDescription = "Medicos",
         Icon = "fa fa-user-md",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un médico al centro sanitario"
 )
 public class MedicoSpecificBeanImplementation extends GenericBeanImplementation {
 

@@ -16,7 +16,8 @@ import net.adisan.helper.constant.RegexConstants;
         TableName = "comunidad",
         SingularDescription = "Comunidad",
         PluralDescription = "Comunidades",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir una Comunidad a ADISAN"
 )
 
 public class ComunidadSpecificBeanImplementation extends GenericBeanImplementation {

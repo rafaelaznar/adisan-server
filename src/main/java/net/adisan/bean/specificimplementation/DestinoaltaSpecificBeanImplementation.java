@@ -44,7 +44,8 @@ import net.adisan.helper.constant.RegexConstants;
         SingularDescription = "Destino de Alta",
         PluralDescription = "Destinos de Alta",
         Icon = "fa fa-ellipsis-v",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un código de destino de alta a ADISAN"
 )
 public class DestinoaltaSpecificBeanImplementation extends GenericBeanImplementation {
 

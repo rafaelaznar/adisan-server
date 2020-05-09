@@ -45,7 +45,8 @@ import net.adisan.helper.EnumHelper;
         SingularDescription = "Diagnostico final",
         PluralDescription = "Diagnostico final",
         Icon = "fa fa-lungs-virus",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un item codificado de diagnóstico final al procedimiento"
 )
 public class ProcedimientodiagnosticofinalSpecificBeanImplementation extends GenericBeanImplementation {
 
@@ -126,12 +127,10 @@ public class ProcedimientodiagnosticofinalSpecificBeanImplementation extends Gen
             References = "catalogodiagnosticos",
             Width = 4
     )
-    
+
     private MetaBeanHelper obj_catalogodiagnosticos = null;
 
-    
-    
-     @Expose(serialize = false)
+    @Expose(serialize = false)
     @MetaPropertyBeanInterface(
             Type = EnumHelper.FieldType.ForeignId
     )
@@ -148,8 +147,7 @@ public class ProcedimientodiagnosticofinalSpecificBeanImplementation extends Gen
             Width = 4
     )
     private MetaBeanHelper obj_episodioprocedimiento = null;
-    
-    
+
     public ProcedimientodiagnosticofinalSpecificBeanImplementation() {
     }
 
@@ -236,17 +234,5 @@ public class ProcedimientodiagnosticofinalSpecificBeanImplementation extends Gen
     public void setObj_episodioprocedimiento(MetaBeanHelper obj_episodioprocedimiento) {
         this.obj_episodioprocedimiento = obj_episodioprocedimiento;
     }
-
-    
- 
-    
-
-
-
-
-
-
-
-   
 
 }

@@ -44,7 +44,8 @@ import net.adisan.helper.constant.RegexConstants;
         SingularDescription = "Prioridad de procedimiento",
         PluralDescription = "Prioridades de procedimientos",
         Icon = "fa fa-exclamation-triangle",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir código de prioridad para procedimientos en ADISAN"
 )
 
 public class PrioridadSpecificBeanImplementation extends GenericBeanImplementation {

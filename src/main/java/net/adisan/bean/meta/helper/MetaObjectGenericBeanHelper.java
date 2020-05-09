@@ -45,6 +45,8 @@ public class MetaObjectGenericBeanHelper {
     @Expose
     public String PluralDescription = "";
     @Expose
+    public String CreateDescription = "";    
+    @Expose
     public EnumHelper.SourceType Type = EnumHelper.SourceType.Table;
     @Expose
     public String TableName = "";
@@ -106,6 +108,17 @@ public class MetaObjectGenericBeanHelper {
     public void setCanCreateObject(Boolean canCreateObject) {
         this.canCreateObject = canCreateObject;
     }
+
+    public String getCreateDescription() {
+        return CreateDescription;
+    }
+
+    public void setCreateDescription(String CreateDescription) {
+        this.CreateDescription = CreateDescription;
+    }
+
+
+
 
 
 

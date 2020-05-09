@@ -44,7 +44,8 @@ import net.adisan.helper.constant.RegexConstants;
         SingularDescription = "Tipo de pago",
         PluralDescription = "Tipos de pagos",
         Icon = "fa fa-money",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un código de tipo de pago en ADISAN"
 )
 public class TipopagoSpecificBeanImplementation extends GenericBeanImplementation {
 

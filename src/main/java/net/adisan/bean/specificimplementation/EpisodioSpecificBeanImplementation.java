@@ -52,7 +52,8 @@ import java.util.Date;
         SingularDescription = "Episodio",
         PluralDescription = "Episodios",
         Icon = "fa fa-address-card",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un episodio a un paciente"
 )
 public class EpisodioSpecificBeanImplementation extends GenericBeanImplementation {
 

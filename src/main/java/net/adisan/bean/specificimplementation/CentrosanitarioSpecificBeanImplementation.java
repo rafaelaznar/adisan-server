@@ -44,7 +44,8 @@ import net.adisan.helper.constant.RegexConstants;
         SingularDescription = "Centro sanitario",
         PluralDescription = "Centros sanitarios",
         Icon = "fa fa-medkit",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un Centro Sanitario a ADISAN"
 )
 public class CentrosanitarioSpecificBeanImplementation extends GenericBeanImplementation {
 

@@ -17,7 +17,8 @@ import net.adisan.helper.constant.RegexConstants;
         TableName = "municipio",
         SingularDescription = "Municipio",
         PluralDescription = "Municipios",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un municipio a ADISAN"
 )
 
 public class MunicipioSpecificBeanImplementation extends GenericBeanImplementation {

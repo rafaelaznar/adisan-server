@@ -44,7 +44,8 @@ import net.adisan.helper.constant.RegexConstants;
         SingularDescription = "Modalidad del episodio",
         PluralDescription = "Modalidades de episodios",
         Icon = "fa fa-file-alt",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un código de modalidad de episodio a ADISAN"
 )
 public class ModalidadepisodioSpecificBeanImplementation extends GenericBeanImplementation {
 

@@ -45,7 +45,8 @@ import java.util.Date;
         SingularDescription = "Codificación de procedimiento",
         PluralDescription = "Codificaciones de procedimiento",
         Icon = "fa fa-syringe",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un item codificado al procedimiento del episodio"
 )
 public class ProcedimientoSpecificBeanImplementation extends GenericBeanImplementation {
 
@@ -123,6 +124,7 @@ public class ProcedimientoSpecificBeanImplementation extends GenericBeanImplemen
             Description = "Procedimiento codificado",
             Type = EnumHelper.FieldType.ForeignObject,
             IsRequired = true,
+            IsVisible = true,
             References = "catalogoprocedimientos",
             Width = 4
     )

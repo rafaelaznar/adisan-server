@@ -44,7 +44,8 @@ import net.adisan.helper.constant.RegexConstants;
         SingularDescription = "Circunstancia del alta",
         PluralDescription = "Circunstancias del alta",
         Icon = "fa fa-blind",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un item de cirunstancia de alta a ADISAN"
 )
 
 public class CircunstanciasaltaSpecificBeanImplementation extends GenericBeanImplementation {

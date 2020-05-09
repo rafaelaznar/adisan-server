@@ -16,7 +16,8 @@ import net.adisan.helper.constant.RegexConstants;
         TableName = "via",
         SingularDescription = "Via",
         PluralDescription = "Via",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un código de via al procedimiento"
 )
 public class ViaSpecificBeanImplementation extends GenericBeanImplementation {
 

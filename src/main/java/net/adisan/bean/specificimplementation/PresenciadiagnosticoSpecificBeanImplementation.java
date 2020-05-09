@@ -44,7 +44,8 @@ import net.adisan.helper.constant.RegexConstants;
         SingularDescription = "Presencia de diagnóstico",
         PluralDescription = "Presencia de diagnósticos",
         Icon = "fa fa-file-powerpoint",        
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un código de presencia de diagnóstico a ADISAN"
 )
 
 public class PresenciadiagnosticoSpecificBeanImplementation extends GenericBeanImplementation {

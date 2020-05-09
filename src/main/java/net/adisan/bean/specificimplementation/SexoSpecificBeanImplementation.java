@@ -45,7 +45,8 @@ import net.adisan.helper.constant.RegexConstants;
         SingularDescription = "Sexo",
         PluralDescription = "Sexo",
         Icon = "fa fa-venus-mars",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un código de sexo a ADISAN"
 )
 public class SexoSpecificBeanImplementation extends GenericBeanImplementation {
 

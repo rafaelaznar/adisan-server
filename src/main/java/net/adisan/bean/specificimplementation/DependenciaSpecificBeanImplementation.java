@@ -40,16 +40,13 @@ import net.adisan.bean.meta.publicinterface.MetaPropertyBeanInterface;
 import net.adisan.helper.EnumHelper;
 import net.adisan.helper.constant.RegexConstants;
 
-/**
- *
- * @author a022583952e
- */
 @MetaObjectBeanInterface(
         TableName = "dependencia",
         SingularDescription = "Dependencia",
         PluralDescription = "Dependencias",
         Icon = "fa fa-square",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir una dependencia al Centro Sanitario"
 )
 public class DependenciaSpecificBeanImplementation extends GenericBeanImplementation {
 

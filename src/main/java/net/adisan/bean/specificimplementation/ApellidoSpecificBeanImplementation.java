@@ -16,7 +16,8 @@ import net.adisan.helper.constant.RegexConstants;
         TableName = "apellido",
         SingularDescription = "Apellido",
         PluralDescription = "Apellido",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir apellido a ADISAN"
 )
 
 public class ApellidoSpecificBeanImplementation extends GenericBeanImplementation {

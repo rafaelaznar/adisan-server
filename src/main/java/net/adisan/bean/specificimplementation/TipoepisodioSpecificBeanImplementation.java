@@ -44,7 +44,8 @@ import net.adisan.helper.constant.RegexConstants;
         SingularDescription = "Tipo de episodio",
         PluralDescription = "Tipos de episodios",
         Icon = "fa fa-id-card",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un código de tipo de episodio a ADISAN"
 )
 public class TipoepisodioSpecificBeanImplementation extends GenericBeanImplementation {
 

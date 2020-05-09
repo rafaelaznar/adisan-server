@@ -17,7 +17,8 @@ import net.adisan.helper.constant.RegexConstants;
         SingularDescription = "Centro educativo",
         PluralDescription = "Centros educativos",
         Icon = "fa fa-graduation-cap",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un centro educativo a ADISAN"
 )
 public class CentroSpecificBeanImplementation extends GenericBeanImplementation {
 

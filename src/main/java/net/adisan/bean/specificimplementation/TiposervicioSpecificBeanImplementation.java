@@ -44,7 +44,8 @@ import net.adisan.helper.constant.RegexConstants;
         SingularDescription = "Tipo de Servicio",
         PluralDescription = "Tipos de Servicio",
         Icon = "fa fa-concierge-bell",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un código de tipo servicio a ADISAN"
 )
 public class TiposervicioSpecificBeanImplementation extends GenericBeanImplementation {
 

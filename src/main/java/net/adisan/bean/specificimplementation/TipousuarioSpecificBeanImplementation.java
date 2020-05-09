@@ -44,7 +44,8 @@ import net.adisan.helper.constant.RegexConstants;
         SingularDescription = "Tipo de usuario",
         PluralDescription = "Tipos de usuarios",
         Icon = "fa fa-user-tie",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un código de tipo de uausio a ADISAN"
 )
 public class TipousuarioSpecificBeanImplementation extends GenericBeanImplementation {
 

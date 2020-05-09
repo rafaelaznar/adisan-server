@@ -44,7 +44,8 @@ import net.adisan.helper.constant.RegexConstants;
         SingularDescription = "Especialidad",
         PluralDescription = "Especialidades",
         Icon = "fa fa-stethoscope",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un código de especialidad de médicos o enfermeros a ADISAN"
 )
 public class EspecialidadSpecificBeanImplementation extends GenericBeanImplementation {
 

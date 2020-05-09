@@ -44,7 +44,8 @@ import net.adisan.helper.constant.RegexConstants;
         SingularDescription = "Tipo de dependencia",
         PluralDescription = "Tipo de dependencias",
         Icon = "fa fa-border-all",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un código de tipo de dependencia a ADISAN"
 )
 
 public class TipodependenciaSpecificBeanImplementation extends GenericBeanImplementation {

@@ -45,7 +45,8 @@ import java.util.Date;
         SingularDescription = "Factura",
         PluralDescription = "Facturas",
         Icon = "fa fa-file-archive-o",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir una factura de episodios"
 )
 public class FacturaSpecificBeanImplementation extends GenericBeanImplementation {
 

@@ -45,7 +45,8 @@ import net.adisan.helper.constant.RegexConstants;
         SingularDescription = "Médico en procedimiento",
         PluralDescription = "Médicos en procedimientos",
         Icon = "fa fa-stethoscope",
-        Type = EnumHelper.SourceType.Table
+        Type = EnumHelper.SourceType.Table,
+        CreateDescription = "Añadir un médico al procedimiento"
 )
 public class ProcedimientomedicoSpecificBeanImplementation extends GenericBeanImplementation {
 
