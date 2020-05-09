@@ -35,28 +35,11 @@ package net.adisan.dao.specificimplementation.catalogodiagnosticos;
 import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
-import net.adisan.bean.genericimplementation.GenericBeanImplementation;
 
 public class Catalogodiagnosticos0SpecificDaoImplementation extends GenericDaoImplementation {
 
     public Catalogodiagnosticos0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
         super("catalogodiagnosticos", oPooledConnection, oPuserBean_security, strWhere);
-    }
-
-    @Override
-    public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
-        return false;
-    }
-
-    @Override
-    public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
-        return false;
-    }
-
-    @Override
-    public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
-        return false;
-
     }
 
 }

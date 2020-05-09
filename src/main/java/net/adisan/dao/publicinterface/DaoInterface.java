@@ -35,7 +35,6 @@ package net.adisan.dao.publicinterface;
 import net.adisan.bean.genericimplementation.GenericBeanImplementation;
 import net.adisan.bean.helper.FilterBeanHelper;
 import net.adisan.bean.helper.MetaBeanHelper;
-import net.adisan.bean.helper.ReplyBeanHelper;
 import net.adisan.bean.meta.helper.MetaObjectGenericBeanHelper;
 import net.adisan.bean.meta.helper.MetaPropertyGenericBeanHelper;
 import java.util.ArrayList;

@@ -14,9 +14,9 @@ import net.adisan.helper.constant.RegexConstants;
 
 @MetaObjectBeanInterface(
         TableName = "categoriaprofesional",
-        SingularDescription = "Categoría profesional",
-        PluralDescription = "Categorías profesionales",
-        Icon = "fa fa-list-alt",
+        SingularDescription = "Categoría profesional médico",
+        PluralDescription = "Categorías profesionales médicos",
+        Icon = "fa fa-chess-king",
         Type = EnumHelper.SourceType.Table
 )
 public class CategoriaprofesionalSpecificBeanImplementation extends GenericBeanImplementation {

@@ -328,7 +328,10 @@ public class PacienteSpecificServiceImplementation extends GenericServiceImpleme
             //oPacienteBean.setId_tipopago(RandomHelper.getRandomInt(1, 3));
             oPacienteBean.setId_sexo(sexo);
             oPacienteBean.setId_usuario(oUsuario.getId());
-
+            
+            //ojo śolo podran crear pacientes los profesores!
+            oPacienteBean.setId_centrosanitario(oUsuario.getId_centrosanitario());
+ 
             result += oPacienteDao.create(oPacienteBean);
 
             String strJson = GsonHelper.getGson().toJson(oPacienteBean);

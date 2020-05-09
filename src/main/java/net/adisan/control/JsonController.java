@@ -32,6 +32,7 @@
  */
 package net.adisan.control;
 
+import com.google.gson.Gson;
 import net.adisan.bean.helper.ReplyBeanHelper;
 import net.adisan.connection.publicinterface.ConnectionInterface;
 import net.adisan.factory.ConnectionFactory;
@@ -43,9 +44,12 @@ import net.adisan.helper.EnumHelper.Environment;
 import static net.adisan.helper.ParameterHelper.prepareCamelCaseObject;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.net.InetAddress;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -55,11 +59,9 @@ import net.adisan.helper.EncodingHelper;
 
 //import org.apache.logging.log4j.LogManager;
 //import org.apache.logging.log4j.Logger;
-
 public class JsonController extends HttpServlet {
 
     //private final Logger oLogger = (Logger) LogManager.getLogger(this.getClass().getName());
-
     private void Controllerdelay(Integer iLast) {
         try {
             if (iLast > 0) {
@@ -70,10 +72,17 @@ public class JsonController extends HttpServlet {
         }
     }
 
+    public static String getStackTrace(final Throwable throwable) {
+     final StringWriter sw = new StringWriter();
+     final PrintWriter pw = new PrintWriter(sw, true);
+     throwable.printStackTrace(pw);
+     return sw.getBuffer().toString();
+}
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, Exception {
         ReplyBeanHelper oReplyBean = null;
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             String ob = prepareCamelCaseObject(request);
             String op = request.getParameter("op");
             try {
@@ -122,7 +131,7 @@ public class JsonController extends HttpServlet {
                 response.setHeader("Access-Control-Allow-Headers", "Origin, Accept, x-requested-with, Content-Type");
                 //response.setHeader("Set-Cookie: cross-site-cookie=name; SameSite=None; Secure");
                 response.setHeader("Set-Cookie", "HttpOnly;SameSite=Strict;Secure");
-                 //response.setHeader("Set-Cookie", "HttpOnly;SameSite=None;Secure");
+                //response.setHeader("Set-Cookie", "HttpOnly;SameSite=None;Secure");
                 if (ob.equalsIgnoreCase("usuario") && op.equalsIgnoreCase("getpage")) {
                     //TraceHelper.traceCode = true;
                 }
@@ -131,13 +140,18 @@ public class JsonController extends HttpServlet {
                     oReplyBean = (ReplyBeanHelper) ServiceFactory.executeMethodService(request);
                 } catch (Exception ex) {
                     //oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("ADISAN-server error. Please, contact your administrator."));
-                    oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate(ex.getMessage()));
+                    StringWriter errors = new StringWriter();
+                    ex.printStackTrace(new PrintWriter(errors));
+
+
+     
+                    oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("MSG: " + EncodingHelper.escape4JSON(ex.getMessage() + " TRACE: " + getStackTrace(ex))));
                     //oLogger.error("JsonController.processRequest", ex);
                 }
                 //response.setStatus(oReplyBean.getCode());
                 response.setStatus(200);
                 out.print("{\"status\":" + oReplyBean.getCode() + ", \"json\":" + oReplyBean.getJson() + "}");
-                
+
             }
         }
     }

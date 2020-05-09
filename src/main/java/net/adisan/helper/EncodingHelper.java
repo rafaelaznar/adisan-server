@@ -59,6 +59,13 @@ public class EncodingHelper {
         }
     }
 
+    public static String escape4JSON(String inputString) {
+        inputString = inputString.replaceAll("\\s", " "); 
+        inputString = inputString.replaceAll("\"", "'");
+        inputString = inputString.replaceAll("@", " at ");
+        return inputString;
+    }
+
     public static String stringifyAndQuotate(Date s) {
         if (s == null) {
             return "null";

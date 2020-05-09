@@ -283,6 +283,26 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
     )
     private Integer link_paciente = null;
 
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "EP",
+            LongName = "Episodio Procedimientos",
+            Description = "Episodio Procedimientos",
+            Type = EnumHelper.FieldType.Link,
+            References = "episodioprocedimiento"
+    )
+    private Integer link_episodioprocedimiento = null;
+
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Procedimientos",
+            LongName = "Procedimientos",
+            Description = "Procedimientos",
+            Type = EnumHelper.FieldType.Link,
+            References = "procedimiento"
+    )
+    private Integer link_procedimiento = null;
+
     public UsuarioSpecificBeanImplementation() {
         this.grupos = new ArrayList<>();
     }
@@ -524,6 +544,22 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
 
     public void setLink_paciente(Integer link_paciente) {
         this.link_paciente = link_paciente;
+    }
+
+    public Integer getLink_episodioprocedimiento() {
+        return link_episodioprocedimiento;
+    }
+
+    public void setLink_episodioprocedimiento(Integer link_episodioprocedimiento) {
+        this.link_episodioprocedimiento = link_episodioprocedimiento;
+    }
+
+    public Integer getLink_procedimiento() {
+        return link_procedimiento;
+    }
+
+    public void setLink_procedimiento(Integer link_procedimiento) {
+        this.link_procedimiento = link_procedimiento;
     }
 
 }

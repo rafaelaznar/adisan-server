@@ -71,6 +71,16 @@ public class EspecialidadSpecificBeanImplementation extends GenericBeanImplement
     )
     private Integer link_medico = null;
 
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Sanitarios",
+            LongName = "Personal sanitario",
+            Description = "Personal sanitario de la especialidad",
+            Type = EnumHelper.FieldType.Link,
+            References = "personalsanitario"
+    )
+    private Integer link_personalsanitario = null;
+
     public EspecialidadSpecificBeanImplementation() {
     }
 
@@ -92,6 +102,14 @@ public class EspecialidadSpecificBeanImplementation extends GenericBeanImplement
 
     public void setLink_medico(Integer link_medico) {
         this.link_medico = link_medico;
+    }
+
+    public Integer getLink_personalsanitario() {
+        return link_personalsanitario;
+    }
+
+    public void setLink_personalsanitario(Integer link_personalsanitario) {
+        this.link_personalsanitario = link_personalsanitario;
     }
 
 }

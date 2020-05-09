@@ -32,7 +32,6 @@
  */
 package net.adisan.dao.specificimplementation.medico;
 
-import net.adisan.bean.genericimplementation.GenericBeanImplementation;
 import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;

@@ -65,10 +65,22 @@ import net.adisan.bean.specificimplementation.TiposervicioSpecificBeanImplementa
 import net.adisan.bean.specificimplementation.ViaSpecificBeanImplementation;
 import net.adisan.bean.publicinterface.BeanInterface;
 import net.adisan.bean.specificimplementation.CatalogodiagnosticosSpecificBeanImplementation;
+import net.adisan.bean.specificimplementation.CatalogoprocedimientosSpecificBeanImplementation;
+import net.adisan.bean.specificimplementation.CategoriaprofesionalpsSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.EpisodiodiagnosticoSpecificBeanImplementation;
+import net.adisan.bean.specificimplementation.EpisodioprocedimientoSpecificBeanImplementation;
+import net.adisan.bean.specificimplementation.EstadoSpecificBeanImplementation;
+import net.adisan.bean.specificimplementation.PersonalsanitarioSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.PresenciadiagnosticoSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.PresenciadiagnosticoingresoSpecificBeanImplementation;
+import net.adisan.bean.specificimplementation.PrioridadSpecificBeanImplementation;
+import net.adisan.bean.specificimplementation.ProcedimientoSpecificBeanImplementation;
+import net.adisan.bean.specificimplementation.ProcedimientodiagnosticofinalSpecificBeanImplementation;
+import net.adisan.bean.specificimplementation.ProcedimientodiagnosticoinicialSpecificBeanImplementation;
+import net.adisan.bean.specificimplementation.ProcedimientomedicoSpecificBeanImplementation;
+import net.adisan.bean.specificimplementation.ProcedimientopersonalsanitarioSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.TipodiagnosticoSpecificBeanImplementation;
+import net.adisan.bean.specificimplementation.TipoprocedimientoSpecificBeanImplementation;
 
 public class BeanFactory {
 
@@ -183,7 +195,45 @@ public class BeanFactory {
                 break;
             case "presenciadiagnosticoingreso":
                 oBean = new PresenciadiagnosticoingresoSpecificBeanImplementation();
-                break;                
+                break;
+            //---
+            case "catalogoprocedimientos":
+                oBean = new CatalogoprocedimientosSpecificBeanImplementation();
+                break;
+            case "categoriaprofesionalps":
+                oBean = new CategoriaprofesionalpsSpecificBeanImplementation();
+                break;
+            case "episodioprocedimiento":
+                oBean = new EpisodioprocedimientoSpecificBeanImplementation();
+                break;
+            case "estado":
+                oBean = new EstadoSpecificBeanImplementation();
+                break;
+            case "personalsanitario":
+                oBean = new PersonalsanitarioSpecificBeanImplementation();
+                break;
+            case "prioridad":
+                oBean = new PrioridadSpecificBeanImplementation();
+                break;
+            case "procedimiento":
+                oBean = new ProcedimientoSpecificBeanImplementation();
+                break;
+            case "procedimientodiagnosticofinal":
+                oBean = new ProcedimientodiagnosticofinalSpecificBeanImplementation();
+                break;
+            case "procedimientodiagnosticoinicial":
+                oBean = new ProcedimientodiagnosticoinicialSpecificBeanImplementation();
+                break;
+            case "procedimientomedico":
+                oBean = new ProcedimientomedicoSpecificBeanImplementation();
+                break;
+            case "procedimientopersonalsanitario":
+                oBean = new ProcedimientopersonalsanitarioSpecificBeanImplementation();
+                break;
+            case "tipoprocedimiento":
+                oBean = new TipoprocedimientoSpecificBeanImplementation();
+                break;
+
             default:
 
                 //  oReplyBean = new ReplyBean(500, "Object not found : Please contact your administrator");

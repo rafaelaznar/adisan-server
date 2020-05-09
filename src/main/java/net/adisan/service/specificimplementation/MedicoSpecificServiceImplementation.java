@@ -42,7 +42,7 @@ import net.adisan.bean.specificimplementation.NombremasculinoSpecificBeanImpleme
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.connection.publicinterface.ConnectionInterface;
 import net.adisan.dao.specificimplementation.factory.ApellidoSpecificDaoImplementation;
-import net.adisan.dao.specificimplementation.medico.Medico1SpecificDaoImplementation;
+import net.adisan.dao.specificimplementation.personalsanitario.Personalsanitario1SpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.factory.NombrefemeninoSpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.factory.NombremasculinoSpecificDaoImplementation;
 import net.adisan.factory.ConnectionFactory;
@@ -156,7 +156,7 @@ public class MedicoSpecificServiceImplementation extends GenericServiceImplement
         try {
             oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
             oConnection = oPooledConnection.newConnection();
-            Medico1SpecificDaoImplementation oMedicoDao = new Medico1SpecificDaoImplementation(oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            Personalsanitario1SpecificDaoImplementation oMedicoDao = new Personalsanitario1SpecificDaoImplementation(oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
             MedicoSpecificBeanImplementation oMedicoBean = new MedicoSpecificBeanImplementation();
 
             MetaBeanHelper oUsuarioBean = (MetaBeanHelper) oRequest.getSession().getAttribute("user");
@@ -207,15 +207,15 @@ public class MedicoSpecificServiceImplementation extends GenericServiceImplement
                 oApellidoBean = (ApellidoSpecificBeanImplementation) oMetaBean.getBean();
                 oMedicoBean.setSegundo_apellido(oApellidoBean.getApellido());
 
-                //--- email
-                String nombrep = oMedicoBean.getNombre();
-                String primerp = oMedicoBean.getPrimer_apellido();
-                String segundop = oMedicoBean.getSegundo_apellido();
-                String nombrep2c = nombrep.substring(0, Math.min(nombrep.length(), 2));
-                String primerp2c = primerp.substring(0, Math.min(primerp.length(), 2));
-                String segundop2c = segundop.substring(0, Math.min(segundop.length(), 2));
-                String mail = nombrep2c + primerp2c + segundop2c + "@" + oMedicoBean.getPrimer_apellido() + ".es";
-                oMedicoBean.setEmail(mail);
+//                //--- email
+//                String nombrep = oMedicoBean.getNombre();
+//                String primerp = oMedicoBean.getPrimer_apellido();
+//                String segundop = oMedicoBean.getSegundo_apellido();
+//                String nombrep2c = nombrep.substring(0, Math.min(nombrep.length(), 2));
+//                String primerp2c = primerp.substring(0, Math.min(primerp.length(), 2));
+//                String segundop2c = segundop.substring(0, Math.min(segundop.length(), 2));
+//                String mail = nombrep2c + primerp2c + segundop2c + "@" + oMedicoBean.getPrimer_apellido() + ".es";
+//                oMedicoBean.setEmail(mail);
                 //---- fecha_nacimiento
                 Date fnac = RandomHelper.getRadomDate();
                 oMedicoBean.setFecha_nacimiento(fnac);

@@ -57,7 +57,7 @@ public class TipodiagnosticoSpecificBeanImplementation extends GenericBeanImplem
             Type = EnumHelper.FieldType.String,
             IsRequired = true,
             RegexPattern = RegexConstants.capitalizedSentence,
-            // RegexHelp = RegexConstants.capitalizedSentence_Help,
+            RegexHelp = RegexConstants.capitalizedSentence_Help,
             IsForeignKeyDescriptor = true
     )
     private String descripcion = "";

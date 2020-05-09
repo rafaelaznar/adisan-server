@@ -190,20 +190,6 @@ public class MedicoSpecificBeanImplementation extends GenericBeanImplementation 
     )
     private String num_colegiado;
 
-    @Expose
-    @MetaPropertyBeanInterface(
-            ShortName = "email",
-            LongName = "Correo electrónico",
-            Description = "Correo electrónico del médico",
-            Type = EnumHelper.FieldType.String,
-            IsRequired = false,
-            RegexPattern = RegexConstants.email,
-            RegexHelp = RegexConstants.email_Help,
-            MaxLength = 50,
-            IsVisible = false
-    )
-    private String email;
-
     @Expose(serialize = false)
     @MetaPropertyBeanInterface(
             Type = EnumHelper.FieldType.ForeignId
@@ -314,14 +300,6 @@ public class MedicoSpecificBeanImplementation extends GenericBeanImplementation 
 
     public void setSegundo_apellido(String segundo_apellido) {
         this.segundo_apellido = segundo_apellido;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public Integer getId_servicio() {

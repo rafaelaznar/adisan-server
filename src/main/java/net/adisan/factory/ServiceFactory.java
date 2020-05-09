@@ -59,10 +59,22 @@ import net.adisan.service.specificimplementation.TipousuarioSpecificServiceImple
 import net.adisan.service.specificimplementation.UsuarioSpecificServiceImplementation;
 import javax.servlet.http.HttpServletRequest;
 import net.adisan.service.specificimplementation.CatalogodiagnosticosSpecificServiceImplementation;
+import net.adisan.service.specificimplementation.CatalogoprocedimientosSpecificServiceImplementation;
+import net.adisan.service.specificimplementation.CategoriaprofesionalpsSpecificServiceImplementation;
 import net.adisan.service.specificimplementation.EpisodiodiagnosticoSpecificServiceImplementation;
+import net.adisan.service.specificimplementation.EpisodioprocedimientoSpecificServiceImplementation;
+import net.adisan.service.specificimplementation.EstadoSpecificServiceImplementation;
+import net.adisan.service.specificimplementation.PersonalsanitarioSpecificServiceImplementation;
 import net.adisan.service.specificimplementation.PresenciadiagnosticoSpecificServiceImplementation;
 import net.adisan.service.specificimplementation.PresenciadiagnosticoingresoSpecificServiceImplementation;
+import net.adisan.service.specificimplementation.PrioridadSpecificServiceImplementation;
+import net.adisan.service.specificimplementation.ProcedimientoSpecificServiceImplementation;
+import net.adisan.service.specificimplementation.ProcedimientodiagnosticofinalSpecificServiceImplementation;
+import net.adisan.service.specificimplementation.ProcedimientodiagnosticoinicialSpecificServiceImplementation;
+import net.adisan.service.specificimplementation.ProcedimientomedicoSpecificServiceImplementation;
+import net.adisan.service.specificimplementation.ProcedimientopersonalsanitarioSpecificServiceImplementation;
 import net.adisan.service.specificimplementation.TipodiagnosticoSpecificServiceImplementation;
+import net.adisan.service.specificimplementation.TipoprocedimientoSpecificServiceImplementation;
 
 public class ServiceFactory {
 
@@ -150,15 +162,14 @@ public class ServiceFactory {
 //        }
 //            return oMethod;
 //    }
-
     public static ReplyBeanHelper executeMethodService(HttpServletRequest oRequest) throws Exception {
         String ob = oRequest.getParameter("ob");
         String op = oRequest.getParameter("op");
         ReplyBeanHelper oReplyBean = null;
-        if (op.equalsIgnoreCase("getallobjectsmetadata")){
+        if (op.equalsIgnoreCase("getallobjectsmetadata")) {
             MetaFactory oMetaFactory = new MetaFactory();
             oReplyBean = oMetaFactory.getallobjectsmetadata(oRequest);
-        } else {        
+        } else {
             switch (ob) {
                 case "usuario":
                     UsuarioSpecificServiceImplementation oUsuarioService = new UsuarioSpecificServiceImplementation(oRequest);
@@ -246,12 +257,12 @@ public class ServiceFactory {
                         case "get":
                             oReplyBean = oTipousuarioService.get();
                             break;
-    //                    case "set":
-    //                        oReplyBean = oTipousuarioService.set();
-    //                        break;
-    //                    case "remove":
-    //                        oReplyBean = oTipousuarioService.remove();
-    //                        break;
+                        //                    case "set":
+                        //                        oReplyBean = oTipousuarioService.set();
+                        //                        break;
+                        //                    case "remove":
+                        //                        oReplyBean = oTipousuarioService.remove();
+                        //                        break;
                         case "getpage":
                             oReplyBean = oTipousuarioService.getPage();
                             break;
@@ -1036,14 +1047,6 @@ public class ServiceFactory {
                     }
                     break;
 
-
-
-
-
-
-
-
-
                 case "catalogodiagnosticos":
                     CatalogodiagnosticosSpecificServiceImplementation oDiagnosticoService = new CatalogodiagnosticosSpecificServiceImplementation(oRequest);
                     switch (op) {
@@ -1075,7 +1078,7 @@ public class ServiceFactory {
                             oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Operation not found : Please contact your administrator"));
                             break;
                     }
-                    break;      
+                    break;
                 case "presenciadiagnostico":
                     PresenciadiagnosticoSpecificServiceImplementation oPresenciadiagnosticoService = new PresenciadiagnosticoSpecificServiceImplementation(oRequest);
                     switch (op) {
@@ -1107,7 +1110,7 @@ public class ServiceFactory {
                             oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Operation not found : Please contact your administrator"));
                             break;
                     }
-                    break;                      
+                    break;
                 case "presenciadiagnosticoingreso":
                     PresenciadiagnosticoingresoSpecificServiceImplementation oPresenciadiagnosticoingresoService = new PresenciadiagnosticoingresoSpecificServiceImplementation(oRequest);
                     switch (op) {
@@ -1139,7 +1142,7 @@ public class ServiceFactory {
                             oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Operation not found : Please contact your administrator"));
                             break;
                     }
-                    break;                      
+                    break;
                 case "tipodiagnostico":
                     TipodiagnosticoSpecificServiceImplementation oTipodiagnosticoService = new TipodiagnosticoSpecificServiceImplementation(oRequest);
                     switch (op) {
@@ -1171,7 +1174,7 @@ public class ServiceFactory {
                             oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Operation not found : Please contact your administrator"));
                             break;
                     }
-                    break;                                                                                      
+                    break;
                 case "episodiodiagnostico":
                     EpisodiodiagnosticoSpecificServiceImplementation oEpisodiodiagnosticoService = new EpisodiodiagnosticoSpecificServiceImplementation(oRequest);
                     switch (op) {
@@ -1209,12 +1212,440 @@ public class ServiceFactory {
                             oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Operation not found : Please contact your administrator"));
                             break;
                     }
-                    break;                                                        
+                    break;
+
+                case "catalogoprocedimientos":
+                    CatalogoprocedimientosSpecificServiceImplementation oCatalogoprocedimientosService = new CatalogoprocedimientosSpecificServiceImplementation(oRequest);
+                    switch (op) {
+                        case "getmetadata":
+                            oReplyBean = oCatalogoprocedimientosService.getMetaData();
+                            break;
+                        case "getobjectmetadata":
+                            oReplyBean = oCatalogoprocedimientosService.getObjectMetaData();
+                            break;
+                        case "getpropertiesmetadata":
+                            oReplyBean = oCatalogoprocedimientosService.getPropertiesMetaData();
+                            break;
+                        case "get":
+                            oReplyBean = oCatalogoprocedimientosService.get();
+                            break;
+                        case "set":
+                            oReplyBean = oCatalogoprocedimientosService.set();
+                            break;
+                        case "remove":
+                            oReplyBean = oCatalogoprocedimientosService.remove();
+                            break;
+                        case "getpage":
+                            oReplyBean = oCatalogoprocedimientosService.getPage();
+                            break;
+                        case "getcount":
+                            oReplyBean = oCatalogoprocedimientosService.getCount();
+                            break;
+                        default:
+                            oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Operation not found : Please contact your administrator"));
+                            break;
+                    }
+                    break;
+                case "categoriaprofesionalps":
+                    CategoriaprofesionalpsSpecificServiceImplementation oCategoriaprofesionalpsService = new CategoriaprofesionalpsSpecificServiceImplementation(oRequest);
+                    switch (op) {
+                        case "getmetadata":
+                            oReplyBean = oCategoriaprofesionalpsService.getMetaData();
+                            break;
+                        case "getobjectmetadata":
+                            oReplyBean = oCategoriaprofesionalpsService.getObjectMetaData();
+                            break;
+                        case "getpropertiesmetadata":
+                            oReplyBean = oCategoriaprofesionalpsService.getPropertiesMetaData();
+                            break;
+                        case "get":
+                            oReplyBean = oCategoriaprofesionalpsService.get();
+                            break;
+                        case "set":
+                            oReplyBean = oCategoriaprofesionalpsService.set();
+                            break;
+                        case "remove":
+                            oReplyBean = oCategoriaprofesionalpsService.remove();
+                            break;
+                        case "getpage":
+                            oReplyBean = oCategoriaprofesionalpsService.getPage();
+                            break;
+                        case "getcount":
+                            oReplyBean = oCategoriaprofesionalpsService.getCount();
+                            break;
+                        default:
+                            oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Operation not found : Please contact your administrator"));
+                            break;
+                    }
+                    break;
+                case "estado":
+                    EstadoSpecificServiceImplementation oEstadoService = new EstadoSpecificServiceImplementation(oRequest);
+                    switch (op) {
+                        case "getmetadata":
+                            oReplyBean = oEstadoService.getMetaData();
+                            break;
+                        case "getobjectmetadata":
+                            oReplyBean = oEstadoService.getObjectMetaData();
+                            break;
+                        case "getpropertiesmetadata":
+                            oReplyBean = oEstadoService.getPropertiesMetaData();
+                            break;
+                        case "get":
+                            oReplyBean = oEstadoService.get();
+                            break;
+                        case "set":
+                            oReplyBean = oEstadoService.set();
+                            break;
+                        case "remove":
+                            oReplyBean = oEstadoService.remove();
+                            break;
+                        case "getpage":
+                            oReplyBean = oEstadoService.getPage();
+                            break;
+                        case "getcount":
+                            oReplyBean = oEstadoService.getCount();
+                            break;
+                        default:
+                            oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Operation not found : Please contact your administrator"));
+                            break;
+                    }
+                    break;
+                case "prioridad":
+                    PrioridadSpecificServiceImplementation oPrioridadService = new PrioridadSpecificServiceImplementation(oRequest);
+                    switch (op) {
+                        case "getmetadata":
+                            oReplyBean = oPrioridadService.getMetaData();
+                            break;
+                        case "getobjectmetadata":
+                            oReplyBean = oPrioridadService.getObjectMetaData();
+                            break;
+                        case "getpropertiesmetadata":
+                            oReplyBean = oPrioridadService.getPropertiesMetaData();
+                            break;
+                        case "get":
+                            oReplyBean = oPrioridadService.get();
+                            break;
+                        case "set":
+                            oReplyBean = oPrioridadService.set();
+                            break;
+                        case "remove":
+                            oReplyBean = oPrioridadService.remove();
+                            break;
+                        case "getpage":
+                            oReplyBean = oPrioridadService.getPage();
+                            break;
+                        case "getcount":
+                            oReplyBean = oPrioridadService.getCount();
+                            break;
+                        default:
+                            oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Operation not found : Please contact your administrator"));
+                            break;
+                    }
+                    break;
+                case "tipoprocedimiento":
+                    TipoprocedimientoSpecificServiceImplementation oTipoprocedimientoService = new TipoprocedimientoSpecificServiceImplementation(oRequest);
+                    switch (op) {
+                        case "getmetadata":
+                            oReplyBean = oTipoprocedimientoService.getMetaData();
+                            break;
+                        case "getobjectmetadata":
+                            oReplyBean = oTipoprocedimientoService.getObjectMetaData();
+                            break;
+                        case "getpropertiesmetadata":
+                            oReplyBean = oTipoprocedimientoService.getPropertiesMetaData();
+                            break;
+                        case "get":
+                            oReplyBean = oTipoprocedimientoService.get();
+                            break;
+                        case "set":
+                            oReplyBean = oTipoprocedimientoService.set();
+                            break;
+                        case "remove":
+                            oReplyBean = oTipoprocedimientoService.remove();
+                            break;
+                        case "getpage":
+                            oReplyBean = oTipoprocedimientoService.getPage();
+                            break;
+                        case "getcount":
+                            oReplyBean = oTipoprocedimientoService.getCount();
+                            break;
+                        default:
+                            oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Operation not found : Please contact your administrator"));
+                            break;
+                    }
+                    break;
+                case "episodioprocedimiento":
+                    EpisodioprocedimientoSpecificServiceImplementation oEpisodioprocedimientoService = new EpisodioprocedimientoSpecificServiceImplementation(oRequest);
+                    switch (op) {
+                        case "getmetadata":
+                            oReplyBean = oEpisodioprocedimientoService.getMetaData();
+                            break;
+                        case "getobjectmetadata":
+                            oReplyBean = oEpisodioprocedimientoService.getObjectMetaData();
+                            break;
+                        case "getpropertiesmetadata":
+                            oReplyBean = oEpisodioprocedimientoService.getPropertiesMetaData();
+                            break;
+                        case "get":
+                            oReplyBean = oEpisodioprocedimientoService.get();
+                            break;
+                        case "set":
+                            oReplyBean = oEpisodioprocedimientoService.set();
+                            break;
+                        case "remove":
+                            oReplyBean = oEpisodioprocedimientoService.remove();
+                            break;
+                        case "getpage":
+                            oReplyBean = oEpisodioprocedimientoService.getPage();
+                            break;
+                        case "getcount":
+                            oReplyBean = oEpisodioprocedimientoService.getCount();
+                            break;
+                        case "getcountx":
+                            oReplyBean = oEpisodioprocedimientoService.getCountX();
+                            break;
+                        case "getpagex":
+                            oReplyBean = oEpisodioprocedimientoService.getPageX();
+                            break;
+                        default:
+                            oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Operation not found : Please contact your administrator"));
+                            break;
+                    }
+                    break;
+                case "personalsanitario":
+                    PersonalsanitarioSpecificServiceImplementation oPersonalsanitarioService = new PersonalsanitarioSpecificServiceImplementation(oRequest);
+                    switch (op) {
+                        case "getmetadata":
+                            oReplyBean = oPersonalsanitarioService.getMetaData();
+                            break;
+                        case "getobjectmetadata":
+                            oReplyBean = oPersonalsanitarioService.getObjectMetaData();
+                            break;
+                        case "getpropertiesmetadata":
+                            oReplyBean = oPersonalsanitarioService.getPropertiesMetaData();
+                            break;
+                        case "get":
+                            oReplyBean = oPersonalsanitarioService.get();
+                            break;
+                        case "set":
+                            oReplyBean = oPersonalsanitarioService.set();
+                            break;
+                        case "remove":
+                            oReplyBean = oPersonalsanitarioService.remove();
+                            break;
+                        case "getpage":
+                            oReplyBean = oPersonalsanitarioService.getPage();
+                            break;
+                        case "getcount":
+                            oReplyBean = oPersonalsanitarioService.getCount();
+                            break;
+                        case "getcountx":
+                            oReplyBean = oPersonalsanitarioService.getCountX();
+                            break;
+                        case "getpagex":
+                            oReplyBean = oPersonalsanitarioService.getPageX();
+                            break;
+                        default:
+                            oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Operation not found : Please contact your administrator"));
+                            break;
+                    }
+                    break;
+                case "procedimiento":
+                    ProcedimientoSpecificServiceImplementation oProcedimientoService = new ProcedimientoSpecificServiceImplementation(oRequest);
+                    switch (op) {
+                        case "getmetadata":
+                            oReplyBean = oProcedimientoService.getMetaData();
+                            break;
+                        case "getobjectmetadata":
+                            oReplyBean = oProcedimientoService.getObjectMetaData();
+                            break;
+                        case "getpropertiesmetadata":
+                            oReplyBean = oProcedimientoService.getPropertiesMetaData();
+                            break;
+                        case "get":
+                            oReplyBean = oProcedimientoService.get();
+                            break;
+                        case "set":
+                            oReplyBean = oProcedimientoService.set();
+                            break;
+                        case "remove":
+                            oReplyBean = oProcedimientoService.remove();
+                            break;
+                        case "getpage":
+                            oReplyBean = oProcedimientoService.getPage();
+                            break;
+                        case "getcount":
+                            oReplyBean = oProcedimientoService.getCount();
+                            break;
+                        case "getcountx":
+                            oReplyBean = oProcedimientoService.getCountX();
+                            break;
+                        case "getpagex":
+                            oReplyBean = oProcedimientoService.getPageX();
+                            break;
+                        default:
+                            oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Operation not found : Please contact your administrator"));
+                            break;
+                    }
+                    break;
+                case "procedimientodiagnosticofinal":
+                    ProcedimientodiagnosticofinalSpecificServiceImplementation oProcedimientodiagnosticofinalService = new ProcedimientodiagnosticofinalSpecificServiceImplementation(oRequest);
+                    switch (op) {
+                        case "getmetadata":
+                            oReplyBean = oProcedimientodiagnosticofinalService.getMetaData();
+                            break;
+                        case "getobjectmetadata":
+                            oReplyBean = oProcedimientodiagnosticofinalService.getObjectMetaData();
+                            break;
+                        case "getpropertiesmetadata":
+                            oReplyBean = oProcedimientodiagnosticofinalService.getPropertiesMetaData();
+                            break;
+                        case "get":
+                            oReplyBean = oProcedimientodiagnosticofinalService.get();
+                            break;
+                        case "set":
+                            oReplyBean = oProcedimientodiagnosticofinalService.set();
+                            break;
+                        case "remove":
+                            oReplyBean = oProcedimientodiagnosticofinalService.remove();
+                            break;
+                        case "getpage":
+                            oReplyBean = oProcedimientodiagnosticofinalService.getPage();
+                            break;
+                        case "getcount":
+                            oReplyBean = oProcedimientodiagnosticofinalService.getCount();
+                            break;
+                        case "getcountx":
+                            oReplyBean = oProcedimientodiagnosticofinalService.getCountX();
+                            break;
+                        case "getpagex":
+                            oReplyBean = oProcedimientodiagnosticofinalService.getPageX();
+                            break;
+                        default:
+                            oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Operation not found : Please contact your administrator"));
+                            break;
+                    }
+                    break;
+                case "procedimientodiagnosticoinicial":
+                    ProcedimientodiagnosticoinicialSpecificServiceImplementation oProcedimientodiagnosticoinicialService = new ProcedimientodiagnosticoinicialSpecificServiceImplementation(oRequest);
+                    switch (op) {
+                        case "getmetadata":
+                            oReplyBean = oProcedimientodiagnosticoinicialService.getMetaData();
+                            break;
+                        case "getobjectmetadata":
+                            oReplyBean = oProcedimientodiagnosticoinicialService.getObjectMetaData();
+                            break;
+                        case "getpropertiesmetadata":
+                            oReplyBean = oProcedimientodiagnosticoinicialService.getPropertiesMetaData();
+                            break;
+                        case "get":
+                            oReplyBean = oProcedimientodiagnosticoinicialService.get();
+                            break;
+                        case "set":
+                            oReplyBean = oProcedimientodiagnosticoinicialService.set();
+                            break;
+                        case "remove":
+                            oReplyBean = oProcedimientodiagnosticoinicialService.remove();
+                            break;
+                        case "getpage":
+                            oReplyBean = oProcedimientodiagnosticoinicialService.getPage();
+                            break;
+                        case "getcount":
+                            oReplyBean = oProcedimientodiagnosticoinicialService.getCount();
+                            break;
+                        case "getcountx":
+                            oReplyBean = oProcedimientodiagnosticoinicialService.getCountX();
+                            break;
+                        case "getpagex":
+                            oReplyBean = oProcedimientodiagnosticoinicialService.getPageX();
+                            break;
+                        default:
+                            oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Operation not found : Please contact your administrator"));
+                            break;
+                    }
+                    break;
+                case "procedimientomedico":
+                    ProcedimientomedicoSpecificServiceImplementation oProcedimientomedicoService = new ProcedimientomedicoSpecificServiceImplementation(oRequest);
+                    switch (op) {
+                        case "getmetadata":
+                            oReplyBean = oProcedimientomedicoService.getMetaData();
+                            break;
+                        case "getobjectmetadata":
+                            oReplyBean = oProcedimientomedicoService.getObjectMetaData();
+                            break;
+                        case "getpropertiesmetadata":
+                            oReplyBean = oProcedimientomedicoService.getPropertiesMetaData();
+                            break;
+                        case "get":
+                            oReplyBean = oProcedimientomedicoService.get();
+                            break;
+                        case "set":
+                            oReplyBean = oProcedimientomedicoService.set();
+                            break;
+                        case "remove":
+                            oReplyBean = oProcedimientomedicoService.remove();
+                            break;
+                        case "getpage":
+                            oReplyBean = oProcedimientomedicoService.getPage();
+                            break;
+                        case "getcount":
+                            oReplyBean = oProcedimientomedicoService.getCount();
+                            break;
+                        case "getcountx":
+                            oReplyBean = oProcedimientomedicoService.getCountX();
+                            break;
+                        case "getpagex":
+                            oReplyBean = oProcedimientomedicoService.getPageX();
+                            break;
+                        default:
+                            oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Operation not found : Please contact your administrator"));
+                            break;
+                    }
+                    break;
+                case "procedimientopersonalsanitario":
+                    ProcedimientopersonalsanitarioSpecificServiceImplementation oProcedimientopersonalsanitarioService = new ProcedimientopersonalsanitarioSpecificServiceImplementation(oRequest);
+                    switch (op) {
+                        case "getmetadata":
+                            oReplyBean = oProcedimientopersonalsanitarioService.getMetaData();
+                            break;
+                        case "getobjectmetadata":
+                            oReplyBean = oProcedimientopersonalsanitarioService.getObjectMetaData();
+                            break;
+                        case "getpropertiesmetadata":
+                            oReplyBean = oProcedimientopersonalsanitarioService.getPropertiesMetaData();
+                            break;
+                        case "get":
+                            oReplyBean = oProcedimientopersonalsanitarioService.get();
+                            break;
+                        case "set":
+                            oReplyBean = oProcedimientopersonalsanitarioService.set();
+                            break;
+                        case "remove":
+                            oReplyBean = oProcedimientopersonalsanitarioService.remove();
+                            break;
+                        case "getpage":
+                            oReplyBean = oProcedimientopersonalsanitarioService.getPage();
+                            break;
+                        case "getcount":
+                            oReplyBean = oProcedimientopersonalsanitarioService.getCount();
+                            break;
+                        case "getcountx":
+                            oReplyBean = oProcedimientopersonalsanitarioService.getCountX();
+                            break;
+                        case "getpagex":
+                            oReplyBean = oProcedimientopersonalsanitarioService.getPageX();
+                            break;
+                        default:
+                            oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Operation not found : Please contact your administrator"));
+                            break;
+                    }
+                    break;
+
                 default:
                     oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Object not found : Please contact your administrator"));
                     break;
             }
         }
-        return oReplyBean;        
+        return oReplyBean;
     }
 }

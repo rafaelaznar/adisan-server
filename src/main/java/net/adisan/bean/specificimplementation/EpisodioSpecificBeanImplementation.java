@@ -570,6 +570,16 @@ public class EpisodioSpecificBeanImplementation extends GenericBeanImplementatio
     )
     private Integer link_episodiodiagnostico = null;
 
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Procedimientos",
+            LongName = "Procedimientos del episodio",
+            Description = "Procedimientos del episodio",
+            Type = EnumHelper.FieldType.Link,
+            References = "episodioprocedimiento"
+    )
+    private Integer link_episodioprocedimiento = null;
+
     //    @Expose(deserialize = false)
 //    @MetaPropertyBeanInterface(
 //            ShortName = "Episodio del tratamiento",
@@ -920,5 +930,15 @@ public class EpisodioSpecificBeanImplementation extends GenericBeanImplementatio
     public void setLink_episodiodiagnostico(Integer link_episodiodiagnostico) {
         this.link_episodiodiagnostico = link_episodiodiagnostico;
     }
-        
+
+    public Integer getLink_episodioprocedimiento() {
+        return link_episodioprocedimiento;
+    }
+
+    public void setLink_episodioprocedimiento(Integer link_episodioprocedimiento) {
+        this.link_episodioprocedimiento = link_episodioprocedimiento;
+    }
+
+    
+    
 }
