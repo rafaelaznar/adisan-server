@@ -40,8 +40,6 @@ import net.adisan.bean.specificimplementation.TipousuarioSpecificBeanImplementat
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
-import net.adisan.bean.specificimplementation.GrupoSpecificBeanImplementation;
-import net.adisan.dao.specificimplementation.usuario.Usuario1SpecificDaoImplementation;
 
 public class Paciente3SpecificDaoImplementation extends GenericDaoImplementation {
 

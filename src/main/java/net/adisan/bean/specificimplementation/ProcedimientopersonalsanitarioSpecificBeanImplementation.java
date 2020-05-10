@@ -41,7 +41,7 @@ import net.adisan.helper.EnumHelper;
 import net.adisan.helper.constant.RegexConstants;
 
 @MetaObjectBeanInterface(
-        TableName = "procedimientomedico",
+        TableName = "procedimientopersonalsanitario",
         SingularDescription = "Personal sanitario en procedimiento",
         PluralDescription = "Personal sanitario en procedimientos",
         CreateDescription = "Añadir personal sanitario al procedimiento",
@@ -99,6 +99,7 @@ public class ProcedimientopersonalsanitarioSpecificBeanImplementation extends Ge
             Type = EnumHelper.FieldType.ForeignObject,
             IsRequired = true,
             References = "usuario",
+            IsFormVisible4 = false,
             Width = 4
     )
     private MetaBeanHelper obj_usuario = null;

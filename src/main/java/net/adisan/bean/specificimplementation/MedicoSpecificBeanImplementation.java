@@ -223,24 +223,6 @@ public class MedicoSpecificBeanImplementation extends GenericBeanImplementation 
     )
     private MetaBeanHelper obj_centrosanitario = null;
 
-//    @Expose(deserialize = false)
-//    @MetaPropertyBeanInterface(
-//            ShortName = "Procedimientos del medico",
-//            LongName = "Procedimientos del medico",
-//            Description = "Procedimientos del medico",
-//            Type = EnumHelper.FieldType.Link,
-//            References = "procedimiento"
-//    )
-//    private Integer link_procedimiento = null;
-//    @Expose(deserialize = false)
-//    @MetaPropertyBeanInterface(
-//            ShortName = "Médico que hace la analítica",
-//            LongName = "Médico que hace la analítica",
-//            Description = "Médico que hace la analítica",
-//            Type = EnumHelper.FieldType.Link,
-//            References = "analitica"
-//    )
-//    private Integer link_analitica = null;
     @Expose(deserialize = false)
     @MetaPropertyBeanInterface(
             ShortName = "Episodios del médico",
@@ -250,15 +232,16 @@ public class MedicoSpecificBeanImplementation extends GenericBeanImplementation 
             References = "episodio"
     )
     private Integer link_episodio = null;
-//    @Expose(deserialize = false)
-//    @MetaPropertyBeanInterface(
-//            ShortName = "Prueba informada del médico",
-//            LongName = "Prueba informada del médico",
-//            Description = "Prueba informada del médico",
-//            Type = EnumHelper.FieldType.Link,
-//            References = "prueba_informada"
-//    )
-//    private Integer link_prueba_informada = null;
+
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Procedimientos del médico",
+            LongName = "Procedimientos del médico",
+            Description = "Procedimientos del médico",
+            Type = EnumHelper.FieldType.Link,
+            References = "procedimientomedico"
+    )
+    private Integer link_procedimientomedico = null;
 
     public MedicoSpecificBeanImplementation() {
     }
@@ -398,6 +381,14 @@ public class MedicoSpecificBeanImplementation extends GenericBeanImplementation 
 
     public void setLink_episodio(Integer link_episodio) {
         this.link_episodio = link_episodio;
+    }
+
+    public Integer getLink_procedimientomedico() {
+        return link_procedimientomedico;
+    }
+
+    public void setLink_procedimientomedico(Integer link_procedimientomedico) {
+        this.link_procedimientomedico = link_procedimientomedico;
     }
 
 }

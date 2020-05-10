@@ -123,14 +123,14 @@ public class Episodio4SpecificDaoImplementation extends GenericDaoImplementation
         EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oBean;
         oEpisodioBean.setId_usuario(idUsuario);
         oEpisodioBean.setId_episodio(null);
-        return super.create(oBean);
+        return super.create(oEpisodioBean);
     }
 
     @Override
     public Integer update(GenericBeanImplementation oBean) throws Exception {
         EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oBean;
         oEpisodioBean.setId_episodio(null);
-        return super.update(oBean);
+        return super.update(oEpisodioBean);
     }
 
 }

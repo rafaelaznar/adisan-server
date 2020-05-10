@@ -32,8 +32,24 @@
  */
 package net.adisan.service.specificimplementation;
 
+import com.google.gson.Gson;
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import net.adisan.service.genericimplementation.GenericServiceImplementation;
 import javax.servlet.http.HttpServletRequest;
+import net.adisan.bean.helper.FilterBeanHelper;
+import net.adisan.bean.helper.MetaBeanHelper;
+import net.adisan.bean.helper.ReplyBeanHelper;
+import net.adisan.connection.publicinterface.ConnectionInterface;
+import net.adisan.dao.publicinterface.DaoInterface;
+import net.adisan.factory.ConnectionFactory;
+import net.adisan.factory.DaoFactory;
+import net.adisan.helper.EncodingHelper;
+import net.adisan.helper.GsonHelper;
+import net.adisan.helper.ParameterHelper;
+import net.adisan.helper.constant.ConfigurationConstants;
+import net.adisan.helper.constant.ConnectionConstants;
 
 public class SubepisodioSpecificServiceImplementation extends GenericServiceImplementation {
 
@@ -42,4 +58,80 @@ public class SubepisodioSpecificServiceImplementation extends GenericServiceImpl
         ob = "subepisodio";
     }
 
+    
+    
+    
+     @Override
+    public ReplyBeanHelper getCountX() throws Exception {
+        if (super.checkPermission("getcountx")) {
+            Long lResult;
+            Connection oConnection = null;
+            ConnectionInterface oPooledConnection = null;
+            ReplyBeanHelper oReplyBean = null;
+            int id_foreign = Integer.parseInt(oRequest.getParameter("id_foreign"));
+            String ob_foreign = oRequest.getParameter("ob_foreign");
+            String strFilter = oRequest.getParameter("filter");
+            ArrayList<FilterBeanHelper> alFilter = ParameterHelper.getFilterParams(strFilter);
+            try {
+                oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
+                oConnection = oPooledConnection.newConnection();
+                DaoInterface oDao = (DaoInterface) DaoFactory.getDao(ob, oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+                lResult = oDao.getCountX(id_foreign, "episodio", alFilter);
+                Gson oGson = GsonHelper.getGson();
+                String strJson = oGson.toJson(lResult);
+                oReplyBean = new ReplyBeanHelper(200, strJson);
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                if (oConnection != null) {
+                    oConnection.close();
+                }
+                if (oPooledConnection != null) {
+                    oPooledConnection.disposeConnection();
+                }
+            }
+            return oReplyBean;
+        } else {
+            return new ReplyBeanHelper(401, EncodingHelper.quotate("Unauthorized"));
+        }
+    }  
+    
+    
+     public ReplyBeanHelper getPageX() throws Exception {
+        if (this.checkPermission("getpagex")) {
+            int np = Integer.parseInt(oRequest.getParameter("np"));
+            int rpp = Integer.parseInt(oRequest.getParameter("rpp"));
+            int id_foreign = Integer.parseInt(oRequest.getParameter("id_foreign"));
+            String ob_foreign = oRequest.getParameter("ob_foreign");
+            String strOrder = oRequest.getParameter("order");
+            String strFilter = oRequest.getParameter("filter");
+            LinkedHashMap<String, String> hmOrder = ParameterHelper.getOrderParams(strOrder);
+            ArrayList<FilterBeanHelper> alFilter = ParameterHelper.getFilterParams(strFilter);
+            Connection oConnection = null;
+            ConnectionInterface oPooledConnection = null;
+            ReplyBeanHelper oReplyBean = null;
+            MetaBeanHelper oMetaBeanHelper = null;
+            try {
+                oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
+                oConnection = oPooledConnection.newConnection();
+                DaoInterface oDao = (DaoInterface) DaoFactory.getDao(ob, oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+                oMetaBeanHelper = (MetaBeanHelper) oDao.getPageX(id_foreign, "episodio", rpp, np, hmOrder, alFilter, ConfigurationConstants.jsonMsgDepth);
+                String strJson = GsonHelper.getGson().toJson(oMetaBeanHelper);
+                oReplyBean = new ReplyBeanHelper(200, strJson);
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                if (oConnection != null) {
+                    oConnection.close();
+                }
+                if (oPooledConnection != null) {
+                    oPooledConnection.disposeConnection();
+                }
+            }
+            return oReplyBean;
+        } else {
+            return new ReplyBeanHelper(401, EncodingHelper.quotate("Unauthorized"));
+        }
+    }
+    
 }

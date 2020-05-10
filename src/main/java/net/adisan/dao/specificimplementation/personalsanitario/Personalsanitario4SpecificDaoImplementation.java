@@ -57,7 +57,7 @@ public class Personalsanitario4SpecificDaoImplementation extends GenericDaoImple
                 UsuarioSpecificBeanImplementation oProfesor = (UsuarioSpecificBeanImplementation) oGrupo.getObj_usuario().getBean();
                 CentrosanitarioSpecificBeanImplementation oCentroSanitario = (CentrosanitarioSpecificBeanImplementation) oProfesor.getObj_centrosanitario().getBean();
                 idCentrosanitario = oCentroSanitario.getId();
-                strSQLini = "FROM medico WHERE id_centrosanitario = " + idCentrosanitario + " ";
+                strSQLini = "FROM personalsanitario WHERE id_centrosanitario = " + idCentrosanitario + " ";
 
                 strSQL = "SELECT * " + strSQLini;
                 strCountSQL = "SELECT COUNT(*) " + strSQLini;

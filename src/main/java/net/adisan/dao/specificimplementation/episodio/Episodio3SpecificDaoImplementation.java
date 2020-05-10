@@ -120,7 +120,7 @@ public class Episodio3SpecificDaoImplementation extends GenericDaoImplementation
     public Integer create(GenericBeanImplementation oBean) throws Exception {
         EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oBean;
         oEpisodioBean.setId_episodio(null);
-        return super.create(oBean);
+        return super.create(oEpisodioBean);
     }
 
 }

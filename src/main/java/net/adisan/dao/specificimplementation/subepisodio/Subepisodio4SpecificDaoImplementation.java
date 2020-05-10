@@ -40,6 +40,7 @@ import net.adisan.bean.specificimplementation.GrupoSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.dao.specificimplementation.episodio.Episodio1SpecificDaoImplementation;
 
 public class Subepisodio4SpecificDaoImplementation extends GenericDaoImplementation {
 
@@ -81,8 +82,8 @@ public class Subepisodio4SpecificDaoImplementation extends GenericDaoImplementat
     @Override
     public boolean canCreateObject() throws Exception {
         return true;
-    }    
-    
+    }
+
     @Override
     public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         return true;
@@ -115,14 +116,20 @@ public class Subepisodio4SpecificDaoImplementation extends GenericDaoImplementat
     public Integer create(GenericBeanImplementation oBean) throws Exception {
         EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oBean;
         oEpisodioBean.setId_usuario(idUsuario);
-        return super.create(oBean);
+        //si viene un episodio sin paciente es porque es un subepisodio. El paciente Se rellena con los datos del episodio:
+        if (oEpisodioBean.getId_paciente() == null) {
+            Episodio1SpecificDaoImplementation oEpisodioDao = new Episodio1SpecificDaoImplementation(oConnection, oPuserSecurity, null);
+            EpisodioSpecificBeanImplementation oEpisodioPadre = (EpisodioSpecificBeanImplementation) oEpisodioDao.get(oEpisodioBean.getId_episodio(), 0).getBean();
+            oEpisodioBean.setId_paciente(oEpisodioPadre.getId_paciente());
+        }
+        return super.create(oEpisodioBean);
     }
 
     @Override
     public Integer update(GenericBeanImplementation oBean) throws Exception {
         EpisodioSpecificBeanImplementation oNewEpisodio = (EpisodioSpecificBeanImplementation) oBean;
         oNewEpisodio.setId_usuario(idUsuario);
-        return super.update(oBean);
+        return super.update(oNewEpisodio);
 
     }
 

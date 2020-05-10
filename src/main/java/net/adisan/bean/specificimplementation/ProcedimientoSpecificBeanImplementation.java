@@ -89,7 +89,8 @@ public class ProcedimientoSpecificBeanImplementation extends GenericBeanImplemen
             Type = EnumHelper.FieldType.ForeignObject,
             IsRequired = true,
             References = "usuario",
-            Width = 4
+            Width = 4,
+            IsFormVisible4 = false
     )
     private MetaBeanHelper obj_usuario = null;
 

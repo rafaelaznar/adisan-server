@@ -38,8 +38,6 @@ import net.adisan.bean.specificimplementation.CentrosanitarioSpecificBeanImpleme
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
-import net.adisan.bean.specificimplementation.ProcedimientodiagnosticoinicialSpecificBeanImplementation;
-import net.adisan.bean.specificimplementation.ProcedimientomedicoSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.ProcedimientopersonalsanitarioSpecificBeanImplementation;
 
 public class Procedimientopersonalsanitario3SpecificDaoImplementation extends GenericDaoImplementation {

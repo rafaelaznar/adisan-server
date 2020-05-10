@@ -64,7 +64,8 @@ public class Centrosanitario1SpecificDaoImplementation extends CentrosanitarioSp
         if (oCentrosanitarioBean.getLink_usuario() > 0
                 || oCentrosanitarioBean.getLink_dependencia() > 0
                 || oCentrosanitarioBean.getLink_medico() > 0
-                || oCentrosanitarioBean.getLink_tecnico() > 0) {
+                || oCentrosanitarioBean.getLink_personalsanitario() > 0
+                || oCentrosanitarioBean.getLink_paciente() > 0) {
             return false;
         } else {
             return true;

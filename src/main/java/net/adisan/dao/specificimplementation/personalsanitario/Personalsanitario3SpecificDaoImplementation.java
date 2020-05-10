@@ -39,7 +39,7 @@ import net.adisan.bean.specificimplementation.MedicoSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
-
+import net.adisan.bean.specificimplementation.PersonalsanitarioSpecificBeanImplementation;
 
 public class Personalsanitario3SpecificDaoImplementation extends GenericDaoImplementation {
 
@@ -73,8 +73,8 @@ public class Personalsanitario3SpecificDaoImplementation extends GenericDaoImple
     @Override
     public boolean canCreateObject() throws Exception {
         return true;
-    }    
-    
+    }
+
     @Override
     public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         return true;
@@ -82,9 +82,8 @@ public class Personalsanitario3SpecificDaoImplementation extends GenericDaoImple
 
     @Override
     public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
-        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
-        MedicoSpecificBeanImplementation oMedico = (MedicoSpecificBeanImplementation) oBean;
-        if (oMedico.getId_centrosanitario().equals(oSessionUser.getId_centrosanitario())) {
+        PersonalsanitarioSpecificBeanImplementation oPS = (PersonalsanitarioSpecificBeanImplementation) oBean;
+        if (oPS.getId_centrosanitario().equals(idCentrosanitario)) {
             return true;
         } else {
             return false;
@@ -93,35 +92,38 @@ public class Personalsanitario3SpecificDaoImplementation extends GenericDaoImple
 
     @Override
     public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
-        return false;
+        PersonalsanitarioSpecificBeanImplementation oPS = (PersonalsanitarioSpecificBeanImplementation) oBean;
+        if (oPS.getLink_procedimientopersonalsanitario() > 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     @Override
     public Integer create(GenericBeanImplementation oBean) throws Exception {
         //se puede crear un medico en el centro sanitario del profesor
         UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
-        MedicoSpecificBeanImplementation oNewMedico = (MedicoSpecificBeanImplementation) oBean;
-        oNewMedico.setId_centrosanitario(oSessionUser.getId_centrosanitario());
-        return super.create(oBean);
+        PersonalsanitarioSpecificBeanImplementation oNewPS = (PersonalsanitarioSpecificBeanImplementation) oBean;
+        oNewPS.setId_centrosanitario(oSessionUser.getId_centrosanitario());
+        return super.create(oNewPS);
     }
 
     @Override
     public Integer update(GenericBeanImplementation oBean) throws Exception {
-        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
-        MedicoSpecificBeanImplementation oNewMedico = (MedicoSpecificBeanImplementation) oBean;
-        MedicoSpecificBeanImplementation oOldMedico = (MedicoSpecificBeanImplementation) this.get(oNewMedico.getId(), 0).getBean();
-        if (oOldMedico.getId_centrosanitario().equals(oSessionUser.getId_centrosanitario())) {
-            oNewMedico.setId_centrosanitario(oSessionUser.getId_centrosanitario());
-            return super.update(oBean);
-        } else {
-            throw new Exception("No tienes permiso para efectuar la operación");
-        }
+        PersonalsanitarioSpecificBeanImplementation oPS = (PersonalsanitarioSpecificBeanImplementation) oBean;
+        oPS.setId_centrosanitario(idCentrosanitario);
+        return super.update(oBean);
     }
 
     @Override
     public Integer delete(GenericBeanImplementation oBean) throws Exception {
-        //para borrar un medico que contacten con el administrador
-        throw new Exception("No tienes permiso para efectuar la operación");
+        PersonalsanitarioSpecificBeanImplementation oPS = (PersonalsanitarioSpecificBeanImplementation) oBean;
+        if (oPS.getLink_procedimientopersonalsanitario() > 0) {
+            return super.delete(oBean);
+        } else {
+            throw new Exception("No tienes permiso para efectuar la operación");
+        }
     }
 
 }

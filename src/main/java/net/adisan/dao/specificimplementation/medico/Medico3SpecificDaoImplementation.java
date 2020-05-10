@@ -40,7 +40,6 @@ import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
-
 public class Medico3SpecificDaoImplementation extends GenericDaoImplementation {
 
     //private final Logger oLogger = (Logger) LogManager.getLogger(this.getClass().getName());
@@ -73,8 +72,8 @@ public class Medico3SpecificDaoImplementation extends GenericDaoImplementation {
     @Override
     public boolean canCreateObject() throws Exception {
         return true;
-    }    
-    
+    }
+
     @Override
     public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         return true;
@@ -82,9 +81,8 @@ public class Medico3SpecificDaoImplementation extends GenericDaoImplementation {
 
     @Override
     public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
-        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
         MedicoSpecificBeanImplementation oMedico = (MedicoSpecificBeanImplementation) oBean;
-        if (oMedico.getId_centrosanitario().equals(oSessionUser.getId_centrosanitario())) {
+        if (oMedico.getId_centrosanitario().equals(idCentrosanitario)) {
             return true;
         } else {
             return false;
@@ -93,35 +91,38 @@ public class Medico3SpecificDaoImplementation extends GenericDaoImplementation {
 
     @Override
     public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
-        return false;
-    }
-
-    @Override
-    public Integer create(GenericBeanImplementation oBean) throws Exception {
-        //se puede crear un medico en el centro sanitario del profesor
-        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
-        MedicoSpecificBeanImplementation oNewMedico = (MedicoSpecificBeanImplementation) oBean;
-        oNewMedico.setId_centrosanitario(oSessionUser.getId_centrosanitario());
-        return super.create(oBean);
-    }
-
-    @Override
-    public Integer update(GenericBeanImplementation oBean) throws Exception {
-        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
-        MedicoSpecificBeanImplementation oNewMedico = (MedicoSpecificBeanImplementation) oBean;
-        MedicoSpecificBeanImplementation oOldMedico = (MedicoSpecificBeanImplementation) this.get(oNewMedico.getId(), 0).getBean();
-        if (oOldMedico.getId_centrosanitario().equals(oSessionUser.getId_centrosanitario())) {
-            oNewMedico.setId_centrosanitario(oSessionUser.getId_centrosanitario());
-            return super.update(oBean);
+        MedicoSpecificBeanImplementation oMedico = (MedicoSpecificBeanImplementation) oBean;
+        if (oMedico.getLink_episodio() > 0) {
+            return false;
         } else {
-            throw new Exception("No tienes permiso para efectuar la operación");
+            return true;
         }
     }
 
     @Override
+    public Integer create(GenericBeanImplementation oBean) throws Exception {
+        //se puede crear un medico en el centro sanitario del profesor        
+        MedicoSpecificBeanImplementation oMedico = (MedicoSpecificBeanImplementation) oBean;
+        oMedico.setId_centrosanitario(idCentrosanitario);
+        return super.create(oMedico);
+    }
+
+    @Override
+    public Integer update(GenericBeanImplementation oBean) throws Exception {
+        MedicoSpecificBeanImplementation oMedico = (MedicoSpecificBeanImplementation) oBean;
+        oMedico.setId_centrosanitario(idCentrosanitario);
+        return super.update(oMedico);
+
+    }
+
+    @Override
     public Integer delete(GenericBeanImplementation oBean) throws Exception {
-        //para borrar un medico que contacten con el administrador
-        throw new Exception("No tienes permiso para efectuar la operación");
+        MedicoSpecificBeanImplementation oMedico = (MedicoSpecificBeanImplementation) oBean;
+        if (oMedico.getLink_episodio() > 0) {
+            return super.delete(oBean);
+        } else {
+            throw new Exception("No tienes permiso para efectuar la operación");
+        }
     }
 
 }

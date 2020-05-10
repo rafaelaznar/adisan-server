@@ -84,8 +84,7 @@ public class EpisodioprocedimientoSpecificBeanImplementation extends GenericBean
             Description = "Fecha de fin del procedimiento",
             Type = EnumHelper.FieldType.Date,
             RegexHelp = "una fecha correcta",
-            IsRequired = false,
-            DefaultValue = "today"
+            IsRequired = false
     )
     private Date fecha_fin;
 
@@ -259,7 +258,8 @@ public class EpisodioprocedimientoSpecificBeanImplementation extends GenericBean
             Type = EnumHelper.FieldType.ForeignObject,
             IsRequired = true,
             References = "usuario",
-            Width = 4
+            Width = 4,
+            IsFormVisible4 = false
     )
     private MetaBeanHelper obj_usuario = null;
     //----------------------------------------------------------

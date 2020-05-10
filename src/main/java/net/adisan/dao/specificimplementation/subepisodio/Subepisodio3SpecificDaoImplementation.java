@@ -39,6 +39,7 @@ import net.adisan.bean.specificimplementation.EpisodioSpecificBeanImplementation
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.dao.specificimplementation.episodio.Episodio1SpecificDaoImplementation;
 
 public class Subepisodio3SpecificDaoImplementation extends GenericDaoImplementation {
 
@@ -120,15 +121,20 @@ public class Subepisodio3SpecificDaoImplementation extends GenericDaoImplementat
     @Override
     public Integer create(GenericBeanImplementation oBean) throws Exception {
         EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oBean;
-        oEpisodioBean.setId_usuario(idUsuario);
-        return super.create(oBean);
+        //si viene un episodio sin paciente es porque es un subepisodio. El paciente Se rellena con los datos del episodio:
+        if (oEpisodioBean.getId_paciente() == null) {
+            Episodio1SpecificDaoImplementation oEpisodioDao = new Episodio1SpecificDaoImplementation(oConnection, oPuserSecurity, null);
+            EpisodioSpecificBeanImplementation oEpisodioPadre = (EpisodioSpecificBeanImplementation) oEpisodioDao.get(oEpisodioBean.getId_episodio(), 0).getBean();
+            oEpisodioBean.setId_paciente(oEpisodioPadre.getId_paciente());
+        }
+        return super.create(oEpisodioBean); 
     }
 
     @Override
     public Integer update(GenericBeanImplementation oBean) throws Exception {
         EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oBean;
         oEpisodioBean.setId_usuario(idUsuario);
-        return super.update(oBean);
+        return super.update(oEpisodioBean);
     }
 
 }

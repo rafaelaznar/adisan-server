@@ -36,6 +36,8 @@ import net.adisan.bean.genericimplementation.GenericBeanImplementation;
 import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.specificimplementation.EpisodioSpecificBeanImplementation;
+import net.adisan.dao.specificimplementation.episodio.Episodio1SpecificDaoImplementation;
 
 public class Subepisodio1SpecificDaoImplementation extends GenericDaoImplementation {
 
@@ -68,5 +70,18 @@ public class Subepisodio1SpecificDaoImplementation extends GenericDaoImplementat
     @Override
     public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
         return true;
+    }
+
+    @Override
+    public Integer create(GenericBeanImplementation oBean) throws Exception {
+        EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oBean;
+        //si viene un episodio sin paciente es porque es un subepisodio. El paciente Se rellena con los datos del episodio:
+        if (oEpisodioBean.getId_paciente() == null) {
+            Episodio1SpecificDaoImplementation oEpisodioDao = new Episodio1SpecificDaoImplementation(oConnection, oPuserSecurity, null);
+            EpisodioSpecificBeanImplementation oEpisodioPadre = (EpisodioSpecificBeanImplementation) oEpisodioDao.get(oEpisodioBean.getId_episodio(), 0).getBean();
+            oEpisodioBean.setId_paciente(oEpisodioPadre.getId_paciente());
+        }
+        return super.create(oEpisodioBean);
+
     }
 }

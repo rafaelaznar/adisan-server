@@ -129,6 +129,7 @@ public class ProcedimientomedicoSpecificBeanImplementation extends GenericBeanIm
             Type = EnumHelper.FieldType.ForeignObject,
             IsRequired = true,
             References = "usuario",
+            IsFormVisible4 = false,
             Width = 4
     )
     private MetaBeanHelper obj_usuario = null;

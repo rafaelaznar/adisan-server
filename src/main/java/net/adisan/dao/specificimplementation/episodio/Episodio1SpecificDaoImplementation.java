@@ -54,7 +54,7 @@ public class Episodio1SpecificDaoImplementation extends GenericDaoImplementation
     @Override
     public boolean canCreateObject() throws Exception {
         return true;
-    }    
+    }
 
     @Override
     public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
@@ -79,4 +79,10 @@ public class Episodio1SpecificDaoImplementation extends GenericDaoImplementation
         }
     }
 
+        @Override
+    public Integer update(GenericBeanImplementation oBean) throws Exception {
+        EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oBean;
+        oEpisodioBean.setId_episodio(null);
+        return super.update(oEpisodioBean);
+    }
 }
