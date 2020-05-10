@@ -145,7 +145,7 @@ public class ProcedimientodiagnosticofinalSpecificBeanImplementation extends Gen
             Type = EnumHelper.FieldType.ForeignObject,
             IsRequired = true,
             References = "episodioprocedimiento",
-            Width = 4
+            Width = 8
     )
     private MetaBeanHelper obj_episodioprocedimiento = null;
 

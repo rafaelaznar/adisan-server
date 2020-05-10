@@ -58,10 +58,7 @@ public class SubepisodioSpecificServiceImplementation extends GenericServiceImpl
         ob = "subepisodio";
     }
 
-    
-    
-    
-     @Override
+    @Override
     public ReplyBeanHelper getCountX() throws Exception {
         if (super.checkPermission("getcountx")) {
             Long lResult;
@@ -94,10 +91,9 @@ public class SubepisodioSpecificServiceImplementation extends GenericServiceImpl
         } else {
             return new ReplyBeanHelper(401, EncodingHelper.quotate("Unauthorized"));
         }
-    }  
-    
-    
-     public ReplyBeanHelper getPageX() throws Exception {
+    }
+
+    public ReplyBeanHelper getPageX() throws Exception {
         if (this.checkPermission("getpagex")) {
             int np = Integer.parseInt(oRequest.getParameter("np"));
             int rpp = Integer.parseInt(oRequest.getParameter("rpp"));
@@ -133,5 +129,5 @@ public class SubepisodioSpecificServiceImplementation extends GenericServiceImpl
             return new ReplyBeanHelper(401, EncodingHelper.quotate("Unauthorized"));
         }
     }
-    
+
 }

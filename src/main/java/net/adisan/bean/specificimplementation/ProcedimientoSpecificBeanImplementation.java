@@ -127,7 +127,7 @@ public class ProcedimientoSpecificBeanImplementation extends GenericBeanImplemen
             IsRequired = true,
             IsVisible = true,
             References = "catalogoprocedimientos",
-            Width = 4
+            Width = 8
     )
     private MetaBeanHelper obj_catalogoprocedimientos = null;
 

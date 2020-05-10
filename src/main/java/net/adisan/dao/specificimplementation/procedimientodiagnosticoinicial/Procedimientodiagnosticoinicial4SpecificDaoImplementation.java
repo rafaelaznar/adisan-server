@@ -112,14 +112,14 @@ public class Procedimientodiagnosticoinicial4SpecificDaoImplementation extends G
 
     @Override
     public Integer create(GenericBeanImplementation oBean) throws Exception {
-        ProcedimientoSpecificBeanImplementation oProcedimientoBean = (ProcedimientoSpecificBeanImplementation) oBean;
+        ProcedimientodiagnosticoinicialSpecificBeanImplementation oProcedimientoBean = (ProcedimientodiagnosticoinicialSpecificBeanImplementation) oBean;
         oProcedimientoBean.setId_usuario(idUsuario);
         return super.create(oProcedimientoBean);
     }
 
     @Override
     public Integer update(GenericBeanImplementation oBean) throws Exception {
-        ProcedimientoSpecificBeanImplementation oProcedimientoBean = (ProcedimientoSpecificBeanImplementation) oBean;
+        ProcedimientodiagnosticoinicialSpecificBeanImplementation oProcedimientoBean = (ProcedimientodiagnosticoinicialSpecificBeanImplementation) oBean;
         oProcedimientoBean.setId_usuario(idUsuario);
         return super.update(oProcedimientoBean);
     }

@@ -127,7 +127,7 @@ public class EpisodiodiagnosticoSpecificBeanImplementation extends GenericBeanIm
             Type = EnumHelper.FieldType.ForeignObject,
             IsRequired = true,
             References = "catalogodiagnosticos",
-            Width = 6
+            Width = 8
     )
     private MetaBeanHelper obj_catalogodiagnosticos = null;
 
