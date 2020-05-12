@@ -92,8 +92,6 @@ import net.adisan.dao.specificimplementation.tipoprocedimiento.Tipoprocedimiento
 import net.adisan.dao.specificimplementation.servicio.Servicio1SpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.tiposervicio.Tiposervicio0SpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.tiposervicio.Tiposervicio1SpecificDaoImplementation;
-import net.adisan.dao.specificimplementation.tipousuario.Tipousuario0SpecificDaoImplementation;
-import net.adisan.dao.specificimplementation.tipousuario.Tipousuario1SpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.usuario.Usuario4SpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.usuario.Usuario0SpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.usuario.Usuario3SpecificDaoImplementation;
@@ -129,6 +127,8 @@ import net.adisan.dao.specificimplementation.episodioprocedimiento.Episodioproce
 import net.adisan.dao.specificimplementation.episodioprocedimiento.Episodioprocedimiento5SpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.estado.Estado0SpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.estado.Estado1SpecificDaoImplementation;
+import net.adisan.dao.specificimplementation.log.Log0SpecificDaoImplementation;
+import net.adisan.dao.specificimplementation.log.Log1SpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.medico.Medico0SpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.medico.Medico1SpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.medico.Medico3SpecificDaoImplementation;
@@ -166,6 +166,8 @@ import net.adisan.dao.specificimplementation.tipodiagnostico.Tipodiagnostico0Spe
 import net.adisan.dao.specificimplementation.tipodiagnostico.Tipodiagnostico1SpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.tipopago.Tipopago0SpecificDaoImplementation;
 import net.adisan.dao.specificimplementation.tipopago.Tipopago1SpecificDaoImplementation;
+import net.adisan.dao.specificimplementation.tipousuario.Tipousuario0SpecificDaoImplementation;
+import net.adisan.dao.specificimplementation.tipousuario.Tipousuario1SpecificDaoImplementation;
 
 public class DaoFactory {
 
@@ -218,6 +220,26 @@ public class DaoFactory {
                             break;
                         default:
                             oDao = (DaoInterface) new Tipousuario0SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                            break;
+                    }
+                }
+                break;
+            case "log":
+                if (oPuserBean_security == null) {
+                    oDao = (DaoInterface) new Log0SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                    break;
+                } else {
+                    oDao = (DaoInterface) new Usuario1SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                    UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
+                    MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_tipousuario();
+                    TipousuarioSpecificBeanImplementation oTipoUsuario = (TipousuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
+                    Integer idTipousuario = oTipoUsuario.getId();
+                    switch (idTipousuario) {
+                        case 1:
+                            oDao = (DaoInterface) new Log1SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
+                            break;
+                        default:
+                            oDao = (DaoInterface) new Log0SpecificDaoImplementation(oConnection, oPuserBean_security, strWhere);
                             break;
                     }
                 }

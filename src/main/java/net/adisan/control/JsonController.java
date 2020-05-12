@@ -47,51 +47,22 @@ import java.io.StringWriter;
 import java.net.InetAddress;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.time.Duration;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import javax.servlet.ServletContext;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import net.adisan.bean.helper.SessionBeanHelper;
+import net.adisan.bean.helper.MetaBeanHelper;
+import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
+
 import net.adisan.helper.EncodingHelper;
+import net.adisan.helper.SessionHelper;
 
 //import org.apache.logging.log4j.LogManager;
 //import org.apache.logging.log4j.Logger;
 public class JsonController extends HttpServlet {
 
-    public String getTimeDifference(Date startDate, Date endDate) {
-
-        //milliseconds
-        long different = endDate.getTime() - startDate.getTime();
-
-        //System.out.println("\tstartDate : " + startDate);
-        //System.out.println("\tendDate : " + endDate);
-        //System.out.println("different : " + different);
-        long secondsInMilli = 1000;
-        long minutesInMilli = secondsInMilli * 60;
-        long hoursInMilli = minutesInMilli * 60;
-        long daysInMilli = hoursInMilli * 24;
-
-        long elapsedDays = different / daysInMilli;
-        different = different % daysInMilli;
-
-        long elapsedHours = different / hoursInMilli;
-        different = different % hoursInMilli;
-
-        long elapsedMinutes = different / minutesInMilli;
-        different = different % minutesInMilli;
-
-        long elapsedSeconds = different / secondsInMilli;
-
-        return elapsedDays + " days, " + elapsedHours + " hours, " + elapsedMinutes + " minutes, " + elapsedSeconds + " seconds";
-
-    }
+  
 
     //private final Logger oLogger = (Logger) LogManager.getLogger(this.getClass().getName());
     private void Controllerdelay(Integer iLast) {
@@ -139,69 +110,7 @@ public class JsonController extends HttpServlet {
                 out.println("author: " + ConfigurationConstants.author + " (" + ConfigurationConstants.authorMail + ") " + "<br>");
                 out.println("license: " + ConfigurationConstants.licenseLink + "<br>");
                 out.println("sources: " + ConfigurationConstants.sources + "<br>");
-                //--
-                ServletContext oContextSession = request.getServletContext();
-                Date now = new Date();
-                //---
-                if ("true".equalsIgnoreCase(st)) {
-                    out.println("<h3>Statistics</h3>");
-                }
-                ArrayList<SessionBeanHelper> activeSessions = (ArrayList<SessionBeanHelper>) oContextSession.getAttribute("activesessions");
-                if (activeSessions != null) {
-                    if (activeSessions.size() > 0) {
-                        Integer counter = 0;
-                        while (activeSessions.size() > counter) {
-                            SessionBeanHelper oSessionBeanHelper = activeSessions.get(counter);
-                            long diff = now.getTime() - oSessionBeanHelper.getInit().getTime();
-                            long diffMinutes = diff / (60 * 1000) % 60;
-                            if (diffMinutes > 30) { //depurar las sesiones de más de 30 min (web.xml)
-                                activeSessions.remove(counter);
-                            } else {
-                                counter++;
-                            }
-                        }
-                        if ("true".equalsIgnoreCase(st)) {
-                            out.println("<table border=\"1\"");
-                            out.println("<tr><th>user</th><th>creation</th><th>last access</th></tr>");
-                            for (counter = 0; counter < activeSessions.size(); counter++) {
-                                out.println("<tr>");
-                                out.println("<td>" + activeSessions.get(counter).getLogin() + "</td>");
-                                out.println("<td>" + getTimeDifference(activeSessions.get(counter).getInit(), now) + "</td>");
-                                out.println("<td>" + getTimeDifference(activeSessions.get(counter).getLastRequest(), now) + "</td>");
-                                out.println("</tr>");
-                            }
-                            out.println("</table>");
-                        }
-                    } else {
-                        if ("true".equalsIgnoreCase(st)) {
-                            out.println("no active sessions" + "<br>");
-                        }
-                    }
-                } else {
-                    ArrayList<SessionBeanHelper> newActiveSessions = new ArrayList<SessionBeanHelper>();
-                    oContextSession.setAttribute("activesessions", newActiveSessions);
-                    out.println("active sessions hashmap initilized" + "<br>");
-                }
                 //----
-                Integer maxSessions = (Integer) oContextSession.getAttribute("maxsessions");
-                if (maxSessions != null) {
-                    if ("true".equalsIgnoreCase(st)) {
-                        out.println("max sessions: " + maxSessions + "<br>");
-                    }
-                } else {
-                    oContextSession.setAttribute("maxsessions", 0);
-                    out.println("maxSessions counter initilized" + "<br>");
-                }
-                //--
-                Date lastrequest = (Date) oContextSession.getAttribute("lastrequest");
-                if (lastrequest != null) {
-                    if ("true".equalsIgnoreCase(st)) {
-                        out.println("time from last request: " + getTimeDifference(lastrequest, now) + "<br>");
-                    }
-                } else {
-                    oContextSession.setAttribute("lastrequest", now);
-                    out.println("last session request timer initilized" + "<br>");
-                }
                 //--
                 try {
                     oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
@@ -233,8 +142,14 @@ public class JsonController extends HttpServlet {
                     //TraceHelper.traceCode = true;
                 }
                 //--
-                ServletContext oContextSession = request.getServletContext();
-                oContextSession.setAttribute("lastrequest", new Date());
+                if (request.getSession().getAttribute("user") != null) {
+                    MetaBeanHelper oMBHUsuario = (MetaBeanHelper) request.getSession().getAttribute("user");
+                    UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oMBHUsuario.getBean();
+                    SessionHelper.logDB(oUsuario.getId(), ob, op);
+                } else {
+                    SessionHelper.logDB(null, ob, op);
+                }
+
                 //--
                 //oLogger.info("JsonController.processRequest(ob=" + ob + ";op=" + op + ")");
                 try {

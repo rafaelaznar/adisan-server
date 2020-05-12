@@ -64,6 +64,7 @@ import net.adisan.service.specificimplementation.CategoriaprofesionalpsSpecificS
 import net.adisan.service.specificimplementation.EpisodiodiagnosticoSpecificServiceImplementation;
 import net.adisan.service.specificimplementation.EpisodioprocedimientoSpecificServiceImplementation;
 import net.adisan.service.specificimplementation.EstadoSpecificServiceImplementation;
+import net.adisan.service.specificimplementation.LogSpecificServiceImplementation;
 import net.adisan.service.specificimplementation.PersonalsanitarioSpecificServiceImplementation;
 import net.adisan.service.specificimplementation.PresenciadiagnosticoSpecificServiceImplementation;
 import net.adisan.service.specificimplementation.PresenciadiagnosticoingresoSpecificServiceImplementation;
@@ -268,6 +269,32 @@ public class ServiceFactory {
                             break;
                         case "getcount":
                             oReplyBean = oTipousuarioService.getCount();
+                            break;
+                        default:
+                            oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Operation not found : Please contact your administrator"));
+                            break;
+                    }
+                    break;
+                case "log":
+                    LogSpecificServiceImplementation oLogService = new LogSpecificServiceImplementation(oRequest);
+                    switch (op) {
+                        case "getmetadata":
+                            oReplyBean = oLogService.getMetaData();
+                            break;
+                        case "getobjectmetadata":
+                            oReplyBean = oLogService.getObjectMetaData();
+                            break;
+                        case "getpropertiesmetadata":
+                            oReplyBean = oLogService.getPropertiesMetaData();
+                            break;
+                        case "get":
+                            oReplyBean = oLogService.get();
+                            break;
+                        case "getpage":
+                            oReplyBean = oLogService.getPage();
+                            break;
+                        case "getcount":
+                            oReplyBean = oLogService.getCount();
                             break;
                         default:
                             oReplyBean = new ReplyBeanHelper(500, EncodingHelper.quotate("Operation not found : Please contact your administrator"));

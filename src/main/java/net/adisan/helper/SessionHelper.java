@@ -32,9 +32,16 @@
  */
 package net.adisan.helper;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Date;
 import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
+import net.adisan.connection.publicinterface.ConnectionInterface;
+import net.adisan.factory.ConnectionFactory;
+import net.adisan.helper.constant.ConnectionConstants;
 
 public class SessionHelper {
 
@@ -45,4 +52,41 @@ public class SessionHelper {
         Integer idTipousuario = oTipoUsuario.getId();
         return idTipousuario;
     }
+
+    public static void logDB(Integer id_usuario, String ob, String op) throws Exception {
+        Connection oConnection = null;
+        ConnectionInterface oPooledConnection = null;
+        Statement oStatement = null;
+        Statement oStatement2 = null;
+        try {
+            oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
+            oConnection = oPooledConnection.newConnection();
+            Date o30minAgo = new Date(System.currentTimeMillis() - 30 * 60 * 1000);
+            Date now = new Date();
+
+            String strSQL = "DELETE FROM log WHERE stamp < " + EncodingHelper.stringifyAndQuotate(o30minAgo);
+            oStatement = oConnection.createStatement();
+            oStatement.executeUpdate(strSQL);
+
+            String strSQL2 = "INSERT INTO log (id, id_usuario, ob, op, stamp ) VALUES (NULL, " + id_usuario + ", '" + ob + "', '" + op + "', " + EncodingHelper.stringifyAndQuotate(now) + ")";
+            oStatement2 = oConnection.createStatement();
+            oStatement2.executeUpdate(strSQL2);
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            if (oStatement != null) {
+                oStatement.close();
+            }
+            if (oStatement2 != null) {
+                oStatement2.close();
+            }
+            if (oConnection != null) {
+                oConnection.close();
+            }
+            if (oPooledConnection != null) {
+                oPooledConnection.disposeConnection();
+            }
+        }
+    }
+
 }

@@ -81,10 +81,11 @@ import net.adisan.bean.specificimplementation.ProcedimientomedicoSpecificBeanImp
 import net.adisan.bean.specificimplementation.ProcedimientopersonalsanitarioSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.TipodiagnosticoSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.TipoprocedimientoSpecificBeanImplementation;
+import net.adisan.bean.statisticsspecificimplementation.LogSpecificBeanImplementation;
 
 public class BeanFactory {
 
-    public static BeanInterface getBean(String ob, MetaBeanHelper oPuserBean_security) {
+    public static BeanInterface getBean(String ob, MetaBeanHelper oPuserBean_security) throws Exception {
         BeanInterface oBean = null;
         MetaBeanHelper oPuserSecurity = oPuserBean_security;
         switch (ob) {
@@ -233,11 +234,13 @@ public class BeanFactory {
             case "tipoprocedimiento":
                 oBean = new TipoprocedimientoSpecificBeanImplementation();
                 break;
-
-            default:
-
-                //  oReplyBean = new ReplyBean(500, "Object not found : Please contact your administrator");
+          case "log":
+                oBean = new LogSpecificBeanImplementation();
                 break;
+            default:
+                throw new Exception ("BeanFactory: Bean not found");
+                //  oReplyBean = new ReplyBean(500, "Object not found : Please contact your administrator");
+                
         }
         return oBean;
     }

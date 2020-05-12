@@ -142,6 +142,9 @@ public class MetaFactory {
             oDao = DaoFactory.getDao("tipoprocedimiento", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
             hmObjectsMetaData.put("tipoprocedimiento", oDao.getObjectMetaData());
 
+            oDao = DaoFactory.getDao("log", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            hmObjectsMetaData.put("log", oDao.getObjectMetaData());
+            
             String strJson = GsonHelper.getGson().toJson(hmObjectsMetaData);
             oReplyBean = new ReplyBeanHelper(200, strJson);
             return oReplyBean;

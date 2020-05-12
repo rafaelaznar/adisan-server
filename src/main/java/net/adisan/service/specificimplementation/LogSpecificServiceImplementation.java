@@ -30,49 +30,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.adisan.bean.helper;
+package net.adisan.service.specificimplementation;
 
-import java.util.Date;
+import net.adisan.service.genericimplementation.GenericServiceImplementation;
+import javax.servlet.http.HttpServletRequest;
 
-public class SessionBeanHelper {
+public class LogSpecificServiceImplementation extends GenericServiceImplementation {
 
-    private String login;
-    private Date init;
-    private Date lastRequest;
-    private Integer requestsNumber;
-
-    public String getLogin() {
-        return login;
+    public LogSpecificServiceImplementation(HttpServletRequest request) {
+        super(request);
     }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public Date getInit() {
-        return init;
-    }
-
-    public void setInit(Date init) {
-        this.init = init;
-    }
-
-    public Date getLastRequest() {
-        return lastRequest;
-    }
-
-    public void setLastRequest(Date lastRequest) {
-        this.lastRequest = lastRequest;
-    }
-
-    public Integer getRequestsNumber() {
-        return requestsNumber;
-    }
-
-    public void setRequestsNumber(Integer requestsNumber) {
-        this.requestsNumber = requestsNumber;
-    }
-
-   
 
 }

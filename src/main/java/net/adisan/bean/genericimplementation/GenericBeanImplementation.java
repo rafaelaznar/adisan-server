@@ -185,17 +185,17 @@ public abstract class GenericBeanImplementation implements BeanInterface {
     @Override
     public BeanInterface fill(ResultSet oResultSet, Connection oConnection, MetaBeanHelper oPuserBean_security, Integer expand) throws Exception {
         //TraceHelper.trace("GenericBeanImplementation", "fill", "bean=" + this.getClass().getName());
-        try {            
+        try {
             GenericBeanImplementation oBean = (GenericBeanImplementation) Class.forName(this.getClass().getName()).getDeclaredConstructor().newInstance();
             if (this.getClass().getSuperclass() == GenericBeanImplementation.class) {
                 //TraceHelper.trace("Filling ID field;value=" + oResultSet.getInt("id"));
                 Field oField = this.getClass().getSuperclass().getDeclaredField("id");
-                oField.setAccessible(true);             
+                oField.setAccessible(true);
                 oField.set(this, oResultSet.getInt("id"));
                 oField.setAccessible(false);
             }
             Field[] oFields = oBean.getClass().getDeclaredFields();
-            for (Field oField : oFields) {                
+            for (Field oField : oFields) {
                 //TraceHelper.trace("GenericBeanImplementacion.fill field=" + oField.getName());
                 oField.setAccessible(true);
                 if (getTypeFromPropertyMetaData(oField) != null) {
@@ -232,25 +232,29 @@ public abstract class GenericBeanImplementation implements BeanInterface {
                                     //TraceHelper.trace("-->Filling ForeignID field=" + oField.getName() + ";value=" + oResultSet.getInt(oField.getName()));
                                     oField.set(this, oResultSet.getInt(oField.getName()));
                                 } else {
-                                    if (oField.getType() == String.class) {
-                                        if (oField.getName().equalsIgnoreCase("password")) {
-                                            //TraceHelper.trace("-->Filling String field=" + oField.getName());
-                                        } else {
-                                            //TraceHelper.trace("-->Filling String field=" + oField.getName() + ";value=" + oResultSet.getString(oField.getName()));
-                                        }
-                                        oField.set(this, oResultSet.getString(oField.getName()));
+                                    if (getTypeFromPropertyMetaData(oField) == FieldType.Datetime) {
+                                        oField.set(this, oResultSet.getTimestamp(oField.getName()));
                                     } else {
-                                        if (oField.getType() == Date.class) {
-                                            //TraceHelper.trace("-->Filling Date field=" + oField.getName() + ";value=" + oResultSet.getDate(oField.getName()));
-                                            oField.set(this, oResultSet.getDate(oField.getName()));
-                                        } else {
-                                            if (oField.getType() == Double.class || oField.getType() == double.class) {
-                                                //TraceHelper.trace("-->Filling Double field=" + oField.getName() + ";value=" + oResultSet.getDouble(oField.getName()));
-                                                oField.set(this, oResultSet.getDouble(oField.getName()));
+                                        if (oField.getType() == String.class) {
+                                            if (oField.getName().equalsIgnoreCase("password")) {
+                                                //TraceHelper.trace("-->Filling String field=" + oField.getName());
                                             } else {
-                                                if (oField.getType() == Integer.class || oField.getType() == int.class) {
-                                                    //TraceHelper.trace("-->Filling Integer field=" + oField.getName() + ";value=" + oResultSet.getInt(oField.getName()));
-                                                    oField.set(this, oResultSet.getInt(oField.getName()));
+                                                //TraceHelper.trace("-->Filling String field=" + oField.getName() + ";value=" + oResultSet.getString(oField.getName()));
+                                            }
+                                            oField.set(this, oResultSet.getString(oField.getName()));
+                                        } else {
+                                            if (oField.getType() == Date.class) {
+                                                //TraceHelper.trace("-->Filling Date field=" + oField.getName() + ";value=" + oResultSet.getDate(oField.getName()));
+                                                oField.set(this, oResultSet.getDate(oField.getName()));
+                                            } else {
+                                                if (oField.getType() == Double.class || oField.getType() == double.class) {
+                                                    //TraceHelper.trace("-->Filling Double field=" + oField.getName() + ";value=" + oResultSet.getDouble(oField.getName()));
+                                                    oField.set(this, oResultSet.getDouble(oField.getName()));
+                                                } else {
+                                                    if (oField.getType() == Integer.class || oField.getType() == int.class) {
+                                                        //TraceHelper.trace("-->Filling Integer field=" + oField.getName() + ";value=" + oResultSet.getInt(oField.getName()));
+                                                        oField.set(this, oResultSet.getInt(oField.getName()));
+                                                    }
                                                 }
                                             }
                                         }
@@ -276,7 +280,6 @@ public abstract class GenericBeanImplementation implements BeanInterface {
                 //oFieldcanCreate.setAccessible(true);
                 //oFieldcanCreate.set(this, oObDao.canCreate((GenericBeanImplementation) this));
                 //oFieldcanCreate.setAccessible(false);
-
                 //TraceHelper.trace("Filling canUpdate field");
                 Field oFieldcanUpdate = this.getClass().getSuperclass().getDeclaredField("canUpdate");
                 oFieldcanUpdate.setAccessible(true);
@@ -298,7 +301,7 @@ public abstract class GenericBeanImplementation implements BeanInterface {
         } catch (Exception ex) {
             //TraceHelper.traceError(this.getClass().getName() + ".fill", ex);
             throw ex;
-        }        
+        }
         return this;
     }
 

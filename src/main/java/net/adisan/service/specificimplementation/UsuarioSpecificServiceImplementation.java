@@ -57,7 +57,7 @@ import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import net.adisan.bean.helper.SessionBeanHelper;
+
 
 public class UsuarioSpecificServiceImplementation extends GenericServiceImplementation {
 
@@ -95,21 +95,7 @@ public class UsuarioSpecificServiceImplementation extends GenericServiceImplemen
                     if (oUsuarioSession.getActivo() == 1) {
                         HttpSession oSession = oRequest.getSession();
                         oSession.setAttribute("user", oMetaBeanHelper);
-                        //--
-                        ServletContext oContextSession = oRequest.getServletContext();
-                        ArrayList<SessionBeanHelper> activeSessions = (ArrayList<SessionBeanHelper>) oContextSession.getAttribute("activesessions");
-                        if (activeSessions != null) {
-                            SessionBeanHelper oSessionBeanHelper = new SessionBeanHelper();
-                            oSessionBeanHelper.setLogin(oRequest.getParameter("user"));
-                            oSessionBeanHelper.setInit(new Date());
-                            oSessionBeanHelper.setLastRequest(new Date());
-                            activeSessions.add(oSessionBeanHelper);
-                            oContextSession.setAttribute("activesessions", activeSessions);
-                        }
-                        Integer maxSessions = (Integer) oContextSession.getAttribute("maxsessions");
-                        if (activeSessions.size() > maxSessions) {
-                            oContextSession.setAttribute("maxsessions", activeSessions.size());
-                        }
+                        //--                                                                       
                         //--  
                         String strJson = GsonHelper.getGson().toJson(oMetaBeanHelper);
                         oReplyBean = new ReplyBeanHelper(200, strJson);
@@ -120,22 +106,6 @@ public class UsuarioSpecificServiceImplementation extends GenericServiceImplemen
                 } else { //el administrador siempre activo
                     HttpSession oSession = oRequest.getSession();
                     oSession.setAttribute("user", oMetaBeanHelper);
-                    //--
-                    ServletContext oContextSession = oRequest.getServletContext();
-                    ArrayList<SessionBeanHelper> activeSessions = (ArrayList<SessionBeanHelper>) oContextSession.getAttribute("activesessions");
-                    if (activeSessions != null) {
-                        SessionBeanHelper oSessionBeanHelper = new SessionBeanHelper();
-                        oSessionBeanHelper.setLogin(oRequest.getParameter("user"));
-                        oSessionBeanHelper.setInit(new Date());
-                        oSessionBeanHelper.setLastRequest(new Date());
-                        activeSessions.add(oSessionBeanHelper);
-                        oContextSession.setAttribute("activesessions", activeSessions);
-                    }
-                    Integer maxSessions = (Integer) oContextSession.getAttribute("maxsessions");
-                    if (activeSessions.size() > maxSessions) {
-                        oContextSession.setAttribute("maxsessions", activeSessions.size());
-                    }
-
                     //--                                                          
                     String strJson = GsonHelper.getGson().toJson(oMetaBeanHelper);
                     oReplyBean = new ReplyBeanHelper(200, strJson);
@@ -160,21 +130,6 @@ public class UsuarioSpecificServiceImplementation extends GenericServiceImplemen
     public ReplyBeanHelper logout() throws Exception {
         if (this.checkPermission("logout")) {
             HttpSession oSession = oRequest.getSession();
-            //--
-            ServletContext oContextSession = oRequest.getServletContext();
-            ArrayList<SessionBeanHelper> activeSessions = (ArrayList<SessionBeanHelper>) oContextSession.getAttribute("activesessions");
-            UsuarioSpecificBeanImplementation oUser = (UsuarioSpecificBeanImplementation) ((MetaBeanHelper) oSession.getAttribute("user")).getBean();
-            if (activeSessions != null) {
-                int counter = 0;
-                while (activeSessions.size() > counter) {
-                    if (activeSessions.get(counter).getLogin().equals(oUser.getLogin())) {
-                        activeSessions.remove(counter);
-                    } else {
-                        counter++;
-                    }
-                }
-                oContextSession.setAttribute("activesessions", activeSessions);
-            }
             //--
             oSession.invalidate();
             ReplyBeanHelper oReplyBean = new ReplyBeanHelper(200, EncodingHelper.quotate("Session is closed"));
