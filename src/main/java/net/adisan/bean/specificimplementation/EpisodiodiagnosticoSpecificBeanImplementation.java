@@ -140,9 +140,9 @@ public class EpisodiodiagnosticoSpecificBeanImplementation extends GenericBeanIm
 
     @Expose(deserialize = false)
     @MetaPropertyBeanInterface(
-            ShortName = "POD",
-            LongName = "Presencia de Diagnóstico",
-            Description = "Presencia de Diagnóstico",
+            ShortName = "MORF",
+            LongName = "Código de morfología",
+            Description = "Código de morfología",
             Type = EnumHelper.FieldType.ForeignObject,
             IsRequired = true,
             References = "presenciadiagnostico",

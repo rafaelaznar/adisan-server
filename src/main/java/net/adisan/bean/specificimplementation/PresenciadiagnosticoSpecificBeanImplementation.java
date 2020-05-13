@@ -41,11 +41,11 @@ import net.adisan.helper.constant.RegexConstants;
 
 @MetaObjectBeanInterface(
         TableName = "presenciadiagnostico",
-        SingularDescription = "Presencia de diagnóstico",
-        PluralDescription = "Presencia de diagnósticos",
+        SingularDescription = "Código de morfología",
+        PluralDescription = "Códigos de morfología",
         Icon = "fa fa-file-powerpoint",        
         Type = EnumHelper.SourceType.Table,
-        CreateDescription = "Añadir un código de presencia de diagnóstico a ADISAN"
+        CreateDescription = "Añadir un código de morfología a ADISAN"
 )
 
 public class PresenciadiagnosticoSpecificBeanImplementation extends GenericBeanImplementation {
@@ -54,11 +54,11 @@ public class PresenciadiagnosticoSpecificBeanImplementation extends GenericBeanI
     @Expose
     @MetaPropertyBeanInterface(
             ShortName = "Código",
-            LongName = "Código PD",
-            Description = "Código de la presencia del diagnóstico",
+            LongName = "Código Morfología",
+            Description = "Código de Morfología",
             Type = EnumHelper.FieldType.String,
             IsRequired = true,
-            RegexPattern = RegexConstants.capitalizedSentence,
+            RegexPattern = RegexConstants.codigo_morfologia,
             IsForeignKeyDescriptor = true
     )
     private String codigo = "";    
@@ -67,7 +67,7 @@ public class PresenciadiagnosticoSpecificBeanImplementation extends GenericBeanI
     @MetaPropertyBeanInterface(
             ShortName = "Descripcion",
             LongName = "Descripcion PD",
-            Description = "Descripcion de la presencia del diagnóstico",
+            Description = "Descripcion de lamorfología",
             Type = EnumHelper.FieldType.String,
             IsRequired = true,
             RegexPattern = RegexConstants.capitalizedSentence,

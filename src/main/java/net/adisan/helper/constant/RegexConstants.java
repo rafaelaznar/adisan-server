@@ -35,6 +35,7 @@ package net.adisan.helper.constant;
 public class RegexConstants {
 
     public static final String dni = "[0-9]{8,8}[A-Z]";
+    public static final String codigo_morfologia = "[0-9][A-Za-z]{7}";
     public static final String dni_Help = "ocho dígitos y una letra mayúscula";
     public static final String code = "[A-Z]+[a-z0-9.\\-_çñáéíóúàèò]+";
     public static final String code_Help = "mayúscula y letras o dígitos separados por guión";
