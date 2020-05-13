@@ -142,13 +142,13 @@ public class JsonController extends HttpServlet {
                     //TraceHelper.traceCode = true;
                 }
                 //--
-                if (request.getSession().getAttribute("user") != null) {
-                    MetaBeanHelper oMBHUsuario = (MetaBeanHelper) request.getSession().getAttribute("user");
-                    UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oMBHUsuario.getBean();
-                    SessionHelper.logDB(oUsuario.getId(), ob, op);
-                } else {
-                    SessionHelper.logDB(null, ob, op);
-                }
+//                if (request.getSession().getAttribute("user") != null) {
+//                    MetaBeanHelper oMBHUsuario = (MetaBeanHelper) request.getSession().getAttribute("user");
+//                    UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oMBHUsuario.getBean();
+//                    SessionHelper.logDB(oUsuario.getId(), ob, op);
+//                } else {
+//                    SessionHelper.logDB(null, ob, op);
+//                }
 
                 //--
                 //oLogger.info("JsonController.processRequest(ob=" + ob + ";op=" + op + ")");
