@@ -61,13 +61,14 @@ public class SessionHelper {
         try {
             oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
             oConnection = oPooledConnection.newConnection();
-            Date o30minAgo = new Date(System.currentTimeMillis() - 30 * 60 * 1000);
+            Date otiempo = new Date(System.currentTimeMillis() - 12 * 30 * 24 * 60 * 60 * 1000); //1 año
             Date now = new Date();
 
-            String strSQL = "DELETE FROM log WHERE stamp < " + EncodingHelper.stringifyAndQuotate(o30minAgo);
-            oStatement = oConnection.createStatement();
-            oStatement.executeUpdate(strSQL);
-
+            if (RandomHelper.getRandomInt(1, 10000) == 5329) {
+                String strSQL = "DELETE FROM log WHERE stamp < " + EncodingHelper.stringifyAndQuotate(otiempo);
+                oStatement = oConnection.createStatement();
+                oStatement.executeUpdate(strSQL);
+            }
             String strSQL2 = "INSERT INTO log (id, id_usuario, ob, op, stamp ) VALUES (NULL, " + id_usuario + ", '" + ob + "', '" + op + "', " + EncodingHelper.stringifyAndQuotate(now) + ")";
             oStatement2 = oConnection.createStatement();
             oStatement2.executeUpdate(strSQL2);
