@@ -155,14 +155,8 @@ public class LogSpecificBeanImplementation extends GenericBeanImplementation {
     }
 
     @Override
-    public void ComputeCalculatedFields() {        
-        //ajuste de dos horas respecto del servidor
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(new Date());
-        cal.add(Calendar.HOUR_OF_DAY, 2);
-        cal.getTime();
-        //pendiente: obtener la hora directamente del servidor con SELECT NOW() FROM DUAL;
-        this.tiempo = TimeHelper.getTimeDifference(this.stamp, cal.getTime());
+    public void ComputeCalculatedFields() {                
+        this.tiempo = TimeHelper.getTimeDifference(this.stamp, new Date());
     }
 
 }
