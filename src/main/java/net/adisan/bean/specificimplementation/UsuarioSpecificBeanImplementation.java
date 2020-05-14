@@ -314,7 +314,7 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
     }
 
     @Override
-    public void ComputeCalculatedFields() {
+    public void ComputeCalculatedFields(Connection oConnection,  MetaBeanHelper oUsuarioSession) {
         //this.nombrecompleto = this.nombre + " " + this.primer_apellido + " " + this.segundo_apellido;
     }
 //

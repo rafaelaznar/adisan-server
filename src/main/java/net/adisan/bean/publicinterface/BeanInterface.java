@@ -46,6 +46,6 @@ public interface BeanInterface {
 
     public BeanInterface fill(ResultSet oResultSet, Connection oConnection, MetaBeanHelper oPuserBean_security, Integer expand) throws Exception;
 
-    public void ComputeCalculatedFields();
+    public void ComputeCalculatedFields(Connection oConnection, MetaBeanHelper oUsuarioSession);
 
 }

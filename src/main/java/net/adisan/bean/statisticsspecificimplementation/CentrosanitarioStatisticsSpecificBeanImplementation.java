@@ -161,7 +161,7 @@ public class CentrosanitarioStatisticsSpecificBeanImplementation implements Bean
     }
 
     @Override
-    public void ComputeCalculatedFields() {
+    public void ComputeCalculatedFields(Connection oConnection,  MetaBeanHelper oUsuarioSession) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

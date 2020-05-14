@@ -33,6 +33,7 @@
 package net.adisan.bean.statisticsspecificimplementation;
 
 import com.google.gson.annotations.Expose;
+import java.sql.Connection;
 import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.bean.meta.publicinterface.MetaObjectBeanInterface;
 import net.adisan.bean.meta.publicinterface.MetaPropertyBeanInterface;
@@ -155,7 +156,7 @@ public class LogSpecificBeanImplementation extends GenericBeanImplementation {
     }
 
     @Override
-    public void ComputeCalculatedFields() {                
+    public void ComputeCalculatedFields(Connection oConnection, MetaBeanHelper oUsuarioSession) {                
         this.tiempo = TimeHelper.getTimeDifference(this.stamp, new Date());
     }
 

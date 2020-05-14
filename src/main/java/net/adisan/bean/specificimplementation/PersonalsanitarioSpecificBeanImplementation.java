@@ -33,6 +33,7 @@
 package net.adisan.bean.specificimplementation;
 
 import com.google.gson.annotations.Expose;
+import java.sql.Connection;
 import net.adisan.bean.genericimplementation.GenericBeanImplementation;
 import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.bean.meta.publicinterface.MetaObjectBeanInterface;
@@ -241,7 +242,7 @@ public class PersonalsanitarioSpecificBeanImplementation extends GenericBeanImpl
     }
 
     @Override
-    public void ComputeCalculatedFields() {
+    public void ComputeCalculatedFields(Connection oConnection,  MetaBeanHelper oUsuarioSession) {
         this.nombrecompleto = this.nombre + " " + this.primer_apellido + " " + this.segundo_apellido;
     }
 

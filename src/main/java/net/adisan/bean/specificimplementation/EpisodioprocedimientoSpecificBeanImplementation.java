@@ -33,12 +33,17 @@
 package net.adisan.bean.specificimplementation;
 
 import com.google.gson.annotations.Expose;
+import java.sql.Connection;
 import net.adisan.bean.genericimplementation.GenericBeanImplementation;
 import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.bean.meta.publicinterface.MetaObjectBeanInterface;
 import net.adisan.bean.meta.publicinterface.MetaPropertyBeanInterface;
 import net.adisan.helper.EnumHelper;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import net.adisan.dao.genericimplementation.GenericDaoImplementation;
+import net.adisan.factory.DaoFactory;
 import net.adisan.helper.constant.RegexConstants;
 
 @MetaObjectBeanInterface(
@@ -60,7 +65,6 @@ public class EpisodioprocedimientoSpecificBeanImplementation extends GenericBean
             RegexHelp = "una fecha correcta",
             IsRequired = true,
             DefaultValue = "today"
-            
     )
     private Date fecha_registro;
 
@@ -101,6 +105,19 @@ public class EpisodioprocedimientoSpecificBeanImplementation extends GenericBean
     private Integer orden;
 
     //----------------------------------------------------------
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Paciente",
+            LongName = "Paciente",
+            Description = "Paciente",
+            Type = EnumHelper.FieldType.Calculated,
+            IsForeignKeyDescriptor = true,
+            Width = 3,
+            IsVisible = true,
+            MaxLength = 100
+    )
+    private String paciente;
+
     @Expose(serialize = false)
     @MetaPropertyBeanInterface(
             Type = EnumHelper.FieldType.ForeignId
@@ -115,7 +132,7 @@ public class EpisodioprocedimientoSpecificBeanImplementation extends GenericBean
             Type = EnumHelper.FieldType.ForeignObject,
             IsRequired = true,
             References = "episodio",
-            IsVisible = false,
+            IsVisible = true,
             Width = 4
     )
     private MetaBeanHelper obj_episodio = null;
@@ -274,7 +291,7 @@ public class EpisodioprocedimientoSpecificBeanImplementation extends GenericBean
             References = "procedimiento"
     )
     private Integer link_procedimiento = null;
-    
+
     @Expose(deserialize = false)
     @MetaPropertyBeanInterface(
             ShortName = "Medicos",
@@ -323,6 +340,24 @@ public class EpisodioprocedimientoSpecificBeanImplementation extends GenericBean
 
     public EpisodioprocedimientoSpecificBeanImplementation(Integer id) {
         this.id = id;
+    }
+    
+        @Override
+    public void ComputeCalculatedFields(Connection oConnection, MetaBeanHelper oUsuarioSession) {
+        try {
+            if (this.obj_episodio != null) {
+                EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) this.obj_episodio.getBean();
+                if (oEpisodioBean.getId_paciente() != null) {
+                    GenericDaoImplementation oPacienteDao;
+                    oPacienteDao = (GenericDaoImplementation) DaoFactory.getDao("paciente", oConnection, oUsuarioSession, "");
+                    PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oPacienteDao.get(oEpisodioBean.getId_paciente(), 0).getBean();
+                    //PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oEpisodioBean.getObj_paciente().getBean();
+                    this.paciente = oPacienteBean.getNombrecompleto() + " (" + oPacienteBean.getId() + ") ";
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(EpisodiodiagnosticoSpecificBeanImplementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public Date getFecha_registro() {

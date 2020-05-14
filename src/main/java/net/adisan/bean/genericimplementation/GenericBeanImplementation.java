@@ -266,7 +266,7 @@ public abstract class GenericBeanImplementation implements BeanInterface {
                 }
                 oField.setAccessible(false);
             }
-            this.ComputeCalculatedFields();
+            this.ComputeCalculatedFields(oConnection, oPuserBean_security);
 
             if (this.getClass().getSuperclass() == GenericBeanImplementation.class) {
 
@@ -306,7 +306,7 @@ public abstract class GenericBeanImplementation implements BeanInterface {
     }
 
     @Override
-    public void ComputeCalculatedFields() {
+    public void ComputeCalculatedFields(Connection oConnection, MetaBeanHelper oUsuarioSession) {
         //TraceHelper.trace("GenericBeanImplementation", "ComputeCalculatedFields");
     }
 
