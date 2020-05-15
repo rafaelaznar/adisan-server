@@ -79,13 +79,13 @@ public abstract class GenericServiceImplementation implements ServiceInterface {
         if (this.checkPermission("getMetaData")) {
             String data = null;
             try {
-                DaoInterface oDao = DaoFactory.getDao(ob, null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+                DaoInterface oDao = DaoFactory.getDao(ob, null, null);
                 HashMap alMeta = new HashMap();
                 alMeta.put("metaObject", oDao.getObjectMetaData());
                 alMeta.put("metaProperties", oDao.getPropertiesMetaData());
                 oReplyBean = new ReplyBeanHelper(200, GsonHelper.getGson().toJson(alMeta));
             } catch (Exception ex) {
-                throw ex;                
+                throw ex;
             }
             return oReplyBean;
         } else {
@@ -99,7 +99,7 @@ public abstract class GenericServiceImplementation implements ServiceInterface {
         if (this.checkPermission("getObjectMetaData")) {
             String data = null;
             try {
-                DaoInterface oDao = DaoFactory.getDao(ob, null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+                DaoInterface oDao = DaoFactory.getDao(ob, null, null);
                 String strJson = GsonHelper.getGson().toJson(oDao.getObjectMetaData());
                 oReplyBean = new ReplyBeanHelper(200, strJson);
             } catch (Exception ex) {
@@ -117,7 +117,7 @@ public abstract class GenericServiceImplementation implements ServiceInterface {
         if (this.checkPermission("getPropertiesMetaData")) {
             String data = null;
             try {
-                DaoInterface oDao = DaoFactory.getDao(ob, null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+                DaoInterface oDao = DaoFactory.getDao(ob, null, null);
                 String strJson = GsonHelper.getGson().toJson(oDao.getPropertiesMetaData());
                 oReplyBean = new ReplyBeanHelper(200, strJson);
             } catch (Exception ex) {
@@ -148,7 +148,7 @@ public abstract class GenericServiceImplementation implements ServiceInterface {
             try {
                 oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
                 oConnection = oPooledConnection.newConnection();
-                DaoInterface oDao = (DaoInterface) DaoFactory.getDao(ob, oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+                DaoInterface oDao = (DaoInterface) DaoFactory.getDao(ob, oConnection, null);
                 oMetaBeanHelper = (MetaBeanHelper) oDao.getPage(rpp, np, hmOrder, alFilter, ConfigurationConstants.jsonMsgDepth);
                 String strJson = GsonHelper.getGson().toJson(oMetaBeanHelper);
                 oReplyBean = new ReplyBeanHelper(200, strJson);
@@ -183,7 +183,7 @@ public abstract class GenericServiceImplementation implements ServiceInterface {
             try {
                 oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
                 oConnection = oPooledConnection.newConnection();
-                DaoInterface oDao = (DaoInterface) DaoFactory.getDao(ob, oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+                DaoInterface oDao = (DaoInterface) DaoFactory.getDao(ob, oConnection, null);
                 lResult = oDao.getCount(alFilter);
                 String strJson = GsonHelper.getGson().toJson(lResult);
                 oReplyBean = new ReplyBeanHelper(200, strJson);
@@ -220,7 +220,7 @@ public abstract class GenericServiceImplementation implements ServiceInterface {
             try {
                 oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
                 oConnection = oPooledConnection.newConnection();
-                DaoInterface oDao = (DaoInterface) DaoFactory.getDao(ob, oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+                DaoInterface oDao = (DaoInterface) DaoFactory.getDao(ob, oConnection, null);
                 oMetaBeanHelper = (MetaBeanHelper) oDao.getPageX(id_foreign, ob_foreign, rpp, np, hmOrder, alFilter, ConfigurationConstants.jsonMsgDepth);
                 String strJson = GsonHelper.getGson().toJson(oMetaBeanHelper);
                 oReplyBean = new ReplyBeanHelper(200, strJson);
@@ -254,7 +254,7 @@ public abstract class GenericServiceImplementation implements ServiceInterface {
             try {
                 oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
                 oConnection = oPooledConnection.newConnection();
-                DaoInterface oDao = (DaoInterface) DaoFactory.getDao(ob, oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+                DaoInterface oDao = (DaoInterface) DaoFactory.getDao(ob, oConnection, null);
                 lResult = oDao.getCountX(id_foreign, ob_foreign, alFilter);
                 Gson oGson = GsonHelper.getGson();
                 String strJson = oGson.toJson(lResult);
@@ -288,7 +288,7 @@ public abstract class GenericServiceImplementation implements ServiceInterface {
             try {
                 oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
                 oConnection = oPooledConnection.newConnection();
-                DaoInterface oDao = (DaoInterface) DaoFactory.getDao(ob, oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+                DaoInterface oDao = (DaoInterface) DaoFactory.getDao(ob, oConnection, null);
                 MetaBeanHelper oMetaBeanHelper = (MetaBeanHelper) oDao.get(id, ConfigurationConstants.jsonMsgDepth);
                 String strJson = GsonHelper.getGson().toJson(oMetaBeanHelper);
                 oReplyBean = new ReplyBeanHelper(200, strJson);
@@ -319,7 +319,7 @@ public abstract class GenericServiceImplementation implements ServiceInterface {
         try {
             oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
             oConnection = oPooledConnection.newConnection();
-            DaoInterface oDao = (DaoInterface) DaoFactory.getDao(ob, oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            DaoInterface oDao = (DaoInterface) DaoFactory.getDao(ob, oConnection, null);
             if (oBean.getId() == null || oBean.getId() == 0) {
                 iResult = oDao.create(oBean);
             } else {
@@ -329,7 +329,7 @@ public abstract class GenericServiceImplementation implements ServiceInterface {
             String strJson = oGson.toJson(iResult);
             oReplyBean = new ReplyBeanHelper(200, strJson);
         } catch (Exception ex) {
-                throw ex;
+            throw ex;
         } finally {
             if (oConnection != null) {
                 oConnection.close();
@@ -374,7 +374,7 @@ public abstract class GenericServiceImplementation implements ServiceInterface {
             try {
                 oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
                 oConnection = oPooledConnection.newConnection();
-                DaoInterface oDao = (DaoInterface) DaoFactory.getDao(ob, oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+                DaoInterface oDao = (DaoInterface) DaoFactory.getDao(ob, oConnection, null);
                 GenericBeanImplementation oBean = (GenericBeanImplementation) BeanFactory.getBean(ob, (MetaBeanHelper) oRequest.getSession().getAttribute("user"));
                 oBean.setId(id);
 
@@ -409,7 +409,7 @@ public abstract class GenericServiceImplementation implements ServiceInterface {
             try {
                 oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
                 oConnection = oPooledConnection.newConnection();
-                DaoInterface oDao = (DaoInterface) DaoFactory.getDao(ob, oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+                DaoInterface oDao = (DaoInterface) DaoFactory.getDao(ob, oConnection, null);
                 MetaBeanHelper oMetaBeanHelper = (MetaBeanHelper) oDao.getStatistics(id);
                 String strJson = GsonHelper.getGson().toJson(oMetaBeanHelper);
                 oReplyBean = new ReplyBeanHelper(200, strJson);

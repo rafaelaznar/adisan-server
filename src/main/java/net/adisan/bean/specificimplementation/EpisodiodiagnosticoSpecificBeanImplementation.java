@@ -109,8 +109,8 @@ public class EpisodiodiagnosticoSpecificBeanImplementation extends GenericBeanIm
             IsVisible = true,
             MaxLength = 100
     )
-    private String paciente;    
-    
+    private String paciente;
+
     @Expose(serialize = false)
     @MetaPropertyBeanInterface(
             Type = EnumHelper.FieldType.ForeignId
@@ -205,11 +205,6 @@ public class EpisodiodiagnosticoSpecificBeanImplementation extends GenericBeanIm
     )
     private MetaBeanHelper obj_usuario = null;
 
-
-
-    //-------------------------------
-    //-------------------------------
-    //-------------------------------
     public EpisodiodiagnosticoSpecificBeanImplementation() {
     }
 
@@ -224,7 +219,7 @@ public class EpisodiodiagnosticoSpecificBeanImplementation extends GenericBeanIm
                 EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) this.obj_episodio.getBean();
                 if (oEpisodioBean.getId_paciente() != null) {
                     GenericDaoImplementation oPacienteDao;
-                    oPacienteDao = (GenericDaoImplementation) DaoFactory.getDao("paciente", oConnection, oUsuarioSession, "");
+                    oPacienteDao = (GenericDaoImplementation) DaoFactory.getDao("paciente", oConnection, "");
                     PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oPacienteDao.get(oEpisodioBean.getId_paciente(), 0).getBean();
                     //PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oEpisodioBean.getObj_paciente().getBean();
                     this.paciente = oPacienteBean.getNombrecompleto() + " (" + oPacienteBean.getId() + ") ";

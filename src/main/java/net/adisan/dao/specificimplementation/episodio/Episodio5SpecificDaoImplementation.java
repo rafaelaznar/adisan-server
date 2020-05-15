@@ -32,14 +32,13 @@
  */
 package net.adisan.dao.specificimplementation.episodio;
 
-import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
 public class Episodio5SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Episodio5SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("episodio", oPooledConnection, oPuserBean_security, strWhere);
+    public Episodio5SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
+        super("episodio", oPooledConnection, strWhere);
         String strSQLini = "FROM episodio where (id_episodio IS NULL OR id_episodio=0 OR id_episodio='') ";
         strSQL = "SELECT * " + strSQLini;
         strCountSQL = "SELECT COUNT(*) " + strSQLini;

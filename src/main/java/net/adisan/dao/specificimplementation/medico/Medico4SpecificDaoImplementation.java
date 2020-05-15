@@ -32,43 +32,22 @@
  */
 package net.adisan.dao.specificimplementation.medico;
 
-import net.adisan.bean.helper.MetaBeanHelper;
-import net.adisan.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
-import net.adisan.bean.specificimplementation.GrupoSpecificBeanImplementation;
-import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.helper.SessionHelper;
 
 public class Medico4SpecificDaoImplementation extends GenericDaoImplementation {
 
-    private Integer idCentrosanitario = null;
-    private Integer idUsuario;
-
-    public Medico4SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("medico", oPooledConnection, oPuserBean_security, strWhere);
-
-        if (oPuserBean_security != null) {
-            UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
-            idUsuario = oUsuario.getId();
-            if (oUsuario.getId() > 1) {
-                String strSQLini = "";
-                //como es un alumno, su centro sanitario es el de su profesor
-                GrupoSpecificBeanImplementation oGrupo = (GrupoSpecificBeanImplementation) oUsuario.getObj_grupo().getBean();
-                UsuarioSpecificBeanImplementation oProfesor = (UsuarioSpecificBeanImplementation) oGrupo.getObj_usuario().getBean();
-                CentrosanitarioSpecificBeanImplementation oCentroSanitario = (CentrosanitarioSpecificBeanImplementation) oProfesor.getObj_centrosanitario().getBean();
-                idCentrosanitario = oCentroSanitario.getId();
-                strSQLini = "FROM medico WHERE id_centrosanitario = " + idCentrosanitario + " ";
-
-                strSQL = "SELECT * " + strSQLini;
-                strCountSQL = "SELECT COUNT(*) " + strSQLini;
-                if (strWhere != null) {
-                    strSQL += " " + strWhere + " ";
-                    strCountSQL += " " + strWhere + " ";
-                }
+    public Medico4SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
+        super("medico", oPooledConnection, strWhere);
+        if (SessionHelper.isThereSession(4)) {
+            String strSQLini = "FROM medico WHERE id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean().getId() + " ";
+            strSQL = "SELECT * " + strSQLini;
+            strCountSQL = "SELECT COUNT(*) " + strSQLini;
+            if (strWhere != null) {
+                strSQL += " " + strWhere + " ";
+                strCountSQL += " " + strWhere + " ";
             }
         }
-
     }
-
-
 }

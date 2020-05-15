@@ -32,19 +32,13 @@
  */
 package net.adisan.dao.specificimplementation.destinoalta;
 
-import net.adisan.bean.genericimplementation.GenericBeanImplementation;
-import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
 public class Destinoalta0SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Destinoalta0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("destinoalta", oPooledConnection, oPuserBean_security, strWhere);
+    public Destinoalta0SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
+        super("destinoalta", oPooledConnection, strWhere);
     }
 
-//    @Override
-//    public boolean canGet(Integer id) throws Exception {
-//        return true;
-//    }
 }

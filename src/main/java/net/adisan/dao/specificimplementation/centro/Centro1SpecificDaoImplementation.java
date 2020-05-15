@@ -33,15 +33,14 @@
 package net.adisan.dao.specificimplementation.centro;
 
 import net.adisan.bean.genericimplementation.GenericBeanImplementation;
-import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.bean.specificimplementation.CentroSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
 public class Centro1SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Centro1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("centro", oPooledConnection, oPuserBean_security, strWhere);
+    public Centro1SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
+        super("centro", oPooledConnection, strWhere);
     }
 
     @Override

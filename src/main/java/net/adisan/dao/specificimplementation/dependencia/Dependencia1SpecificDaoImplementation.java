@@ -33,15 +33,14 @@
 package net.adisan.dao.specificimplementation.dependencia;
 
 import net.adisan.bean.genericimplementation.GenericBeanImplementation;
-import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.bean.specificimplementation.DependenciaSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
 public class Dependencia1SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Dependencia1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("dependencia", oPooledConnection, oPuserBean_security, strWhere);
+    public Dependencia1SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
+        super("dependencia", oPooledConnection, strWhere);
     }
 
     @Override

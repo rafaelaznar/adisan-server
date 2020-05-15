@@ -115,6 +115,21 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
 //            IsVisible = false
 //    )
 //    private String segundo_apellido;
+//
+//    @Expose
+//    @MetaPropertyBeanInterface(
+//            ShortName = "email",
+//            LongName = "Correo electrónico",
+//            Description = "Correo electrónico del usuario",
+//            Type = EnumHelper.FieldType.String,
+//            IsRequired = true,
+//            RegexPattern = RegexConstants.email,
+//            RegexHelp = RegexConstants.email_Help,
+//            MaxLength = 50,
+//            IsVisible = false
+//    )
+//    private String email;
+//
     @Expose
     @MetaPropertyBeanInterface(
             ShortName = "login",
@@ -135,19 +150,6 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
     )
     private String password;
 
-//    @Expose
-//    @MetaPropertyBeanInterface(
-//            ShortName = "email",
-//            LongName = "Correo electrónico",
-//            Description = "Correo electrónico del usuario",
-//            Type = EnumHelper.FieldType.String,
-//            IsRequired = true,
-//            RegexPattern = RegexConstants.email,
-//            RegexHelp = RegexConstants.email_Help,
-//            MaxLength = 50,
-//            IsVisible = false
-//    )
-//    private String email;
     @Expose(serialize = false)
     @MetaPropertyBeanInterface(
             Type = EnumHelper.FieldType.Token
@@ -167,13 +169,13 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
 
     @Expose
     @MetaPropertyBeanInterface(
-            ShortName = "F.alta",
+            ShortName = "Alta",
             LongName = "Fecha de alta",
             Description = "Fecha de alta del usuario",
             Type = EnumHelper.FieldType.Date,
             RegexHelp = "una fecha correcta",
             IsRequired = true,
-            IsVisible = false
+            IsVisible = true
     )
     private Date fecha_alta;
 
@@ -286,13 +288,23 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
 
     @Expose(deserialize = false)
     @MetaPropertyBeanInterface(
-            ShortName = "EP",
-            LongName = "Episodio Procedimientos",
-            Description = "Episodio Procedimientos",
+            ShortName = "Episodios",
+            LongName = "Episodios",
+            Description = "Episodios del usuario",
             Type = EnumHelper.FieldType.Link,
-            References = "episodioprocedimiento"
+            References = "episodio"
     )
-    private Integer link_episodioprocedimiento = null;
+    private Integer link_episodio = null;
+
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Codificaciones diagnosticos",
+            LongName = "Codificaciones diagnosticos",
+            Description = "Codificaciones diagnosticos",
+            Type = EnumHelper.FieldType.Link,
+            References = "episodiodiagnostico"
+    )
+    private Integer link_episodiodiagnostico = null;
 
     @Expose(deserialize = false)
     @MetaPropertyBeanInterface(
@@ -300,9 +312,39 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
             LongName = "Procedimientos",
             Description = "Procedimientos",
             Type = EnumHelper.FieldType.Link,
+            References = "episodioprocedimiento"
+    )
+    private Integer link_episodioprocedimiento = null;
+
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Codificaciones procedimientos",
+            LongName = "Codificaciones procedimientos",
+            Description = "Codificaciones procedimientos",
+            Type = EnumHelper.FieldType.Link,
             References = "procedimiento"
     )
     private Integer link_procedimiento = null;
+
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Codificaciones diagnostico inicial en procedimientos",
+            LongName = "Codificaciones diagnostico inicial en procedimientos",
+            Description = "Codificaciones diagnostico inicial en procedimientos",
+            Type = EnumHelper.FieldType.Link,
+            References = "procedimientodiagnosticoinicial"
+    )
+    private Integer link_procedimientodiagnosticoinicial = null;
+
+    @Expose(deserialize = false)
+    @MetaPropertyBeanInterface(
+            ShortName = "Codificaciones diagnostico final en procedimientos",
+            LongName = "Codificaciones diagnostico final en procedimientos",
+            Description = "Codificaciones diagnostico final en procedimientos",
+            Type = EnumHelper.FieldType.Link,
+            References = "procedimientodiagnosticofinal"
+    )
+    private Integer link_procedimientodiagnosticofinal = null;
 
     public UsuarioSpecificBeanImplementation() {
         this.grupos = new ArrayList<>();
@@ -314,7 +356,7 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
     }
 
     @Override
-    public void ComputeCalculatedFields(Connection oConnection,  MetaBeanHelper oUsuarioSession) {
+    public void ComputeCalculatedFields(Connection oConnection, MetaBeanHelper oUsuarioSession) {
         //this.nombrecompleto = this.nombre + " " + this.primer_apellido + " " + this.segundo_apellido;
     }
 //
@@ -349,6 +391,14 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
 //    public void setSegundo_apellido(String segundo_apellido) {
 //        this.segundo_apellido = segundo_apellido;
 //    }
+//    public String getEmail() {
+//        return email;
+//    }
+//
+//    public void setEmail(String email) {
+//        this.email = email;
+//    }
+//
 
     public String getLogin() {
         return login;
@@ -366,13 +416,6 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
         this.password = password;
     }
 
-//    public String getEmail() {
-//        return email;
-//    }
-//
-//    public void setEmail(String email) {
-//        this.email = email;
-//    }
     public String getToken() {
         return token;
     }
@@ -497,7 +540,7 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
                 if (oResultSet2.next()) {
                     Grupo1SpecificDaoImplementation oGrupoDao = null;
                     GrupoSpecificBeanImplementation oGrupoBean = null;
-                    oGrupoDao = new Grupo1SpecificDaoImplementation(oConnection, oPuserBean_security, "and id_usuario=" + this.getId().toString());
+                    oGrupoDao = new Grupo1SpecificDaoImplementation(oConnection, "and id_usuario=" + this.getId().toString());
                     oGrupoBean = (GrupoSpecificBeanImplementation) new GrupoSpecificBeanImplementation();
                     this.getObj_grupos().add(oGrupoDao.get(oResultSet2.getInt("id"), expand - 1));
 //                    oGrupo = (GrupoSpecificBeanImplementation) new GrupoSpecificBeanImplementation(this.getId_grupo()).fill(oResultSet2, oConnection, oPuserBean_security, expand - 1);
@@ -561,6 +604,30 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
 
     public void setLink_procedimiento(Integer link_procedimiento) {
         this.link_procedimiento = link_procedimiento;
+    }
+
+    public Integer getLink_episodiodiagnostico() {
+        return link_episodiodiagnostico;
+    }
+
+    public void setLink_episodiodiagnostico(Integer link_episodiodiagnostico) {
+        this.link_episodiodiagnostico = link_episodiodiagnostico;
+    }
+
+    public Integer getLink_procedimientodiagnosticoinicial() {
+        return link_procedimientodiagnosticoinicial;
+    }
+
+    public void setLink_procedimientodiagnosticoinicial(Integer link_procedimientodiagnosticoinicial) {
+        this.link_procedimientodiagnosticoinicial = link_procedimientodiagnosticoinicial;
+    }
+
+    public Integer getLink_procedimientodiagnosticofinal() {
+        return link_procedimientodiagnosticofinal;
+    }
+
+    public void setLink_procedimientodiagnosticofinal(Integer link_procedimientodiagnosticofinal) {
+        this.link_procedimientodiagnosticofinal = link_procedimientodiagnosticofinal;
     }
 
 }

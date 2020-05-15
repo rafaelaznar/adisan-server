@@ -41,8 +41,8 @@ import java.sql.Connection;
 
 public class CentrosanitarioSpecificDaoImplementation extends GenericDaoImplementation {
 
-    public CentrosanitarioSpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("centrosanitario", oPooledConnection, oPuserBean_security, strWhere);
+    public CentrosanitarioSpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
+        super("centrosanitario", oPooledConnection, strWhere);
     }
 
     @Override

@@ -33,48 +33,31 @@
 package net.adisan.dao.specificimplementation.subepisodio;
 
 import net.adisan.bean.genericimplementation.GenericBeanImplementation;
-import net.adisan.bean.helper.MetaBeanHelper;
-import net.adisan.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.EpisodioSpecificBeanImplementation;
-import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 import net.adisan.dao.specificimplementation.episodio.Episodio1SpecificDaoImplementation;
+import net.adisan.helper.SessionHelper;
 
 public class Subepisodio3SpecificDaoImplementation extends GenericDaoImplementation {
 
-    private Integer idCentrosanitario = null;
-    private Integer idUsuario;
-
-    public Subepisodio3SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("episodio", oPooledConnection, oPuserBean_security, strWhere);
-
-        if (oPuserBean_security != null) {
-            UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
-            idUsuario = oUsuario.getId();
-            if (oUsuario.getId() > 1) {
-                String strSQLini = "";
-
-                CentrosanitarioSpecificBeanImplementation oCentroSanitario = (CentrosanitarioSpecificBeanImplementation) oUsuario.getObj_centrosanitario().getBean();
-                idCentrosanitario = oCentroSanitario.getId();
-                strSQLini = "FROM episodio where 1=1 AND (id_episodio IS NOT NULL AND id_episodio<>0 AND id_episodio<>'') "
-                        + "AND (id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=3 ) "
-                        + " OR  id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=5 ) "
-                        + " OR  id_usuario IN (SELECT distinct u.id FROM usuario u, grupo g, usuario u2 "
-                        + "                    WHERE u.id_tipousuario=4 "
-                        + "                      AND u.id_grupo=g.id "
-                        + "                      AND g.id_usuario=u2.id "
-                        + "                      AND u2.id_centrosanitario= " + idCentrosanitario + ")"
-                        + ") ";
-                strSQL = "SELECT * " + strSQLini;
-                strCountSQL = "SELECT COUNT(*) " + strSQLini;
-                if (strWhere != null) {
-                    strSQL += " " + strWhere + " ";
-                    strCountSQL += " " + strWhere + " ";
-                }
-            }
+    public Subepisodio3SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
+        super("episodio", oPooledConnection, strWhere);
+        String strSQLini = "FROM episodio where 1=1 AND (id_episodio IS NOT NULL AND id_episodio<>0 AND id_episodio<>'') "
+                + "AND (id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean().getId() + " and id_tipousuario=3 ) "
+                + " OR  id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean().getId() + " and id_tipousuario=5 ) "
+                + " OR  id_usuario IN (SELECT distinct u.id FROM usuario u, grupo g, usuario u2 "
+                + "                    WHERE u.id_tipousuario=4 "
+                + "                      AND u.id_grupo=g.id "
+                + "                      AND g.id_usuario=u2.id "
+                + "                      AND u2.id_centrosanitario= " + SessionHelper.getoCentroSanitarioBean().getId() + ")"
+                + ") ";
+        strSQL = "SELECT * " + strSQLini;
+        strCountSQL = "SELECT COUNT(*) " + strSQLini;
+        if (strWhere != null) {
+            strSQL += " " + strWhere + " ";
+            strCountSQL += " " + strWhere + " ";
         }
-
     }
 
     @Override
@@ -86,7 +69,7 @@ public class Subepisodio3SpecificDaoImplementation extends GenericDaoImplementat
     public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         //comprobar que el usuario sea el profesor o uno de sus alumnos
         EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oBean;
-        if (esMiAlumno(oEpisodioBean.getId_usuario()) || oEpisodioBean.getId_usuario() == idUsuario) {
+        if (esMiAlumno(oEpisodioBean.getId_usuario()) || oEpisodioBean.getId_usuario() == SessionHelper.getoUsuarioBean().getId()) {
             return true;
         } else {
             return false;
@@ -97,7 +80,7 @@ public class Subepisodio3SpecificDaoImplementation extends GenericDaoImplementat
     public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
         EpisodioSpecificBeanImplementation oNewEpisodio = (EpisodioSpecificBeanImplementation) oBean;
         //EpisodioSpecificBeanImplementation oOldEpisodio = (EpisodioSpecificBeanImplementation) this.get(oNewEpisodio.getId(), 0).getBean();
-        if ((esMiAlumno(oNewEpisodio.getId_usuario()) || oNewEpisodio.getId_usuario() == idUsuario) //&& (esMiAlumno(oOldEpisodio.getId_usuario()) || oOldEpisodio.getId_usuario() == idUsuario)
+        if ((esMiAlumno(oNewEpisodio.getId_usuario()) || oNewEpisodio.getId_usuario() == SessionHelper.getoUsuarioBean().getId()) //&& (esMiAlumno(oOldEpisodio.getId_usuario()) || oOldEpisodio.getId_usuario() == idUsuario)
                 ) {
             return true;
         } else {
@@ -109,7 +92,7 @@ public class Subepisodio3SpecificDaoImplementation extends GenericDaoImplementat
     public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
         EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oBean;
         if ((esMiAlumno(oEpisodioBean.getId_usuario())
-                || oEpisodioBean.getId_usuario() == idUsuario)
+                || oEpisodioBean.getId_usuario() == SessionHelper.getoUsuarioBean().getId())
                 && oEpisodioBean.getLink_subepisodio() == 0
                 && oEpisodioBean.getLink_episodiodiagnostico() == 0) {
             return true;
@@ -123,17 +106,17 @@ public class Subepisodio3SpecificDaoImplementation extends GenericDaoImplementat
         EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oBean;
         //si viene un episodio sin paciente es porque es un subepisodio. El paciente Se rellena con los datos del episodio:
         if (oEpisodioBean.getId_paciente() == null) {
-            Episodio1SpecificDaoImplementation oEpisodioDao = new Episodio1SpecificDaoImplementation(oConnection, oPuserSecurity, null);
+            Episodio1SpecificDaoImplementation oEpisodioDao = new Episodio1SpecificDaoImplementation(oConnection, null);
             EpisodioSpecificBeanImplementation oEpisodioPadre = (EpisodioSpecificBeanImplementation) oEpisodioDao.get(oEpisodioBean.getId_episodio(), 0).getBean();
             oEpisodioBean.setId_paciente(oEpisodioPadre.getId_paciente());
         }
-        return super.create(oEpisodioBean); 
+        return super.create(oEpisodioBean);
     }
 
     @Override
     public Integer update(GenericBeanImplementation oBean) throws Exception {
         EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oBean;
-        oEpisodioBean.setId_usuario(idUsuario);
+        oEpisodioBean.setId_usuario(SessionHelper.getoUsuarioBean().getId());
         return super.update(oEpisodioBean);
     }
 

@@ -32,14 +32,13 @@
  */
 package net.adisan.dao.specificimplementation.procedimientodiagnosticoinicial;
 
-import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
 public class Procedimientodiagnosticoinicial5SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Procedimientodiagnosticoinicial5SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("procedimientodiagnosticoinicial", oPooledConnection, oPuserBean_security, strWhere);
+    public Procedimientodiagnosticoinicial5SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
+        super("procedimientodiagnosticoinicial", oPooledConnection, strWhere);
         String strSQLini = "FROM procedimientodiagnosticoinicial where 1=1 ";
         strSQL = "SELECT * " + strSQLini;
         strCountSQL = "SELECT COUNT(*) " + strSQLini;

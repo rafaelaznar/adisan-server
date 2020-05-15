@@ -32,15 +32,14 @@
  */
 package net.adisan.dao.specificimplementation.log;
 
-import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
 public class Log0SpecificDaoImplementation extends GenericDaoImplementation {
 
 
-    public Log0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("log", oPooledConnection, oPuserBean_security, strWhere);
+    public Log0SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
+        super("log", oPooledConnection, strWhere);
     }
 
 }

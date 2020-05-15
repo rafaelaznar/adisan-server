@@ -40,19 +40,14 @@ import java.util.Date;
 
 public class Usuario5SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Usuario5SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("usuario", oPooledConnection, oPuserBean_security, strWhere);
+    public Usuario5SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
+        super("usuario", oPooledConnection, strWhere);
     }
 
     @Override
     public MetaBeanHelper get(int id, int intExpand) throws Exception {
         MetaBeanHelper oMetaBeanHelper = super.get(id, intExpand);
         UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
-//        oUsuario.setNombrecompleto("Oculto para proteger la identidad");
-//        oUsuario.setNombre("Oculto para proteger la identidad");
-//        oUsuario.setPrimer_apellido("Oculto para proteger la identidad");
-//        oUsuario.setSegundo_apellido("Oculto para proteger la identidad");
-//        oUsuario.setEmail("Oculto para proteger la identidad");
         oUsuario.setLogin("Información oculta");
         oUsuario.setActivo(0);
         oUsuario.setFecha_alta(new Date(0));

@@ -56,6 +56,7 @@ import java.util.LinkedHashMap;
 import net.adisan.bean.publicinterface.BeanInterface;
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.specificimplementation.usuario.Usuario1SpecificDaoImplementation;
+import net.adisan.helper.SessionHelper;
 //import org.apache.logging.log4j.LogManager;
 //import org.apache.logging.log4j.Logger;
 
@@ -68,10 +69,10 @@ public abstract class GenericDaoImplementation implements DaoInterface {
     protected Connection oConnection = null;
     protected MetaBeanHelper oPuserSecurity = null;
 
-    public GenericDaoImplementation(String obj, Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) {
+    public GenericDaoImplementation(String obj, Connection oPooledConnection, String strWhere) {
         //oLogger.trace("GenericDaoImplementation", "constructor", "object=" + ob + "; strWhere=" + strWhere);
         oConnection = oPooledConnection;
-        oPuserSecurity = oPuserBean_security;
+        oPuserSecurity = SessionHelper.getoMBHUsuarioBean();
         ob = obj;
         strSQL = "SELECT * FROM " + ob + " WHERE 1=1 ";
         strCountSQL = "SELECT COUNT(*) FROM " + ob + " WHERE 1=1 ";

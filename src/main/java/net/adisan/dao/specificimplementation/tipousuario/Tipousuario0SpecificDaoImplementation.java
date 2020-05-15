@@ -32,8 +32,6 @@
  */
 package net.adisan.dao.specificimplementation.tipousuario;
 
-import net.adisan.bean.genericimplementation.GenericBeanImplementation;
-import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
@@ -42,12 +40,8 @@ public class Tipousuario0SpecificDaoImplementation extends GenericDaoImplementat
     // NOTA IMPORTANTE: los tipos de usuario 0 y 5 deberian implementar ViewGenericDaoImplementation y no GenericDaoImplementation 
     // pero no es posible porque las expansiones necesitan hacer get, 
     // así que a la espera de un rediseño global quedan restringidas las operaciones set y remove mediante sobreescritura
-    public Tipousuario0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("tipousuario", oPooledConnection, oPuserBean_security, strWhere);
+    public Tipousuario0SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
+        super("tipousuario", oPooledConnection, strWhere);
     }
 
-//    @Override
-//    public boolean canGet(Integer id) throws Exception {
-//        return true;
-//    }
 }

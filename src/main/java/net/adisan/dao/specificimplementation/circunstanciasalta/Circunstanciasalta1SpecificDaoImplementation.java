@@ -33,15 +33,14 @@
 package net.adisan.dao.specificimplementation.circunstanciasalta;
 
 import net.adisan.bean.genericimplementation.GenericBeanImplementation;
-import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.bean.specificimplementation.CircunstanciasaltaSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
 public class Circunstanciasalta1SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Circunstanciasalta1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("circunstanciasalta", oPooledConnection, oPuserBean_security, strWhere);
+    public Circunstanciasalta1SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
+        super("circunstanciasalta", oPooledConnection, strWhere);
     }
 
     @Override

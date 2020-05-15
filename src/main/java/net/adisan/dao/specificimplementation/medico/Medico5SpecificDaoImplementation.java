@@ -32,18 +32,13 @@
  */
 package net.adisan.dao.specificimplementation.medico;
 
-import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
 public class Medico5SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Medico5SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("medico", oPooledConnection, oPuserBean_security, strWhere);
+    public Medico5SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
+        super("medico", oPooledConnection, strWhere);
     }
 
-//    @Override
-//    public boolean canGet(Integer id) throws Exception {
-//        return true;
-//    }
 }

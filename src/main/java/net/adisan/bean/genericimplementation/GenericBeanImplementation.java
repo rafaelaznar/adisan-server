@@ -204,7 +204,7 @@ public abstract class GenericBeanImplementation implements BeanInterface {
                             //TraceHelper.trace("-->Filling ForeignObject field=" + oField.getName());
                             if (expand > 0) {
                                 String ob = getReferencesFromPropertyMetaData(oField);
-                                DaoInterface oObDao = (DaoInterface) DaoFactory.getDao(ob, oConnection, oPuserBean_security, null);
+                                DaoInterface oObDao = (DaoInterface) DaoFactory.getDao(ob, oConnection, null);
                                 //TraceHelper.trace("---->Filling ForeignObject object=" + ob + ";id=" + oResultSet.getInt("id_" + ob));
                                 Integer id = oResultSet.getInt("id_" + ob);
                                 if (id != null && id > 0) {
@@ -220,7 +220,7 @@ public abstract class GenericBeanImplementation implements BeanInterface {
                         } else {
                             if (getTypeFromPropertyMetaData(oField) == FieldType.Link) {
                                 String ob = getReferencesFromPropertyMetaData(oField);
-                                DaoInterface oObDao = (DaoInterface) DaoFactory.getDao(ob, oConnection, oPuserBean_security, " and id_" + getOwnNameFromObjectMetaData() + "=" + oResultSet.getInt("id"));
+                                DaoInterface oObDao = (DaoInterface) DaoFactory.getDao(ob, oConnection, " and id_" + getOwnNameFromObjectMetaData() + "=" + oResultSet.getInt("id"));
                                 //TraceHelper.trace("-->Filling Link field=" + oField.getName() + ";references=" + ob);
                                 if (oObDao != null) { //en el proceso de login puede ser nulo!!
                                     oField.set(this, oObDao.getCount(null).intValue());
@@ -270,7 +270,7 @@ public abstract class GenericBeanImplementation implements BeanInterface {
 
             if (this.getClass().getSuperclass() == GenericBeanImplementation.class) {
 
-                DaoInterface oObDao = (DaoInterface) DaoFactory.getDao(getOwnNameFromObjectMetaData(), oConnection, oPuserBean_security, "");
+                DaoInterface oObDao = (DaoInterface) DaoFactory.getDao(getOwnNameFromObjectMetaData(), oConnection, "");
 
                 //BLOQUE COMENTADO:
                 //no es necesario mostrar el canCreate por fila ya que afecta al conjunto (canCreateObject en MetaObject)

@@ -32,19 +32,13 @@
  */
 package net.adisan.dao.specificimplementation.modalidadepisodio;
 
-import net.adisan.bean.genericimplementation.GenericBeanImplementation;
-import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
 public class Modalidadepisodio0SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Modalidadepisodio0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("modalidadepisodio", oPooledConnection, oPuserBean_security, strWhere);
+    public Modalidadepisodio0SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
+        super("modalidadepisodio", oPooledConnection, strWhere);
     }
 
-//    @Override
-//    public boolean canGet(Integer id) throws Exception {
-//        return true;
-//    }
 }

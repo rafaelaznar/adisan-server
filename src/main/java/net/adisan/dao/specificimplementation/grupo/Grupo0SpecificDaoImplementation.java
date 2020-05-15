@@ -32,18 +32,13 @@
  */
 package net.adisan.dao.specificimplementation.grupo;
 
-import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
 public class Grupo0SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Grupo0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("grupo", oPooledConnection, oPuserBean_security, strWhere);
+    public Grupo0SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
+        super("grupo", oPooledConnection, strWhere);
     }
 
-//    @Override
-//    public boolean canGet(Integer id) throws Exception {
-//        return true;
-//    }
 }

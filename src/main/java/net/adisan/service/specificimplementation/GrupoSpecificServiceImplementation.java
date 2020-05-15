@@ -61,7 +61,7 @@ public class GrupoSpecificServiceImplementation extends GenericServiceImplementa
             try {
                 oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
                 oConnection = oPooledConnection.newConnection();
-                Grupo1SpecificDaoImplementation oGrupoDao = new Grupo1SpecificDaoImplementation(oConnection, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+                Grupo1SpecificDaoImplementation oGrupoDao = new Grupo1SpecificDaoImplementation(oConnection, null);
                 GrupoSpecificBeanImplementation oGrupo = new GrupoSpecificBeanImplementation();
                 oGrupo.setCodigo(codigo);
                 oGrupo = (GrupoSpecificBeanImplementation) oGrupoDao.getFromCodigo(oGrupo).getBean();

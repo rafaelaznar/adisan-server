@@ -33,15 +33,14 @@
 package net.adisan.dao.specificimplementation.sexo;
 
 import net.adisan.bean.genericimplementation.GenericBeanImplementation;
-import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.bean.specificimplementation.SexoSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
 public class Sexo1SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Sexo1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("sexo", oPooledConnection, oPuserBean_security, strWhere);
+    public Sexo1SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
+        super("sexo", oPooledConnection, strWhere);
     }
 
     @Override

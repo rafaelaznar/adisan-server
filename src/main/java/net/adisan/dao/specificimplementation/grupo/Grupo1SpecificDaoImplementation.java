@@ -40,13 +40,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-;
-
 public class Grupo1SpecificDaoImplementation extends GenericDaoImplementation {
 
-    //private final Logger oLogger = (Logger) LogManager.getLogger(this.getClass().getName());
-    public Grupo1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("grupo", oPooledConnection, oPuserBean_security, strWhere);
+    public Grupo1SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
+        super("grupo", oPooledConnection, strWhere);
     }
 
     @Override
@@ -89,8 +86,6 @@ public class Grupo1SpecificDaoImplementation extends GenericDaoImplementation {
                 throw new Exception("GrupoSpecificDaoImplementation getFromCodigo error");
             }
         } catch (Exception ex) {
-            //String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName() + " ob:" + ob;
-            //throw new Exception(msg, ex);
             throw ex;
         } finally {
             if (oResultSet != null) {

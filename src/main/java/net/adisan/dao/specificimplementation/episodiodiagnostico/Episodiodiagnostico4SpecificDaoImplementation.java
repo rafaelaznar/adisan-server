@@ -33,49 +33,29 @@
 package net.adisan.dao.specificimplementation.episodiodiagnostico;
 
 import net.adisan.bean.genericimplementation.GenericBeanImplementation;
-import net.adisan.bean.helper.MetaBeanHelper;
-import net.adisan.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
-import net.adisan.bean.specificimplementation.GrupoSpecificBeanImplementation;
-import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 import net.adisan.bean.specificimplementation.EpisodiodiagnosticoSpecificBeanImplementation;
+import net.adisan.helper.SessionHelper;
 
 public class Episodiodiagnostico4SpecificDaoImplementation extends GenericDaoImplementation {
 
-    private Integer idCentrosanitario = null;
-    private Integer idUsuario;
-
-    public Episodiodiagnostico4SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("episodiodiagnostico", oPooledConnection, oPuserBean_security, strWhere);
-
-        if (oPuserBean_security != null) {
-            UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
-            idUsuario = oUsuario.getId();
-            if (oUsuario.getId() > 1) {
-                String strSQLini = "";
-                //como es un alumno, su centro sanitario es el de su profesor
-                //idCentrosanitario = SecurityHelper.getCentroSanitarioFromUsuario(oPooledConnection, oPuserSecurity, idUsuario); // con esta línea obligas siempre a crear conexión aunque en el getallobjectsmetadata o haria falta
-                GrupoSpecificBeanImplementation oGrupo = (GrupoSpecificBeanImplementation) oUsuario.getObj_grupo().getBean();
-                UsuarioSpecificBeanImplementation oProfesor = (UsuarioSpecificBeanImplementation) oGrupo.getObj_usuario().getBean();
-                CentrosanitarioSpecificBeanImplementation oCentroSanitario = (CentrosanitarioSpecificBeanImplementation) oProfesor.getObj_centrosanitario().getBean();
-                idCentrosanitario = oCentroSanitario.getId();
-                strSQLini = "FROM episodiodiagnostico where 1=1 "                        
-                        + "AND (id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=3 ) "
-                        + " OR  id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=5 ) "
-                        + " OR  id_usuario IN (SELECT distinct u.id FROM usuario u, grupo g, usuario u2 "
-                        + "                    WHERE u.id_tipousuario=4 "
-                        + "                      AND u.id_grupo=g.id "
-                        + "                      AND g.id_usuario=u2.id "
-                        + "                      AND u2.id_centrosanitario= " + idCentrosanitario + ")"
-                        + ") ";
-                strSQL = "SELECT * " + strSQLini;
-                strCountSQL = "SELECT COUNT(*) " + strSQLini;
-                if (strWhere != null) {
-                    strSQL += " " + strWhere + " ";
-                    strCountSQL += " " + strWhere + " ";
-                }
-            }
+    public Episodiodiagnostico4SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
+        super("episodiodiagnostico", oPooledConnection, strWhere);
+        String strSQLini = "FROM episodiodiagnostico where 1=1 "
+                + "AND (id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean().getId() + " and id_tipousuario=3 ) "
+                + " OR  id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean().getId() + " and id_tipousuario=5 ) "
+                + " OR  id_usuario IN (SELECT distinct u.id FROM usuario u, grupo g, usuario u2 "
+                + "                    WHERE u.id_tipousuario=4 "
+                + "                      AND u.id_grupo=g.id "
+                + "                      AND g.id_usuario=u2.id "
+                + "                      AND u2.id_centrosanitario= " + SessionHelper.getoCentroSanitarioBean().getId() + ")"
+                + ") ";
+        strSQL = "SELECT * " + strSQLini;
+        strCountSQL = "SELECT COUNT(*) " + strSQLini;
+        if (strWhere != null) {
+            strSQL += " " + strWhere + " ";
+            strCountSQL += " " + strWhere + " ";
         }
     }
 
@@ -83,7 +63,7 @@ public class Episodiodiagnostico4SpecificDaoImplementation extends GenericDaoImp
     public boolean canCreateObject() throws Exception {
         return true;
     }
-    
+
     @Override
     public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         return true;
@@ -92,7 +72,7 @@ public class Episodiodiagnostico4SpecificDaoImplementation extends GenericDaoImp
     @Override
     public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
         EpisodiodiagnosticoSpecificBeanImplementation oEpisodiodiagnosticoBean = (EpisodiodiagnosticoSpecificBeanImplementation) oBean;
-        if (oEpisodiodiagnosticoBean.getId_usuario().equals(idUsuario)) {
+        if (oEpisodiodiagnosticoBean.getId_usuario().equals(SessionHelper.getoUsuarioBean().getId())) {
             return true;
         } else {
             return false;
@@ -102,7 +82,7 @@ public class Episodiodiagnostico4SpecificDaoImplementation extends GenericDaoImp
     @Override
     public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
         EpisodiodiagnosticoSpecificBeanImplementation oEpisodiodiagnosticoBean = (EpisodiodiagnosticoSpecificBeanImplementation) oBean;
-        if (oEpisodiodiagnosticoBean.getId_usuario().equals(idUsuario)) {
+        if (oEpisodiodiagnosticoBean.getId_usuario().equals(SessionHelper.getoUsuarioBean().getId())) {
             return true;
         } else {
             return false;
@@ -112,14 +92,14 @@ public class Episodiodiagnostico4SpecificDaoImplementation extends GenericDaoImp
     @Override
     public Integer create(GenericBeanImplementation oBean) throws Exception {
         EpisodiodiagnosticoSpecificBeanImplementation oEpisodioDiagnosticoBean = (EpisodiodiagnosticoSpecificBeanImplementation) oBean;
-        oEpisodioDiagnosticoBean.setId_usuario(idUsuario);
+        oEpisodioDiagnosticoBean.setId_usuario(SessionHelper.getoUsuarioBean().getId());
         return super.create(oEpisodioDiagnosticoBean);
     }
 
     @Override
     public Integer update(GenericBeanImplementation oBean) throws Exception {
         EpisodiodiagnosticoSpecificBeanImplementation oEpisodioDiagnosticoBean = (EpisodiodiagnosticoSpecificBeanImplementation) oBean;
-        oEpisodioDiagnosticoBean.setId_usuario(idUsuario);
+        oEpisodioDiagnosticoBean.setId_usuario(SessionHelper.getoUsuarioBean().getId());
         return super.update(oEpisodioDiagnosticoBean);
     }
 

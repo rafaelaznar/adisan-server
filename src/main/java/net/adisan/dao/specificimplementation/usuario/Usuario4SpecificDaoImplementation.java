@@ -32,54 +32,29 @@
  */
 package net.adisan.dao.specificimplementation.usuario;
 
-import net.adisan.bean.helper.MetaBeanHelper;
-import net.adisan.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
-import net.adisan.bean.specificimplementation.GrupoSpecificBeanImplementation;
-import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.helper.SessionHelper;
 
 public class Usuario4SpecificDaoImplementation extends GenericDaoImplementation {
 
-    //private final Logger oLogger = (Logger) LogManager.getLogger(this.getClass().getName());
-    private Integer idCentrosanitario = null;
-    private Integer idUsuario = 0;
+    public Usuario4SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
+        super("usuario", oPooledConnection, strWhere);
+        String strSQLini = "FROM usuario where 1=1 "
+                + "AND (id IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean().getId() + " and id_tipousuario=3 ) "
+                + " OR  id IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean().getId() + " and id_tipousuario=5 ) "
+                + " OR  id IN (SELECT distinct u.id FROM usuario u, grupo g, usuario u2 "
+                + "                    WHERE u.id_tipousuario=4 "
+                + "                      AND u.id_grupo=g.id "
+                + "                      AND g.id_usuario=u2.id "
+                + "                      AND u2.id_centrosanitario= " + SessionHelper.getoCentroSanitarioBean().getId() + ")"
+                + ") ";
 
-    public Usuario4SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("usuario", oPooledConnection, oPuserBean_security, strWhere);
-        if (oPuserBean_security != null) {
-            UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
-            idUsuario = oUsuario.getId();
-            if (oUsuario.getId() > 1) {
-                String strSQLini = "";
-
-                GrupoSpecificBeanImplementation oGrupo = (GrupoSpecificBeanImplementation) oUsuario.getObj_grupo().getBean();
-                UsuarioSpecificBeanImplementation oProfesor = (UsuarioSpecificBeanImplementation) oGrupo.getObj_usuario().getBean();
-                CentrosanitarioSpecificBeanImplementation oCentroSanitario = (CentrosanitarioSpecificBeanImplementation) oProfesor.getObj_centrosanitario().getBean();
-                idCentrosanitario = oCentroSanitario.getId();
-                strSQLini = "FROM usuario where 1=1 "
-                        + "AND (id IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=3 ) "
-                        + " OR  id IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=5 ) "
-                        + " OR  id IN (SELECT distinct u.id FROM usuario u, grupo g, usuario u2 "
-                        + "                    WHERE u.id_tipousuario=4 "
-                        + "                      AND u.id_grupo=g.id "
-                        + "                      AND g.id_usuario=u2.id "
-                        + "                      AND u2.id_centrosanitario= " + idCentrosanitario + ")"
-                        + ") ";
-
-                strSQL = "SELECT * " + strSQLini;
-                strCountSQL = "SELECT COUNT(*) " + strSQLini;
-                if (strWhere != null) {
-                    strSQL += " " + strWhere + " ";
-                    strCountSQL += " " + strWhere + " ";
-                }
-            } else {
-                String msg = this.getClass().getName() + ": constuctor: Unauthorized access";            
-                throw new Exception(msg);
-            }
-        } else {
-            String msg = this.getClass().getName() + ": constuctor: Unauthorized access";
-            throw new Exception(msg);
+        strSQL = "SELECT * " + strSQLini;
+        strCountSQL = "SELECT COUNT(*) " + strSQLini;
+        if (strWhere != null) {
+            strSQL += " " + strWhere + " ";
+            strCountSQL += " " + strWhere + " ";
         }
-    }  
+    }
 }

@@ -32,15 +32,14 @@
  */
 package net.adisan.dao.specificimplementation.presenciadiagnosticoingreso;
 
-import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 import net.adisan.bean.genericimplementation.GenericBeanImplementation;
 
 public class Presenciadiagnosticoingreso0SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Presenciadiagnosticoingreso0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("presenciadiagnosticoingreso", oPooledConnection, oPuserBean_security, strWhere);
+    public Presenciadiagnosticoingreso0SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
+        super("presenciadiagnosticoingreso", oPooledConnection, strWhere);
     }
 
     @Override

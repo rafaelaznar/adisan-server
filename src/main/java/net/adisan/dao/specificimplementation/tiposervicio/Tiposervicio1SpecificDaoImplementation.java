@@ -33,15 +33,14 @@
 package net.adisan.dao.specificimplementation.tiposervicio;
 
 import net.adisan.bean.genericimplementation.GenericBeanImplementation;
-import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.bean.specificimplementation.TiposervicioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
 public class Tiposervicio1SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Tiposervicio1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("tiposervicio", oPooledConnection, oPuserBean_security, strWhere);
+    public Tiposervicio1SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
+        super("tiposervicio", oPooledConnection, strWhere);
     }
 
     @Override

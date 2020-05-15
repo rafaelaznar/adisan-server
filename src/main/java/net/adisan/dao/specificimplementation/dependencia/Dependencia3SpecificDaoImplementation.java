@@ -33,47 +33,22 @@
 package net.adisan.dao.specificimplementation.dependencia;
 
 import net.adisan.bean.genericimplementation.GenericBeanImplementation;
-import net.adisan.bean.helper.MetaBeanHelper;
-import net.adisan.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.DependenciaSpecificBeanImplementation;
-import net.adisan.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
-//import org.apache.logging.log4j.LogManager;
-//import org.apache.logging.log4j.Logger;
+import net.adisan.helper.SessionHelper;
 
 public class Dependencia3SpecificDaoImplementation extends GenericDaoImplementation {
 
-    //private final Logger oLogger = (Logger) LogManager.getLogger(this.getClass().getName());
-    private Integer idCentrosanitario = 0;
-    private Integer idUsuario = 0;
-
-    public Dependencia3SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("dependencia", oPooledConnection, oPuserBean_security, strWhere);
-        if (oPuserBean_security != null) {
-            UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
-            idUsuario = oUsuario.getId();
-            MetaBeanHelper ombhTipousuario = (MetaBeanHelper) oUsuario.getObj_tipousuario();
-            TipousuarioSpecificBeanImplementation oTipousuario = (TipousuarioSpecificBeanImplementation) ombhTipousuario.getBean();
-            if (oTipousuario.getId() == 3) {
-                String strSQLini = "";
-                CentrosanitarioSpecificBeanImplementation oCentroSanitario = (CentrosanitarioSpecificBeanImplementation) oUsuario.getObj_centrosanitario().getBean();
-                idCentrosanitario = oCentroSanitario.getId();
-                strSQLini = "FROM dependencia where id_centrosanitario = " + idCentrosanitario + " ";
-                String strSQL = "SELECT * " + strSQLini;
-                String strCountSQL = "SELECT COUNT(*) " + strSQLini;
-                if (strWhere != null) {
-                    strSQL += " " + strWhere + " ";
-                    strCountSQL += " " + strWhere + " ";
-                }
-            } else {
-                String msg = this.getClass().getName() + ": constuctor: Unauthorized access";
-                throw new Exception(msg);
-            }
-        } else {
-            String msg = this.getClass().getName() + ": constuctor: Unauthorized access";
-            throw new Exception(msg);
+    public Dependencia3SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
+        super("dependencia", oPooledConnection, strWhere);        
+        String strSQLini = "FROM dependencia where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean().getId() + " ";
+        String strSQL = "SELECT * " + strSQLini;
+        String strCountSQL = "SELECT COUNT(*) " + strSQLini;
+        if (strWhere != null) {
+            strSQL += " " + strWhere + " ";
+            strCountSQL += " " + strWhere + " ";
         }
     }
 
@@ -81,7 +56,7 @@ public class Dependencia3SpecificDaoImplementation extends GenericDaoImplementat
     public boolean canCreateObject() throws Exception {
         return true;
     }
-    
+
     @Override
     public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         return true;

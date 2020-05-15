@@ -33,48 +33,32 @@
 package net.adisan.dao.specificimplementation.procedimientopersonalsanitario;
 
 import net.adisan.bean.genericimplementation.GenericBeanImplementation;
-import net.adisan.bean.helper.MetaBeanHelper;
-import net.adisan.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
-import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 import net.adisan.bean.specificimplementation.ProcedimientopersonalsanitarioSpecificBeanImplementation;
+import net.adisan.helper.SessionHelper;
 
 public class Procedimientopersonalsanitario3SpecificDaoImplementation extends GenericDaoImplementation {
 
-    //private final Logger oLogger = (Logger) LogManager.getLogger(this.getClass().getName());
-    private Integer idCentrosanitario = null;
-    private Integer idUsuario;
+    //private final Logger oLogger = (Logger) LogManager.getLogger(this.getClass().getName());l;   
+    public Procedimientopersonalsanitario3SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
+        super("procedimientopersonalsanitario", oPooledConnection, strWhere);
+        String strSQLini = "FROM procedimientopersonalsanitario where  1=1 "
+                + "AND (id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean().getId() + " and id_tipousuario=3 ) "
+                + " OR  id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean().getId() + " and id_tipousuario=5 ) "
+                + " OR  id_usuario IN (SELECT distinct u.id FROM usuario u, grupo g, usuario u2 "
+                + "                    WHERE u.id_tipousuario=4 "
+                + "                      AND u.id_grupo=g.id "
+                + "                      AND g.id_usuario=u2.id "
+                + "                      AND u2.id_centrosanitario= " + SessionHelper.getoCentroSanitarioBean().getId() + ")"
+                + ") ";
+        strSQL = "SELECT * " + strSQLini;
+        strCountSQL = "SELECT COUNT(*) " + strSQLini;
+        if (strWhere != null) {
+            strSQL += " " + strWhere + " ";
+            strCountSQL += " " + strWhere + " ";
 
-    public Procedimientopersonalsanitario3SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("procedimientopersonalsanitario", oPooledConnection, oPuserBean_security, strWhere);
-
-        if (oPuserBean_security != null) {
-            UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
-            idUsuario = oUsuario.getId();
-            if (oUsuario.getId() > 1) {
-                String strSQLini = "";
-
-                CentrosanitarioSpecificBeanImplementation oCentroSanitario = (CentrosanitarioSpecificBeanImplementation) oUsuario.getObj_centrosanitario().getBean();
-                idCentrosanitario = oCentroSanitario.getId();
-                strSQLini = "FROM procedimientopersonalsanitario where  1=1 "
-                        + "AND (id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=3 ) "
-                        + " OR  id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=5 ) "
-                        + " OR  id_usuario IN (SELECT distinct u.id FROM usuario u, grupo g, usuario u2 "
-                        + "                    WHERE u.id_tipousuario=4 "
-                        + "                      AND u.id_grupo=g.id "
-                        + "                      AND g.id_usuario=u2.id "
-                        + "                      AND u2.id_centrosanitario= " + idCentrosanitario + ")"
-                        + ") ";
-                strSQL = "SELECT * " + strSQLini;
-                strCountSQL = "SELECT COUNT(*) " + strSQLini;
-                if (strWhere != null) {
-                    strSQL += " " + strWhere + " ";
-                    strCountSQL += " " + strWhere + " ";
-                }
-            }
         }
-
     }
 
     @Override
@@ -85,7 +69,7 @@ public class Procedimientopersonalsanitario3SpecificDaoImplementation extends Ge
     @Override
     public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         ProcedimientopersonalsanitarioSpecificBeanImplementation oProcedimientopersonalsanitarioBean = (ProcedimientopersonalsanitarioSpecificBeanImplementation) oBean;
-        if (oProcedimientopersonalsanitarioBean.getId_usuario().equals(idUsuario) || this.esMiAlumno(oProcedimientopersonalsanitarioBean.getId_usuario())) {
+        if (oProcedimientopersonalsanitarioBean.getId_usuario().equals(SessionHelper.getoUsuarioBean().getId()) || this.esMiAlumno(oProcedimientopersonalsanitarioBean.getId_usuario())) {
             return true;
         } else {
             return false;
@@ -94,9 +78,8 @@ public class Procedimientopersonalsanitario3SpecificDaoImplementation extends Ge
 
     @Override
     public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
-        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
         ProcedimientopersonalsanitarioSpecificBeanImplementation oProcedimientopersonalsanitarioBean = (ProcedimientopersonalsanitarioSpecificBeanImplementation) oBean;
-        if (oProcedimientopersonalsanitarioBean.getId_usuario().equals(oSessionUser.getId()) || esMiAlumno(oProcedimientopersonalsanitarioBean.getId_usuario())) {
+        if (oProcedimientopersonalsanitarioBean.getId_usuario().equals(SessionHelper.getoUsuarioBean().getId()) || esMiAlumno(oProcedimientopersonalsanitarioBean.getId_usuario())) {
             return true;
         } else {
             return false;
@@ -106,7 +89,7 @@ public class Procedimientopersonalsanitario3SpecificDaoImplementation extends Ge
     @Override
     public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
         ProcedimientopersonalsanitarioSpecificBeanImplementation oProcedimientopersonalsanitarioBean = (ProcedimientopersonalsanitarioSpecificBeanImplementation) oBean;
-        if (oProcedimientopersonalsanitarioBean.getId_usuario().equals(idUsuario) || esMiAlumno(oProcedimientopersonalsanitarioBean.getId_usuario())) {
+        if (oProcedimientopersonalsanitarioBean.getId_usuario().equals(SessionHelper.getoUsuarioBean().getId()) || esMiAlumno(oProcedimientopersonalsanitarioBean.getId_usuario())) {
             return true;
         } else {
             return false;

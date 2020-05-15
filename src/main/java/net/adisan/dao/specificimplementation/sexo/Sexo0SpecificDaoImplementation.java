@@ -32,18 +32,13 @@
  */
 package net.adisan.dao.specificimplementation.sexo;
 
-import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
 public class Sexo0SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Sexo0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("sexo", oPooledConnection, oPuserBean_security, strWhere);
+    public Sexo0SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
+        super("sexo", oPooledConnection, strWhere);
     }
 
-//   @Override
-//    public boolean canGet(Integer id) throws Exception {
-//        return true;
-//    }
 }

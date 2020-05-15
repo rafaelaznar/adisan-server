@@ -48,101 +48,101 @@ public class MetaFactory {
             ReplyBeanHelper oReplyBean = null;
             HashMap hmObjectsMetaData = new HashMap();
             DaoInterface oDao = null;
-            oDao = DaoFactory.getDao("usuario", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("usuario", null, null);
             hmObjectsMetaData.put("usuario", oDao.getObjectMetaData());
-            oDao = DaoFactory.getDao("tipousuario", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("tipousuario", null,  null);
             hmObjectsMetaData.put("tipousuario", oDao.getObjectMetaData());
-            oDao = DaoFactory.getDao("centro", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("centro", null,  null);
             hmObjectsMetaData.put("centro", oDao.getObjectMetaData());
-            oDao = DaoFactory.getDao("centrosanitario", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("centrosanitario", null,  null);
             hmObjectsMetaData.put("centrosanitario", oDao.getObjectMetaData());
-            oDao = DaoFactory.getDao("curso", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("curso", null,  null);
             hmObjectsMetaData.put("curso", oDao.getObjectMetaData());
-            oDao = DaoFactory.getDao("grupo", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("grupo", null,  null);
             hmObjectsMetaData.put("grupo", oDao.getObjectMetaData());
-            oDao = DaoFactory.getDao("tipoepisodio", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("tipoepisodio", null,  null);
             hmObjectsMetaData.put("tipoepisodio", oDao.getObjectMetaData());
-            oDao = DaoFactory.getDao("especialidad", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("especialidad", null,  null);
             hmObjectsMetaData.put("especialidad", oDao.getObjectMetaData());
-            oDao = DaoFactory.getDao("destinoalta", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("destinoalta", null,  null);
             hmObjectsMetaData.put("destinoalta", oDao.getObjectMetaData());
-            oDao = DaoFactory.getDao("tipopago", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("tipopago", null,  null);
             hmObjectsMetaData.put("tipopago", oDao.getObjectMetaData());
-            oDao = DaoFactory.getDao("sexo", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("sexo", null,  null);
             hmObjectsMetaData.put("sexo", oDao.getObjectMetaData());
-            oDao = DaoFactory.getDao("circunstanciasalta", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("circunstanciasalta", null,  null);
             hmObjectsMetaData.put("circunstanciasalta", oDao.getObjectMetaData());
-            oDao = DaoFactory.getDao("modalidadepisodio", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("modalidadepisodio", null,  null);
             hmObjectsMetaData.put("modalidadepisodio", oDao.getObjectMetaData());
-            oDao = DaoFactory.getDao("tipodependencia", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("tipodependencia", null,  null);
             hmObjectsMetaData.put("tipodependencia", oDao.getObjectMetaData());
-            oDao = DaoFactory.getDao("tiposervicio", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("tiposervicio", null,  null);
             hmObjectsMetaData.put("tiposervicio", oDao.getObjectMetaData());
-            oDao = DaoFactory.getDao("factura", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("factura", null,  null);
             hmObjectsMetaData.put("factura", oDao.getObjectMetaData());
-            oDao = DaoFactory.getDao("servicio", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("servicio", null,  null);
             hmObjectsMetaData.put("servicio", oDao.getObjectMetaData());
-            oDao = DaoFactory.getDao("paciente", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("paciente", null,  null);
             hmObjectsMetaData.put("paciente", oDao.getObjectMetaData());
-            oDao = DaoFactory.getDao("categoriaprofesional", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("categoriaprofesional", null,  null);
             hmObjectsMetaData.put("categoriaprofesional", oDao.getObjectMetaData());
-            oDao = DaoFactory.getDao("episodio", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("episodio", null,  null);
             hmObjectsMetaData.put("episodio", oDao.getObjectMetaData());
-            oDao = DaoFactory.getDao("subepisodio", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("subepisodio", null,  null);
             hmObjectsMetaData.put("subepisodio", oDao.getObjectMetaData());
-            oDao = DaoFactory.getDao("dependencia", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("dependencia", null,  null);
             hmObjectsMetaData.put("dependencia", oDao.getObjectMetaData());
-            oDao = DaoFactory.getDao("medico", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("medico", null,  null);
             hmObjectsMetaData.put("medico", oDao.getObjectMetaData());
 
-            oDao = DaoFactory.getDao("episodiodiagnostico", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("episodiodiagnostico", null,  null);
             hmObjectsMetaData.put("episodiodiagnostico", oDao.getObjectMetaData());
-            oDao = DaoFactory.getDao("tipodiagnostico", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("tipodiagnostico", null,  null);
             hmObjectsMetaData.put("tipodiagnostico", oDao.getObjectMetaData());
-            oDao = DaoFactory.getDao("catalogodiagnosticos", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("catalogodiagnosticos", null,  null);
             hmObjectsMetaData.put("catalogodiagnosticos", oDao.getObjectMetaData());
-            oDao = DaoFactory.getDao("presenciadiagnostico", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("presenciadiagnostico", null,  null);
             hmObjectsMetaData.put("presenciadiagnostico", oDao.getObjectMetaData());
-            oDao = DaoFactory.getDao("presenciadiagnosticoingreso", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("presenciadiagnosticoingreso", null,  null);
             hmObjectsMetaData.put("presenciadiagnosticoingreso", oDao.getObjectMetaData());
 
-            oDao = DaoFactory.getDao("catalogoprocedimientos", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("catalogoprocedimientos", null,  null);
             hmObjectsMetaData.put("catalogoprocedimientos", oDao.getObjectMetaData());
 
-            oDao = DaoFactory.getDao("categoriaprofesionalps", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("categoriaprofesionalps", null,  null);
             hmObjectsMetaData.put("categoriaprofesionalps", oDao.getObjectMetaData());
 
-            oDao = DaoFactory.getDao("episodioprocedimiento", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("episodioprocedimiento", null,  null);
             hmObjectsMetaData.put("episodioprocedimiento", oDao.getObjectMetaData());
 
-            oDao = DaoFactory.getDao("estado", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("estado", null,  null);
             hmObjectsMetaData.put("estado", oDao.getObjectMetaData());
 
-            oDao = DaoFactory.getDao("personalsanitario", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("personalsanitario", null,  null);
             hmObjectsMetaData.put("personalsanitario", oDao.getObjectMetaData());
 
-            oDao = DaoFactory.getDao("prioridad", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("prioridad", null,  null);
             hmObjectsMetaData.put("prioridad", oDao.getObjectMetaData());
 
-            oDao = DaoFactory.getDao("procedimiento", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("procedimiento", null,  null);
             hmObjectsMetaData.put("procedimiento", oDao.getObjectMetaData());
 
-            oDao = DaoFactory.getDao("procedimientodiagnosticofinal", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("procedimientodiagnosticofinal", null,  null);
             hmObjectsMetaData.put("procedimientodiagnosticofinal", oDao.getObjectMetaData());
 
-            oDao = DaoFactory.getDao("procedimientodiagnosticoinicial", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("procedimientodiagnosticoinicial", null,  null);
             hmObjectsMetaData.put("procedimientodiagnosticoinicial", oDao.getObjectMetaData());
 
-            oDao = DaoFactory.getDao("procedimientomedico", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("procedimientomedico", null,  null);
             hmObjectsMetaData.put("procedimientomedico", oDao.getObjectMetaData());
 
-            oDao = DaoFactory.getDao("procedimientopersonalsanitario", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("procedimientopersonalsanitario", null,  null);
             hmObjectsMetaData.put("procedimientopersonalsanitario", oDao.getObjectMetaData());
 
-            oDao = DaoFactory.getDao("tipoprocedimiento", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("tipoprocedimiento", null,  null);
             hmObjectsMetaData.put("tipoprocedimiento", oDao.getObjectMetaData());
 
-            oDao = DaoFactory.getDao("log", null, (MetaBeanHelper) oRequest.getSession().getAttribute("user"), null);
+            oDao = DaoFactory.getDao("log", null,  null);
             hmObjectsMetaData.put("log", oDao.getObjectMetaData());
             
             String strJson = GsonHelper.getGson().toJson(hmObjectsMetaData);

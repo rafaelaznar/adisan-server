@@ -34,64 +34,41 @@ package net.adisan.dao.specificimplementation.usuario;
 
 import net.adisan.bean.genericimplementation.GenericBeanImplementation;
 import net.adisan.bean.helper.MetaBeanHelper;
-import net.adisan.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
-import net.adisan.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import net.adisan.helper.EncodingHelper;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import net.adisan.helper.SessionHelper;
 
 public class Usuario3SpecificDaoImplementation extends GenericDaoImplementation {
 
-    //private final Logger oLogger = (Logger) LogManager.getLogger(this.getClass().getName());
-    private Integer idCentrosanitario = null;
-    private Integer idUsuario = 0;
-
-    public Usuario3SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("usuario", oPooledConnection, oPuserBean_security, strWhere);
-        if (oPuserBean_security != null) {
-            UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
-            idUsuario = oUsuario.getId();
-
-            MetaBeanHelper ombhTipousuario = (MetaBeanHelper) oUsuario.getObj_tipousuario();
-            TipousuarioSpecificBeanImplementation oTipousuario = (TipousuarioSpecificBeanImplementation) ombhTipousuario.getBean();
-            if (oTipousuario.getId() == 3) {
-                String strSQLini = "";
-                CentrosanitarioSpecificBeanImplementation oCentroSanitario = (CentrosanitarioSpecificBeanImplementation) oUsuario.getObj_centrosanitario().getBean();
-                idCentrosanitario = oCentroSanitario.getId();
-                strSQLini = "FROM usuario where 1=1 "
-                        + "AND (id IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=3 ) "
-                        + " OR  id IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=5 ) "
-                        + " OR  id IN (SELECT distinct u.id FROM usuario u, grupo g, usuario u2 "
-                        + "                    WHERE u.id_tipousuario=4 "
-                        + "                      AND u.id_grupo=g.id "
-                        + "                      AND g.id_usuario=u2.id "
-                        + "                      AND u2.id_centrosanitario= " + idCentrosanitario + ")"
-                        + ") ";
-
-                strSQL = "SELECT * " + strSQLini;
-                strCountSQL = "SELECT COUNT(*) " + strSQLini;
-                if (strWhere != null) {
-                    strSQL += " " + strWhere + " ";
-                    strCountSQL += " " + strWhere + " ";
-                }
-            } else {
-                String msg = this.getClass().getName() + ": constuctor: Unauthorized access";
-                throw new Exception(msg);
-            }
-        } else {
-            String msg = this.getClass().getName() + ": constuctor: Unauthorized access";
-            throw new Exception(msg);
+    public Usuario3SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
+        super("usuario", oPooledConnection, strWhere);
+        String strSQLini = "";
+        strSQLini = "FROM usuario where 1=1 "
+                + "AND (id IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean().getId() + " and id_tipousuario=3 ) "
+                + " OR  id IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean().getId() + " and id_tipousuario=5 ) "
+                + " OR  id IN (SELECT distinct u.id FROM usuario u, grupo g, usuario u2 "
+                + "                    WHERE u.id_tipousuario=4 "
+                + "                      AND u.id_grupo=g.id "
+                + "                      AND g.id_usuario=u2.id "
+                + "                      AND u2.id_centrosanitario= " + SessionHelper.getoCentroSanitarioBean().getId() + ")"
+                + ") ";
+        strSQL = "SELECT * " + strSQLini;
+        strCountSQL = "SELECT COUNT(*) " + strSQLini;
+        if (strWhere != null) {
+            strSQL += " " + strWhere + " ";
+            strCountSQL += " " + strWhere + " ";
         }
     }
 
     @Override
     public boolean canCreateObject() throws Exception {
         return true;
-    }    
-    
+    }
+
     @Override
     public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         UsuarioSpecificBeanImplementation oNewUser = (UsuarioSpecificBeanImplementation) oBean;
@@ -145,7 +122,7 @@ public class Usuario3SpecificDaoImplementation extends GenericDaoImplementation 
     @Override
     public Integer update(GenericBeanImplementation oBean) throws Exception {
         UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
-         UsuarioSpecificBeanImplementation oUpdateUser = (UsuarioSpecificBeanImplementation) oBean;
+        UsuarioSpecificBeanImplementation oUpdateUser = (UsuarioSpecificBeanImplementation) oBean;
         oUpdateUser.setId_centro(oSessionUser.getId_centro());
         oUpdateUser.setId_tipousuario(4);
         oUpdateUser.setId_centrosanitario(oSessionUser.getId_centrosanitario());
@@ -153,7 +130,6 @@ public class Usuario3SpecificDaoImplementation extends GenericDaoImplementation 
     }
 
     public Integer activate(Integer id) throws Exception {
-        //TraceHelper.trace("Usuario3SpecificDaoImplementation", "activate", "object=" + ob);
         if (esMiAlumno(id)) {
             MetaBeanHelper oUsuarioMBH = this.get(id, 0);
             UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oUsuarioMBH.getBean();
@@ -161,26 +137,23 @@ public class Usuario3SpecificDaoImplementation extends GenericDaoImplementation 
             return this.update(oUsuario);
         } else {
             //TraceHelper.traceError(this.getClass().getName() + ".activate ob:" + ob + " Can't activate: only allowed to deactivate your own students");
-            throw new Exception("No tienes permiso: sólo se pueden activar tus alumnos");
+            throw new Exception(this.getClass().getName() + ".activate: No tienes permiso: sólo se pueden activar tus alumnos");
         }
     }
 
     public Integer deactivate(Integer id) throws Exception {
-        //TraceHelper.trace("Usuario3SpecificDaoImplementation", "deactivate", "object=" + ob);
         if (esMiAlumno(id)) {
             MetaBeanHelper oUsuarioMBH = this.get(id, 0);
             UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oUsuarioMBH.getBean();
             oUsuario.setActivo(0);
             return this.update(oUsuario);
         } else {
-            //TraceHelper.traceError(this.getClass().getName() + ".deactivate ob:" + ob + " Can't deactivate: only allowed to deactivate your own students");
-            throw new Exception("No tienes permiso: sólo puedes desactivas a tus alumnos");
+            throw new Exception(this.getClass().getName() + ".deactivate: No tienes permiso: sólo puedes desactivar a tus alumnos");
         }
     }
 
     public Integer updatePassword(int id, String oldPass, String newPass) throws Exception {
-        //TraceHelper.trace("Usuario3SpecificDaoImplementation", "updatePassword", "object=" + ob);
-        if (esMiAlumno(id) || idUsuario == id) {
+        if (esMiAlumno(id) || SessionHelper.getoUsuarioBean().getId() == id) {
             PreparedStatement oPreparedStatement = null;
             Integer iResult = 0;
             try {
@@ -205,8 +178,7 @@ public class Usuario3SpecificDaoImplementation extends GenericDaoImplementation 
             }
             return iResult;
         } else {
-            //TraceHelper.traceError(this.getClass().getName() + ".update ob:" + ob + " Can't reset password: not mine nor my student's pass");
-            throw new Exception("No puedes resetear el password: no eres tu o uno de tus alumnos");
+            throw new Exception(this.getClass().getName() + ".updatePassword: No puedes resetear el password: no eres tu o uno de tus alumnos");
         }
     }
 

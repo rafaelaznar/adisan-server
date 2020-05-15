@@ -33,58 +33,38 @@
 package net.adisan.dao.specificimplementation.paciente;
 
 import net.adisan.bean.genericimplementation.GenericBeanImplementation;
-import net.adisan.bean.helper.MetaBeanHelper;
-import net.adisan.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
-import net.adisan.bean.specificimplementation.GrupoSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.PacienteSpecificBeanImplementation;
-import net.adisan.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.helper.SessionHelper;
 
 public class Paciente4SpecificDaoImplementation extends GenericDaoImplementation {
 
-    //private final Logger oLogger = (Logger) LogManager.getLogger(this.getClass().getName());
-    private Integer idCentrosanitario = 0;
-    private Integer idUsuario = 0;
-
-    public Paciente4SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("paciente", oPooledConnection, oPuserBean_security, strWhere);
-        if (oPuserBean_security != null) {
-            UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
-            idUsuario = oUsuario.getId();
-            MetaBeanHelper ombhTipousuario = (MetaBeanHelper) oUsuario.getObj_tipousuario();
-            TipousuarioSpecificBeanImplementation oTipousuario = (TipousuarioSpecificBeanImplementation) ombhTipousuario.getBean();
-            if (oTipousuario.getId() == 4) {
-                String strSQLini = "";
-                GrupoSpecificBeanImplementation oGrupo = (GrupoSpecificBeanImplementation) oUsuario.getObj_grupo().getBean();
-                UsuarioSpecificBeanImplementation oProfesor = (UsuarioSpecificBeanImplementation) oGrupo.getObj_usuario().getBean();
-                CentrosanitarioSpecificBeanImplementation oCentroSanitario = (CentrosanitarioSpecificBeanImplementation) oProfesor.getObj_centrosanitario().getBean();
-                idCentrosanitario = oCentroSanitario.getId();
-                strSQLini = "FROM paciente where 1=1 "
-                        + "AND (id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=3 ) "
-                        + " OR  id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + idCentrosanitario + " and id_tipousuario=5 ) "
-                        + " OR  id_usuario IN (SELECT distinct u.id FROM usuario u, grupo g, usuario u2 "
-                        + "                    WHERE u.id_tipousuario=4 "
-                        + "                      AND u.id_grupo=g.id "
-                        + "                      AND g.id_usuario=u2.id "
-                        + "                      AND u2.id_centrosanitario= " + idCentrosanitario + ")"
-                        + ") ";
-                strSQL = "SELECT * " + strSQLini;
-                strCountSQL = "SELECT COUNT(*) " + strSQLini;
-                if (strWhere != null) {
-                    strSQL += " " + strWhere + " ";
-                    strCountSQL += " " + strWhere + " ";
-                }
-            }
+    public Paciente4SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
+        super("paciente", oPooledConnection, strWhere);
+        String strSQLini = "FROM paciente where 1=1 "
+                + "AND (id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean().getId() + " and id_tipousuario=3 ) "
+                + " OR  id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean().getId() + " and id_tipousuario=5 ) "
+                + " OR  id_usuario IN (SELECT distinct u.id FROM usuario u, grupo g, usuario u2 "
+                + "                    WHERE u.id_tipousuario=4 "
+                + "                      AND u.id_grupo=g.id "
+                + "                      AND g.id_usuario=u2.id "
+                + "                      AND u2.id_centrosanitario= " + SessionHelper.getoCentroSanitarioBean().getId() + ")"
+                + ") ";
+        strSQL = "SELECT * " + strSQLini;
+        strCountSQL = "SELECT COUNT(*) " + strSQLini;
+        if (strWhere != null) {
+            strSQL += " " + strWhere + " ";
+            strCountSQL += " " + strWhere + " ";
         }
     }
 
     @Override
     public boolean canCreateObject() throws Exception {
         return true;
-    }    
-    
+    }
+
     @Override
     public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         return true;
@@ -93,8 +73,8 @@ public class Paciente4SpecificDaoImplementation extends GenericDaoImplementation
     @Override
     public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
         PacienteSpecificBeanImplementation oNewPacienteBean = (PacienteSpecificBeanImplementation) oBean;
-        if (oNewPacienteBean.getId_centrosanitario() == idCentrosanitario
-                && (oNewPacienteBean.getId_usuario() == idUsuario)) {
+        if (oNewPacienteBean.getId_centrosanitario() == SessionHelper.getoCentroSanitarioBean().getId()
+                && (oNewPacienteBean.getId_usuario() == SessionHelper.getoUsuarioBean().getId())) {
             return true;
         } else {
             return false;
@@ -105,7 +85,7 @@ public class Paciente4SpecificDaoImplementation extends GenericDaoImplementation
     public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
         PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oBean;
         UsuarioSpecificBeanImplementation oUsuarioSession = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
-        if (oPacienteBean.getId_usuario() == oUsuarioSession.getId() && oPacienteBean.getId_centrosanitario() == idCentrosanitario) {
+        if (oPacienteBean.getId_usuario() == oUsuarioSession.getId() && oPacienteBean.getId_centrosanitario() == SessionHelper.getoCentroSanitarioBean().getId()) {
             return true;
         } else {
             return false;
@@ -115,16 +95,16 @@ public class Paciente4SpecificDaoImplementation extends GenericDaoImplementation
     @Override
     public Integer create(GenericBeanImplementation oBean) throws Exception {
         PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oBean;
-        oPacienteBean.setId_usuario(idUsuario);
-        oPacienteBean.setId_centrosanitario(idCentrosanitario);
+        oPacienteBean.setId_usuario(SessionHelper.getoUsuarioBean().getId());
+        oPacienteBean.setId_centrosanitario(SessionHelper.getoCentroSanitarioBean().getId());
         return super.create(oPacienteBean);
     }
 
     @Override
     public Integer update(GenericBeanImplementation oBean) throws Exception {
         PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oBean;
-        oPacienteBean.setId_usuario(idUsuario);
-        oPacienteBean.setId_centrosanitario(idCentrosanitario);
+        oPacienteBean.setId_usuario(SessionHelper.getoUsuarioBean().getId());
+        oPacienteBean.setId_centrosanitario(SessionHelper.getoCentroSanitarioBean().getId());
         return super.update(oPacienteBean);
     }
 

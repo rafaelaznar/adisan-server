@@ -32,14 +32,13 @@
  */
 package net.adisan.dao.specificimplementation.personalsanitario;
 
-import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
 public class Personalsanitario0SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Personalsanitario0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("personalsanitario", oPooledConnection, oPuserBean_security, strWhere);
+    public Personalsanitario0SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
+        super("personalsanitario", oPooledConnection, strWhere);
     }
 
 }

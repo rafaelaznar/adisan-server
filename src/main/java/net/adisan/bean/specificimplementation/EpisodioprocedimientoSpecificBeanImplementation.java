@@ -341,15 +341,15 @@ public class EpisodioprocedimientoSpecificBeanImplementation extends GenericBean
     public EpisodioprocedimientoSpecificBeanImplementation(Integer id) {
         this.id = id;
     }
-    
-        @Override
+
+    @Override
     public void ComputeCalculatedFields(Connection oConnection, MetaBeanHelper oUsuarioSession) {
         try {
             if (this.obj_episodio != null) {
                 EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) this.obj_episodio.getBean();
                 if (oEpisodioBean.getId_paciente() != null) {
                     GenericDaoImplementation oPacienteDao;
-                    oPacienteDao = (GenericDaoImplementation) DaoFactory.getDao("paciente", oConnection, oUsuarioSession, "");
+                    oPacienteDao = (GenericDaoImplementation) DaoFactory.getDao("paciente", oConnection, "");
                     PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oPacienteDao.get(oEpisodioBean.getId_paciente(), 0).getBean();
                     //PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oEpisodioBean.getObj_paciente().getBean();
                     this.paciente = oPacienteBean.getNombrecompleto() + " (" + oPacienteBean.getId() + ") ";

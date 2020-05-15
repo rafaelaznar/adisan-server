@@ -33,14 +33,13 @@
 package net.adisan.dao.specificimplementation.centrosanitario;
 
 import net.adisan.bean.genericimplementation.GenericBeanImplementation;
-import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
 import java.sql.Connection;
 
 public class Centrosanitario1SpecificDaoImplementation extends CentrosanitarioSpecificDaoImplementation {
 
-    public Centrosanitario1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super(oPooledConnection, oPuserBean_security, strWhere);
+    public Centrosanitario1SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
+        super(oPooledConnection, strWhere);
     }
 
     @Override

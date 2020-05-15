@@ -32,18 +32,13 @@
  */
 package net.adisan.dao.specificimplementation.curso;
 
-import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
 public class Curso0SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Curso0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("curso", oPooledConnection, oPuserBean_security, strWhere);
+    public Curso0SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
+        super("curso", oPooledConnection, strWhere);
     }
 
-//    @Override
-//    public boolean canGet(Integer id) throws Exception {
-//        return true;
-//    }
 }

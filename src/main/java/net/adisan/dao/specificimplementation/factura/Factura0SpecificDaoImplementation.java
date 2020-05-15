@@ -32,19 +32,13 @@
  */
 package net.adisan.dao.specificimplementation.factura;
 
-import net.adisan.bean.genericimplementation.GenericBeanImplementation;
-import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
 public class Factura0SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Factura0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("factura", oPooledConnection, oPuserBean_security, strWhere);
+    public Factura0SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
+        super("factura", oPooledConnection, strWhere);
     }
 
-//    @Override
-//    public boolean canGet(Integer id) throws Exception {
-//        return true;
-//    }
 }

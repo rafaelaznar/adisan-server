@@ -32,27 +32,13 @@
  */
 package net.adisan.dao.specificimplementation.usuario;
 
-import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 
 public class Usuario0SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Usuario0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("usuario", oPooledConnection, oPuserBean_security, strWhere);
+    public Usuario0SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
+        super("usuario", oPooledConnection, strWhere);
     }
 
-//    @Override
-//    public boolean canGet(Integer id) throws Exception {
-//        if (oPuserSecurity != null) {
-//            UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
-//            if (oUsuario.getId() == id) {
-//                return true;
-//            } else {
-//                return false;
-//            }
-//        } else {
-//            return true;
-//        }
-//    } 
 }

@@ -37,6 +37,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
 import net.adisan.bean.helper.MetaBeanHelper;
+import net.adisan.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
+import net.adisan.bean.specificimplementation.GrupoSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.connection.publicinterface.ConnectionInterface;
@@ -45,13 +47,7 @@ import net.adisan.helper.constant.ConnectionConstants;
 
 public class SessionHelper {
 
-    public static int getIdTipoUsuario(MetaBeanHelper oPuserBean_security) throws Exception {
-        UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
-        MetaBeanHelper oMetaBeanHelper = oUsuario.getObj_tipousuario();
-        TipousuarioSpecificBeanImplementation oTipoUsuario = (TipousuarioSpecificBeanImplementation) oMetaBeanHelper.getBean();
-        Integer idTipousuario = oTipoUsuario.getId();
-        return idTipousuario;
-    }
+    private static MetaBeanHelper oMBHUsuarioBean = null;
 
     public static void logDB(Integer id_usuario, String ob, String op) throws Exception {
         Connection oConnection = null;
@@ -87,6 +83,82 @@ public class SessionHelper {
             if (oPooledConnection != null) {
                 oPooledConnection.disposeConnection();
             }
+        }
+    }
+
+    public static Boolean thereISSession() {
+        return oMBHUsuarioBean != null;
+    }
+
+    public static Boolean thereIsNOSession() {
+        return oMBHUsuarioBean == null;
+    }
+
+    public static Boolean isThereSession(Integer level) {
+        if (oMBHUsuarioBean != null) {
+            UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oMBHUsuarioBean.getBean();
+            if (oUsuario != null) {
+                if (oUsuario.getId_tipousuario() == level) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public static UsuarioSpecificBeanImplementation getoUsuarioBean() {
+        if (oMBHUsuarioBean != null) {
+            return (UsuarioSpecificBeanImplementation) oMBHUsuarioBean.getBean();
+        } else {
+            return null;
+        }
+    }
+
+    public static CentrosanitarioSpecificBeanImplementation getoCentroSanitarioBean() {
+        if (oMBHUsuarioBean != null) {
+            UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oMBHUsuarioBean.getBean();
+            if (oUsuario != null) {
+                if (oUsuario.getId_tipousuario() == 3) {
+                    // el centro sanitario de un alumno es del profesor
+                    GrupoSpecificBeanImplementation oGrupo = (GrupoSpecificBeanImplementation) SessionHelper.getoUsuarioBean().getObj_grupo().getBean();
+                    UsuarioSpecificBeanImplementation oProfesor = (UsuarioSpecificBeanImplementation) oGrupo.getObj_usuario().getBean();
+                    CentrosanitarioSpecificBeanImplementation oCentroSanitario = (CentrosanitarioSpecificBeanImplementation) oProfesor.getObj_centrosanitario().getBean();
+                    return oCentroSanitario;
+                } else {
+                    return (CentrosanitarioSpecificBeanImplementation) oUsuario.getObj_centrosanitario().getBean();
+                }
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+
+    public static MetaBeanHelper getoMBHUsuarioBean() {
+        return oMBHUsuarioBean;
+    }
+
+    public static void setoMBHUsuarioBean(MetaBeanHelper oMBHUsuarioBean) {
+        SessionHelper.oMBHUsuarioBean = oMBHUsuarioBean;
+
+    }
+
+    public static int getIdTipoUsuario() throws Exception {
+        if (oMBHUsuarioBean != null) {
+            UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oMBHUsuarioBean.getBean();
+            if (oUsuario != null) {
+                return oUsuario.getId_tipousuario();
+            } else {
+                return 0;
+            }
+        } else {
+            return 0;
         }
     }
 

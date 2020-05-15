@@ -32,31 +32,21 @@
  */
 package net.adisan.dao.specificimplementation.grupo;
 
-import net.adisan.bean.helper.MetaBeanHelper;
-import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.helper.SessionHelper;
 
 public class Grupo4SpecificDaoImplementation extends GenericDaoImplementation {
 
-    //private final Logger oLogger = (Logger) LogManager.getLogger(this.getClass().getName());
-    private final Integer idUsuario;
-
-    public Grupo4SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oPuserBean_security, String strWhere) throws Exception {
-        super("grupo", oPooledConnection, oPuserBean_security, strWhere);
-
-        UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserBean_security.getBean();
-        idUsuario = oUsuario.getId();
-
-        String strSQLini = "FROM grupo where 1=1 AND id IN (SELECT id_grupo FROM usuario where id = " + idUsuario + ")";
-
+    public Grupo4SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
+        super("grupo", oPooledConnection, strWhere);
+        String strSQLini = "FROM grupo where 1=1 AND id IN (SELECT id_grupo FROM usuario where id = " + SessionHelper.getoUsuarioBean().getId() + ")";
         strSQL = "SELECT * " + strSQLini;
         strCountSQL = "SELECT COUNT(*) " + strSQLini;
         if (strWhere != null) {
             strSQL += " " + strWhere + " ";
             strCountSQL += " " + strWhere + " ";
         }
-
     }
 
 }
