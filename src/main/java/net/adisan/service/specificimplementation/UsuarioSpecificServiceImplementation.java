@@ -33,6 +33,7 @@
 package net.adisan.service.specificimplementation;
 
 import com.google.gson.Gson;
+import com.mysql.cj.Session;
 import net.adisan.service.genericimplementation.GenericServiceImplementation;
 import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.bean.helper.ReplyBeanHelper;
@@ -54,6 +55,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import net.adisan.helper.SessionHelper;
 
 
 public class UsuarioSpecificServiceImplementation extends GenericServiceImplementation {
@@ -92,6 +94,7 @@ public class UsuarioSpecificServiceImplementation extends GenericServiceImplemen
                     if (oUsuarioSession.getActivo() == 1) {
                         HttpSession oSession = oRequest.getSession();
                         oSession.setAttribute("user", oMetaBeanHelper);
+                        SessionHelper.setoMBHUsuarioBean(oMetaBeanHelper);
                         //--                                                                       
                         //--  
                         String strJson = GsonHelper.getGson().toJson(oMetaBeanHelper);
@@ -103,6 +106,7 @@ public class UsuarioSpecificServiceImplementation extends GenericServiceImplemen
                 } else { //el administrador siempre activo
                     HttpSession oSession = oRequest.getSession();
                     oSession.setAttribute("user", oMetaBeanHelper);
+                    SessionHelper.setoMBHUsuarioBean(oMetaBeanHelper);
                     //--                                                          
                     String strJson = GsonHelper.getGson().toJson(oMetaBeanHelper);
                     oReplyBean = new ReplyBeanHelper(200, strJson);
@@ -129,6 +133,7 @@ public class UsuarioSpecificServiceImplementation extends GenericServiceImplemen
             HttpSession oSession = oRequest.getSession();
             //--
             oSession.invalidate();
+            SessionHelper.setoMBHUsuarioBean(null);
             ReplyBeanHelper oReplyBean = new ReplyBeanHelper(200, EncodingHelper.quotate("Session is closed"));
             return oReplyBean;
         } else {
@@ -140,10 +145,8 @@ public class UsuarioSpecificServiceImplementation extends GenericServiceImplemen
         ReplyBeanHelper oReplyBean = null;
         UsuarioSpecificBeanImplementation oUsuarioBean = null;
         try {
-            HttpSession oSession = oRequest.getSession();
-            MetaBeanHelper oMetaBeanHelper = (MetaBeanHelper) oSession.getAttribute("user");
-            if (oMetaBeanHelper != null) {
-                String strJson = GsonHelper.getGson().toJson(oMetaBeanHelper);
+            if (SessionHelper.thereISSession()) {
+                String strJson = GsonHelper.getGson().toJson(SessionHelper.getoMBHUsuarioBean());
                 oReplyBean = new ReplyBeanHelper(200, strJson);
             } else {
                 oReplyBean = new ReplyBeanHelper(401, null);
