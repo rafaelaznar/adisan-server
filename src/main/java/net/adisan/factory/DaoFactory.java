@@ -178,142 +178,142 @@ public class DaoFactory {
         switch (ob) {
             case "usuario":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Usuario0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Usuario0SpecificDaoImplementation(oConnection, strWhere);
                     break;
                 } else {
                     switch (SessionHelper.getIdTipoUsuario()) {
                         case 1:
-                            oDao = (DaoInterface) new Usuario1SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Usuario1SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 3:
-                            oDao = (DaoInterface) new Usuario3SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Usuario3SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 4:
-                            oDao = (DaoInterface) new Usuario4SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Usuario4SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 5:
-                            oDao = (DaoInterface) new Usuario5SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Usuario5SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         default:
-                            oDao = (DaoInterface) new Usuario0SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Usuario0SpecificDaoImplementation(oConnection, strWhere);
                             break;
                     }
                 }
                 break;
             case "tipousuario":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Tipousuario0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Tipousuario0SpecificDaoImplementation(oConnection, strWhere);
                     break;
                 } else {
                     switch (SessionHelper.getIdTipoUsuario()) {
                         case 1:
-                            oDao = (DaoInterface) new Tipousuario1SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Tipousuario1SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         default:
-                            oDao = (DaoInterface) new Tipousuario0SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Tipousuario0SpecificDaoImplementation(oConnection, strWhere);
                             break;
                     }
                 }
                 break;
             case "log":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Log0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Log0SpecificDaoImplementation(oConnection, strWhere);
                     break;
                 } else {
 
                     switch (SessionHelper.getIdTipoUsuario()) {
                         case 1:
-                            oDao = (DaoInterface) new Log1SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Log1SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         default:
-                            oDao = (DaoInterface) new Log0SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Log0SpecificDaoImplementation(oConnection, strWhere);
                             break;
                     }
                 }
                 break;
             case "grupo":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Grupo1SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Grupo1SpecificDaoImplementation(oConnection, strWhere);
                     break;
                 } else {
                     switch (SessionHelper.getIdTipoUsuario()) {
                         case 1:
-                            oDao = (DaoInterface) new Grupo1SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Grupo1SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 3:
-                            oDao = (DaoInterface) new Grupo3SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Grupo3SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 4:
-                            oDao = (DaoInterface) new Grupo4SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Grupo4SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 5:
-                            oDao = (DaoInterface) new Grupo5SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Grupo5SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         default:
-                            oDao = (DaoInterface) new Grupo1SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Grupo1SpecificDaoImplementation(oConnection, strWhere);
                             break;
                     }
                 }
                 break;
             case "curso":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Curso0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Curso0SpecificDaoImplementation(oConnection, strWhere);
                     break;
                 } else {
                     switch (SessionHelper.getIdTipoUsuario()) {
                         case 1:
-                            oDao = (DaoInterface) new Curso1SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Curso1SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         default:
-                            oDao = (DaoInterface) new Curso0SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Curso0SpecificDaoImplementation(oConnection, strWhere);
                             break;
                     }
                 }
                 break;
             case "centro":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Centro0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Centro0SpecificDaoImplementation(oConnection, strWhere);
                     break;
                 } else {
                     switch (SessionHelper.getIdTipoUsuario()) {
                         case 1:
-                            oDao = (DaoInterface) new Centro1SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Centro1SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 3:
-                            oDao = (DaoInterface) new Centro0SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Centro0SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 4:
-                            oDao = (DaoInterface) new Centro0SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Centro0SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 5:
-                            oDao = (DaoInterface) new Centro0SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Centro0SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         default:
-                            oDao = (DaoInterface) new Centro0SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Centro0SpecificDaoImplementation(oConnection, strWhere);
                             break;
                     }
                 }
                 break;
             case "centrosanitario":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Centrosanitario0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Centrosanitario0SpecificDaoImplementation(oConnection, strWhere);
                     break;
                 } else {
                     switch (SessionHelper.getIdTipoUsuario()) {
                         case 1:
-                            oDao = (DaoInterface) new Centrosanitario1SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Centrosanitario1SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 3:
-                            oDao = (DaoInterface) new Centrosanitario0SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Centrosanitario0SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 4:
-                            oDao = (DaoInterface) new Centrosanitario0SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Centrosanitario0SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 5:
-                            oDao = (DaoInterface) new Centrosanitario0SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Centrosanitario0SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         default:
-                            oDao = (DaoInterface) new Centrosanitario1SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Centrosanitario1SpecificDaoImplementation(oConnection, strWhere);
                             break;
                     }
                 }
@@ -321,93 +321,93 @@ public class DaoFactory {
             //------------------------------------------------------------------
             case "paciente":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Paciente0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Paciente0SpecificDaoImplementation(oConnection, strWhere);
                 } else {
                     switch (SessionHelper.getIdTipoUsuario()) {
                         case 1:
-                            oDao = (DaoInterface) new Paciente1SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Paciente1SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 3:
-                            oDao = (DaoInterface) new Paciente3SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Paciente3SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 4:
-                            oDao = (DaoInterface) new Paciente4SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Paciente4SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 5:
-                            oDao = (DaoInterface) new Paciente5SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Paciente5SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         default:
-                            oDao = (DaoInterface) new Paciente0SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Paciente0SpecificDaoImplementation(oConnection, strWhere);
                             break;
                     }
                 }
                 break;
             case "sexo":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Sexo0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Sexo0SpecificDaoImplementation(oConnection, strWhere);
                 } else {
                     if (SessionHelper.getIdTipoUsuario() == 1) {
-                        oDao = (DaoInterface) new Sexo1SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Sexo1SpecificDaoImplementation(oConnection, strWhere);
                     } else {
-                        oDao = (DaoInterface) new Sexo0SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Sexo0SpecificDaoImplementation(oConnection, strWhere);
                     }
                 }
                 break;
             case "tipopago":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Tipopago0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Tipopago0SpecificDaoImplementation(oConnection, strWhere);
                 } else {
                     if (SessionHelper.getIdTipoUsuario() == 1) {
-                        oDao = (DaoInterface) new Tipopago1SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Tipopago1SpecificDaoImplementation(oConnection, strWhere);
                     } else {
-                        oDao = (DaoInterface) new Tipopago0SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Tipopago0SpecificDaoImplementation(oConnection, strWhere);
                     }
                 }
                 break;
             //------------------------------------------------------------------
             case "medico":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Medico0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Medico0SpecificDaoImplementation(oConnection, strWhere);
                     break;
                 } else {
                     switch (SessionHelper.getIdTipoUsuario()) {
                         case 1:
-                            oDao = (DaoInterface) new Medico1SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Medico1SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 3:
-                            oDao = (DaoInterface) new Medico3SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Medico3SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 4:
-                            oDao = (DaoInterface) new Medico4SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Medico4SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 5:
-                            oDao = (DaoInterface) new Medico5SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Medico5SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         default:
-                            oDao = (DaoInterface) new Medico0SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Medico0SpecificDaoImplementation(oConnection, strWhere);
                             break;
                     }
                 }
                 break;
             case "especialidad":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Especialidad0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Especialidad0SpecificDaoImplementation(oConnection, strWhere);
                 } else {
                     if (SessionHelper.getIdTipoUsuario() == 1) {
-                        oDao = (DaoInterface) new Especialidad1SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Especialidad1SpecificDaoImplementation(oConnection, strWhere);
                     } else {
-                        oDao = (DaoInterface) new Especialidad0SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Especialidad0SpecificDaoImplementation(oConnection, strWhere);
                     }
                 }
                 break;
             case "categoriaprofesional":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Categoriaprofesional0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Categoriaprofesional0SpecificDaoImplementation(oConnection, strWhere);
                 } else {
                     if (SessionHelper.getIdTipoUsuario() == 1) {
-                        oDao = (DaoInterface) new Categoriaprofesional1SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Categoriaprofesional1SpecificDaoImplementation(oConnection, strWhere);
                     } else {
-                        oDao = (DaoInterface) new Categoriaprofesional0SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Categoriaprofesional0SpecificDaoImplementation(oConnection, strWhere);
                     }
                 }
                 break;
@@ -415,47 +415,47 @@ public class DaoFactory {
             case "servicio":
 
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Servicio0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Servicio0SpecificDaoImplementation(oConnection, strWhere);
                 } else {
                     if (SessionHelper.getIdTipoUsuario() == 1) {
-                        oDao = (DaoInterface) new Servicio1SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Servicio1SpecificDaoImplementation(oConnection, strWhere);
                     } else {
-                        oDao = (DaoInterface) new Servicio0SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Servicio0SpecificDaoImplementation(oConnection, strWhere);
                     }
                 }
                 break;
             case "tiposervicio":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Tiposervicio0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Tiposervicio0SpecificDaoImplementation(oConnection, strWhere);
                 } else {
                     if (SessionHelper.getIdTipoUsuario() == 1) {
-                        oDao = (DaoInterface) new Tiposervicio1SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Tiposervicio1SpecificDaoImplementation(oConnection, strWhere);
                     } else {
-                        oDao = (DaoInterface) new Tiposervicio0SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Tiposervicio0SpecificDaoImplementation(oConnection, strWhere);
                     }
                 }
                 break;
             //------------------------------------------------------------------
             case "episodio":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Episodio0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Episodio0SpecificDaoImplementation(oConnection, strWhere);
                     break;
                 } else {
                     switch (SessionHelper.getIdTipoUsuario()) {
                         case 1:
-                            oDao = (DaoInterface) new Episodio1SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Episodio1SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 3:
-                            oDao = (DaoInterface) new Episodio3SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Episodio3SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 4:
-                            oDao = (DaoInterface) new Episodio4SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Episodio4SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 5:
-                            oDao = (DaoInterface) new Episodio5SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Episodio5SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         default:
-                            oDao = (DaoInterface) new Episodio0SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Episodio0SpecificDaoImplementation(oConnection, strWhere);
                             break;
                     }
 
@@ -463,24 +463,24 @@ public class DaoFactory {
                 break;
             case "subepisodio":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Subepisodio0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Subepisodio0SpecificDaoImplementation(oConnection, strWhere);
                     break;
                 } else {
                     switch (SessionHelper.getIdTipoUsuario()) {
                         case 1:
-                            oDao = (DaoInterface) new Subepisodio1SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Subepisodio1SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 3:
-                            oDao = (DaoInterface) new Subepisodio3SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Subepisodio3SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 4:
-                            oDao = (DaoInterface) new Subepisodio4SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Subepisodio4SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 5:
-                            oDao = (DaoInterface) new Subepisodio5SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Subepisodio5SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         default:
-                            oDao = (DaoInterface) new Subepisodio0SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Subepisodio0SpecificDaoImplementation(oConnection, strWhere);
                             break;
                     }
 
@@ -488,116 +488,116 @@ public class DaoFactory {
                 break;
             case "tipoepisodio":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Tipoepisodio0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Tipoepisodio0SpecificDaoImplementation(oConnection, strWhere);
                 } else {
                     if (SessionHelper.getIdTipoUsuario() == 1) {
-                        oDao = (DaoInterface) new Tipoepisodio1SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Tipoepisodio1SpecificDaoImplementation(oConnection, strWhere);
                     } else {
-                        oDao = (DaoInterface) new Tipoepisodio0SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Tipoepisodio0SpecificDaoImplementation(oConnection, strWhere);
                     }
                 }
                 break;
             case "modalidadepisodio":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Modalidadepisodio0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Modalidadepisodio0SpecificDaoImplementation(oConnection, strWhere);
                 } else {
                     if (SessionHelper.getIdTipoUsuario() == 1) {
-                        oDao = (DaoInterface) new Modalidadepisodio1SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Modalidadepisodio1SpecificDaoImplementation(oConnection, strWhere);
                     } else {
-                        oDao = (DaoInterface) new Modalidadepisodio0SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Modalidadepisodio0SpecificDaoImplementation(oConnection, strWhere);
                     }
                 }
                 break;
             case "factura":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Factura0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Factura0SpecificDaoImplementation(oConnection, strWhere);
                 } else {
                     if (SessionHelper.getIdTipoUsuario() == 1) {
-                        oDao = (DaoInterface) new Factura1SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Factura1SpecificDaoImplementation(oConnection, strWhere);
                     } else {
-                        oDao = (DaoInterface) new Factura0SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Factura0SpecificDaoImplementation(oConnection, strWhere);
                     }
                 }
                 break;
             case "destinoalta":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Destinoalta0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Destinoalta0SpecificDaoImplementation(oConnection, strWhere);
                 } else {
                     if (SessionHelper.getIdTipoUsuario() == 1) {
-                        oDao = (DaoInterface) new Destinoalta1SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Destinoalta1SpecificDaoImplementation(oConnection, strWhere);
                     } else {
-                        oDao = (DaoInterface) new Destinoalta0SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Destinoalta0SpecificDaoImplementation(oConnection, strWhere);
                     }
                 }
                 break;
             case "circunstanciasalta":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Circunstanciasalta0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Circunstanciasalta0SpecificDaoImplementation(oConnection, strWhere);
                 } else {
                     if (SessionHelper.getIdTipoUsuario() == 1) {
-                        oDao = (DaoInterface) new Circunstanciasalta1SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Circunstanciasalta1SpecificDaoImplementation(oConnection, strWhere);
                     } else {
-                        oDao = (DaoInterface) new Circunstanciasalta0SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Circunstanciasalta0SpecificDaoImplementation(oConnection, strWhere);
                     }
                 }
                 break;
             case "presenciadiagnostico":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Presenciadiagnostico0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Presenciadiagnostico0SpecificDaoImplementation(oConnection, strWhere);
                 } else {
                     if (SessionHelper.getIdTipoUsuario() == 1) {
-                        oDao = (DaoInterface) new Presenciadiagnostico1SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Presenciadiagnostico1SpecificDaoImplementation(oConnection, strWhere);
                     } else {
-                        oDao = (DaoInterface) new Presenciadiagnostico0SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Presenciadiagnostico0SpecificDaoImplementation(oConnection, strWhere);
                     }
                 }
                 break;
             case "presenciadiagnosticoingreso":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Presenciadiagnosticoingreso0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Presenciadiagnosticoingreso0SpecificDaoImplementation(oConnection, strWhere);
                 } else {
                     if (SessionHelper.getIdTipoUsuario() == 1) {
-                        oDao = (DaoInterface) new Presenciadiagnosticoingreso1SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Presenciadiagnosticoingreso1SpecificDaoImplementation(oConnection, strWhere);
                     } else {
-                        oDao = (DaoInterface) new Presenciadiagnosticoingreso0SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Presenciadiagnosticoingreso0SpecificDaoImplementation(oConnection, strWhere);
                     }
                 }
                 break;
             case "tipodiagnostico":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Tipodiagnostico0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Tipodiagnostico0SpecificDaoImplementation(oConnection, strWhere);
                 } else {
                     if (SessionHelper.getIdTipoUsuario() == 1) {
-                        oDao = (DaoInterface) new Tipodiagnostico1SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Tipodiagnostico1SpecificDaoImplementation(oConnection, strWhere);
                     } else {
-                        oDao = (DaoInterface) new Tipodiagnostico0SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Tipodiagnostico0SpecificDaoImplementation(oConnection, strWhere);
                     }
                 }
                 break;
             case "catalogodiagnosticos":
-                oDao = (DaoInterface) new Catalogodiagnosticos0SpecificDaoImplementation( oConnection, strWhere);
+                oDao = (DaoInterface) new Catalogodiagnosticos0SpecificDaoImplementation(oConnection, strWhere);
                 break;
             //------------------------------------------------------------------
             case "episodiodiagnostico":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Episodiodiagnostico0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Episodiodiagnostico0SpecificDaoImplementation(oConnection, strWhere);
                     break;
                 } else {;
                     switch (SessionHelper.getIdTipoUsuario()) {
                         case 1:
-                            oDao = (DaoInterface) new Episodiodiagnostico1SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Episodiodiagnostico1SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 3:
-                            oDao = (DaoInterface) new Episodiodiagnostico3SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Episodiodiagnostico3SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 4:
-                            oDao = (DaoInterface) new Episodiodiagnostico4SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Episodiodiagnostico4SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 5:
-                            oDao = (DaoInterface) new Episodiodiagnostico5SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Episodiodiagnostico5SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         default:
-                            oDao = (DaoInterface) new Episodiodiagnostico0SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Episodiodiagnostico0SpecificDaoImplementation(oConnection, strWhere);
                             break;
                     }
 
@@ -606,36 +606,36 @@ public class DaoFactory {
             //------------------------------------------------------------------
             case "dependencia":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Dependencia0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Dependencia0SpecificDaoImplementation(oConnection, strWhere);
                     break;
                 } else {
                     switch (SessionHelper.getIdTipoUsuario()) {
                         case 1:
-                            oDao = (DaoInterface) new Dependencia1SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Dependencia1SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 3:
-                            oDao = (DaoInterface) new Dependencia3SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Dependencia3SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 4:
-                            oDao = (DaoInterface) new Dependencia4SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Dependencia4SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 5:
-                            oDao = (DaoInterface) new Dependencia5SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Dependencia5SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         default:
-                            oDao = (DaoInterface) new Dependencia0SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Dependencia0SpecificDaoImplementation(oConnection, strWhere);
                             break;
                     }
                 }
                 break;
             case "tipodependencia":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Tipodependencia0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Tipodependencia0SpecificDaoImplementation(oConnection, strWhere);
                 } else {
                     if (SessionHelper.getIdTipoUsuario() == 1) {
-                        oDao = (DaoInterface) new Tipodependencia1SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Tipodependencia1SpecificDaoImplementation(oConnection, strWhere);
                     } else {
-                        oDao = (DaoInterface) new Tipodependencia0SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Tipodependencia0SpecificDaoImplementation(oConnection, strWhere);
                     }
                 }
                 break;
@@ -643,7 +643,7 @@ public class DaoFactory {
             case "nombremasculino":
                 if (SessionHelper.thereISSession()) {
                     if (SessionHelper.getIdTipoUsuario() == 1 || SessionHelper.getIdTipoUsuario() == 3) {
-                        oDao = (DaoInterface) new NombremasculinoSpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new NombremasculinoSpecificDaoImplementation(oConnection, strWhere);
                     }
                 }
                 break;
@@ -651,7 +651,7 @@ public class DaoFactory {
             case "nombrefemenino":
                 if (SessionHelper.thereISSession()) {
                     if (SessionHelper.getIdTipoUsuario() == 1 || SessionHelper.getIdTipoUsuario() == 3) {
-                        oDao = (DaoInterface) new NombrefemeninoSpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new NombrefemeninoSpecificDaoImplementation(oConnection, strWhere);
                     }
                 }
                 break;
@@ -659,7 +659,7 @@ public class DaoFactory {
             case "apellido":
                 if (SessionHelper.thereISSession()) {;
                     if (SessionHelper.getIdTipoUsuario() == 1 || SessionHelper.getIdTipoUsuario() == 3) {
-                        oDao = (DaoInterface) new ApellidoSpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new ApellidoSpecificDaoImplementation(oConnection, strWhere);
                     }
                 }
                 break;
@@ -667,7 +667,7 @@ public class DaoFactory {
             case "municipio":
                 if (SessionHelper.thereISSession()) {
                     if (SessionHelper.getIdTipoUsuario() == 1 || SessionHelper.getIdTipoUsuario() == 3) {
-                        oDao = (DaoInterface) new MunicipioSpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new MunicipioSpecificDaoImplementation(oConnection, strWhere);
                     }
                 }
                 break;
@@ -675,7 +675,7 @@ public class DaoFactory {
             case "via":
                 if (SessionHelper.thereISSession()) {
                     if (SessionHelper.getIdTipoUsuario() == 1 || SessionHelper.getIdTipoUsuario() == 3) {
-                        oDao = (DaoInterface) new ViaSpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new ViaSpecificDaoImplementation(oConnection, strWhere);
                     }
                 }
                 break;
@@ -683,7 +683,7 @@ public class DaoFactory {
             case "provincia":
                 if (SessionHelper.thereISSession()) {
                     if (SessionHelper.getIdTipoUsuario() == 1 || SessionHelper.getIdTipoUsuario() == 3) {
-                        oDao = (DaoInterface) new ProvinciaSpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new ProvinciaSpecificDaoImplementation(oConnection, strWhere);
                     }
                 }
                 break;
@@ -691,48 +691,48 @@ public class DaoFactory {
             case "comunidad":
                 if (SessionHelper.thereISSession()) {
                     if (SessionHelper.getIdTipoUsuario() == 1 || SessionHelper.getIdTipoUsuario() == 3) {
-                        oDao = (DaoInterface) new ComunidadSpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new ComunidadSpecificDaoImplementation(oConnection, strWhere);
                     }
                 }
                 break;
             //------------------------------------------------------------------
 
             case "catalogoprocedimientos":
-                oDao = (DaoInterface) new Catalogoprocedimientos0SpecificDaoImplementation( oConnection, strWhere);
+                oDao = (DaoInterface) new Catalogoprocedimientos0SpecificDaoImplementation(oConnection, strWhere);
                 break;
 
             case "categoriaprofesionalps":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Categoriaprofesionalps0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Categoriaprofesionalps0SpecificDaoImplementation(oConnection, strWhere);
                 } else {
                     if (SessionHelper.getIdTipoUsuario() == 1) {
-                        oDao = (DaoInterface) new Categoriaprofesionalps1SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Categoriaprofesionalps1SpecificDaoImplementation(oConnection, strWhere);
                     } else {
-                        oDao = (DaoInterface) new Categoriaprofesionalps0SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Categoriaprofesionalps0SpecificDaoImplementation(oConnection, strWhere);
                     }
                 }
                 break;
             case "episodioprocedimiento":
 
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Episodioprocedimiento0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Episodioprocedimiento0SpecificDaoImplementation(oConnection, strWhere);
                     break;
                 } else {
                     switch (SessionHelper.getIdTipoUsuario()) {
                         case 1:
-                            oDao = (DaoInterface) new Episodioprocedimiento1SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Episodioprocedimiento1SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 3:
-                            oDao = (DaoInterface) new Episodioprocedimiento3SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Episodioprocedimiento3SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 4:
-                            oDao = (DaoInterface) new Episodioprocedimiento4SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Episodioprocedimiento4SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 5:
-                            oDao = (DaoInterface) new Episodioprocedimiento5SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Episodioprocedimiento5SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         default:
-                            oDao = (DaoInterface) new Episodioprocedimiento0SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Episodioprocedimiento0SpecificDaoImplementation(oConnection, strWhere);
                             break;
                     }
 
@@ -740,35 +740,35 @@ public class DaoFactory {
                 break;
             case "estado":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Estado0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Estado0SpecificDaoImplementation(oConnection, strWhere);
                 } else {
                     if (SessionHelper.getIdTipoUsuario() == 1) {
-                        oDao = (DaoInterface) new Estado1SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Estado1SpecificDaoImplementation(oConnection, strWhere);
                     } else {
-                        oDao = (DaoInterface) new Estado0SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Estado0SpecificDaoImplementation(oConnection, strWhere);
                     }
                 }
                 break;
             case "personalsanitario":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Personalsanitario0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Personalsanitario0SpecificDaoImplementation(oConnection, strWhere);
                     break;
                 } else {
                     switch (SessionHelper.getIdTipoUsuario()) {
                         case 1:
-                            oDao = (DaoInterface) new Personalsanitario1SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Personalsanitario1SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 3:
-                            oDao = (DaoInterface) new Personalsanitario3SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Personalsanitario3SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 4:
-                            oDao = (DaoInterface) new Personalsanitario4SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Personalsanitario4SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 5:
-                            oDao = (DaoInterface) new Personalsanitario5SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Personalsanitario5SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         default:
-                            oDao = (DaoInterface) new Personalsanitario0SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Personalsanitario0SpecificDaoImplementation(oConnection, strWhere);
                             break;
                     }
 
@@ -777,35 +777,35 @@ public class DaoFactory {
 
             case "prioridad":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Prioridad0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Prioridad0SpecificDaoImplementation(oConnection, strWhere);
                 } else {
                     if (SessionHelper.getIdTipoUsuario() == 1) {
-                        oDao = (DaoInterface) new Prioridad1SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Prioridad1SpecificDaoImplementation(oConnection, strWhere);
                     } else {
-                        oDao = (DaoInterface) new Prioridad0SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Prioridad0SpecificDaoImplementation(oConnection, strWhere);
                     }
                 }
                 break;
             case "procedimiento":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Procedimiento0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Procedimiento0SpecificDaoImplementation(oConnection, strWhere);
                     break;
                 } else {
                     switch (SessionHelper.getIdTipoUsuario()) {
                         case 1:
-                            oDao = (DaoInterface) new Procedimiento1SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Procedimiento1SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 3:
-                            oDao = (DaoInterface) new Procedimiento3SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Procedimiento3SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 4:
-                            oDao = (DaoInterface) new Procedimiento4SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Procedimiento4SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 5:
-                            oDao = (DaoInterface) new Procedimiento5SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Procedimiento5SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         default:
-                            oDao = (DaoInterface) new Procedimiento0SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Procedimiento0SpecificDaoImplementation(oConnection, strWhere);
                             break;
                     }
 
@@ -813,24 +813,24 @@ public class DaoFactory {
                 break;
             case "procedimientodiagnosticofinal":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Procedimientodiagnosticofinal0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Procedimientodiagnosticofinal0SpecificDaoImplementation(oConnection, strWhere);
                     break;
                 } else {
                     switch (SessionHelper.getIdTipoUsuario()) {
                         case 1:
-                            oDao = (DaoInterface) new Procedimientodiagnosticofinal1SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Procedimientodiagnosticofinal1SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 3:
-                            oDao = (DaoInterface) new Procedimientodiagnosticofinal3SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Procedimientodiagnosticofinal3SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 4:
-                            oDao = (DaoInterface) new Procedimientodiagnosticofinal4SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Procedimientodiagnosticofinal4SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 5:
-                            oDao = (DaoInterface) new Procedimientodiagnosticofinal5SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Procedimientodiagnosticofinal5SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         default:
-                            oDao = (DaoInterface) new Procedimientodiagnosticofinal0SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Procedimientodiagnosticofinal0SpecificDaoImplementation(oConnection, strWhere);
                             break;
                     }
 
@@ -838,24 +838,24 @@ public class DaoFactory {
                 break;
             case "procedimientodiagnosticoinicial":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Procedimientodiagnosticoinicial0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Procedimientodiagnosticoinicial0SpecificDaoImplementation(oConnection, strWhere);
                     break;
                 } else {
                     switch (SessionHelper.getIdTipoUsuario()) {
                         case 1:
-                            oDao = (DaoInterface) new Procedimientodiagnosticoinicial1SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Procedimientodiagnosticoinicial1SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 3:
-                            oDao = (DaoInterface) new Procedimientodiagnosticoinicial3SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Procedimientodiagnosticoinicial3SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 4:
-                            oDao = (DaoInterface) new Procedimientodiagnosticoinicial4SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Procedimientodiagnosticoinicial4SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 5:
-                            oDao = (DaoInterface) new Procedimientodiagnosticoinicial5SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Procedimientodiagnosticoinicial5SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         default:
-                            oDao = (DaoInterface) new Procedimientodiagnosticoinicial0SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Procedimientodiagnosticoinicial0SpecificDaoImplementation(oConnection, strWhere);
                             break;
                     }
 
@@ -864,24 +864,24 @@ public class DaoFactory {
 
             case "procedimientomedico":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Procedimientomedico0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Procedimientomedico0SpecificDaoImplementation(oConnection, strWhere);
                     break;
                 } else {
                     switch (SessionHelper.getIdTipoUsuario()) {
                         case 1:
-                            oDao = (DaoInterface) new Procedimientomedico1SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Procedimientomedico1SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 3:
-                            oDao = (DaoInterface) new Procedimientomedico3SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Procedimientomedico3SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 4:
-                            oDao = (DaoInterface) new Procedimientomedico4SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Procedimientomedico4SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 5:
-                            oDao = (DaoInterface) new Procedimientomedico5SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Procedimientomedico5SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         default:
-                            oDao = (DaoInterface) new Procedimientomedico0SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Procedimientomedico0SpecificDaoImplementation(oConnection, strWhere);
                             break;
                     }
 
@@ -889,24 +889,24 @@ public class DaoFactory {
                 break;
             case "procedimientopersonalsanitario":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Procedimientopersonalsanitario0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Procedimientopersonalsanitario0SpecificDaoImplementation(oConnection, strWhere);
                     break;
                 } else {
                     switch (SessionHelper.getIdTipoUsuario()) {
                         case 1:
-                            oDao = (DaoInterface) new Procedimientopersonalsanitario1SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Procedimientopersonalsanitario1SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 3:
-                            oDao = (DaoInterface) new Procedimientopersonalsanitario3SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Procedimientopersonalsanitario3SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 4:
-                            oDao = (DaoInterface) new Procedimientopersonalsanitario4SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Procedimientopersonalsanitario4SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         case 5:
-                            oDao = (DaoInterface) new Procedimientopersonalsanitario5SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Procedimientopersonalsanitario5SpecificDaoImplementation(oConnection, strWhere);
                             break;
                         default:
-                            oDao = (DaoInterface) new Procedimientopersonalsanitario0SpecificDaoImplementation( oConnection, strWhere);
+                            oDao = (DaoInterface) new Procedimientopersonalsanitario0SpecificDaoImplementation(oConnection, strWhere);
                             break;
                     }
 
@@ -914,12 +914,12 @@ public class DaoFactory {
                 break;
             case "tipoprocedimiento":
                 if (SessionHelper.thereIsNOSession()) {
-                    oDao = (DaoInterface) new Tipoprocedimiento0SpecificDaoImplementation( oConnection, strWhere);
+                    oDao = (DaoInterface) new Tipoprocedimiento0SpecificDaoImplementation(oConnection, strWhere);
                 } else {
                     if (SessionHelper.getIdTipoUsuario() == 1) {
-                        oDao = (DaoInterface) new Tipoprocedimiento1SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Tipoprocedimiento1SpecificDaoImplementation(oConnection, strWhere);
                     } else {
-                        oDao = (DaoInterface) new Tipoprocedimiento0SpecificDaoImplementation( oConnection, strWhere);
+                        oDao = (DaoInterface) new Tipoprocedimiento0SpecificDaoImplementation(oConnection, strWhere);
                     }
                 }
                 break;
