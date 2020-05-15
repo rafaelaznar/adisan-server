@@ -34,11 +34,12 @@ package net.adisan.dao.specificimplementation.tipousuario;
 
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.helper.MetaBeanHelper;
 
 public class Tipousuario1SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Tipousuario1SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("tipousuario", oPooledConnection, strWhere);
+    public Tipousuario1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("tipousuario", oPooledConnection, oMBHUsuarioSession, strWhere);
     }
 
     @Override

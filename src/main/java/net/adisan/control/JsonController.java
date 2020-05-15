@@ -86,8 +86,6 @@ public class JsonController extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String ob = prepareCamelCaseObject(request);
             String op = request.getParameter("op");
-            //--
-            SessionHelper.setoMBHUsuarioBean((MetaBeanHelper) request.getSession().getAttribute("user"));
             //--                         
             try {
                 Class.forName("com.mysql.jdbc.Driver");

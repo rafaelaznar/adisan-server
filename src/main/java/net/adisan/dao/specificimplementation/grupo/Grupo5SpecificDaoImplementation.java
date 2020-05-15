@@ -34,11 +34,12 @@ package net.adisan.dao.specificimplementation.grupo;
 
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.helper.MetaBeanHelper;
 
 public class Grupo5SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Grupo5SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("grupo", oPooledConnection, strWhere);
+    public Grupo5SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("grupo", oPooledConnection, oMBHUsuarioSession, strWhere);
     }
 
 }

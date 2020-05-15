@@ -36,6 +36,7 @@ import net.adisan.bean.genericimplementation.GenericBeanImplementation;
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.bean.specificimplementation.EpisodiodiagnosticoSpecificBeanImplementation;
 import net.adisan.helper.SessionHelper;
 
@@ -44,16 +45,16 @@ public class Episodiodiagnostico3SpecificDaoImplementation extends GenericDaoImp
     private Integer idCentrosanitario = null;
     private Integer idUsuario;
 
-    public Episodiodiagnostico3SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("episodiodiagnostico", oPooledConnection, strWhere);
+    public Episodiodiagnostico3SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("episodiodiagnostico", oPooledConnection, oMBHUsuarioSession, strWhere);
         String strSQLini = "FROM episodiodiagnostico where  1=1 "
-                + "AND (id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean().getId() + " and id_tipousuario=3 ) "
-                + " OR  id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean().getId() + " and id_tipousuario=5 ) "
+                + "AND (id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean(oMBHUsuarioSession).getId() + " and id_tipousuario=3 ) "
+                + " OR  id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean(oMBHUsuarioSession).getId() + " and id_tipousuario=5 ) "
                 + " OR  id_usuario IN (SELECT distinct u.id FROM usuario u, grupo g, usuario u2 "
                 + "                    WHERE u.id_tipousuario=4 "
                 + "                      AND u.id_grupo=g.id "
                 + "                      AND g.id_usuario=u2.id "
-                + "                      AND u2.id_centrosanitario= " + SessionHelper.getoCentroSanitarioBean().getId() + ")"
+                + "                      AND u2.id_centrosanitario= " + SessionHelper.getoCentroSanitarioBean(oMBHUsuarioSession).getId() + ")"
                 + ") ";
         strSQL = "SELECT * " + strSQLini;
         strCountSQL = "SELECT COUNT(*) " + strSQLini;
@@ -80,7 +81,7 @@ public class Episodiodiagnostico3SpecificDaoImplementation extends GenericDaoImp
 
     @Override
     public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
-        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oMBHUsuarioSession.getBean();
         EpisodiodiagnosticoSpecificBeanImplementation oEpisodiodiagnosticoBean = (EpisodiodiagnosticoSpecificBeanImplementation) oBean;
         if (oEpisodiodiagnosticoBean.getId_usuario().equals(oSessionUser.getId()) || esMiAlumno(oEpisodiodiagnosticoBean.getId_usuario())) {
             return true;

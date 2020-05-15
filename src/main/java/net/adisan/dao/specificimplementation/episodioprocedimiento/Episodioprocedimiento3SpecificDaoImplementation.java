@@ -36,21 +36,22 @@ import net.adisan.bean.genericimplementation.GenericBeanImplementation;
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.bean.specificimplementation.EpisodioprocedimientoSpecificBeanImplementation;
 import net.adisan.helper.SessionHelper;
 
 public class Episodioprocedimiento3SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Episodioprocedimiento3SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("episodioprocedimiento", oPooledConnection, strWhere);
+    public Episodioprocedimiento3SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("episodioprocedimiento", oPooledConnection, oMBHUsuarioSession, strWhere);
         String strSQLini = "FROM episodioprocedimiento where  1=1 "
-                + "AND (id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean().getId() + " and id_tipousuario=3 ) "
-                + " OR  id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean().getId() + " and id_tipousuario=5 ) "
+                + "AND (id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean(oMBHUsuarioSession).getId() + " and id_tipousuario=3 ) "
+                + " OR  id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean(oMBHUsuarioSession).getId() + " and id_tipousuario=5 ) "
                 + " OR  id_usuario IN (SELECT distinct u.id FROM usuario u, grupo g, usuario u2 "
                 + "                    WHERE u.id_tipousuario=4 "
                 + "                      AND u.id_grupo=g.id "
                 + "                      AND g.id_usuario=u2.id "
-                + "                      AND u2.id_centrosanitario= " + SessionHelper.getoCentroSanitarioBean().getId() + ")"
+                + "                      AND u2.id_centrosanitario= " + SessionHelper.getoCentroSanitarioBean(oMBHUsuarioSession).getId() + ")"
                 + ") ";
         strSQL = "SELECT * " + strSQLini;
         strCountSQL = "SELECT COUNT(*) " + strSQLini;
@@ -68,7 +69,7 @@ public class Episodioprocedimiento3SpecificDaoImplementation extends GenericDaoI
     @Override
     public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         EpisodioprocedimientoSpecificBeanImplementation oEpisodioprocedimientoBean = (EpisodioprocedimientoSpecificBeanImplementation) oBean;
-        if (oEpisodioprocedimientoBean.getId_usuario().equals(SessionHelper.getoUsuarioBean().getId()) || this.esMiAlumno(oEpisodioprocedimientoBean.getId_usuario())) {
+        if (oEpisodioprocedimientoBean.getId_usuario().equals(SessionHelper.getoUsuarioBean(oMBHUsuarioSession).getId()) || this.esMiAlumno(oEpisodioprocedimientoBean.getId_usuario())) {
             return true;
         } else {
             return false;
@@ -77,7 +78,7 @@ public class Episodioprocedimiento3SpecificDaoImplementation extends GenericDaoI
 
     @Override
     public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
-        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oMBHUsuarioSession.getBean();
         EpisodioprocedimientoSpecificBeanImplementation oEpisodioprocedimientoBean = (EpisodioprocedimientoSpecificBeanImplementation) oBean;
         if (oEpisodioprocedimientoBean.getId_usuario().equals(oSessionUser.getId()) || esMiAlumno(oEpisodioprocedimientoBean.getId_usuario())) {
             return true;
@@ -89,7 +90,7 @@ public class Episodioprocedimiento3SpecificDaoImplementation extends GenericDaoI
     @Override
     public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
         EpisodioprocedimientoSpecificBeanImplementation oEpisodioprocedimientoBean = (EpisodioprocedimientoSpecificBeanImplementation) oBean;
-        if (oEpisodioprocedimientoBean.getId_usuario().equals(SessionHelper.getoUsuarioBean().getId()) || esMiAlumno(oEpisodioprocedimientoBean.getId_usuario())) {
+        if (oEpisodioprocedimientoBean.getId_usuario().equals(SessionHelper.getoUsuarioBean(oMBHUsuarioSession).getId()) || esMiAlumno(oEpisodioprocedimientoBean.getId_usuario())) {
             if (oEpisodioprocedimientoBean.getLink_procedimiento() == 0
                     && oEpisodioprocedimientoBean.getLink_procedimientodiagnosticofinal() == 0
                     && oEpisodioprocedimientoBean.getLink_procedimientodiagnosticoinicial() == 0

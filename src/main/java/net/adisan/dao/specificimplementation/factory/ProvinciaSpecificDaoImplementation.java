@@ -34,11 +34,12 @@ package net.adisan.dao.specificimplementation.factory;
 
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.helper.MetaBeanHelper;
 
 public class ProvinciaSpecificDaoImplementation extends GenericDaoImplementation {
 
-    public ProvinciaSpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("provincia", oPooledConnection, strWhere);
+    public ProvinciaSpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("provincia", oPooledConnection, oMBHUsuarioSession, strWhere);
     }
 
 }

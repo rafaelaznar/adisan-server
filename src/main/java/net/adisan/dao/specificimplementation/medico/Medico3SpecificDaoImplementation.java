@@ -36,13 +36,14 @@ import net.adisan.bean.genericimplementation.GenericBeanImplementation;
 import net.adisan.bean.specificimplementation.MedicoSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.helper.SessionHelper;
 
 public class Medico3SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Medico3SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("medico", oPooledConnection, strWhere);
-        String strSQLini = "FROM medico WHERE id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean().getId() + " ";
+    public Medico3SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("medico", oPooledConnection, oMBHUsuarioSession, strWhere);
+        String strSQLini = "FROM medico WHERE id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean(oMBHUsuarioSession).getId() + " ";
         strSQL = "SELECT * " + strSQLini;
         strCountSQL = "SELECT COUNT(*) " + strSQLini;
         if (strWhere != null) {
@@ -64,7 +65,7 @@ public class Medico3SpecificDaoImplementation extends GenericDaoImplementation {
     @Override
     public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
         MedicoSpecificBeanImplementation oMedico = (MedicoSpecificBeanImplementation) oBean;
-        if (oMedico.getId_centrosanitario().equals(SessionHelper.getoCentroSanitarioBean().getId())) {
+        if (oMedico.getId_centrosanitario().equals(SessionHelper.getoCentroSanitarioBean(oMBHUsuarioSession).getId())) {
             return true;
         } else {
             return false;
@@ -85,14 +86,14 @@ public class Medico3SpecificDaoImplementation extends GenericDaoImplementation {
     public Integer create(GenericBeanImplementation oBean) throws Exception {
         //se puede crear un medico en el centro sanitario del profesor        
         MedicoSpecificBeanImplementation oMedico = (MedicoSpecificBeanImplementation) oBean;
-        oMedico.setId_centrosanitario(SessionHelper.getoCentroSanitarioBean().getId());
+        oMedico.setId_centrosanitario(SessionHelper.getoCentroSanitarioBean(oMBHUsuarioSession).getId());
         return super.create(oMedico);
     }
 
     @Override
     public Integer update(GenericBeanImplementation oBean) throws Exception {
         MedicoSpecificBeanImplementation oMedico = (MedicoSpecificBeanImplementation) oBean;
-        oMedico.setId_centrosanitario(SessionHelper.getoCentroSanitarioBean().getId());
+        oMedico.setId_centrosanitario(SessionHelper.getoCentroSanitarioBean(oMBHUsuarioSession).getId());
         return super.update(oMedico);
 
     }

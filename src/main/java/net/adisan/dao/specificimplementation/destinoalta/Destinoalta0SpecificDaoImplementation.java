@@ -34,11 +34,12 @@ package net.adisan.dao.specificimplementation.destinoalta;
 
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.helper.MetaBeanHelper;
 
 public class Destinoalta0SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Destinoalta0SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("destinoalta", oPooledConnection, strWhere);
+    public Destinoalta0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("destinoalta", oPooledConnection, oMBHUsuarioSession, strWhere);
     }
 
 }

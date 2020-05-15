@@ -34,11 +34,12 @@ package net.adisan.dao.specificimplementation.procedimientodiagnosticoinicial;
 
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.helper.MetaBeanHelper;
 
 public class Procedimientodiagnosticoinicial0SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Procedimientodiagnosticoinicial0SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("procedimientodiagnosticoinicial", oPooledConnection, strWhere);
+    public Procedimientodiagnosticoinicial0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("procedimientodiagnosticoinicial", oPooledConnection, oMBHUsuarioSession, strWhere);
     }
 
 }

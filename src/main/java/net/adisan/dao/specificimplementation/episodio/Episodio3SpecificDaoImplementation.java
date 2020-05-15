@@ -36,20 +36,21 @@ import net.adisan.bean.genericimplementation.GenericBeanImplementation;
 import net.adisan.bean.specificimplementation.EpisodioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.helper.SessionHelper;
 
 public class Episodio3SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Episodio3SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("episodio", oPooledConnection, strWhere);
+    public Episodio3SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("episodio", oPooledConnection, oMBHUsuarioSession, strWhere);
         String strSQLini = "FROM episodio where  (id_episodio IS NULL OR id_episodio=0 OR id_episodio='') "
-                + "AND (id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean().getId() + " and id_tipousuario=3 ) "
-                + " OR  id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean().getId() + " and id_tipousuario=5 ) "
+                + "AND (id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean(oMBHUsuarioSession).getId() + " and id_tipousuario=3 ) "
+                + " OR  id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean(oMBHUsuarioSession).getId() + " and id_tipousuario=5 ) "
                 + " OR  id_usuario IN (SELECT distinct u.id FROM usuario u, grupo g, usuario u2 "
                 + "                    WHERE u.id_tipousuario=4 "
                 + "                      AND u.id_grupo=g.id "
                 + "                      AND g.id_usuario=u2.id "
-                + "                      AND u2.id_centrosanitario= " + SessionHelper.getoCentroSanitarioBean().getId() + ")"
+                + "                      AND u2.id_centrosanitario= " + SessionHelper.getoCentroSanitarioBean(oMBHUsuarioSession).getId() + ")"
                 + ") ";
         strSQL = "SELECT * " + strSQLini;
         strCountSQL = "SELECT COUNT(*) " + strSQLini;
@@ -67,7 +68,7 @@ public class Episodio3SpecificDaoImplementation extends GenericDaoImplementation
     @Override
     public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oBean;
-        if (esMiAlumno(oEpisodioBean.getId_usuario()) || oEpisodioBean.getId_usuario() == SessionHelper.getoUsuarioBean().getId()) {
+        if (esMiAlumno(oEpisodioBean.getId_usuario()) || oEpisodioBean.getId_usuario() == SessionHelper.getoUsuarioBean(oMBHUsuarioSession).getId()) {
             return true;
         } else {
             return false;
@@ -78,7 +79,7 @@ public class Episodio3SpecificDaoImplementation extends GenericDaoImplementation
     public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
         EpisodioSpecificBeanImplementation oNewEpisodio = (EpisodioSpecificBeanImplementation) oBean;
         //EpisodioSpecificBeanImplementation oOldEpisodio = (EpisodioSpecificBeanImplementation) this.get(oNewEpisodio.getId(), 0).getBean();
-        if ((esMiAlumno(oNewEpisodio.getId_usuario()) || oNewEpisodio.getId_usuario() == SessionHelper.getoUsuarioBean().getId())) {
+        if ((esMiAlumno(oNewEpisodio.getId_usuario()) || oNewEpisodio.getId_usuario() == SessionHelper.getoUsuarioBean(oMBHUsuarioSession).getId())) {
             return true;
         } else {
             return false;
@@ -89,7 +90,7 @@ public class Episodio3SpecificDaoImplementation extends GenericDaoImplementation
     public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
         EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oBean;
         if ((esMiAlumno(oEpisodioBean.getId_usuario())
-                || oEpisodioBean.getId_usuario() == SessionHelper.getoUsuarioBean().getId())
+                || oEpisodioBean.getId_usuario() == SessionHelper.getoUsuarioBean(oMBHUsuarioSession).getId())
                 && oEpisodioBean.getLink_subepisodio() == 0
                 && oEpisodioBean.getLink_episodiodiagnostico() == 0) {
             return true;

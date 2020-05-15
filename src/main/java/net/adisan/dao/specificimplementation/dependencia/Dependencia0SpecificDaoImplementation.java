@@ -34,11 +34,12 @@ package net.adisan.dao.specificimplementation.dependencia;
 
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.helper.MetaBeanHelper;
 
 public class Dependencia0SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Dependencia0SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("dependencia", oPooledConnection, strWhere);
+    public Dependencia0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("dependencia", oPooledConnection, oMBHUsuarioSession, strWhere);
     }
 
 }

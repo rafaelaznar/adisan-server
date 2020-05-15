@@ -34,22 +34,19 @@ package net.adisan.dao.specificimplementation.personalsanitario;
 
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.helper.SessionHelper;
 
 public class Personalsanitario4SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Personalsanitario4SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("personalsanitario", oPooledConnection, strWhere);
-        if (SessionHelper.isThereSession(4)) {
-            String strSQLini = "FROM personalsanitario WHERE id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean().getId() + " ";
-            strSQL = "SELECT * " + strSQLini;
-            strCountSQL = "SELECT COUNT(*) " + strSQLini;
-            if (strWhere != null) {
-                strSQL += " " + strWhere + " ";
-                strCountSQL += " " + strWhere + " ";
-            }
-        } else {
-            throw new Exception(this.getClass().getName() + ": constuctor: Unauthorized access");
+    public Personalsanitario4SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("personalsanitario", oPooledConnection, oMBHUsuarioSession, strWhere);
+        String strSQLini = "FROM personalsanitario WHERE id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean(oMBHUsuarioSession).getId() + " ";
+        strSQL = "SELECT * " + strSQLini;
+        strCountSQL = "SELECT COUNT(*) " + strSQLini;
+        if (strWhere != null) {
+            strSQL += " " + strWhere + " ";
+            strCountSQL += " " + strWhere + " ";
         }
     }
 }

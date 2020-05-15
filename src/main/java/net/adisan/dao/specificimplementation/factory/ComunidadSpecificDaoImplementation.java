@@ -34,11 +34,12 @@ package net.adisan.dao.specificimplementation.factory;
 
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.helper.MetaBeanHelper;
 
 public class ComunidadSpecificDaoImplementation extends GenericDaoImplementation {
 
-    public ComunidadSpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("comunidad", oPooledConnection, strWhere);
+    public ComunidadSpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("comunidad", oPooledConnection, oMBHUsuarioSession, strWhere);
     }
 
 }

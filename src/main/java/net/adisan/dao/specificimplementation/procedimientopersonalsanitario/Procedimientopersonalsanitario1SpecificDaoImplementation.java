@@ -35,11 +35,12 @@ package net.adisan.dao.specificimplementation.procedimientopersonalsanitario;
 import net.adisan.bean.genericimplementation.GenericBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.helper.MetaBeanHelper;
 
 public class Procedimientopersonalsanitario1SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Procedimientopersonalsanitario1SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("procedimientopersonalsanitario", oPooledConnection, strWhere);
+    public Procedimientopersonalsanitario1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("procedimientopersonalsanitario", oPooledConnection, oMBHUsuarioSession, strWhere);
         String strSQLini = "FROM procedimientopersonalsanitario where 1=1 ";
         strSQL = "SELECT * " + strSQLini;
         strCountSQL = "SELECT COUNT(*) " + strSQLini;

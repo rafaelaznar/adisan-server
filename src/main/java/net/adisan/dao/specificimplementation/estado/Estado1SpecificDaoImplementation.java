@@ -35,12 +35,13 @@ package net.adisan.dao.specificimplementation.estado;
 import net.adisan.bean.genericimplementation.GenericBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.bean.specificimplementation.EstadoSpecificBeanImplementation;
 
 public class Estado1SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Estado1SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("estado", oPooledConnection, strWhere);
+    public Estado1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("estado", oPooledConnection, oMBHUsuarioSession, strWhere);
     }
 
     @Override

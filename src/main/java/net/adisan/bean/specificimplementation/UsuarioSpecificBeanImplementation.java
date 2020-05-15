@@ -540,7 +540,7 @@ public class UsuarioSpecificBeanImplementation extends GenericBeanImplementation
                 if (oResultSet2.next()) {
                     Grupo1SpecificDaoImplementation oGrupoDao = null;
                     GrupoSpecificBeanImplementation oGrupoBean = null;
-                    oGrupoDao = new Grupo1SpecificDaoImplementation(oConnection, "and id_usuario=" + this.getId().toString());
+                    oGrupoDao = new Grupo1SpecificDaoImplementation(oConnection, oPuserBean_security, "and id_usuario=" + this.getId().toString());
                     oGrupoBean = (GrupoSpecificBeanImplementation) new GrupoSpecificBeanImplementation();
                     this.getObj_grupos().add(oGrupoDao.get(oResultSet2.getInt("id"), expand - 1));
 //                    oGrupo = (GrupoSpecificBeanImplementation) new GrupoSpecificBeanImplementation(this.getId_grupo()).fill(oResultSet2, oConnection, oPuserBean_security, expand - 1);

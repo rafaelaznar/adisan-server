@@ -349,7 +349,7 @@ public class EpisodioprocedimientoSpecificBeanImplementation extends GenericBean
                 EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) this.obj_episodio.getBean();
                 if (oEpisodioBean.getId_paciente() != null) {
                     GenericDaoImplementation oPacienteDao;
-                    oPacienteDao = (GenericDaoImplementation) DaoFactory.getDao("paciente", oConnection, "");
+                    oPacienteDao = (GenericDaoImplementation) DaoFactory.getDao("paciente", oConnection, oUsuarioSession, "");
                     PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oPacienteDao.get(oEpisodioBean.getId_paciente(), 0).getBean();
                     //PacienteSpecificBeanImplementation oPacienteBean = (PacienteSpecificBeanImplementation) oEpisodioBean.getObj_paciente().getBean();
                     this.paciente = oPacienteBean.getNombrecompleto() + " (" + oPacienteBean.getId() + ") ";

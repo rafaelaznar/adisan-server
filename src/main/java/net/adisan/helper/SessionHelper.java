@@ -47,7 +47,7 @@ import net.adisan.constant.ConnectionConstants;
 
 public class SessionHelper {
 
-    private static MetaBeanHelper oMBHUsuarioBean = null;
+
 
     public static void logDB(Integer id_usuario, String ob, String op) throws Exception {
         Connection oConnection = null;
@@ -86,15 +86,15 @@ public class SessionHelper {
         }
     }
 
-    public static Boolean thereISSession() {
+    public static Boolean thereISSession(MetaBeanHelper oMBHUsuarioBean) {
         return oMBHUsuarioBean != null;
     }
 
-    public static Boolean thereIsNOSession() {
+    public static Boolean thereIsNOSession(MetaBeanHelper oMBHUsuarioBean) {
         return oMBHUsuarioBean == null;
     }
 
-    public static Boolean isThereSession(Integer level) {
+    public static Boolean isThereSession(MetaBeanHelper oMBHUsuarioBean, Integer level) {
         if (oMBHUsuarioBean != null) {
             UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oMBHUsuarioBean.getBean();
             if (oUsuario != null) {
@@ -111,7 +111,7 @@ public class SessionHelper {
         }
     }
 
-    public static UsuarioSpecificBeanImplementation getoUsuarioBean() {
+    public static UsuarioSpecificBeanImplementation getoUsuarioBean(MetaBeanHelper oMBHUsuarioBean) {
         if (oMBHUsuarioBean != null) {
             return (UsuarioSpecificBeanImplementation) oMBHUsuarioBean.getBean();
         } else {
@@ -119,13 +119,13 @@ public class SessionHelper {
         }
     }
 
-    public static CentrosanitarioSpecificBeanImplementation getoCentroSanitarioBean() {
+    public static CentrosanitarioSpecificBeanImplementation getoCentroSanitarioBean(MetaBeanHelper oMBHUsuarioBean) {
         if (oMBHUsuarioBean != null) {
             UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oMBHUsuarioBean.getBean();
             if (oUsuario != null) {
                 if (oUsuario.getId_tipousuario() == 3) {
                     // el centro sanitario de un alumno es del profesor
-                    GrupoSpecificBeanImplementation oGrupo = (GrupoSpecificBeanImplementation) SessionHelper.getoUsuarioBean().getObj_grupo().getBean();
+                    GrupoSpecificBeanImplementation oGrupo = (GrupoSpecificBeanImplementation) SessionHelper.getoUsuarioBean(oMBHUsuarioBean).getObj_grupo().getBean();
                     UsuarioSpecificBeanImplementation oProfesor = (UsuarioSpecificBeanImplementation) oGrupo.getObj_usuario().getBean();
                     CentrosanitarioSpecificBeanImplementation oCentroSanitario = (CentrosanitarioSpecificBeanImplementation) oProfesor.getObj_centrosanitario().getBean();
                     return oCentroSanitario;
@@ -140,16 +140,7 @@ public class SessionHelper {
         }
     }
 
-    public static MetaBeanHelper getoMBHUsuarioBean() {
-        return oMBHUsuarioBean;
-    }
-
-    public static void setoMBHUsuarioBean(MetaBeanHelper oMBHUsuarioBean) {
-        SessionHelper.oMBHUsuarioBean = oMBHUsuarioBean;
-
-    }
-
-    public static int getIdTipoUsuario() throws Exception {
+    public static int getIdTipoUsuario(MetaBeanHelper oMBHUsuarioBean) throws Exception {
         if (oMBHUsuarioBean != null) {
             UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oMBHUsuarioBean.getBean();
             if (oUsuario != null) {

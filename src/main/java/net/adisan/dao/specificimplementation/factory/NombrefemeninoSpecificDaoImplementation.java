@@ -34,11 +34,12 @@ package net.adisan.dao.specificimplementation.factory;
 
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.helper.MetaBeanHelper;
 
 public class NombrefemeninoSpecificDaoImplementation extends GenericDaoImplementation {
 
-    public NombrefemeninoSpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("nombrefemenino", oPooledConnection, strWhere);
+    public NombrefemeninoSpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("nombrefemenino", oPooledConnection, oMBHUsuarioSession, strWhere);
     }
 
 }

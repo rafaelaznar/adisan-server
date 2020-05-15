@@ -34,11 +34,12 @@ package net.adisan.dao.specificimplementation.procedimientomedico;
 
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.helper.MetaBeanHelper;
 
 public class Procedimientomedico0SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Procedimientomedico0SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("procedimientomedico", oPooledConnection, strWhere);
+    public Procedimientomedico0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("procedimientomedico", oPooledConnection, oMBHUsuarioSession, strWhere);
     }
 
 }

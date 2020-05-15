@@ -35,21 +35,22 @@ package net.adisan.dao.specificimplementation.procedimiento;
 import net.adisan.bean.genericimplementation.GenericBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.bean.specificimplementation.ProcedimientoSpecificBeanImplementation;
 import net.adisan.helper.SessionHelper;
 
 public class Procedimiento3SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Procedimiento3SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("procedimiento", oPooledConnection, strWhere);
+    public Procedimiento3SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("procedimiento", oPooledConnection, oMBHUsuarioSession, strWhere);
         String strSQLini = "FROM procedimiento where  1=1 "
-                + "AND (id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean().getId() + " and id_tipousuario=3 ) "
-                + " OR  id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean().getId() + " and id_tipousuario=5 ) "
+                + "AND (id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean(oMBHUsuarioSession).getId() + " and id_tipousuario=3 ) "
+                + " OR  id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean(oMBHUsuarioSession).getId() + " and id_tipousuario=5 ) "
                 + " OR  id_usuario IN (SELECT distinct u.id FROM usuario u, grupo g, usuario u2 "
                 + "                    WHERE u.id_tipousuario=4 "
                 + "                      AND u.id_grupo=g.id "
                 + "                      AND g.id_usuario=u2.id "
-                + "                      AND u2.id_centrosanitario= " + SessionHelper.getoCentroSanitarioBean().getId() + ")"
+                + "                      AND u2.id_centrosanitario= " + SessionHelper.getoCentroSanitarioBean(oMBHUsuarioSession).getId() + ")"
                 + ") ";
         strSQL = "SELECT * " + strSQLini;
         strCountSQL = "SELECT COUNT(*) " + strSQLini;
@@ -67,7 +68,7 @@ public class Procedimiento3SpecificDaoImplementation extends GenericDaoImplement
     @Override
     public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         ProcedimientoSpecificBeanImplementation oProcedimientoBean = (ProcedimientoSpecificBeanImplementation) oBean;
-        if (oProcedimientoBean.getId_usuario().equals(SessionHelper.getoUsuarioBean().getId()) || this.esMiAlumno(oProcedimientoBean.getId_usuario())) {
+        if (oProcedimientoBean.getId_usuario().equals(SessionHelper.getoUsuarioBean(oMBHUsuarioSession).getId()) || this.esMiAlumno(oProcedimientoBean.getId_usuario())) {
             return true;
         } else {
             return false;
@@ -77,7 +78,7 @@ public class Procedimiento3SpecificDaoImplementation extends GenericDaoImplement
     @Override
     public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
         ProcedimientoSpecificBeanImplementation oProcedimientoBean = (ProcedimientoSpecificBeanImplementation) oBean;
-        if (oProcedimientoBean.getId_usuario().equals(SessionHelper.getoUsuarioBean().getId()) || esMiAlumno(oProcedimientoBean.getId_usuario())) {
+        if (oProcedimientoBean.getId_usuario().equals(SessionHelper.getoUsuarioBean(oMBHUsuarioSession).getId()) || esMiAlumno(oProcedimientoBean.getId_usuario())) {
             return true;
         } else {
             return false;
@@ -87,7 +88,7 @@ public class Procedimiento3SpecificDaoImplementation extends GenericDaoImplement
     @Override
     public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
         ProcedimientoSpecificBeanImplementation oProcedimientoBean = (ProcedimientoSpecificBeanImplementation) oBean;
-        if (oProcedimientoBean.getId_usuario().equals(SessionHelper.getoUsuarioBean().getId()) || esMiAlumno(oProcedimientoBean.getId_usuario())) {
+        if (oProcedimientoBean.getId_usuario().equals(SessionHelper.getoUsuarioBean(oMBHUsuarioSession).getId()) || esMiAlumno(oProcedimientoBean.getId_usuario())) {
             return true;
         } else {
             return false;

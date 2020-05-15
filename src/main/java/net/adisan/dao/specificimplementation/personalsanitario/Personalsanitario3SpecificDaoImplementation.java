@@ -36,14 +36,15 @@ import net.adisan.bean.genericimplementation.GenericBeanImplementation;
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.bean.specificimplementation.PersonalsanitarioSpecificBeanImplementation;
 import net.adisan.helper.SessionHelper;
 
 public class Personalsanitario3SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Personalsanitario3SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("personalsanitario", oPooledConnection, strWhere);
-        String strSQLini = "FROM medico WHERE id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean().getId() + " ";
+    public Personalsanitario3SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("personalsanitario", oPooledConnection, oMBHUsuarioSession, strWhere);
+        String strSQLini = "FROM medico WHERE id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean(oMBHUsuarioSession).getId() + " ";
         strSQL = "SELECT * " + strSQLini;
         strCountSQL = "SELECT COUNT(*) " + strSQLini;
         if (strWhere != null) {
@@ -65,7 +66,7 @@ public class Personalsanitario3SpecificDaoImplementation extends GenericDaoImple
     @Override
     public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
         PersonalsanitarioSpecificBeanImplementation oPS = (PersonalsanitarioSpecificBeanImplementation) oBean;
-        if (oPS.getId_centrosanitario().equals(SessionHelper.getoCentroSanitarioBean().getId())) {
+        if (oPS.getId_centrosanitario().equals(SessionHelper.getoCentroSanitarioBean(oMBHUsuarioSession).getId())) {
             return true;
         } else {
             return false;
@@ -85,7 +86,7 @@ public class Personalsanitario3SpecificDaoImplementation extends GenericDaoImple
     @Override
     public Integer create(GenericBeanImplementation oBean) throws Exception {
         //se puede crear un medico en el centro sanitario del profesor
-        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oMBHUsuarioSession.getBean();
         PersonalsanitarioSpecificBeanImplementation oNewPS = (PersonalsanitarioSpecificBeanImplementation) oBean;
         oNewPS.setId_centrosanitario(oSessionUser.getId_centrosanitario());
         return super.create(oNewPS);
@@ -94,7 +95,7 @@ public class Personalsanitario3SpecificDaoImplementation extends GenericDaoImple
     @Override
     public Integer update(GenericBeanImplementation oBean) throws Exception {
         PersonalsanitarioSpecificBeanImplementation oPS = (PersonalsanitarioSpecificBeanImplementation) oBean;
-        oPS.setId_centrosanitario(SessionHelper.getoCentroSanitarioBean().getId());
+        oPS.setId_centrosanitario(SessionHelper.getoCentroSanitarioBean(oMBHUsuarioSession).getId());
         return super.update(oBean);
     }
 

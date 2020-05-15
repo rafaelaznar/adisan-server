@@ -35,12 +35,13 @@ package net.adisan.dao.specificimplementation.tipodiagnostico;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
 import net.adisan.bean.genericimplementation.GenericBeanImplementation;
+import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.bean.specificimplementation.TipodiagnosticoSpecificBeanImplementation;
 
 public class Tipodiagnostico1SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Tipodiagnostico1SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("tipodiagnostico", oPooledConnection, strWhere);
+    public Tipodiagnostico1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("tipodiagnostico", oPooledConnection, oMBHUsuarioSession, strWhere);
     }
 
     @Override

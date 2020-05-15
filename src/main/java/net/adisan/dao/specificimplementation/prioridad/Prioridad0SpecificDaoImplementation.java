@@ -34,11 +34,12 @@ package net.adisan.dao.specificimplementation.prioridad;
 
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.helper.MetaBeanHelper;
 
 public class Prioridad0SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Prioridad0SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("prioridad", oPooledConnection, strWhere);
+    public Prioridad0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("prioridad", oPooledConnection, oMBHUsuarioSession, strWhere);
     }
 
 }

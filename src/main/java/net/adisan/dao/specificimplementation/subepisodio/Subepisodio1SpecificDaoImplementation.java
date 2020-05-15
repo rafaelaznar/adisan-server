@@ -35,13 +35,14 @@ package net.adisan.dao.specificimplementation.subepisodio;
 import net.adisan.bean.genericimplementation.GenericBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.bean.specificimplementation.EpisodioSpecificBeanImplementation;
 import net.adisan.dao.specificimplementation.episodio.Episodio1SpecificDaoImplementation;
 
 public class Subepisodio1SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Subepisodio1SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("episodio", oPooledConnection, strWhere);
+    public Subepisodio1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("episodio", oPooledConnection, oMBHUsuarioSession, strWhere);
         String strSQLini = "FROM episodio where (id_episodio IS NOT NULL AND id_episodio<>0 AND id_episodio<>'') ";
         strSQL = "SELECT * " + strSQLini;
         strCountSQL = "SELECT COUNT(*) " + strSQLini;
@@ -76,7 +77,7 @@ public class Subepisodio1SpecificDaoImplementation extends GenericDaoImplementat
         EpisodioSpecificBeanImplementation oEpisodioBean = (EpisodioSpecificBeanImplementation) oBean;
         //si viene un episodio sin paciente es porque es un subepisodio. El paciente Se rellena con los datos del episodio:
         if (oEpisodioBean.getId_paciente() == null) {
-            Episodio1SpecificDaoImplementation oEpisodioDao = new Episodio1SpecificDaoImplementation(oConnection, null);
+            Episodio1SpecificDaoImplementation oEpisodioDao = new Episodio1SpecificDaoImplementation(oConnection, oMBHUsuarioSession, null);
             EpisodioSpecificBeanImplementation oEpisodioPadre = (EpisodioSpecificBeanImplementation) oEpisodioDao.get(oEpisodioBean.getId_episodio(), 0).getBean();
             oEpisodioBean.setId_paciente(oEpisodioPadre.getId_paciente());
         }

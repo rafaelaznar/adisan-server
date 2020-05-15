@@ -41,8 +41,8 @@ import java.sql.Connection;
 
 public class CentrosanitarioSpecificDaoImplementation extends GenericDaoImplementation {
 
-    public CentrosanitarioSpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("centrosanitario", oPooledConnection, strWhere);
+    public CentrosanitarioSpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("centrosanitario", oPooledConnection, oMBHUsuarioSession, strWhere);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class CentrosanitarioSpecificDaoImplementation extends GenericDaoImplemen
     @Override
     public MetaBeanHelper getStatistics(int id) throws Exception {
         //El id es del centro sanitario
-        CentrosanitarioStatisticsSpecificBeanImplementation oEstadistica = (CentrosanitarioStatisticsSpecificBeanImplementation) BeanFactory.getBean(ob + "statistics", oPuserSecurity);
+        CentrosanitarioStatisticsSpecificBeanImplementation oEstadistica = (CentrosanitarioStatisticsSpecificBeanImplementation) BeanFactory.getBean(ob + "statistics", oMBHUsuarioSession);
         //obtener el numero de profesores del centro sanitario
         String countSQL1 = "select count(*) from usuario where id_tipousuario=3 and id_centrosanitario=" + id;
         oEstadistica.setProfesores(this.count(countSQL1));

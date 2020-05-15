@@ -34,11 +34,12 @@ package net.adisan.dao.specificimplementation.subepisodio;
 
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.helper.MetaBeanHelper;
 
 public class Subepisodio5SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Subepisodio5SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("episodio", oPooledConnection, strWhere);
+    public Subepisodio5SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("episodio", oPooledConnection, oMBHUsuarioSession, strWhere);
         String strSQLini = "FROM episodio where (id_episodio IS NOT NULL AND id_episodio<>0 AND id_episodio<>'') ";
         strSQL = "SELECT * " + strSQLini;
         strCountSQL = "SELECT COUNT(*) " + strSQLini;

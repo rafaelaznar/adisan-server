@@ -34,20 +34,19 @@ package net.adisan.dao.specificimplementation.medico;
 
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.helper.SessionHelper;
 
 public class Medico4SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Medico4SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("medico", oPooledConnection, strWhere);
-        if (SessionHelper.isThereSession(4)) {
-            String strSQLini = "FROM medico WHERE id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean().getId() + " ";
-            strSQL = "SELECT * " + strSQLini;
-            strCountSQL = "SELECT COUNT(*) " + strSQLini;
-            if (strWhere != null) {
-                strSQL += " " + strWhere + " ";
-                strCountSQL += " " + strWhere + " ";
-            }
+    public Medico4SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("medico", oPooledConnection, oMBHUsuarioSession, strWhere);
+        String strSQLini = "FROM medico WHERE id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean(oMBHUsuarioSession).getId() + " ";
+        strSQL = "SELECT * " + strSQLini;
+        strCountSQL = "SELECT COUNT(*) " + strSQLini;
+        if (strWhere != null) {
+            strSQL += " " + strWhere + " ";
+            strCountSQL += " " + strWhere + " ";
         }
     }
 }

@@ -42,8 +42,8 @@ import java.sql.ResultSet;
 
 public class Grupo1SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Grupo1SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("grupo", oPooledConnection, strWhere);
+    public Grupo1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("grupo", oPooledConnection, oMBHUsuarioSession, strWhere);
     }
 
     @Override

@@ -34,13 +34,14 @@ package net.adisan.dao.specificimplementation.dependencia;
 
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.helper.SessionHelper;
 
 public class Dependencia4SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Dependencia4SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("dependencia", oPooledConnection, strWhere);
-        String strSQLini = "FROM dependencia WHERE id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean().getId();
+    public Dependencia4SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("dependencia", oPooledConnection, oMBHUsuarioSession, strWhere);
+        String strSQLini = "FROM dependencia WHERE id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean(oMBHUsuarioSession).getId();
         String strSQL = "SELECT * " + strSQLini;
         String strCountSQL = "SELECT COUNT(*) " + strSQLini;
         if (strWhere != null) {

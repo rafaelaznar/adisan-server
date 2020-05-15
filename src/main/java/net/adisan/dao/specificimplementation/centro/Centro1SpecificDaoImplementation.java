@@ -36,11 +36,12 @@ import net.adisan.bean.genericimplementation.GenericBeanImplementation;
 import net.adisan.bean.specificimplementation.CentroSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.helper.MetaBeanHelper;
 
 public class Centro1SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Centro1SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("centro", oPooledConnection, strWhere);
+    public Centro1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("centro", oPooledConnection, oMBHUsuarioSession, strWhere);
     }
 
     @Override

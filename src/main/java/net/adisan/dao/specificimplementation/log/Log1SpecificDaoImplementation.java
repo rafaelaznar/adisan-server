@@ -34,11 +34,12 @@ package net.adisan.dao.specificimplementation.log;
 
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.helper.MetaBeanHelper;
 
 public class Log1SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Log1SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("log", oPooledConnection, strWhere);
+    public Log1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("log", oPooledConnection, oMBHUsuarioSession, strWhere);
     }
 
     

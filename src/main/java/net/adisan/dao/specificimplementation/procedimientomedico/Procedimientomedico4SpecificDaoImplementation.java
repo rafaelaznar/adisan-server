@@ -35,21 +35,22 @@ package net.adisan.dao.specificimplementation.procedimientomedico;
 import net.adisan.bean.genericimplementation.GenericBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.bean.specificimplementation.ProcedimientomedicoSpecificBeanImplementation;
 import net.adisan.helper.SessionHelper;
 
 public class Procedimientomedico4SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Procedimientomedico4SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("procedimientomedico", oPooledConnection, strWhere);
+    public Procedimientomedico4SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("procedimientomedico", oPooledConnection, oMBHUsuarioSession, strWhere);
         String strSQLini = "FROM procedimientomedico where 1=1 "
-                + "AND (id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean().getId() + " and id_tipousuario=3 ) "
-                + " OR  id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean().getId() + " and id_tipousuario=5 ) "
+                + "AND (id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean(oMBHUsuarioSession).getId() + " and id_tipousuario=3 ) "
+                + " OR  id_usuario IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean(oMBHUsuarioSession).getId() + " and id_tipousuario=5 ) "
                 + " OR  id_usuario IN (SELECT distinct u.id FROM usuario u, grupo g, usuario u2 "
                 + "                    WHERE u.id_tipousuario=4 "
                 + "                      AND u.id_grupo=g.id "
                 + "                      AND g.id_usuario=u2.id "
-                + "                      AND u2.id_centrosanitario= " + SessionHelper.getoCentroSanitarioBean().getId() + ")"
+                + "                      AND u2.id_centrosanitario= " + SessionHelper.getoCentroSanitarioBean(oMBHUsuarioSession).getId() + ")"
                 + ") ";
         strSQL = "SELECT * " + strSQLini;
         strCountSQL = "SELECT COUNT(*) " + strSQLini;
@@ -72,7 +73,7 @@ public class Procedimientomedico4SpecificDaoImplementation extends GenericDaoImp
     @Override
     public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
         ProcedimientomedicoSpecificBeanImplementation oProcedimientomedicoBean = (ProcedimientomedicoSpecificBeanImplementation) oBean;
-        if (oProcedimientomedicoBean.getId_usuario().equals(SessionHelper.getoUsuarioBean().getId())) {
+        if (oProcedimientomedicoBean.getId_usuario().equals(SessionHelper.getoUsuarioBean(oMBHUsuarioSession).getId())) {
             return true;
         } else {
             return false;
@@ -82,7 +83,7 @@ public class Procedimientomedico4SpecificDaoImplementation extends GenericDaoImp
     @Override
     public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
         ProcedimientomedicoSpecificBeanImplementation oProcedimientomedicoBean = (ProcedimientomedicoSpecificBeanImplementation) oBean;
-        if (oProcedimientomedicoBean.getId_usuario().equals(SessionHelper.getoUsuarioBean().getId())) {
+        if (oProcedimientomedicoBean.getId_usuario().equals(SessionHelper.getoUsuarioBean(oMBHUsuarioSession).getId())) {
             return true;
         } else {
             return false;
@@ -92,14 +93,14 @@ public class Procedimientomedico4SpecificDaoImplementation extends GenericDaoImp
     @Override
     public Integer create(GenericBeanImplementation oBean) throws Exception {
         ProcedimientomedicoSpecificBeanImplementation oProcedimientomedicoBean = (ProcedimientomedicoSpecificBeanImplementation) oBean;
-        oProcedimientomedicoBean.setId_usuario(SessionHelper.getoUsuarioBean().getId());
+        oProcedimientomedicoBean.setId_usuario(SessionHelper.getoUsuarioBean(oMBHUsuarioSession).getId());
         return super.create(oProcedimientomedicoBean);
     }
 
     @Override
     public Integer update(GenericBeanImplementation oBean) throws Exception {
         ProcedimientomedicoSpecificBeanImplementation oProcedimientomedicoBean = (ProcedimientomedicoSpecificBeanImplementation) oBean;
-        oProcedimientomedicoBean.setId_usuario(SessionHelper.getoUsuarioBean().getId());
+        oProcedimientomedicoBean.setId_usuario(SessionHelper.getoUsuarioBean(oMBHUsuarioSession).getId());
         return super.update(oProcedimientomedicoBean);
     }
 

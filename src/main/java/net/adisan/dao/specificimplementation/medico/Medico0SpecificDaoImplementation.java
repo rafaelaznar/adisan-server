@@ -34,11 +34,12 @@ package net.adisan.dao.specificimplementation.medico;
 
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.helper.MetaBeanHelper;
 
 public class Medico0SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Medico0SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("medico", oPooledConnection, strWhere);
+    public Medico0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("medico", oPooledConnection, oMBHUsuarioSession, strWhere);
     }
 
 }

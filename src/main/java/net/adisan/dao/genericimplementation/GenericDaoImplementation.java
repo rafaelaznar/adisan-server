@@ -55,24 +55,18 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import net.adisan.bean.publicinterface.BeanInterface;
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
-import net.adisan.dao.specificimplementation.usuario.Usuario1SpecificDaoImplementation;
-import net.adisan.helper.SessionHelper;
-//import org.apache.logging.log4j.LogManager;
-//import org.apache.logging.log4j.Logger;
 
 public abstract class GenericDaoImplementation implements DaoInterface {
 
-    //private final Logger oLogger = (Logger) LogManager.getLogger(this.getClass().getName());
     protected String ob = null;
     protected String strSQL = null;
     protected String strCountSQL = null;
     protected Connection oConnection = null;
-    protected MetaBeanHelper oPuserSecurity = null;
+    protected MetaBeanHelper oMBHUsuarioSession = null;
 
-    public GenericDaoImplementation(String obj, Connection oPooledConnection, String strWhere) {
-        //oLogger.trace("GenericDaoImplementation", "constructor", "object=" + ob + "; strWhere=" + strWhere);
+    public GenericDaoImplementation(String obj, Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) {
         oConnection = oPooledConnection;
-        oPuserSecurity = SessionHelper.getoMBHUsuarioBean();
+        this.oMBHUsuarioSession = oMBHUsuarioSession;
         ob = obj;
         strSQL = "SELECT * FROM " + ob + " WHERE 1=1 ";
         strCountSQL = "SELECT COUNT(*) FROM " + ob + " WHERE 1=1 ";
@@ -184,7 +178,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
         //oLogger.trace("GenericDaoImplementation", "getObjectMetaData", "object = " + ob);
         MetaObjectGenericBeanHelper oMetaObject;
         try {
-            GenericBeanImplementation oBean = (GenericBeanImplementation) BeanFactory.getBean(ob, oPuserSecurity);
+            GenericBeanImplementation oBean = (GenericBeanImplementation) BeanFactory.getBean(ob, oMBHUsuarioSession);
             Class oClassBEAN = oBean.getClass();
             oMetaObject = new MetaObjectGenericBeanHelper();
             oMetaObject = fillObjectMetaData(oClassBEAN, oMetaObject);
@@ -200,7 +194,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
         //oLogger.trace("GenericDaoImplementation", "getObjectMetaData(ob)", "object = " + ob);
         MetaObjectGenericBeanHelper oMetaObject;
         try {
-            BeanInterface oBean = (BeanInterface) BeanFactory.getBean(ob, oPuserSecurity);
+            BeanInterface oBean = (BeanInterface) BeanFactory.getBean(ob, oMBHUsuarioSession);
             Class oClassBEAN = oBean.getClass();
             oMetaObject = new MetaObjectGenericBeanHelper();
             oMetaObject = fillObjectMetaData(oClassBEAN, oMetaObject);
@@ -216,7 +210,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
         //oLogger.trace("GenericDaoImplementation", "getPropertiesMetaData()", "object = " + ob);
         ArrayList<MetaPropertyGenericBeanHelper> alVector = new ArrayList<>();
         try {
-            BeanInterface oBean = (BeanInterface) BeanFactory.getBean(ob, oPuserSecurity);
+            BeanInterface oBean = (BeanInterface) BeanFactory.getBean(ob, oMBHUsuarioSession);
             Class classBean = oBean.getClass();
             Class superClassBean = oBean.getClass().getSuperclass();
             alVector = fillPropertiesMetaData(superClassBean, alVector);
@@ -233,7 +227,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
         //oLogger.trace("GenericDaoImplementation", "getPropertiesMetaData(ob)", "object = " + ob);
         ArrayList<MetaPropertyGenericBeanHelper> alVector = new ArrayList<>();
         try {
-            BeanInterface oBean = (BeanInterface) BeanFactory.getBean(ob, oPuserSecurity);
+            BeanInterface oBean = (BeanInterface) BeanFactory.getBean(ob, oMBHUsuarioSession);
             Class classBean = oBean.getClass();
             Class superClassBean = oBean.getClass().getSuperclass();
             alVector = fillPropertiesMetaData(superClassBean, alVector);
@@ -291,8 +285,8 @@ public abstract class GenericDaoImplementation implements DaoInterface {
             oPreparedStatement = oConnection.prepareStatement(strSQL1);
             oResultSet = oPreparedStatement.executeQuery(strSQL1);
             while (oResultSet.next()) {
-                BeanInterface oBean = BeanFactory.getBean(ob, oPuserSecurity);
-                oBean = (GenericBeanImplementation) oBean.fill(oResultSet, oConnection, oPuserSecurity, expand);
+                BeanInterface oBean = BeanFactory.getBean(ob, oMBHUsuarioSession);
+                oBean = (GenericBeanImplementation) oBean.fill(oResultSet, oConnection, oMBHUsuarioSession, expand);
                 aloBean.add((GenericBeanImplementation) oBean);
             }
 
@@ -330,8 +324,8 @@ public abstract class GenericDaoImplementation implements DaoInterface {
             oPreparedStatement = oConnection.prepareStatement(strSQL1);
             oResultSet = oPreparedStatement.executeQuery(strSQL1);
             while (oResultSet.next()) {
-                BeanInterface oBean = BeanFactory.getBean(ob, oPuserSecurity);
-                oBean = (GenericBeanImplementation) oBean.fill(oResultSet, oConnection, oPuserSecurity, expand);
+                BeanInterface oBean = BeanFactory.getBean(ob, oMBHUsuarioSession);
+                oBean = (GenericBeanImplementation) oBean.fill(oResultSet, oConnection, oMBHUsuarioSession, expand);
                 aloBean.add((GenericBeanImplementation) oBean);
             }
 
@@ -453,9 +447,9 @@ public abstract class GenericDaoImplementation implements DaoInterface {
             oPreparedStatement = oConnection.prepareStatement(strSQLget);
             oPreparedStatement.setInt(1, id);
             oResultSet = oPreparedStatement.executeQuery();
-            oBean = (GenericBeanImplementation) BeanFactory.getBean(ob, oPuserSecurity);
+            oBean = (GenericBeanImplementation) BeanFactory.getBean(ob, oMBHUsuarioSession);
             if (oResultSet.next()) {
-                oBean = (GenericBeanImplementation) oBean.fill(oResultSet, oConnection, oPuserSecurity, intExpand);
+                oBean = (GenericBeanImplementation) oBean.fill(oResultSet, oConnection, oMBHUsuarioSession, intExpand);
             } else {
                 oBean.setId(0);
             }
@@ -578,7 +572,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
     }
 
     protected boolean esMiGrupo(Integer idGrupo) throws Exception {
-        UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+        UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oMBHUsuarioSession.getBean();
         if (oUsuario.getId_tipousuario() == 3) {
             Integer idUsuarioProfesor = oUsuario.getId();
             String strSQLini = "SELECT COUNT(*) "
@@ -592,7 +586,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
     }    
     
     protected boolean esMiAlumno(Integer idAlumno) throws Exception {
-        UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+        UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oMBHUsuarioSession.getBean();
         if (oUsuario.getId_tipousuario() == 3) {
             Integer idUsuarioProfesor = oUsuario.getId();
             String strSQLini = "SELECT COUNT(*) "
@@ -607,7 +601,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
     }
 
     protected boolean esMiProfesor(Integer idProfesor) throws Exception {
-        UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+        UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oMBHUsuarioSession.getBean();
         if (oUsuario.getId_tipousuario() == 4) {
             Integer idUsuarioAlumno = oUsuario.getId();
             String strSQLini = "SELECT COUNT(*) "

@@ -37,13 +37,14 @@ import net.adisan.bean.specificimplementation.GrupoSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.helper.SessionHelper;
 
 public class Grupo3SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Grupo3SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("grupo", oPooledConnection, strWhere);
-        String strSQLini = "FROM grupo WHERE id_usuario = " + SessionHelper.getoUsuarioBean().getId();
+    public Grupo3SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("grupo", oPooledConnection, oMBHUsuarioSession, strWhere);
+        String strSQLini = "FROM grupo WHERE id_usuario = " + SessionHelper.getoUsuarioBean(oMBHUsuarioSession).getId();
         strSQL = "SELECT * " + strSQLini;
         strCountSQL = "SELECT COUNT(*) " + strSQLini;
         if (strWhere != null) {
@@ -60,7 +61,7 @@ public class Grupo3SpecificDaoImplementation extends GenericDaoImplementation {
     @Override
     public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
         GrupoSpecificBeanImplementation oGrupo = (GrupoSpecificBeanImplementation) oBean;
-        if (oGrupo.getId_usuario().equals(SessionHelper.getoUsuarioBean().getId())) {
+        if (oGrupo.getId_usuario().equals(SessionHelper.getoUsuarioBean(oMBHUsuarioSession).getId())) {
             return true;
         } else {
             return false;
@@ -71,7 +72,7 @@ public class Grupo3SpecificDaoImplementation extends GenericDaoImplementation {
     public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
         GrupoSpecificBeanImplementation oGrupo = (GrupoSpecificBeanImplementation) oBean;
         //puedo borrar mis cursos
-        if (oGrupo.getId_usuario().equals(SessionHelper.getoUsuarioBean().getId())) {
+        if (oGrupo.getId_usuario().equals(SessionHelper.getoUsuarioBean(oMBHUsuarioSession).getId())) {
             //pte -> puedo borrar mis cursos que no tengan alumnos
             return true;
         } else {
@@ -81,7 +82,7 @@ public class Grupo3SpecificDaoImplementation extends GenericDaoImplementation {
 
     @Override
     public Integer create(GenericBeanImplementation oBean) throws Exception {
-        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oMBHUsuarioSession.getBean();
         GrupoSpecificBeanImplementation oNewGrupo = (GrupoSpecificBeanImplementation) oBean;
         oNewGrupo.setId_usuario(oSessionUser.getId());
         return super.create(oBean);
@@ -89,10 +90,10 @@ public class Grupo3SpecificDaoImplementation extends GenericDaoImplementation {
 
     @Override
     public Integer update(GenericBeanImplementation oBean) throws Exception {
-        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oMBHUsuarioSession.getBean();
         GrupoSpecificBeanImplementation oUpdateGrupo = (GrupoSpecificBeanImplementation) oBean;
         //pte falta comprobar que el grupo sea efectivamente de ese profe
-        if (oUpdateGrupo.getId_usuario().equals(SessionHelper.getoUsuarioBean().getId())) {
+        if (oUpdateGrupo.getId_usuario().equals(SessionHelper.getoUsuarioBean(oMBHUsuarioSession).getId())) {
             oUpdateGrupo.setId_usuario(oSessionUser.getId());
             return super.update(oBean);
         } else {
@@ -103,7 +104,7 @@ public class Grupo3SpecificDaoImplementation extends GenericDaoImplementation {
     @Override
     public Integer delete(GenericBeanImplementation oBean) throws Exception {
         GrupoSpecificBeanImplementation oGrupo = (GrupoSpecificBeanImplementation) this.get(oBean.getId(), 0).getBean();
-        if (oGrupo.getId_usuario().equals(SessionHelper.getoUsuarioBean().getId())) {
+        if (oGrupo.getId_usuario().equals(SessionHelper.getoUsuarioBean(oMBHUsuarioSession).getId())) {
             return super.delete(oBean);
         } else {
             throw new Exception("No tienes permiso para efectuar la operación");

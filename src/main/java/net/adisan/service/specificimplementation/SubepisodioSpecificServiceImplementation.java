@@ -72,7 +72,7 @@ public class SubepisodioSpecificServiceImplementation extends GenericServiceImpl
             try {
                 oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
                 oConnection = oPooledConnection.newConnection();
-                DaoInterface oDao = (DaoInterface) DaoFactory.getDao(ob, oConnection, null);
+                DaoInterface oDao = (DaoInterface) DaoFactory.getDao(ob, oConnection, oMBHUsuarioSessionBean, null);
                 lResult = oDao.getCountX(id_foreign, "episodio", alFilter);
                 Gson oGson = GsonHelper.getGson();
                 String strJson = oGson.toJson(lResult);
@@ -110,7 +110,7 @@ public class SubepisodioSpecificServiceImplementation extends GenericServiceImpl
             try {
                 oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
                 oConnection = oPooledConnection.newConnection();
-                DaoInterface oDao = (DaoInterface) DaoFactory.getDao(ob, oConnection, null);
+                DaoInterface oDao = (DaoInterface) DaoFactory.getDao(ob, oConnection, oMBHUsuarioSessionBean, null);
                 oMetaBeanHelper = (MetaBeanHelper) oDao.getPageX(id_foreign, "episodio", rpp, np, hmOrder, alFilter, ConfigurationConstants.jsonMsgDepth);
                 String strJson = GsonHelper.getGson().toJson(oMetaBeanHelper);
                 oReplyBean = new ReplyBeanHelper(200, strJson);

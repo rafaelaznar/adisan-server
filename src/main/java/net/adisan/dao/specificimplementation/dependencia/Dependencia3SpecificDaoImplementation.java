@@ -37,13 +37,14 @@ import net.adisan.bean.specificimplementation.DependenciaSpecificBeanImplementat
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.helper.SessionHelper;
 
 public class Dependencia3SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Dependencia3SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("dependencia", oPooledConnection, strWhere);        
-        String strSQLini = "FROM dependencia where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean().getId() + " ";
+    public Dependencia3SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("dependencia", oPooledConnection, oMBHUsuarioSession, strWhere);        
+        String strSQLini = "FROM dependencia where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean(oMBHUsuarioSession).getId() + " ";
         String strSQL = "SELECT * " + strSQLini;
         String strCountSQL = "SELECT COUNT(*) " + strSQLini;
         if (strWhere != null) {
@@ -75,7 +76,7 @@ public class Dependencia3SpecificDaoImplementation extends GenericDaoImplementat
     @Override
     public Integer create(GenericBeanImplementation oBean) throws Exception {
         //se puede crear una dependencia en el centro sanitario del porfesor
-        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oMBHUsuarioSession.getBean();
         DependenciaSpecificBeanImplementation oNewDependencia = (DependenciaSpecificBeanImplementation) oBean;
         oNewDependencia.setId_centrosanitario(oSessionUser.getId_centrosanitario());
         return super.create(oBean);
@@ -83,7 +84,7 @@ public class Dependencia3SpecificDaoImplementation extends GenericDaoImplementat
 
     @Override
     public Integer update(GenericBeanImplementation oBean) throws Exception {
-        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oMBHUsuarioSession.getBean();
         DependenciaSpecificBeanImplementation oNewDependencia = (DependenciaSpecificBeanImplementation) oBean;
         oNewDependencia.setId_centrosanitario(oSessionUser.getId_centrosanitario());
         return super.update(oBean);

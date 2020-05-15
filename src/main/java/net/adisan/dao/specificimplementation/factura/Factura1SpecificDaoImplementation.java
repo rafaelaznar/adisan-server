@@ -36,11 +36,12 @@ import net.adisan.bean.genericimplementation.GenericBeanImplementation;
 import net.adisan.bean.specificimplementation.FacturaSpecificBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.helper.MetaBeanHelper;
 
 public class Factura1SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Factura1SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("factura", oPooledConnection, strWhere);
+    public Factura1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("factura", oPooledConnection, oMBHUsuarioSession, strWhere);
     }
 
     @Override

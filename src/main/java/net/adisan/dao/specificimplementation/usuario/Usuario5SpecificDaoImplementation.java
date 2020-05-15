@@ -40,8 +40,8 @@ import java.util.Date;
 
 public class Usuario5SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Usuario5SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("usuario", oPooledConnection, strWhere);
+    public Usuario5SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("usuario", oPooledConnection, oMBHUsuarioSession, strWhere);
     }
 
     @Override

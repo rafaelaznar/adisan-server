@@ -34,11 +34,12 @@ package net.adisan.dao.specificimplementation.tipopago;
 
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.helper.MetaBeanHelper;
 
 public class Tipopago0SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Tipopago0SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("tipopago", oPooledConnection, strWhere);
+    public Tipopago0SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("tipopago", oPooledConnection, oMBHUsuarioSession, strWhere);
     }
 
 }

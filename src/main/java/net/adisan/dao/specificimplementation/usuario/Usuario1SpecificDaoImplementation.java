@@ -45,8 +45,8 @@ import java.sql.Statement;
 
 public class Usuario1SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Usuario1SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("usuario", oPooledConnection, strWhere);
+    public Usuario1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("usuario", oPooledConnection, oMBHUsuarioSession, strWhere);
     }
 
     @Override

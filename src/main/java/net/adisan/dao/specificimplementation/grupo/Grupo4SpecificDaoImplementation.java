@@ -34,13 +34,14 @@ package net.adisan.dao.specificimplementation.grupo;
 
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.helper.SessionHelper;
 
 public class Grupo4SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Grupo4SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("grupo", oPooledConnection, strWhere);
-        String strSQLini = "FROM grupo where 1=1 AND id IN (SELECT id_grupo FROM usuario where id = " + SessionHelper.getoUsuarioBean().getId() + ")";
+    public Grupo4SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("grupo", oPooledConnection, oMBHUsuarioSession, strWhere);
+        String strSQLini = "FROM grupo where 1=1 AND id IN (SELECT id_grupo FROM usuario where id = " + SessionHelper.getoUsuarioBean(oMBHUsuarioSession).getId() + ")";
         strSQL = "SELECT * " + strSQLini;
         strCountSQL = "SELECT COUNT(*) " + strSQLini;
         if (strWhere != null) {

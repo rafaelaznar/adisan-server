@@ -44,17 +44,17 @@ import net.adisan.helper.SessionHelper;
 
 public class Usuario3SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Usuario3SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("usuario", oPooledConnection, strWhere);
+    public Usuario3SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("usuario", oPooledConnection, oMBHUsuarioSession, strWhere);
         String strSQLini = "";
         strSQLini = "FROM usuario where 1=1 "
-                + "AND (id IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean().getId() + " and id_tipousuario=3 ) "
-                + " OR  id IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean().getId() + " and id_tipousuario=5 ) "
+                + "AND (id IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean(oMBHUsuarioSession).getId() + " and id_tipousuario=3 ) "
+                + " OR  id IN (SELECT distinct id FROM usuario where id_centrosanitario = " + SessionHelper.getoCentroSanitarioBean(oMBHUsuarioSession).getId() + " and id_tipousuario=5 ) "
                 + " OR  id IN (SELECT distinct u.id FROM usuario u, grupo g, usuario u2 "
                 + "                    WHERE u.id_tipousuario=4 "
                 + "                      AND u.id_grupo=g.id "
                 + "                      AND g.id_usuario=u2.id "
-                + "                      AND u2.id_centrosanitario= " + SessionHelper.getoCentroSanitarioBean().getId() + ")"
+                + "                      AND u2.id_centrosanitario= " + SessionHelper.getoCentroSanitarioBean(oMBHUsuarioSession).getId() + ")"
                 + ") ";
         strSQL = "SELECT * " + strSQLini;
         strCountSQL = "SELECT COUNT(*) " + strSQLini;
@@ -82,7 +82,7 @@ public class Usuario3SpecificDaoImplementation extends GenericDaoImplementation 
 
     @Override
     public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
-        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oMBHUsuarioSession.getBean();
         UsuarioSpecificBeanImplementation oUpdateUser = (UsuarioSpecificBeanImplementation) oBean;
         if (oSessionUser.getId().equals(oUpdateUser.getId())) {
             //soy yo
@@ -111,7 +111,7 @@ public class Usuario3SpecificDaoImplementation extends GenericDaoImplementation 
 
     @Override
     public Integer create(GenericBeanImplementation oBean) throws Exception {
-        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oMBHUsuarioSession.getBean();
         UsuarioSpecificBeanImplementation oNewUser = (UsuarioSpecificBeanImplementation) oBean;
         oNewUser.setId_centro(oSessionUser.getId_centro());
         oNewUser.setId_tipousuario(4);
@@ -121,7 +121,7 @@ public class Usuario3SpecificDaoImplementation extends GenericDaoImplementation 
 
     @Override
     public Integer update(GenericBeanImplementation oBean) throws Exception {
-        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oPuserSecurity.getBean();
+        UsuarioSpecificBeanImplementation oSessionUser = (UsuarioSpecificBeanImplementation) oMBHUsuarioSession.getBean();
         UsuarioSpecificBeanImplementation oUpdateUser = (UsuarioSpecificBeanImplementation) oBean;
         oUpdateUser.setId_centro(oSessionUser.getId_centro());
         oUpdateUser.setId_tipousuario(4);
@@ -153,7 +153,7 @@ public class Usuario3SpecificDaoImplementation extends GenericDaoImplementation 
     }
 
     public Integer updatePassword(int id, String oldPass, String newPass) throws Exception {
-        if (esMiAlumno(id) || SessionHelper.getoUsuarioBean().getId() == id) {
+        if (esMiAlumno(id) || SessionHelper.getoUsuarioBean(oMBHUsuarioSession).getId() == id) {
             PreparedStatement oPreparedStatement = null;
             Integer iResult = 0;
             try {

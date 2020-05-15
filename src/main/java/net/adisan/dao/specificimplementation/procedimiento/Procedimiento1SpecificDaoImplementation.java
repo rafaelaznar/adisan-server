@@ -35,11 +35,12 @@ package net.adisan.dao.specificimplementation.procedimiento;
 import net.adisan.bean.genericimplementation.GenericBeanImplementation;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import java.sql.Connection;
+import net.adisan.bean.helper.MetaBeanHelper;
 
 public class Procedimiento1SpecificDaoImplementation extends GenericDaoImplementation {
 
-    public Procedimiento1SpecificDaoImplementation(Connection oPooledConnection, String strWhere) throws Exception {
-        super("procedimiento", oPooledConnection, strWhere);
+    public Procedimiento1SpecificDaoImplementation(Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) throws Exception {
+        super("procedimiento", oPooledConnection, oMBHUsuarioSession, strWhere);
         String strSQLini = "FROM procedimiento where 1=1 ";
         strSQL = "SELECT * " + strSQLini;
         strCountSQL = "SELECT COUNT(*) " + strSQLini;
