@@ -33,7 +33,7 @@
 package net.adisan.connection.specificimplementation;
 
 import net.adisan.connection.publicinterface.ConnectionInterface;
-import net.adisan.helper.constant.ConnectionConstants;
+import net.adisan.constant.ConnectionConstants;
 import java.sql.Connection;
 import java.sql.SQLException;
 import org.apache.commons.dbcp.BasicDataSource;

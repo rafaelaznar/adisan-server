@@ -10,7 +10,7 @@ import net.adisan.bean.genericimplementation.GenericBeanImplementation;
 import net.adisan.bean.meta.publicinterface.MetaObjectBeanInterface;
 import net.adisan.bean.meta.publicinterface.MetaPropertyBeanInterface;
 import net.adisan.helper.EnumHelper;
-import net.adisan.helper.constant.RegexConstants;
+import net.adisan.constant.RegexConstants;
 
 @MetaObjectBeanInterface(
         TableName = "nombrefemenino",

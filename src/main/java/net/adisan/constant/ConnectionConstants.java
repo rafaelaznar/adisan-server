@@ -30,49 +30,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.adisan.connection.specificimplementation;
+package net.adisan.constant;
 
-import com.jolbox.bonecp.BoneCP;
-import com.jolbox.bonecp.BoneCPConfig;
-import net.adisan.connection.publicinterface.ConnectionInterface;
-import net.adisan.constant.ConnectionConstants;
-import java.sql.Connection;
-import java.sql.SQLException;
+public class ConnectionConstants {
 
-public class BoneCPConnection implements ConnectionInterface {
+    public static final String connectionName = "hikari";
+    public static final String databaseName = "adisan";
+    public static final String databaseLogin = "root";
+    public static final String databasePassword = "bitnami";
+    public static final String databasePort = "3306";
+    public static final String databaseIP = "127.0.0.1";
+    public static final int getDatabaseMaxPoolSize = 5;
+    public static final int getDatabaseMinPoolSize = 2;
 
-    private BoneCP connectionPool = null;
-    private Connection oConnection = null;
-
-    @Override
-    public Connection newConnection() throws Exception {
-        try {
-            BoneCPConfig config = new BoneCPConfig();
-            config.setJdbcUrl(ConnectionConstants.getConnectionChain());
-            config.setUsername(ConnectionConstants.databaseLogin);
-            config.setPassword(ConnectionConstants.databasePassword);
-            config.setMinConnectionsPerPartition(1);
-            config.setMaxConnectionsPerPartition(3);
-            config.setPartitionCount(1);
-            connectionPool = new BoneCP(config);
-            oConnection = connectionPool.getConnection();
-        } catch (SQLException ex) {
-            throw ex;
-        }
-        return oConnection;
+    public static String getConnectionChain() {
+        String options = "useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+        return "jdbc:mysql://" + ConnectionConstants.databaseIP + ":" + ConnectionConstants.databasePort + "/" + ConnectionConstants.databaseName + "?" + options;
     }
 
-    @Override
-    public void disposeConnection() throws Exception {
-        try {
-            if (oConnection != null) {
-                oConnection.close();
-            }
-            if (connectionPool != null) {
-                connectionPool.close();
-            }
-        } catch (SQLException ex) {
-            throw ex;
-        }
-    }
 }

@@ -30,39 +30,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.adisan.connection.specificimplementation;
+package net.adisan.constant;
 
-import net.adisan.connection.publicinterface.ConnectionInterface;
-import net.adisan.constant.ConnectionConstants;
-import java.sql.Connection;
-import java.sql.SQLException;
+import net.adisan.helper.EnumHelper.Environment;
 
-public class DriverManagerConnection implements ConnectionInterface {
+public class ConfigurationConstants {
 
-    private Connection oConnection;
-
-    @Override
-    public Connection newConnection() throws Exception {
-        oConnection = null;
-        try {
-            //Class.forName("com.mysql.jdbc.Driver");
-            String urlOdbc = ConnectionConstants.getConnectionChain();
-            oConnection = (java.sql.DriverManager.getConnection(urlOdbc, ConnectionConstants.databaseLogin, ConnectionConstants.databasePassword));
-            return oConnection;
-        } catch (Exception ex) {
-                throw ex;
-        }
-    }
-
-    @Override
-    public void disposeConnection() throws Exception {
-        try {
-            if (oConnection != null) {
-                oConnection.close();
-            }
-        } catch (SQLException ex) {
-            throw ex;
-        }
-    }
+    public static final int jsonMsgDepth = 1;
+    public static final int tokenSize = 20;
+    public static final Environment environment = Environment.Debug;
+    public static final String version = "5.0";
+    public static final String versionDate = "March 2020";
+    public static final String author = "Rafael Aznar & DAW STUDENTS";
+    public static final String authorMail = "rafaaznar{at}gmail{dot}com";
+    public static final String sources = "https://github.com/rafaelaznar/adisan-server";    
+    public static final String database = "https://github.com/rafaelaznar/adisan-database";    
+    public static final String licenseLink = "<a href=\"https://opensource.org/licenses/MIT\">MIT License</a>";
+    public static final int programDalay = 0;
 
 }

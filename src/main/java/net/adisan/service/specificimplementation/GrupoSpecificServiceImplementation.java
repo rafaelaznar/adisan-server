@@ -39,7 +39,7 @@ import net.adisan.connection.publicinterface.ConnectionInterface;
 import net.adisan.dao.specificimplementation.grupo.Grupo1SpecificDaoImplementation;
 import net.adisan.factory.ConnectionFactory;
 import net.adisan.helper.EncodingHelper;
-import net.adisan.helper.constant.ConnectionConstants;
+import net.adisan.constant.ConnectionConstants;
 import net.adisan.service.genericimplementation.GenericServiceImplementation;
 import java.sql.Connection;
 import javax.servlet.http.HttpServletRequest;

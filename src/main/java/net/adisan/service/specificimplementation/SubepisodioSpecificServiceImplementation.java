@@ -48,8 +48,8 @@ import net.adisan.factory.DaoFactory;
 import net.adisan.helper.EncodingHelper;
 import net.adisan.helper.GsonHelper;
 import net.adisan.helper.ParameterHelper;
-import net.adisan.helper.constant.ConfigurationConstants;
-import net.adisan.helper.constant.ConnectionConstants;
+import net.adisan.constant.ConfigurationConstants;
+import net.adisan.constant.ConnectionConstants;
 
 public class SubepisodioSpecificServiceImplementation extends GenericServiceImplementation {
 

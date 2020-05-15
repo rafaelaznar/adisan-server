@@ -44,7 +44,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.adisan.dao.genericimplementation.GenericDaoImplementation;
 import net.adisan.factory.DaoFactory;
-import net.adisan.helper.constant.RegexConstants;
+import net.adisan.constant.RegexConstants;
 
 @MetaObjectBeanInterface(
         TableName = "episodioprocedimiento",

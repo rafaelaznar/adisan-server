@@ -39,7 +39,7 @@ import net.adisan.bean.meta.publicinterface.MetaObjectBeanInterface;
 import net.adisan.bean.meta.publicinterface.MetaPropertyBeanInterface;
 import net.adisan.dao.specificimplementation.grupo.Grupo1SpecificDaoImplementation;
 import net.adisan.helper.EnumHelper;
-import net.adisan.helper.constant.RegexConstants;
+import net.adisan.constant.RegexConstants;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -43,7 +43,7 @@ import net.adisan.bean.specificimplementation.TipousuarioSpecificBeanImplementat
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.connection.publicinterface.ConnectionInterface;
 import net.adisan.factory.ConnectionFactory;
-import net.adisan.helper.constant.ConnectionConstants;
+import net.adisan.constant.ConnectionConstants;
 
 public class SessionHelper {
 

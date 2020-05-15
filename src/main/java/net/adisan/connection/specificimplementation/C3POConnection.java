@@ -34,7 +34,7 @@ package net.adisan.connection.specificimplementation;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import net.adisan.connection.publicinterface.ConnectionInterface;
-import net.adisan.helper.constant.ConnectionConstants;
+import net.adisan.constant.ConnectionConstants;
 import java.beans.PropertyVetoException;
 import java.sql.Connection;
 import java.sql.SQLException;

@@ -44,7 +44,7 @@ import net.adisan.helper.EncodingHelper;
 import net.adisan.helper.EnumHelper;
 import net.adisan.helper.EnumHelper.FieldType;
 import net.adisan.helper.RandomHelper;
-import net.adisan.helper.constant.ConfigurationConstants;
+import net.adisan.constant.ConfigurationConstants;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.Date;

@@ -47,7 +47,7 @@ import net.adisan.dao.specificimplementation.factory.NombrefemeninoSpecificDaoIm
 import net.adisan.dao.specificimplementation.factory.NombremasculinoSpecificDaoImplementation;
 import net.adisan.factory.ConnectionFactory;
 import net.adisan.helper.RandomHelper;
-import net.adisan.helper.constant.ConnectionConstants;
+import net.adisan.constant.ConnectionConstants;
 import net.adisan.service.genericimplementation.GenericServiceImplementation;
 import java.sql.Connection;
 import java.util.Date;

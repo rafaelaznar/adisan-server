@@ -35,7 +35,7 @@ package net.adisan.connection.specificimplementation;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import net.adisan.connection.publicinterface.ConnectionInterface;
-import net.adisan.helper.constant.ConnectionConstants;
+import net.adisan.constant.ConnectionConstants;
 import java.sql.Connection;
 import java.sql.SQLException;
 

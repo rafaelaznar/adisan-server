@@ -35,8 +35,8 @@ package net.adisan.control;
 import net.adisan.bean.helper.ReplyBeanHelper;
 import net.adisan.connection.publicinterface.ConnectionInterface;
 import net.adisan.factory.ConnectionFactory;
-import net.adisan.helper.constant.ConnectionConstants;
-import net.adisan.helper.constant.ConfigurationConstants;
+import net.adisan.constant.ConnectionConstants;
+import net.adisan.constant.ConfigurationConstants;
 
 import net.adisan.factory.ServiceFactory;
 import net.adisan.helper.EnumHelper.Environment;
