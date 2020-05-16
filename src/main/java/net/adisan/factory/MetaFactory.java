@@ -32,15 +32,74 @@
  */
 package net.adisan.factory;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.bean.helper.ReplyBeanHelper;
+import net.adisan.bean.meta.helper.MetaObjectGenericBeanHelper;
 import net.adisan.dao.publicinterface.DaoInterface;
 import net.adisan.helper.EncodingHelper;
 import net.adisan.helper.GsonHelper;
+import net.adisan.helper.SessionHelper;
 
 public class MetaFactory {
+
+    public ReplyBeanHelper getMenu(HttpServletRequest oRequest) throws Exception {
+        MetaBeanHelper oMHBUsuarioSessionBean = (MetaBeanHelper) oRequest.getSession().getAttribute("user");
+        ReplyBeanHelper oReplyBean = null;
+        DaoInterface oDao = null;
+        ArrayList<ArrayList<MetaObjectGenericBeanHelper>> oMenu = new ArrayList<ArrayList<MetaObjectGenericBeanHelper>>();
+        //pte - derivar a tabla..
+        if (SessionHelper.getIdTipoUsuario(oMHBUsuarioSessionBean) == 1) {
+
+            ArrayList<MetaObjectGenericBeanHelper> oMenu11 = new ArrayList<MetaObjectGenericBeanHelper>();
+            oDao = DaoFactory.getDao("usuario", null, oMHBUsuarioSessionBean, null);
+            oMenu11.add(oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("tipousuario", null, oMHBUsuarioSessionBean, null);
+            oMenu11.add(oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("grupo", null, oMHBUsuarioSessionBean, null);
+            oMenu11.add(oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("curso", null, oMHBUsuarioSessionBean, null);
+            oMenu11.add(oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("centroeducativo", null, oMHBUsuarioSessionBean, null);
+            oMenu11.add(oDao.getObjectMetaData());
+
+            oMenu.add(oMenu11);
+
+            ArrayList<MetaObjectGenericBeanHelper> oMenu12 = new ArrayList<MetaObjectGenericBeanHelper>();
+            oDao = DaoFactory.getDao("centrosanitario", null, oMHBUsuarioSessionBean, null);
+            oMenu12.add(oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("dependencia", null, oMHBUsuarioSessionBean, null);
+            oMenu12.add(oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("tipodependencia", null, oMHBUsuarioSessionBean, null);
+            oMenu12.add(oDao.getObjectMetaData());
+
+            oMenu.add(oMenu12);
+
+            ArrayList<MetaObjectGenericBeanHelper> oMenu13 = new ArrayList<MetaObjectGenericBeanHelper>();
+            oDao = DaoFactory.getDao("medico", null, oMHBUsuarioSessionBean, null);
+            oMenu13.add(oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("personalsanitario", null, oMHBUsuarioSessionBean, null);
+            oMenu13.add(oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("servicio", null, oMHBUsuarioSessionBean, null);
+            oMenu13.add(oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("tiposervicio", null, oMHBUsuarioSessionBean, null);
+            oMenu13.add(oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("especialidad", null, oMHBUsuarioSessionBean, null);
+            oMenu13.add(oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("mategoriaprofesional", null, oMHBUsuarioSessionBean, null);
+            oMenu13.add(oDao.getObjectMetaData());
+            oDao = DaoFactory.getDao("categoriaprofesionalps", null, oMHBUsuarioSessionBean, null);
+            oMenu13.add(oDao.getObjectMetaData());
+
+            oMenu.add(oMenu13);
+
+        }
+        String strJson = GsonHelper.getGson().toJson(oMenu);
+        oReplyBean = new ReplyBeanHelper(200, strJson);
+        return oReplyBean;
+    }
 
     public ReplyBeanHelper getallobjectsmetadata(HttpServletRequest oRequest) throws Exception {
         MetaBeanHelper oMHBUsuarioSessionBean = (MetaBeanHelper) oRequest.getSession().getAttribute("user");
