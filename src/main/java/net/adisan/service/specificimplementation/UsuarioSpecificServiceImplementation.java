@@ -33,9 +33,9 @@
 package net.adisan.service.specificimplementation;
 
 import com.google.gson.Gson;
-import com.mysql.cj.Session;
 import net.adisan.service.genericimplementation.GenericServiceImplementation;
 import net.adisan.bean.helper.MetaBeanHelper;
+import net.adisan.bean.helper.CheckBeanHelper;
 import net.adisan.bean.helper.ReplyBeanHelper;
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.connection.publicinterface.ConnectionInterface;
@@ -51,10 +51,13 @@ import net.adisan.helper.RandomHelper;
 import net.adisan.constant.ConfigurationConstants;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import net.adisan.bean.meta.helper.MetaObjectGenericBeanHelper;
+import net.adisan.factory.MetaFactory;
 import net.adisan.helper.SessionHelper;
 
 public class UsuarioSpecificServiceImplementation extends GenericServiceImplementation {
@@ -145,7 +148,24 @@ public class UsuarioSpecificServiceImplementation extends GenericServiceImplemen
         UsuarioSpecificBeanImplementation oUsuarioBean = null;
         try {
             if (SessionHelper.thereISSession(oMBHUsuarioSessionBean)) {
-                String strJson = GsonHelper.getGson().toJson(oMBHUsuarioSessionBean);
+
+                oRequest.getSession().setAttribute("breadcrumbs",
+                        SessionHelper.addBreadCrumb(
+                                (ArrayList<String>) oRequest.getSession().getAttribute("breadcrumbs"),
+                                oRequest.getParameter("br")
+                        )
+                );
+
+                MetaFactory oMetaFactory = new MetaFactory();
+                HashMap<String, MetaObjectGenericBeanHelper> oHMMeta = oMetaFactory.getallobjectsmetadata2(oRequest);
+
+                CheckBeanHelper oCheck = new CheckBeanHelper(
+                        (ArrayList<String>) oRequest.getSession().getAttribute("breadcrumbs"),
+                        oMBHUsuarioSessionBean,
+                        oHMMeta
+                );
+
+                String strJson = GsonHelper.getGson().toJson(oCheck);
                 oReplyBean = new ReplyBeanHelper(200, strJson);
             } else {
                 oReplyBean = new ReplyBeanHelper(401, null);

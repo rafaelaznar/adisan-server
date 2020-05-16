@@ -47,16 +47,12 @@ import java.io.StringWriter;
 import java.net.InetAddress;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import net.adisan.bean.helper.MetaBeanHelper;
-import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 
 import net.adisan.helper.EncodingHelper;
-import net.adisan.helper.SessionHelper;
 
 //import org.apache.logging.log4j.LogManager;
 //import org.apache.logging.log4j.Logger;
@@ -136,9 +132,9 @@ public class JsonController extends HttpServlet {
                 //response.setHeader("Set-Cookie: cross-site-cookie=name; SameSite=None; Secure");
                 response.setHeader("Set-Cookie", "HttpOnly;SameSite=Strict;Secure");
                 //response.setHeader("Set-Cookie", "HttpOnly;SameSite=None;Secure");
-                if (ob.equalsIgnoreCase("usuario") && op.equalsIgnoreCase("getpage")) {
+                //if (ob.equalsIgnoreCase("usuario") && op.equalsIgnoreCase("getpage")) {
                     //TraceHelper.traceCode = true;
-                }
+                //}
                 //--
 //                if (request.getSession().getAttribute("user") != null) {
 //                    MetaBeanHelper oMBHUsuario = (MetaBeanHelper) request.getSession().getAttribute("user");

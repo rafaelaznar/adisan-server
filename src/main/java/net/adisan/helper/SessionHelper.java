@@ -35,19 +35,17 @@ package net.adisan.helper;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
 import net.adisan.bean.helper.MetaBeanHelper;
 import net.adisan.bean.specificimplementation.CentrosanitarioSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.GrupoSpecificBeanImplementation;
-import net.adisan.bean.specificimplementation.TipousuarioSpecificBeanImplementation;
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 import net.adisan.connection.publicinterface.ConnectionInterface;
 import net.adisan.factory.ConnectionFactory;
 import net.adisan.constant.ConnectionConstants;
 
 public class SessionHelper {
-
-
 
     public static void logDB(Integer id_usuario, String ob, String op) throws Exception {
         Connection oConnection = null;
@@ -84,6 +82,16 @@ public class SessionHelper {
                 oPooledConnection.disposeConnection();
             }
         }
+    }
+
+    public static ArrayList<String> addBreadCrumb(ArrayList<String> alBreadCrumbs, String strBreadCrumb) {
+        if (alBreadCrumbs == null) {
+            alBreadCrumbs = new ArrayList<String>();
+        }
+        if (strBreadCrumb != null) {
+            alBreadCrumbs.add(strBreadCrumb);
+        }
+        return alBreadCrumbs;
     }
 
     public static Boolean thereISSession(MetaBeanHelper oMBHUsuarioBean) {
