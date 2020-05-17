@@ -351,9 +351,9 @@ public abstract class GenericDaoImplementation implements DaoInterface {
     public Long getCountX(int id_foreign, String ob_foreign, ArrayList<FilterBeanHelper> alFilter) throws Exception {
         //oLogger.trace("GenericDaoImplementation", "getCountX", "object=" + ob);
         PreparedStatement oPreparedStatement = null;
-        ResultSet oResultSet = null;
-        String strSQL = "SELECT COUNT(*) FROM " + ob;
-        strSQL += " WHERE 1=1 ";
+        ResultSet oResultSet = null;        
+        String strSQL = strCountSQL;
+        //strSQL += " WHERE 1=1 ";
         strSQL += " and id_" + ob_foreign + "=" + id_foreign + " ";
         strSQL += SqlHelper.buildSqlFilter(alFilter);
         Long iResult = 0L;

@@ -143,18 +143,47 @@ public class UsuarioSpecificServiceImplementation extends GenericServiceImplemen
         }
     }
 
+    private void addBreadCrumb2Session() {
+        oRequest.getSession().setAttribute("breadcrumbs",
+                SessionHelper.addBreadCrumb(
+                        (ArrayList<String>) oRequest.getSession().getAttribute("breadcrumbs"),
+                        oRequest.getParameter("br")
+                )
+        );
+    }
+
     public ReplyBeanHelper getSessionStatus() throws Exception {
         ReplyBeanHelper oReplyBean = null;
         UsuarioSpecificBeanImplementation oUsuarioBean = null;
         try {
             if (SessionHelper.thereISSession(oMBHUsuarioSessionBean)) {
+                if (oRequest.getParameter("br") != null) {
+                    ArrayList<String> alCrumbs = (ArrayList<String>) oRequest.getSession().getAttribute("breadcrumbs");
+                    if (alCrumbs != null) {
+                        if (alCrumbs.size() > 0) {
+                            boolean esta = false;
+                            String[] arr1 = oRequest.getParameter("br").split("/");
+                            //String lastCrumb = alCrumbs.get(alCrumbs.size() - 1);
+                            for (int counter = 0; counter < alCrumbs.size(); counter++) {
+                                String[] arr2 = alCrumbs.get(counter).split("/");
+                                if (arr1[0].equalsIgnoreCase(arr2[0]) && arr1[1].equalsIgnoreCase(arr2[1]) && arr1[2].equalsIgnoreCase(arr2[2])) {
+                                    esta = true;
+                                    alCrumbs.subList(counter + 1, alCrumbs.size()).clear();
+                                }
+                            }
+                            if (!esta) {
+                                addBreadCrumb2Session();
+                            }
+                        } else {
+                            addBreadCrumb2Session();
+                        }
+                    } else {
+                        addBreadCrumb2Session();
+                    }
 
-                oRequest.getSession().setAttribute("breadcrumbs",
-                        SessionHelper.addBreadCrumb(
-                                (ArrayList<String>) oRequest.getSession().getAttribute("breadcrumbs"),
-                                oRequest.getParameter("br")
-                        )
-                );
+                } else {
+                    oRequest.getSession().setAttribute("breadcrumbs", null);
+                }
 
                 MetaFactory oMetaFactory = new MetaFactory();
                 HashMap<String, MetaObjectGenericBeanHelper> oHMMeta = oMetaFactory.getallobjectsmetadata2(oRequest);
