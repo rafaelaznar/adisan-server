@@ -73,7 +73,7 @@ public class EpisodioprocedimientoSpecificBeanImplementation extends GenericBean
             ShortName = "Inicio",
             LongName = "Fecha inicio",
             Description = "Fecha de inicio del procedimiento",
-            Type = EnumHelper.FieldType.Date,
+            Type = EnumHelper.FieldType.Datetime,
             RegexHelp = "una fecha correcta",
             IsRequired = true,
             DefaultValue = "today",
@@ -86,7 +86,7 @@ public class EpisodioprocedimientoSpecificBeanImplementation extends GenericBean
             ShortName = "Fecha fin",
             LongName = "Fecha de fin",
             Description = "Fecha de fin del procedimiento",
-            Type = EnumHelper.FieldType.Date,
+            Type = EnumHelper.FieldType.Datetime,
             RegexHelp = "una fecha correcta",
             IsRequired = false
     )
