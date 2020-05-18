@@ -53,17 +53,18 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import net.adisan.bean.helper.PListBeanHelper;
 import net.adisan.bean.publicinterface.BeanInterface;
 import net.adisan.bean.specificimplementation.UsuarioSpecificBeanImplementation;
 
 public abstract class GenericDaoImplementation implements DaoInterface {
-
+    
     protected String ob = null;
     protected String strSQL = null;
     protected String strCountSQL = null;
     protected Connection oConnection = null;
     protected MetaBeanHelper oMBHUsuarioSession = null;
-
+    
     public GenericDaoImplementation(String obj, Connection oPooledConnection, MetaBeanHelper oMBHUsuarioSession, String strWhere) {
         oConnection = oPooledConnection;
         this.oMBHUsuarioSession = oMBHUsuarioSession;
@@ -75,7 +76,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
             strCountSQL += " " + strWhere + " ";
         }
     }
-
+    
     protected Long count(String strCountSQL) throws SQLException {
         //oLogger.trace("GenericDaoImplementation", "count", "ob" + ob);
         PreparedStatement oPreparedStatement = null;
@@ -103,12 +104,12 @@ public abstract class GenericDaoImplementation implements DaoInterface {
             }
         }
     }
-
+    
     @Override
     public MetaBeanHelper getStatistics(int id) throws Exception {
         throw new UnsupportedOperationException("GenericDaoImplementation.getStatistics:Not supported yet.");
     }
-
+    
     private ArrayList<MetaPropertyGenericBeanHelper> fillPropertiesMetaData(Class oClassBEAN, ArrayList<MetaPropertyGenericBeanHelper> alVector) {
         //oLogger.trace("GenericDaoImplementation", "fillPropertiesMetaData", "object = " + ob);
         for (Field field : oClassBEAN.getDeclaredFields()) {
@@ -138,7 +139,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
                         oMeta.setIsVisible(fieldAnnotation.IsVisible());
                         oMeta.setWidth(fieldAnnotation.Width());
                         oMeta.setMaxLength(fieldAnnotation.MaxLength());
-                                                
+                        
                         oMeta.setClip(fieldAnnotation.Clip());
                         
                         oMeta.setIsFormVisible1(fieldAnnotation.IsFormVisible1());
@@ -153,7 +154,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
         }
         return alVector;
     }
-
+    
     private MetaObjectGenericBeanHelper fillObjectMetaData(Class oClassBEAN, MetaObjectGenericBeanHelper oMetaObject) throws Exception {
         //oLogger.trace("GenericDaoImplementation", "fillObjectMetaData", "object = " + ob);
         Annotation[] classAnnotations = oClassBEAN.getAnnotations();
@@ -172,7 +173,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
         }
         return oMetaObject;
     }
-
+    
     @Override
     public MetaObjectGenericBeanHelper getObjectMetaData() throws Exception {
         //oLogger.trace("GenericDaoImplementation", "getObjectMetaData", "object = " + ob);
@@ -188,7 +189,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
         }
         return oMetaObject;
     }
-
+    
     @Override
     public MetaObjectGenericBeanHelper getObjectMetaData(String ob) throws Exception {
         //oLogger.trace("GenericDaoImplementation", "getObjectMetaData(ob)", "object = " + ob);
@@ -204,7 +205,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
         }
         return oMetaObject;
     }
-
+    
     @Override
     public ArrayList<MetaPropertyGenericBeanHelper> getPropertiesMetaData() throws Exception {
         //oLogger.trace("GenericDaoImplementation", "getPropertiesMetaData()", "object = " + ob);
@@ -221,7 +222,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
         }
         return alVector;
     }
-
+    
     @Override
     public ArrayList<MetaPropertyGenericBeanHelper> getPropertiesMetaData(String ob) throws Exception {
         //oLogger.trace("GenericDaoImplementation", "getPropertiesMetaData(ob)", "object = " + ob);
@@ -238,7 +239,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
         }
         return alVector;
     }
-
+    
     @Override
     public Long getCount(ArrayList<FilterBeanHelper> alFilter) throws SQLException, ParseException, Exception {
         //oLogger.trace("GenericDaoImplementation", "getCount", "object=" + ob);
@@ -269,7 +270,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
         }
         return iResult;
     }
-
+    
     @Override
     public MetaBeanHelper getPage(int intRegsPerPag, int intPage, LinkedHashMap<String, String> hmOrder, ArrayList<FilterBeanHelper> alFilter, int expand) throws Exception {
         //oLogger.trace("GenericDaoImplementation", "getPage", "object=" + ob);
@@ -289,11 +290,11 @@ public abstract class GenericDaoImplementation implements DaoInterface {
                 oBean = (GenericBeanImplementation) oBean.fill(oResultSet, oConnection, oMBHUsuarioSession, expand);
                 aloBean.add((GenericBeanImplementation) oBean);
             }
-
+            
             ArrayList<MetaPropertyGenericBeanHelper> alMetaProperties = this.getPropertiesMetaData();
             MetaObjectGenericBeanHelper oMetaObject = this.getObjectMetaData();
             oMetaBeanHelper = new MetaBeanHelper(oMetaObject, alMetaProperties, aloBean);
-
+            
         } catch (Exception ex) {
             //oLogger.error(this.getClass().getName() + ".getPage ob:" + ob, ex);
             throw ex;
@@ -307,7 +308,14 @@ public abstract class GenericDaoImplementation implements DaoInterface {
         }
         return oMetaBeanHelper;
     }
-
+    
+    public PListBeanHelper getPList(int intRegsPerPag, int intPage, LinkedHashMap<String, String> hmOrder, ArrayList<FilterBeanHelper> alFilter, int expand) throws Exception {
+        PListBeanHelper oPlist = new PListBeanHelper();
+        oPlist.setPage(this.getPage(intRegsPerPag, intPage, hmOrder, alFilter, expand));
+        oPlist.setCount(this.getCount(alFilter));
+        return oPlist;
+    }    
+    
     @Override
     public MetaBeanHelper getPageX(int id_foreign, String ob_foreign, int intRegsPerPag, int intPage, LinkedHashMap<String, String> hmOrder, ArrayList<FilterBeanHelper> alFilter, int expand) throws Exception {
         //oLogger.trace("GenericDaoImplementation", "getPageX", "object=" + ob);
@@ -328,11 +336,11 @@ public abstract class GenericDaoImplementation implements DaoInterface {
                 oBean = (GenericBeanImplementation) oBean.fill(oResultSet, oConnection, oMBHUsuarioSession, expand);
                 aloBean.add((GenericBeanImplementation) oBean);
             }
-
+            
             ArrayList<MetaPropertyGenericBeanHelper> alMetaProperties = this.getPropertiesMetaData();
             MetaObjectGenericBeanHelper oMetaObject = this.getObjectMetaData();
             oMetaBeanHelper = new MetaBeanHelper(oMetaObject, alMetaProperties, aloBean);
-
+            
         } catch (Exception ex) {
             //Logger.error(this.getClass().getName() + ".getPageX ob:" + ob, ex);
             throw ex;
@@ -346,7 +354,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
         }
         return oMetaBeanHelper;
     }
-
+    
     @Override
     public Long getCountX(int id_foreign, String ob_foreign, ArrayList<FilterBeanHelper> alFilter) throws Exception {
         //oLogger.trace("GenericDaoImplementation", "getCountX", "object=" + ob);
@@ -380,7 +388,14 @@ public abstract class GenericDaoImplementation implements DaoInterface {
         }
         return iResult;
     }
-
+    
+    public PListBeanHelper getPListX(int id_foreign, String ob_foreign, int intRegsPerPag, int intPage, LinkedHashMap<String, String> hmOrder, ArrayList<FilterBeanHelper> alFilter, int expand) throws Exception {
+        PListBeanHelper oPlist = new PListBeanHelper();
+        oPlist.setPage(this.getPageX(id_foreign, ob_foreign, intRegsPerPag, intPage, hmOrder, alFilter, expand));
+        oPlist.setCount(this.getCountX(id_foreign, ob_foreign, alFilter));
+        return oPlist;
+    }    
+    
     protected Long countSQL(String strSQLini) throws Exception {
         //oLogger.trace("GenericDaoImplementation", "countSQL", "object=" + ob);
         PreparedStatement oPreparedStatement = null;
@@ -409,7 +424,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
         }
         return iResult;
     }
-
+    
     @Override
     public boolean canCreateObject() throws Exception {
         return false;
@@ -419,22 +434,22 @@ public abstract class GenericDaoImplementation implements DaoInterface {
     public boolean canCreate(GenericBeanImplementation oBean) throws Exception {
         return false;
     }
-
+    
     @Override
     public boolean canUpdate(GenericBeanImplementation oBean) throws Exception {
         return false;
     }
-
+    
     @Override
     public boolean canDelete(GenericBeanImplementation oBean) throws Exception {
         return false;
     }
-
+    
     @Override
     public boolean canStatistics(GenericBeanImplementation oBean) throws Exception {
         return false;
     }
-
+    
     @Override
     public MetaBeanHelper get(int id, int intExpand) throws Exception {
         //oLogger.trace("GenericDaoImplementation", "get", "object=" + ob);
@@ -469,7 +484,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
         }
         return oMetaBeanHelper;
     }
-
+    
     @Override
     public Integer create(GenericBeanImplementation oBean) throws Exception {
         //oLogger.trace("GenericDaoImplementation", "create", "object=" + ob);
@@ -492,7 +507,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
                 oResultSet = oPreparedStatement.getGeneratedKeys();
                 oResultSet.next();
                 iResult = oResultSet.getInt(1);
-
+                
             } catch (Exception ex) {
                 //TraceHelper.traceError(this.getClass().getName() + ".create ob:" + ob, ex);
                 throw ex;
@@ -510,7 +525,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
         }
         return iResult;
     }
-
+    
     @Override
     public Integer update(GenericBeanImplementation oBean) throws Exception {
         //oLogger.trace("GenericDaoImplementation", "update", "object=" + ob);
@@ -544,7 +559,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
         }
         return iResult;
     }
-
+    
     @Override
     public Integer delete(GenericBeanImplementation oBean) throws Exception {
         //oLogger.trace("GenericDaoImplementation", "delete", "object=" + ob);
@@ -570,13 +585,13 @@ public abstract class GenericDaoImplementation implements DaoInterface {
         }
         return iResult;
     }
-
+    
     protected boolean esMiGrupo(Integer idGrupo) throws Exception {
         UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oMBHUsuarioSession.getBean();
         if (oUsuario.getId_tipousuario() == 3) {
             Integer idUsuarioProfesor = oUsuario.getId();
             String strSQLini = "SELECT COUNT(*) "
-                    + "FROM grupo g WHERE "                    
+                    + "FROM grupo g WHERE "
                     + "g.id_usuario=" + idUsuarioProfesor + " "
                     + "and g.id=" + idGrupo;
             return this.countSQL(strSQLini) > 0;
@@ -599,7 +614,7 @@ public abstract class GenericDaoImplementation implements DaoInterface {
             return false;
         }
     }
-
+    
     protected boolean esMiProfesor(Integer idProfesor) throws Exception {
         UsuarioSpecificBeanImplementation oUsuario = (UsuarioSpecificBeanImplementation) oMBHUsuarioSession.getBean();
         if (oUsuario.getId_tipousuario() == 4) {
@@ -614,5 +629,5 @@ public abstract class GenericDaoImplementation implements DaoInterface {
             return false;
         }
     }
-
+    
 }

@@ -161,18 +161,23 @@ public class UsuarioSpecificServiceImplementation extends GenericServiceImplemen
                     ArrayList<String> alCrumbs = (ArrayList<String>) oRequest.getSession().getAttribute("breadcrumbs");
                     if (alCrumbs != null) {
                         if (alCrumbs.size() > 0) {
-                            boolean esta = false;
                             String[] arr1 = oRequest.getParameter("br").split("/");
-                            //String lastCrumb = alCrumbs.get(alCrumbs.size() - 1);
-                            for (int counter = 0; counter < alCrumbs.size(); counter++) {
-                                String[] arr2 = alCrumbs.get(counter).split("/");
-                                if (arr1[0].equalsIgnoreCase(arr2[0]) && arr1[1].equalsIgnoreCase(arr2[1]) && arr1[2].equalsIgnoreCase(arr2[2])) {
-                                    esta = true;
-                                    alCrumbs.subList(counter + 1, alCrumbs.size()).clear();
-                                }
-                            }
-                            if (!esta) {
+                            if (arr1.length == 3) { //es un plist no filtrado
+                                oRequest.getSession().setAttribute("breadcrumbs", null);
                                 addBreadCrumb2Session();
+                            } else { //es un plist filtrado
+                                boolean esta = false;
+                                //String lastCrumb = alCrumbs.get(alCrumbs.size() - 1);
+                                for (int counter = 0; counter < alCrumbs.size(); counter++) {
+                                    String[] arr2 = alCrumbs.get(counter).split("/");
+                                    if (arr1[0].equalsIgnoreCase(arr2[0]) && arr1[1].equalsIgnoreCase(arr2[1]) && arr1[2].equalsIgnoreCase(arr2[2])) {
+                                        esta = true;
+                                        alCrumbs.subList(counter + 1, alCrumbs.size()).clear();
+                                    }
+                                }
+                                if (!esta) {
+                                    addBreadCrumb2Session();
+                                }
                             }
                         } else {
                             addBreadCrumb2Session();
@@ -182,7 +187,7 @@ public class UsuarioSpecificServiceImplementation extends GenericServiceImplemen
                     }
 
                 } else {
-                    oRequest.getSession().setAttribute("breadcrumbs", null);
+                    //oRequest.getSession().setAttribute("breadcrumbs", null);
                 }
 
                 MetaFactory oMetaFactory = new MetaFactory();

@@ -39,6 +39,7 @@ import net.adisan.bean.meta.helper.MetaObjectGenericBeanHelper;
 import net.adisan.bean.meta.helper.MetaPropertyGenericBeanHelper;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import net.adisan.bean.helper.PListBeanHelper;
 
 public interface DaoInterface {
 
@@ -53,10 +54,14 @@ public interface DaoInterface {
     public Long getCount(ArrayList<FilterBeanHelper> alFilter) throws Exception;
 
     public MetaBeanHelper getPage(int intRegsPerPag, int intPage, LinkedHashMap<String, String> hmOrder, ArrayList<FilterBeanHelper> alFilter, int expand) throws Exception;
+    
+    public PListBeanHelper getPList(int intRegsPerPag, int intPage, LinkedHashMap<String, String> hmOrder, ArrayList<FilterBeanHelper> alFilter, int expand) throws Exception;
 
     public MetaBeanHelper getPageX(int id_foreign, String ob_foreign, int intRegsPerPag, int intPage, LinkedHashMap<String, String> hmOrder, ArrayList<FilterBeanHelper> alFilter, int expand) throws Exception;
 
     public Long getCountX(int id_foreign, String ob_foreign, ArrayList<FilterBeanHelper> alFilter) throws Exception;
+    
+    public PListBeanHelper getPListX(int id_foreign, String ob_foreign, int intRegsPerPag, int intPage, LinkedHashMap<String, String> hmOrder, ArrayList<FilterBeanHelper> alFilter, int expand) throws Exception;
 
     public boolean canCreateObject() throws Exception;
 

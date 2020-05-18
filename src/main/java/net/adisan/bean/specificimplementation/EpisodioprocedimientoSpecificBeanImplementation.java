@@ -64,7 +64,7 @@ public class EpisodioprocedimientoSpecificBeanImplementation extends GenericBean
             Type = EnumHelper.FieldType.Date,
             RegexHelp = "una fecha correcta",
             IsRequired = true,
-            DefaultValue = "today"
+            DefaultValue = "now"
     )
     private Date fecha_registro;
 
@@ -76,7 +76,7 @@ public class EpisodioprocedimientoSpecificBeanImplementation extends GenericBean
             Type = EnumHelper.FieldType.Datetime,
             RegexHelp = "una fecha correcta",
             IsRequired = true,
-            DefaultValue = "today",
+            DefaultValue = "now",
             IsForeignKeyDescriptor = true
     )
     private Date fecha_inicio;

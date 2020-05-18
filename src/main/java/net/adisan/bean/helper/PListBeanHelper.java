@@ -30,33 +30,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.adisan.service.publicinterface;
+package net.adisan.bean.helper;
 
-import net.adisan.bean.helper.ReplyBeanHelper;
+import com.google.gson.annotations.Expose;
 
-public interface ServiceInterface {
+public class PListBeanHelper {
+    @Expose
+    private Long count;
+    @Expose
+    private MetaBeanHelper page;
 
-    public ReplyBeanHelper getMetaData() throws Exception;
+    public PListBeanHelper(Long count, MetaBeanHelper page) {
+        this.count = count;
+        this.page = page;
+    }
 
-    public ReplyBeanHelper getObjectMetaData() throws Exception;
+    public PListBeanHelper() {        
+    }
 
-    public ReplyBeanHelper getPropertiesMetaData() throws Exception;
+    public Long getCount() {
+        return count;
+    }
 
-    public ReplyBeanHelper getPage() throws Exception;
+    public void setCount(Long count) {
+        this.count = count;
+    }
 
-    public ReplyBeanHelper getCount() throws Exception;
-    
-    public ReplyBeanHelper getPList() throws Exception;    
+    public MetaBeanHelper getPage() {
+        return page;
+    }
 
-    public ReplyBeanHelper getPageX() throws Exception;
+    public void setPage(MetaBeanHelper page) {
+        this.page = page;
+    }
 
-    public ReplyBeanHelper getCountX() throws Exception;
 
-    public ReplyBeanHelper get() throws Exception;
 
-    public ReplyBeanHelper set() throws Exception;
-
-    public ReplyBeanHelper remove() throws Exception;
-    
-    public ReplyBeanHelper getStatistics () throws Exception;
 }

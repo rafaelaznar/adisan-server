@@ -99,7 +99,7 @@ public class LogSpecificBeanImplementation extends GenericBeanImplementation {
             Type = EnumHelper.FieldType.Datetime,
             RegexHelp = "una fecha correcta",
             IsRequired = true,
-            DefaultValue = "today"
+            DefaultValue = "now"
     )
     private Date stamp;
 

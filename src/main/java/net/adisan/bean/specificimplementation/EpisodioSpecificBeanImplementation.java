@@ -77,7 +77,7 @@ public class EpisodioSpecificBeanImplementation extends GenericBeanImplementatio
             Type = EnumHelper.FieldType.Date,
             RegexHelp = "una fecha correcta",
             IsRequired = true,
-            DefaultValue = "today"
+            DefaultValue = "now"
     )
     private Date fecha_inicio;
 

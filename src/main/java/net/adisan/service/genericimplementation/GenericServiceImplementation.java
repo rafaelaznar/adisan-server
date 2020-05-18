@@ -53,6 +53,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import javax.servlet.http.HttpServletRequest;
+import net.adisan.bean.helper.PListBeanHelper;
 
 public abstract class GenericServiceImplementation implements ServiceInterface {
 
@@ -277,6 +278,43 @@ public abstract class GenericServiceImplementation implements ServiceInterface {
         }
     }
 
+      public ReplyBeanHelper getPListX() throws Exception {
+        if (this.checkPermission("getplistx")) {
+            int np = Integer.parseInt(oRequest.getParameter("np"));
+            int rpp = Integer.parseInt(oRequest.getParameter("rpp"));
+            int id_foreign = Integer.parseInt(oRequest.getParameter("id_foreign"));
+            String ob_foreign = oRequest.getParameter("ob_foreign");
+            String strOrder = oRequest.getParameter("order");
+            String strFilter = oRequest.getParameter("filter");
+            LinkedHashMap<String, String> hmOrder = ParameterHelper.getOrderParams(strOrder);
+            ArrayList<FilterBeanHelper> alFilter = ParameterHelper.getFilterParams(strFilter);
+            Connection oConnection = null;
+            ConnectionInterface oPooledConnection = null;
+            ReplyBeanHelper oReplyBean = null;
+            PListBeanHelper oPList = null;
+            try {
+                oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
+                oConnection = oPooledConnection.newConnection();
+                DaoInterface oDao = (DaoInterface) DaoFactory.getDao(ob, oConnection, oMBHUsuarioSessionBean, null);                                                
+                oPList = oDao.getPListX(id_foreign, ob_foreign, rpp, np, hmOrder, alFilter, ConfigurationConstants.jsonMsgDepth);                                                
+                String strJson = GsonHelper.getGson().toJson(oPList);
+                oReplyBean = new ReplyBeanHelper(200, strJson);
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                if (oConnection != null) {
+                    oConnection.close();
+                }
+                if (oPooledConnection != null) {
+                    oPooledConnection.disposeConnection();
+                }
+            }
+            return oReplyBean;
+        } else {
+            return new ReplyBeanHelper(401, EncodingHelper.quotate("Unauthorized"));
+        }
+    }
+    
     /*
     * http://127.0.0.1:8081/adisan/json?ob=xxxxxx&op=get&id=n
      */
@@ -341,6 +379,41 @@ public abstract class GenericServiceImplementation implements ServiceInterface {
             }
         }
         return oReplyBean;
+    }
+
+    public ReplyBeanHelper getPList() throws Exception {
+        if (this.checkPermission("getplist")) {
+            int np = Integer.parseInt(oRequest.getParameter("np"));
+            int rpp = Integer.parseInt(oRequest.getParameter("rpp"));
+            String strOrder = oRequest.getParameter("order");
+            String strFilter = oRequest.getParameter("filter");
+            LinkedHashMap<String, String> hmOrder = ParameterHelper.getOrderParams(strOrder);
+            ArrayList<FilterBeanHelper> alFilter = ParameterHelper.getFilterParams(strFilter);
+            Connection oConnection = null;
+            ConnectionInterface oPooledConnection = null;
+            ReplyBeanHelper oReplyBean = null;
+            PListBeanHelper oPList = null;
+            try {
+                oPooledConnection = ConnectionFactory.getSourceConnection(ConnectionConstants.connectionName);
+                oConnection = oPooledConnection.newConnection();
+                DaoInterface oDao = (DaoInterface) DaoFactory.getDao(ob, oConnection, oMBHUsuarioSessionBean, null);
+                oPList = oDao.getPList(rpp, np, hmOrder, alFilter, ConfigurationConstants.jsonMsgDepth);
+                String strJson = GsonHelper.getGson().toJson(oPList);
+                oReplyBean = new ReplyBeanHelper(200, strJson);
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                if (oConnection != null) {
+                    oConnection.close();
+                }
+                if (oPooledConnection != null) {
+                    oPooledConnection.disposeConnection();
+                }
+            }
+            return oReplyBean;
+        } else {
+            return new ReplyBeanHelper(401, EncodingHelper.quotate("Unauthorized"));
+        }
     }
 
     @Override

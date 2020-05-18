@@ -75,7 +75,7 @@ public class EpisodiodiagnosticoSpecificBeanImplementation extends GenericBeanIm
             Type = EnumHelper.FieldType.Date,
             RegexHelp = "una fecha correcta",
             IsRequired = true,
-            DefaultValue = "today",
+            DefaultValue = "now",
             IsForeignKeyDescriptor = true
     )
     private Date fecha;
